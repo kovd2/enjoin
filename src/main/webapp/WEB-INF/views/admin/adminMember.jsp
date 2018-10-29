@@ -130,8 +130,59 @@
     	
 	}
 	.userMember1{
-		font-size:13px;
+		font-size:14px;
 	}
+	.m1{
+		font-size: 16px;
+    	margin-right: 20px;
+    	font-weight: bold;
+	}
+	.m2{
+		font-size: 16px;
+   	 	margin-right: 60px;
+   	 	font-weight: bold;
+	}
+	.m3{
+		font-size:16px;
+		font-weight: bold;	
+	}
+	.m4{
+		font-size: 16px;
+    	margin-right: 30px;
+    	font-weight: bold;
+	}
+	.m5{
+		font-size:16px;	
+		margin-right:40px;
+		font-weight: bold;
+	}
+	.m6{
+		font-size: 16px;
+    	margin-right: 50px;
+    	font-weight: bold;
+			
+	}
+	.m7{
+		font-size:16px;	
+	}
+	.MemberAreas{
+		width: 550px;
+    	height: 20px;
+    	background: red;
+    	margin-left: 0px;
+    	display: -webkit-box;
+	}
+	.area1{
+		width: 42px;
+    	height: 20px;
+    	background: blue;
+	}
+	.area2{
+		width: 146px;
+    	height: 20px;
+    	background: green;
+	}
+
 
 </style>
 </head>
@@ -184,13 +235,31 @@
       					<h2 class="MemberSearchMain">일반 회원 검색</h2>
       					<hr>
       				</td>
-      				<td></td>
-      				<!-- <th class="userMember1">회원번호</th>
-      				<th class="userMember2">회원아이디</th>
-      				<th class="userMember3">가입날짜</th>
-      				<th class="userMember4">이름</th>
-      				<th class="userMember5">연락처</th>
-      				<td class="userMember6">이메일</td> -->
+      				<td class="MemberTitleArea">
+      					<span class="m1">번호</span>
+      					<span class="m2">회원아이디</span>
+      					<span class="m4">이름</span>
+      					<span class="m5">연락처</span>
+      					<span class="m6">이메일	</span>
+      					<span class="m3">가입날짜</span>
+      					<hr>
+      				</td>
+      				<td>
+      					<div class="MemberAreas">
+      						<div class="area1"></div>
+      						<div class="area2"></div>
+      						<div class="area3"></div>
+      						<div class="area4"></div>
+      						<div class="area5"></div>
+      						<div class="area6"></div>
+      				<!-- 	<span class="memberNum">1</span>
+      					<span class="userId">shinhunwoo</span>
+      					<span class="userName">아무거나염</span>
+      					<span class="phone">010-1111-1111</span>
+      					<span class="email">shinhunwoo@naver.com</span>
+      					<span class="memberName">2018-10-18</span> -->
+      					</div>
+      				</td>
       			</tr>
       		</tabel>
       	</div>
