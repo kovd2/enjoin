@@ -46,6 +46,26 @@ public class MemberController {
 		return "member/companyMemberInsertForm";
 	}
 	
+	//제휴시설 회원가입용 컨트롤러
+	@RequestMapping("companyInsert.me")
+	public String insertCompany(Model model, Member m) {
+		System.out.println(passwordEncoder);
+		System.out.println(m);
+		String encPassword = passwordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPassword);
+		
+		System.out.println(encPassword);
+		
+		int result = ms.insertCompany(m);
+		
+		if(result>0){
+			return "redirect:goMain.me";
+		}else {
+			model.addAttribute("msg", "회원가입실패");
+			return "common/errorPage";
+		}
+	}
+	
 	//회원가입용 컨트롤러
 	@RequestMapping("insert.me")
 	public String insertMember(Model model, Member m) {
@@ -80,13 +100,25 @@ public class MemberController {
 		Member loginUser;
 		
 		System.out.println("Member: " + m);
-				
+		
 		try {
 			loginUser = ms.loginMember(m);
 			model.addAttribute("loginUser", loginUser);
 			
-			return "redirect:goMain.me";
+			System.out.println(loginUser);
 			
+			if(loginUser.getUserType()=="1") {
+			
+				return "redirect:goMain.me";
+				
+			}else if(loginUser.getUserType()=="2") {
+				
+				return "company/userHistory";
+				
+			}else {
+				
+				return "redirect:goMain.me";
+			}
 		} catch (LoginException e) {
 			
 			model.addAttribute("msg", e.getMessage());

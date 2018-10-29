@@ -23,11 +23,18 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne("Member.selectLoginUser", m);
 	}
 
-	//회원가입
+	//회원가입용 메소드
 	@Override
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
 		
 		return sqlSession.insert("Member.insertMember", m);
+	}
+
+	//기업회원가입용 메소드
+	@Override
+	public int insertCompany(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.insert("Member.insertCompany", m);
 	}
 	
 
