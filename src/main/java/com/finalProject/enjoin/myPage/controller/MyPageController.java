@@ -1,10 +1,17 @@
 package com.finalProject.enjoin.myPage.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.service.myPageService;
 
 @Controller
 public class MyPageController {
+	@Autowired
+	private myPageService mps;
 	//프로필
 	@RequestMapping("profil.ljs")
 	public String showProfil() {
@@ -14,7 +21,9 @@ public class MyPageController {
 	
 	//정보수정
 	@RequestMapping("changeInfo.ljs")
-	public String changeInfo() {
+	public String changeInfo(Model model, Member m) {
+		Member loginUser = mps.changeInfo(m);
+		
 		
 		return "myPage/changeInfo";
 	}
