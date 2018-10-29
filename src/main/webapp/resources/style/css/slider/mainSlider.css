@@ -1,0 +1,65 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300);
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+ul, ol {list-style: none}
+.container1 {
+    width: 100%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 0 15px;
+}
+.slider {
+    width: 1002px;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid whitesmoke;;
+    position: relative;
+    left: -165px;
+}
+.slider ul {
+    width: calc(100% * 7);
+    height: 100%;
+}
+.slider ul li {
+    width: calc(100% / 7);
+    height: 100%;
+    float: left;
+    font-size: 50px;
+    color: #086fb1;
+    text-align: center;
+    line-height: 300px;
+        font-family: 'Open Sans', sans-serif;
+}
+.slider ul li:first-of-type, .slider ul li:nth-of-type(6) {background: #eee}
+.slider ul li:nth-of-type(3) {background: #ddd}
+.slider ul li:nth-of-type(4) {background: #ccc}
+.slider ul li:nth-of-type(5) {background: #ddd}
+.slider ul li:last-of-type, .slider ul li:nth-of-type(2) {background: #ccc}
+.slider ol, .slider .control .fa {
+    position: absolute
+}
+.slider ol {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.slider ol li {
+    display: inline-block;
+    cursor: pointer
+}
+.slider ol li:hover .fa:before, .slider ol li.active .fa:before {
+    content: "\f111"
+}
+.slider .control .fa:first-of-type {left: 10px; top: 33%}
+.slider .control .fa:last-of-type {right: 10px; top: 33%}
+.slider .control .fa {
+    cursor: pointer
+}

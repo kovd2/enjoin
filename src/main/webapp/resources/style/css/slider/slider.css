@@ -1,0 +1,157 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	background: #242c38;
+	font-family: 'Roboto';
+	font-size: 30.5%;
+}
+
+.clearfix:after {
+	content: '';
+	clear: both;
+	display: block;
+	height: 0;
+	width: 0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+/* a1 {
+	color: #00c5b9;
+	text-decoration: none;
+} */
+
+h1 {
+	color: #FFF;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: 300;
+	font-size: 1.2em;
+}
+
+/** ---------------------------------------
+ * Slider 
+ ----------------------------------------*/
+.container {
+	width: 300px;
+	margin: 40px auto 0;
+}
+
+.slider-wrapper {
+	z-index: 500;
+    position: relative;
+    height: 360px;
+    background: #FFF;
+    border: 2px solid gainsboro;
+    overflow: hidden;
+}
+
+.slider-wrapper li {
+	display: none;
+}
+
+.slider-wrapper .current-slide {
+	display: block;
+}
+
+.slider-shadow {
+	width: 100%;
+	height: 15px;
+	position: relative;
+}
+
+
+
+.slider-shadow:before {
+	right: 10px;
+	left: auto;
+	-webkit-transform: rotate(4deg);
+	-ms-transform: rotate(4deg);
+	-o-transform: rotate(4deg);
+	transform: rotate(4deg);
+}
+
+.slider-wrapper img {
+	position: absolute;
+    max-width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/**
+ * ---[Caption] ---------------------- 
+ **/
+.slider-wrapper .caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.65);
+	width: 100%;
+	padding: 10px;
+	color: #FFF;
+	-webkit-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+	opacity: 0;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.slider-wrapper li:hover .caption {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+	opacity: 1;
+}
+
+
+.slider-wrapper h2 {
+	color: #00c5b9;
+	font-size: 2em;
+	font-weight: 400;
+	margin-bottom: 6px;
+}
+
+.slider-wrapper p {
+	font-size: 1.6em;
+	font-weight: 300;
+	line-height: 1.4em;
+}
+
+/**
+ * ---[Botones-Control] ---------------------- 
+ **/
+.control-buttons {
+	margin-left: 195px;
+}
+
+.control-buttons li {
+	cursor: pointer;
+	display: inline-block;
+	background: #424f66;
+	text-indent: -99999px;
+	height: 12px;
+	width: 12px;
+	margin: 0 6px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.control-buttons li.active {
+	background: #00c5b9;
+}
+
+
