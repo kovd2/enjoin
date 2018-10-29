@@ -98,27 +98,26 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String loginCheck(Member m, Model model) {
 		Member loginUser;
-		
-		System.out.println("Member: " + m);
-		
+				
 		try {
 			loginUser = ms.loginMember(m);
 			model.addAttribute("loginUser", loginUser);
 			
 			System.out.println(loginUser);
 			
-			if(loginUser.getUserType()=="1") {
+			if(loginUser.getUserType().equals("1")) {
 			
 				return "redirect:goMain.me";
 				
-			}else if(loginUser.getUserType()=="2") {
+			}else if(loginUser.getUserType().equals("2")) {
 				
-				return "company/userHistory";
+				return "company/useHistory";
 				
 			}else {
 				
 				return "redirect:goMain.me";
 			}
+			
 		} catch (LoginException e) {
 			
 			model.addAttribute("msg", e.getMessage());
@@ -129,6 +128,7 @@ public class MemberController {
 		
 	}
 	
+
 	//로그아웃용 컨트롤러
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
@@ -138,6 +138,22 @@ public class MemberController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*------------------------------------------------------------------------------------------------*/
 	//이용약관 보여주는 메소드
 	@RequestMapping("conditions.me")
 	public String showConditions() {
