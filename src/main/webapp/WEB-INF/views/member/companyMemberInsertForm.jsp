@@ -8073,7 +8073,7 @@ body.register .subWrap {
 							</span>
 						</h2>
 
-						<form name="form_register" class="memberForm" enctype="multipart/form-data" method="post" action="/member/register_form/direct">
+						<form name="form_register" class="memberForm" method="post" action="companyInsert.me">
 							<input type="hidden" name="jobtype" id="jobtype" value="go">
 							<input type="hidden" name="img_temp" id="img_temp" value="">
 							<input type="hidden" name="next" id="next" value=""> <input
@@ -8091,7 +8091,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" id="user_id" placeholder="아이디"
-												name="user_id" maxlength="24" autocorrect="off"
+												name="userId" maxlength="24" autocorrect="off"
 												autocapitalize="none"
 												onfocusout="check_id(this); return false;"
 												autocomplete="off"
@@ -8106,7 +8106,7 @@ body.register .subWrap {
 											<label for="password" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
 											<div class="input-append input-group">
-												<input id="password" name="password1" class="form-control"
+												<input id="password" name="userPwd" class="form-control"
 													type="password" placeholder="비밀번호" autocorrect="off"
 													autocapitalize="none" autocomplete="off"
 													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;"><input
@@ -8126,8 +8126,21 @@ body.register .subWrap {
 											<label for="user_name" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
-												class="form-control" placeholder="이름" name="user_name"
+												class="form-control" placeholder="이름" name="userName"
 												id="user_name" value=""
+												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+										</div>
+										<span class="help-block" id="user_name_help"></span>
+									</div>
+									
+									<div class="form-group" id="user_name_div">
+										<label class="sr-only">이메일</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="user_name" class="label-floatlabel  "
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
+												onblur="check_validate(false);" type="text"
+												class="form-control" placeholder="이메일"
+												name="email" id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8139,7 +8152,7 @@ body.register .subWrap {
 											<label for="user_name" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
-												class="form-control" placeholder="담당자 이름" name="user_name"
+												class="form-control" placeholder="담당자 이름" name="managerName"
 												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
@@ -8152,7 +8165,7 @@ body.register .subWrap {
 											<label for="user_name" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
-												class="form-control" placeholder="담당자 번호 (-없이 입력해주세요.)" name="user_name"
+												class="form-control" placeholder="담당자 번호 (-없이 입력해주세요.)" name="managerPhone"
 												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
@@ -8165,7 +8178,7 @@ body.register .subWrap {
 											<label for="user_name" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
-												class="form-control" placeholder="담당자 이메일" name="user_name"
+												class="form-control" placeholder="담당자 이메일" name="managerEmail"
 												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
@@ -8187,7 +8200,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="상호명" name="copName"
-												id="copName" value=""
+												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8200,7 +8213,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="대표자이름" name="ceoName"
-												id="ceoName" value=""
+												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8213,7 +8226,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="업종" name="copType"
-												id="copType" value=""
+												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8226,7 +8239,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="업태" name="copCon"
-												id="copCon" value=""
+												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8238,7 +8251,7 @@ body.register .subWrap {
 											<label for="user_name" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
-												class="form-control" placeholder="시설주소" name="user_name"
+												class="form-control" placeholder="시설주소" name="copAddress"
 												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
@@ -8252,7 +8265,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="사업자 등록번호" name="copNo"
-												id="copNo" value=""
+												id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8265,7 +8278,7 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이름</label><input
 												onblur="check_validate(false);" type="text"
 												class="form-control" placeholder="전자세금계산서용 이메일"
-												name="copEmail" id="copEmail" value=""
+												name="copEmail" id="user_name" value=""
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<span class="help-block" id="user_name_help"></span>
@@ -8282,7 +8295,7 @@ body.register .subWrap {
 											style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">휴대전화
 											번호를 숫자만 입력</label><input onblur="check_validate(false);" type="tel"
 											class="form-control" placeholder="휴대전화 번호를 숫자만 입력"
-											name="user_phone" id="user_phone" value=""
+											name="phone" id="user_phone" value=""
 											style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 									</div>
 									
