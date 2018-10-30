@@ -111,7 +111,7 @@ public class MemberController {
 				
 			}else if(loginUser.getUserType().equals("2")) {
 				
-				return "company/useHistory";
+				return "company/companyInsert";
 				
 			}else {
 				

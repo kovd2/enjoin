@@ -200,7 +200,6 @@
 	<div id="wrapper">
 		<jsp:include page="../common/menubar.jsp" />
 		<jsp:include page="companyLeft.jsp" />
-
 	</div>
 
 
@@ -208,39 +207,48 @@
     <div class="row">
       <div class="content col-md-12">
         <div class="page-header">
-          <h2>
-            공지사항
-            <small>이벤트와 새로운 알림을 확인하세요!</small>
+          <h2> 내가 등록한 시설
+            <small>내가 등록한 시설에 대한 정보가 필요한가요?</small>
           </h2>
         </div>
         <div class="noticeWrap">
           <div class="list-group">
             <a class="list-group-item" href="/notice/view/130110/">
-              <span class="label label-info">공지</span>               <h4 class="list-group-ietm-heading">[안내] TLX-Basic 멤버십 서비스종료</h4>
-              <span class="date">2018-06-08</span>
+              <span class="label label-default label-no">125</span>            
+              <h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
+              <span class="label label-default label-no">ID : test01 </span><br>
+              <span class="label label-default label-no">사용 pass개수 : 7개</span><br>
+              <br>
+              <span class="date">2018-06-08 15:30</span>
             </a>
             <a class="list-group-item" href="/notice/view/130129/">
-              <span class="label label-default label-no">124</span>               <h5 class="list-group-ietm-heading">TLX PASS 회원 가족 초청 무료 영화 관람 이벤트</h5>
+              <span class="label label-default label-no">124</span>               
+              <h5 class="list-group-ietm-heading">TLX PASS 회원 가족 초청 무료 영화 관람 이벤트</h5>
               <span class="date">2018-10-25</span>
             </a>
             <a class="list-group-item" href="/notice/view/130128/">
-              <span class="label label-default label-no">123</span>               <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트2차 선정자 안내</h5>
+              <span class="label label-default label-no">123</span>               
+              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트2차 선정자 안내</h5>
               <span class="date">2018-10-24</span>
             </a>
             <a class="list-group-item" href="/notice/view/130127/">
-              <span class="label label-default label-no">122</span>               <h5 class="list-group-ietm-heading">[당첨자발표] TLX X InBody Challenge (8월) </h5>
+              <span class="label label-default label-no">122</span>               
+              <h5 class="list-group-ietm-heading">[당첨자발표] TLX X InBody Challenge (8월) </h5>
               <span class="date">2018-09-17</span>
             </a>
             <a class="list-group-item" href="/notice/view/130126/">
-              <span class="label label-default label-no">121</span>               <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트 선정자 안내</h5>
+              <span class="label label-default label-no">121</span>               
+              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트 선정자 안내</h5>
               <span class="date">2018-09-17</span>
             </a>
             <a class="list-group-item" href="/notice/view/130125/">
-              <span class="label label-default label-no">120</span>               <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS와 함께하는 추석 연휴 영화 예매권 이벤트(원더풀고스트)</h5>
+              <span class="label label-default label-no">120</span>               
+              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS와 함께하는 추석 연휴 영화 예매권 이벤트(원더풀고스트)</h5>
               <span class="date">2018-09-17</span>
             </a>
             <a class="list-group-item" href="/notice/view/130124/">
-              <span class="label label-default label-no">119</span>               <h5 class="list-group-ietm-heading">[당첨자발표] 나이키 스포츠세션 참가자</h5>
+              <span class="label label-default label-no">119</span>               
+              <h5 class="list-group-ietm-heading">[당첨자발표] 나이키 스포츠세션 참가자</h5>
               <span class="date">2018-09-10</span>
             </a>
           </div><!-- /.list-group -->
@@ -262,14 +270,8 @@
       </div> <!-- /.content -->
     </div><!-- /.row -->
   </div><!-- /container -->
-</div>
 
 
-
-
-
-</div>
-
-	<jsp:include page="../common/footer.jsp"></jsp:include>
+<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

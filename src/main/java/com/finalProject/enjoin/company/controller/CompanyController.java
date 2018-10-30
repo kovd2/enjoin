@@ -21,4 +21,16 @@ public class CompanyController {
 	public String showCompany(){
 		return "company/companyView";
 	}
+	
+	//나의 시설 이용내역을 보여주는 메소드
+	@RequestMapping("useHistory.me")
+	public String showUseHistory() {
+		return "company/useHistory";
+	}
+	
+	//입장확인 폼을 보여주는 메소드
+	@RequestMapping("enterConfirm.me")
+	public String showEnterConfirm() {
+		return "company/enterConfirm";
+	}
 }
