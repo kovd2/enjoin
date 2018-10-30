@@ -28,5 +28,10 @@ public class searchFacilityController {
 		return "searchMap/detailResult";
 	}
 	
+	@RequestMapping("reviewForm.kch")
+	public String reviewForm() {
+		
+		return "searchMap/searchReviewForm";
+	}
 	
 }
