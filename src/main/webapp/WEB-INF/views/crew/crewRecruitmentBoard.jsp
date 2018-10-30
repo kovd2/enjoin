@@ -405,6 +405,13 @@ input.searchBar {
 
 </style>
 </head>
+<script>
+	function goCrew(){
+		
+		location.href = "crewRecruitment.shw2";
+	}
+
+</script>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<div class="body">
@@ -898,7 +905,7 @@ input.searchBar {
 
 				<div class="searchBox">
 					<div class="writerBtnBox">
-						<button class="writerBtn">크루모집작성</button>
+						<button class="writerBtn" onclick="goCrew()">크루모집작성</button>
 					</div>
 					<form>
 						<table >

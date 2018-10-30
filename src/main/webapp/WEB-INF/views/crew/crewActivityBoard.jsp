@@ -225,6 +225,11 @@ p.crewName {
 </style>
 
 </head>
+<script>
+	function goCrewActicity(){
+		location.href = "crewActivity.shw2";
+	}
+</script>
 <body>
 
 	<jsp:include page="../common/menubar.jsp" />
@@ -269,7 +274,7 @@ p.crewName {
 			<!-- 여기까지  -->
 		</div>
 	<div class="middle">
-		<button class="crewBtn">활동내역작성</button>
+		<button class="crewBtn" onclick="goCrewActicity()">활동내역작성</button>
 	</div>
 	<div class="middle2">
 		<hr>

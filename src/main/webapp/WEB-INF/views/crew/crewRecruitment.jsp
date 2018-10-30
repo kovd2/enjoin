@@ -29,7 +29,6 @@ body{
 .modal-body { /* 모달 본체  */
 	padding: 15px;
     width: 700px !important;
-    height: 1120px;
     margin: 0 auto;
     background: #f9f9f9;
     box-shadow: 10px 10px rgba(230,230,230,0.8);	
@@ -123,10 +122,18 @@ body{
 .crewContent::placeholder {
 	color: #03a9f4;
 }
-
-.crewArea {
-	
+.boardTitle::placeholder{
+	color:#03a9f4;
 }
+.boardTitle:focus{
+	border-bottom:1px solid #03a9f4;
+	box-shadow:3px 3px 3px 3px #999;
+}
+.boardTitle:hover{
+	border-bottom:1px solid #03a9f4;
+}
+
+
 
 .crewWriter1 {
 	margin: 0;
@@ -218,7 +225,46 @@ div#contentImgArea1:hover{
     font-weight: bold;
     color: #097db1;
 }
+.boardTitle{
+	border: 0 none;
+    border-bottom: 1px solid #8c9092;
+    border-radius: 0;
+    background: none;
+    font-size: 15px;
+    font-weight: 400;
+    height: 45px;
+    padding: 0;
+    -webkit-appearance: none;
+    width: 306px;
+    margin-top: 40px;
+}
+/* 인풋박스 눌렀을떄 변화  */
 
+.crewContent:focus{
+
+	border:1px solid #03a9f4;
+	box-shadow:3px 3px 3px 3px #999;
+}
+.crewAdd:focus{
+	border:1px solid #03a9f4;
+	box-shadow:3px 3px 3px 3px #999;
+}
+.crewArea:focus{
+	border:1px solid #03a9f4;
+	box-shadow:3px 3px 3px 3px #999;
+}
+#contentImg1:hover{
+	box-shadow:3px 3px 3px 3px #999;
+}
+#contentImg2:hover{
+	box-shadow:3px 3px 3px 3px #999;
+}
+.crewContent:hover{
+	border-bottom: 1px solid #03a9f4;
+}
+.crewAdd:hover{
+	border-bottom: 1px solid #03a9f4;
+}
 
 </style>
 </head>
@@ -251,7 +297,7 @@ $(function(){
 <body>
 	<div class="container">
 		<div class="modal-body">
-			<form>
+			<form action="crewInsert.shw2" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td colspan="2">
@@ -273,7 +319,13 @@ $(function(){
 								<option name="category_No">헬스</option>
 								<option name="category_No">크로스핏</option>
 								<option name="category_No">기타</option>
-						</select> <input type="number" placeholder="모집인원" class="crewNum">
+						</select> <input type="number" placeholder="모집인원" class="crewNum" name="crew_Max">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="boardTitle" style="" placeholder="글 제목"
+									name="crew_Name">
 						</td>
 					</tr>
 					<tr>
@@ -292,22 +344,23 @@ $(function(){
 					</tr>
 					<tr>
 						<td colspan="2" class="crewBox"><input type="date"
-							class="startDate" name="start_Date"> <input type="date"
+							class="startDate" name="start_Date" > <input type="date"
 							class="endDate" name="end_Date"></td>
 					</tr>
 					<tr>
 						<td>
 							<div>
-								<input class="crewAdd" style="" placeholder="지역">
+								<input class="crewAdd" style="" placeholder="지역" name="crew_Address">
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<div id="fileArea">
-							<td id="writer" colspan="2"><!-- <p class="thumbnailImg">썸네일</p><p class="mainImgP">본문 이미지</p> --> <input type="file" id="File"
-								name="File" multiple="multiple" onchange="loadImg(this,1)">
+							<td id="writer" colspan="2">
+							<input type="file" id="File" multiple="multiple"
+								name="origin_Name" onchange="loadImg(this,1)">
 								<input type="file" id="File1"
-								name="File1" multiple="multiple" onchange="loadImg(this,2)"></td>
+								name="origin_Name" multiple="multiple" onchange="loadImg(this,2)"></td>
 						</div>
 					</tr>
 					<tr>
@@ -330,7 +383,7 @@ $(function(){
 					<tr>
 						<td>
 							<h4 class="crewWriter1">크루모집 작성내용을 입력해주세요!</h4> <textarea rows="13"
-								cols="105" class="crewArea">
+								cols="95" class="crewArea" name="board_title">
 							</textarea>
 						</td>
 					</tr>
