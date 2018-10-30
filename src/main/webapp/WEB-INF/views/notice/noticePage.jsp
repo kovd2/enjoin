@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,19 +40,18 @@
             <small>이벤트와 새로운 알림을 확인하세요!</small>
           </h2>
         </div>
+        
         <div class="noticeWrap">
-          <div class="list-group">
+         <c:forEach var="b" items="${ list }">
+         	
+         
+        <div class="list-group">
             <a class="list-group-item" href="noticeDetail.hh">
-              <span class="label label-info">공지</span><h4 class="list-group-ietm-heading">여기에 제목넣음</h4>
-              <span class="date">여기에 날짜</span>
+              <span class="label label-info">${b.boardType }</span><h4 class="list-group-ietm-heading">${ b.boardTitle }</h4>
+              <span class="date">${ b.enrollDate }</span>
             </a>
-            <a class="list-group-item" href="noticeDetail.hh">
-              <span class="label label-info">공지</span><h4 class="list-group-ietm-heading">여기에 제목넣음</h4>
-              <span class="date">2018-10-24</span>
-            </a>
-     
           </div>
-
+		</c:forEach>
           <nav>
             <ul class="pagination">
               <li class="active"><a href="/notice/thread/1">1</a></li>

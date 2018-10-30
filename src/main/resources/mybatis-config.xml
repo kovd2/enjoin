@@ -3,10 +3,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.finalProject.enjoin.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.finalProject.enjoin.notice.model.vo.Board" alias="Board"/>
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
-		
 	</mappers>
 </configuration>
