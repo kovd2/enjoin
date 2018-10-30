@@ -47,6 +47,29 @@
 		<servlet-name>test</servlet-name>
 		<url-pattern>*.test</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-- 크루 매핑  -->
+	
+	<servlet>
+		<servlet-name>shw2</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/crew-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>shw2</servlet-name>
+		<url-pattern>*.shw2</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	<!-- 크루 매핑  -->
 
 	<!-- 김창희 매핑 제휴시설찾기 -->
 

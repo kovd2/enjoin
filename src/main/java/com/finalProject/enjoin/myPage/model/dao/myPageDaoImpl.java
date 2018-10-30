@@ -7,11 +7,13 @@ import com.finalProject.enjoin.member.model.vo.Member;
 @Repository
 public class myPageDaoImpl implements myPageDao{
 
+	//회원정보 수정
 	@Override
-	public Member changeInfo(SqlSessionTemplate sqlSession, Member m) {
-		Member loginUser = sqlSession.selectOne("Mypage.changeInfo", m);
+	public int updateMember(Member m, SqlSessionTemplate sqlSession) {
 		
-		return loginUser;
+		
+		return sqlSession.update("myPage.updateMember", m);		
 	}
+	
 
 }

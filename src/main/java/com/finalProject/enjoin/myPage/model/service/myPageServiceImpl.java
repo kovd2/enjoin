@@ -12,12 +12,15 @@ public class myPageServiceImpl implements myPageService{
 	private SqlSessionTemplate sqlSession;
 	@Autowired
 	private myPageDao mpd;
+	
+	//회원정보 수정
 
 	@Override
-	public Member changeInfo(Member m) {
-		Member loginUser = mpd.changeInfo(sqlSession, m);
+	public int updateMember(Member m) {
 		
-		return loginUser;
+		return mpd.updateMember(m, sqlSession);
+		
 	}
+	
 	
 }

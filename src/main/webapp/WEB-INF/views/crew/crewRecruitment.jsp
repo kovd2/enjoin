@@ -1,15 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-.modal {
-	text-align: center;    /*모달 중앙유지  */
+body{
+	background: black url(resources/images/member/insertBackground2.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
- @media screen and (min-width: 768px) {	/* 모달 설정  */
+.modal {
+	text-align: center; /*모달 중앙유지  */
+}
+
+@media screen and (min-width: 768px) { /* 모달 설정  */
 	.container {
 		display: inline-block;
 		vertical-align: middle;
@@ -17,114 +25,229 @@
 		height: 100%;
 	}
 }
- .modal-body {					/* 모달 본체  */
+
+.modal-body { /* 모달 본체  */
 	padding: 15px;
     width: 700px !important;
-    height: 750px;
+    height: 1120px;
     margin: 0 auto;
-    background: #f5f5f5;
+    background: #f9f9f9;
+    box-shadow: 10px 10px rgba(230,230,230,0.8);	
 }
- .container {				/* 사이즈  */
+
+.container { /* 사이즈  */
 	display: flex;
 	width: 1000px;
 	margin: 0 auto;
 }
-.mainWriter{			/*  메인 fontSize 설정  */
+
+.mainWriter { /*  메인 fontSize 설정  */
 	color: black;
-    width: 600PX;
+	width: 600PX;
 }
-.catagoryBox{			/* 카테고리 박스  */
+
+.catagoryBox { /* 카테고리 박스  */
 	width: 300px;
-    height: 32px;
-    margin-top: 25px;
-    margin-right: 70px;
+	height: 32px;
+	margin-top: 25px;
+	margin-right: 70px;
 }
-.crewNum{
+
+.crewNum {
 	width: 300px;
-    height: 28px;
+	height: 28px;
 }
-.crewContent{
+
+.crewContent {
 	border: 0 none;
-    border-bottom: 1px solid #8c9092;
-    border-radius: 0;
-    background: none;
-    font-size: 15px;
-    font-weight: 400;
-    height: 45px;
-    padding: 0;
-    -webkit-appearance: none;
-    width: 306px;
-    margin-top: 40px;
+	border-bottom: 1px solid #8c9092;
+	border-radius: 0;
+	background: none;
+	font-size: 15px;
+	font-weight: 400;
+	height: 45px;
+	padding: 0;
+	-webkit-appearance: none;
+	width: 306px;
+	margin-top: 40px;
 }
-.startDate{
+
+.startDate {
 	width: 300px;
-    height: 28px;
-    margin-right: 70px;
-    margin-top: 40px;
+	height: 28px;
+	margin-right: 70px;
+	margin-top: 40px;
 }
-.endDate{
+
+.endDate {
 	width: 300px;
-    height: 28px;
+	height: 28px;
 }
-.startDate1{
-	position:relative;
-    top: 40px;
-    color:#03a9f4;	
+
+.startDate1 {
+	position: relative;
+	top: 40px;
+	color: #03a9f4;
 }
-.startDate2{
+
+.startDate2 {
 	margin: 0 auto;
-    margin-left: 305px;
-    position: relative;
-    top: 40px;
-    color:#03a9f4;
+	margin-left: 305px;
+	position: relative;
+	top: 40px;
+	color: #03a9f4;
 }
-.box1{
-	margin-top:10px;
+
+.box1 {
+	margin-top: 10px;
 }
-.crewAdd{
+
+.crewAdd {
 	border: 0 none;
-    border-bottom: 1px solid #8c9092;
-    border-radius: 0;
-    background: none;
-    font-size: 15px;
-    font-weight: 400;
-    height: 45px;
-    padding: 0;
-    -webkit-appearance: none;
-    width: 306px;
-    margin-top: 40px;
+	border-bottom: 1px solid #8c9092;
+	border-radius: 0;
+	background: none;
+	font-size: 15px;
+	font-weight: 400;
+	height: 45px;
+	padding: 0;
+	-webkit-appearance: none;
+	width: 306px;
+	margin-top: 40px;
 }
-.crewAdd::placeholder{
-	 color:#03a9f4;
+
+.crewAdd::placeholder {
+	color: #03a9f4;
 }
-.crewContent::placeholder{
-	color:#03a9f4;
+
+.crewContent::placeholder {
+	color: #03a9f4;
 }
-.crewArea{
+
+.crewArea {
+	
 }
-.crewWriter1{
+
+.crewWriter1 {
 	margin: 0;
     margin-top: 40px;
-    color:#03a9f4;
+    color: #0f98d6;
+    font-weight: bold;
+	/* font-family: 'Do Hyeon', sans-serif; */
 }
-.crewRecBtn{
+
+.crewRecBtn {
 	width: 330px;
-    height: 35px;
-    margin-top: 10px;
-    border-radius: 6px;
-    background: #03A9F4;
-    color: white;
-    margin-right: 23px;
+	height: 35px;
+	margin-top: 10px;
+	border-radius: 6px;
+	background: #03A9F4;
+	color: white;
+	margin-right: 23px;
 }
-.backBtn{
+
+.backBtn {
 	width: 330px;
-    height: 35px;
-    border-radius: 6px;
-    background: gray;
-    color: white;
+	height: 35px;
+	border-radius: 6px;
+	background: gray;
+	color: white;
 }
+.imgArea1{
+	width: 710px;
+    display: -webkit-inline-box;
+}
+#contentImg2{
+    margin-left: 150px;
+}
+input#File1 {
+	position: relative;
+	left: 200px;
+	visibility: hidden;
+}
+
+input#File {
+	position: relative;
+	left: 100px;
+	visibility: hidden;
+}	
+p.mainImgP {
+    margin-left: 364px;
+}
+td#writer {
+    display: -webkit-box;
+}
+.thumbnailImg {
+    color: #2e393e;
+    font-weight: bolder;
+    position: absolute;
+    margin-left: 132px;
+    opacity: 0.9;
+    font-family: 'Architects Daughter', cursive;
+}
+p.mainImgP {
+    color: #2e393e;
+    font-weight: bold;
+    position: absolute;
+    margin-left: 278px;
+    opacity: 0.9;
+    font-family: 'Architects Daughter', cursive;
+
+}
+div#contentImgArea1 {
+    position: static;
+}
+#contentImg2{
+	margin-left: 150px;
+    position: static;
+}
+div#contentImgArea1:hover{
+	cursor: pointer;
+}
+.crewImgs2{
+	float: right;
+    margin-right: 38px;
+    font-size: 17px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: bold;
+    color: #097db1;
+}
+.crewImgs1{
+	font-size: 17px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: bold;
+    color: #097db1;
+}
+
+
 </style>
 </head>
+<script>
+$(function(){
+	$("#fileArea").hide();
+		$("#contentImgArea1").click(function(){
+			$("#File").click();
+		})
+		$("#contentImgArea2").click(function(){
+			$("#File1").click();
+		});
+	});
+					
+		function loadImg(value, num){
+			if(value.files && value.files[0]){
+				var reader = new FileReader();
+				reader.onload = function(e){
+					/* $("#titleImg").attr("src", e.target.result); */
+						switch(num){
+							case 1 : $("#contentImg1").attr("src", e.target.result); break;
+							case 2 : $("#contentImg2").attr("src", e.target.result); break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			};	
+	
+</script>
 <body>
 	<div class="container">
 		<div class="modal-body">
@@ -132,70 +255,94 @@
 				<table>
 					<tr>
 						<td colspan="2">
-							<p class="mainWriter">좋아요!<br>지금부터  oooo님의 크루 모집 작성을 신청할께요 !</p>
+							<p class="mainWriter">
+								좋아요!<br>지금부터 oooo님의 크루 모집 작성을 신청할께요 !
+							</p>
 							<hr>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
-							<select class="catagoryBox">
-								<option>카테고리</option>
-								<option>런닝</option>
-								<option>수영</option>
-								<option>필라테스</option>
-								<option>격투기</option>
-								<option>댄스</option>
-								<option>요가</option>
-								<option>헬스</option>
-								<option>크로스핏</option>
-								<option>기타</option>
-							</select>
-							<input type="number" placeholder="모집인원" class="crewNum">
+						<td colspan="2"><select class="catagoryBox">
+								<option name="category_No">카테고리</option>
+								<option name="category_No">런닝</option>
+								<option name="category_No">수영</option>
+								<option name="category_No">필라테스</option>
+								<option name="category_No">격투기</option>
+								<option name="category_No">댄스</option>
+								<option name="category_No">요가</option>
+								<option name="category_No">헬스</option>
+								<option name="category_No">크로스핏</option>
+								<option name="category_No">기타</option>
+						</select> <input type="number" placeholder="모집인원" class="crewNum">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<div>
-								<input class="crewContent" style="text" placeholder="글 제목">
+								<input class="crewContent" style="" placeholder="크루이름"
+									name="crew_Name">
 							</div>
 						</td>
 					</tr>
 					<tr>
 					<tr>
-						<td class="box1">
-							<label class="startDate1" >모집 날짜 </label>
-							<label class="startDate2">마감 날짜</label>
-						<td>	
+						<td class="box1"><label class="startDate1">모집 날짜 </label> <label
+							class="startDate2">마감 날짜</label>
+						<td>
 					</tr>
-					<tr>		
-						<td colspan="2" class="crewBox">
-							<input type="date" class="startDate">
-							<input type="date" class="endDate">
-						</td>
+					<tr>
+						<td colspan="2" class="crewBox"><input type="date"
+							class="startDate" name="start_Date"> <input type="date"
+							class="endDate" name="end_Date"></td>
 					</tr>
 					<tr>
 						<td>
 							<div>
-								<input class="crewAdd" style="text" placeholder="지역">
+								<input class="crewAdd" style="" placeholder="지역">
 							</div>
 						</td>
 					</tr>
 					<tr>
+						<div id="fileArea">
+							<td id="writer" colspan="2"><!-- <p class="thumbnailImg">썸네일</p><p class="mainImgP">본문 이미지</p> --> <input type="file" id="File"
+								name="File" multiple="multiple" onchange="loadImg(this,1)">
+								<input type="file" id="File1"
+								name="File1" multiple="multiple" onchange="loadImg(this,2)"></td>
+						</div>
+					</tr>
+					<tr>
+						<td class="imgArea1">
+						<div id="contentImgArea1">
+							<p class="thumbnailImg">crew logo image</p>
+							<img id="contentImg1" width="262px" height="260px"
+								src="${ contextPath }/resources/images/crew/crossfit-534615_960_720.jpg">
+						</div>
+						<div id="contentImgArea2">
+							<p class="mainImgP">using crew image</p>
+							<img id="contentImg2" width="262px" height="260px"
+								src="${ contextPath }/resources/images/crew/crossfit-534615_960_720.jpg">
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td><span class="crewImgs1">크루 로고 이미지를 선택해주세요!</span><span class="crewImgs2">크루 이용시설 이미지를 선택해주세요!</span></td>
+					</tr>
+					<tr>
 						<td>
-							<p class="crewWriter1">크루모집 작성내용을 입력해주세요!</p>
-							<textarea rows="13" cols="95"  class="crewArea" >
+							<h4 class="crewWriter1">크루모집 작성내용을 입력해주세요!</h4> <textarea rows="13"
+								cols="105" class="crewArea">
 							</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button class="crewRecBtn">크루모집작성</button>
+							<button type="submit" class="crewRecBtn">크루모집작성</button>
 							<button class="backBtn">돌아가기</button>
 						</td>
-					</tr>	
+					</tr>
 				</table>
 			</form>
 		</div>
-	</div>				
+	</div>
 </body>
-</html> 
+</html>
