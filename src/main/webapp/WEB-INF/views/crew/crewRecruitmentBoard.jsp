@@ -18,9 +18,6 @@
 	href="${contextPath}/resources/style/css/slider/mainSlider.css">
 <title>Insert title here</title>
 <style>
-.body {
-	width: 100%
-}
 
 .header {
 	width: 1000px;
@@ -324,6 +321,7 @@ hr {
 .pagBtn7:hover{
 	background:#54d4f5;
 }
+/* 여기까지  */
 
 /* 메인위에 글씨 올리기  */
 .crewNameLabel {
