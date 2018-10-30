@@ -65,18 +65,20 @@
 					<img id="profil_img" src="resources/images/myPage/image.png">
 				</div>
 				<div class="profil_info">
-					<h6>UserName 님<br><small>(UserId)</small></h6>
+					<h6>${ loginUser.userId } 님<br><small>${ loginUser.userName }</small></h6>
 					<div class="userPicComment upcOK">
 						<p class="text-anc">와~ 멋진 사진이네요!</p>
 						<p>
-							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs<%-- (${ loginUser.userId }) --%>">회원정보 수정</a>
+
+							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs?userId=${loginUser.userId }">회원정보 수정</a>
+
 						</p>
 					</div>
 				</div>
 				<div class="mypageMenuWrap">
 					<div class="mypageMenu">
 						<ul>
-							<li><b><a href="profil.ljs" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
+							<li><b><a href="profil.ljs?userId=${loginUser.userId }" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
 							<li><b><a href="wantPlace.ljs" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  가보고 싶은 시설</a></b></li>
 							<li><b><a href="history.ljs" id="history" class="fontColBlack current"><i class="fa fa-bar-chart"></i>  이용기록</a></b></li>
 							<li><b><a href="crewManager.ljs" id="a_invite" class="fontColBlack current"><i class="fa fa-child"></i>  크루관리</a></b></li>
@@ -105,6 +107,7 @@
 				$("#myBoard").css("color","#00bff0");
 			}
 		});
+		
 		</script>
 </body>
 </html>

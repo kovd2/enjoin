@@ -1,31 +1,53 @@
 package com.finalProject.enjoin.myPage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
 
 @Controller
 public class MyPageController {
-	/*@Autowired
-	private myPageService mps;*/
+  
 	//프로필
+	@Autowired
+	private myPageService mps;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
-	public String showProfil() {
+	public String showProfil() {	
 		
 		return "myPage/membership";
 	}
 	
-	//정보수정
+	//정보수정 페이지
 	@RequestMapping("changeInfo.ljs")
-	public String changeInfo(Model model, Member m) {
-		/*Member loginUser = mps.changeInfo(m);*/
-		
+	public String changeInfo() {
 		
 		return "myPage/changeInfo";
+	}
+	//정보수정 저장
+	@RequestMapping("saveInfo.ljs")
+	public String saveInfo(Model model, Member m, HttpServletRequest request) {
+		
+		System.out.println("controller : " + m);
+		
+		int result = mps.updateMember(m);
+		
+		if(result > 0) {
+			return "redirect:myPage/changeInfo";
+		}else {
+			model.addAttribute("msg", "회원정보 수정 실패!");
+			return "common/errorPage";
+		}
 	}
 	
 	//가고싶은 시설
