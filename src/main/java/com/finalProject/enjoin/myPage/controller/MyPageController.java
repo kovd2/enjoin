@@ -1,16 +1,19 @@
 package com.finalProject.enjoin.myPage.controller;
 
-import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
+import com.finalProject.enjoin.notice.model.vo.Board;
 
 @Controller
 public class MyPageController {
@@ -23,7 +26,9 @@ public class MyPageController {
 	
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
-	public String showProfil() {	
+	public String showProfil(@ModelAttribute Member m) {	
+		
+		mps.selectPass(m);
 		
 		return "myPage/membership";
 	}
@@ -36,18 +41,14 @@ public class MyPageController {
 	}
 	//정보수정 저장
 	@RequestMapping("saveInfo.ljs")
-	public String saveInfo(Model model, Member m, HttpServletRequest request) {
+	public String updateMember(@ModelAttribute Member m) {
 		
-		System.out.println("controller : " + m);
+		String encPassword = passwordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPassword);
 		
-		int result = mps.updateMember(m);
+		mps.updateMember(m);	
 		
-		if(result > 0) {
-			return "redirect:myPage/changeInfo";
-		}else {
-			model.addAttribute("msg", "회원정보 수정 실패!");
-			return "common/errorPage";
-		}
+		return "redirect:goMain.me";
 	}
 	
 	//가고싶은 시설
@@ -85,18 +86,26 @@ public class MyPageController {
 		return "myPage/enterpriseUseHistory";
 	}
 	
-	//크루 게시판 이동
+	//크루 게시판 조회
 	@RequestMapping("goCrewBoardList.ljs")
-	public String goCrewBoard(/*@RequestParam crewId*/){
+	public ModelAndView goCrewBoard(ModelAndView mv){
 		
-		return "crew/crewBoardList";
+		List<Board> list = mps.crewBoardList();
+		mv.setViewName("crew/crewBoardList");
+		mv.addObject("list", list);
+		System.out.println("list : " + list);
+		return mv;
 	}
 	
 	//크루 게시판 상세보기
 	@RequestMapping("crewBoardDetail.ljs")
-	public String crewBoardDetail() {
-		
-		return "crew/crewBoardDetail";
+	public ModelAndView crewBoardDetail(@RequestParam("boardNo") int boardNo, ModelAndView mv) {
+		System.out.println("boardNo : " + boardNo);
+		Board b = mps.crewBoardDetail(boardNo);
+		mv.setViewName("crew/crewBoardDetail");
+		mv.addObject("Detail", b);
+		System.out.println("Detail : " + b);
+		return mv;
 	}
 	
 	//크루 게시판 작성 폼으로 이동
@@ -112,5 +121,28 @@ public class MyPageController {
 		
 		return "myPage/writePosts";
 	}
-			
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,23 +28,24 @@
 </style>
 </head>
 <body>
-	<div class="boardTitleArea">
-		제목 : <input type="text" style="width:770px;">
-	</div>
-	<br>
-	<div id="contentWrite2" style="text-align: center; margin-left: 270px; width:100%;">
-			<section id="editor" style="text-align: left; width: 810px; margin-left: -60px;">
-				<textarea id='edit' name="edit" style="margin-top: 30px; height: 500px;">
+	<form action="insertBoard.ljs">
+		<div class="boardTitleArea">
+			제목 : <input type="text" style="width:770px;" name="boardTitle">
+		</div>
+		<br>
+		<div id="contentWrite2" style="text-align: center; margin-left: 270px; width:100%;">
+				<section id="editor" style="text-align: left; width: 810px; margin-left: -60px;">
+					<textarea id='edit' name="edit" style="margin-top: 30px; height: 500px;" name="boardContent">
                
-       		 	</textarea>
-			</section>
-	</div>
-	<br>
-	<div class="btnArea" align="center">
-		<button>취소</button>
-		<button>작성</button>
-	</div>
-	
+       		 		</textarea>
+				</section>
+		</div>
+		<br>
+		<div class="btnArea" align="center">
+			<button type="reset">취소</button>
+			<button type="submit">작성</button>
+		</div>
+	</form>
 	
 	
 	
