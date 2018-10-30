@@ -1,9 +1,6 @@
 package com.finalProject.enjoin.notice.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +19,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bd.listAll();
 	}
+
+	@Override
+	public Board read(int boardNo) throws Exception {
+		
+		return bd.read(boardNo);
+	}
+
 
 }

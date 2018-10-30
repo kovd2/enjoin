@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,18 +39,18 @@
 
 		<!-- 여기까지가 menubar -->
 		<div class="wrap">
-
+		
 			<div class="container">
 				<div class="row">
 					<div class="content col-md-12">
 						<div class="page-header noticeViewHeader">
-							<h2>이곳에 제목</h2>
+							<h2>${detail.boardTitle }</h2>
 						</div>
 						<div class="noticeWrap">
 							<article class="notice">
 								<p dir="ltr"
 									style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">
-									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">여기내용</span>
+									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">${detail.boardContent }</span>
 								</p>
 							</article>
 							<div class="articleTail">
@@ -59,7 +60,8 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
-			
+			</div>
 </body>
 </html>

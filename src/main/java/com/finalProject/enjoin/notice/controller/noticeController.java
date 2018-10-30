@@ -2,10 +2,10 @@ package com.finalProject.enjoin.notice.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.notice.model.service.BoardService;
@@ -18,21 +18,25 @@ public class noticeController {
 	private BoardService bs;
 	
 	@RequestMapping("notice.hh")
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(ModelAndView mav) throws Exception {
 	
-	 List<Board> list = bs.listAll();
-	 System.out.println("list : " + list);
-	 ModelAndView mav = new ModelAndView();
-	 mav.setViewName("notice/noticePage");
-	 mav.addObject("list", list);
-	 
-	 return mav;
+		List<Board> list = bs.listAll();
+
+		mav.setViewName("notice/noticePage");
+		mav.addObject("list", list);
+		
+		return mav;
 	}
 	
 	@RequestMapping("noticeDetail.hh")
-	public String noticeDetail() {
+	public ModelAndView view(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
+		Board detail = bs.read(boardNo);
 		
-		return "notice/noticeDetail";
+		System.out.println(detail);
+		mv.setViewName("notice/noticeDetail");
+		mv.addObject("detail", detail);
+		
+		return mv;
 	}
 	
 	@RequestMapping("serviceCenter.hh")

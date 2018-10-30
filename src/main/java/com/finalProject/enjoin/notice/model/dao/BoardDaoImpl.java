@@ -2,7 +2,6 @@ package com.finalProject.enjoin.notice.model.dao;
 
 import java.util.List;
 
-import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +20,11 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return sqlSession.selectList("Board.listAll");
 	}
+
+	@Override
+	public Board read(int boardNo) throws Exception {
+		return sqlSession.selectOne("Board.view", boardNo);
+	}
+
 
 }
