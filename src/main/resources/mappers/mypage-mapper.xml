@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Mypage">
+<mapper namespace="myPage">
 	<resultMap type="com.finalProject.enjoin.member.model.vo.Member" id="memberResultSet">
 		<!-- PRIMARY KEY -->
 		<id property="userNo" column="USER_NO"/>
@@ -25,12 +25,28 @@
 		<result property="copCon" column="COP_CON"/>
 		<result property="copEmail" column="COP_EMAIL"/>
 	</resultMap>
-
-	<!-- 회원 정보 수정 쿼리 -->
-	<select id="changeInfo" resultMap="memberResultSet" parameterType="Member">
-		
+	
+	<!-- 회원 패스 조회 -->
+	<select id="selectPass" resultMap="memberResultSet" parameterType="Member">
+		SELECT PASS_COUNT
+		FROM PASS
+		WHERE USER_NO = (SELECT USER_NO
+						 FROM MEMBER 
+						 WHERE USER_ID = #{userId})
 	</select>
 	
+	
+	<!-- 회원 정보 수정 쿼리 -->
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_NAME = #{userName},
+			USER_PWD = #{userPwd},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			MODIFY_DATE = SYSDATE
+			WHERE USER_ID = #{userId}
+				
+	</update>
 	
 	
 </mapper>
