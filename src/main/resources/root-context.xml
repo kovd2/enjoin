@@ -63,6 +63,8 @@
 		<aop:advisor id="transacionAdvisor" pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
 	</aop:config>
 	
+	
+	
 </beans>
 
 

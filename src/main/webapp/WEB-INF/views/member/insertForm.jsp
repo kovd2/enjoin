@@ -246,6 +246,7 @@ body.register .subWrap {
   letter-spacing: -0.6px;
   margin: 5px 0;
   line-height: 1.3;
+  font-size:13px !important;
 }
 .memberForm .help-block span {
   display: inline-block;
