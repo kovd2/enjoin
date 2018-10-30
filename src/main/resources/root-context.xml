@@ -59,7 +59,7 @@
 	<!-- AOP를 이용하여 위의 txAdvice를 적용시키기 위한 내용 -->
 	<!-- advice객체가 weaving될 시점(pointcut을 등록하는 것임) -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="serviceMethod" expression="execution(* com.kh.tsp..*ServiceImpl.*(..))"/>
+		<aop:pointcut id="serviceMethod" expression="execution(* com.finalProject.enjoin..*ServiceImpl.*(..))"/>
 		<aop:advisor id="transacionAdvisor" pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
 	</aop:config>
 	
