@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<resultMap type="com.finalProject.enjoin.notice.model.vo.Board" id="boardResultSet">
+		<!-- PRIMARY KEY -->
+		<id property="boardNo" column="BOARD_NO"/>
+		<!-- 컬럼 -->
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+
+	<!-- 공지사항 전체 목록 조회 -->
+	<select id="listAll" resultMap="boardResultSet">
+		SELECT BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
+		FROM BOARD
+		ORDER BY BOARD_NO DESC
+	</select>
+		
+</mapper>
