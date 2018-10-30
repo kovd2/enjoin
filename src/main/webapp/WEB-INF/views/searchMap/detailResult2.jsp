@@ -5,122 +5,112 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
 <style>
-
-.resultTop{
+.wrap{
 	width:100%;
-
-
 }
-.resultMiddle{
-
+.top{
 	width:1100px;
-	height:100%;
+	height:1000px;
 	margin:0 auto;
-	/* display:-webkit-box; */
-	/* position:relative; */
-
-
-}
-.resultList{
 	
-	width:1100px;
-	height:400px; 
-	background:#f5f5f5;
-	display:-webkit-box;
 }
 .imgArea{
+	/* background:gray; */
 	width:1100px;
 	height:400px;
 	background:black;
-	display:-webkit-box;
-    position:absolute;              
-   
+	display:grid;
+	position:relative;
 	
 }
 .imgArea>img{
-
 	width:1100px;
 	height:400px;
+	opacity:0.2;
 	background:black;
-	opacity:0.3;
+}
+.contentWrap{
+	width:1100px;
+	height:500px;
+	background:yellow;
+	display: -webkit-box;
 	
 }
-
-
-
-.imgTitle{
+.contentLeft{
+	width:550px;
+	height:500px;
+	background:gray;
+}
+.contentRight{
+	width:550px;
+	height:500px;
+	background:red;
 	
-	position: absolute;
-    font-size: -webkit-xxx-large;
-    margin: 80px 0px 0px 150px;
+
+}
+.title{
+    width: 400px;
     border: 1px solid #00bff0;
-    padding: 20px;
-    border-radius: 3px;
+    position: absolute;
+    height: 70px;
+    text-align: center;
+    margin: 110px 0px 0px 110px;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 40px;
     color: #00bff0;
-    
-}
-.imgAddress{
-	position:absolute;
-	color:white;
-	margin:200px 0px 0px 160px;
-}
-
-.imgTel{
-
-	position:absolute;
-	color:white;
-	margin:220px 0px 0px 160px;
-
-}
-
-.like{
-	position: absolute;
-    color: white;
-    margin: 250px 0px 0px 160px;
-    border: 2px solid white;
     border-radius: 3px;
-    width: 60px;
-    padding: 3px;
-}
-.like:hover{
-	background:#00bff0;
-	cursor:pointer;
-	border-color:#00bff0;
-}
-.preview{
-	position: absolute;
-    color: white;
-    margin: 300px 0px 0px 800px;
-    border: 2px solid white;
-    border-radius:3px;
-    width: 130px;
-    padding: 10px 0px 10px 20px;
-    
-}
 
-.preview:hover{
-	background:#00bff0;
-	cursor:pointer;
-	border-color:#00bff0;
 }
-.totalCount{
-	width:1050px;
-	background:rgba(13,31,53,0.7);
+ .address{
+
+	width:300px;
 	position:absolute;
+	height:70px;
+	text-align:center;
+	margin:160px 0px 0px 130px;
+	font-weight:bold;
+	padding:20px;
+	font-size:20px;
 	color:white;
-	margin: 380px 10px 10px 0px;
-	padding-left:160px;
-	/* opacity:0.1; */
-	
+	border-radius:3px;
 }
-.resultContent{
+ #request{
+ 
+ 	width:200px;
+ 	position:absolute;
+ 	height:70px;
+ 	margin:300px 0px 0px 820px;
+ 	text-align:center;
+ 	font-weight:bold;
+ 	padding:20px;
+	font-size:20px;
+	color:white;
+ }
+ #success{
+ 	width:200px;
+ 	position:absolute;
+ 	height:70px;
+ 	margin:300px 0px 0px 600px;
+ 	text-align:center;
+ 	font-weight:bold;
+ 	padding:20px;
+	font-size:20px;
+	color:white;
+ 
+ }
+ .resultContent{
 	
 	
 	width:500px;
 	height:150px;
+	margin-top:420px;
+	left:0;
+	position:absolute;
 	margin-left:50px;
 	
 }
@@ -137,8 +127,10 @@
 
 .resultDate{
 	width:500px;
-	height:260px;
-	margin-top:100px;
+	height:150px;
+	margin-top:700px;
+	left:0;
+	position:absolute;
 	margin-left:50px;
 	
 	
@@ -164,24 +156,24 @@ color:#feab2a;
 .resultAddress{
 	width:500px;
 	height:60px;
-	
-	
-	
+	margin-top:950px;
+	left:0;
+	position:absolute;
 	margin-left:50px;
 }
-.address{
+ .miniAddress{
 	width:300px;
 	margin-left:60px;
 	text-align:center;
 	
-}
+} 
 .resultTel{
 
 	width:500px;
-	height:50px;
-	
-	
-	
+	height:100px;
+	margin-top:1000px;
+	left:0;
+	position:absolute;
 	margin-left:50px;
 	
 }
@@ -194,6 +186,10 @@ color:#feab2a;
 .detailPic{
 	width:500px;
 	height:320px;
+	margin-top:420px;
+	margin-left:550px;
+	left:0;
+	position:absolute;
 }
 #listwrap1{
 	width:150px;
@@ -254,6 +250,10 @@ color:#feab2a;
 	
 	width:500px;
 	height:400px;
+	margin-left:550px;
+	margin-top:750px;
+	position:absolute;
+	left:0;
 	padding-top:10px;
 	border-top:1px solid #eee;
 }
@@ -415,53 +415,20 @@ color:#feab2a;
 	color:black;
 	
 }
-.enBtn{
-	
-	width:130px;
-	height:50px;
+
+.contentArea{
 	position:absolute;
-	color:#00bff0;
-	border:2px solid #00bff0;
-	border-radius:3px;
-	margin-left:800px;
-	margin-top:240px;	
-	padding:12px;	
-	
-}
-.enBtn:hover{
-	background:white;
-	border-color:white;
-	cursor:pointer;
+	margin-top:0;
+	top:100px;
 
 }
 
-.left{
-	width:550px;
-	height:800px;
-	margin-top:30px;
-}
-
-.right{
-	width: 550px;
-    height: 900px;
-    margin-top:30px;
-
-}
-.rowWrap{
-	display: -webkit-box;
-    width: 1100px;
-}
-.time>hr{
-	margin-top:20px;
-	margin-bottom:15px;
-	border-top: 1px solid #eee;
-}
 #allReview{
     width: 500px;
     height: 50px;
     position: absolute;
     border: 1px solid #eee;
-    margin-top: 20px;
+    margin-top: 470px;
     text-align: center;
     font-size:xx-large;
     box-shadow:3px 3px 3px 3px #999;
@@ -472,53 +439,43 @@ color:#feab2a;
 	background:#ddd;
 	cursor:pointer;
 }
-
-
+.footer{
+	margin-top:450px;
+	
+}
+.settingArea {
+	z-index: 300;
+	position: absolute;
+	
+	
+}
 </style>
 </head>
 <body>
 
-	<jsp:include page="../common/menubar.jsp"/>
-	
-	
-	
-	
-	<div class="resultTop">
-		<div class="resultMiddle">
-			<div class="resultList">
-			<div class="imgArea">
-			<img src="resources/images/searchMap/mb.jpg">
-			</div>
-			<div class="imgTitle">
-				<b>또치헬스장</b>
-			</div>
-			<div class="imgAddress">
-			 <b>서울 강남구 역삼동 233-2</b><br>
-			</div>
-			<div class="imgTel">
-			<b>02)1234-4565</b>
-			</div>
-			<div class="like">
-			<i class="glyphicon glyphicon-thumbs-up"></i>
-			1230
-			</div>
-			<div class="preview">
-				<i class="fa fa-file-image-o"></i>
-					<b>시설미리보기</b>
-			</div>
-			<div class="enBtn">
-				<i class="fa fa-address-card"></i>
-				<b>시설이용하기</b>
-			</div>
-			<div class="totalCount">
-				누적이용수 <b>222</b>
-			
-			</div>
+		<jsp:include page="../common/menubar.jsp"/>
+		
+		<div class="wrap">
+			<div class="top">
+				<div class="imgArea">
+				<img src="resources/images/informBoard/pila.png">
+					<div class="title">
+					 2번째 필라테스크루
+					 
+					</div>	
+					<div class="address">
+					서울특별시 강남구 역삼동 232-2<br>
+					
+					</div>
+					<button type="button" id="success"class="btn btn-success">
+					<i class="fa fa-address-card" style="font-size:24px"></i>
+					신청하기</button>
+					<button type="button" id="request"class="btn btn-warning">
+					<i class="fa fa-user-circle-o" style="font-size:24px"></i>크루신청자보기</button>
+				</div>
+				<div class="contentArea">
 				
-			</div>
-			<div class="rowWrap">
-			<div class="left">
-			<div class="resultContent">
+				<div class="resultContent">
 			<b>이용상품</b>
 				<div class="product">
 				 <b>헬스</b>
@@ -537,33 +494,30 @@ color:#feab2a;
 				<b>이용시간</b>
 				<div class="time">
 				
-				<p class="monToFri"><b>평일</b>11:20 ~ 02:30</p><hr>
-				<p class="sat"><b>토요일</b>12:00 ~ 03:00</p><br><hr>
+				<p class="monToFri"><b>평일</b>  11:20 ~ 02:30</p><hr>
+				<p class="sat"><b>토요일</b>  12:00 ~ 03:00</p><hr>
 				<p class="sun"><b>일요일</b> 2:00 ~ 04:00</p><hr>
-				<p class="no"><b>없음</b>2:00 ~ 04:00</p><hr>
+				<p class="no"><b>없음</b> 2:00 ~ 04:00</p><hr>
 				</div>
 				</div>	
 				
 				<div class="resultTel">
 					<b>전화</b>
-					
 					<div class="tel">
 					
-					<p>02)1234-2323</p><hr>
+					<p>02)1234-2323</p>
 					</div>
 				</div>
 			
 				
 				<div class="resultAddress">
 					<b>주소</b>
-					<div class="address">
+					<div class="miniAddress">
 					
-					<p>서울특별시 강남구 역삼동 123-3</p><hr>
+					<p>서울특별시 강남구 역삼동 123-3</p>
 					</div>
 				</div>
-				</div>
 				
-				<div class="right">
 				<div class="detailPic">
 				
 					<b>제휴시설 미리보기</b>
@@ -632,33 +586,41 @@ color:#feab2a;
 							
 							</div>
 							<div class="listContent"><b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b></div>
-							 <div id="allReview" onclick="goReview()">
-							<b>리뷰모두보기</b>
-						
-						</div> 
+							
 						</div>
+						<!-- <div id="allReview" onclick="goReview()">
+						<b>리뷰모두보기</b>
+						
+						</div> -->
 						
 						
 					</div>
 					
+					
+					
 				</div>
-			
-			
+				</div>
 			</div>
-			</div>
-			</div>
-			
 		</div>
-<jsp:include page="../common/footer.jsp"/>
-	<script>
+	<div id="settingArea" class="settingArea"></div>
+	<div id="settingBoardArea" class="w3-modal"onclick="displayCancle();"></div>
+	
+	<jsp:include page="../common/footer.jsp"/>
+		
+<script>
 	function goReview(){
 		
-		location.href="reviewForm.kch";	
+		location.href="reviewForm.kch2";	
 		
 	}
 	
-	
-	</script>
+	function displayCancle(){
+		
+		
+	}
+
+</script>
+
 
 
 

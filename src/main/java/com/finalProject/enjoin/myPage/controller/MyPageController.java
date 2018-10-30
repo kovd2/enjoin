@@ -10,8 +10,8 @@ import com.finalProject.enjoin.myPage.model.service.myPageService;
 
 @Controller
 public class MyPageController {
-	@Autowired
-	private myPageService mps;
+//	@Autowired
+//	private myPageService mps;
 	//프로필
 	@RequestMapping("profil.ljs")
 	public String showProfil() {
@@ -22,7 +22,7 @@ public class MyPageController {
 	//정보수정
 	@RequestMapping("changeInfo.ljs")
 	public String changeInfo(Model model, Member m) {
-		Member loginUser = mps.changeInfo(m);
+//		Member loginUser = mps.changeInfo(m);
 		
 		
 		return "myPage/changeInfo";

@@ -97,7 +97,7 @@
 
 nav{
 
-	margin-left:600px;
+	margin-left:690px;
 }
 
 </style>
