@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group">
                   <label for="password" class="">비밀번호</label>
-                  <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password">
+                  <input type="password" class="form-control" id="password" placeholder="비밀번호" name="userPwd">
                 </div>
                 <div class="form-group">
                   <label for="password2" class="">비밀번호 다시 입력</label>
@@ -94,7 +94,7 @@
                     </span>
                   </div>
                   <p class="help-block">
-                    전화번호를 변경하시려면 <strong class="text-info">새 번호 입력하기</strong> 를 누르세요.
+                   	 전화번호를 변경하시려면 <strong class="text-info">새 번호 입력하기</strong> 를 누르세요.
                   </p>
                 </div>
               </div><!--/.col -->

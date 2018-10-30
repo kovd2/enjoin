@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,12 +40,14 @@
 					</div>
 					<div class="noticeWrap">
 						<!-- 반복문  사용 -->
-						<div class="list-group" onclick="location.href='crewBoardDetail.ljs'">
-							<a class="list-group-item" href="crewBoardDetail.ljs"> 
-								<span class="label label-info">공지</span>						
-								<h4 class="list-group-ietm-heading">여기에 제목넣음</h4> 						
-								<span class="date">작성일</span>							
+						<div class="list-group" style="cursor:pointer;">
+						<c:forEach var="b" items="${ list }">
+							<a class="list-group-item" onclick="detailBoard(${b.boardNo })"> 
+								<span class="label label-info">게시물</span>						
+								<h4 class="list-group-ietm-heading">${b.boardTitle }</h4> 						
+								<span class="date">${b.enrollDate }</span>							
 							</a> 
+						</c:forEach>
 						</div>
 							<button onclick="location.href='goCrewBoardForm.ljs'" style="float:right;">작성하기</button>
 
@@ -72,5 +75,10 @@
 
 
 	</div>
+	<script>
+		function detailBoard(boardNo){
+			location.href="crewBoardDetail.ljs?boardNo=" + boardNo;
+		}
+	</script>
 </body>
 </html>
