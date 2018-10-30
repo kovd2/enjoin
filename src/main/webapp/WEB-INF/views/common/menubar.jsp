@@ -49,15 +49,15 @@
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
 										<ul class="dropdown-menu">
 											<li><a href="notice.hh">공지사항</a></li>
-											<li><a href="crewRecruitmentBoard.test">크루모집</a></li>
+											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
 
 											<li><a href="informBoard.kch2">크루공고</a></li>
-											<li><a href="crewActivityBoard.test">이벤트</a></li>
+											<li><a href="crewActivityBoard.shw2">크루활동</a></li>
 
 											<li><a href="crewApplication.test">크루신청</a></li>
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
-											<li><a href="crewRecruitment.test">크루모집</a></li>
+											<li><a href="crewRecruitment.test">크루모집폼</a></li>
 											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
 											<li><a href="adminMember.test">관리자회원정보수정</a></li>
 											<li><a href="adminPay.test">관리자결제정보</a></li>
