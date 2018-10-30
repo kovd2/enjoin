@@ -14,6 +14,8 @@ import com.finalProject.enjoin.myPage.model.service.myPageService;
 
 @Controller
 public class MyPageController {
+  
+	//프로필
 	@Autowired
 	private myPageService mps;
 	@Autowired

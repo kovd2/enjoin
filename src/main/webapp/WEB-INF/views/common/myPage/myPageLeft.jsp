@@ -69,7 +69,9 @@
 					<div class="userPicComment upcOK">
 						<p class="text-anc">와~ 멋진 사진이네요!</p>
 						<p>
+
 							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs?userId=${loginUser.userId }">회원정보 수정</a>
+
 						</p>
 					</div>
 				</div>
