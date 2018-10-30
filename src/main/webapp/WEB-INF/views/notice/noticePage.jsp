@@ -42,28 +42,31 @@
         </div>
         
         <div class="noticeWrap">
-         <c:forEach var="b" items="${ list }">
          	
-         
         <div class="list-group">
-            <a class="list-group-item" href="noticeDetail.hh">
+         <c:forEach var="b" items="${ list }">
+            <a class="list-group-item" onclick="selectOneBoard(${ b.boardNo })">
               <span class="label label-info">${b.boardType }</span><h4 class="list-group-ietm-heading">${ b.boardTitle }</h4>
               <span class="date">${ b.enrollDate }</span>
             </a>
-          </div>
 		</c:forEach>
-          <nav>
+          </div>
+          
+          <nav style="text-align:center">
             <ul class="pagination">
-              <li class="active"><a href="/notice/thread/1">1</a></li>
-              <li><a href="/notice/thread/2">2</a></li>
-              <li><a href="/notice/thread/3">3</a></li>
-              <li><a href="/notice/thread/4">4</a></li>
-              <li><a href="/notice/thread/5">5</a></li>
+              <li class="active">
+              
+              </li>
               <li><a href="/notice/thread/6" aria-label="Next"><span aria-hidden="true">다음</span></a></li>
             </ul>
           </nav>
         </div><!-- /.noticeWrap -->
-
+	<script>
+		function selectOneBoard(boardNo){
+			location.href="noticeDetail.hh?boardNo=" + boardNo;
+		}
+		
+	</script>
 
 
       </div> <!-- /.content -->

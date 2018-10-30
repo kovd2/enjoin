@@ -16,9 +16,15 @@
 
 	<!-- 공지사항 전체 목록 조회 -->
 	<select id="listAll" resultMap="boardResultSet">
-		SELECT BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
+		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
 		FROM BOARD
 		ORDER BY BOARD_NO DESC
 	</select>
-		
+	
+	<!-- 공지사항 상세 보기 -->
+	<select id="view" resultMap="boardResultSet" parameterType="_int">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT
+		FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+	</select>	
 </mapper>
