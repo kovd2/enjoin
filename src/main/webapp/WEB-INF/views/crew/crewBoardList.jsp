@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>크루 게시판</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -50,22 +50,44 @@
 						</c:forEach>
 						</div>
 							<button onclick="location.href='goCrewBoardForm.ljs'" style="float:right;">작성하기</button>
-
+						<!-- 페이징 처리 -->
 						<nav>
 							<ul class="pagination">
-								<li class="active"><a href="/notice/thread/1">1</a></li>
-								<li><a href="/notice/thread/2">2</a></li>
-								<li><a href="/notice/thread/3">3</a></li>
-								<li><a href="/notice/thread/4">4</a></li>
-								<li><a href="/notice/thread/5">5</a></li>
-								<li><a href="/notice/thread/6" aria-label="Next"><span aria-hidden="true">다음</span></a></li>
+								<c:if test="${ pi.currentPage <= 1 }">
+									<li><a>이전</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage > 1 }">
+									<c:url var="listBack" value="goCrewBoardList.ljs">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+									</c:url>
+									<li><a href="${ listBack }">이전</a></li>
+								</c:if>
+
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<li class="active"><a>${ p }</a></li>
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="listCheck" value="goCrewBoardList.ljs">
+											<c:param name="currentPage" value="${ p }" />
+										</c:url>
+										<li><a href="${ listCheck }">${ p }</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${ pi.currentPage >= pi.maxPage }">
+									<li><a>다음</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage < pi.maxPage }">
+									<c:url var="listEnd" value="goCrewBoardList.ljs">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+									</c:url>
+									<li><a href="${ listEnd }">다음</a></li>
+								</c:if>
 							</ul>
 						</nav>
 					</div>
 					<!-- /.noticeWrap -->
-
-
-
 				</div>
 				<!-- /.content -->
 			</div>

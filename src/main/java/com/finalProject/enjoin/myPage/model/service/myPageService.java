@@ -3,6 +3,7 @@ package com.finalProject.enjoin.myPage.model.service;
 import java.util.List;
 
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
 public interface myPageService {
@@ -14,10 +15,15 @@ public interface myPageService {
 	void selectPass(Member m);
 
 	//크루 게시판 조회
-	List<Board> crewBoardList();
+	List<Board> crewBoardList(PageInfo pi);
 
 	//크루 게시판 상세보기
 	Board crewBoardDetail(int boardNo);
+
+	//게시물 리스트 갯수
+	int getListCount();
+	
+	
 	
 	
 

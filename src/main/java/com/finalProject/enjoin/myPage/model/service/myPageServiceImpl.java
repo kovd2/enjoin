@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 @Service
 public class myPageServiceImpl implements myPageService{
@@ -31,9 +32,9 @@ public class myPageServiceImpl implements myPageService{
 
 	//크루 게시판 조회
 	@Override
-	public List<Board> crewBoardList() {
+	public List<Board> crewBoardList(PageInfo pi) {
 		
-		return mpd.crewBoardList(sqlSession);
+		return mpd.crewBoardList(pi, sqlSession);
 	}
 
 	//크루 상세보기 
@@ -43,8 +44,13 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.crewBoardDetail(boardNo, sqlSession);
 	}
 
-	
-	
-	
-	
+	//게시물 갯수 
+	@Override
+	public int getListCount() {
+		
+		return mpd.getListCount(sqlSession);
+	}
+
+
+
 }

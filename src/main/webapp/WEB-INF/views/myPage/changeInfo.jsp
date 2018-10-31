@@ -116,14 +116,14 @@
         	</div><!-- /.col -->
             </div><!-- /.row -->
 
-            <div class="form-group submitLine forMobileAppFloat">
+          </form>
+            <div class="form-group submitLine forMobileAppFloat" style="margin-left:50px;">
               <button id="saveBtn" class="btn btn-lg btn-primary btn_mobileAppFloat" style="background:#00bff0;" onclick="saveBtn()"><i class="fa fa-check"></i> 저장하기</button>
               <a href="javascript:history.go(-1)" class="btn btn-link"><i class="fa fa-close"></i> 취소</a>
               <span class="withdraw">
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#myModal">탈퇴 신청</button>
+                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#myModal">탈퇴</button>
               </span>
             </div>
-          </form>
 	</div>
 	<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -135,13 +135,13 @@
       </div>
       <div class="modal-body" style="height:200px;">
 			<div class="alert alert-warning">
-          <p>탈퇴하면 회원 정보가 삭제되고, 되돌릴 수 없습니다. 잔여 패스가 있더라도 사용할 수 없으니 유의하세요. 즉시 탈퇴를 원하시는 경우에는  1:1문의로 탈퇴신청을 해주시면 즉시탈퇴를 도와드리겠습니다.</p>
+          <p>탈퇴하면 회원 정보가 삭제되고, 되돌릴 수 없습니다. 잔여 패스가 있더라도 사용할 수 없으니 유의하세요. 즉시 탈퇴를 원하시는 경우 탈퇴 버튼을 눌러주세요</p>
           <p>정말 탈퇴하실 건가요? (마지막 질문입니다)</p>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" style="background:#68A4C4;">네 (1:1문의로 이동)</button>
+        <button type="button" class="btn btn-primary" style="background:#68A4C4;" onclick="deleteMember.ljs(${loginUser.userId})">탈퇴</button>
       </div>
     </div>
   </div>
@@ -151,15 +151,17 @@
 
 	<script>
 //	 모달
-	$('#myModal').click('shown.bs.modal', function () {
+		$('#myModal').click('shown.bs.modal', function () {
 		  $('#myInput').focus()
 		});
- 	
+		
+ 		//회원정보 수정 스크립트(비밀번호 확인)
 		function saveBtn(){
-			if($('#password').val()==""){
+ 			
+			if($('#password').val() == ""){
 			    alert("비밀번호를 입력 해 주세요");
 			    $('#password').focus();
-			    return;	
+			    return;
 		   }
 		   
 		   if($('#password').val() != $('#passwordCheck').val()){
@@ -168,9 +170,17 @@
 			    return;
 		   }
 			
-		   $("#modify_form").submit();
+		   if($('#password').val() == $('#passwordCheck').val()){
+			   
+		   		$("#modify_form").submit();
+		   		
+		   }
 		}
 		
+ 		//회원탈퇴 스트립트
+ 		function deleteMember(userId){
+ 			location.href="deleteMember?userId=" + userId;
+ 		}
 
 	
 </script>

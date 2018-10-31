@@ -38,6 +38,7 @@
 			WHERE USER_ID = #{userId}				
 	</update>
 	
+	
 	<!-- Board -->
 	<resultMap type="com.finalProject.enjoin.notice.model.vo.Board" id="boardResultSet">
 		<!-- PRIMARY KEY -->
@@ -57,7 +58,13 @@
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 	</resultMap>
-	
+	<!-- 게시물 갯수  조회-->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS = 'Y'
+		AND BOARD_TYPE = 5
+	</select>
 	<!-- 크루 게시판 조회 -->
 	<select id="crewBoardList" resultMap="boardResultSet">
 		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE
