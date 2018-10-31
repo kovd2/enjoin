@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
 .wrap{
@@ -12,7 +13,7 @@
 }
 .top{
 	width:1100px;
-	height:100%;
+	height:1500px;
 	margin:0 auto;
 	display:block;
 	
@@ -20,7 +21,7 @@
 
 .informArea{
 	background:#f5f5f5;
-	height:100%;
+	/* height:1500px; */
 	display: -webkit-box;
 	background:#f5f5f5;
 
@@ -97,8 +98,103 @@
 
 nav{
 
-	margin-left:690px;
+	
 }
+
+.imgArea{
+
+	width: 1100px;
+    height: 400px;
+    background: black;
+    position: absolute;
+    display: -webkit-box;
+}
+.imgArea>img{
+	width:1100px;
+	height:400px;
+	background:black;
+	opacity:0.4;
+}
+.pageing{
+
+	margin-left:399px;
+
+}
+.realImg{
+	    width: 1100px;
+    height: 400px;
+    background: yellow;
+    position: relative;
+}
+	
+
+.realTitle{
+     width: 1100px;
+    height: 100px;
+    
+    position: absolute;
+    left: 0;
+    margin-top:100px;
+  
+}
+
+.title{
+	font-size:60px;
+	color:#00bff0;
+	text-align:center;
+	font-weight:bold;	
+
+}
+.btnArea{
+
+	width:1100px;
+	height:100px;
+	 position: absolute;
+	 margin-top:200px;
+	display: -webkit-box;
+}
+.searchBtn{
+	width:200px;
+	height:100px;
+	
+	
+	
+
+
+}
+
+
+#enroll {
+	width: 150px;
+	height: 50px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#list {
+	width: 150px;
+	height: 50px;
+	font-weight: bold;
+	font-size: 20px;
+}
+#btn {
+	position: absolute;
+	width: 1100px;
+	height: 50px;
+	text-align: center;
+	
+}
+#notice{
+	width: 170px;
+	height: 50px;
+	font-weight: bold;
+	font-size: 20px;
+
+
+}
+
+
+
 
 </style>
 </head>
@@ -108,8 +204,39 @@ nav{
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	
-	<div class="wrap">
-		<div class="top">
+			<div class="wrap">
+			<div class="top">
+	
+			<div class="realImg">
+			<div class="imgArea">
+			<img src="resources/images/informBoard/fitness.jpg">
+			</div>
+			<div class="realTitle"> 
+				<div class="title">
+					enjoin이 제안하는 크루공고
+				</div>
+			</div>
+			<div class="btnArea">
+			<div id="btn">
+					<button type="button" class="btn btn-success" id="enroll">
+						<i class="fa fa-handshake-o"></i>멤버쉽신청
+					</button>
+					<button type="button" class="btn btn-warning" id="list">
+						<i class="fa fa-laptop"></i>제휴시설보기
+					</button>
+					
+					<button type="button" class="btn btn-primary" id="notice" onclick="noticeGo()">
+					<i class="fa fa-address-card-o"></i>
+					공고글작성하기</button>
+				</div>
+			
+			</div>
+			</div>
+
+			
+		
+		
+		
 			<div class="informArea">
 			
 				<div class="boardList">
@@ -232,11 +359,8 @@ nav{
 			</div>
 
 			</div>
-		</div>
+	<div class="pageing">
 	
-	</div>
-	
-	<nav>
   <ul class="pagination">
     <li>
       <a href="#" aria-label="Previous">
@@ -254,7 +378,13 @@ nav{
       </a>
     </li>
   </ul>
-</nav>
+
+</div>
+			
+		</div>
+		</div>
+		
+		
 
 <jsp:include page="../common/footer.jsp"/>
 
@@ -271,8 +401,15 @@ nav{
 
 
 </script>
+<script>
 
+	function noticeGo(){
+		
+		location.href="drawForm.kch2";
+		
+		
+	}
 
-
+</script>
 </body>
 </html>
