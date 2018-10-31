@@ -45,7 +45,8 @@
 							<a class="list-group-item" onclick="detailBoard(${b.boardNo })"> 
 								<span class="label label-info">게시물</span>						
 								<h4 class="list-group-ietm-heading">${b.boardTitle }</h4> 						
-								<span class="date">${b.enrollDate }</span>							
+								<span class="date">${b.enrollDate }</span>	
+												
 							</a> 
 						</c:forEach>
 						</div>

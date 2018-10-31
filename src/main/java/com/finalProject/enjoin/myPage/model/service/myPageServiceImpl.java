@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.notice.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 @Service
 public class myPageServiceImpl implements myPageService{
 	@Autowired
@@ -25,9 +26,9 @@ public class myPageServiceImpl implements myPageService{
 	
 	//회원 패스 조회
 	@Override
-	public void selectPass(Member m) {
-		mpd.selectPass(m, sqlSession);
+	public List<Pass> selectPass(int userNo) {
 		
+		return mpd.selectPass(userNo, sqlSession);
 	}
 
 	//크루 게시판 조회

@@ -47,12 +47,25 @@
 								</p>
 							</article>
 							<div class="commentWrap" style="width: 740px;">
+							<div class="commentContent">
+								<c:if test="${ rCount > 0 }">
+									<table align="center">
+										<c:forEach var="r" items="${ Detail.comentList }">
+											<tr>
+												<td width="100px"></td>
+												<td width="300px">${ r.comentContent }</td>
+												<td width="100px">${ r.comentDate }</td>
+											</tr>
+										</c:forEach>
+									</table>
+								</c:if>
+							</div>
+								<form action="<!-- 댓글 등록 쿼리로 이동 -->">
 									<div class="commentArea">
 										<textarea rows="4" cols="100">
 											댓글입력창
 										</textarea>
 									</div>
-								<form action="<!-- 댓글 등록 쿼리로 이동 -->">
 									<div class="commentBtnArea">
 										<button type="submit" style="width: 80px;height: 30px; float: right;">등록</button>										
 									</div>

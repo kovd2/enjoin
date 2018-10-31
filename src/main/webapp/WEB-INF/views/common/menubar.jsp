@@ -99,7 +99,7 @@
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
 										<ul class="dropdown-menu">
 											<li><a href="notice.hh">공지사항</a></li>
-											<li><a href="crewRecruitmentBoard.test">크루모집</a></li>
+											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
 											<li><a href="pricingbox.test">크루공고</a></li>
 											<li><a href="crewEventBoard.test">이벤트</a></li>
 											<li><a href="crewApplication.test">크루신청</a></li>
@@ -110,16 +110,22 @@
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
 									<li><a href="passPurchase.hh">멤버십 신청</a></li>
-									<li><a href="profil.ljs">프로필</a></li>
+									<li><a onclick="goProfil(${loginUser.userNo});" style="cursor:pointer;">프로필</a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</header>
 			</div>
-	
-	
 	</c:if>
+	
+	<script>
+		function goProfil(userNo){
+			location.href="profil.ljs?userNo=" + userNo;
+		}
+	</script>
+	
+	
 	<!-- end header -->
 
 	<!-- javascript

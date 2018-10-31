@@ -338,6 +338,8 @@ img {
     margin-right: 50px;
     padding: 0px 20px 20px 20px;
 }
+
+
 </style>
 </head>
 <body>
@@ -351,7 +353,7 @@ img {
 
 			<div class="main">
 				<div class="imgArea">
-					<img src="resources/images/informBoard/cross.jpg">
+					<img src="resources/images/informBoard/fitness.jpg">
 				</div>
 
 

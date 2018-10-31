@@ -3,28 +3,30 @@ package com.finalProject.enjoin.myPage.model.vo;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 public class Pagination {
-   public static PageInfo getPageInfo(int currentPage, int listCount){
-      PageInfo pi = null;
 
-      int limit = 10;
-      int buttonCount = 10;
-      int maxPage;
-      int startPage;
-      int endPage;
+	public static PageInfo getPageInfo(int currentPage, int listCount){
+		PageInfo pi = null;
 
-      maxPage = (int)((double)listCount / limit + 0.9);
+		int limit = 10;
+		int buttonCount = 10;
+		int maxPage;
+		int startPage;
+		int endPage;
 
-      startPage = (((int)((double)currentPage / buttonCount + 0.9)) - 1) * buttonCount + 1; 
+		maxPage = (int)((double)listCount / limit + 0.9);
 
-      endPage = startPage + buttonCount - 1;
+		startPage = (((int)((double)currentPage / buttonCount + 0.9)) - 1) * buttonCount + 1; 
 
-      if(maxPage < endPage){
-         endPage = maxPage;
-      }
+		endPage = startPage + buttonCount - 1;
 
-      pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		if(maxPage < endPage){
+			endPage = maxPage;
+		}
 
-      return pi;
+		pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-   }
+		return pi;
+
+	}
 }
+

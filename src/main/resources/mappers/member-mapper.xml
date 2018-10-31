@@ -35,10 +35,19 @@
 		AND STATUS = 'Y'
 	</select>
 	
-	<!-- 회원가입용 쿼리 -->
+	<!-- 개인회원가입용 쿼리 -->
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS) 
 		VALUES(USER_NO.NEXTVAL, '1', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT)
+	</insert>
+	
+	<!-- 제휴시설 회원가입용 쿼리 -->
+	<insert id="insertCompany" parameterType="Member">
+		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS,
+							MANAGER_NAME, MANAGER_PHONE, MANAGER_EMAIL, COP_NO, CEO_NAME, COP_NAME, COP_ADDRESS, COP_TYPE, COP_CON, COP_EMAIL)
+		VALUES(USER_NO.NEXTVAL, '2', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT,
+							#{managerName}, #{managerPhone}, #{managerEmail}, #{copNo}, #{ceoName}, #{copName}, #{copAddress}, #{copType}, #{copCon}, #{copEmail})
+		
 	</insert>
 	
 	<!-- 암호화된 비밀번호 조회용 쿼리 -->

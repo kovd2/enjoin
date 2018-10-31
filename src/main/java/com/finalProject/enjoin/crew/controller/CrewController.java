@@ -18,12 +18,16 @@ public class CrewController {
 	//크루모집 게시판 연결
 	@RequestMapping("crewRecruitmentBoard.shw2")
 	public String showCrewRecruitmentBoard() {
-
+		
+		System.out.println("나오냐??");
+		
 		return "crew/crewRecruitmentBoard";
 	}
 	//크루활동 모집내역폼
 	@RequestMapping("crewRecruitment.shw2")
 	public String showCrewRecruitment() {
+		
+		System.out.println("나오냐??");
 		
 		return "crew/crewRecruitment";
 	}
@@ -39,6 +43,13 @@ public class CrewController {
 			
 		return "crew/crewActivity";
 	}
+	//다시돌려주기
+	
+	@RequestMapping("goCrew1.shw2")
+	public String goCrew1() {
+		
+		return "crew/crewRecruitmentBoard";
+	}
 	
 	
 	
@@ -47,15 +58,17 @@ public class CrewController {
 
 
 	@RequestMapping(value="crewInsert.shw2")
-	public String insertCrewMember(Model model,Crew c,HttpServletRequest request,
-		@RequestParam(name="origin_Name",  required=false) MultipartFile origin_Name) {
-
-
-		System.out.println("origin_Name :" + origin_Name);
-		System.out.println("crew :" + c);
+	public String insertCrewMember(Model model/*,Crew c,HttpServletRequest request*//*,
+		@RequestParam(name="origin_Name",  required=false) MultipartFile origin_Name*/) {
 
 		
-		return "";
+		System.out.println("나오냐?????");
+		
+		//System.out.println("origin_Name :" + origin_Name);
+		//System.out.println("crew :" + c);
+
+		
+		return "redirect:goCrew1.shw2";
 
 	}
 }
