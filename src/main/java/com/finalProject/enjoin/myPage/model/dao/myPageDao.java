@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
 public interface myPageDao {
@@ -16,11 +17,13 @@ public interface myPageDao {
 	void selectPass(Member m, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 조회
-	List<Board> crewBoardList(SqlSessionTemplate sqlSession);
+	List<Board> crewBoardList(PageInfo pi, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 상세보기
 	Board crewBoardDetail(int boardNo, SqlSessionTemplate sqlSession);
 
+	//게시물 갯수
+	int getListCount(SqlSessionTemplate sqlSession);
 	
 
 }

@@ -3,6 +3,8 @@ package com.finalProject.enjoin.myPage.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
+import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
 @Controller
@@ -88,12 +92,24 @@ public class MyPageController {
 	
 	//크루 게시판 조회
 	@RequestMapping("goCrewBoardList.ljs")
-	public ModelAndView goCrewBoard(ModelAndView mv){
+	public ModelAndView goCrewBoard(ModelAndView mv, HttpServletRequest request ){
+		int currentPage = 1;
 		
-		List<Board> list = mps.crewBoardList();
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = mps.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		//게시물 전체
+		List<Board> list = mps.crewBoardList(pi);
+		
 		mv.setViewName("crew/crewBoardList");
 		mv.addObject("list", list);
-		System.out.println("list : " + list);
+		mv.addObject("pi", pi);
+		
 		return mv;
 	}
 	
@@ -122,6 +138,15 @@ public class MyPageController {
 		return "myPage/writePosts";
 	}
 	
+	//회원 탈퇴
+	@RequestMapping("deleteMember.ljs")
+	public String deleteMember(@RequestParam("userId") String userId) {
+		System.out.println("userId : " + userId);
+		
+		//mps.deleteMember(userId);
+		
+		return "";
+	}
 }
 
 
