@@ -440,7 +440,7 @@ hr {
 </head>
 <body>
 	<!-- 여기부터  -->
-
+</script>
 	<div class="wrapper">
 		<div class="sidebar">
 			<div class="title">ENJOIN ADMIN</div>
