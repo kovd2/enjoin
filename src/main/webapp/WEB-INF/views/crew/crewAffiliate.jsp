@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 .modal {
 	text-align: center;    /*모달 중앙유지  */
 }

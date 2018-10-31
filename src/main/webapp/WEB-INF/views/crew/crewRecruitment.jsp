@@ -291,13 +291,19 @@ $(function(){
 					}
 					reader.readAsDataURL(value.files[0]);
 				}
-			};	
+			};
+			
+			
+		function goBack(){
+			location.href="crewRecruitmentBoard.test";	
+		}
 	
 </script>
 <body>
 	<div class="container">
 		<div class="modal-body">
-			<form action="crewInsert.shw2" method="post" enctype="multipart/form-data">
+			<!-- <form action="crewInsert.shw2" method="post" enctype="multipart/form-data"> -->
+			<form action="crewInsert.shw2" method="post">	
 				<table>
 					<tr>
 						<td colspan="2">
@@ -308,30 +314,30 @@ $(function(){
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><select class="catagoryBox">
-								<option name="category_No">카테고리</option>
-								<option name="category_No">런닝</option>
-								<option name="category_No">수영</option>
-								<option name="category_No">필라테스</option>
-								<option name="category_No">격투기</option>
-								<option name="category_No">댄스</option>
-								<option name="category_No">요가</option>
-								<option name="category_No">헬스</option>
-								<option name="category_No">크로스핏</option>
-								<option name="category_No">기타</option>
+						<td colspan="2"><select class="catagoryBox"  name="category_No">
+								<option vlaue=0>카테고리</option>
+								<option vlaue=1>런닝</option>
+								<option vlaue=2>수영</option>
+								<option vlaue=3>필라테스</option>
+								<option vlaue=4>격투기</option>
+								<option vlaue=5>댄스</option>
+								<option vlaue=6>요가</option>
+								<option vlaue=7>헬스</option>
+								<option vlaue=8>크로스핏</option>
+								<option vlaue=9>기타</option>
 						</select> <input type="number" placeholder="모집인원" class="crewNum" name="crew_Max">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input class="boardTitle" style="" placeholder="글 제목"
-									name="crew_Name">
+							<input type="text" class="crewContent"  placeholder="글 제목"
+									name="board_Title">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<div>
-								<input class="crewContent" style="" placeholder="크루이름"
+								<input type="text" class="crewContent"  placeholder="크루이름"
 									name="crew_Name">
 							</div>
 						</td>
@@ -350,7 +356,7 @@ $(function(){
 					<tr>
 						<td>
 							<div>
-								<input class="crewAdd" style="" placeholder="지역" name="crew_Address">
+								<input type="text" class="crewAdd"  placeholder="지역" name="crew_Address">
 							</div>
 						</td>
 					</tr>
@@ -359,8 +365,8 @@ $(function(){
 							<td id="writer" colspan="2">
 							<input type="file" id="File" multiple="multiple"
 								name="origin_Name" onchange="loadImg(this,1)">
-								<input type="file" id="File1"
-								name="origin_Name" multiple="multiple" onchange="loadImg(this,2)"></td>
+								<!-- <input type="file" id="File1"
+								name="origin_Name" multiple="multiple" onchange="loadImg(this,2)"> --></td>
 						</div>
 					</tr>
 					<tr>
@@ -383,14 +389,14 @@ $(function(){
 					<tr>
 						<td>
 							<h4 class="crewWriter1">크루모집 작성내용을 입력해주세요!</h4> <textarea rows="13"
-								cols="95" class="crewArea" name="board_title">
+								cols="95" class="crewArea" name="board_Content">
 							</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
 							<button type="submit" class="crewRecBtn">크루모집작성</button>
-							<button class="backBtn">돌아가기</button>
+							<button class="backBtn" onclick="goBack()">돌아가기</button>
 						</td>
 					</tr>
 				</table>

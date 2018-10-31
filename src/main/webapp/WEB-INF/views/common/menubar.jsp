@@ -99,7 +99,7 @@
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
 										<ul class="dropdown-menu">
 											<li><a href="notice.hh">공지사항</a></li>
-											<li><a href="crewRecruitmentBoard.test">크루모집</a></li>
+											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
 											<li><a href="pricingbox.test">크루공고</a></li>
 											<li><a href="crewEventBoard.test">이벤트</a></li>
 											<li><a href="crewApplication.test">크루신청</a></li>
