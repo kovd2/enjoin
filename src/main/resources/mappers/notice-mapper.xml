@@ -18,6 +18,7 @@
 	<select id="listAll" resultMap="boardResultSet">
 		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
 		FROM BOARD
+		WHERE BOARD_TYPE = 2
 		ORDER BY BOARD_NO DESC
 	</select>
 	
@@ -26,5 +27,13 @@
 		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT
 		FROM BOARD
 		WHERE BOARD_NO = #{boardNo}
-	</select>	
+	</select>
+	
+	<!-- 게시물 갯수  조회-->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS = 'Y'
+		AND BOARD_TYPE = 2
+	</select>
 </mapper>

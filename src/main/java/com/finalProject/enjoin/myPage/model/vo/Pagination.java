@@ -3,6 +3,7 @@ package com.finalProject.enjoin.myPage.model.vo;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 public class Pagination {
+
 	public static PageInfo getPageInfo(int currentPage, int listCount){
 		PageInfo pi = null;
 
@@ -28,3 +29,4 @@ public class Pagination {
 
 	}
 }
+
