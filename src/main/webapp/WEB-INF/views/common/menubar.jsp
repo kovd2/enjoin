@@ -110,16 +110,22 @@
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
 									<li><a href="passPurchase.hh">멤버십 신청</a></li>
-									<li><a href="profil.ljs">프로필</a></li>
+									<li><a onclick="goProfil(${loginUser.userNo});" style="cursor:pointer;">프로필</a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</header>
 			</div>
-	
-	
 	</c:if>
+	
+	<script>
+		function goProfil(userNo){
+			location.href="profil.ljs?userNo=" + userNo;
+		}
+	</script>
+	
+	
 	<!-- end header -->
 
 	<!-- javascript

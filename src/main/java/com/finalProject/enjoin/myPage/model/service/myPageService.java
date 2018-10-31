@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.notice.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 
 public interface myPageService {
 
@@ -12,7 +13,7 @@ public interface myPageService {
 	void updateMember(Member m);
 	
 	//회원 패스 조회
-	void selectPass(Member m);
+	List<Pass> selectPass(int userNo);
 
 	//크루 게시판 조회
 	List<Board> crewBoardList(PageInfo pi);

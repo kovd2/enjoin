@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,14 +180,26 @@
 		<input type="hidden" value="a_index" id="ckPage">
 		<div class="rightContainer">
 			<b id="a_index" class="current" style="font-size:30px; color:black; text-indent:30px;"><i class="fa fa-clone"></i>  내멤버십</b>
-			<div class="notYetMembership">
-				<h4>필요한 만큼 결제하세요!!</h4>
-				<p>
-					<a href="/service/select/" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 신청하기</a>
-				</p>
-			</div>
+			<c:forEach var="pass" items="${pass }">
+				<c:set var="sum" value="${sum + pass.passCount }"/>		
+				<c:if test="${sum <= 0}">
+					<div class="notYetMembership">
+						<h4>필요한 만큼 결제하세요!!</h4>
+						<p>
+							<a href="/service/select/" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 신청하기</a>
+						</p>
+					</div>
+				</c:if>
+			</c:forEach>
+			
 			<div class="MembershipOk" align="center">
-				<h2>현재 보유 PASS권</h2><h1>7 PASS</h1>
+				<h2>현재 보유 PASS권</h2>
+				<c:forEach var="pass" items="${ pass }">
+					<c:if test="${pass.passCount > 0}">
+						<c:set var="sum2" value="${sum2 + pass.passCount }"/>					
+					</c:if>
+				</c:forEach>
+						<h3><c:out value="${ sum2 }"/> PASS</h3>
 			</div>
 			<hr>
 			<div style="height:65px;">
