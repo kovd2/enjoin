@@ -361,6 +361,7 @@ $(function(){
 						</td>
 					</tr>
 					<tr>
+					<h2>1</h2>
 						<div id="fileArea">
 							<td id="writer" colspan="2">
 							<input type="file" id="File" multiple="multiple"
