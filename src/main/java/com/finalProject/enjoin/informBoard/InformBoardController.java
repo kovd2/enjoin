@@ -24,6 +24,12 @@ public class InformBoardController {
 		
 		return "informBoard/reviewForm";
 	}
-	
+	@RequestMapping("drawForm.kch2")
+	public String drawForm() {
+		
+		
+		return "informBoard/drawForm";
+		
+	}
 	
 }

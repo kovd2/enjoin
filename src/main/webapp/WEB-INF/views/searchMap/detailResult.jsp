@@ -540,7 +540,7 @@ color:#feab2a;
 				<p class="monToFri"><b>평일</b>11:20 ~ 02:30</p><hr>
 				<p class="sat"><b>토요일</b>12:00 ~ 03:00</p><br><hr>
 				<p class="sun"><b>일요일</b> 2:00 ~ 04:00</p><hr>
-				<p class="no"><b>없음</b>2:00 ~ 04:00</p><hr>
+				
 				</div>
 				</div>	
 				
