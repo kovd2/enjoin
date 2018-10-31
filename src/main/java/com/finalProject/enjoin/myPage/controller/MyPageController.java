@@ -17,7 +17,8 @@ import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
-import com.finalProject.enjoin.notice.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 
 @Controller
 public class MyPageController {
@@ -30,11 +31,13 @@ public class MyPageController {
 	
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
-	public String showProfil(@ModelAttribute Member m) {	
+	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
 		
-		mps.selectPass(m);
-		
-		return "myPage/membership";
+		List<Pass> pass = mps.selectPass(userNo);
+		System.out.println("pass : " + pass);
+		mv.setViewName("myPage/membership");
+		mv.addObject("pass", pass);
+		return mv;
 	}
 	
 	//정보수정 페이지
@@ -99,6 +102,7 @@ public class MyPageController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
+		
 		int listCount = mps.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -118,9 +122,19 @@ public class MyPageController {
 	public ModelAndView crewBoardDetail(@RequestParam("boardNo") int boardNo, ModelAndView mv) {
 		System.out.println("boardNo : " + boardNo);
 		Board b = mps.crewBoardDetail(boardNo);
+		
+		int rCount = 0;
+		
+		if(b.getComentList().get(0).getComentNo() > 0) {
+			rCount = b.getComentList().size();
+		}
+		System.out.println("Detail : " + b);
+		System.out.println("rCount : " + rCount);
+		
 		mv.setViewName("crew/crewBoardDetail");
 		mv.addObject("Detail", b);
-		System.out.println("Detail : " + b);
+		mv.addObject("rCount", rCount);
+		
 		return mv;
 	}
 	

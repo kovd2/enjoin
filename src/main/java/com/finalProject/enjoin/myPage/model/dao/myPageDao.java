@@ -6,7 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.notice.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 
 public interface myPageDao {
 
@@ -14,7 +15,7 @@ public interface myPageDao {
 	void updateMember(Member m, SqlSessionTemplate sqlSession);
 	
 	//회원 패스 조회
-	void selectPass(Member m, SqlSessionTemplate sqlSession);
+	List<Pass> selectPass(int userNo, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 조회
 	List<Board> crewBoardList(PageInfo pi, SqlSessionTemplate sqlSession);
