@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>제휴시설 등록 양식</title>
+<title>제휴시설 신청 양식</title>
 
 <style>
 /*!
@@ -18,10 +18,29 @@ html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%
 }
-
+    body {
+      background: #fff;
+    }
+    .userImg {
+      width: 300px;
+      height: 200px;
+    }
+    .img_wrapper{
+    	display:inline-flex;
+    }
 body {
 	margin: 0
 }
+body {
+      background: #fff;
+    }
+.userImg {
+      width: 300px;
+      height: 200px;
+    }
+.wrapper{
+    	display:inline-flex;
+    }
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, menu, nav, section, summary {
@@ -7895,11 +7914,13 @@ html {
 
 
 							<fieldset class="memberForm requestPartnerForm">
-								<form method="post" action="/help/partner">
+							
+								<form method="post" action="facilityInsert.me" enctype="multipart/form-data">
+								
 									<div class="form-group">
 										<label for="centerName">제휴시설 이름</label> <input type="text"
 											class="form-control" name="facilityName" id="center_name"
-											placeholder="제휴시설 이름을 알려주세요." required="">
+											placeholder="제휴시설 이름을 알려주세요." >
 										<!-- <span class="complated">와 멋진 이름이네요!</span> -->
 									</div>
 
@@ -7908,7 +7929,7 @@ html {
 											<div class="row">
 												<div class="col-md-4">
 													<label>지역</label> <select class="form-control"
-														name="facilityArea" id="local" required="">
+														name="facilityArea" id="local" >
 														<option value="">위치한 지역을 선택해 주세요.</option>
 														<option value="00">서울특별시</option>
 														<option value="10">인천/경기</option>
@@ -7995,12 +8016,33 @@ html {
 													나의 시설을 보여줄 수 있는 중요한 사진이예요.</span> <span> 사진과 시설이 다르다는 신고를
 													받으면 확인 후 글이 삭제될 수 있습니다.</span>
 											</small> <br>
-											<jsp:include page="profile.jsp"></jsp:include>
+											<%-- <jsp:include page="profile.jsp"></jsp:include> --%>
+										<div class="img_wrapper">
+											<img class="thumbnail userImg"	src="/images/img_user_blank.png" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span> 
+											<img class="thumbnail userImg" 	src="/images/img_user_blank.png" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span>
+										</div>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="center_person">이용시간(ex)10:30 ~ 21 : 00 형식으로 작성해주세요.)</label> <input type="text"	class="form-control" name="facilityManagerName" id="center_person" placeholder="평일" required="">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="center_contact"></label> <input	type="text" class="form-control" name="facilityManagerPhone" id="center_contact" placeholder="토요일" required="">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="center_contact"></label> <input	type="text" class="form-control" name="facilityManagerPhone" id="center_contact" placeholder="일요일"	required="">
 										</div>
 									</div>
 
 
 
+									<div class="form-group">
+										<label for="contact_time">1일 이용 차감 PASS 개수</label> <input type="text"
+											class="form-control" name="" id="contact_time"
+											placeholder="1회 이용시 차감할 PASS 개수를 적어주세요." required="">
+									</div>
 									<div class="form-group">
 										<label for="contact_time">통화가능시간</label> <input type="text"
 											class="form-control" name="timeForCall" id="contact_time"
@@ -8019,6 +8061,7 @@ html {
 
 						</div> <!-- /.helpCenterWrap -->
 					</small>
+					
 				</div>
 				<small> <!-- /.content -->
 				</small>
@@ -8026,6 +8069,7 @@ html {
 			<!-- /.container -->
 			<small> <br> <br> <br> <br>
 			</small>
+			
 		</div>
 	</div>
 	<small> <!-- /.requestPartnerWrap -->
