@@ -49,7 +49,7 @@
 	margin-left:20px;
 	height:40px;
 	width:360px;
-	border:2px solid #00bff0;
+	border:1px solid #00bff0;
 	background:#ffffff;
 }
 #searchBar{
