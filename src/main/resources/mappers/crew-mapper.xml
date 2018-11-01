@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="Crew">
-	<resultMap type="com.finalProject.enjoin.crew.model.vo.Crew" id="CrewResultSet">
+	<resultMap type="Crew" id="CrewResultSet">
 		<!-- Primary key  -->
 		<id property="crew_Id" column="CREW_ID"/>
 		<!-- 컬럼  -->
@@ -13,13 +14,46 @@
 		<result property="end_Date" column="END_DATE"/>
 		<result property="crew_Status" column="CREW_STATUS"/>
 		<result property="category_No" column="CATEGORY_NO"/>
+	</resultMap>	
+	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
+		<!-- Primary key  -->
+		<id property="board_No" column="BOARD_NO"/>
+		<!-- 컬럼  -->
+		<result property="board_Type" column="BOARD_TYPE"/>
+		<result property="board_Title" column="BOARD_TITLE"/>
+		<result property="board_Content" column="BOARD_CONTENT"/>
+		<result property="enroll_Date" column="ENROLL_DATE"/>
+		<result property="crew_Area" column="CREW_AREA"/>
+		<result property="crew_No" column="CREW_NO"/>
+		<result property="board_Count" column="BOARD_COUNT"/>
+		<result property="recruit_Max" column="RECRUIT_MAX"/>
+		<result property="recruit_Start" column="RECRUIT_START"/>
+		<result property="recruit_End" column="RECRUIT_END"/>
+		<result property="recruit_Status" column="RECRUIT_STATUS"/>
+		<result property="status" column="STATUS"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="category_No" column="CATEGORY_NO"/>
 	</resultMap>
+
+	
 	<!-- 크루 인서트  -->
 	<insert id="insertCrew"  parameterType="Crew">
 		INSERT INTO	CREW(CREW_ID,CREW_NAME,CREW_MAX,USER_NO,REQUEST_DATE,START_DATE,END_DATE,CREW_STATUS,CATEGORY_NO)
 		VALUES(SEQ_CREW_CREW_ID.NEXTVAL,#{crew_Name},#{crew_Max},#{user_No},SYSDATE,#{start_Date},#{end_Date},'Y',#{category_No})
 	</insert>
+	<!-- 크루 인서트한 번호 커발하여 조회  -->
 	<select id="selectCrewId" parameterType="_int" resultType="_int">
 		SELECT SEQ_CREW_CREW_ID.CURRVAL FROM dual
 	</select>
+	<!-- 크루 모집 게시판 등록  -->
+	<insert id="insertBoard" parameterType="Crew">
+		INSERT INTO BOARD(BOARD_NO,BOARD_TYPE,BOARD_TITLE,
+		BOARD_CONTENT,ENROLL_DATE,CREW_AREA,CREW_NO,BOARD_COUNT,
+		RECRUIT_MAX,RECRUIT_START,RECRUIT_END,RECRUIT_STATUS,
+		STATUS,USER_NO,CATEGORY_NO)
+		VALUES(BOARD_NO.NEXTVAL,4,#{board_Title},#{board_Content},
+		SYSDATE,#{crew_Area},#{crew_No},0,#{recruit_Max},#{recruit_Start},
+		#{recruit_End},'N','N',#{user_No},#{category_No})
+	</insert>
+
 </mapper>
