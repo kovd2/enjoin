@@ -7915,7 +7915,7 @@ html {
 
 							<fieldset class="memberForm requestPartnerForm">
 							
-								<form method="post" action="facilityInsert.me" enctype="multipart/form-data">
+								<form method="post" action="facilityInsert.gs" enctype="multipart/form-data">
 								
 									<div class="form-group">
 										<label for="centerName">제휴시설 이름</label> <input type="text"
@@ -8018,21 +8018,21 @@ html {
 											</small> <br>
 											<%-- <jsp:include page="profile.jsp"></jsp:include> --%>
 										<div class="img_wrapper">
-											<img class="thumbnail userImg"	src="/images/img_user_blank.png" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span> 
-											<img class="thumbnail userImg" 	src="/images/img_user_blank.png" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span>
+											<img class="thumbnail userImg"	src="" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span> 
+											<img class="thumbnail userImg" 	src="" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span>
 										</div>
 										</div>
 									</div>
 									
 									<div class="row">
 										<div class="form-group col-md-4">
-											<label for="center_person">이용시간(ex)10:30 ~ 21 : 00 형식으로 작성해주세요.)</label> <input type="text"	class="form-control" name="facilityManagerName" id="center_person" placeholder="평일" required="">
+											<label for="center_person">이용시간(ex)10:30 ~ 21 : 00 형식으로 작성해주세요.)</label> <input type="text"	class="form-control" name="mon_fri_time" id="center_person" placeholder="평일" required="">
 										</div>
 										<div class="form-group col-md-4">
-											<label for="center_contact"></label> <input	type="text" class="form-control" name="facilityManagerPhone" id="center_contact" placeholder="토요일" required="">
+											<label for="center_contact"></label> <input	type="text" class="form-control" name="sat_time" id="center_contact" placeholder="토요일" required="">
 										</div>
 										<div class="form-group col-md-4">
-											<label for="center_contact"></label> <input	type="text" class="form-control" name="facilityManagerPhone" id="center_contact" placeholder="일요일"	required="">
+											<label for="center_contact"></label> <input	type="text" class="form-control" name="sun_time" id="center_contact" placeholder="공휴일 및 일요일"	required="">
 										</div>
 									</div>
 
@@ -8040,7 +8040,7 @@ html {
 
 									<div class="form-group">
 										<label for="contact_time">1일 이용 차감 PASS 개수</label> <input type="text"
-											class="form-control" name="" id="contact_time"
+											class="form-control" name="passCount" id="contact_time"
 											placeholder="1회 이용시 차감할 PASS 개수를 적어주세요." required="">
 									</div>
 									<div class="form-group">

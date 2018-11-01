@@ -66,6 +66,22 @@
 	</servlet-mapping>
 	
 	
+		
+	<!-- 광성  -->
+	<servlet>
+		<servlet-name>gs</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/company/company-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>gs</servlet-name>
+		<url-pattern>*.gs</url-pattern>
+	</servlet-mapping>
+	
 	
 	
 	

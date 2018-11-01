@@ -25,6 +25,8 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public int insertCompany(Company c) {
 		
+		System.out.println(c);
+		
 		return cd.insertCompany(sqlSession, c);
 	}
 	

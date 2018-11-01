@@ -2,64 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Company">
 
-<!--
-	private String facilityName;
-	private String facilityArea;
-	private String facilitySection;
-	private String facilityAddress;
-	private String facilityEvent;
-	private String facilityManagerName;
-	private String facilityManagerPhone;
-	private String timeForCall; 
--->
 	<resultMap type="com.finalProject.enjoin.company.model.vo.Company" id="companyResultSet">
 		<!-- PRIMARY KEY -->
-		<id property="userNo" column="USER_NO"/>
+		<id property="facilityNo" column="FACILITY_NO"/>
 		<!-- 컬럼 -->
-		<result property="userType" column="USER_TYPE"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="phone" column="PHONE"/>
-		<result property="email" column="EMAIL"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
-		<result property="status" column="STATUS"/>	
-		<result property="managerName" column="MANAGER_NAME"/>
-		<result property="managerPhone" column="MANAGER_PHONE"/>
-		<result property="managerEmail" column="MANAGER_EMAIL"/>
-		<result property="copNo" column="COP_NO"/>
-		<result property="ceoName" column="CEO_NAME"/>
-		<result property="copName" column="COP_NAME"/>
-		<result property="copAddress" column="COP_ADDRESS"/>
-		<result property="copType" column="COP_TYPE"/>
-		<result property="copCon" column="COP_CON"/>
-		<result property="copEmail" column="COP_EMAIL"/>
+		<result property="facilityRequestDate" column="FACILITY_REQUESTDATE"/>
+		<result property="facilityStartDate" column="FACILITY_STARTDATE"/>
+		<result property="facilityEndDate" column="FACILITY_ENDDATE"/>
+		<result property="facilityStatus" column="FACILITY_STATUS"/>
+		<result property="passCount" column="PASS_COUNT"/>
+		<result property="facilityCopNo" column="FACILITY_COPNO"/>
+		<result property="facilityName" column="FACILITY_NAME"/>
+		<result property="facilityArea" column="FACILITY_AREA"/>
+		<result property="facilitySection" column="FACILITY_SECTION"/>
+		<result property="facilityAddress" column="FACILITY_ADDRESS"/>	
+		<result property="facilityEvent" column="FACILITY_EVENT"/>
+		<result property="facilityManagerName" column="FACILITY_MANAGER_NAME"/>
+		<result property="facilityManagerPhone" column="FACILITY_MANAGER_PHONE"/>
+		<result property="timeForCall" column="TIME_FOR_CALL"/>
+		<result property="mon_fri_time" column="MON_FRI_TIME"/>
+		<result property="sat_time" column="SAT_TIME"/>
+		<result property="sun_time" column="SUN_TIME"/>
+
 	</resultMap>
 
 
 	
-	<!-- 회원가입용 쿼리 -->
-	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS) 
-		VALUES(USER_NO.NEXTVAL, '1', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT)
+	<!-- 제휴기업 신청쿼리 -->
+	<insert id="insertCompany" parameterType="Company">
+		INSERT INTO FACILITY(FACILITY_NO, FACILITY_REQUESTDATE, FACILITY_STARTDATE, FACILITY_ENDDATE, 
+					FACILITY_STATUS, PASS_COUNT, FACILITY_COPNO, FACILITY_NAME, FACILITY_AREA, FACILITY_SECTION,
+					FACILITY_ADDRESS, FACILITY_EVENT, FACILITY_MANAGER_NAME, FACILITY_MANAGER_PHONE, TIME_FOR_CALL,
+					MON_FRI_TIME, SAT_TIME, SUN_TIME) 
+		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, #{passCount}, #{facilityCopNo}, #{facilityName}, #{facilityArea}, 
+					#{facilitySection}, #{facilityAddress}, #{facilityEvent}, #{facilityManagerName},
+					#{facilityManagerPhone}, #{timeForCall}, #{mon_fri_time}, #{sat_time}, #{sun_time})
 	</insert>
 	
-	<!-- 암호화된 비밀번호 조회용 쿼리 -->
-	<select id="selectPwd" resultType="java.lang.String" parameterType="java.lang.String">
-		SELECT USER_PWD
-		FROM MEMBER
-		WHERE USER_ID = #{userId}
-		AND STATUS = 'Y'
-	</select>
-	
-	<!-- 암호화 후 회원 가입용 쿼리 -->
-	<select id="selectLoginUser" resultMap="memberResultSet" parameterType="Member">
-		SELECT *
-		FROM MEMBER
-		WHERE USER_ID = #{userId}
-		AND STATUS = 'Y'
-	</select>
+
 	
 </mapper>
 
