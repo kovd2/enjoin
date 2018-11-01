@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 											class="col-sm-2 control-label">문의 분류 <em>*</em></label>
 										<div class="col-sm-10">
 											<select class="form-control" name="category"
-												id="notLoginQA_category" required="">
+												id="notLoginQA_category">
 												<option value="" disabled="" selected="" hidden="">분류를
 													선택하세요.</option>
 												<optgroup label="아래 분류 중 하나를 선택해 주세요.">

@@ -33,7 +33,7 @@
 				<td style="width:800px; height:60px;"><input type="text" id="boardTitle" name="boardTitle" style="width:800px; height:60px;" value="${detail.boardTitle }"></td>
 			</tr>
 			<tr>
-				<th style="display:inline-block; width:300px; height:400px; font-size:30px; background:gray;">내용</th>
+				<th style="vertical-align:middle; width:300px; height:400px; font-size:30px; background:gray;">내용</th>
 				<td style="width:800px; height:400px">
 					<textarea id="boardContent" name="boardContent" style="width:100%; height:100%;">${detail.boardContent }</textarea>
 				</td>
@@ -41,10 +41,11 @@
 		</table>
 	</form>
 		<br>
-		<input type="button" value="수정" onclick="adminNoticeUpdate()">
+		
 		<form action="adminNoticeDelete.hh" method="post">
+			<input type="button" value="수정" style="width: 80px; height: 40px; font-size: x-large;" onclick="adminNoticeUpdate()">
 			<input type="hidden" value="${detail.boardNo }" id="boardNo" name="boardNo">
-			<button type="submit">삭제</button>
+			<button type="submit" style="width: 80px; height: 40px; font-size: x-large;">삭제</button>
 		</form>
 		
 		</div>

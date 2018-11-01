@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="com.finalProject.enjoin" />
 	
-	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<beans:property name="maxUploadSize" value="10000000"/> <!-- 파일 용량 제한을 대략 10MB정도 잡은거임 -->
+	</beans:bean>
 	
 </beans:beans>

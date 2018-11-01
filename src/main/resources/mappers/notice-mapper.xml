@@ -18,7 +18,7 @@
 	<select id="listAll" resultMap="boardResultSet">
 		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
 		FROM BOARD
-		WHERE BOARD_TYPE = 2
+		WHERE BOARD_TYPE = '공지사항'
 		AND STATUS = 'Y'
 		ORDER BY BOARD_NO DESC
 	</select>
@@ -35,13 +35,13 @@
 		SELECT COUNT(*)
 		FROM BOARD
 		WHERE STATUS = 'Y'
-		AND BOARD_TYPE = 2
+		AND BOARD_TYPE = '공지사항'
 	</select>
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, USER_NO)
-		VALUES(BOARD_NO.NEXTVAL, '2', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo})
+		VALUES(BOARD_NO.NEXTVAL, '공지사항', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo})
 	</insert>
 	
 	<!-- 공지사항 수정 -->
@@ -60,5 +60,9 @@
 		WHERE BOARD_NO = #{boardNo}
 	</update>
 	
-	
+	<!-- 공지사항 번호 조회 -->
+	<select id="selectBoard" resultType="_int">
+		SELECT BOARD_NO.CURRVAL AS BOARD_NO
+		FROM DUAL
+	</select>
 </mapper>
