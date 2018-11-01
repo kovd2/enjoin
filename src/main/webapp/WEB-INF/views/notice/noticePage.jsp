@@ -96,6 +96,7 @@
 			location.href="noticeDetail.hh?boardNo=" + boardNo;
 		}
 		
+		
 	</script>
 
 

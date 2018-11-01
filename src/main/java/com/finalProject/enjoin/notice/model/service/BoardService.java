@@ -13,4 +13,10 @@ public interface BoardService {
 
 	public int getListCount() throws Exception;
 
+	public void insertBoard(Board b, int userNo) throws Exception;
+
+	public void updateBoard(Board b, int userNo, int boardNo) throws Exception;
+
+	public void deleteBoard(Board b, int userNo, int boardNo) throws Exception;
+
 }

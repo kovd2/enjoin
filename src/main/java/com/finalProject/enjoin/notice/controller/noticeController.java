@@ -6,10 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.notice.model.service.BoardService;
@@ -24,6 +27,7 @@ public class noticeController {
 	//공지사항 목록
 	@RequestMapping("notice.hh")
 	public ModelAndView list(ModelAndView mav, HttpServletRequest request) throws Exception {
+		//페이징 처리
 		int currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {
@@ -34,7 +38,7 @@ public class noticeController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		
+		//리스트 조회
 		List<Board> list = bs.listAll(pi);
 
 		mav.setViewName("notice/noticePage");
@@ -48,7 +52,6 @@ public class noticeController {
 	public ModelAndView view(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
 		Board detail = bs.read(boardNo);
 		
-		System.out.println(detail);
 		mv.setViewName("notice/noticeDetail");
 		mv.addObject("detail", detail);
 		
@@ -105,15 +108,74 @@ public class noticeController {
 	
 	//관리자 공지사항 목록
 	@RequestMapping("adminNotice.hh")
-	public String adminNotice() {
+	public ModelAndView adminNotice(ModelAndView mav, HttpServletRequest request) throws Exception{
 		
-		return "notice/adminNotice";
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = bs.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		//리스트 조회
+		List<Board> list = bs.listAll(pi);
+
+		mav.setViewName("notice/adminNotice");
+		mav.addObject("list", list);
+		mav.addObject("pi", pi);
+		
+		return mav;
 	}
 	
 	//관리자 공지사항 상세보기
 	@RequestMapping("adminNoticeDetail.hh")
-	public String adminNoticeDetail() {
+	public ModelAndView adminNoticeDetail(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
+		Board detail = bs.read(boardNo);
 		
-		return "notice/adminNoticeDetail";
+		mv.setViewName("notice/adminNoticeDetail");
+		mv.addObject("detail", detail);
+		
+		return mv;
 	}
+	
+	//공지사항 등록페이지
+	@RequestMapping("adminNoticeInsert.hh")
+	public String adminNoticeInsert() {
+		
+		return "notice/adminNoticeInsert";
+	}
+	//공지사항 등록
+	@RequestMapping("adminNoticeInsertBtn.hh")
+	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request) throws Exception {
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		bs.insertBoard(b, userNo);
+		
+		return "redirect:adminNotice.hh";
+	}
+	
+	//공지사항 수정
+	@RequestMapping("adminNoticeUpdate.hh")
+	public String adminNoticeUpdate(@ModelAttribute Board b, HttpServletRequest request, @RequestParam("boardNo")int boardNo) throws Exception {
+		
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		bs.updateBoard(b, userNo, boardNo);
+		
+		return "redirect:adminNotice.hh";
+	}
+	
+	//공지사항 삭제
+	@RequestMapping("adminNoticeDelete")
+	public String adminNoticeDelete(@ModelAttribute Board b, HttpServletRequest request, @RequestParam("boardNo")int boardNo) throws Exception {
+		
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		bs.deleteBoard(b, userNo, boardNo);
+				
+		return "redirect:adminNotice.hh";
+	}
+	
 }

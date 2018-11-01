@@ -12,4 +12,10 @@ public interface BoardDao {
 	public Board read(int boardNo) throws Exception;
 
 	public int getListCount() throws Exception;
+
+	public void insertBoard(Board b) throws Exception;
+
+	public void updateBoard(Board b) throws Exception;
+
+	public void deleteBoard(Board b) throws Exception;
 }
