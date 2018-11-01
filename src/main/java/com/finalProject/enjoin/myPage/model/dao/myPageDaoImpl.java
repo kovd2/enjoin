@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
@@ -50,6 +51,20 @@ public class myPageDaoImpl implements myPageDao{
 	public int getListCount(SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectOne("myPage.getListCount");
+	}
+
+	//크루 목록 조회
+	@Override
+	public List<Crew> selectCrewList(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectCrewList", userNo);
+	}
+
+	//가입된 크루 목록 조회
+	@Override
+	public List<Crew> selectInCrewList(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectInCrewList", userNo);
 	}
 
 

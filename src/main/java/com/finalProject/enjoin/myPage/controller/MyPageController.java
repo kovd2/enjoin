@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
-import com.finalProject.enjoin.myPage.model.vo.Board;
 
 @Controller
 public class MyPageController {
@@ -74,9 +75,17 @@ public class MyPageController {
 	
 	//크루관리
 	@RequestMapping("crewManager.ljs")
-	public String crewManager() {
+	public ModelAndView crewManager(ModelAndView mv, @RequestParam("userNo") int userNo) {
+		System.out.println("userNo : " + userNo);
+		List<Crew> crewList = mps.selectCrewList(userNo);
+		List<Crew> inCrewList = mps.selectInCrewList(userNo);
+		System.out.println("크로 목록 : " + crewList);
+		System.out.println("inCrewList : " + inCrewList);
 		
-		return "myPage/crewManager";
+		mv.setViewName("myPage/crewManager");
+		mv.addObject("crewList", crewList);
+		mv.addObject("inCrewList", inCrewList);
+		return mv;
 	}
 	
 	//기업관리 페이지 이동
