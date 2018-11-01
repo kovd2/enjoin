@@ -12,9 +12,8 @@ public class Crew implements java.io.Serializable{
 	private Date end_Date;		//폐쇄일
 	private String crew_Status;	//크루상태
 	private int category_No;	//카테고리코드
-	private int file_No; 		//불러올 파일순서번호
-	/*private String origin_Name;	//서버저장파일명
-*/	private String crew_Address; //크루지역
+	private String category_Name;	//카테고리이름
+	private String crew_Address; //크루지역
 	private String board_title;	 //글제목
 	private String board_Content;	//글내용
 	
@@ -25,8 +24,8 @@ public class Crew implements java.io.Serializable{
 
 
 	public Crew(int crew_Id, String crew_Name, int crew_Max, int user_No, Date request_Date, Date start_Date,
-			Date end_Date, String crew_Status, int category_No, int file_No, String crew_Address, String board_title,
-			String board_Content) {
+			Date end_Date, String crew_Status, int category_No, String category_Name, String crew_Address,
+			String board_title, String board_Content) {
 		super();
 		this.crew_Id = crew_Id;
 		this.crew_Name = crew_Name;
@@ -37,7 +36,7 @@ public class Crew implements java.io.Serializable{
 		this.end_Date = end_Date;
 		this.crew_Status = crew_Status;
 		this.category_No = category_No;
-		this.file_No = file_No;
+		this.category_Name = category_Name;
 		this.crew_Address = crew_Address;
 		this.board_title = board_title;
 		this.board_Content = board_Content;
@@ -99,8 +98,8 @@ public class Crew implements java.io.Serializable{
 
 
 
-	public int getFile_No() {
-		return file_No;
+	public String getCategory_Name() {
+		return category_Name;
 	}
 
 
@@ -177,8 +176,8 @@ public class Crew implements java.io.Serializable{
 
 
 
-	public void setFile_No(int file_No) {
-		this.file_No = file_No;
+	public void setCategory_Name(String category_Name) {
+		this.category_Name = category_Name;
 	}
 
 
@@ -205,10 +204,20 @@ public class Crew implements java.io.Serializable{
 	public String toString() {
 		return "Crew [crew_Id=" + crew_Id + ", crew_Name=" + crew_Name + ", crew_Max=" + crew_Max + ", user_No="
 				+ user_No + ", request_Date=" + request_Date + ", start_Date=" + start_Date + ", end_Date=" + end_Date
-				+ ", crew_Status=" + crew_Status + ", category_No=" + category_No + ", file_No=" + file_No
+				+ ", crew_Status=" + crew_Status + ", category_No=" + category_No + ", category_Name=" + category_Name
 				+ ", crew_Address=" + crew_Address + ", board_title=" + board_title + ", board_Content=" + board_Content
 				+ "]";
 	}
+
+
+
+	
+
+	
+
+	
+
+
 
 
 

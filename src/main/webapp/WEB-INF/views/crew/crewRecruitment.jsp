@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -302,8 +303,9 @@ $(function(){
 <body>
 	<div class="container">
 		<div class="modal-body">
-			<!-- <form action="crewInsert.shw2" method="post" enctype="multipart/form-data"> -->
-			<form action="crewInsert.shw2" method="post">	
+				
+				<form action="crewInsert.shw2" method="post" enctype="multipart/form-data">
+			<!-- <form action="crewInsert.shw2" method="post">	 -->
 				<table>
 					<tr>
 						<td colspan="2">
@@ -315,23 +317,23 @@ $(function(){
 					</tr>
 					<tr>
 						<td colspan="2"><select class="catagoryBox"  name="category_No">
-								<option vlaue=0>카테고리</option>
-								<option vlaue=1>런닝</option>
-								<option vlaue=2>수영</option>
-								<option vlaue=3>필라테스</option>
-								<option vlaue=4>격투기</option>
-								<option vlaue=5>댄스</option>
-								<option vlaue=6>요가</option>
-								<option vlaue=7>헬스</option>
-								<option vlaue=8>크로스핏</option>
-								<option vlaue=9>기타</option>
+								<option >카테고리</option>
+								<option >런닝</option>
+								<option >수영</option>
+								<option >필라테스</option>
+								<option >격투기</option>
+								<option >댄스</option>
+								<option >요가</option>
+								<option >헬스</option>
+								<option>크로스핏</option>
+								<option >기타</option>
 						</select> <input type="number" placeholder="모집인원" class="crewNum" name="crew_Max">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<input type="text" class="crewContent"  placeholder="글 제목"
-									name="board_Title">
+									name="board_title">
 						</td>
 					</tr>
 					<tr>
@@ -361,13 +363,12 @@ $(function(){
 						</td>
 					</tr>
 					<tr>
-					<h2>1</h2>
 						<div id="fileArea">
 							<td id="writer" colspan="2">
-							<input type="file" id="File" multiple="multiple"
+							<input type="file" id="File"
 								name="origin_Name" onchange="loadImg(this,1)">
-								<!-- <input type="file" id="File1"
-								name="origin_Name" multiple="multiple" onchange="loadImg(this,2)"> --></td>
+								<input type="file" id="File1"
+								name="origin_Name1" multiple="multiple" onchange="loadImg(this,2)"></td>
 						</div>
 					</tr>
 					<tr>
@@ -402,6 +403,7 @@ $(function(){
 					</tr>
 				</table>
 			</form>
+			
 		</div>
 	</div>
 </body>

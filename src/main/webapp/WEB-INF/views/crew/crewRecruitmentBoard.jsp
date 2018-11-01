@@ -904,9 +904,11 @@ input.searchBar {
 
 
 				<div class="searchBox">
+					<c:if test="${ !empty sessionScope.loginUser }">
 					<div class="writerBtnBox">
 						<button class="writerBtn" onclick="goCrew()">크루모집작성</button>
 					</div>
+					</c:if>
 					<form>
 						<table >
 							<tr>
