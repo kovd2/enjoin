@@ -70,7 +70,7 @@
 						<p class="text-anc">와~ 멋진 사진이네요!</p>
 						<p>
 
-							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs?userId=${loginUser.userId }">회원정보 수정</a>
+							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs?userId=${ loginUser.userId }">회원정보 수정</a>
 
 						</p>
 					</div>
@@ -81,7 +81,7 @@
 							<li><b><a href="profil.ljs?userId=${loginUser.userId }" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
 							<li><b><a href="wantPlace.ljs" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  가보고 싶은 시설</a></b></li>
 							<li><b><a href="history.ljs" id="history" class="fontColBlack current"><i class="fa fa-bar-chart"></i>  이용기록</a></b></li>
-							<li><b><a href="crewManager.ljs" id="a_invite" class="fontColBlack current"><i class="fa fa-child"></i>  크루관리</a></b></li>
+							<li><b><a href="crewManager.ljs?userNo=${ loginUser.userNo }" id="a_invite" class="fontColBlack current"><i class="fa fa-child"></i>  크루관리</a></b></li>
 							<li><b><a href="writePosts.ljs" id="myBoard" class="fontColBlack current"><i class="fa fa-thumb-tack"></i>  내가 쓴 게시물</a></b></li>
 							<li><b><a href="Enterprise.ljs" id="enterprise" class="fontColBlack current"><img src="resources/images/myPage/enterprise.png" style="width:10px; height:14.4px;">  기업관리</a></b></li>
 						</ul>

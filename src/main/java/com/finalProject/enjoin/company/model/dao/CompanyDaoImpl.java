@@ -12,8 +12,11 @@ public class CompanyDaoImpl implements CompanyDao{
 	@Override
 	public int insertCompany(SqlSessionTemplate sqlSession, Company c) {
 		
+		
 		return sqlSession.insert("Company.insertCompany", c);
 	}
+	
+	
 
 	
 
