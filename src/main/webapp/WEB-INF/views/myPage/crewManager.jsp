@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +56,7 @@
 .crewName{
 	margin-top:15px;
 	font-size:20px;
+	text-align:center;
 }
 .bodyArea{
 	margin:auto;
@@ -98,6 +100,10 @@
 	width:800px;
 	margin-top:50px;
 	text-indent:30px;
+}
+.crewLogo{
+	width:150px;
+	height:150px;
 }
 </style>
 </head>
@@ -143,58 +149,26 @@
 		<div class="crewManangerWrap">
 			<h3>생성된 크루</h3>
 			<!-- 크루 리스트 반복-->
+			<c:forEach var="c" items="${ crewList }">
 			<div class="crewList" data-toggle="modal" data-target="#myModal">
-				<div class="crewName">크루명</div><br>
-				<ul>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-				</ul>
+				<img src="resources/images/myPage/image.png" class="crewLogo">
+				<div class="crewName">${ c.crew_Name }</div><br>
 			</div>
-			<div class="crewList" data-toggle="modal" data-target="#myModal">
-				<div class="crewName">크루명</div><br>
-				<ul>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-				</ul>
-			</div>
-			<div class="crewList" data-toggle="modal" data-target="#myModal">
-				<div class="crewName">크루명</div><br>
-				<ul>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-				</ul>
-			</div>
+			</c:forEach>
 		</div>
 		<hr>
 		<div class="joinCrew">
 			<h3>가입한 크루</h3>
+			<c:forEach var="ic" items="${ inCrewList }">
 			<div class="joinCrewList" onclick="goCrewBoardList();">
-				<div class="crewName">가입한 크루</div><br>
+				<div class="crewName">${ ic.crew_Name }</div><br>
 				<ul>
 					<li>크루원 닉네임</li>
 					<li>크루원 닉네임</li>
 					<li>크루원 닉네임</li>
 				</ul>
 			</div>
-			<div class="joinCrewList" onclick="goCrewBoardList();">
-				<div class="crewName">가입한 크루</div><br>
-				<ul>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-				</ul>
-			</div>
-			<div class="joinCrewList" onclick="goCrewBoardList();">
-				<div class="crewName">가입한 크루</div><br>
-				<ul>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-					<li>크루원 닉네임</li>
-				</ul>
-			</div>
+			</c:forEach>	
 		</div>
 	</div>
 	

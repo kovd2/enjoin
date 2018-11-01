@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -50,6 +51,20 @@ public class myPageServiceImpl implements myPageService{
 	public int getListCount() {
 		
 		return mpd.getListCount(sqlSession);
+	}
+
+	//크루 목록 조회
+	@Override
+	public List<Crew> selectCrewList(int userNo) {
+		
+		return mpd.selectCrewList(userNo, sqlSession);
+	}
+
+	//가입한 크루 목록 조회
+	@Override
+	public List<Crew> selectInCrewList(int userNo) {
+		
+		return mpd.selectInCrewList(userNo, sqlSession);
 	}
 
 

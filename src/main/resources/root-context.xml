@@ -73,8 +73,7 @@
 	<bean id="uploadPath" class="java.lang.String">
     <!-- 파일업로드 디렉토리-->
     <constructor-arg value="해당디렉토리"/>
-
-	</bean>
+  </bean>
 	
 </beans>
 

@@ -63,6 +63,35 @@
 		<result property="userNo" column="USER_NO"/>
 	</resultMap>
 	
+	<!-- Crew -->
+	<resultMap type="Crew" id="crewResultSet">
+		<id property="crew_Id" column="CREW_ID"/>
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="crew_Max" column="CREW_MAX"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="request_Date" column="REQUEST_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="end_Date" column="END_DATE"/>
+		<result property="crew_Status" column="CREW_STATUS"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="crew_Address" column="CREW_ADDRESS"/>
+		<result property="board_title" column="BOARD_TITLE"/>
+		<result property="board_Content" column="BOARD_CONTENT"/>
+	</resultMap>
+	
+	<!-- inCrew -->
+	<resultMap type="inCrew" id="inCrewResultSet">
+		<id property="increwNo" column="INCREW_NO"/>
+		<result property="crewId" column="CREW_ID"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="requestDate" column="REQUEST_DATE"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="inCrewStatus" column="INCREW_STATUS"/>
+		<collection property="Crew" resultMap="crewResultSet"/>
+	</resultMap>
+	
 	<!-- 회원 정보 수정 쿼리 -->
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
@@ -114,7 +143,23 @@
 						 WHERE USER_NO = #{userNo})
 	</select>
 	
+	<!-- 크루 목록 조회 -->
+	<select id="selectCrewList" resultMap="crewResultSet">
+		SELECT * 
+		FROM CREW
+		WHERE USER_NO = #{userNo}
+		AND CREW_STATUS = 'Y'
+	</select>
 	
+	<!-- 가입된 크루 목록 조회 -->
+	<select id="selectInCrewList" parameterType="inCrew" resultMap="inCrewResultSet">
+		SELECT CREW_NAME
+		FROM CREW C
+		JOIN INCREW IC USING(CREW_ID)
+		WHERE IC.USER_NO = (SELECT USER_NO
+                   		 	FROM MEMBER
+                   	 		WHERE USER_NO = #{userNo});
+	</select>
 </mapper>
 	
 	
