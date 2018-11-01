@@ -8,10 +8,11 @@
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Pass" alias="Pass"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Coment" alias="Coment"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Board" alias="mpBoard"/>
-		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.informBoard" alias="informBoard"/>
+		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="informBoard"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.inCrew" alias="inCrew"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard" alias="CrewRecruitmentBoard"/>
+		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>

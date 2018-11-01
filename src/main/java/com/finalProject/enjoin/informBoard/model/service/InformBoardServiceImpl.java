@@ -9,7 +9,7 @@ import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 
 
 @Service
-public class InformBoardServiceImpl implements informBoardService{
+public class InformBoardServiceImpl implements InformBoardService{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession; 

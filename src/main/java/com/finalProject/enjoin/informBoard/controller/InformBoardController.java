@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.finalProject.enjoin.informBoard.model.service.informBoardService;
+import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 
 @Controller
@@ -42,7 +42,7 @@ public class InformBoardController {
 	public String insertInform(InformBoard ib,	HttpServletRequest request, 
 			HttpServletResponse response) {
 		
-		informBoardService ibs = null;
+		InformBoardService ibs = null;
 		int informList =ibs.InformBoardService(ib);   
 		
 		
