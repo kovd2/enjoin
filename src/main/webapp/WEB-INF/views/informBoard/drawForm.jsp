@@ -218,7 +218,7 @@ label{
 							admin님<br> 지금부터 <b>크루작성</b> 시작할게요
 						</div>
 
-						<form>
+						<form action="/insertInform.kch2" method="post" autocomplete="off">
 						<!-- <form action="/insert.no" method="post" autocomplete="off"> -->
 							<table>
 								<tr>
@@ -350,7 +350,7 @@ label{
 									<td>
 									<div class="labelWrap">
 									
-									<button id="enrollBtn">등록하기</button></div>
+									<button type="submit" id="enrollBtn">등록하기</button></div>
 									
 									
 									</td>
