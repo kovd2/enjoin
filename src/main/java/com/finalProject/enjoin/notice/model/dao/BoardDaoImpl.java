@@ -37,5 +37,24 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectList("Board.listAll", null, rowBounds);
 	}
 
+	@Override
+	public void insertBoard(Board b) throws Exception {
+		sqlSession.insert("Board.insertBoard", b);
+		
+	}
+
+	@Override
+	public void updateBoard(Board b) throws Exception {
+		
+		sqlSession.update("Board.updateBoard", b);
+		
+	}
+
+	@Override
+	public void deleteBoard(Board b) throws Exception {
+		
+		sqlSession.update("Board.deleteBoard", b);
+	}
+
 
 }

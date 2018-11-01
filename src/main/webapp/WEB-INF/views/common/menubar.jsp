@@ -106,6 +106,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집</a></li>
+											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
