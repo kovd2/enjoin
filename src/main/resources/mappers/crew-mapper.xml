@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Crew">
+	<resultMap type="com.finalProject.enjoin.crew.model.vo.Crew" id="CrewResultSet">
+		<!-- Primary key  -->
+		<id property="crew_Id" column="CREW_ID"/>
+		<!-- 컬럼  -->
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="crew_Max" column="CREW_MAX"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="request_Date" column="REQUEST_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="end_Date" column="END_DATE"/>
+		<result property="crew_Status" column="CREW_STATUS"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+	</resultMap>
+	<!-- 크루 인서트  -->
+	<insert id="insertCrew"  parameterType="Crew">
+		INSERT INTO	CREW(CREW_ID,CREW_NAME,CREW_MAX,USER_NO,REQUEST_DATE,START_DATE,END_DATE,CREW_STATUS,CATEGORY_NO)
+		VALUES(SEQ_CREW_CREW_ID.NEXTVAL,#{crew_Name},#{crew_Max},#{user_No},SYSDATE,#{start_Date},#{end_Date},'Y',#{category_No})
+	</insert>
+	<select id="selectCrewId" parameterType="_int" resultType="_int">
+		SELECT SEQ_CREW_CREW_ID.CURRVAL FROM dual
+	</select>
+</mapper>
