@@ -66,5 +66,10 @@ public class BoardServiceImpl implements BoardService{
 		bd.deleteBoard(b);
 	}
 
+	@Override
+	public int selectBoard(Board b) throws Exception {
+		return bd.selectBoard(b);
+	}
+
 
 }

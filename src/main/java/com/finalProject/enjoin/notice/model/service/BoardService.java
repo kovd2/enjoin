@@ -19,4 +19,6 @@ public interface BoardService {
 
 	public void deleteBoard(Board b, int userNo, int boardNo) throws Exception;
 
+	public int selectBoard(Board b) throws Exception;
+
 }

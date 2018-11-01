@@ -1,17 +1,19 @@
 package com.finalProject.enjoin.notice.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
@@ -149,9 +151,26 @@ public class noticeController {
 	}
 	//공지사항 등록
 	@RequestMapping("adminNoticeInsertBtn.hh")
-	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request) throws Exception {
+	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo) throws Exception {
+		
+		//사진 경로 지정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root +"\\uploadFiles";
+		
+		//파일명 변경
+		String originFileName = photo.getOriginalFilename();
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString();
+		
+		photo.transferTo(new File(filePath + "\\" + changeName+ext));
+		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
 		bs.insertBoard(b, userNo);
+		int boardNo = bs.selectBoard(b);
+		
+		
 		
 		return "redirect:adminNotice.hh";
 	}

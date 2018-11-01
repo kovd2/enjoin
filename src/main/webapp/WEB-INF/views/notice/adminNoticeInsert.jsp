@@ -25,7 +25,7 @@
 		<p style="font-size:100px; text-align:center">공지사항</p>
 		
 		<hr>
-	<form id="insertBoardForm" action="adminNoticeInsertBtn.hh" method="post">		
+	<form id="insertBoardForm" action="adminNoticeInsertBtn.hh" method="post" encType="multipart/form-data">		
 		<table>
 			<tr>
 				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">제목</th>
@@ -36,6 +36,10 @@
 				<td style="width:800px; height:400px">
 					<textarea id="boardContent" name="boardContent" style="width:100%; height:100%;"></textarea>
 				</td>
+			</tr>
+			<tr>
+				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">첨부파일</th>
+				<td><input type="file" id="photo" name="photo" value="파일선택"></td>
 			</tr>
 		</table>
 	</form>
