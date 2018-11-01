@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.service;
 
 import java.util.List;
 
+import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
@@ -23,6 +24,12 @@ public interface myPageService {
 
 	//게시물 리스트 갯수
 	int getListCount();
+	
+	//크루 목록 조회
+	List<Crew> selectCrewList(int userNo);
+	
+	//가입한 크로 목록 조회
+	List<Crew> selectInCrewList(int userNo);
 	
 	
 	
