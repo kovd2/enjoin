@@ -1,56 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Company">
-
-	<resultMap type="com.finalProject.enjoin.company.model.vo.Company" id="companyResultSet">
-		<!-- PRIMARY KEY -->
-		<id property="facilityNo" column="FACILITY_NO"/>
-		<!-- 컬럼 -->
-		<result property="facilityRequestDate" column="FACILITY_REQUESTDATE"/>
-		<result property="facilityStartDate" column="FACILITY_STARTDATE"/>
-		<result property="facilityEndDate" column="FACILITY_ENDDATE"/>
-		<result property="facilityStatus" column="FACILITY_STATUS"/>
-		<result property="passCount" column="PASS_COUNT"/>
-		<result property="facilityCopNo" column="FACILITY_COPNO"/>
-		<result property="facilityName" column="FACILITY_NAME"/>
-		<result property="facilityArea" column="FACILITY_AREA"/>
-		<result property="facilitySection" column="FACILITY_SECTION"/>
-		<result property="facilityAddress" column="FACILITY_ADDRESS"/>	
-		<result property="facilityEvent" column="FACILITY_EVENT"/>
-		<result property="facilityManagerName" column="FACILITY_MANAGER_NAME"/>
-		<result property="facilityManagerPhone" column="FACILITY_MANAGER_PHONE"/>
-		<result property="timeForCall" column="TIME_FOR_CALL"/>
-		<result property="mon_fri_time" column="MON_FRI_TIME"/>
-		<result property="sat_time" column="SAT_TIME"/>
-		<result property="sun_time" column="SUN_TIME"/>
-
-	</resultMap>
 
 
+  
+<mapper namespace="InformBoard">
+
+
+<resultMap type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" id="informBoardResultSet">
+
+	<id property="boardNo" column= "BOARD_NO"/>
+	<result property="informBoardType" column="BOARD_TYPE"/>
+  		<result property="informBoardTitle" column="BOARD_TITLE"/>
+  		<result property="informBoardContent" column="BOARD_CONTENT"/>
+  		<result property="informEnrollDate" column="ENROLL_DATE"/>
+  		<result property="infromModifyDate" column="MODIFY_DATE"/>
+  		<result property="informPassCount" column="PASS_COUNT"/>
+  		<result property="noticeMax" column="NOTICE_MAX"/>
+  		<result property="noticeMin" column="NOTICE_MIN"/>
+  		<result property="noticeRequest" column="NOTICE_START"/>
+  		<result property="noticeStart" column="NOTICE_END"/>
+  		<result property="noticeStatus" column="NOTICE_STATUS"/>
+  		<result property="categoryNo" column="CATEGORY_NO"/>
+  		<result property="userNo" column="USER_NO"/>
+  		<result property="noticeDaily" column="NOTICE_DAILY"/>
 	
-	<!-- 제휴기업 신청쿼리 -->
-	<insert id="insertCompany" parameterType="Company">
-		INSERT INTO FACILITY(FACILITY_NO, FACILITY_REQUESTDATE, FACILITY_STARTDATE, FACILITY_ENDDATE, 
-					FACILITY_STATUS, PASS_COUNT, FACILITY_COPNO, FACILITY_NAME, FACILITY_AREA, FACILITY_SECTION,
-					FACILITY_ADDRESS, FACILITY_EVENT, FACILITY_MANAGER_NAME, FACILITY_MANAGER_PHONE, TIME_FOR_CALL,
-					MON_FRI_TIME, SAT_TIME, SUN_TIME) 
-		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, #{passCount}, #{facilityCopNo}, #{facilityName}, #{facilityArea}, 
-					#{facilitySection}, #{facilityAddress}, #{facilityEvent}, #{facilityManagerName},
-					#{facilityManagerPhone}, #{timeForCall}, #{mon_fri_time}, #{sat_time}, #{sun_time})
+	
+</resultMap>
+	
+	
+	<insert id="insertInform" parameterType="InformBoard">
+	
+	INSERT INTO INFORMBOARD
+	VALUES(boardNo.NEXTVAL,#{informBoardTitle},#{informBoardContent},SYSDATE,
+	#{informModifyDate},#{informPassCount},#{noticeMax},#{noticeMin},#{noticeRequest},
+	#{noticeStart},#{categoryNo},DEFAULT,#{noticeDaily})
+	
+	
 	</insert>
 	
-
 	
+	
+
+
+
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
 
 

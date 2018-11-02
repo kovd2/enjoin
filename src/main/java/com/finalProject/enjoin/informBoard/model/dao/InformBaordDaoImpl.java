@@ -15,7 +15,7 @@ public class InformBaordDaoImpl implements InformBoardDao{
 		
 		
 		
-		return sqlSession.insert("informBoard.insertMember",ib);
+		return sqlSession.insert("informBoard.insertBoard",ib);
 		
 		
 		

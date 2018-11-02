@@ -18,17 +18,18 @@ public class InformBoardServiceImpl implements InformBoardService{
 	private InformBoardDao ibd;
 	
 	
-	
+
+
 	@Override
-	public int InformBoardService(InformBoard ib) {
-	
-		int informList = ibd.insertInform(ib,sqlSession);
+	public void insertInform(InformBoard ib) {
+		
+		
+			
 		
 		
 		
 		
 		
-		return informList;
 	}
 
 	
