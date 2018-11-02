@@ -21,4 +21,5 @@ public interface BoardService {
 
 	public int selectBoard(Board b) throws Exception;
 
+
 }

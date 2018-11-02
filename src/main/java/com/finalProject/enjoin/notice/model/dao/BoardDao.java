@@ -20,4 +20,5 @@ public interface BoardDao {
 	public void deleteBoard(Board b) throws Exception;
 
 	public int selectBoard(Board b) throws Exception;
+
 }

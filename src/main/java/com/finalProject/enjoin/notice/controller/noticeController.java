@@ -96,12 +96,18 @@ public class noticeController {
 		return "notice/passPurchaseFinish";
 	}
 	
+	@RequestMapping("adminFAQ.hh")
+	public String adminFAQ() {
+		
+		return "notice/adminFAQ";
+	}
+
 	@RequestMapping("FAQ.hh")
 	public String FAQ() {
 		
 		return "notice/FAQ";
 	}
-
+	
 	@RequestMapping("FAQ_detail.hh")
 	public String FAQ_detail() {
 		
@@ -169,8 +175,7 @@ public class noticeController {
 		
 		bs.insertBoard(b, userNo);
 		int boardNo = bs.selectBoard(b);
-		
-		
+
 		
 		return "redirect:adminNotice.hh";
 	}

@@ -38,10 +38,16 @@
 				</td>
 			</tr>
 			<tr>
-				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">첨부파일</th>
-				<td><input type="file" id="photo" name="photo" value="파일선택"></td>
+				<th style="display:inline-block; width:300px; height:260px; font-size:30px; background:gray;">첨부파일</th>
+				<td  style="width:310px; height:260px;"><div id="contentImgArea1" style="width:310px; height:260px;">
+				<img id="contentImg1" width="800px" height="260px">
+				</div></td>
+		
 			</tr>
 		</table>
+		<div id="fileArea">
+		<input type="file" id="photo" name="photo" value="파일선택" onchange="loadImg(this,1)">
+				</div>
 	</form>
 		<br>
 		<input type="button" value="등록하기" onclick="adminNoticeInsertBtn()">
@@ -54,6 +60,28 @@
 			$("#insertBoardForm").submit();
 		
 		}
+		
+		$(function(){
+			$("#fileArea").hide();
+				$("#contentImgArea1").click(function(){
+					$("#photo").click();
+				})
+
+			});
+		
+			function loadImg(value, num){
+			if(value.files && value.files[0]){
+				var reader = new FileReader();
+				reader.onload = function(e){
+						switch(num){
+							case 1 : $("#contentImg1").attr("src", e.target.result); break;
+
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			};	
+	
 	</script>
 	
 </body>

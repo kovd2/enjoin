@@ -61,5 +61,4 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectOne("Board.selectBoard", b);
 	}
 
-
 }
