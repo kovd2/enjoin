@@ -34,9 +34,9 @@ public class myPageServiceImpl implements myPageService{
 
 	//크루 게시판 조회
 	@Override
-	public List<Board> crewBoardList(PageInfo pi) {
+	public List<Board> crewBoardList(PageInfo pi, int crewId) {
 		
-		return mpd.crewBoardList(pi, sqlSession);
+		return mpd.crewBoardList(pi, crewId, sqlSession);
 	}
 
 	//크루 상세보기 
@@ -67,6 +67,12 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectInCrewList(userNo, sqlSession);
 	}
 
+	//내가 쓴 게시물 조회
+	@Override
+	public List<Board> selectWritePost(int userNo) {
+		
+		return mpd.selectWritePost(userNo, sqlSession);
+	}
 
 
 }

@@ -45,8 +45,7 @@
 							<a class="list-group-item" onclick="detailBoard(${b.boardNo })"> 
 								<span class="label label-info">게시물</span>						
 								<h4 class="list-group-ietm-heading">${b.boardTitle }</h4> 						
-								<span class="date">${b.enrollDate }</span>	
-												
+								<span class="date">${b.enrollDate }</span>												
 							</a> 
 						</c:forEach>
 						</div>
@@ -60,6 +59,7 @@
 								<c:if test="${ pi.currentPage > 1 }">
 									<c:url var="listBack" value="goCrewBoardList.ljs">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+										<c:param name="crewId" value="${ crewId }" />
 									</c:url>
 									<li><a href="${ listBack }">이전</a></li>
 								</c:if>
@@ -71,6 +71,7 @@
 									<c:if test="${ p ne pi.currentPage }">
 										<c:url var="listCheck" value="goCrewBoardList.ljs">
 											<c:param name="currentPage" value="${ p }" />
+											<c:param name="crewId" value="${ crewId }" />
 										</c:url>
 										<li><a href="${ listCheck }">${ p }</a></li>
 									</c:if>
@@ -82,6 +83,7 @@
 								<c:if test="${ pi.currentPage < pi.maxPage }">
 									<c:url var="listEnd" value="goCrewBoardList.ljs">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+										<c:param name="crewId" value="${ crewId }" />
 									</c:url>
 									<li><a href="${ listEnd }">다음</a></li>
 								</c:if>
