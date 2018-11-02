@@ -22,7 +22,13 @@ public class InformBoardServiceImpl implements InformBoardService{
 
 	@Override
 	public void insertInform(InformBoard ib) {
-		// TODO Auto-generated method stub
+		
+		
+			
+		
+		
+		
+		
 		
 	}
 
