@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<title>아이디 찾기</title>
+
 <style>
-/*부트스트랩*/
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -7411,328 +7410,184 @@ button.close {
 	.hidden-print {
 		display: none !important
 	}
-}
-
-/*# sourceMappingURL=bootstrap.min.css.map */
-.subHeader h1 img {
-	width: 127px;
-	height: 24px;
-}
-
-.subHeader {
-	padding: 20px;
-}
-
-body {
-	font: 14px/1.6 'Noto Sans Korean', 'Apple SD Gothic Neo', "맑은 고딕",
-		"Malgun Gothic", Helvetica, Arial, sans-serif;
-	font-weight: 400;
-	color: #444;
-	background: #fff;
-}
-
-body.login .subWrap {
+} /*# sourceMappingURL=bootstrap.min.css.map */
+body.register .subWrap {
+	/* 회원가입 배경화면 */
 	background: #00bff0 url(resources/images/member/insertBackground2.jpg)
 		no-repeat center center fixed;
 	background-size: cover;
 }
 
-.row {
-	margin-right: -15px;
-	margin-left: -15px;
-}
-
 .loginBox {
-	position: relative;
+  position: relative;
 }
-
-.memberBox {
-	background: #fff;
-	padding: 40px;
-	border-radius: 4px;
-	color: #555;
-	box-shadow: 10px 10px rgba(230, 230, 230, 0.8);
+.loginBox .register_type_select {
+  margin: 0;
 }
-
-.memberBox h2 {
-	margin: 0 0 40px;
-	font-weight: 100;
-	font-size: 20px;
-	letter-spacing: -1px;
-	line-height: 1.3;
-}
-
-.memberBox h2 b {
-	font-weight: 600;
-}
-
-.memberBox h2 span {
-	display: block;
-}
-
-.h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small,
-	h1 small, h2 .small, h2 small, h3 .small, h3 small {
-	font-size: 65%;
-}
-
 .loginBox .memberBox_left {
-	padding-right: 40px;
+  padding-right: 40px;
 }
-
-.loginGreeting {
-	margin-top: 220px;
-	font-size: 18px;
-	font-weight: 100;
-	letter-spacing: -1px;
-	line-height: 1.2;
-	color: #777;
-}
-
-.aq {
-	font-family: aquaticoregular;
-	font-weight: 400;
-}
-
-.loginBox .memberBox_right {
-	background: #f5f5f5;
-	padding: 30px;
-	border-radius: 8px;
-	margin-top: -30px;
-}
-
-.form-group-lg .form-control {
-	height: 46px;
-	padding: 10px 16px;
-	font-size: 18px;
-	line-height: 1.3333333;
-	border-radius: 6px;
-}
-
-.memberForm .form-control {
-	border: 0 none;
-	border-bottom: 1px solid #ddd;
-	border-radius: 0;
-	background: none;
-	font-size: 15px;
-	font-weight: 400;
-	height: 45px;
-	padding: 0;
-	-webkit-appearance: none;
-}
-
-.register_type_select .via_kakaotalk {
-	background: #ffeb00;
-	color: #3c1e1e;
-}
-
-.register_type_select a img.ico {
-	width: 20px;
-	height: 20px;
-	margin-right: 5px;
-	margin-top: -3px;
-}
-
-.register_type_select a b {
-	font-weight: 600;
-}
-
-.register_type_select a {
-	display: block;
-	height: 40px;
-	text-align: center;
-	font-size: 13px;
-	background: #eee;
-	border-radius: 4px;
-	margin: 0 0 10px;
-	padding-top: 10px;
-	text-decoration: none;
-}
-
-.loginBox .memberBox_right label {
-	font-size: 13px;
-	font-weight: 400;
-	color: #666;
-}
-
-.submitLine .btn-signup {
-	background: #00bff0;
-	color: #fff;
-	font-size: 14px;
-	font-weight: 600;
-	height: 50px;
-	border-radius: 4px;
-}
-
-.loginGreeting em {
-	font-size: 36px;
-	font-style: normal;
-	display: block;
-}
-
 .loginBox .memberBox_left .divLine {
-	display: none;
-	margin: 30px 0 25px;
+  display: none;
+  margin: 30px 0 25px;
 }
-
-.register_type_select .divLine {
-	text-align: center;
-	border-top: 1px dotted #eee;
-	position: relative;
-	margin: 35px 0 5px;
+.loginBox .memberBox_right {
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 8px;
+  margin-top: -30px;
 }
-
+.loginBox .memberBox_right label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+}
+.loginGreeting {
+  margin-top: 190px;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #777;
+}
+.loginGreeting em {
+  font-size: 36px;
+  font-style: normal;
+  display: block;
+}
 .notYetMember {
-	margin: 30px 0 10px;
-	font-size: 12px;
-	color: #888;
-	letter-spacing: -0.5px;
+  margin: 30px 0 10px;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: -0.5px;
 }
-
 .forgot {
-	font-size: 12px;
-	color: #888;
-	letter-spacing: -0.5px;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: -0.5px;
+}
+.notYetMember a,
+.forgot a {
+  text-decoration: underline;
+  color: #00bff0;
+  font-weight: 600;
+  padding: 6px 0;
+  display: inline-block;
 }
 
-.notYetMember a, .forgot a {
-	text-decoration: underline;
-	color: #00bff0;
-	font-weight: 600;
-	padding: 6px 0;
-	display: inline-block;
+
+/* 아아디 찾기 find_id */
+.foundInfo {
+  overflow: hidden;
+}
+.foundInfo i.big {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+.foundInfo em {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
 }
 
+.subHeader h1 img {
+	width: 127px;
+	height: 24px;
+}
+.memberBox {
+    background: #fff;
+    padding: 40px;
+    border-radius: 4px;
+    color: #555;
+    box-shadow: 10px 10px rgba(230,230,230,0.8);
+}
+.memberBox h2 span {
+    display: block;
+}
 .memberForm label {
-	font-size: 12px;
-	font-weight: 600;
-	letter-spacing: -0.6px;
-	color: #00bff0;
-	z-index: 5 /* 크롬 비밀번호 자동 입력시 autofill 영역에 가려지는것을 방지 */;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    color: #00bff0;
+    z-index: 5 /* 크롬 비밀번호 자동 입력시 autofill 영역에 가려지는것을 방지 */;
 }
-
-div {
-	display: block;
+.memberForm .form-control {
+    border: 0 none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    background: none;
+    font-size: 15px;
+    font-weight: 400;
+    height: 45px;
+    padding: 0;
+    -webkit-appearance: none;
+}
+.submitLine .btn-signup {
+    background: #00bff0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    height: 50px;
+    border-radius: 4px;
 }
 </style>
 </head>
+<body>
+<body class="register register1">
 
-
-
-
-<body class="login">
 	<div class="subWrap">
 
 		<header class="subHeader">
 			<h1>
 				<a href="goMain.me"><img
-					src="resources/images/member/enjoin_logo_final.png" alt="ENJOIN"></a>
+					src="resources/images/member/enjoin_logo_final.png" alt="Enjoin"></a>
 			</h1>
 		</header>
+		<br> <br> <br> <br> <br>
 
 		<div class="container">
 			<div class="memberWrap">
 				<div class="row">
 
 					<div
-						class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 memberBox loginBox">
+						class="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 memberBox loginBox">
 						<h2>
-							<span><b>로그인</b></span> <small>다시 돌아와 주셔서 기뻐요!</small>
+							<span><b>아이디 찾기</b></span> <span><small>걱정마세요!
+									잊어버린 아이디를 찾아드려요.</small></span>
 						</h2>
 
-
-						<form class="memberForm" action="login.me" method="post">
-							<input type="hidden" name="next" value="/"> <input
-								type="hidden" name="from" value="">
-
-							<div class="row">
-								<div class="memberBox_left col-sm-6">
-									<div class="register_type_select">
-
-										
-											 <a id="kakao-login-btn" style="background:white;"></a> <a style="background:white;" href="http://developers.kakao.com/logout"></a>
-												<script type='text/javascript'>
-										
-												Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
-											// 카카오 로그인 버튼을 생성합니다.
-												Kakao.Auth
-													.createLoginButton({
-														container : '#kakao-login-btn',
-														success : function(
-																authObj) {
-															alert(JSON
-																	.stringify(authObj));
-														},
-														fail : function(err) {
-															alert(JSON
-																	.stringify(err));
-														}
-													});
-											//]]>
-										</script>
-
-										<div class="divLine">
-											<span>또는,</span>
-										</div>
-									</div>
-									<p class="loginGreeting">
-										<strong class="aq">ENJOIN</strong> 과 함께 하는 <em>건강한 하루</em>
-									</p>
+						<form class="memberForm" action="/member/find_id/" method="post">
+							<div class="form-group">
+								<label>이름</label>
+								<div class="floatlabel-wrapper" style="position: relative">
+									<label for="user_name" class="label-floatlabel  "
+										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">가입하신
+										분의 이름을 입력하세요</label><input name="user_name" id="user_name" value=""
+										type="text" class="form-control"
+										placeholder="가입하신 분의 이름을 입력하세요"
+										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 								</div>
-								<!-- /.memberBox_left -->
-
-
-								<div class="memberBox_right col-sm-6">
-
-									<div class="form-group form-group-lg">
-										<label for="id" class="sr-only">아이디</label> <label
-											for="user_id" class="label-floatlabel  "
-											style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
-										<div class="floatlabel-wrapper" style="position: relative">
-											<label for="user_id" class="label-floatlabel  "
-												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label><input
-												type="text" class="form-control floatlabel" id="user_id"
-												value="" name="userId" placeholder="아이디" autocorrect="off"
-												autocapitalize="none"
-												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
-										</div>
-										<!--  -->
-
-									</div>
-
-									<div class="form-group form-group-lg">
-										<label for="password" class="sr-only">비밀번호</label> <label
-											for="password" class="label-floatlabel  "
-											style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
-										<div class="floatlabel-wrapper" style="position: relative">
-											<label for="password" class="label-floatlabel  "
-												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label><input
-												type="password" name="userPwd"
-												class="form-control floatlabel" id="password"
-												placeholder="비밀번호" autocorrect="off" autocapitalize="none"
-												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
-										</div>
-									</div>
-									<div class="form-group submitLine">
-										<label> <input type="checkbox" name="remember_login"
-											value="1"> 나를 기억해 주세요.
-										</label>
-										<button type="submit" class="btn btn-block btn-signup">로그인</button>
-									</div>
-									<div class="notYetMember">
-										아직 계정이 없으신가요?&nbsp;&nbsp;&nbsp;&nbsp;<a
-											href="memberInsertView.me">회원가입하기</a>
-									</div>
-									<div class="forgot">
-										아이디, 비밀번호가 생각나지 않으세요?<br> <a href="searchId.me">아이디
-											찾기</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-											href="searchPassword.me">비밀번호 찾기</a>
-									</div>
-								</div>
-								<!-- ./memberBox_right -->
 							</div>
-							<!-- /.row -->
+							<div class="form-group">
+								<label>이메일</label>
+								<div class="floatlabel-wrapper" style="position: relative">
+									<label for="user_email" class="label-floatlabel  "
+										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이메일
+										주소를 입력하세요</label><input name="user_email" id="user_email" value=""
+										type="email" class="form-control" placeholder="이메일 주소를 입력하세요"
+										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+								</div>
+							</div>
+							<div class="form-group submitLine">
+								<button type="submit" class="btn btn-signup">
+									<i class="fa fa-search"></i> 아이디를 찾아주세요!
+								</button>
+							</div>
 						</form>
+
 					</div>
+					<!-- /.memberBox -->
 				</div>
 				<!-- /.row -->
 				<div class="mb_footDeco">
@@ -7741,13 +7596,13 @@ div {
 				</div>
 			</div>
 			<!-- /.memberWrap -->
+			<br> <br> <br> <br> <br> <br>
+
 		</div>
 		<!-- /container -->
-
-		<br> <br> <br>
-
-		<jsp:include page="../common/footer.jsp"></jsp:include>
-
 	</div>
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+
+
 </body>
 </html>

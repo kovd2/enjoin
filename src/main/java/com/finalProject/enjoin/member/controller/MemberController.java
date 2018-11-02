@@ -46,6 +46,18 @@ public class MemberController {
 		return "member/companyMemberInsertForm";
 	}
 	
+	//아이디 찾기 폼 보여주는 메소드
+	@RequestMapping("searchId.me")
+	public String showSearchId() {
+		return "member/searchId";
+	}
+	
+	//비밀번호 찾기 폼 보여주는 메소드
+	@RequestMapping("searchPassword.me")
+	public String showSearchPassword() {
+		return "member/searchPassword";
+	}
+	
 	//제휴시설 회원가입용 컨트롤러
 	@RequestMapping("companyInsert.me")
 	public String insertCompany(Model model, Member m) {

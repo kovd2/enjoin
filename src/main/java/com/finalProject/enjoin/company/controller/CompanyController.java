@@ -109,6 +109,8 @@ public class CompanyController {
 		System.out.println("Company : " + c);
 		
 		
+		
+		
 		//사진 저장할 경로 지정
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
@@ -129,7 +131,15 @@ public class CompanyController {
 			
 			int result = cs.insertCompany(c);
 			
-			return "company/companyInsert";
+			if(result > 0) {
+				return "company/companyInsert";
+			
+			}else {
+				return "common/errorPage";
+			}
+			
+			
+			
 		
 		} catch (Exception e) {
 			//실패시 파일 삭제
