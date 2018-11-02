@@ -15,6 +15,7 @@
 		<result property="crew_Status" column="CREW_STATUS"/>
 		<result property="category_No" column="CATEGORY_NO"/>
 	</resultMap>	
+	
 	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
 		<!-- Primary key  -->
 		<id property="board_No" column="BOARD_NO"/>
@@ -34,6 +35,20 @@
 		<result property="user_No" column="USER_NO"/>
 		<result property="category_No" column="CATEGORY_NO"/>
 	</resultMap>
+	
+	<resultMap type="Attachment" id="CrewRmbAttachment">
+	<!-- Primary key  -->
+	<id property="att_No" column="ATT_NO"/>
+		<!-- 컬럼  -->
+		<result property="file_No" column="FILE_NO"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="origin_Name" column="ORIGIN_NAME"/>
+		<result property="file_size" column="FILE_SIZE"/>
+		<result property="file_Ext" column="FILE_EXT"/>
+		<result property="file_Date" column="FILE_DATE"/>
+		<result property="file_Type" column="FILE_TYPE"/>
+		<result property="ref_No" column="REF_NO"/>
+	</resultMap>
 
 	
 	<!-- 크루 인서트  -->
@@ -41,19 +56,44 @@
 		INSERT INTO	CREW(CREW_ID,CREW_NAME,CREW_MAX,USER_NO,REQUEST_DATE,START_DATE,END_DATE,CREW_STATUS,CATEGORY_NO)
 		VALUES(SEQ_CREW_CREW_ID.NEXTVAL,#{crew_Name},#{crew_Max},#{user_No},SYSDATE,#{start_Date},#{end_Date},'Y',#{category_No})
 	</insert>
+	
 	<!-- 크루 인서트한 번호 커발하여 조회  -->
 	<select id="selectCrewId" parameterType="_int" resultType="_int">
 		SELECT SEQ_CREW_CREW_ID.CURRVAL FROM dual
 	</select>
+	
 	<!-- 크루 모집 게시판 등록  -->
 	<insert id="insertBoard" parameterType="Crew">
 		INSERT INTO BOARD(BOARD_NO,BOARD_TYPE,BOARD_TITLE,
 		BOARD_CONTENT,ENROLL_DATE,CREW_AREA,CREW_NO,BOARD_COUNT,
 		RECRUIT_MAX,RECRUIT_START,RECRUIT_END,RECRUIT_STATUS,
 		STATUS,USER_NO,CATEGORY_NO)
-		VALUES(BOARD_NO.NEXTVAL,4,#{board_Title},#{board_Content},
+		VALUES(BOARD_NO.NEXTVAL,'크루모집',#{board_Title},#{board_Content},
 		SYSDATE,#{crew_Area},#{crew_No},0,#{recruit_Max},#{recruit_Start},
 		#{recruit_End},'N','N',#{user_No},#{category_No})
 	</insert>
+	
+	<!-- 크루 모집 게시판 번호 커발하여 조회  -->
+	<select id="selectBoardId" parameterType="_int" resultType="_int">	
+		SELECT BOARD_NO.CURRVAL FROM dual
+	</select>
+	
+	<!-- 크루 로고 사진 등록  -->
+	<insert id="insertRmbAttachment" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,0,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,4,#{ref_No})
+	</insert>
+	
+	<!-- 크루 이용할 시설 사진 등록  -->
+	<insert id="insertRmbAttachment1" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,4,#{ref_No})
+	</insert>
+
+
 
 </mapper>
