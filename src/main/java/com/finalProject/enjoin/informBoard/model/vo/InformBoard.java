@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class InformBoard implements Serializable{
 
-	private int BoardNo;          //공고게시판 번호
+	private int boardNo;          //공고게시판 번호
 	private String informBoardType;		//게시판분류
 	private String informBoardTitle;		//게시판 제목
 	private String informBoardContent;		//게시판 내용
@@ -19,8 +19,35 @@ public class InformBoard implements Serializable{
 	private Date noticeEnd;					//공고마감일
 	private String noticeStatus;			//공고상태
 	private int categoryNo;					//카테고리분류
+	private int userNo;						//회원번호
+	private int noticeDaily;				//공고일정
 	
+		
 	
+public InformBoard(int boardNo, String informBoardType, String informBoardTitle, String informBoardContent,
+			Date informEnrollDate, Date infromModifyDate, int informPassCount, String noticeMax, String noticeMin,
+			Date noticeRequest, Date noticeStart, Date noticeEnd, String noticeStatus, int categoryNo, int userNo,
+			int noticeDaily) {
+		super();
+		this.boardNo = boardNo;
+		this.informBoardType = informBoardType;
+		this.informBoardTitle = informBoardTitle;
+		this.informBoardContent = informBoardContent;
+		this.informEnrollDate = informEnrollDate;
+		this.infromModifyDate = infromModifyDate;
+		this.informPassCount = informPassCount;
+		this.noticeMax = noticeMax;
+		this.noticeMin = noticeMin;
+		this.noticeRequest = noticeRequest;
+		this.noticeStart = noticeStart;
+		this.noticeEnd = noticeEnd;
+		this.noticeStatus = noticeStatus;
+		this.categoryNo = categoryNo;
+		this.userNo = userNo;
+		this.noticeDaily = noticeDaily;
+	}
+
+
 public InformBoard(){}
 
 
@@ -28,7 +55,7 @@ public InformBoard(int boardNo, String informBoardType, String informBoardTitle,
 		Date informEnrollDate, Date infromModifyDate, Date informStartDate, int informPassCount, String noticeMax,
 		String noticeMin, Date noticeRequest, Date noticeStart, Date noticeEnd, String noticeStatus, int categoryNo) {
 	super();
-	BoardNo = boardNo;
+	this.boardNo = boardNo;
 	this.informBoardType = informBoardType;
 	this.informBoardTitle = informBoardTitle;
 	this.informBoardContent = informBoardContent;
@@ -45,13 +72,35 @@ public InformBoard(int boardNo, String informBoardType, String informBoardTitle,
 }
 
 
+
+
+public int getUserNo() {
+	return userNo;
+}
+
+
+public void setUserNo(int userNo) {
+	this.userNo = userNo;
+}
+
+
+public int getNoticeDaily() {
+	return noticeDaily;
+}
+
+
+public void setNoticeDaily(int noticeDaily) {
+	this.noticeDaily = noticeDaily;
+}
+
+
 public int getBoardNo() {
-	return BoardNo;
+	return boardNo;
 }
 
 
 public void setBoardNo(int boardNo) {
-	BoardNo = boardNo;
+	this.boardNo = boardNo;
 }
 
 
@@ -187,7 +236,7 @@ public void setCategoryNo(int categoryNo) {
 
 @Override
 public String toString() {
-	return "informBoard [BoardNo=" + BoardNo + ", informBoardType=" + informBoardType + ", informBoardTitle="
+	return "informBoard [boardNo=" + boardNo + ", informBoardType=" + informBoardType + ", informBoardTitle="
 			+ informBoardTitle + ", informBoardContent=" + informBoardContent + ", informEnrollDate=" + informEnrollDate
 			+ ", infromModifyDate=" + infromModifyDate + ", informPassCount=" + informPassCount + ", noticeMax="
 			+ noticeMax + ", noticeMin=" + noticeMin + ", noticeRequest=" + noticeRequest + ", noticeStart="

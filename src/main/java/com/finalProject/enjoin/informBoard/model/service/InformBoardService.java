@@ -4,7 +4,8 @@ import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 
 public interface InformBoardService  {
 
-	int InformBoardService(InformBoard ib);
+	
+	void insertInform(InformBoard ib);
 
 	
 	

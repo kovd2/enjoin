@@ -118,7 +118,7 @@ label{
 }
 #fileImg1{
     display: block;
-    visibility: hidden;
+     visibility: hidden; 
     width: 0;
     height: 0;
 }
@@ -130,6 +130,8 @@ label{
 	height:60px;
 	font-size:10px;
 	text-align:center;
+	padding:0px;
+	
 	
 }
 #fileImg2{
@@ -147,7 +149,20 @@ label{
 	height:60px;
 	font-size:10px;
 	text-align:center;
+	padding:0px;
 	
+}
+#imgBtn1>img{
+	width:100px;
+	height:60px;
+}
+#imgBtn2>img{
+	width:100px;
+	height:60px;
+}
+#imgBtn3>img{
+	width:100px;
+	height:60px;
 }
 #fileImg3{
     display: block;
@@ -164,7 +179,7 @@ label{
 	height:60px;
 	font-size:10px;
 	text-align:center;
-	
+	padding:0px;
 }
 .imgWrap{
 	width:100px;
@@ -200,6 +215,21 @@ label{
 	color:#0084c2
 }
 
+#selectBox{
+    width: 320px;
+    margin-top: 20px;
+	border-color:#00bff0;
+	background:#00bff0;
+	height:30px;
+	color:white;
+
+}
+
+.imgbox{
+	width:50px;
+	height:50px;
+
+}
 
 </style>
 </head>
@@ -218,14 +248,14 @@ label{
 							admin님<br> 지금부터 <b>크루작성</b> 시작할게요
 						</div>
 
-						<form action="/insertInform.kch2" method="post" autocomplete="off">
+						<form action="insertInform.kch2" method="post" encType="multipart/form-data" autocomplete="off">
 						<!-- <form action="/insert.no" method="post" autocomplete="off"> -->
 							<table>
 								<tr>
 									<td class="title">
 									<div class="labelWrap">
 									<label>공고제목</label>
-									<input name="fromDt" type="text" id="title" size="50" maxlength="8" title="공고제목" style="width: 300px">
+									<input name="informBoardTitle" type="text" id="title" size="50" maxlength="8" title="공고제목" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -234,7 +264,7 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>신청시작일</label>
-									<input name="fromDt" type="text" id="fromDt" size="8"maxlength="8" title="신청시작일자" style="width: 300px">
+									<input name="noticeRequest" type="text" id="fromDt" size="8"maxlength="8" title="신청시작일자" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -243,7 +273,7 @@ label{
 									<td id="enEndDate">
 									<div class="labelWrap">
 									<label>신청마감일</label>
-									<input name="toDt" type="text" id="toDt" size="8"maxlength="8" title="신청마감일" style="width: 300px">
+									<input name="noticeEnd" type="text" id="toDt" size="8"maxlength="8" title="신청마감일" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -252,7 +282,7 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>시작일</label>
-									<input name="dDay" type="text" id="dDay" size="8"maxlength="8" title="시작일" style="width: 300px">
+									<input name="noticeStart" type="text" id="dDay" size="8"maxlength="8" title="시작일" style="width: 300px">
 									</div>
 									</td>
 								</tr>	
@@ -260,8 +290,8 @@ label{
 								<tr>
 									<td id="startDate">
 									<div class="labelWrap">
-									<label>강사</label>
-									<input type="text" size="50"name="teacherName" title="강사">
+									<label>최대인원</label>
+									<input name="noticeMax" type="text" size="50" title="최대인원">
 									</div>
 									</td>
 								</tr>
@@ -269,8 +299,34 @@ label{
 								<tr>
 									<td id="startDate">
 									<div class="labelWrap">
-									<label>지역</label>
-									<input type="text" size="50"name="startDate" ></div>
+									<label>최소인원</label>
+									<input name="noticeMin" type="text" size="50" title="최소인원"></div>
+									</td>
+								</tr>
+								
+								
+
+							</table>
+							<div class="right">
+							<table>
+								<tr>
+									<td id="startDate">
+									<!-- <div class="labelWrap"> -->
+									<label>카테고리</label>
+									<select id="selectBox" name="categoryNo" >
+									<option value="searchAll" selected="selected">검색목록</option>
+									<option value="런닝">런닝</option>
+									<option value="격투기">격투기</option>
+									<option value="필라테스">필라테스</option>
+									<option value="요가">요가</option>
+									<option value="헬스">헬스</option>
+									<option value="수영">수영</option>
+									<option value="댄스">댄스</option>
+									<option value="크로스핏">크로스핏</option>
+									<option value="댄스">댄스</option>
+									<option value="기타">기타</option>
+									</select>
+								<!-- 	<input type="text" size="50"name="categoryNo"></div>  -->
 									</td>
 								</tr>
 								
@@ -278,42 +334,23 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>주요내용</label>
-									<input type="text" size="50"name="mainContent" ></div>
-									</td>
-								</tr>
-
-							</table>
-							<div class="right">
-							<table>
-								<tr>
-									<td id="startDate">
-									<div class="labelWrap">
-									<label>제휴업체</label>
-									<input type="text" size="50"name="facility" ></div>
+									<input type="text"  size="50"name="informBoardContent"></div>
 									</td>
 								</tr>
 								
 								<tr>
-									<td id="startDate">
-									<div class="labelWrap">
-									<label>일정</label>
-									<input type="text" size="50"name="timeManage"></div>
-									</td>
-								</tr>
-								
-								<tr>
-									<td id="startDate">
+									<td>
 									<div class="labelWrap">
 									<label>차감패스</label>
-									<input type="text" size="50"name="minusPass"></div>
+									<input type="text" size="50"name="informPassCount"></div>
 									</td>
 								</tr>
 								
 								<tr>
-									<td id="startDate">
+									<td>
 									<div class="labelWrap">
-									<label>content</label>
-									<input type="text" size="50"name="content"></div>
+									<label>공고일정</label>
+									<input type="text" size="50"name="noticeDaily"></div>
 									</td>
 								</tr>
 								
@@ -321,25 +358,28 @@ label{
 									<td>
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진1</label>
-									<input type="file" size="50"name="fileImg1" id="fileImg1">
-									<button id="imgBtn1">대표사진1</button>
+									<input type="file" name="fileImg1" id="fileImg1" onchange="readURL1(this);" />
 									</div>
+									<button type="button"id="imgBtn1"><img id="blah1" src="#" alt="대표사진1"></button>
+
 									</td>
 									
 								
 									<td>
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진2</label>
-									<input type="file" size="50"name="fileImg2" id="fileImg2"></div>
-									<button id="imgBtn2">대표사진2</button>
+									<input type="file" size="50"name="fileImg2" id="fileImg2" onchange="readURL2(this);" /></div>
+									<button type="button"id="imgBtn2"><img id="blah2" src="#" alt="대표사진2"></button>
+									
+
 									</td>
 									
 									
 									<td>
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진3</label>
-									<input type="file" size="50"name="fileImg3" id="fileImg3"></div>
-									<button id="imgBtn3">대표사진3</button>
+									<input type="file" size="50"name="fileImg3" id="fileImg3" onchange="readURL3(this);" /></div>
+									<button type="button"id="imgBtn3"><img id="blah3" src="#" alt="대표사진3"></button>
 									</td>
 									
 									
@@ -428,8 +468,8 @@ label{
 	
 	</script> -->
 	
-	<script>
-	$('#imgBtn1').click(function(){
+	 <script>
+ 	$('#imgBtn1').click(function(){
 	    $('#fileImg1').click();
 	});
 	
@@ -446,7 +486,38 @@ label{
 	    $('#fileImg3').click();
 	});
 	
-	</script>
+	</script> 
+ 
+ 
+ <script type="text/javascript"> 
+ function readURL1(input) {
+	if (input.files && input.files[0]) { 
+		var reader = new FileReader(); reader.onload = function (e) { 
+			$('#blah1').attr('src', e.target.result); } 
+		reader.readAsDataURL(input.files[0]); } }
+ </script>
+
+<script type="text/javascript"> 
+ function readURL2(input) {
+	if (input.files && input.files[0]) { 
+		var reader = new FileReader(); reader.onload = function (e) { 
+			$('#blah2').attr('src', e.target.result); } 
+		reader.readAsDataURL(input.files[0]); } }
+ </script>
+
+
+<script type="text/javascript"> 
+ function readURL3(input) {
+	if (input.files && input.files[0]) { 
+		var reader = new FileReader(); 
+		reader.onload = function (e) { 
+			$('#blah3').attr('src', e.target.result); 
+			} 
+		reader.readAsDataURL(input.files[0]); } 
+	}
+ </script>
+
+
 
 
 </body>

@@ -9,5 +9,8 @@ public interface InformBoardDao {
 	int  insertInform(InformBoard ib, SqlSessionTemplate sqlSession);
 	
 	
+	
+	
+	
 
 }
