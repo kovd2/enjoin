@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.myPage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -19,7 +20,7 @@ public interface myPageDao {
 	List<Pass> selectPass(int userNo, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 조회
-	List<Board> crewBoardList(PageInfo pi, SqlSessionTemplate sqlSession);
+	List<Board> crewBoardList(PageInfo pi, int crewId, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 상세보기
 	Board crewBoardDetail(int boardNo, SqlSessionTemplate sqlSession);
@@ -32,6 +33,9 @@ public interface myPageDao {
 
 	//가입된 크루 목록 조회
 	List<Crew> selectInCrewList(int userNo, SqlSessionTemplate sqlSession);
-	
+
+	//내가 쓴 게시물 조회
+	List<Board> selectWritePost(int userNo, SqlSessionTemplate sqlSession);
+
 
 }

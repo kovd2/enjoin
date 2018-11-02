@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.myPage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
@@ -17,7 +18,7 @@ public interface myPageService {
 	List<Pass> selectPass(int userNo);
 
 	//크루 게시판 조회
-	List<Board> crewBoardList(PageInfo pi);
+	List<Board> crewBoardList(PageInfo pi, int crewId);
 
 	//크루 게시판 상세보기
 	Board crewBoardDetail(int boardNo);
@@ -30,9 +31,8 @@ public interface myPageService {
 	
 	//가입한 크로 목록 조회
 	List<Crew> selectInCrewList(int userNo);
-	
-	
-	
-	
+
+	//내가 쓴 게시물 조회
+	List<Board> selectWritePost(int userNo);
 
 }

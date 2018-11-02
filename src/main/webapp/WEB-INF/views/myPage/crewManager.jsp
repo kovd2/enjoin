@@ -160,7 +160,7 @@
 		<div class="joinCrew">
 			<h3>가입한 크루</h3>
 			<c:forEach var="ic" items="${ inCrewList }">
-			<div class="joinCrewList" onclick="goCrewBoardList();">
+			<div class="joinCrewList" onclick="goCrewBoardList(${ ic.crew_Id });">
 				<div class="crewName">${ ic.crew_Name }</div><br>
 				<ul>
 					<li>크루원 닉네임</li>
@@ -232,9 +232,9 @@
 		});
 		
 		//크루게시판 이동
-		function goCrewBoardList(){
-			//크루 ID를 가지고 크루게시판으로 이동
-			location.href="goCrewBoardList.ljs";
+		function goCrewBoardList(crewId){
+			var crewId = crewId;
+			location.href="goCrewBoardList.ljs?crewId=" + crewId;
 		}
 	</script>
 </body>

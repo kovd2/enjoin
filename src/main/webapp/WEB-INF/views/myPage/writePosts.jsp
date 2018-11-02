@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,38 +66,33 @@
 		<div class="rightContainer">
 			<b id="myBoard" class="current" style="font-size: 30px; color: black; text-indent: 30px;"><i class="fa fa-thumb-tack"></i> 내가 쓴 게시물</b>
 			<div class="boardList">
-				<select style="float: left;">
+				<!-- <select style="float: left;" id="boardType">
 					<option value="board">게시물</option>
 					<option value="comment">댓글</option>
 					<option value="question">문의</option>
-				</select>
+				</select> -->
 				
-				<!-- 게시물 -->			
+				<!-- 게시물 -->	
+				<div align="left">게시물</div>
 				<table style="width: 800px; border-top: solid 1px black;">
 					<tr class="titleArea">
 						<td style="width: 30px;">번호</td>
 						<td style="width: 150px">제목</td>
 						<td style="width: 100px">작성자</td>
 						<td style="width: 150px">작성일</td>
-						<td style="width: 100px">조회수</td>
 					</tr>
 
-					<%
-						for (int i = 0; i < 10; i++) {
-					%>
+					<c:forEach var="wp" items="${ writePost }">
 					<tr>
-						<td>1</td>
-						<td>운동 하고 싶어요~</td>
-						<td>홍길동</td>
-						<td>2018-10-26</td>
-						<td>1</td>						
+						<td>${ wp.boardNo }</td>
+						<td>${ wp.boardTitle }</td>
+						<td>${ wp.userName }</td>
+						<td>${ wp.enrollDate }</td>					
 					</tr>
-					<%
-						}
-					%>
+					</c:forEach>
 				</table>
 				
-				<!-- 댓글 -->			
+				<!-- 댓글 -->		
 				<table style="width: 800px; border-top: solid 1px black;">
 					<tr class="titleArea">
 						<td style="width: 30px;">번호</td>
@@ -105,18 +101,12 @@
 						<td style="width: 150px">작성일</td>						
 					</tr>
 
-					<%
-						for (int i = 0; i < 10; i++) {
-					%>
 					<tr>
 						<td>1</td>
 						<td>같이해요</td>
 						<td>홍길동</td>
 						<td>2018-10-26</td>									
 					</tr>
-					<%
-						}
-					%>
 				</table>
 				
 				<!-- 문의사항 -->		
@@ -129,9 +119,6 @@
 						<td style="width: 100px">조회수</td>
 					</tr>
 
-					<%
-						for (int i = 0; i < 10; i++) {
-					%>
 					<tr>
 						<td>1</td>
 						<td>수정해주세요</td>
@@ -139,9 +126,6 @@
 						<td>2018-10-26</td>
 						<td>1</td>						
 					</tr>
-					<%
-						}
-					%>
 				</table>
 			</div>
 			<br>

@@ -1,7 +1,9 @@
 package com.finalProject.enjoin.myPage.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -73,7 +75,7 @@ public class MyPageController {
 		return "myPage/history";
 	}
 	
-	//크루관리
+	//생성 크루 목록 & 가입된 크루 목록 조회
 	@RequestMapping("crewManager.ljs")
 	public ModelAndView crewManager(ModelAndView mv, @RequestParam("userNo") int userNo) {
 		System.out.println("userNo : " + userNo);
@@ -104,7 +106,7 @@ public class MyPageController {
 	
 	//크루 게시판 조회
 	@RequestMapping("goCrewBoardList.ljs")
-	public ModelAndView goCrewBoard(ModelAndView mv, HttpServletRequest request ){
+	public ModelAndView goCrewBoard(ModelAndView mv, HttpServletRequest request, @RequestParam("crewId") int crewId){
 		int currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {
@@ -117,11 +119,12 @@ public class MyPageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		//게시물 전체
-		List<Board> list = mps.crewBoardList(pi);
+		List<Board> list = mps.crewBoardList(pi, crewId);
 		
 		mv.setViewName("crew/crewBoardList");
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
+		mv.addObject("crewId", crewId);
 		
 		return mv;
 	}
@@ -156,9 +159,13 @@ public class MyPageController {
 	
 	//내가 쓴 게시물 / 리뷰/ 댓글 페이지
 	@RequestMapping("writePosts.ljs")
-	public String writePosts() {
+	public ModelAndView writePosts(ModelAndView mv, @RequestParam("userNo") int userNo) {
+		List<Board> writePost = mps.selectWritePost(userNo);
+		System.out.println("writePost : " + writePost);
+		mv.setViewName("myPage/writePosts");
+		mv.addObject("writePost", writePost);
 		
-		return "myPage/writePosts";
+		return mv;
 	}
 	
 	//회원 탈퇴
@@ -170,6 +177,7 @@ public class MyPageController {
 		
 		return "";
 	}
+	
 }
 
 

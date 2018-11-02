@@ -15,12 +15,13 @@ public class Board implements Serializable {
 	private Date modifyDate; 				//수정일
 	private String status; 					//삭제여부
 	private int userNo; 					//작성자
+	private String userName;
 	private ArrayList<Coment> comentList;	//댓글리스트
 	
 	public Board() {}
 
 	public Board(int boardNo, String boardType, String boardTitle, String boardContent, int boardCount, Date enrollDate,
-			Date modifyDate, String status, int userNo, ArrayList<Coment> comentList) {
+			Date modifyDate, String status, int userNo, String userName, ArrayList<Coment> comentList) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -31,6 +32,7 @@ public class Board implements Serializable {
 		this.modifyDate = modifyDate;
 		this.status = status;
 		this.userNo = userNo;
+		this.userName = userName;
 		this.comentList = comentList;
 	}
 
@@ -106,6 +108,14 @@ public class Board implements Serializable {
 		this.userNo = userNo;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public ArrayList<Coment> getComentList() {
 		return comentList;
 	}
@@ -118,9 +128,10 @@ public class Board implements Serializable {
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", boardCount=" + boardCount + ", enrollDate=" + enrollDate
-				+ ", modifyDate=" + modifyDate + ", status=" + status + ", userNo=" + userNo + ", comentList="
-				+ comentList + "]";
+				+ ", modifyDate=" + modifyDate + ", status=" + status + ", userNo=" + userNo + ", userName=" + userName
+				+ ", comentList=" + comentList + "]";
 	}
 
+	
 	
 }

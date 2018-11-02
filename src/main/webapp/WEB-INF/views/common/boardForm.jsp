@@ -28,14 +28,14 @@
 </style>
 </head>
 <body>
-	<form action="insertBoard.ljs">
+	<form action="insertBoard.ljs" method="post" id="Form">
 		<div class="boardTitleArea">
-			제목 : <input type="text" style="width:770px;" name="boardTitle">
+			제목 : <input type="text" style="width:770px;" name="boardTitle" id="boardTitle" placeholder="제목을 입력하십시오.">
 		</div>
 		<br>
 		<div id="contentWrite2" style="text-align: center; margin-left: 270px; width:100%;">
 				<section id="editor" style="text-align: left; width: 810px; margin-left: -60px;">
-					<textarea id='edit' name="edit" style="margin-top: 30px; height: 500px;" name="boardContent">
+					<textarea id='edit' name="edit" style="margin-top: 30px; height: 500px;" name="boardContent" id="boardContent">
                
        		 		</textarea>
 				</section>
@@ -55,6 +55,24 @@
 			theme : 'royal',
 			imageUploadURL:'http://i.froala.com/upload'
 		});
+		
+		//게시물 작성 script
+		/* function insertBoard(){
+			if($('#boardTitle').val() == ""){
+				alert("제목을 입력해 주세요");
+				$('#boardTitle').focus();
+				return;
+			}
+			if($('#boardContent').val() == ""){
+				alert("내용을 입력해 주세요");
+				$('#boardContent').focus();
+				return;
+			}
+			if($('#boardTitle').val() != "" && $('#boardContent').val() != ""){
+				$('#Form').submit;
+			}
+		}; */
+		
 	</script>
 </body>
 </html>
