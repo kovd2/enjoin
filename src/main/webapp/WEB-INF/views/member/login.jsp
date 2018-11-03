@@ -7659,12 +7659,10 @@ div {
 														container : '#kakao-login-btn',
 														success : function(
 																authObj) {
-															alert(JSON
-																	.stringify(authObj));
+															alert(JSON.stringify(authObj));
 														},
 														fail : function(err) {
-															alert(JSON
-																	.stringify(err));
+															alert(JSON.stringify(err));
 														}
 													});
 											//]]>
@@ -7723,9 +7721,9 @@ div {
 											href="memberInsertView.me">회원가입하기</a>
 									</div>
 									<div class="forgot">
-										아이디, 비밀번호가 생각나지 않으세요?<br> <a href="searchId.me">아이디
+										아이디, 비밀번호가 생각나지 않으세요?<br> <a href="searchIdform.me">아이디
 											찾기</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-											href="searchPassword.me">비밀번호 찾기</a>
+											href="searchPasswordform.me">비밀번호 찾기</a>
 									</div>
 								</div>
 								<!-- ./memberBox_right -->

@@ -1,5 +1,8 @@
 package com.finalProject.enjoin.member.model.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -55,5 +58,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		return md.insertCompany(sqlSession, m);
 	}
+
+
 
 }

@@ -1,5 +1,7 @@
 package com.finalProject.enjoin.member.model.dao;
 
+
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +38,14 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return sqlSession.insert("Member.insertCompany", m);
 	}
+
+
+
+	//아이디 찾기용 메소드
+
+
+	
+	
 	
 
 }

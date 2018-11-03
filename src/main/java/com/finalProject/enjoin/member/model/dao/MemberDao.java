@@ -1,5 +1,7 @@
 package com.finalProject.enjoin.member.model.dao;
 
+
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.member.model.vo.Member;
@@ -17,6 +19,10 @@ public interface MemberDao {
 	int insertMember(SqlSessionTemplate sqlSession, Member m);
 
 	int insertCompany(SqlSessionTemplate sqlSession, Member m);
+
+
+
+	
 	
 
 }

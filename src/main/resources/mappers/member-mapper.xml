@@ -66,6 +66,15 @@
 		AND STATUS = 'Y'
 	</select>
 	
+	<!-- 아이디찾기용 쿼리 -->
+	<select id="searchId" resultMap="memberResultSet" parameterType="Member">
+	SELECT USER_ID
+	FROM MEMBER
+	WHERE USER_NAME = #{userName} 
+	AND EMAIL = #{email}
+	AND USER_STATUS = 'Y'
+	</select>
+	
 </mapper>
 
 
