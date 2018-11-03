@@ -13,11 +13,12 @@ public class Board implements Serializable {
 	private Date modifyDate; //수정일
 	private String status; //삭제여부
 	private int userNo; //작성자
+	private String upload_name; //첨부파일 이름
 	
 	public Board() {}
-	
+
 	public Board(int boardNo, String boardType, String boardTitle, String boardContent, Date enrollDate,
-			Date modifyDate, String status, int userNo) {
+			Date modifyDate, String status, int userNo, String upload_name) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -27,6 +28,7 @@ public class Board implements Serializable {
 		this.modifyDate = modifyDate;
 		this.status = status;
 		this.userNo = userNo;
+		this.upload_name = upload_name;
 	}
 
 	public int getBoardNo() {
@@ -93,12 +95,13 @@ public class Board implements Serializable {
 		this.userNo = userNo;
 	}
 
-	@Override
-	public String toString() {
-		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle
-				+ ", boardContent=" + boardContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
-				+ ", status=" + status + ", userNo=" + userNo + "]";
+	public String getUpload_name() {
+		return upload_name;
 	}
-	
+
+	public void setUpload_name(String upload_name) {
+		this.upload_name = upload_name;
+	}
+
 	
 }

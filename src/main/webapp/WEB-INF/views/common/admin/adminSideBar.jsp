@@ -53,7 +53,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="adminNotice.hh">공지사항</a>
-            <a class="dropdown-item" href="register.html">Register</a>
+            <a class="dropdown-item" href="adminFAQ.hh">FAQ</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>

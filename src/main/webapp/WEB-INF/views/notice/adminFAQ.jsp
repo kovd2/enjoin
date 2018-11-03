@@ -28,10 +28,10 @@
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">
 		<div class="boardAdmin" align="center">
-			<p style="font-size: 100px; text-align: center">공지사항</p>
+			<p style="font-size: 100px; text-align: center">FAQ</p>
 
 			<hr>
-			<p style="text-align:right; margin-right:190px"><input type="button" value="공지사항 등록" onclick="adminNoticeInsert()" style="width:150px; height:50px;"></p>
+			<p style="text-align:right; margin-right:190px"><input type="button" value="FAQ 등록" onclick="adminFAQInsert()" style="width:150px; height:50px;"></p>
 			<table>
 				<tr style="border: 1px solid black;">
 					<th
@@ -56,7 +56,7 @@
 						<li><a>이전</a></li>
 					</c:if>
 					<c:if test="${ pi.currentPage > 1 }">
-						<c:url var="listBack" value="adminNotice.hh">
+						<c:url var="listBack" value="adminFAQ.hh">
 							<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 						</c:url>
 						<li><a href="${ listBack }">이전&nbsp; </a></li>
@@ -67,7 +67,7 @@
 							<li class="active"><a>&nbsp;${ p }&nbsp;</a></li>
 						</c:if>
 						<c:if test="${ p ne pi.currentPage }">
-							<c:url var="listCheck" value="adminNotice.hh">
+							<c:url var="listCheck" value="adminFAQ.hh">
 								<c:param name="currentPage" value="${ p }" />
 							</c:url>
 							<li><a href="${ listCheck }"> ${ p } </a></li>
@@ -78,7 +78,7 @@
 						<li><a> 다음</a></li>
 					</c:if>
 					<c:if test="${ pi.currentPage < pi.maxPage }">
-						<c:url var="listEnd" value="adminNotice.hh">
+						<c:url var="listEnd" value="adminFAQ.hh">
 							<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 						</c:url>
 						<li><a href="${ listEnd }">&nbsp;다음</a></li>
@@ -89,14 +89,14 @@
 	</div>
 		
 	<script>
-		function adminNoticeInsert(){
+		function adminFAQInsert(){
 			
-			location.href = "adminNoticeInsert.hh";
+			location.href = "adminFAQInsert.hh";
 		}
 		
-		function adminNoticeDetail(){
+		function adminFAQDetail(){
 			
-			location.href = "adminNoticeDetail.hh";
+			location.href = "adminFAQDetail.hh";
 		}
 		
 		function selectOneBoard(boardNo){
