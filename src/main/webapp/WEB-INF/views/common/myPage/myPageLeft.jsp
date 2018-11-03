@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,9 +62,17 @@
 	<div class="leftContainer">
 	
 			<div class="profil">
-				<div class="profil_img">
-					<img id="profil_img" src="resources/images/myPage/image.png">
-				</div>
+				<c:if test="${ loginUser.upload_Name ne null}">
+					<div class="profil_img">
+						<img id="profil_img" src="resources/uploadFiles/myPage/profil/${ loginUser.upload_Name }">
+					</div>
+				</c:if>
+				<c:if test="${ loginUser.upload_Name eq null}">
+				location.reload():
+					<div class="profil_img">
+						<img id="profil_img" src="resources/images/myPage/user.png">
+					</div>
+				</c:if>
 				<div class="profil_info">
 					<h6>${ loginUser.userId } 님<br><small>${ loginUser.userName }</small></h6>
 					<div class="userPicComment upcOK">

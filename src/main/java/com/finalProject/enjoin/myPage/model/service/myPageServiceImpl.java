@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
@@ -21,8 +22,13 @@ public class myPageServiceImpl implements myPageService{
 	
 	//회원 정보 수정
 	@Override
-	public void updateMember(Member m) {
-		mpd.updateMember(m, sqlSession);
+	public int updateMember(Member m, Attachment at) {
+		
+		int result = 0;
+		
+		int result1 = mpd.updateMember(m, at, sqlSession);
+		
+		return result;
 	}
 	
 	//회원 패스 조회
@@ -48,9 +54,9 @@ public class myPageServiceImpl implements myPageService{
 
 	//게시물 갯수 
 	@Override
-	public int getListCount() {
+	public int getListCount(int crewId) {
 		
-		return mpd.getListCount(sqlSession);
+		return mpd.getListCount(crewId, sqlSession);
 	}
 
 	//크루 목록 조회

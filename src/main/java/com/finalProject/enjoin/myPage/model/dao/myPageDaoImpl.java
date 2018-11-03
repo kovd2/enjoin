@@ -1,24 +1,50 @@
 package com.finalProject.enjoin.myPage.model.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
-import com.finalProject.enjoin.myPage.model.vo.Board;
 @Repository
 public class myPageDaoImpl implements myPageDao{
 
 	//회원 정보 수정
 	@Override
-	public void updateMember(Member m, SqlSessionTemplate sqlSession) {
-		sqlSession.update("myPage.updateMember", m);
+	public int updateMember(Member m, Attachment at, SqlSessionTemplate sqlSession) {
+		
+		int result = 0;
+		
+		int result1 = sqlSession.update("myPage.updateMember", m);
+			System.out.println("Dao : " + m);
+		if(result1 > 0) {
+			int userNo = m.getUserNo();
+			System.out.println("userNo : " + userNo);
+			
+			int result2 = sqlSession.selectOne("myPage.selectPhoto", userNo);
+			System.out.println("result2 : " + result2);
+			
+			if(result2 == 1) {
+				
+				int result3 = sqlSession.delete("myPage.deletePhoto", userNo);
+				
+			}
+				at.setRef_No(userNo);
+				
+				int result4 = sqlSession.insert("myPage.insertPhoto", at);
+				
+				
+			System.out.println("프로필 사진 등록 됨");
+			
+		}
+		
+		return result;
 	}
 
 	//회원 패스 조회
@@ -48,9 +74,9 @@ public class myPageDaoImpl implements myPageDao{
 
 	//게시물 갯수
 	@Override
-	public int getListCount(SqlSessionTemplate sqlSession) {
+	public int getListCount(int crewId, SqlSessionTemplate sqlSession) {
 		
-		return sqlSession.selectOne("myPage.getListCount");
+		return sqlSession.selectOne("myPage.getListCount", crewId);
 	}
 
 	//크루 목록 조회
