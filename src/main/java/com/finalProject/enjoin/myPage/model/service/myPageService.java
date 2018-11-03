@@ -1,8 +1,8 @@
 package com.finalProject.enjoin.myPage.model.service;
 
 import java.util.List;
-import java.util.Map;
 
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -12,7 +12,7 @@ import com.finalProject.enjoin.myPage.model.vo.Board;
 public interface myPageService {
 
 	//회원 정보 수정
-	void updateMember(Member m);
+	int updateMember(Member m, Attachment at);
 	
 	//회원 패스 조회
 	List<Pass> selectPass(int userNo);
@@ -24,7 +24,7 @@ public interface myPageService {
 	Board crewBoardDetail(int boardNo);
 
 	//게시물 리스트 갯수
-	int getListCount();
+	int getListCount(int crewId);
 	
 	//크루 목록 조회
 	List<Crew> selectCrewList(int userNo);

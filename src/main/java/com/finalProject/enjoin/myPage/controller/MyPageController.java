@@ -1,20 +1,23 @@
 package com.finalProject.enjoin.myPage.controller;
 
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalProject.enjoin.common.util.CommonUtils;
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
@@ -51,14 +54,55 @@ public class MyPageController {
 	}
 	//정보수정 저장
 	@RequestMapping("saveInfo.ljs")
-	public String updateMember(@ModelAttribute Member m) {
+	public String updateMember(Model model, Member m, HttpServletRequest request, 
+			@RequestParam(name="photo", required=false) MultipartFile photo) {
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		m.setUserNo(userNo);
+		
+		System.out.println("m : " + m);
+		System.out.println("photo : " + photo);
 		
 		String encPassword = passwordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPassword);
 		
-		mps.updateMember(m);	
+		String root = request.getSession().getServletContext().getRealPath("resources");
 		
-		return "redirect:goMain.me";
+		String filePath = root + "\\uploadFiles\\myPage\\profil";
+		System.out.println("filePath : " + filePath);
+		String originFileName = photo.getOriginalFilename();
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		String changeName = CommonUtils.getRandomString();
+		long fileSize1 = photo.getSize();
+		String fileSize = String.valueOf(fileSize1);
+		
+		System.out.println("changeName : " + changeName);
+		
+		Attachment at = new Attachment();
+		
+		String origin_FileNames = String.valueOf(originFileName);
+		String changeNameExt = changeName + ext;
+		
+		at.setOrigin_Name(originFileName);
+		at.setFile_Ext(ext);
+		at.setUpload_Name(changeNameExt);
+		at.setFile_size(fileSize);
+		
+		System.out.println("Attatch : " + at);
+		
+		try {
+			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			int result = 0;
+			
+			result = mps.updateMember(m, at);
+			
+			return "redirect:changeInfo.ljs";
+		} catch (Exception e) {
+			new File(filePath + "\\" + changeName + ext).delete();
+			
+			return "changeInfo.ljs";
+		}
+		
 	}
 	
 	//가고싶은 시설
@@ -114,7 +158,7 @@ public class MyPageController {
 		}
 		
 		
-		int listCount = mps.getListCount();
+		int listCount = mps.getListCount(crewId);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
