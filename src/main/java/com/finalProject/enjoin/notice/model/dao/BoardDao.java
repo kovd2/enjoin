@@ -2,6 +2,7 @@ package com.finalProject.enjoin.notice.model.dao;
 
 import java.util.List;
 
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
@@ -13,7 +14,7 @@ public interface BoardDao {
 
 	public int getListCount() throws Exception;
 
-	public void insertBoard(Board b) throws Exception;
+	public int insertBoard(Board b, Attachment at) throws Exception;
 
 	public void updateBoard(Board b) throws Exception;
 

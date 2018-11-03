@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.dao.BoardDao;
 import com.finalProject.enjoin.notice.model.vo.Board;
@@ -34,18 +35,6 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void insertBoard(Board b, int userNo) throws Exception {
-		String title = b.getBoardTitle();
-		String content = b.getBoardContent();
-		
-		b.setBoardTitle(title);
-		b.setBoardContent(content);
-		b.setUserNo(userNo);
-		
-		bd.insertBoard(b);
-	}
- 
-	@Override
 	public void updateBoard(Board b, int userNo, int boardNo) throws Exception {
 		String title = b.getBoardTitle();
 		String content = b.getBoardContent();
@@ -70,6 +59,23 @@ public class BoardServiceImpl implements BoardService{
 	public int selectBoard(Board b) throws Exception {
 		return bd.selectBoard(b);
 	
+	}
+
+	@Override
+	public int insertBoard(Board b, int userNo, Attachment at) throws Exception {
+		
+		
+		
+		String title = b.getBoardTitle();
+		String content = b.getBoardContent();
+		
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		b.setUserNo(userNo);
+		
+		int result = bd.insertBoard(b, at);
+		
+		return result;
 	}
 
 
