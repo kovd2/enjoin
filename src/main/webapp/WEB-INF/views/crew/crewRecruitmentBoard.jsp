@@ -473,7 +473,6 @@ input.searchBar {
 					</div>
 				</div>
 
-
 				<!-- 여기까지  -->
 
 			</div>
@@ -571,11 +570,6 @@ input.searchBar {
 		</c:forEach>
 
 			
-
-
-
-				
-
 
 				<div class="searchBox">
 					<c:if test="${ !empty sessionScope.loginUser }">
