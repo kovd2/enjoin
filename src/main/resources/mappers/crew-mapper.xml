@@ -34,6 +34,10 @@
 		<result property="status" column="STATUS"/>
 		<result property="user_No" column="USER_NO"/>
 		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="file_No" column="FILE_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="CrewRmbAttachment">
@@ -60,6 +64,13 @@
 	<!-- 크루 인서트한 번호 커발하여 조회  -->
 	<select id="selectCrewId" parameterType="_int" resultType="_int">
 		SELECT SEQ_CREW_CREW_ID.CURRVAL FROM dual
+	</select>
+	<!-- 크루의 카테고리번호를 받아온다  -->
+	<select id="selectCategoryCode" parameterType="_int" resultType="_int">
+		SELECT CATEGORY_NO
+		FROM CREW
+		WHERE CREW_ID = #{crew_Id}
+		
 	</select>
 	
 	<!-- 크루 모집 게시판 등록  -->
@@ -93,6 +104,23 @@
 		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},
 		#{file_Ext},SYSDATE,4,#{ref_No})
 	</insert>
+	
+	<!-- 게시물 갯수 조회  -->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS = 'N'
+		AND BOARD_TYPE = '크루모집'
+	</select>
+	<!-- 크루활동 게시판 조회  -->
+	<select id="crewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
+		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,A.UPLOAD_NAME
+		FROM BOARD B
+		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
+		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_NO = 0
+	</select>
 
 
 

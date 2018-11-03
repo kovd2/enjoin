@@ -2,6 +2,7 @@ package com.finalProject.enjoin.crew.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.service.CrewService;
@@ -20,6 +22,8 @@ import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
+import com.finalProject.enjoin.myPage.model.vo.Pagination;
 
 
 @SessionAttributes("loginUser")
@@ -31,12 +35,26 @@ public class CrewController {
 
 	//크루모집 게시판 연결
 	@RequestMapping("crewRecruitmentBoard.shw2")
-	public String showCrewRecruitmentBoard() {
+	public ModelAndView showCrewRecruitmentBoard(ModelAndView mv,HttpServletRequest request) {
+		int currentPage = 1;
 		
-		System.out.println("나오냐??");
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
 		
-		return "crew/crewRecruitmentBoard";
+		int listCount = cs.getListCount();
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardList(pi);
+		
+		mv.setViewName("crew/crewRecruitmentBoard");
+		mv.addObject("list", list);
+		mv.addObject("pi",pi);
+		return mv;
 	}
+	
 	//크루활동 모집내역폼
 	@RequestMapping("crewRecruitment.shw2")
 	public String showCrewRecruitment() {
@@ -62,13 +80,11 @@ public class CrewController {
 	@RequestMapping("goCrew1.shw2")
 	public String goCrew1() {
 		
+		
+		
 		return "crew/crewRecruitmentBoard";
 	}
 	
-
-	
-	
-
 
 
 
@@ -244,7 +260,7 @@ public class CrewController {
 			
 			e.printStackTrace();
 			
-			return "redirect:goCrew1.shw2";
+			return "redirect:crewRecruitmentBoard.shw2";
 		}
 		
 		

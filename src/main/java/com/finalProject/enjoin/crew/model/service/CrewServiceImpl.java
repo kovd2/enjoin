@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.crew.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.finalProject.enjoin.crew.model.dao.CrewDao;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 
 @Service
@@ -32,6 +34,20 @@ public class CrewServiceImpl implements CrewService {
 		
 		
 		return result;
+	}
+
+	//게시물 갯수
+	@Override
+	public int getListCount() {
+		
+		return cd.getListCount(sqlSession);
+	}
+	
+	//크루 활동 게시판 조회
+	@Override
+	public List<CrewRecruitmentBoard> crewRecruitmentBoardList(PageInfo pi) {
+		
+		return cd.crewRecruitmentBoardList(pi,sqlSession);
 	}
 
 	

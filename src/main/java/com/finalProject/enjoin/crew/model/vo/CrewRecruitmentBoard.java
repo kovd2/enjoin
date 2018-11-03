@@ -21,6 +21,9 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	private String status;		  //상태 삭제 여부
 	private int user_No;		  //작성자 번호	
 	private int category_No;	  //카테고리번호	16개
+	private String upload_Name; 	//업로드네임
+	private int file_No;			//파일순서번호
+	private String category_Name;	//카테고리이름
 	
 	
 	public CrewRecruitmentBoard() {}
@@ -29,7 +32,7 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	public CrewRecruitmentBoard(int board_No, String board_Type, String board_Title, String board_Content,
 			Date enroll_Date, Date modify_Date, String crew_Area, int crew_Count, int crew_No, int board_Count,
 			int recruit_Max, Date recruit_Start, Date recruit_End, String recruit_Status, String status, int user_No,
-			int category_No) {
+			int category_No, String upload_Name, int file_No, String category_Name) {
 		super();
 		this.board_No = board_No;
 		this.board_Type = board_Type;
@@ -48,6 +51,9 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 		this.status = status;
 		this.user_No = user_No;
 		this.category_No = category_No;
+		this.upload_Name = upload_Name;
+		this.file_No = file_No;
+		this.category_Name = category_Name;
 	}
 
 
@@ -136,6 +142,21 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	}
 
 
+	public String getUpload_Name() {
+		return upload_Name;
+	}
+
+
+	public int getFile_No() {
+		return file_No;
+	}
+
+
+	public String getCategory_Name() {
+		return category_Name;
+	}
+
+
 	public void setBoard_No(int board_No) {
 		this.board_No = board_No;
 	}
@@ -221,6 +242,21 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	}
 
 
+	public void setUpload_Name(String upload_Name) {
+		this.upload_Name = upload_Name;
+	}
+
+
+	public void setFile_No(int file_No) {
+		this.file_No = file_No;
+	}
+
+
+	public void setCategory_Name(String category_Name) {
+		this.category_Name = category_Name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CrewRecruitmentBoard [board_No=" + board_No + ", board_Type=" + board_Type + ", board_Title="
@@ -228,9 +264,9 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 				+ modify_Date + ", crew_Area=" + crew_Area + ", crew_Count=" + crew_Count + ", crew_No=" + crew_No
 				+ ", board_Count=" + board_Count + ", recruit_Max=" + recruit_Max + ", recruit_Start=" + recruit_Start
 				+ ", recruit_End=" + recruit_End + ", recruit_Status=" + recruit_Status + ", status=" + status
-				+ ", user_No=" + user_No + ", category_No=" + category_No + "]";
+				+ ", user_No=" + user_No + ", category_No=" + category_No + ", upload_Name=" + upload_Name
+				+ ", file_No=" + file_No + ", category_Name=" + category_Name + "]";
 	}
-
 
 
 	
