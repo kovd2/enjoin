@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -7090,7 +7090,13 @@ button.close {
 	text-align: center;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, .6)
 }
-
+.memberBox h2 {
+    margin: 0 0 40px;
+    font-weight: 100;
+    font-size: 20px;
+    letter-spacing: -1px;
+    line-height: 1.3;
+}
 .carousel-caption .btn {
 	text-shadow: none
 }
@@ -7557,13 +7563,13 @@ body.register .subWrap {
 									잊어버린 아이디를 찾아드려요.</small></span>
 						</h2>
 
-						<form class="memberForm" action="/member/find_id/" method="post">
+						<form class="memberForm" action="searchId.me" method="post" id="searchId">
 							<div class="form-group">
 								<label>이름</label>
 								<div class="floatlabel-wrapper" style="position: relative">
 									<label for="user_name" class="label-floatlabel  "
 										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">가입하신
-										분의 이름을 입력하세요</label><input name="user_name" id="user_name" value=""
+										분의 이름을 입력하세요</label><input name="userName" id="user_name" value="${userName}"
 										type="text" class="form-control"
 										placeholder="가입하신 분의 이름을 입력하세요"
 										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
@@ -7574,13 +7580,13 @@ body.register .subWrap {
 								<div class="floatlabel-wrapper" style="position: relative">
 									<label for="user_email" class="label-floatlabel  "
 										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이메일
-										주소를 입력하세요</label><input name="user_email" id="user_email" value=""
+										주소를 입력하세요</label><input name="email" id="user_email" value="${email}"
 										type="email" class="form-control" placeholder="이메일 주소를 입력하세요"
 										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 								</div>
 							</div>
 							<div class="form-group submitLine">
-								<button type="submit" class="btn btn-signup">
+								<button  class="btn btn-signup" onclick="searchId()" id="searchId">
 									<i class="fa fa-search"></i> 아이디를 찾아주세요!
 								</button>
 							</div>
@@ -7600,6 +7606,26 @@ body.register .subWrap {
 
 		</div>
 		<!-- /container -->
+		
+		<script>
+		function searchId(){
+			var userName= $("#user_name").val();
+			if(userName == ""){
+				alert("이름을 입력하세요");
+				return;
+			}
+			
+			var email=$("#user_email").val();
+			if(email== ""){
+				alert("이메일을 입력하세요");
+				return;
+			}	
+			
+		}
+		
+		
+		
+		</script>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 

@@ -1,11 +1,16 @@
 package com.finalProject.enjoin.member.controller;
 
 
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -47,13 +52,23 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 폼 보여주는 메소드
-	@RequestMapping("searchId.me")
+	@RequestMapping("searchIdform.me")
 	public String showSearchId() {
 		return "member/searchId";
 	}
 	
+	//아이디 찾기 컨트롤러
+	/*@RequestMapping("searchId.me")
+	public String SearchId(Member m, HttpServletResponse response, Model model) {
+		
+		System.out.println(m.getUserName());
+		System.out.println(m.getEmail());
+		
+		return "member/searchId";
+	}*/
+	
 	//비밀번호 찾기 폼 보여주는 메소드
-	@RequestMapping("searchPassword.me")
+	@RequestMapping("searchPasswordform.me")
 	public String showSearchPassword() {
 		return "member/searchPassword";
 	}
