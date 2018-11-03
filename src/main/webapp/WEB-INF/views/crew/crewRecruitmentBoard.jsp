@@ -525,6 +525,7 @@ input.searchBar {
 					</tr>
 				</table>
 				<hr class="boardHr2">
+				<c:forEach var="c" items="${ list }">
 				<div>
 					<a href="crewRecruitmentDetails.test"
 						style="text-decoration: none;">
@@ -533,374 +534,47 @@ input.searchBar {
 								<td class="box" colspan="9">
 
 									<div class="numBox2">
-										<p class="boardNum1">1</p>
+										<p class="boardNum1">${c.board_No}</p>
 									</div>
 									<div class="ImgBox2">
 										<img
-											src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
+											src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${c.upload_Name}"
 											class="crewMainImg">
 									</div>
 									<div class="catagoryBox2">
-										<p class="boardCatagory1">필라테스</p>
+										<p class="boardCatagory1">${c.category_Name }</p>
 									</div>
 									<div class="crewBox2">
-										<p class="boardTitle1">김창희의 런닝크루 모집 합니다.</p>
+										<p class="boardTitle1">${ c.board_Title }</p>
 									</div>
 									<div class="addBox2">
-										<p class="address1">강남역 3번출구</p>
+										<p class="address1">${ c.crew_Area }</p>
 									</div>
 									<div class="memberBox2">
-										<p class="Member1">1명</p>
+										<p class="Member1">0명</p>
 									</div>
 									<div class="maxBox2">
-										<p class="MaxMember1">3명</p>
+										<p class="MaxMember1">${c.recruit_Max}명</p>
 									</div>
 									<div class="writerBox2">
-										<p class="WriterDate1">2018-10-25</p>
+										<p class="WriterDate1">${c.enroll_Date}</p>
 									</div>
 									<div class="countBox2">
-										<p class="boardCoumt1">10000</p>
+										<p class="boardCoumt1">${c.board_Count }</p>
 									</div>
 								</td>
 							</tr>
 						</table>
 					</a>
 				</div>
+			<hr>
+		</c:forEach>
 
-				<hr>
+			
 
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">2</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">필라테스</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">할리스지옥에오신걸환영합니다.</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
 
-				<hr>
 
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">3</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">수영</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">가즈아</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">4</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">p.t</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">할꺼태산이다. 이러지좀마</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">5</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">기타</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">런닝크루크루 한강가즈아</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">6</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">p.t</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">할꺼태산이다. 이러지좀마</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">7</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">필라테스</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">김창희의 런닝크루 모집 합니다.</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">10000</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">8</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">기타</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">런닝크루크루 한강가즈아</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">9</p>
-							</div>
-							<div class="ImgBox2">
-								<img src="${ contextPath }/resources/images/crew/test/10.jpg"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">p.t</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">할꺼태산이다. 이러지좀마</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-
-				<table style="table-layout: fixed">
-					<tr class="boardMenu">
-						<td class="box" colspan="9">
-							<div class="numBox2">
-								<p class="boardNum1">10</p>
-							</div>
-							<div class="ImgBox2">
-								<img
-									src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg"
-									class="crewMainImg">
-							</div>
-							<div class="catagoryBox2">
-								<p class="boardCatagory1">기타</p>
-							</div>
-							<div class="crewBox2">
-								<p class="boardTitle1">런닝크루크루 한강가즈아</p>
-							</div>
-							<div class="addBox2">
-								<p class="address1">강남역 3번출구</p>
-							</div>
-							<div class="memberBox2">
-								<p class="Member1">1명</p>
-							</div>
-							<div class="maxBox2">
-								<p class="MaxMember1">3명</p>
-							</div>
-							<div class="writerBox2">
-								<p class="WriterDate1">2018-10-25</p>
-							</div>
-							<div class="countBox2">
-								<p class="boardCoumt1">100</p>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
+				
 
 
 				<div class="searchBox">
@@ -922,8 +596,44 @@ input.searchBar {
 					</form>
 					<div class="paginBtn1">
 						<div class="pagination1">
-							<a class="pagBtn1"   href="#">&laquo;</a> <a class="pagBtn2" href="#">1</a> <a class="pagBtn3"  href="#">2</a> <a class="pagBtn4"
-								href="#">3</a> <a class="pagBtn5"  href="#">4</a> <a class="pagBtn6"  href="#">5</a> <a class="pagBtn7" href="#">&raquo;</a>
+							<!-- 페이징 처리 -->
+						<nav>
+							<ul class="pagination">
+								<c:if test="${ pi.currentPage <= 1 }">
+									<li><a>이전</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage > 1 }">
+									<c:url var="listBack" value="crewRecruitmentBoard.shw2">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+									
+									</c:url>
+									<li><a href="${ listBack }">이전</a></li>
+								</c:if>
+
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<li class="active"><a>${ p }</a></li>
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
+											<c:param name="currentPage" value="${ p }" />
+										</c:url>
+										<li><a href="${ listCheck }">${ p }</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${ pi.currentPage >= pi.maxPage }">
+									<li><a>다음</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage < pi.maxPage }">
+									<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+					
+									</c:url>
+									<li><a href="${ listEnd }">다음</a></li>
+								</c:if>
+							</ul>
+						</nav>
 						</div>
 					</div>
 				</div>

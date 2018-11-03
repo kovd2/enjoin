@@ -2,13 +2,16 @@ package com.finalProject.enjoin.crew.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 @Repository
 public class CrewDaoImpl implements CrewDao {
@@ -30,6 +33,12 @@ public class CrewDaoImpl implements CrewDao {
 			crb.setCrew_No(crew_Id);
 
 			//크루게시판등록
+			int category_Code = sqlSession.selectOne("Crew.selectCategoryCode", crew_Id);
+			
+			System.out.println("category_Code : " + category_Code);
+			
+			crb.setCategory_No(category_Code);
+			
 			int result2 = sqlSession.insert("Crew.insertBoard",crb);
 			
 			System.out.println("등록됨??");
@@ -45,17 +54,33 @@ public class CrewDaoImpl implements CrewDao {
 				//크루 로고이미지 인서트
 				int result3 = sqlSession.insert("Crew.insertRmbAttachment", at);
 				
+				//크루 이용예정시설 이미지 인서트
 				int result4 = sqlSession.insert("Crew.insertRmbAttachment1", at1);
 			}
 
 
-				//크루 이용예정시설 이미지 인서트
 
 
 
 		}
 
 		return result;
+	}
+	//게시물 갯수
+	@Override
+	public int getListCount(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("Crew.getListCount");
+	}
+	//크루 활동 게시판 조회
+	@Override
+	public List<CrewRecruitmentBoard> crewRecruitmentBoardList(PageInfo pi, SqlSessionTemplate sqlSession) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Crew.crewRecruitmentBoardList",null, rowBounds);
 	}
 
 }

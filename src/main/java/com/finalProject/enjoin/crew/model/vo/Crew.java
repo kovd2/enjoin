@@ -16,7 +16,7 @@ public class Crew implements java.io.Serializable{
 	private String crew_Address; //크루지역
 	private String board_title;	 //글제목
 	private String board_Content;	//글내용
-	
+
 	
 	
 	public Crew() {}
@@ -210,13 +210,7 @@ public class Crew implements java.io.Serializable{
 	}
 
 
-
 	
-
-	
-
-	
-
 
 
 
