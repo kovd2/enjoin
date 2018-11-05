@@ -38,6 +38,7 @@
 		<result property="upload_Name" column="UPLOAD_NAME"/>
 		<result property="file_No" column="FILE_NO"/>
 		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="user_Name" column="USER_NAME"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="CrewRmbAttachment">
@@ -105,23 +106,107 @@
 		#{file_Ext},SYSDATE,4,#{ref_No})
 	</insert>
 	
-	<!-- 게시물 갯수 조회  -->
+	<!-- 크루활동 게시물 갯수 조회  -->
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD
 		WHERE STATUS = 'N'
 		AND BOARD_TYPE = '크루모집'
 	</select>
+	
 	<!-- 크루활동 게시판 조회  -->
 	<select id="crewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
 		WHERE A.FILE_NO = 0
 	</select>
 
-
-
+	<!-- 크루활동 카테고리 게시물 갯수 조회  -->
+	<select id="getCrewCategoryListCount" resultType="_int">
+		SELECT COUNT(*)
+        FROM BOARD B
+        JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+        WHERE B.STATUS = 'N'
+        AND B.BOARD_TYPE = '크루모집'
+        AND C.CATEGORY_NAME = #{categoryName}
+	</select>
+	
+	<!--크루활동 게시판 카테고리별 조회  -->
+	<select id="crewCategoryRecruitmentBoardList" resultMap="CrewRecruitmentSet">
+		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		FROM BOARD B
+		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
+		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_NO = 0
+        AND C.CATEGORY_NAME = #{categoryName}
+	</select>
+	
+	<!-- 크루활동 제목별 게시물 갯수 조회  -->
+	 <select id="getCrewTitleListCount" resultType="_int">	
+	 	SELECT COUNT(*)
+        FROM BOARD B
+        JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+        WHERE B.STATUS = 'N'
+        AND B.BOARD_TYPE = '크루모집'
+        AND B.BOARD_TITLE LIKE '%'|| #{board_Title} || '%'
+	</select>
+	<!-- 크루활동 지역별 게시물 갯수 조회  -->
+	 <select id="getCrewAreaListCount" resultType="_int">	
+		SELECT COUNT(*)
+        FROM BOARD B
+        JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+        WHERE B.STATUS = 'N'
+        AND B.BOARD_TYPE = '크루모집'
+        AND B.CREW_AREA LIKE '%'|| #{crew_Area} || '%'
+     </select>
+     <!-- 크루활동 제목별 검색 게시물 조회  -->
+     <select id="crewTitleRecruitmentBoardList" resultMap="CrewRecruitmentSet">
+     	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		FROM BOARD B
+		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
+		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_NO = 0
+		AND B.BOARD_TITLE LIKE '%'|| #{board_Title} || '%'
+     </select>
+     
+     <!-- 크루활동 지역별 검색 게시물 조회  -->
+     <select id="crewAreaRecruitmentBoardList" resultMap="CrewRecruitmentSet">
+     	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		FROM BOARD B
+		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
+		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_NO = 0
+		AND B.CREW_AREA LIKE '%'|| #{crew_Area} || '%'
+     </select>
+     
+     <!-- 크루활동 상세보기 데이터 조회  -->
+     <select id="crewRecruitmentBoardDetailsList" resultMap="CrewRecruitmentSet">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.CREW_AREA,B.BOARD_CONTENT,B.BOARD_TITLE,
+		B.RECRUIT_START,B.RECRUIT_END,B.RECRUIT_MAX,B.RECRUIT_MIN,M.USER_NAME
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_NO = #{board_No}
+     </select>
+     
+     <!-- 크루 활동 게시판 사진 조회  -->
+     <select id="crewAttachmentDetails" resultMap="CrewRmbAttachment">
+     	SELECT FILE_NO,UPLOAD_NAME
+		FROM ATTACHMENT
+		WHERE FILE_TYPE = 4
+		AND REF_NO = #{board_No}
+     </select>
+     <!-- 크루 작성자 사진 조회 -->
+     <select id="crewUserPhoto" resultMap="CrewRmbAttachment">
+     	SELECT FILE_NO,UPLOAD_NAME
+		FROM ATTACHMENT
+		WHERE FILE_TYPE = 3
+		AND REF_NO = #{user_No}
+     </select>   
 </mapper>

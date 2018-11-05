@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.crew.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -49,6 +50,68 @@ public class CrewServiceImpl implements CrewService {
 		
 		return cd.crewRecruitmentBoardList(pi,sqlSession);
 	}
+	//크루 활동 게시판 카테고리 게시물 게수
+	@Override
+	public int getCrewCategoryListCount(String categoryName) {
+		
+		return cd.getCrewCategoryListCount(sqlSession,categoryName);
+	}
+	
+	//크루 활동 게시판 카테고리별 조회
+	@Override
+	public List<CrewRecruitmentBoard> crewCategoryRecruitmentBoardList(PageInfo pi, String categoryName) {
+		
+		return cd.crewCategoryRecruitmentBoardList(pi,sqlSession,categoryName);
+	}
+	//크루 활동 게시판 제목별 검색 리스트 조회
+	@Override
+	public int getCrewTitleListCount(String board_Title) {
+		
+		return cd.getCrewTitleListCount(sqlSession,board_Title);
+	}
+	//크루 활동 게시판 지역별 검색 리스트 조회
+	@Override
+	public int getCrewAreaListCount(String crew_Area) {
+
+		return cd.getCrewAreaListCount(sqlSession,crew_Area);
+	}
+	
+	//크루 활동 게시판 제목별 게시판 조회
+	@Override
+	public List<CrewRecruitmentBoard> crewTitleRecruitmentBoardList(PageInfo pi, String board_Title) {
+		
+		return cd.crewTitleRecruitmentBoardList(pi,sqlSession,board_Title);
+	}
+
+	//크루 활동 지역별 게시판 조회
+	@Override
+	public List<CrewRecruitmentBoard> crewAreaRecruitmentBoardList(PageInfo pi, String crew_Area) {
+		
+		return cd.crewAreaRecruitmentBoardList(pi,sqlSession,crew_Area);
+	}
+	//크루게시판 상세보기 내용
+	@Override
+	public List<CrewRecruitmentBoard> crewRecruitmentBoardDetailsList(int board_No) {
+		
+		return cd.crewRecruitmentBoardDetailsList(sqlSession,board_No);
+	}
+	
+	//크루활동게시판 상세보기 사진
+	@Override
+	public List<Attachment> crewAttachmentDetails(int board_No) {
+		
+		return cd.crewAttachmentDetails(sqlSession,board_No);
+	}
+	
+	//작성자 사진 조회
+	@Override
+	public Attachment crewUserPhoto(int user_No) {
+		
+		return cd.crewUserPhoto(sqlSession,user_No);
+	}
+
+
+
 
 	
 

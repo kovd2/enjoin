@@ -354,7 +354,7 @@ hr {
 }
 
 .address {
-	color: #fff;
+	
 	font-size: 14px;
 	margin-top: 12px;
 	margin-left: 5px;
@@ -396,7 +396,17 @@ hr {
 
 }
 input.searchBar {
-    margin-left: 338px;
+   margin-left: 269px;
+}
+.categoryBtn label{
+	font-size: 10px;
+    color: #777777;
+}
+select.searchSelect {
+    position: relative;
+    left: 269px;
+    width: 70px;
+    height: 30px;
 }
 	
 
@@ -406,11 +416,17 @@ input.searchBar {
 </style>
 </head>
 <script>
-	function goCrew(){
-		
+	function goCrew(){	
 		location.href = "crewRecruitment.shw2";
 	}
-
+	function goCategory(categoryName){
+		var categoryName = $(categoryName).find('label').text();
+		
+		alert(categoryName);
+		
+		location.href="crewCategorySelectBoard.shw2?categoryName=" + categoryName;
+		
+	}
 </script>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -478,34 +494,33 @@ input.searchBar {
 			</div>
 			<div class="catagoryBox">
 				<ul class="catagoryUl">
-					<li><img
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/0.catagory.png"
-						class="catagoryImg">런닝</li>
-					<li><img
-						src="${ contextPath }/resources/images/crew/catagory/1.catagory.png"
-						class="catagoryImg">p.t</li>
-					<li><img
+						class="catagoryImg"><label>런닝</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/2.catagory.png"
-						class="catagoryImg">수영</li>
-					<li><img
+						class="catagoryImg"><label>수영</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/3.catagory.png"
-						class="catagoryImg">필라테스</li>
-					<li><img
+						class="catagoryImg"><label>필라테스</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/4.catagory.png"
-						class="catagoryImg">격투기</li>
-					<li><img
+						class="catagoryImg"><label>격투기</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/5.catagory.png"
-						class="catagoryImg">댄스</li>
-					<li><img
+						class="catagoryImg"><label>댄스</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/6.catagory.png"
-						class="catagoryImg">요가</li>
-					<li><img
+						class="catagoryImg"><label>요가</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
+						src="${ contextPath }/resources/images/crew/catagory/1.catagory.png"
+						class="catagoryImg"><label>헬스</label></li>	
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/7.catagory.png"
-						class="catagoryImg">크로스핏</li>
-					<li><img
+						class="catagoryImg"><label>크로스핏</label></li>
+					<li class="categoryBtn" onclick="goCategory(this)"><img
 						src="${ contextPath }/resources/images/crew/catagory/8.catagory.png"
-						class="catagoryImg">기타</li>
-					
+						class="catagoryImg"><label>기타</label></li>	
 				</ul>
 			</div>
 			<div class="middle">
@@ -526,7 +541,7 @@ input.searchBar {
 				<hr class="boardHr2">
 				<c:forEach var="c" items="${ list }">
 				<div>
-					<a href="crewRecruitmentDetails.test"
+					<a href="crewRecruitmentDetails.shw2?board_No=${c.board_No}&user_No=${c.user_No}"
 						style="text-decoration: none;">
 						<table>
 							<tr class="boardMenu">
@@ -577,11 +592,17 @@ input.searchBar {
 						<button class="writerBtn" onclick="goCrew()">크루모집작성</button>
 					</div>
 					</c:if>
-					<form>
+					<form action="crewSearchList.sh2" method="get">
 						<table >
 							<tr>
-								<td colspan="2"><input type="search" class="searchBar">
-									<button class="searchBtn">
+								<td colspan="2">
+								<select class="searchSelect" name="option">
+									<option>제목</option>	
+									<option>지역</option>
+								</select>
+								<input type="search" class="searchBar" name="searchTitle">
+								
+									<button type="submit" class="searchBtn">
 										<i class="fa fa-search" style="font-size: 20px"></i>
 									</button>
 								<td>

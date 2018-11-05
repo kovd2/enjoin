@@ -24,6 +24,7 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	private String upload_Name; 	//업로드네임
 	private int file_No;			//파일순서번호
 	private String category_Name;	//카테고리이름
+	private String user_Name;		//유저네임
 	
 	
 	public CrewRecruitmentBoard() {}
@@ -32,7 +33,7 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	public CrewRecruitmentBoard(int board_No, String board_Type, String board_Title, String board_Content,
 			Date enroll_Date, Date modify_Date, String crew_Area, int crew_Count, int crew_No, int board_Count,
 			int recruit_Max, Date recruit_Start, Date recruit_End, String recruit_Status, String status, int user_No,
-			int category_No, String upload_Name, int file_No, String category_Name) {
+			int category_No, String upload_Name, int file_No, String category_Name, String user_Name) {
 		super();
 		this.board_No = board_No;
 		this.board_Type = board_Type;
@@ -54,6 +55,7 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 		this.upload_Name = upload_Name;
 		this.file_No = file_No;
 		this.category_Name = category_Name;
+		this.user_Name = user_Name;
 	}
 
 
@@ -157,6 +159,11 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	}
 
 
+	public String getUser_Name() {
+		return user_Name;
+	}
+
+
 	public void setBoard_No(int board_No) {
 		this.board_No = board_No;
 	}
@@ -257,6 +264,11 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 	}
 
 
+	public void setUser_Name(String user_Name) {
+		this.user_Name = user_Name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CrewRecruitmentBoard [board_No=" + board_No + ", board_Type=" + board_Type + ", board_Title="
@@ -265,7 +277,7 @@ public class CrewRecruitmentBoard implements java.io.Serializable {
 				+ ", board_Count=" + board_Count + ", recruit_Max=" + recruit_Max + ", recruit_Start=" + recruit_Start
 				+ ", recruit_End=" + recruit_End + ", recruit_Status=" + recruit_Status + ", status=" + status
 				+ ", user_No=" + user_No + ", category_No=" + category_No + ", upload_Name=" + upload_Name
-				+ ", file_No=" + file_No + ", category_Name=" + category_Name + "]";
+				+ ", file_No=" + file_No + ", category_Name=" + category_Name + ", user_Name=" + user_Name + "]";
 	}
 
 
