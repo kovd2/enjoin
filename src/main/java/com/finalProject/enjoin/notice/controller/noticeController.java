@@ -2,7 +2,9 @@ package com.finalProject.enjoin.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +33,7 @@ public class noticeController {
 	//공지사항 목록
 	@RequestMapping("notice.hh")
 	public ModelAndView list(ModelAndView mav, HttpServletRequest request) throws Exception {
+		
 		//페이징 처리
 		int currentPage = 1;
 		
@@ -56,7 +59,7 @@ public class noticeController {
 	public ModelAndView view(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
 		Board detail = bs.read(boardNo);
 		
-		System.out.println("detail : " + detail);
+		
 		mv.setViewName("notice/noticeDetail");
 		mv.addObject("detail", detail);
 		
@@ -161,14 +164,11 @@ public class noticeController {
 		
 		Board b = new Board();
 		
-		System.out.println(b.getFaqCategory());
-		mav.setViewName("notice/adminFAQ");
 		mav.addObject("list", list);
+		mav.setViewName("notice/adminFAQ");
 		mav.addObject("pi", pi);
 		
 		return mav;
-		
-		
 		
 	}
 	
@@ -182,7 +182,7 @@ public class noticeController {
 	@RequestMapping("adminFAQInsertBtn.hh")
 	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="category")String category) throws Exception {
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
-		System.out.println("category v : " + category);
+		
 		bs.insertFAQ(b, userNo, category);
 		
 		return "redirect:adminFAQ.hh";
@@ -194,12 +194,18 @@ public class noticeController {
 		return "notice/FAQ";
 	}
 	
+	//FAQ 상세보기
 	@RequestMapping("FAQ_detail.hh")
-	public String FAQ_detail() {
+	public ModelAndView FAQ_detail(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
 		
-		return "notice/FAQ_detail";
+		Board detail = bs.userRead(boardNo);
+		
+		mv.setViewName("notice/FAQ_detail");
+		mv.addObject("detail", detail);
+		
+		return mv;
 	}
-	
+
 	//관리자 공지사항 목록
 	@RequestMapping("adminNotice.hh")
 	public ModelAndView adminNotice(ModelAndView mav, HttpServletRequest request) throws Exception{
@@ -300,5 +306,60 @@ public class noticeController {
 				
 		return "redirect:adminNotice.hh";
 	}
+	
+	//관리자 FAQ 상세보기
+	@RequestMapping("adminFAQDetail.hh")
+	public ModelAndView faqView(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
+		
+		Board faqDetail = bs.faqRead(boardNo);
+		
+		
+		mv.setViewName("notice/adminFAQDetail");
+		mv.addObject("faqDetail", faqDetail);
+		
+		return mv;
+	}
+	
+	//FAQ 수정
+	@RequestMapping("adminFAQUpdate.hh")
+	public String adminFAQUpdate(@ModelAttribute Board b, HttpServletRequest request, @RequestParam("boardNo")int boardNo, @RequestParam("category")String category) throws Exception {
+		
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		bs.updateFAQ(b, userNo, boardNo, category);
+		
+		return "redirect:adminFAQ.hh";
+	}
+	
+	//FAQ 삭제
+	@RequestMapping("adminFAQDelete.hh")
+	public String adminFAQDelete(@ModelAttribute Board b, HttpServletRequest request, @RequestParam("boardNo")int boardNo) throws Exception {
+		
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		bs.deleteFAQ(b, userNo, boardNo);
+				
+		return "redirect:adminFAQ.hh";
+	}
+
+	//검색 페이지
+	@RequestMapping("search.hh")
+	public ModelAndView search(@RequestParam("keyword")String keyword, ModelAndView mav) throws Exception {
+		
+		List<Board> list = bs.search(keyword);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("keyword", keyword);
+		
+		mav.addObject("map", map);
+		
+		
+		mav.setViewName("notice/FAQ");
+		
+		return mav;
+	}
+		
 	
 }

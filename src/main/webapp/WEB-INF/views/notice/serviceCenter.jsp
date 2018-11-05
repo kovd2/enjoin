@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>고객센터</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -178,11 +178,11 @@ h5 {
 							<div class="row">
 								<div class="col-md-9">
 									<div class="searchFormBox">
-										<form action="/help/search">
+										<form id="searchForm" action="search.hh" method="post">
 											<div class="input-group input-group-lg">
-											  <input type="text" class="form-control"	placeholder="어떤 도움이 필요하세요?" name="keyword">
+											  <input type="text" class="form-control" value="${keyword}" placeholder="어떤 도움이 필요하세요?" name="keyword">
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="submit">
+													<button class="btn btn-primary" type="suwbmit">
 														<i class="fa fa-search"></i>
 													</button>
 												</span>
@@ -202,7 +202,7 @@ h5 {
 														</h5>
 													</div>
 													<div class="panel-body">
-														<a href="FAQ.hh" class="label-faq">센터이용</a>
+														<a href="search.hh?keyword=이용" class="label-faq">센터이용</a>
 														<a href="FAQ.hh" class="label-faq">인증오류</a>
 														<a href="FAQ.hh" class="label-faq">센터입장</a>
 														<a href="FAQ.hh" class="label-faq">PASS변경</a>
@@ -309,7 +309,7 @@ h5 {
 											</p>
 											<p class="help-block">
 												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
-												<strong><a href="#" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
+												<strong><a href="login.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
 											</p>
 											<a href="#" class="btn btn-default"><i class="fa fa-comments-o" style=""></i> 실시간 채팅상담</a>
 										</div>
