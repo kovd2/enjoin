@@ -1,6 +1,9 @@
 package com.finalProject.enjoin.member.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 public class Member implements java.io.Serializable{
 	private int userNo;				//회원번호
@@ -23,14 +26,14 @@ public class Member implements java.io.Serializable{
 	private String copType;			//업종
 	private String copCon;			//업태
 	private String copEmail;		//세금계산서용 이메일
-	private String upload_Name;		//프로필 사진
+	private ArrayList<Attachment> attachment;
 	
 	public Member() {}
 
 	public Member(int userNo, String userType, String userId, String userPwd, String userName, String phone,
 			String email, Date enrollDate, Date modifyDate, String status, String managerName, String managerPhone,
 			String managerEmail, String copNo, String ceoName, String copName, String copAddress, String copType,
-			String copCon, String copEmail, String upload_Name) {
+			String copCon, String copEmail, ArrayList<Attachment> attachment) {
 		super();
 		this.userNo = userNo;
 		this.userType = userType;
@@ -52,7 +55,7 @@ public class Member implements java.io.Serializable{
 		this.copType = copType;
 		this.copCon = copCon;
 		this.copEmail = copEmail;
-		this.upload_Name = upload_Name;
+		this.attachment = attachment;
 	}
 
 	public int getUserNo() {
@@ -215,12 +218,12 @@ public class Member implements java.io.Serializable{
 		this.copEmail = copEmail;
 	}
 
-	public String getUpload_Name() {
-		return upload_Name;
+	public ArrayList<Attachment> getAttachment() {
+		return attachment;
 	}
 
-	public void setUpload_Name(String upload_Name) {
-		this.upload_Name = upload_Name;
+	public void setAttachment(ArrayList<Attachment> attachment) {
+		this.attachment = attachment;
 	}
 
 	@Override
@@ -230,8 +233,9 @@ public class Member implements java.io.Serializable{
 				+ ", modifyDate=" + modifyDate + ", status=" + status + ", managerName=" + managerName
 				+ ", managerPhone=" + managerPhone + ", managerEmail=" + managerEmail + ", copNo=" + copNo
 				+ ", ceoName=" + ceoName + ", copName=" + copName + ", copAddress=" + copAddress + ", copType="
-				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + ", upload_Name=" + upload_Name + "]";
+				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + ", attachment=" + attachment + "]";
 	}
 
+	
 	
 }

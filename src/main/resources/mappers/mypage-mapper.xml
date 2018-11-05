@@ -54,6 +54,7 @@
 		<result property="status" column="STATUS"/>
 		<result property="userNo" column="USER_NO"/>
 		<result property="userName" column="USER_NAME"/>
+		<collection property="attachment" javaType="java.util.ArrayList" resultMap="AttachmentResultSet"/>
 		<collection property="comentList" javaType="java.util.ArrayList" resultMap="comentResultSet"/>
 	</resultMap>
 	
@@ -141,14 +142,23 @@
 	</insert>
 	
 	<!-- 크루 게시물 작성 쿼리 -->
-
+	<insert id="insertCrewBoard" parameterType="hashmap">
+		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, CREW_NO, BOARD_COUNT, USER_NO)
+		VALUES(BOARD_NO.NEXTVAL, '크루게시판', #{b.boardTitle}, #{b.boardContent}, SYSDATE, 'Y', #{crewId}, 0, #{userNo})
+	</insert>
+	
+	<!-- 크루 게시물 이미지 저장 쿼리 -->
+	<insert id="insertBoardImg" parameterType="Attachment">
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_ATT_NO.NEXTVAL, 0, #{at.upload_Name}, #{at.origin_Name}, #{at.file_size}, #{at.file_Ext}, SYSDATE, 5, BOARD_NO.CURRVAL)
+	</insert>
 	
 	<!-- 게시물 갯수  조회-->
-	<select id="getListCount">
+	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD
 		WHERE STATUS = 'Y'
-		AND BOARD_TYPE = 5
+		AND BOARD_TYPE = '크루게시판'
 		AND CREW_NO = #{crewId}
 	</select>
 	
@@ -156,7 +166,7 @@
 	<select id="crewBoardList" resultMap="boardResultSet">
 		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE
 		FROM BOARD
-		WHERE BOARD_TYPE = 5
+		WHERE BOARD_TYPE = '크루게시판'
 		AND STATUS = 'Y'
 		AND CREW_NO = #{crewId}
 		ORDER BY BOARD_NO DESC
@@ -167,6 +177,7 @@
 		SELECT * FROM BOARD B
 		JOIN MEMBER M ON(B.USER_NO = M.USER_NO)
 		LEFT JOIN COMENT C ON(B.BOARD_NO = C.BOARD_NO)
+        LEFT JOIN ATTACHMENT A ON(A.REF_NO = B.BOARD_NO)
 		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
 	<!-- 	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT

@@ -6,22 +6,25 @@ import java.util.ArrayList;
 
 public class Board implements Serializable {
 	
-	private int boardNo; 					//게시물번호
-	private String boardType;				//구분
-	private String boardTitle; 				//게시물제목
-	private String boardContent; 			//게시물내용
-	private int boardCount;					//조회수
-	private Date enrollDate; 				//작성일
-	private Date modifyDate; 				//수정일
-	private String status; 					//삭제여부
-	private int userNo; 					//작성자
-	private String userName;
-	private ArrayList<Coment> comentList;	//댓글리스트
+	private int boardNo; 								//게시물번호
+	private String boardType;							//구분
+	private String boardTitle; 							//게시물제목
+	private String boardContent; 						//게시물내용
+	private int boardCount;								//조회수
+	private Date enrollDate; 							//작성일
+	private Date modifyDate; 							//수정일
+	private String status; 								//삭제여부
+	private int userNo; 								//작성자
+	private int crewNo;									//크루 번호
+	private String userName;							//유저 이름
+	private ArrayList<Attachment> attachment;			//파일 업로드 이름
+	private ArrayList<Coment> comentList;				//댓글리스트
 	
 	public Board() {}
 
 	public Board(int boardNo, String boardType, String boardTitle, String boardContent, int boardCount, Date enrollDate,
-			Date modifyDate, String status, int userNo, String userName, ArrayList<Coment> comentList) {
+			Date modifyDate, String status, int userNo, int crewNo, String userName, ArrayList<Attachment> attachment,
+			ArrayList<Coment> comentList) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -32,7 +35,9 @@ public class Board implements Serializable {
 		this.modifyDate = modifyDate;
 		this.status = status;
 		this.userNo = userNo;
+		this.crewNo = crewNo;
 		this.userName = userName;
+		this.attachment = attachment;
 		this.comentList = comentList;
 	}
 
@@ -108,12 +113,28 @@ public class Board implements Serializable {
 		this.userNo = userNo;
 	}
 
+	public int getCrewNo() {
+		return crewNo;
+	}
+
+	public void setCrewNo(int crewNo) {
+		this.crewNo = crewNo;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public ArrayList<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(ArrayList<Attachment> attachment) {
+		this.attachment = attachment;
 	}
 
 	public ArrayList<Coment> getComentList() {
@@ -128,10 +149,9 @@ public class Board implements Serializable {
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", boardCount=" + boardCount + ", enrollDate=" + enrollDate
-				+ ", modifyDate=" + modifyDate + ", status=" + status + ", userNo=" + userNo + ", userName=" + userName
-				+ ", comentList=" + comentList + "]";
+				+ ", modifyDate=" + modifyDate + ", status=" + status + ", userNo=" + userNo + ", crewNo=" + crewNo
+				+ ", userName=" + userName + ", attachment=" + attachment + ", comentList=" + comentList + "]";
 	}
 
-	
-	
+		
 }

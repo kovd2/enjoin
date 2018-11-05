@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.myPage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -99,6 +100,29 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.selectList("myPage.selectWritePost", userNo);
 	}
+
+	//크루 게시물 작성
+	@Override
+	public int insertCrewBoard(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		int result = 0;
+		System.out.println("DAOImpl");
+		int result1 = sqlSession.insert("myPage.insertCrewBoard", hmap);
+		System.out.println("게시물 등록 완료");
+		
+		if(result1 > 0) {
+			
+			/*int boardNo = sqlSession.selectOne("myPage.selectBoardNo");
+			at.setRef_No(boardNo);
+			System.out.println("boardNo : " + boardNo);*/
+			
+			sqlSession.insert("myPage.insertBoardImg", hmap);
+			
+			System.out.println("게시물 등록 & 게시물 이미지 등록 완료");
+		}
+		
+		return result;
+	}
+
 
 
 }

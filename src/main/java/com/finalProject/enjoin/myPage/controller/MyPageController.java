@@ -3,6 +3,7 @@ package com.finalProject.enjoin.myPage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -91,16 +93,18 @@ public class MyPageController {
 		
 		try {
 			photo.transferTo(new File(filePath + "\\" + changeName + ext));
-			
+
 			int result = 0;
-			
+
 			result = mps.updateMember(m, at);
+			
+			((Member)(request.getSession().getAttribute("loginUser"))).getAttachment().get(0).setUpload_Name(changeName + ext);
 			
 			return "redirect:changeInfo.ljs";
 		} catch (Exception e) {
 			new File(filePath + "\\" + changeName + ext).delete();
-			
-			return "changeInfo.ljs";
+			System.out.println(e.getMessage());
+			return "redirect:changeInfo.ljs";
 		}
 		
 	}
@@ -187,7 +191,7 @@ public class MyPageController {
 		System.out.println("Detail : " + b);
 		System.out.println("rCount : " + rCount);
 		
-		mv.setViewName("crew/crewBoardDetail");
+		mv.setViewName("crew/crewBoardDetail");		
 		mv.addObject("Detail", b);
 		mv.addObject("rCount", rCount);
 		
@@ -196,9 +200,12 @@ public class MyPageController {
 	
 	//크루 게시판 작성 폼으로 이동
 	@RequestMapping("goCrewBoardForm.ljs")
-	public String goCrewBoardForm() {
+	public ModelAndView goCrewBoardForm(@RequestParam("crewId") int crewId, ModelAndView mv) {
 		
-		return "crew/crewBoardForm";
+		mv.setViewName("crew/crewBoardForm");
+		mv.addObject("crewId", crewId);
+		
+		return mv;
 	}
 	
 	//내가 쓴 게시물 / 리뷰/ 댓글 페이지
@@ -220,6 +227,73 @@ public class MyPageController {
 		//mps.deleteMember(userId);
 		
 		return "";
+	}
+	
+	//크루 게시물 작성
+	@RequestMapping("insertCrewBoard.ljs")
+	public ModelAndView insertCrewBoard(@RequestParam(name="crewId") int crewId, ModelAndView mv,
+			@RequestParam(name="attachment", required=false) MultipartFile attachment, HttpServletRequest request) {
+		System.out.println("1");
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		System.out.println("crewId : " + crewId);
+		Board b = new Board();
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles\\myPage\\board";
+		System.out.println("filePath : " + filePath);
+		String originFileName = attachment.getOriginalFilename();
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		String changeName = CommonUtils.getRandomString();
+		long fileSize1 = attachment.getSize();
+		String fileSize = String.valueOf(fileSize1);
+		
+		System.out.println("changeName : " + changeName);
+		
+		Attachment at = new Attachment();
+		
+		String origin_FileNames = String.valueOf(originFileName);
+		String changeNameExt = changeName + ext;
+		
+		at.setOrigin_Name(originFileName);
+		at.setFile_Ext(ext);
+		at.setUpload_Name(changeNameExt);
+		at.setFile_size(fileSize);		
+		
+		System.out.println("Attatch : " + at);
+		
+		hmap.put("b", b);
+		hmap.put("userNo", userNo);
+		hmap.put("crewId", crewId);
+		hmap.put("at", at);
+		
+		try {
+			attachment.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			int result = 0;
+			result = mps.insertCrewBoard(hmap);
+			
+			
+			mv.setViewName("redirect:goCrewBoardList.ljs");
+			mv.addObject("crewId", crewId);
+			return mv;
+			
+			
+		} catch (Exception e) {
+			new File(filePath + "\\" + changeName + ext).delete();
+			System.out.println(e.getMessage());
+			mv.setViewName("redirect:goCrewBoardForm.ljs");
+			return mv;
+		}
 	}
 	
 }

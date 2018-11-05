@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.myPage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,9 +11,9 @@ import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
+import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
-import com.finalProject.enjoin.myPage.model.vo.Board;
 @Service
 public class myPageServiceImpl implements myPageService{
 	@Autowired
@@ -78,6 +79,17 @@ public class myPageServiceImpl implements myPageService{
 	public List<Board> selectWritePost(int userNo) {
 		
 		return mpd.selectWritePost(userNo, sqlSession);
+	}
+
+	//크루 게시물 작성
+	@Override
+	public int insertCrewBoard(HashMap<String, Object> hmap) {
+		
+		int result = 0;
+		
+		int result1 = mpd.insertCrewBoard(hmap, sqlSession);
+		
+		return result;
 	}
 
 

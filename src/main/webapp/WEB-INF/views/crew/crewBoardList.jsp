@@ -45,11 +45,11 @@
 							<a class="list-group-item" onclick="detailBoard(${b.boardNo })"> 
 								<span class="label label-info">게시물</span>						
 								<h4 class="list-group-ietm-heading">${b.boardTitle }</h4> 						
-								<span class="date">${b.enrollDate }</span>												
+								<span class="date">${b.enrollDate }</span>									
 							</a> 
 						</c:forEach>
 						</div>
-							<button onclick="location.href='goCrewBoardForm.ljs'" style="float:right;">작성하기</button>
+							<button onclick="goCrewBoardForm(${crewId})" style="float:right;">작성하기</button>
 						<!-- 페이징 처리 -->
 						<nav>
 							<ul class="pagination">
@@ -103,6 +103,10 @@
 	<script>
 		function detailBoard(boardNo){
 			location.href="crewBoardDetail.ljs?boardNo=" + boardNo;
+		}
+		
+		function goCrewBoardForm(crewId){
+			location.href="goCrewBoardForm.ljs?crewId=" + crewId;
 		}
 	</script>
 </body>

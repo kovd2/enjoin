@@ -1,6 +1,8 @@
+<%@page import="com.finalProject.enjoin.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%-- <% Member loginUser = (Member)session.getAttribute("loginUser"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,13 +64,12 @@
 	<div class="leftContainer">
 	
 			<div class="profil">
-				<c:if test="${ loginUser.upload_Name ne null}">
+				<c:if test="${ loginUser.getAttachment().get(0).getUpload_Name() ne null}">
 					<div class="profil_img">
-						<img id="profil_img" src="resources/uploadFiles/myPage/profil/${ loginUser.upload_Name }">
+						<img id="profil_img" src="resources/uploadFiles/myPage/profil/${ loginUser.getAttachment().get(0).getUpload_Name() }">
 					</div>
 				</c:if>
-				<c:if test="${ loginUser.upload_Name eq null}">
-				location.reload():
+				<c:if test="${ loginUser.getAttachment().get(0).getUpload_Name() eq null}">				
 					<div class="profil_img">
 						<img id="profil_img" src="resources/images/myPage/user.png">
 					</div>
@@ -87,7 +88,7 @@
 				<div class="mypageMenuWrap">
 					<div class="mypageMenu">
 						<ul>
-							<li><b><a href="profil.ljs?userId=${loginUser.userId }" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
+							<li><b><a href="profil.ljs?userId=${ loginUser.userId }" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
 							<li><b><a href="wantPlace.ljs" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  가보고 싶은 시설</a></b></li>
 							<li><b><a href="history.ljs" id="history" class="fontColBlack current"><i class="fa fa-bar-chart"></i>  이용기록</a></b></li>
 							<li><b><a href="crewManager.ljs?userNo=${ loginUser.userNo }" id="a_invite" class="fontColBlack current"><i class="fa fa-child"></i>  크루관리</a></b></li>
