@@ -26,6 +26,19 @@
 
 	</resultMap>
 
+	<resultMap type="Attachment" id="CompanyAttachment">
+	<!-- Primary key  -->
+	<id property="att_No" column="ATT_NO"/>
+		<!-- 컬럼  -->
+		<result property="file_No" column="FILE_NO"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="origin_Name" column="ORIGIN_NAME"/>
+		<result property="file_size" column="FILE_SIZE"/>
+		<result property="file_Ext" column="FILE_EXT"/>
+		<result property="file_Date" column="FILE_DATE"/>
+		<result property="file_Type" column="FILE_TYPE"/>
+		<result property="ref_No" column="REF_NO"/>
+	</resultMap>
 
 	
 	<!-- 제휴기업 신청쿼리 -->
@@ -34,11 +47,27 @@
 					FACILITY_STATUS, PASS_COUNT, FACILITY_COPNO, FACILITY_NAME, FACILITY_AREA, FACILITY_SECTION,
 					FACILITY_ADDRESS, FACILITY_EVENT, FACILITY_MANAGER_NAME, FACILITY_MANAGER_PHONE, TIME_FOR_CALL,
 					MON_FRI_TIME, SAT_TIME, SUN_TIME) 
-		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, #{passCount}, #{facilityCopNo}, #{facilityName}, #{facilityArea}, 
-					#{facilitySection}, #{facilityAddress}, #{facilityEvent}, #{facilityManagerName},
+		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, SYSDATE, SYSDATE, DEFAULT, #{passCount}, #{facilityCopNo}, #{facilityName},
+					#{facilityArea}, #{facilitySection}, #{facilityAddress}, #{facilityEvent}, #{facilityManagerName},
 					#{facilityManagerPhone}, #{timeForCall}, #{mon_fri_time}, #{sat_time}, #{sun_time})
 	</insert>
 	
+	<!-- 크루 인서트한 번호 커발하여 조회  -->
+	<select id="selectFacilityId" parameterType="_int" resultType="_int">
+		SELECT SEQ_FACILITY_NO.CURRVAL FROM dual
+	</select>
+	
+	
+	<!-- 사진 등록  -->
+	<insert id="insertAttachment1" parameterType="Company">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,0,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{ref_No})
+	</insert>
+
+	<insert id="insertAttachment2" parameterType="Company">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{ref_No})
+	</insert>
 
 	
 </mapper>
