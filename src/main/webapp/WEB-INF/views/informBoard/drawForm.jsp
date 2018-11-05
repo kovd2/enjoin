@@ -118,10 +118,11 @@ label{
 }
 #fileImg1{
     display: block;
-     visibility: hidden; 
-    width: 0;
-    height: 0;
+     visibility: hidden;
+    width:0;
+    height:0;
 }
+
 
 #imgBtn1{
 	border:1px solid #888;
@@ -251,11 +252,12 @@ label{
 						<form action="insertInform.kch2" method="post" encType="multipart/form-data" autocomplete="off">
 						<!-- <form action="/insert.no" method="post" autocomplete="off"> -->
 							<table>
+							
 								<tr>
 									<td class="title">
 									<div class="labelWrap">
 									<label>공고제목</label>
-									<input name="informBoardTitle" type="text" id="title" size="50" maxlength="8" title="공고제목" style="width: 300px">
+									<input name="informBoardTitle" value="" type="text" id="title" size="50" maxlength="8" title="공고제목" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -358,9 +360,9 @@ label{
 									<td>
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진1</label>
-									<input type="file" name="fileImg1" id="fileImg1" onchange="readURL1(this);" />
+									<input type="file" name="fileImg1" id="fileImg1"  onchange="readURL1(this);" />
 									</div>
-									<button type="button"id="imgBtn1"><img id="blah1" src="#" alt="대표사진1"></button>
+									 <button type="button"id="imgBtn1"> <img id="blah1" src="#" alt="대표사진1"></button>
 
 									</td>
 									
@@ -369,7 +371,7 @@ label{
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진2</label>
 									<input type="file" size="50"name="fileImg2" id="fileImg2" onchange="readURL2(this);" /></div>
-									<button type="button"id="imgBtn2"><img id="blah2" src="#" alt="대표사진2"></button>
+									 <button type="button"id="imgBtn2"> <img id="blah2" src="#" alt="대표사진2"></button>
 									
 
 									</td>
@@ -378,8 +380,8 @@ label{
 									<td>
 									<div class="imgWrap">
 									<label class="imgLabel">대표사진3</label>
-									<input type="file" size="50"name="fileImg3" id="fileImg3" onchange="readURL3(this);" /></div>
-									<button type="button"id="imgBtn3"><img id="blah3" src="#" alt="대표사진3"></button>
+									<input type="file" size="50"name="fileImg3"  id="fileImg3" onchange="readURL3(this);" /></div>
+									 <button type="button"id="imgBtn3"><img id="blah3" src="#" alt="대표사진3"></button>
 									</td>
 									
 									
@@ -493,11 +495,15 @@ label{
  function readURL1(input) {
 	if (input.files && input.files[0]) { 
 		var reader = new FileReader(); reader.onload = function (e) { 
-			$('#blah1').attr('src', e.target.result); } 
-		reader.readAsDataURL(input.files[0]); } }
+			$('#blah1').attr('src', e.target.result);
+			/* $('#blah1').css({width:"10px",higth:"10px"}); */
+			} 
+		reader.readAsDataURL(input.files[0]); }
+	
+ }
  </script>
 
-<script type="text/javascript"> 
+ <script type="text/javascript"> 
  function readURL2(input) {
 	if (input.files && input.files[0]) { 
 		var reader = new FileReader(); reader.onload = function (e) { 
@@ -515,7 +521,7 @@ label{
 			} 
 		reader.readAsDataURL(input.files[0]); } 
 	}
- </script>
+ </script> 
 
 
 
