@@ -7718,7 +7718,7 @@ div {
 									</div>
 									<div class="notYetMember">
 										아직 계정이 없으신가요?&nbsp;&nbsp;&nbsp;&nbsp;<a
-											href="memberInsertView.me">회원가입하기</a>
+											href="preInsertView.me">회원가입하기</a>
 									</div>
 									<div class="forgot">
 										아이디, 비밀번호가 생각나지 않으세요?<br> <a href="searchIdform.me">아이디

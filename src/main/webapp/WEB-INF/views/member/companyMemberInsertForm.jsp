@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>제휴시설회원으로 가입하기</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -8073,7 +8073,7 @@ body.register .subWrap {
 							</span>
 						</h2>
 
-						<form name="form_register" class="memberForm" method="post" action="companyInsert.me">
+						<form name="form_register" class="memberForm" method="post" id="CompanyMemberJoin" action="companyInsert.me">
 							<input type="hidden" name="jobtype" id="jobtype" value="go">
 							<input type="hidden" name="img_temp" id="img_temp" value="">
 							<input type="hidden" name="next" id="next" value=""> <input
@@ -8319,7 +8319,7 @@ body.register .subWrap {
 											<div class="form-group" id="terms_agreement_div">
 												<div class="checkbox">
 													<label> <input type="checkbox" value=""
-														id="terms_agreement" name="terms_agreement"> <a
+														id="check11" name="check11"> <a
 														href="conditions.me" target="_blank">이용약관</a> 동의 (필수)
 													</label>
 												</div>
@@ -8328,7 +8328,7 @@ body.register .subWrap {
 											<div class="form-group" id="privacy_agreement_div">
 												<div class="checkbox">
 													<label> <input type="checkbox" value=""
-														id="privacy_agreement" name="privacy_agreement"> <a
+														id="check22" name="check22"> <a
 														href="personalInfo.me" target="_blank">개인정보취급방침</a> 동의
 														(필수)
 													</label>
@@ -8337,35 +8337,61 @@ body.register .subWrap {
 											</div>
 											<div class="form-group">
 												<div class="checkbox">
-													<label> <input id="checkbox_marketing"
+													<label> <input id="check33"
 														type="checkbox" value=""> 마케팅정보 수신동의 (선택)
 													</label>
 													<p class="help-block">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수
 														있습니다.</p>
+														
+
 												</div>
 											</div>
 										</div>
 										<!-- /.panel-body -->
 									</div>
-									<!-- /.panel -->
-									<div class="form-group">
-										<div>
-											<input type="hidden" name="chk_sms" id="chk_sms" value="0" />
-											<input type="hidden" name="chk_email" id="chk_email"
-												value="0" /> <input type="hidden" name="chk_push"
-												id="chk_push" value="0" />
-										</div>
-									</div>
+									
 								<!-- /새 약관동의 상자 끝 -->
 
 
 
 								<div class="form-group submitLine">
-									<button type="submit" class="btn btn-block btn-signup">회원 가입</button>
+									<button type="button" class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
 								</div>
 
 							</div>
 							<!-- /.memberBox_right -->
+							
+							<script>
+	$("#checkAll").click(function() {
+		
+		var chk = $(this).is(":checked");
+		
+		if(chk){
+		  $("input:checkbox[id='check11']:checkbox").prop("checked", true);
+		  $("input:checkbox[id='check22']:checkbox").prop("checked", true);
+		  $("input:checkbox[id='check33']:checkbox").prop("checked", true);
+		}else{
+			$("input:checkbox[id='check11']:checkbox").prop("checked", false);
+			$("input:checkbox[id='check22']:checkbox").prop("checked", false);
+			$("input:checkbox[id='check33']:checkbox").prop("checked", false);
+		}
+		});
+
+	function CheckForm(){
+		 if($("input:checkbox[id='check11']").is(":checked") == false){
+			alert("이용약관에 동의 해 주세요.");
+			
+			return;
+		 }else if($("input:checkbox[id='check22']").is(":checked") == false){
+			alert("개인정보 수집 및 이용에 동의 해 주세요.");
+			
+			return;
+		}else{
+		 $("#CompanyMemberJoin").submit();
+		}
+		
+	}
+	</script>
 					</div>
 					<!-- /.row -->
 
@@ -8373,342 +8399,16 @@ body.register .subWrap {
 				</div>
 			</div>
 			<!-- /.row -->
-			<div class="mb_footDeco">
-				<img class="tlx_symbol" src="/images/tlx_pass_symbol_alt.svg" alt="">
-			</div>
+	
 		</div>
 		<!-- /.memeberWtap -->
 	</div>
 	<!-- /container -->
 
+	
 
 
-
-
-	<script>
-			$(document).ready(
-					function() {
-						$("#checkAll").change(
-								function() {
-									$("input:checkbox").prop('checked',
-											$(this).prop("checked"));
-									$('#chk_sms').val(
-											Number($(this).prop("checked")));
-									$('#chk_email').val(
-											Number($(this).prop("checked")));
-									$('#chk_push').val(
-											Number($(this).prop("checked")));
-								});
-						$('#checkbox_marketing').change(
-								function() {
-									$('#chk_sms').val(
-											Number($(this).prop("checked")));
-									$('#chk_email').val(
-											Number($(this).prop("checked")));
-									$('#chk_push').val(
-											Number($(this).prop("checked")));
-								});
-					});
-
-			// 패스워드폼 show, hide
-			$(function() {
-				$('#password').password().on('show.bs.password', function(e) {
-					//On show event
-					//$('#password_help').text('입력된 비밀번호가 맞는지 확인하세요!');
-				}).on('hide.bs.password', function(e) {
-					//On hide event
-					$('#password_help').text('');
-				});
-			});
-
-			var to;
-			function disabled_b() {
-				v = parseInt($('#interval span').html());
-				$('#interval span').html(v - 1);
-				if (v == 1) {
-					$('.btn_cer').removeAttr("disabled");
-					$('#interval').hide();
-					clearInterval(to);
-				}
-
-			}
-
-			function change_auth_type() {
-				if (document.getElementById("auth_type_email").checked) {
-					// 이메일
-					document.getElementById("div_email_comp_desc").style.display = "block";
-					document.getElementById("div_email_comp").style.display = "block";
-					document.getElementById("div_email_free").style.display = "none";
-					document.getElementById("user_upload_div").style.display = "none";
-
-				} else {
-					document.getElementById("div_email_comp_desc").style.display = "none";
-					document.getElementById("div_email_comp").style.display = "none";
-					document.getElementById("div_email_free").style.display = "block";
-					document.getElementById("user_upload_div").style.display = "block";
-				}
-			}
-
-			function go() {
-				var error_cnt = check_validate(true);
-				if (error_cnt == 0) {
-					fbq('track', 'CompleteRegistration');
-					document.form_register.submit();
-				}
-			}
-
-			function make_error(setf, target, msg) {
-				window.scrollTo(0, 0);
-				// alert(target);
-				document.getElementById(target + "_div").className = "form-group has-error";
-				document.getElementById(target + "_help").innerHTML = msg;
-				if (setf)
-					document.getElementById(target).focus();
-			}
-
-			function clear_error(target) {
-				document.getElementById(target + "_div").className = "form-group";
-				document.getElementById(target + "_help").innerHTML = "";
-			}
-			function check_phone(_this) {
-				var _val = $('input[name=user_phone]').val();
-				var regPhone = /^(?:(010\d{4})|(070\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
-				var reg_Phone = /^(?:(010-\d{4})|(070-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
-
-				if (!regPhone.test(_val) && !reg_Phone.test(_val)) {
-					alert('올바른 휴대전화번호를 입력하세요.');
-					var error = 'error_phone_number';
-					var get_url = '/member/ajax_check_phone/' + error;
-					$.ajax({
-						type : 'GET',
-						url : get_url,
-						dataType : 'json',
-						success : function(_data) {
-							if (_data.msg) {
-								$('.btn_cer').removeAttr("disabled");
-								make_error(false, "user_phone", _data.msg);
-							}
-						}
-					});
-				} else {
-					if (_val) {
-						$('.btn_cer').attr('disabled', 'disabled');
-						var get_url = '/member/ajax_check_phone/' + _val;
-						$
-								.ajax({
-									type : 'GET',
-									url : get_url,
-									dataType : 'json',
-									success : function(_data) {
-										if (_data.msg) {
-											$('.btn_cer')
-													.removeAttr("disabled");
-											make_error(false, "user_phone",
-													_data.msg);
-										} else {
-											$('input[name=r]').val(_data.r);
-											alert('입력된 휴대폰 번호로 인증문자가 발송되었습니다.');
-											document
-													.getElementById("div_sms_auth").style.display = "block";
-											$('#interval span').html(120);
-											$('#interval').show();
-											to = setInterval(disabled_b, 1000);
-										}
-
-									}
-								});
-					}
-				}
-
-			}
-			function check_phone_cer() {
-				var _val = $('input[name=user_phone]').val();
-				var _cer = $('input[name=user_phone_cer]').val();
-				var _r = $('input[name=r]').val();
-				if (_val) {
-					var get_url = '/member/ajax_check_phone_cer/' + _cer + '/'
-							+ _val + '/' + _r;
-					$
-							.ajax({
-								type : 'GET',
-								url : get_url,
-								dataType : 'json',
-								success : function(_data) {
-									if (_data.msg == 1) {
-										alert('인증번호가 일치하지 않습니다. 다시 확인해주세요.')
-									} else if (_data.msg == 0) {
-										document.getElementById("div_sms_auth").style.display = "none";
-										$('#interval').hide();
-										$('.btn_cer').attr('disabled',
-												'disabled');
-										alert('인증되었습니다.');
-									}
-								}
-							});
-				}
-			}
-			function check_id(_this) {
-				if ($(_this).val().length < 1)
-					return false;
-				clear_error("user_id");
-				var _val = $(_this).val();
-				var get_url = '/member/ajax_check_id/' + _val;
-				$.ajax({
-					type : 'GET',
-					url : get_url,
-					dataType : 'json',
-					success : function(_data) {
-						if (_data) {
-							make_error(false, "user_id", _data);
-						}
-					}
-				});
-			}
-			function check_email(_this) {
-				if ($(_this).val().length < 1)
-					return false;
-				clear_error("user_email");
-				var _val = $(_this).val();
-
-				if (document.getElementById("auth_type_email").checked) {
-					_val += "@"
-							+ $(
-									'select[name=user_email_domain] option:selected')
-									.val();
-				}
-
-				var get_url = '/member/ajax_check_email/?email='
-						+ encodeURI(_val);
-				$.ajax({
-					type : 'GET',
-					url : get_url,
-					dataType : 'json',
-					success : function(_data) {
-						if (_data) {
-							make_error(false, "user_email", _data);
-						}
-					}
-				});
-			}
-			var stop_val = false;
-			function check_validate(make_focus) {
-				if (stop_val)
-					return;
-				var email = '';
-				var user_id = document.getElementById("user_id").value;
-				var password = document.getElementById("password").value;
-				/*var password1 = document.getElementById("password1").value;
-				var password2 = document.getElementById("password2").value;*/
-				var phone = document.getElementById("user_phone").value;
-				if ($('#user_email').length)
-					email = document.getElementById("user_email").value;
-
-				var user_name = document.getElementById("user_name").value;
-
-				if (!document.getElementById("auth_type_email").checked) {
-					email = document.getElementById("user_email_free").value;
-				}
-				var phone_cer = document.getElementById("user_phone_cer").value;
-
-				var error_cnt = 0;
-
-				//if ($('#user_id_help').html().length < 1)
-				clear_error("user_id");
-				clear_error("password");
-				/*clear_error("password1");
-				clear_error("password2");*/
-				//if ($('#user_email_help').html().length < 1)
-				clear_error("user_email");
-				clear_error("user_name");
-				clear_error("user_phone");
-				clear_error("privacy_agreement");
-				clear_error("terms_agreement");
-				//clear_error("gender_male");
-				clear_error("user_phone");
-				stop_val = true;
-				if ((make_focus || user_id.length > 0)
-						&& user_id.search(/^[0-9a-zA-Z\-\_]+$/)) {
-					make_error(make_focus, "user_id", "ID에 허용되지 않는 특수문자가 있습니다.");
-					error_cnt++;
-				}
-
-				if ((make_focus || user_id.length > 0) && user_id.length < 5) {
-					make_error(make_focus, "user_id", "아이디를 5자리 이상 입력해 주세요");
-					error_cnt++;
-				}
-				if ((make_focus || password.length > 0) && password.length < 6) {
-					make_error(make_focus, "password",
-							"입력하신 비밀번호가 너무 짧습니다. 6 자리 이상 입력해 주세요");
-					error_cnt++;
-				}
-				/*if ((make_focus || password2.length > 0) && password1 != password2) {
-				    make_error(make_focus, "password2", "입력하신 비밀번호가 서로 다릅니다.");
-				    error_cnt++;
-				}*/
-				/*
-				 이메일 체크 제거
-				if ((make_focus || email.length > 0) && email.length < 2) {
-				    make_error(make_focus, "user_email", "이메일을 입력 해 주세요");
-				    error_cnt++;
-				}
-
-				 */
-
-				if ((make_focus || user_name.length > 0)
-						&& user_name.length < 2) {
-					make_error(make_focus, "user_name", "이름을 입력해 주세요");
-					error_cnt++;
-				}
-
-				if ((make_focus || phone.length > 0) && phone.length < 2) {
-					make_error(make_focus, "user_phone", "휴대폰 번호를 입력해 주세요");
-					error_cnt++;
-				}
-				if ((make_focus || phone_cer.length > 0)
-						&& phone_cer.length < 2) {
-					make_error(make_focus, "user_phone", "인증 번호를 입력해 주세요");
-					error_cnt++;
-				}
-
-				if (make_focus
-						&& !document.getElementById("terms_agreement").checked) {
-					make_error(make_focus, "terms_agreement", "필수 약관에 동의해 주세요");
-					error_cnt++;
-				}
-				if (make_focus
-						&& !document.getElementById("privacy_agreement").checked) {
-					make_error(make_focus, "privacy_agreement",
-							"필수 약관에 동의해 주세요");
-					error_cnt++;
-				}
-				if (make_focus
-						&& !document.getElementById("auth_type_email").checked
-						&& document.getElementById("user_upload").value == "") {
-					make_error(make_focus, "user_upload", "재직증명 서류를 업로드해 주세요");
-					error_cnt++;
-				}
-
-				stop_val = false;
-				return error_cnt;
-			}
-			fbq('track', 'Lead');
-		</script>
-
-	<script type="text/javascript">
-			(function(i, s, o, g, r, a, m) {
-				i['GoogleAnalyticsObject'] = r;
-				i[r] = i[r] || function() {
-					(i[r].q = i[r].q || []).push(arguments)
-				}, i[r].l = 1 * new Date();
-				a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-				a.async = 1;
-				a.src = g;
-				m.parentNode.insertBefore(a, m)
-			})(window, document, 'script',
-					'//www.google-analytics.com/analytics.js', 'ga');
-			ga('create', 'UA-44449439-2', 'auto');
-			ga('send', 'pageview', '/member/register_form/');
-		</script>
+	
 
 
 
