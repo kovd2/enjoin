@@ -1,12 +1,16 @@
 package com.finalProject.enjoin.informBoard.model.service;
 
-import com.finalProject.enjoin.informBoard.model.exception.InsertInformException;
+
+import java.util.ArrayList;
+
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 
 public interface InformBoardService  {
 
-	int insertInform(InformBoard ib, InformBoardFiles ibf) throws InsertInformException;
+	
+
+	int insertInform(InformBoard ib, InformBoardFiles ibf, ArrayList<InformBoardFiles> fileList);
 
 	
 	

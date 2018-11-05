@@ -1,7 +1,7 @@
 package com.finalProject.enjoin.informBoard.controller;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
-import com.finalProject.enjoin.informBoard.model.exception.InsertInformException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
-import com.finalProject.enjoin.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -60,8 +58,8 @@ public class InformBoardController {
 			,@RequestParam(name="fileImg2",required=false)MultipartFile fileImg2
 			,@RequestParam(name="fileImg3",required=false)MultipartFile fileImg3
 			) {
-		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
-		System.out.println(userNo);
+//		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+//		System.out.println(userNo);
 		String informBoardTitle = request.getParameter("informBoardTitle");
 		String informBoardContent = request.getParameter("informBoardContent");
 		int informPassCount = Integer.parseInt(request.getParameter("informPassCount"));
@@ -73,8 +71,6 @@ public class InformBoardController {
 		String noticeStatus = request.getParameter("noticeStatus");
 		String categoryNo = request.getParameter("categoryNo");
 		String noticeDaily = request.getParameter("noticeDaily");
-	
-		
 		
 
 		java.sql.Date requestDay = null;
@@ -82,23 +78,28 @@ public class InformBoardController {
 		java.sql.Date startDay=null;
 		
 		if(noticeRequest1 != ""&&noticeEnd1 != ""&&noticeStart1 != ""){
-			String[] dateArr1 = noticeRequest1.split("-");
-			String[] dateArr2 = noticeEnd1.split("-");
-			String[] dateArr3 = noticeStart1.split("-");
-			int[] drr1 = new int[dateArr1.length];
-			int[] drr2 = new int[dateArr2.length];
-			int[] drr3 = new int[dateArr3.length];
+			String dateArr1 = noticeRequest1;
+			System.out.println(dateArr1);
+			String dateArr2 = noticeEnd1;
+			String dateArr3 = noticeStart1;
+			int[] drr1 = new int[dateArr1.length()];
+			int[] drr2 = new int[dateArr2.length()];
+			int[] drr3 = new int[dateArr3.length()];
 			
-			for(int i =0; i < dateArr1.length; i ++){
-				drr1[i] = Integer.parseInt(dateArr1[i]);
+			for(int i =0; i < dateArr1.length(); i ++){
+				drr1[i] = Integer.parseInt(dateArr1);
+				
+			}
+			System.out.println(drr1[0]);
+			System.out.println(drr1[1]);
+			System.out.println(drr1[2]);
+			
+			for(int i =0; i < dateArr2.length(); i ++){
+				drr2[i] = Integer.parseInt(dateArr2);
 			}
 			
-			for(int i =0; i < dateArr2.length; i ++){
-				drr2[i] = Integer.parseInt(dateArr2[i]);
-			}
-			
-			for(int i =0; i < dateArr3.length; i ++){
-				drr3[i] = Integer.parseInt(dateArr3[i]);
+			for(int i =0; i < dateArr3.length(); i ++){
+				drr3[i] = Integer.parseInt(dateArr3);
 			}
 			requestDay = new java.sql.Date(new GregorianCalendar(drr1[0],drr1[1] - 1, drr1[2]).getTimeInMillis());
 			endDay = new java.sql.Date(new GregorianCalendar(drr2[0],drr2[1] - 1, drr2[2]).getTimeInMillis());
@@ -116,7 +117,8 @@ public class InformBoardController {
 		System.out.println(fileImg3.isEmpty());
 		System.out.println(informBoardTitle+"informBoardTitle");
 		 
-		 
+		
+		
 		
 		InformBoard ib = new InformBoard();
 		ib.setInformBoardTitle(informBoardTitle);
@@ -131,35 +133,36 @@ public class InformBoardController {
 		ib.setNoticeStatus(noticeStatus);
 		
 		if(categoryNo.equals("런닝")) {
+			System.out.println(categoryNo);
 			ib.setCategoryNo(0);
-			Integer.parseInt(categoryNo);
+			System.out.println("수정후 카테고리:"+ib.getCategoryNo());
 		}else if(categoryNo.equals("수영")) {
 			ib.setCategoryNo(1);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("필라테스")) {
 			ib.setCategoryNo(2);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("격투기")) {
 			ib.setCategoryNo(3);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("댄스")) {
 			ib.setCategoryNo(4);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("요가")) {
 			ib.setCategoryNo(5);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("헬스")){
 			ib.setCategoryNo(6);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("크로스핏")) {
 			ib.setCategoryNo(7);
-			Integer.parseInt(categoryNo);
+			
 		}else if(categoryNo.equals("기타")) {
 			ib.setCategoryNo(8);
-			Integer.parseInt(categoryNo);
+			
 		}
 		
-		
+
 		
 		//사진저장할 경로지정
 		String root=request.getSession().getServletContext().getRealPath("resources");
@@ -168,7 +171,9 @@ public class InformBoardController {
 		String filePath= root+"/uploadFiles/"+"informBoard";
 		System.out.println(filePath);
 		
+		
 		//파일사이즈지정
+		
 		long originFileSize1=fileImg1.getSize();
 		long originFileSize2=fileImg2.getSize();
 		long originFileSize3=fileImg3.getSize();
@@ -193,41 +198,56 @@ public class InformBoardController {
 		String uploadName2=changeName+ext2;
 		String uploadName3=changeName+ext3;
 		
+		//파일순서번호
+		int fileNo1=1;
+		int fileNo2=2;
+		int fileNo3=3;
+		
+		ArrayList<InformBoardFiles> fileList = new ArrayList<InformBoardFiles>();
+		
+		
+		
 		InformBoardFiles ibf = new InformBoardFiles();
+		InformBoardFiles ibf2 = new InformBoardFiles();
+		InformBoardFiles ibf3 = new InformBoardFiles();
+		
+		ibf.setFileNo(fileNo1);
+		ibf2.setFileNo(fileNo2);
+		ibf3.setFileNo(fileNo3);
 		ibf.setFilesize(fileSize1);
-		ibf.setFilesize(fileSize2);
-		ibf.setFilesize(fileSize3);
+		ibf2.setFilesize(fileSize2);
+		ibf3.setFilesize(fileSize3);
 		ibf.setOriginName(originFileName1);
-		ibf.setOriginName(originFileName2);
-		ibf.setOriginName(originFileName3);
+		ibf2.setOriginName(originFileName2);
+		ibf3.setOriginName(originFileName3);
 		ibf.setFileExt(ext1);
-		ibf.setFileExt(ext2);
-		ibf.setFileExt(ext3);
+		ibf2.setFileExt(ext2);
+		ibf3.setFileExt(ext3);
 		ibf.setUploadName(uploadName1);
-		ibf.setUploadName(uploadName2);
-		ibf.setUploadName(uploadName3);
+		ibf2.setUploadName(uploadName2);
+		ibf3.setUploadName(uploadName3);
+		
+		fileList.add(ibf);
+		fileList.add(ibf2);
+		fileList.add(ibf3);
+		
 		
 		try {
 			fileImg1.transferTo(new File(filePath+"/"+changeName+ext1));
 			fileImg2.transferTo(new File(filePath+"/"+changeName+ext2));
 			fileImg3.transferTo(new File(filePath+"/"+changeName+ext3));
 			int result = 0;
-			result = ibs.insertInform(ib,ibf);
-		} catch (IllegalStateException e) {
+			result = ibs.insertInform(ib,ibf,fileList);
+			return "redirect:goMain.kch2";
+		} catch (Exception e) {
 			
-			e.printStackTrace();
-		} catch (IOException e) {
+			new File(filePath+"/"+changeName+ext1).delete();
+			new File(filePath+"/"+changeName+ext2).delete();
+			new File(filePath+"/"+changeName+ext3).delete();
 			
-			e.printStackTrace();
-		} catch (InsertInformException e) {
-			
-			e.printStackTrace();
+			return "common/errorPage";
 		}
 		
-		
-		
-		
-		return "redirect:goMain.kch2";
 	}
 	
 	@RequestMapping("goMain.kch2")

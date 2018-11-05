@@ -40,18 +40,26 @@
 	<insert id="insertInformBoard" parameterType="InformBoard">
 	INSERT INTO BOARD(BOARD_NO,BOARD_TITLE,BOARD_CONTENT,ENROLL_DATE,PASS_COUNT
 	NOTICE_MAX,NOTICE_MIN,NOTICE_REQUEST,NOTICE_START,NOTICE_STATUS,CATEGORY_NO,
-	USER_NO,NOTICE_DAILY)
+	NOTICE_DAILY)
 	VALUES(boardNo.NEXTVAL,#{informBoardTitle},#{informBoardContent},SYSDATE,
 	,#{informPassCount},#{noticeMax},#{noticeMin},#{noticeRequest},
-	#{noticeStart},default,#{categoryNo},#{userNo},#{noticeDaily})
-	<selectKey ></selectKey>
+	#{noticeStart},default,#{categoryNo},#{noticeDaily})
+	<!-- <selectKey resultType="int" keyProperty="BOARD_NO" order="AFTER">
+		SELCT BOARD_NO FROM BOARD
+	</selectKey> -->
 	</insert>
 	
-	<insert id="informBoardFilesResultSet" parameterType="InformBoardFiles">
+	
+	<select id="selctBoardNo" resultType="_int" parameterType="_int">
+		SELECT BOARD_NO.CURRVAL FROM BOARD
+	</select>
+	
+	
+	<insert id="insertInformFiles"  parameterType="InformBoardFiles">
 	INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,
 	FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
 	VALUES(attNo.NEXTVAL,#{fileNo},#{uploadName},#{originName},#{fileSize}
-	,#{fileExt},#{fileDate},3,#{refNo})
+	,#{fileExt},SYSDATE,3,#{refNo})
 
 	</insert>
 	
