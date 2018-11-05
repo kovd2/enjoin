@@ -24,34 +24,14 @@
 		<result property="copType" column="COP_TYPE"/>
 		<result property="copCon" column="COP_CON"/>
 		<result property="copEmail" column="COP_EMAIL"/>
-		<collection property="attachment" javaType="java.util.ArrayList" resultMap="AttachmentResultSet"/>
 	</resultMap>
-	
-	<!-- Attachment -->
-	<resultMap type="Attachment" id="AttachmentResultSet">
-		<id property="att_No" column="ATT_NO"/>
-		<result property="file_No" column="FILE_NO"/>
-		<result property="upload_Name" column="UPLOAD_NAME"/>
-		<result property="origin_Name" column="ORIGIN_NAME"/>
-		<result property="file_size" column="FILE_SIZE"/>
-		<result property="file_Ext" column="FILE_EXT"/>
-		<result property="file_Date" column="FILE_DATE"/>
-		<result property="file_Type" column="FILE_TYPE"/>
-		<result property="ref_No" column="REF_NO"/>
-	</resultMap>
-	
+
 	<!-- 로그인 정보 조회용 쿼리문 -->
 	<select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
-		<!-- SELECT *
+		SELECT *
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
 		AND USER_PWD = #{userPwd}
-		AND STATUS = 'Y' -->
-		SELECT *
-		FROM MEMBER M
-		JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
-		WHERE USER_ID = #{userId}
-		AND FILE_TYPE = 3
 		AND STATUS = 'Y'
 	</select>
 	
@@ -81,11 +61,18 @@
 	<!-- 암호화 후 회원 가입용 쿼리 -->
 	<select id="selectLoginUser" resultMap="memberResultSet" parameterType="Member">
 		SELECT *
-		FROM MEMBER M
-		JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+		FROM MEMBER
 		WHERE USER_ID = #{userId}
-		AND FILE_TYPE = 3
 		AND STATUS = 'Y'
+	</select>
+	
+	<!-- 아이디찾기용 쿼리 -->
+	<select id="searchId" resultMap="memberResultSet" parameterType="Member">
+	SELECT USER_ID
+	FROM MEMBER
+	WHERE USER_NAME = #{userName} 
+	AND EMAIL = #{email}
+	AND USER_STATUS = 'Y'
 	</select>
 	
 </mapper>
