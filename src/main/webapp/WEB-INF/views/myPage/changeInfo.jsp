@@ -199,7 +199,7 @@
 			    $('#password').focus();
 			    return;
 		   }
-			if(!regName.test($('#userName').val())){				   
+			/* if(!regName.test($('#userName').val())){				   
 				 alert('올바른 이름을 입력해 주세요.');
 				 $('#userName').focus();
 				 return;
@@ -208,7 +208,7 @@
 				   alert('영문+숫자  조합으로 6-12자를 입력해 주세요.');
 				   $('#userPwd').focus();
 				   return;
-		   }
+		   } */
 		   
 		   if($('#password').val() != $('#passwordCheck').val()){
 			    alert("입력하신 비밀번호를 확인 해 주세요");

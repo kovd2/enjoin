@@ -26,6 +26,7 @@
 	display:inline-block;
 	border:1px solid #ddd;
 	border-radius: 5%;
+	position: relative;
 }
 .crewList ul{
 	height:auto;
@@ -54,9 +55,14 @@
 	cursor:pointer;
 }
 .crewName{
-	margin-top:15px;
-	font-size:20px;
+	width:100%;
+	height:100px;
+	font-size:30px;
 	text-align:center;
+    top:75px;
+    font-weight:bold;
+    position:absolute;
+    left:0;
 }
 .bodyArea{
 	margin:auto;
@@ -102,8 +108,13 @@
 	text-indent:30px;
 }
 .crewLogo{
-	width:150px;
-	height:150px;
+	width:100%;
+	height:100%;
+	margin: 0 auto;
+    position: absolute;
+    left: 0;
+    border-radius: 5%;
+    opacity: 0.5;
 }
 </style>
 </head>
@@ -150,8 +161,8 @@
 			<h3>생성된 크루</h3>
 			<!-- 크루 리스트 반복-->
 			<c:forEach var="c" items="${ crewList }">
-			<div class="crewList" data-toggle="modal" data-target="#myModal">
-				<img src="resources/images/myPage/image.png" class="crewLogo">
+			<div class="crewList" data-toggle="modal" data-target="#myModal" align="center">
+				<img src="resources/images/myPage/image.png" class="crewLogo">				
 				<div class="crewName">${ c.crew_Name }</div><br>
 			</div>
 			</c:forEach>

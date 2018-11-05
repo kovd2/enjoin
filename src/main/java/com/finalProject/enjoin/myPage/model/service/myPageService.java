@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.myPage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
@@ -34,5 +35,10 @@ public interface myPageService {
 
 	//내가 쓴 게시물 조회
 	List<Board> selectWritePost(int userNo);
+
+	//크루 게시물 작성
+	int insertCrewBoard(HashMap<String, Object> hmap);
+
+
 
 }

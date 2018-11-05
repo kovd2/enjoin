@@ -64,9 +64,10 @@
 						</div>
 						<div class="noticeWrap">
 							<div class="boardContentArea">
+									<img src="resources/uploadFiles/myPage/board/${Detail.attachment[0].upload_Name }">
 									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">
 										${Detail.boardContent }
-									</span>				
+									</span>
 							</div>
 							<div class="commentArea" >
 								<form action="insertComent.ljs">

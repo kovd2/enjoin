@@ -130,10 +130,8 @@ public class MemberController {
 			loginUser = ms.loginMember(m);
 			model.addAttribute("loginUser", loginUser);
 			
-			System.out.println(loginUser);
-			
 			if(loginUser.getUserType().equals("1")) {
-			
+			System.out.println(loginUser.getAttachment().get(0).getUpload_Name());
 				return "redirect:goMain.me";
 				
 			}else if(loginUser.getUserType().equals("2")) {

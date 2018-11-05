@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.myPage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,6 +37,10 @@ public interface myPageDao {
 
 	//내가 쓴 게시물 조회
 	List<Board> selectWritePost(int userNo, SqlSessionTemplate sqlSession);
+
+	//크루 게시물 작성
+	int insertCrewBoard(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
 
 
 }
