@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>1:1 문의</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -81,10 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 					<!-- /.qaFormAside -->
 
 					<div class="qaForm qaFormCol">
-						<form name="form_qa" id="form_qa" enctype="multipart/form-data"
-							method="post">
-							<input type="hidden" name="jobtype" value="insert" id="jobtype">
-
+						<form id="contactInsertForm" action="contactInsert.hh" method="post" encType="multipart/form-data">
 							<fieldset>
 								<h4 class="mid">
 									<i></i> 문의하기
@@ -92,44 +89,21 @@ h1, h2, h3, h4, h5, h6 {
 								<!-- 이부분부터 로그인 한 회원의 정보 가져올 거임 -->
 								<div class="form-horizontal">
 									<div class="form-group">
-										<label for="notLoginQA_email" class="col-sm-2 control-label">이메일
-											<em>*</em>
-										</label>
-										<div class="col-sm-10">
-											<input type="email" class="form-control" name="email"
-												id="notLoginAq_email" placeholder="답변 받을 Email 주소를 입력하세요."
-												required="">
-										</div>
-									</div>
-									<div class="form-group">
 										<label for="notLoginQA_name" class="col-sm-2 control-label">이름
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="guest_name"
-												id="notLoginAq_name" placeholder="이름을 입력하세요." required="">
+												id="userName" placeholder="이름을 입력하세요." value="${ loginUser.getUserName() }">
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="notLoginQA_name" class="col-sm-2 control-label">연락처
-											<em>*</em>
-										</label>
-										<div class="col-sm-10">
-											<input type="tel" class="form-control" name="phone"
-												id="notLoginAq_name"
-												placeholder="연락 받으실 휴대전화 또는 유선전화 번호를 입력해 주세요." required="">
-										</div>
-									</div>
-									<!-- 이부분까지 로그인 한 회원의 정보 가져올 거임 -->
 									
 									<div class="form-group category">
 										<label for="notLoginQA_category"
 											class="col-sm-2 control-label">문의 분류 <em>*</em></label>
 										<div class="col-sm-10">
-											<select class="form-control" name="category"
-												id="notLoginQA_category">
-												<option value="" disabled="" selected="" hidden="">분류를
-													선택하세요.</option>
+											<select class="form-control" name="category" id="category">
+												<option>분류를 선택하세요.</option>
 												<optgroup label="아래 분류 중 하나를 선택해 주세요.">
 													<option value="1">가입/로그인/회원정보</option>
 													<option value="2">제휴시설 이용문의</option>
@@ -147,8 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
-											<input type="text" name="title" id="notLoginQA_title"
-												class="form-control" placeholder="제목을 입력하세요." required="">
+											<input type="text" name="title" id="title" class="form-control" placeholder="제목을 입력하세요.">
 										</div>
 									</div>
 									<div class="form-group">
@@ -156,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
-											<textarea rows="5" name="cont" class="form-control" id="notLoginQA_content" placeholder="운영체제와 브라우저를 함께 적어주시면 정확한 문제 해결에 도움이 됩니다." required=""></textarea>
+											<textarea rows="5" name="content" class="form-control" id="content" placeholder="내용을 입력해 주세요." required=""></textarea>
 										</div>
 									</div>
 									<div class="form-group">
@@ -166,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
 											<p class="help-block">
 												오류 화면을 첨부해 주세요. <br> 정확한 문제 해결에 도움이 됩니다. <em>(JPG, PNG 10Mbyte 미만 )</em>
 											</p>
-											<input type="file" id="inputFile" name="inputFile">
+											<input type="file" id="photo" name="photo">
 										</div>
 									</div>
 									<div class="form-group">

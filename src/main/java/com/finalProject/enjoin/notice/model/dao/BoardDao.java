@@ -22,4 +22,10 @@ public interface BoardDao {
 
 	public int selectBoard(Board b) throws Exception;
 
+	public int insertFAQ(Board b) throws Exception;
+
+	public List<Board> faqListAll(PageInfo pi) throws Exception;
+
+	public int getListCount2() throws Exception;
+
 }

@@ -1,9 +1,6 @@
 package com.finalProject.enjoin.member.model.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
-
-import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 public class Member implements java.io.Serializable{
 	private int userNo;				//회원번호
@@ -26,14 +23,13 @@ public class Member implements java.io.Serializable{
 	private String copType;			//업종
 	private String copCon;			//업태
 	private String copEmail;		//세금계산서용 이메일
-	private ArrayList<Attachment> attachment;
 	
 	public Member() {}
 
 	public Member(int userNo, String userType, String userId, String userPwd, String userName, String phone,
 			String email, Date enrollDate, Date modifyDate, String status, String managerName, String managerPhone,
 			String managerEmail, String copNo, String ceoName, String copName, String copAddress, String copType,
-			String copCon, String copEmail, ArrayList<Attachment> attachment) {
+			String copCon, String copEmail) {
 		super();
 		this.userNo = userNo;
 		this.userType = userType;
@@ -55,7 +51,6 @@ public class Member implements java.io.Serializable{
 		this.copType = copType;
 		this.copCon = copCon;
 		this.copEmail = copEmail;
-		this.attachment = attachment;
 	}
 
 	public int getUserNo() {
@@ -218,14 +213,6 @@ public class Member implements java.io.Serializable{
 		this.copEmail = copEmail;
 	}
 
-	public ArrayList<Attachment> getAttachment() {
-		return attachment;
-	}
-
-	public void setAttachment(ArrayList<Attachment> attachment) {
-		this.attachment = attachment;
-	}
-
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userType=" + userType + ", userId=" + userId + ", userPwd=" + userPwd
@@ -233,9 +220,8 @@ public class Member implements java.io.Serializable{
 				+ ", modifyDate=" + modifyDate + ", status=" + status + ", managerName=" + managerName
 				+ ", managerPhone=" + managerPhone + ", managerEmail=" + managerEmail + ", copNo=" + copNo
 				+ ", ceoName=" + ceoName + ", copName=" + copName + ", copAddress=" + copAddress + ", copType="
-				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + ", attachment=" + attachment + "]";
+				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + "]";
 	}
 
-	
 	
 }

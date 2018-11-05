@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.notice.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +81,49 @@ public class noticeController {
 		return "notice/contactDetail";
 	}
 	
+	/*//1:1 문의 등록(사용자)
+	@RequestMapping("contactInsert.hh")
+	public String contactInsert(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo, @RequestParam(name="category")int category) {
+		//사진 경로 지정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root +"\\uploadFiles\\admin";
+		
+		//파일명 변경
+		String originFileName = photo.getOriginalFilename();
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString();
+		
+		long fileSize1 = photo.getSize();
+		
+		String fileSize = String.valueOf(fileSize1);
+		
+		Attachment at = new Attachment();
+		
+		String origin_fileNames = String.valueOf(originFileName);
+		
+		String changeNameExt = changeName + ext;
+		
+		at.setOrigin_Name(originFileName);
+		at.setFile_Ext(ext);
+		at.setUpload_Name(changeNameExt);
+		at.setFile_size(fileSize);
+		
+		try {
+			photo.transferTo(new File(filePath + "\\" + changeName+ext));
+		} catch (Exception e) {
+			
+			new File(filePath + "\\" + changeName + ext).delete();
+		}
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		bs.insertContact(b, userNo, at);
+		
+		
+		
+		return "notice/contactInsert";
+	}
+	*/
 	@RequestMapping("passPurchase.hh")
 	public String passPurchase() {
 		
@@ -98,12 +142,52 @@ public class noticeController {
 		return "notice/passPurchaseFinish";
 	}
 	
+	//관리자 FAQ 목록
 	@RequestMapping("adminFAQ.hh")
-	public String adminFAQ() {
+	public ModelAndView adminFAQ(ModelAndView mav, HttpServletRequest request) throws Exception {
 		
-		return "notice/adminFAQ";
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = bs.getListCount2();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		//리스트 조회
+		List<Board> list = bs.faqListAll(pi);
+		
+		Board b = new Board();
+		
+		System.out.println(b.getFaqCategory());
+		mav.setViewName("notice/adminFAQ");
+		mav.addObject("list", list);
+		mav.addObject("pi", pi);
+		
+		return mav;
+		
+		
+		
 	}
-
+	
+	@RequestMapping("adminFAQInsert.hh")
+	public String adminFAQInsert() {
+		
+		return "notice/adminFAQInsert";
+	}
+	
+	//FAQ 등록
+	@RequestMapping("adminFAQInsertBtn.hh")
+	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="category")String category) throws Exception {
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		System.out.println("category v : " + category);
+		bs.insertFAQ(b, userNo, category);
+		
+		return "redirect:adminFAQ.hh";
+	}
+	
 	@RequestMapping("FAQ.hh")
 	public String FAQ() {
 		
@@ -190,10 +274,6 @@ public class noticeController {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		/*int boardNo = bs.selectBoard(b);
-		
-		b.setBoardNo(boardNo);
-		*/
 		bs.insertBoard(b, userNo, at);
 		
 		return "redirect:adminNotice.hh";

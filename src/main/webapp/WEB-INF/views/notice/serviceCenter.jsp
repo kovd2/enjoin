@@ -198,7 +198,7 @@ h5 {
 												<div class="panel panel-default phType_1">
 													<div class="panel-heading">
 														<h5 class="panel-title">
-															<a href="/help/search?category=1">센터이용/오류</a>
+															센터이용/오류
 														</h5>
 													</div>
 													<div class="panel-body">
@@ -217,7 +217,7 @@ h5 {
 												<div class="panel panel-default phType_2">
 													<div class="panel-heading">
 														<h5 class="panel-title">
-															<a href="/help/search?category=2">결제/환불</a>
+															결제/환불
 														</h5>
 													</div>
 													<div class="panel-body">
@@ -236,7 +236,7 @@ h5 {
 												<div class="panel panel-default phType_3">
 													<div class="panel-heading">
 														<h5 class="panel-title">
-															<a href="/help/search?category=3">멤버십</a>
+															멤버십
 														</h5>
 													</div>
 													<div class="panel-body">
@@ -259,7 +259,7 @@ h5 {
 												<div class="panel panel-default phType_4">
 													<div class="panel-heading">
 														<h5 class="panel-title">
-															<a href="/help/search?category=4">회원정보</a>
+															회원정보
 														</h5>
 													</div>
 													<div class="panel-body">
@@ -309,7 +309,7 @@ h5 {
 											</p>
 											<p class="help-block">
 												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
-												<strong><a href="#" style="color:black; font-size:15px;">로그인하기</a></strong></span>
+												<strong><a href="#" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
 											</p>
 											<a href="#" class="btn btn-default"><i class="fa fa-comments-o" style=""></i> 실시간 채팅상담</a>
 										</div>
