@@ -342,9 +342,34 @@ p.crewComentBox2{
     padding-top: 10px;
     left: -200px;
 }
+.crewJoin{
+	font-size: 16px;
+    line-height: 19px;
+    height: 33px;
+    vertical-align: middle;
+    color: #ffffff;
+    letter-spacing: 0;
+    margin: 0 0 5px;
+    display: inline-block;
+    padding: 0 5px;
+    border: 1px solid #d1d8da;
+    border-radius: 5px;
+    background: #00cbff;
+    margin-top: 30px;
+    width: 120px;
+}
 
 </style>
 </head>
+<script>
+	function goInCrew(userNo){
+		
+		alert(userNo);
+		
+		
+	}
+
+</script>
 <body>
 
 	<jsp:include page="../common/menubar.jsp"/>
@@ -368,6 +393,7 @@ p.crewComentBox2{
 					<p class="address">${i.crew_Area}</p>
 					<span class="crewDate">모집날짜 ${i.recruit_Start } ~ ${i.recruit_Start }</span>
 					<p class="crewMember">현재 인원 0명  총 인원 ${i.recruit_Max}명</p>
+					<button class="crewJoin"><a href="crewInCrew.shw2?user_No=${loginUser.userNo}&crew_No=${i.crew_No}&board_No=${i.board_No}">크루신청</a></button>
 					</h3>
 				</div>
 			</div>
@@ -736,7 +762,7 @@ p.crewComentBox2{
 						 		
 						 	</div>
 						 	<div class="commentWriterBox">
-						 		<form>
+						 		<form >
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">

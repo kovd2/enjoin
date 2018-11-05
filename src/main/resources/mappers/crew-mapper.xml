@@ -54,6 +54,20 @@
 		<result property="file_Type" column="FILE_TYPE"/>
 		<result property="ref_No" column="REF_NO"/>
 	</resultMap>
+	
+	<resultMap type="inCrew1" id="CrewInCrew">
+	<!-- Primary key  -->
+	<id property="increw_No" column="INCREW_NO"/>
+		<!--컬럼  -->
+		<result property="user_No" column="USER_NO"/>
+		<result property="crew_Id" column="CREW_ID"/>
+		<result property="request_Date" column="REQUEST_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="end_Date" column="END_DATE"/>
+		<result property="inCrew_Status" column="INCREW_STATUS"/>
+		<result property="user_Name" column="USER_NAME"/>
+		
+	</resultMap>
 
 	
 	<!-- 크루 인서트  -->
@@ -114,7 +128,7 @@
 		AND BOARD_TYPE = '크루모집'
 	</select>
 	
-	<!-- 크루활동 게시판 조회  -->
+	<!-- 크루모집 게시판 조회  -->
 	<select id="crewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
 		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
@@ -188,7 +202,7 @@
      <!-- 크루활동 상세보기 데이터 조회  -->
      <select id="crewRecruitmentBoardDetailsList" resultMap="CrewRecruitmentSet">
      	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.CREW_AREA,B.BOARD_CONTENT,B.BOARD_TITLE,
-		B.RECRUIT_START,B.RECRUIT_END,B.RECRUIT_MAX,B.RECRUIT_MIN,M.USER_NAME
+		B.RECRUIT_START,B.RECRUIT_END,B.CREW_NO,B.RECRUIT_MAX,B.RECRUIT_MIN,M.USER_NAME
 		FROM BOARD B
 		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
@@ -202,11 +216,25 @@
 		WHERE FILE_TYPE = 4
 		AND REF_NO = #{board_No}
      </select>
+     
      <!-- 크루 작성자 사진 조회 -->
      <select id="crewUserPhoto" resultMap="CrewRmbAttachment">
      	SELECT FILE_NO,UPLOAD_NAME
 		FROM ATTACHMENT
 		WHERE FILE_TYPE = 3
 		AND REF_NO = #{user_No}
-     </select>   
+     </select>
+     
+     <!-- 크루 모집 버튼 눌렀을시 신청  -->
+     <insert id="insertInCrew" parameterType="Crew">
+     	INSERT INTO INCREW(USER_NO,CREW_ID,REQUEST_DATE,INCREW_STATUS,INCREW_NO)
+    	VALUES(#{user_No},#{crew_Id},SYSDATE,'N',SEQ_INCREW_NO.NEXTVAL)
+     </insert>
+     <!-- 조회수증가 업데이트  -->
+     <update id="crewRecruitmentDetailsUpdate" parameterType="Crew">
+     	UPDATE BOARD
+     	SET BOARD_COUNT = BOARD_COUNT +1
+     	WHERE BOARD_NO = #{board_No}
+     </update>
+      
 </mapper>

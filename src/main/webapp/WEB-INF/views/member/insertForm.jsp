@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -415,7 +415,7 @@ body.register .subWrap {
 							</span>
 						</h2>
 
-						<form name="form_register" class="memberForm" method="post" action="insert.me">
+						<form name="form_register" class="memberForm" method="post" id="MemberJoin" action="insert.me">
 							<!-- <input type="hidden" name="jobtype" id="jobtype" value="go" /> <input
 								type="hidden" name="img_temp" id="img_temp" value="" /> <input
 								type="hidden" name="next" id="next" value="" /> <input
@@ -531,7 +531,7 @@ body.register .subWrap {
 											<div class="form-group" id="terms_agreement_div">
 												<div class="checkbox">
 													<label> <input type="checkbox" value=""
-														id="terms_agreement" name="terms_agreement"> <a
+														id="check1" name="check1"> <a
 														href="conditions.me" target="_blank">이용약관</a> 동의 (필수)
 													</label>
 												</div>
@@ -540,7 +540,7 @@ body.register .subWrap {
 											<div class="form-group" id="privacy_agreement_div">
 												<div class="checkbox">
 													<label> <input type="checkbox" value=""
-														id="privacy_agreement" name="privacy_agreement"> <a
+														id="check2" name="check2"> <a
 														href="personalInfo.me" target="_blank">개인정보취급방침</a> 동의
 														(필수)
 													</label>
@@ -549,7 +549,7 @@ body.register .subWrap {
 											</div>
 											<div class="form-group">
 												<div class="checkbox">
-													<label> <input id="checkbox_marketing"
+													<label> <input id="check3"
 														type="checkbox" value=""> 마케팅정보 수신동의 (선택)
 													</label>
 													<p class="help-block">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수
@@ -571,7 +571,7 @@ body.register .subWrap {
 									<!-- /새 약관동의 상자 끝 -->
 
 									<div class="form-group submitLine">
-										<button type="submit" class="btn btn-block btn-signup">회원 가입</button>
+										<button type="button" class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
 									</div>
 
 								</div>
@@ -590,7 +590,42 @@ body.register .subWrap {
 		<!-- /container -->
 	</div>
 	</div>
+	<!-- 약관동의 체크박스  -->
+	<!-- 체크박스 전체 체크/해제 -->
+	<script>
+	$("#checkAll").click(function() {
+		
+		var chk = $(this).is(":checked");
+		
+		if(chk){
+		  $("input:checkbox[id='check1']:checkbox").prop("checked", true);
+		  $("input:checkbox[id='check2']:checkbox").prop("checked", true);
+		  $("input:checkbox[id='check3']:checkbox").prop("checked", true);
+		}else{
+			$("input:checkbox[id='check1']:checkbox").prop("checked", false);
+			$("input:checkbox[id='check2']:checkbox").prop("checked", false);
+			$("input:checkbox[id='check3']:checkbox").prop("checked", false);
+		}
+		});
+	</script>
+	<script>
+	function CheckForm(){
+		 if($("input:checkbox[id='check1']").is(":checked") == false){
+			alert("이용약관에 동의 해 주세요.");
+			
+			return;
+		 }else if($("input:checkbox[id='check2']").is(":checked") == false){
+			alert("개인정보 수집 및 이용에 동의 해 주세요.");
+			
+			return;
+		}else{
+		 $("#MemberJoin").submit();
+		}
+		
+	}
 	
+	
+	</script>
 	<br>
 	<br>
 	<br>

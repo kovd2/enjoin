@@ -90,4 +90,25 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 
+	@Override
+	public int insertFAQ(Board b) throws Exception {
+
+		return sqlSession.insert("Board.insertFAQ", b);
+		
+	}
+
+	@Override
+	public List<Board> faqListAll(PageInfo pi) throws Exception {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Board.faqListAll", null, rowBounds);
+	}
+
+	@Override
+	public int getListCount2() throws Exception {
+		return sqlSession.selectOne("Board.getListCount2");
+	}
+
 }

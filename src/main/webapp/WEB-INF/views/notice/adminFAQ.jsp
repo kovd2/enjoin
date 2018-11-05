@@ -34,18 +34,17 @@
 			<p style="text-align:right; margin-right:190px"><input type="button" value="FAQ 등록" onclick="adminFAQInsert()" style="width:150px; height:50px;"></p>
 			<table>
 				<tr style="border: 1px solid black;">
-					<th
-						style="width: 200px; height: 60px; font-size: 30px; background: gray;">번호</th>
-					<th
-						style="width: 700px; height: 60px; font-size: 30px; background: gray;">제목</th>
-					<th
-						style="width: 200px; height: 60px; font-size: 30px; background: gray;">날짜</th>
+					<th style="width: 100px; height: 60px; font-size: 30px; background: gray;">번호</th>
+					<th style="width: 250px; height: 60px; font-size: 30px; background: gray;">카테고리</th>
+					<th style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
+					<th style="width: 200px; height: 60px; font-size: 30px; background: gray;">날짜</th>
 				</tr>
-				<c:forEach var="b" items="${ list }">
+				<c:forEach var="f" items="${ list }">
 					<tr onclick="selectOneBoard(${ b.boardNo })">
-						<td>${ b.boardNo }</td>
-						<td>${ b.boardTitle }</td>
-						<td>${ b.enrollDate }</td>
+						<td>${ f.boardNo }</td>
+						<td>${ f.faqCategory }</td>
+						<td>${ f.boardTitle }</td>
+						<td>${ f.enrollDate }</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -81,7 +80,7 @@
 						<c:url var="listEnd" value="adminFAQ.hh">
 							<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 						</c:url>
-						<li><a href="${ listEnd }">&nbsp;다음</a></li>
+						<li><a href="${ listEnd }">&nbsp; 다음</a></li>
 					</c:if>
 				</ul>
 			</nav>
