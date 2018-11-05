@@ -8,12 +8,11 @@
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Pass" alias="Pass"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Coment" alias="Coment"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Board" alias="mpBoard"/>
-		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="InformBoard"/>
-		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles" alias="InformBoardFiles"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.inCrew" alias="inCrew"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard" alias="CrewRecruitmentBoard"/>
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
+		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="inCrew1"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
@@ -21,6 +20,6 @@
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
 		 <mapper resource="mappers/crew-mapper.xml"/>
-		<mapper resource="mappers/inform-mapper.xml"/>
+
 	</mappers>
 </configuration>

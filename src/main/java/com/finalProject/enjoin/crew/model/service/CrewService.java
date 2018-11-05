@@ -7,6 +7,7 @@ import java.util.List;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 public interface CrewService {
@@ -45,6 +46,12 @@ public interface CrewService {
 
 	//작성자 사진 조회
 	Attachment crewUserPhoto(int user_No);
+
+	//크루신청 버튼 클릭시 increw로 들어가는것	
+	int insertInCrew(InCrew ic);
+	
+	//크루상세보기 클릭시 조회수증가
+	int crewRecruitmentDetailsUpdate(int board_No);
 	
 	
 

@@ -13,6 +13,7 @@ import com.finalProject.enjoin.crew.model.dao.CrewDao;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 
@@ -32,8 +33,7 @@ public class CrewServiceImpl implements CrewService {
 		
 		int reulst1 = cd.insertCrew(sqlSession,c,at,at1,crb);
 		
-		
-		
+	
 		return result;
 	}
 
@@ -109,6 +109,20 @@ public class CrewServiceImpl implements CrewService {
 		
 		return cd.crewUserPhoto(sqlSession,user_No);
 	}
+	//크루버튼 클릭시 크루 들어가게
+	@Override
+	public int insertInCrew(InCrew ic) {
+		
+		return cd.insertInCrew(sqlSession,ic);
+	}
+	
+	//상세보기 클릭시 조회수 증가
+	@Override
+	public int crewRecruitmentDetailsUpdate(int board_No) {
+		
+		return cd.crewRecruitmentDetailsUpdate(sqlSession,board_No);
+	}
+	
 
 
 
