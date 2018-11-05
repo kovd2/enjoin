@@ -78,5 +78,34 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
+	@Override
+	public int insertFAQ(Board b, int userNo, String category) throws Exception {
+
+		String title = b.getBoardTitle();
+		String content = b.getBoardContent();
+		String faqCategory = b.getFaqCategory();
+		
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		b.setUserNo(userNo);
+		b.setFaqCategory(category);
+		
+		int result = bd.insertFAQ(b);
+		
+		return result;
+	}
+
+	@Override
+	public List<Board> faqListAll(PageInfo pi) throws Exception {
+		
+		return bd.faqListAll(pi);
+	}
+
+	@Override
+	public int getListCount2() throws Exception {
+		
+		return bd.getListCount2();
+	}
+
 
 }
