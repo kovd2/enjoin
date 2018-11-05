@@ -19,6 +19,5 @@
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
-		
 	</mappers>
 </configuration>
