@@ -2,6 +2,7 @@ package com.finalProject.enjoin.crew.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +68,7 @@ public class CrewController {
 	@RequestMapping("crewActivityBoard.shw2")
 	public String showCrewActivityBoard() {
 
-		return "crew/crewActivityBoard";
+		return "crew/crewActivityBoard";	
 	}
 	//크루활동내역폼
 	@RequestMapping("crewActivity.shw2")
@@ -81,10 +82,69 @@ public class CrewController {
 	public String goCrew1() {
 		
 		
-		
 		return "crew/crewRecruitmentBoard";
 	}
+	//크루 카테고리 검색
+	@RequestMapping("crewCategorySelectBoard.shw2")
+	public ModelAndView crewCategorySelectBoard(ModelAndView mv,HttpServletRequest request) {
+		
+		String categoryName = request.getParameter("categoryName");
+		int currentPage = 1;
 	
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = cs.getCrewCategoryListCount(categoryName);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		List<CrewRecruitmentBoard> list = cs.crewCategoryRecruitmentBoardList(pi,categoryName);
+		
+		mv.setViewName("crew/crewRecruitmentBoard");
+		mv.addObject("list", list);
+		mv.addObject("pi",pi);
+		
+		return mv;
+	}
+	//크루 제목 , 작성자 검색
+	@RequestMapping("crewSearchList.sh2")
+	public ModelAndView crewSearchListBoard(ModelAndView mv,HttpServletRequest request) {
+		
+		String option = request.getParameter("option");
+		String searchList = request.getParameter("searchTitle");
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+				
+		if(option.equals("제목")) {
+			
+			String board_Title = searchList;
+			
+			int listCount = cs.getCrewTitleListCount(board_Title);
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			List<CrewRecruitmentBoard> list = cs.crewTitleRecruitmentBoardList(pi,board_Title);
+			mv.addObject("pi",pi);
+			mv.addObject("list", list);
+	
+		}else if(option.equals("지역")){
+			String crew_Area = searchList;
+			
+			int listCount = cs.getCrewAreaListCount(crew_Area);
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			List<CrewRecruitmentBoard> list = cs.crewAreaRecruitmentBoardList(pi,crew_Area);
+			mv.addObject("pi",pi);
+			mv.addObject("list", list);
+					
+		}
+	
+	
+		mv.setViewName("crew/crewRecruitmentBoard");
+		
+		
+		return mv;
+	}
 
 
 
@@ -171,32 +231,21 @@ public class CrewController {
 		
 		System.out.println("CrewBoard : " + crb);
 		
-		
-		
-		/*System.out.println("나오냐?????");
-		System.out.println("crew :" + c);
-		
-		System.out.println("origin_Name :" + origin_Name);
-		System.out.println("origin_Name :" + origin_Name1);*/
-			
+				
 		//파일 루트 지정
 		String root = request.getSession().getServletContext().getRealPath("resources"); //webapp 하위
 		
 		//파일 저장 경로 저장
 		String filePath = root + "\\uploadFiles\\crew\\crewRecruitment";
 		
-		//크루 파일명 변경
-		
+		//크루 파일명 변경	
 		String originFileName = origin_Name.getOriginalFilename();
 		String ext = originFileName.substring(originFileName.lastIndexOf("."));
 		String changeName = CommonUtils.getRandomString();
 		long fileSize1 = origin_Name.getSize();
 		String fileSize = String.valueOf(fileSize1);
 		
-		
-		
 		//크루이용할예정 파일사진 변경
-		
 		String originFileName1 = origin_Name1.getOriginalFilename();
 		String ext1 = originFileName1.substring(originFileName1.lastIndexOf("."));
 		String changeName1 = CommonUtils.getRandomString();
@@ -249,7 +298,7 @@ public class CrewController {
 
 			result = cs.insertCrew(c,at,at1,crb);
 			
-			return "redirect:goCrew1.shw2";
+			return "redirect:crewRecruitmentBoard.shw2";
 		} catch (Exception e) {
 			
 			//실패할시  파일을 삭제
@@ -262,11 +311,42 @@ public class CrewController {
 			
 			return "redirect:crewRecruitmentBoard.shw2";
 		}
+	}
+	@RequestMapping("crewRecruitmentDetails")
+	public ModelAndView crewRecruitmentDetails(ModelAndView mv,HttpServletRequest request) {
+		
+		int board_No = Integer.parseInt(request.getParameter("board_No"));
+		int user_No = Integer.parseInt(request.getParameter("user_No"));
 		
 		
-
+		System.out.println("board_No : " +  board_No);
+		System.out.println("user_No :" + user_No);
 		
-	
-
+		
+		//조회한값을 담아줄 hashMap
+		HashMap<String,Object> hmap = new HashMap<String,Object>();
+		
+		//크루게시판 조회
+		List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardDetailsList(board_No);
+		
+		//사진 정보 조회
+		List<Attachment> list1 = cs.crewAttachmentDetails(board_No);
+		
+		//작성자 사진 정보 조회
+		Attachment userPhoto = cs.crewUserPhoto(user_No);
+		
+		
+		
+		
+		
+		
+		mv.setViewName("crew/crewRecruitmentDetails");
+		mv.addObject("list", list);
+		mv.addObject("list1", list1);
+		mv.addObject("userPhoto", userPhoto);
+		
+		
+		
+		return mv;
 	}
 }

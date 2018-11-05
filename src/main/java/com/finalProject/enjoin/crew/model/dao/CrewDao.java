@@ -20,4 +20,36 @@ public interface CrewDao {
 	//크루활동 게시판 조회
 	List<CrewRecruitmentBoard> crewRecruitmentBoardList(PageInfo pi, SqlSessionTemplate sqlSession);
 
+	//크루 카테고리 게시물 갯수
+	int getCrewCategoryListCount(SqlSessionTemplate sqlSession, String categoryName);
+
+	//크루활동 게시판 카테고리별 검색 조회
+	List<CrewRecruitmentBoard> crewCategoryRecruitmentBoardList(PageInfo pi, SqlSessionTemplate sqlSession,
+			String categoryName);
+
+	//크루 제목별 게시물 갯수
+	int getCrewTitleListCount(SqlSessionTemplate sqlSession, String board_Title);
+
+	//크루 지역별 게시물 갯수
+	int getCrewAreaListCount(SqlSessionTemplate sqlSession, String crew_Area);
+	
+	//크루활동 게시판 제목별 검색 조회
+	List<CrewRecruitmentBoard> crewTitleRecruitmentBoardList(PageInfo pi, SqlSessionTemplate sqlSession,
+			String board_Title);
+	
+	//크루활동 지역별 게시판 조회
+	List<CrewRecruitmentBoard> crewAreaRecruitmentBoardList(PageInfo pi, SqlSessionTemplate sqlSession,
+			String crew_Area);
+	
+	//크루활동게시판 상세보기 데이터
+	List<CrewRecruitmentBoard> crewRecruitmentBoardDetailsList(SqlSessionTemplate sqlSession, int board_No);
+	
+	//크루활동 게시판 상세보기 사진
+	List<Attachment> crewAttachmentDetails(SqlSessionTemplate sqlSession, int board_No);
+	
+	//작성자 사진정보 조회
+	Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int user_No);
+	
+	
+
 }

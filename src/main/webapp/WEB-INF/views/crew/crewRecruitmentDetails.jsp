@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -345,23 +346,34 @@ p.crewComentBox2{
 </style>
 </head>
 <body>
+
 	<jsp:include page="../common/menubar.jsp"/>
+	<c:forEach var="i" items="${list}" varStatus="status">
+	<c:set var="user" value="${userPhoto}"/>
+
 	<div class="body">
 		<div class="header">
 			<div class="crewImgArea">
+			<c:forEach var="i1" items="${list1}" varStatus="status1">
+				<c:if test="${status1.index eq 0}">
 				<%-- <img class="crewImgBox" src="${ contextPath }/resources/images/crew/shutterstock_269242565.jpg"> --%>
-				<img class="crewImgBox" src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
+				<img class="crewImgBox" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
+				</c:if>
+				</c:forEach>
 				<div class="info">
 					<h3>
 					<smail class="crewNameLabel">ENJOIN크루모집</smail>
-					<span class="crewTitle">김창희의 필라테스 크루 모집합니다.</span>
-					<p class="crewCatagory">필라테스</p>
-					<p class="address">서울 강남구 역삼2동 아무개역</p>
-					<span class="crewDate">모집날짜 2018-10-26 ~ 2018-11-26</span>
-					<p class="crewMember">현재 인원 3명  총 인원 7명</p>
+					<span class="crewTitle">${i.board_Title}</span>
+					<p class="crewCatagory">${i.category_Name }</p>
+					<p class="address">${i.crew_Area}</p>
+					<span class="crewDate">모집날짜 ${i.recruit_Start } ~ ${i.recruit_Start }</span>
+					<p class="crewMember">현재 인원 0명  총 인원 ${i.recruit_Max}명</p>
 					</h3>
 				</div>
 			</div>
+		
+
+		</c:forEach>	
 		</div>
 			<div class="middleArea">
 				<div class="middle">
@@ -371,19 +383,17 @@ p.crewComentBox2{
 						<p class="crewWiter">- 크루에 대한 설명글 입니다.</p>
 						<p class="crewWiter1">- 크루에 참여해보세요!</p>
 						<div class="crews">
-						<img class="writerImg" src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
+						<img class="writerImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${user.upload_Name}">
+						<c:forEach var="i" items="${list}" varStatus="status">
 						<p class="crewBoss">
-						김창희님</p>
+						${i.user_Name}님</p>
 						<hr>
 						<i class="fa fa-twitch" style="font-size:36px" class="btn1"></i>
 						<div class="crews2">
-						<p class="Content">안녕하세요 김창희 입니다.<br> 
-						이번에 휘트니스 크루를 개설하려고 합니다.
-						많은 참여부탁드리고요 
-						저는 휘트니스 경력 5년차입니다. 
-						초보분들도 많이 지원해주세요 
-						다같이 재미있게
-						 운동해보아요!</p>
+						<p class="Content">안녕하세요 ${i.user_Name }입니다.<br>
+						${i.board_Content} 
+						</p>
+						 </c:forEach>
 						 </div>
 						 </div>
 						 <div class="crewcomment">
@@ -739,12 +749,14 @@ p.crewComentBox2{
 						 	</div>
 						 </div>
 					</div>
+					<c:forEach var="i1" items="${list1}" varStatus="status1">
+					<c:if test="${status1.index eq 1}">
 					<div class="crewImgBox2">
 						<h2 class="crewAtt">크루활동장소</h2>
 						<hr>
 						<p class="AttWriter1">-  같이 운동할려고 계획하는 곳에대해서 올려주세요!</p>
 						<p class="AttWriter2">-  상황에따라서 변경될수 있습니다.</p>
-						<img class="crewImg1" src="${ contextPath }/resources/images/crew/Recent_Spaces_Mayfair_016.jpg">
+						<img class="crewImg1" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
 						<div class="CrewPicksBox">
 							<p class="crewPickMember">-김창희의 런닝크루 크루원</p>
 							<p class="crewPickMember1">-김창희의 런닝크루 크루에 선정된 회원님을 확인할수있습니다.</p>
@@ -759,11 +771,14 @@ p.crewComentBox2{
 							</div>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</div>
 			</div>	
 			<div class="footer1">
 				<jsp:include page="../common/footer.jsp"/>
 			</div>
 	</div>
+	
 </body>
 </html>
