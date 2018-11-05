@@ -21,7 +21,9 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.service.CrewService;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
@@ -326,6 +328,13 @@ public class CrewController {
 		//조회한값을 담아줄 hashMap
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		
+		//게시글 조회수 업데이트
+		int result = 0;
+		
+		result = cs.crewRecruitmentDetailsUpdate(board_No);
+		
+		System.out.println("업데이트 완료되었닝????" + result);
+		
 		//크루게시판 조회
 		List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardDetailsList(board_No);
 		
@@ -335,18 +344,50 @@ public class CrewController {
 		//작성자 사진 정보 조회
 		Attachment userPhoto = cs.crewUserPhoto(user_No);
 		
-		
-		
-		
-		
-		
 		mv.setViewName("crew/crewRecruitmentDetails");
 		mv.addObject("list", list);
 		mv.addObject("list1", list1);
 		mv.addObject("userPhoto", userPhoto);
 		
-		
-		
+	
 		return mv;
 	}
+		//크루 신청
+		@RequestMapping("crewInCrew.shw2")
+		public ModelAndView crewInCrew(ModelAndView mv,HttpServletRequest request) {
+		
+			int user_No = Integer.parseInt(request.getParameter("user_No"));
+			int crew_No = Integer.parseInt(request.getParameter("crew_No"));
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			
+			InCrew ic = new InCrew();
+			
+			System.out.println("user_No :" + user_No);
+			System.out.println("crew_No :" + crew_No);
+			System.out.println("board_No :" + board_No);
+			
+			ic.setUser_No(user_No);
+			ic.setCrew_Id(crew_No);
+			
+			int result = 0;
+			result = cs.insertInCrew(ic);
+			
+			//크루게시판 조회
+			List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardDetailsList(board_No);
+			
+			//사진 정보 조회
+			List<Attachment> list1 = cs.crewAttachmentDetails(board_No);
+			
+			//작성자 사진 정보 조회
+			Attachment userPhoto = cs.crewUserPhoto(user_No);
+			
+			mv.setViewName("crew/crewRecruitmentDetails");
+			mv.addObject("list", list);
+			mv.addObject("list1", list1);
+			mv.addObject("userPhoto", userPhoto);
+			
+		
+			
+			return mv;
+		}
 }

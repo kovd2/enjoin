@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
 public interface CrewDao {
@@ -49,6 +50,12 @@ public interface CrewDao {
 	
 	//작성자 사진정보 조회
 	Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int user_No);
+
+	//크루버튼 누를시 크루 신청 인서트
+	int insertInCrew(SqlSessionTemplate sqlSession, InCrew ic);
+	
+	//상세보기 클릭시 조회수 증가
+	int crewRecruitmentDetailsUpdate(SqlSessionTemplate sqlSession, int board_No);
 	
 	
 
