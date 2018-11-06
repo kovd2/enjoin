@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -52,6 +53,12 @@ public interface CrewService {
 	
 	//크루상세보기 클릭시 조회수증가
 	int crewRecruitmentDetailsUpdate(int board_No);
+	
+	//일반댓글 인서트
+	int crewAddComent(CrewComent cc);
+	
+	//자식댓글 인서트
+	int crewAddchildComent(CrewComent cc);
 	
 	
 

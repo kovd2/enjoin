@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.finalProject.enjoin.crew.model.dao.CrewDao;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -121,6 +122,18 @@ public class CrewServiceImpl implements CrewService {
 	public int crewRecruitmentDetailsUpdate(int board_No) {
 		
 		return cd.crewRecruitmentDetailsUpdate(sqlSession,board_No);
+	}
+	//일반 댓글 인서트
+	@Override
+	public int crewAddComent(CrewComent cc) {
+
+		return cd.crewAddComent(sqlSession,cc);
+	}
+	//자식 댓글 인서트
+	@Override
+	public int crewAddchildComent(CrewComent cc) {
+		
+		return cd.crewAddchildComent(sqlSession,cc);
 	}
 	
 
