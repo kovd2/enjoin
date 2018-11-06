@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -149,6 +150,18 @@ public class CrewDaoImpl implements CrewDao {
 	public int crewRecruitmentDetailsUpdate(SqlSessionTemplate sqlSession, int board_No) {
 		
 		return sqlSession.update("Crew.crewRecruitmentDetailsUpdate",board_No);
+	}
+	//일반 댓글 인서트
+	@Override
+	public int crewAddComent(SqlSessionTemplate sqlSession, CrewComent cc) {
+		
+		return sqlSession.insert("Crew.crewAddComent", cc);
+	}
+	//자식 댓글 인서트
+	@Override
+	public int crewAddchildComent(SqlSessionTemplate sqlSession, CrewComent cc) {
+		
+		return sqlSession.insert("Crew.crewAddchildComent",cc);
 	}
 	
 

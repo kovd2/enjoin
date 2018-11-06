@@ -390,4 +390,75 @@ public class CrewController {
 			
 			return mv;
 		}
+		@RequestMapping("crewComent.shw2")
+		public ModelAndView crewComent(ModelAndView mv,HttpServletRequest request) {
+			
+			//입력한 댓글내용, 대댓글체크,댓글번호 를 가져온다
+			String coment_Content = request.getParameter("coment_Content");
+			String checked = request.getParameter("checked11");
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			String capy = request.getParameter("capy");
+			
+			System.out.println("capy" + capy);
+					
+					
+			//int board_No = 1;
+			//int coment_No = 1;
+			if(checked == null){
+				checked = capy;
+			}
+			
+			
+			//로그인 유저 넘버를 가져온다
+			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			
+			
+			CrewComent cc = new CrewComent();
+			
+			cc.setComent_Content(coment_Content);
+			cc.setBoard_No(board_No);
+			cc.setUser_No(userNo);
+			
+			/*System.out.println("comment : " + comment);
+			System.out.println("checked : " + checked);
+			System.out.println("Coment_No :" + Coment_No);
+			System.out.println("loginUser: " + userNo);
+			System.out.println("board_No : " + board_No);*/
+			
+			int result =0;
+			
+			if(checked.equals("check")){
+				
+				int coment_No = Integer.parseInt(request.getParameter("coment_No"));
+				System.out.println("나옴??/");
+				//자식 댓글 작성
+				cc.setComent_No(coment_No);	
+				int result2 = cs.crewAddchildComent(cc);
+				
+			}else{
+				System.out.println("들어오긴하냐?");
+				//일반 댓글 작성
+				int result1 = cs.crewAddComent(cc);
+				
+			}
+			
+			
+			//크루게시판 조회
+			List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardDetailsList(board_No);
+			
+			//사진 정보 조회
+			List<Attachment> list1 = cs.crewAttachmentDetails(board_No);
+			
+			//작성자 사진 정보 조회
+			Attachment userPhoto = cs.crewUserPhoto(userNo);
+			
+			mv.addObject("list", list);
+			mv.addObject("list1", list1);
+			mv.addObject("userPhoto", userPhoto);
+			
+			 //mv.setViewName("jsonView");
+			mv.setViewName("crew/crewRecruitmentDetails");
+			
+			return mv;
+		}
 }

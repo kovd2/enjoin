@@ -365,10 +365,21 @@ p.crewComentBox2{
 	function goInCrew(userNo){
 		
 		alert(userNo);
-		
-		
+			
 	}
-
+	 /*   function goCrewComent(){
+		$.ajax({
+			url  : "crewComent.shw2",
+			type : "post",
+			data : $("#coment3").serialize(),
+			success:function(data){
+				alert(data);
+			},
+			
+		});
+		
+		return false;
+	}   */
 </script>
 <body>
 
@@ -429,16 +440,20 @@ p.crewComentBox2{
 						 	
 						 	<div class="commentBox">
 								<!-- 여기부터 반복문  -->
+								
+							
 						 		<div class="MemberCommont">
 						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
 						 			<div class="Comment1">
 						 			<p class="userId">파스구찌또치님</p>
 						 				<div class="spansBtn">
+						 				
 						 				<span  class="crewOk">
 						 					<i class="fa fa-user-circle">
 						 					</i>
-						 					크루수락
+						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(coment_No = 1)">
 						 				</span>
+						 				
 						 				<span style="color:gray" class="editBtn">
 						 					<i class="fa fa-edit">
 						 					</i>
@@ -457,321 +472,39 @@ p.crewComentBox2{
 						 			</div>
 						 		</div>
 						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/10.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">또치님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">저는 또치 입니다.
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/1521087687340.gif">
-						 			<div class="Comment1">
-						 			<p class="userId">할리스지옥님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">할리스커피맛있쪙
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
-						 			<div class="Comment1">
-						 			<p class="userId">7그램짱짱님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">이곳은 너무 창렬합니다. 모두들 알고 있졍?? 뭐 다 그런거 아니겠습니까
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">할께너무많아님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">할꺼는 너무많고 졸립고 피곤하고 또 피곤합니다.^^
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/235E8E33597B3F3529.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">인생그것은무엇인가님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">인생그것은 한순간이다 알아둬 
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/441771_92228_4732.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">설빙님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">설빙맛없쪄여
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">감성발라더님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">이시대의 최고 댄스곡은 뭐다? 뭐다!
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/65446473_1_1504278084_w640.jpg">
-						 			<div class="Comment1">
-						 			<p class="userId">박효신님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">오늘하루 쉴 숨이 고단하다 고단하다 고단하다 또 고단하구나 오늘도
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
-						 			<div class="Comment1">
-						 			<p class="userId">흠야흡야님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">이상한소리소리소리소리소리 또하고있지말고 또또또
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		<!-- 여기부터 반복문  -->
-						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
-						 			<div class="Comment1">
-						 			<p class="userId">파스구찌또치님</p>
-						 				<div class="spansBtn">
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					크루수락
-						 				</span>
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
-						 				<span style="color:gray" class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">나는 사나이다. 조장이라구 이춘복 참치는 안간다.나는 회를 싫어한다고
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		
-						 		
-						 		
 						 	</div>
 						 	<div class="commentWriterBox">
-						 		<form >
+						 		<form class="comment" id="coment3" action="crewComent.shw2" method="post">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">
-						 						<input type="text" class="commentWriter" placeholder="크루신청 댓글을 작성해주세요!">
-						 						<button class="commentWriterBtn">작성하기</button>
+						 						<script>
+						 						 function check(coment_No){
+						 							var check = $("input:checkbox[class=check1]:checked").val();
+						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
+						 							$('.comment').append($inputHidden);
+						 							alert(check);
+						 							
+						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
+						 							$('.comment').append($inputHidden1);
+						 							alert(coment_No);
+						 							alert($inputHidden1.val());
+						 							
+						 							
+						 							
+						 							
+						 						 }
+						 						</script>
+						 						<c:forEach var="i" items="${list}" varStatus="status">
+						 						<input type="hidden" value="${i.board_No}" name="board_No">
+						 						<input type="hidden" value="abc" name="capy">
+						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
+						 						<button type="submit" class="commentWriterBtn">작성하기</button>
+						 						</c:forEach>
 						 					</td>
 						 				</tr>
 						 			</table>
-						 		</form>
+						 		</form>	
 						 	</div>
 						 </div>
 					</div>

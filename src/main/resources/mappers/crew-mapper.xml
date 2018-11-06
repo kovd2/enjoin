@@ -68,6 +68,20 @@
 		<result property="user_Name" column="USER_NAME"/>
 		
 	</resultMap>
+	
+	<resultMap type="CrewComent" id="crewComents">
+	<!-- Primary key  -->
+	<id property="coment_No" column="COMENT_NO"/>
+		<!-- 컬럼  -->
+		<result property="coment_Content" column="COMENT_CONTENT"/>
+		<result property="coment_Date" column="COMENT_DATE"/>
+		<result property="coment_ModifyDate" column="COMENT_MODIFYDATE"/>
+		<result property="coment_Status" column="COMENT_STATUS"/>
+		<result property="board_No" column="BOARD_NO"/>
+		<result property="parent_Coment_No" column="PARENT_COMENT_NO"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="user_Name" column="USER_NAME"/>
+	</resultMap>
 
 	
 	<!-- 크루 인서트  -->
@@ -236,5 +250,18 @@
      	SET BOARD_COUNT = BOARD_COUNT +1
      	WHERE BOARD_NO = #{board_No}
      </update>
+     <!-- 크루모집댓글인서트  -->
+     <insert id="crewAddComent" parameterType="Crew">
+     	INSERT INTO COMENT(COMENT_NO,COMENT_CONTENT,COMENT_DATE,COMENT_STATUS,BOARD_NO,USER_NO)
+     	VALUES(SEQ_COMENT_NO.NEXTVAL,#{coment_Content},SYSDATE,'Y',#{board_No},#{user_No})
+     </insert>
+     
+     <!-- 크루모집자식댓글인서트 -->
+     <insert id="crewAddchildComent" parameterType="Crew">
+     	INSERT INTO COMENT(COMENT_NO,COMENT_CONTENT,
+     	COMENT_DATE,COMENT_STATUS,BOARD_NO,PARENT_COMENT_NO,USER_NO)
+     	VALUES(SEQ_COMENT_NO.NEXTVAL,#{coment_Content},SYSDATE,'Y',#{board_No},#{coment_No},#{user_No})
+     </insert>
+     
       
 </mapper>

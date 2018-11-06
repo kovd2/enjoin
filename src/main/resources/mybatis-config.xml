@@ -14,6 +14,7 @@
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard" alias="CrewRecruitmentBoard"/>
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="inCrew1"/>
+		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/company-mapper.xml"/>
