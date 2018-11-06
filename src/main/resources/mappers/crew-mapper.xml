@@ -150,6 +150,7 @@
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
 		WHERE A.FILE_NO = 0
+		AND B.BOARD_TYPE = '크루모집'
 	</select>
 
 	<!-- 크루활동 카테고리 게시물 갯수 조회  -->

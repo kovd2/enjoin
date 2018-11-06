@@ -129,6 +129,7 @@ public class MyPageController {
 		List<Crew> inCrewList = mps.selectInCrewList(userNo);
 		List<Crew> crewAcceptList = mps.selectCrewAcceptList(userNo);
 		
+		
 		System.out.println("크로 목록 : " + crewList);
 		System.out.println("inCrewList : " + inCrewList);
 		System.out.println("승인 대기 목록 : " + crewAcceptList);
@@ -142,11 +143,25 @@ public class MyPageController {
 	
 	//크루 승인 
 	@RequestMapping("acceptCrew.ljs")
-	public String acceptCrew(HttpServletRequest request, HashMap<String, Object> hmap) {
+	public ModelAndView acceptCrew(ModelAndView mv, HttpServletRequest request, HashMap<String, Object> hmap) {
+		int userNo2 = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int crewId = Integer.parseInt(request.getParameter("crewId"));
 		
-		/*String userId*/
+		System.out.println("userNo : " + userNo);
+		System.out.println("crewId : " + crewId);
 		
-		return null;
+		hmap.put("userNo", userNo);
+		hmap.put("crewId", crewId);
+		
+		int result = mps.updateCrewApply(hmap);
+		
+
+		mv.setViewName("redirect:crewManager.ljs");
+		mv.addObject("userNo", userNo2);
+
+		return mv;
+		
 	}
 	
 	//기업관리 페이지 이동
@@ -175,17 +190,26 @@ public class MyPageController {
 		
 		int listCount = mps.getListCount(crewId);
 		
+		if(listCount == 0) {
+			mv.setViewName("crew/crewBoardList");
+			mv.addObject("crewId", crewId);
+			return mv;
+		}
+		if(listCount > 0) {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		//게시물 전체
 		List<Board> list = mps.crewBoardList(pi, crewId);
 		
-		mv.setViewName("crew/crewBoardList");
-		mv.addObject("list", list);
-		mv.addObject("pi", pi);
-		mv.addObject("crewId", crewId);
+			String crewName = list.get(0).getCrewName();
 		
-		return mv;
+			mv.setViewName("crew/crewBoardList");
+			mv.addObject("list", list);
+			mv.addObject("pi", pi);
+			mv.addObject("crewId", crewId);
+			mv.addObject("crewName", crewName);
+		}
+			return mv;
 	}
 	
 	//크루 게시판 상세보기
@@ -307,6 +331,26 @@ public class MyPageController {
 		}
 	}
 	
+	//크루게시판 댓글 작성
+	@RequestMapping("insertComent.ljs")
+	public ModelAndView insertComent(@RequestParam(name="reply") String reply, @RequestParam(name="userNo") int userNo,
+			@RequestParam(name="boardNo") int boardNo, HashMap<String, Object> hmap, ModelAndView mv) {
+		
+		System.out.println("reply : " + reply);
+		System.out.println("userNo : " + userNo);
+		System.out.println("boardNo : " + boardNo);
+		
+		hmap.put("reply", reply);
+		hmap.put("userNo", userNo);
+		hmap.put("boardNo", boardNo);
+		
+		
+		int result = mps.insertComent(hmap);
+		
+		mv.setViewName("redirect:crewBoardDetail.ljs");
+		mv.addObject("boardNo", boardNo);
+		return mv;
+	}
 }
 
 
