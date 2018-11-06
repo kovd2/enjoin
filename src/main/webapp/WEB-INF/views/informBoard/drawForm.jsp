@@ -257,7 +257,7 @@ label{
 									<td class="title">
 									<div class="labelWrap">
 									<label>공고제목</label>
-									<input name="informBoardTitle" value="" type="text" id="title" size="50" maxlength="8" title="공고제목" style="width: 300px">
+									<input name="informBoardTitle"  type="text" id="title" size="200" maxlength="200" title="공고제목" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -266,16 +266,30 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>신청시작일</label>
-									<input name="noticeRequest" type="text" id="fromDt" size="8"maxlength="8" title="신청시작일자" style="width: 300px">
+									<input name="noticeRequest" type="text" id="fromDt" size="50"maxlength="8" title="신청시작일자" style="width: 300px">
 									</div>
 									</td>
 								</tr>
+								
+								
+								<tr>
+									<td id="activityArea">
+									<div class="labelWrap">
+									<label>지역</label>
+									<input name="crewArea" type="text" size="50"maxlength="50" title="장소" style="width: 300px">
+									</div>
+									</td>
+								</tr>
+								
+								
+								
+								
 								
 								<tr>
 									<td id="enEndDate">
 									<div class="labelWrap">
 									<label>신청마감일</label>
-									<input name="noticeEnd" type="text" id="toDt" size="8"maxlength="8" title="신청마감일" style="width: 300px">
+									<input name="noticeEnd" type="text" id="toDt" size="50"maxlength="8" title="신청마감일" style="width: 300px">
 									</div>
 									</td>
 								</tr>
@@ -284,7 +298,7 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>시작일</label>
-									<input name="noticeStart" type="text" id="dDay" size="8"maxlength="8" title="시작일" style="width: 300px">
+									<input name="noticeStart" type="text" id="dDay" size="50"maxlength="8" title="시작일" style="width: 300px">
 									</div>
 									</td>
 								</tr>	
@@ -336,7 +350,7 @@ label{
 									<td id="startDate">
 									<div class="labelWrap">
 									<label>주요내용</label>
-									<input type="text"  size="50"name="informBoardContent"></div>
+									<input type="text"  size="200"name="informBoardContent"></div>
 									</td>
 								</tr>
 								
