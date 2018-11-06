@@ -24,12 +24,9 @@ public class InformBoardServiceImpl implements InformBoardService{
 
 
 	@Override
-	public int insertInform(InformBoard ib, InformBoardFiles ibf, ArrayList<InformBoardFiles> fileList) {
+	public int insertInform(InformBoard ib, ArrayList<InformBoardFiles> fileList) {
 		
-		int result=ibd.insertInform(sqlSession, ib, ibf,fileList);
-		
-		
-		
+		int result=ibd.insertInform(sqlSession, ib, fileList);
 		
 		return result;
 	}

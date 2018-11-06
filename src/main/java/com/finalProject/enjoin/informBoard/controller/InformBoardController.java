@@ -2,7 +2,6 @@ package com.finalProject.enjoin.informBoard.controller;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,6 +57,11 @@ public class InformBoardController {
 			,@RequestParam(name="fileImg2",required=false)MultipartFile fileImg2
 			,@RequestParam(name="fileImg3",required=false)MultipartFile fileImg3
 			) {
+		
+		
+		
+		
+		
 //		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 //		System.out.println(userNo);
 		String informBoardTitle = request.getParameter("informBoardTitle");
@@ -65,72 +69,32 @@ public class InformBoardController {
 		int informPassCount = Integer.parseInt(request.getParameter("informPassCount"));
 		String noticeMax = request.getParameter("noticeMax");
 		String noticeMin = request.getParameter("noticeMin");
-		String noticeRequest1 = request.getParameter("noticeRequest");
-		String noticeStart1 = request.getParameter("noticeStart");
-		String noticeEnd1 = request.getParameter("noticeEnd");
+		String noticeRequest = request.getParameter("noticeRequest");
+		String noticeStart = request.getParameter("noticeStart");
+		String noticeEnd = request.getParameter("noticeEnd");
 		String noticeStatus = request.getParameter("noticeStatus");
 		String categoryNo = request.getParameter("categoryNo");
 		String noticeDaily = request.getParameter("noticeDaily");
-		
+		String crewArea = request.getParameter("crewArea");
 
-		java.sql.Date requestDay = null;
-		java.sql.Date endDay = null;
-		java.sql.Date startDay=null;
-		
-		if(noticeRequest1 != ""&&noticeEnd1 != ""&&noticeStart1 != ""){
-			String dateArr1 = noticeRequest1;
-			System.out.println(dateArr1);
-			String dateArr2 = noticeEnd1;
-			String dateArr3 = noticeStart1;
-			int[] drr1 = new int[dateArr1.length()];
-			int[] drr2 = new int[dateArr2.length()];
-			int[] drr3 = new int[dateArr3.length()];
-			
-			for(int i =0; i < dateArr1.length(); i ++){
-				drr1[i] = Integer.parseInt(dateArr1);
-				
-			}
-			System.out.println(drr1[0]);
-			System.out.println(drr1[1]);
-			System.out.println(drr1[2]);
-			
-			for(int i =0; i < dateArr2.length(); i ++){
-				drr2[i] = Integer.parseInt(dateArr2);
-			}
-			
-			for(int i =0; i < dateArr3.length(); i ++){
-				drr3[i] = Integer.parseInt(dateArr3);
-			}
-			requestDay = new java.sql.Date(new GregorianCalendar(drr1[0],drr1[1] - 1, drr1[2]).getTimeInMillis());
-			endDay = new java.sql.Date(new GregorianCalendar(drr2[0],drr2[1] - 1, drr2[2]).getTimeInMillis());
-			startDay=new java.sql.Date(new GregorianCalendar(drr3[0],drr3[1] - 1, drr3[2]).getTimeInMillis());
-		}else{
-			
-			requestDay = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
-			endDay = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
-			startDay = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
-		}
-        
-		
 		System.out.println(fileImg1.isEmpty());
 		System.out.println(fileImg2.isEmpty());
 		System.out.println(fileImg3.isEmpty());
-		System.out.println(informBoardTitle+"informBoardTitle");
-		 
-		
-		
+		System.out.println(informBoardTitle+"informBoardTitle");	
 		
 		InformBoard ib = new InformBoard();
 		ib.setInformBoardTitle(informBoardTitle);
 		ib.setInformBoardContent(informBoardContent);
 		ib.setInformPassCount(informPassCount);
-		ib.setNoticeRequest(requestDay);
-		ib.setNoticeEnd(endDay);
-		ib.setNoticeStart(startDay);
+		ib.setNoticeRequest(noticeRequest);
+		ib.setNoticeEnd(noticeEnd);
+		ib.setNoticeStart(noticeStart);
 		ib.setNoticeDaily(noticeDaily);
 		ib.setNoticeMax(noticeMax);
 		ib.setNoticeMin(noticeMin);
 		ib.setNoticeStatus(noticeStatus);
+		ib.setCrewArea(crewArea);
+		
 		
 		if(categoryNo.equals("런닝")) {
 			System.out.println(categoryNo);
@@ -182,6 +146,8 @@ public class InformBoardController {
 		String fileSize3=String.valueOf(originFileSize3);
 		
 		//파일명변경
+
+		
 		String originFileName1=fileImg1.getOriginalFilename();
 		String originFileName2=fileImg2.getOriginalFilename();
 		String originFileName3=fileImg3.getOriginalFilename();
@@ -190,13 +156,20 @@ public class InformBoardController {
 		String ext1=originFileName1.substring(originFileName1.lastIndexOf("."));
 		String ext2=originFileName2.substring(originFileName2.lastIndexOf("."));
 		String ext3=originFileName3.substring(originFileName3.lastIndexOf("."));
-		
-		String changeName = CommonUtils.getRandomString();
-		System.out.println("changeName : " + changeName);
+		String changeName[] = new String[4];
+		for(int i = 1 ; i < 4 ; i++) {
+		 changeName[i] = CommonUtils.getRandomString();
+		}
+//		String changeName2 = CommonUtils.getRandomString();
+//		
+//		String changeName3 = CommonUtils.getRandomString();
+		System.out.println("changeName : " + changeName[1]);
+		System.out.println("changeName : " + changeName[2]);
+		System.out.println("changeName : " + changeName[3]);
 		//업로드 파일명
-		String uploadName1=changeName+ext1;
-		String uploadName2=changeName+ext2;
-		String uploadName3=changeName+ext3;
+		String uploadName1=changeName[1]+ext1;
+		String uploadName2=changeName[2]+ext2;
+		String uploadName3=changeName[3]+ext3;
 		
 		//파일순서번호
 		int fileNo1=1;
@@ -231,19 +204,20 @@ public class InformBoardController {
 		fileList.add(ibf2);
 		fileList.add(ibf3);
 		
-		
+		for(int i = 0; i < fileList.size(); i++) {
+			System.out.println(fileList.get(i));
+		}
 		try {
-			fileImg1.transferTo(new File(filePath+"/"+changeName+ext1));
-			fileImg2.transferTo(new File(filePath+"/"+changeName+ext2));
-			fileImg3.transferTo(new File(filePath+"/"+changeName+ext3));
-			int result = 0;
-			result = ibs.insertInform(ib,ibf,fileList);
+			fileImg1.transferTo(new File(filePath+"/"+changeName[1]+ext1));
+			fileImg2.transferTo(new File(filePath+"/"+changeName[2]+ext2));
+			fileImg3.transferTo(new File(filePath+"/"+changeName[3]+ext3));
+			ibs.insertInform(ib,fileList);
 			return "redirect:goMain.kch2";
 		} catch (Exception e) {
-			
-			new File(filePath+"/"+changeName+ext1).delete();
-			new File(filePath+"/"+changeName+ext2).delete();
-			new File(filePath+"/"+changeName+ext3).delete();
+			System.out.println(e.getMessage());
+			new File(filePath+"/"+changeName[1]+ext1).delete();
+			new File(filePath+"/"+changeName[2]+ext2).delete();
+			new File(filePath+"/"+changeName[3]+ext3).delete();
 			
 			return "common/errorPage";
 		}

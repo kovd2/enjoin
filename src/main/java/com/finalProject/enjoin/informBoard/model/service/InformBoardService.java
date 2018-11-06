@@ -10,7 +10,7 @@ public interface InformBoardService  {
 
 	
 
-	int insertInform(InformBoard ib, InformBoardFiles ibf, ArrayList<InformBoardFiles> fileList);
+	int insertInform(InformBoard ib, ArrayList<InformBoardFiles> fileList);
 
 	
 	

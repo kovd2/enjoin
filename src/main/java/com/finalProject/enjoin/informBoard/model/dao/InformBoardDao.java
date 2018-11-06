@@ -10,7 +10,7 @@ import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 public interface InformBoardDao {
 
 
-	int insertInform(SqlSessionTemplate sqlSession, InformBoard ib, InformBoardFiles ibf,
+	int insertInform(SqlSessionTemplate sqlSession, InformBoard ib, 
 			ArrayList<InformBoardFiles> fileList);
 	
 	
