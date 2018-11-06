@@ -64,27 +64,31 @@
 						</div>
 						<div class="noticeWrap">
 							<div class="boardContentArea">
-									<img src="resources/uploadFiles/myPage/board/${Detail.attachment[0].upload_Name }">
+									<img src="resources/uploadFiles/myPage/board/${Detail.attachment[0].upload_Name }" style="width:200px;">
 									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">
 										${Detail.boardContent }
 									</span>
 							</div>
 							<div class="commentArea" >
-								<form action="insertComent.ljs">
-									<textarea rows="4" cols="100" placeholder="댓글을 입력해 주세요"></textarea>
+								<form action="insertComent.ljs" id="replyForm">
+									<textarea rows="4" cols="100" placeholder="댓글을 입력해 주세요" name="reply" id="reply"></textarea>
 									<div class="commentBtnArea" align="right">
-										<button type="submit" style="width: 80px;height: 30px;">등록</button>										
+										<input type="hidden" name="userNo", value="${loginUser.userNo}">
+										<input type="hidden" name="boardNo", value="${Detail.boardNo}">
+										<button type="button" style="width: 80px;height: 30px;" onclick="insertComent()">등록</button>										
 									</div>
 								</form>
 							</div>
 							<div class="commentWrap" style="width: 740px;">
 							<c:forEach var="r" items="${ Detail.comentList }">
 								<div class="commentContent" style="display:inline-block; width: 740px;">
+									<c:if test="${ r.comentContent ne null }">
 									<div style="border-bottom:1px solid gray;">
 										<div>${ r.userName }</div><br>
 										<div><p class="Reply">${ r.comentContent }</p></div>
 										<p class="comentDate"><fmt:formatDate value="${ r.comentDate }" pattern="yyyy-MM-dd a HH:mm" /></p>																			
-									</div>								
+									</div>		
+									</c:if>						
 								</div>
 							</c:forEach>				
 							</div>
@@ -97,5 +101,37 @@
 					</div>
 				</div>
 			</div>	
+			
+			<script>
+				function insertComent(){
+					if($('#reply').val() == ""){
+						alert("댓글 내용을 입력해 주세요");
+						$('#reply').focus();
+					    return;
+					}
+					if($('#reply').val() != ""){
+						$("#replyForm").submit();
+					}
+				}
+			</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

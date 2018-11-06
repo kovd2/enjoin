@@ -99,5 +99,20 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectCrewAcceptList(userNo, sqlSession);
 	}
 
+	//크루 승인
+	@Override
+	public int updateCrewApply(HashMap<String, Object> hmap) {
+		
+		return mpd.updateCrewApply(hmap, sqlSession);
+	}
+
+	//크루게시물 댓글 작성
+	@Override
+	public int insertComent(HashMap<String, Object> hmap) {
+		
+		return mpd.insertComent(hmap, sqlSession);
+ 
+	}
+
 
 }

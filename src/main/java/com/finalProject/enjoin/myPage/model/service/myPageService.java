@@ -42,6 +42,12 @@ public interface myPageService {
 	//가입 승인 대기 목록 조회
 	List<Crew> selectCrewAcceptList(int userNo);
 
+	//크루 승인
+	int updateCrewApply(HashMap<String, Object> hmap);
+
+	//크루게시물 댓글 작성
+	int insertComent(HashMap<String, Object> hmap);
+
 
 
 }

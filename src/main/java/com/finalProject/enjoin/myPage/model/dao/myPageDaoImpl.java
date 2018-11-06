@@ -130,6 +130,20 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectList("myPage.selectCrewAcceptList", userNo);
 	}
 
+	//크루 승인
+	@Override
+	public int updateCrewApply(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updateCrewApply", hmap);
+	}
+
+	//크루게시물 댓글 작성
+	@Override
+	public int insertComent(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+	
+		return sqlSession.insert("myPage.insertComent", hmap);
+	}
+
 
 
 }

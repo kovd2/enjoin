@@ -151,10 +151,10 @@
 						</tr>
 						<c:forEach var="ac" items="${ crewAcceptList }">
 							<tr>
-								<td>${ ac.category_name }</td>
+								<td>${ ac.category_Name }</td>
 								<td>${ ac.crew_Name }</td>
 								<td>${ ac.userId }</td>
-								<td><button onclick="acceptCrew(${ac.userId},${ac.crew_Id});">승인</button></td>
+								<td><button onclick="acceptCrew(${ac.user_No},${ac.crew_Id},${ac.userId});">승인</button></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -166,7 +166,7 @@
 			<!-- 크루 리스트 반복-->
 			<c:forEach var="c" items="${ crewList }">
 			<div class="crewList" data-toggle="modal" data-target="#myModal" align="center">
-				<img src="resources/images/myPage/image.png" class="crewLogo">				
+				<img src="resources/uploadFiles/crew/crewRecruitment/${ c.upload_Name }" class="crewLogo">		
 				<div class="crewName">${ c.crew_Name }</div><br>
 			</div>
 			</c:forEach>
@@ -253,11 +253,14 @@
 		}
 		
 		//크루 승인 버튼
-		function acceptCrew(userId, crewId){
-			var userId = userId;
+		function acceptCrew(userNo, crewId, userId){
+			var userNo = userNo;
 			var crewId = crewId;
+			var userId = userId;
 			
-			location.href="acceptCrew.ljs?userId=" + userId + "&crewId=" + crewId;
+			alert(userId + "님의 크루 가입을 수락하시겠습니까?");
+			
+			location.href="acceptCrew.ljs?userNo=" + userNo + "&crewId=" + crewId;
 		}
 	</script>
 </body>

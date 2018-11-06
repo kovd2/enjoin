@@ -54,6 +54,7 @@
 		<result property="status" column="STATUS"/>
 		<result property="userNo" column="USER_NO"/>
 		<result property="userName" column="USER_NAME"/>
+		<result property="crewName" column="CREW_NAME"/>
 		<collection property="attachment" javaType="java.util.ArrayList" resultMap="AttachmentResultSet"/>
 		<collection property="comentList" javaType="java.util.ArrayList" resultMap="comentResultSet"/>
 	</resultMap>
@@ -110,9 +111,7 @@
 		<result property="board_title" column="BOARD_TITLE"/>
 		<result property="board_Content" column="BOARD_CONTENT"/>
 		<result property="userId" column="USER_ID"/>
-		<result property="category_name" column="CATEGORY_NAME"/>
-		<!-- <collection property="cMember" javaType="java.util.ArrayList" resultMap="memberResultSet"/>
-		<collection property="inCrew" javaType="java.util.ArrayList" resultMap="inCrewResultSet"/> -->
+		<result property="upload_Name" column="UPLOAD_NAME"/>
 	</resultMap>
 	
 	<!-- Attachment -->
@@ -185,8 +184,15 @@
 	
 	<!-- 크루 게시판 조회 -->
 	<select id="crewBoardList" resultMap="boardResultSet">
-		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE
+		<!-- SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE
 		FROM BOARD
+		WHERE BOARD_TYPE = '크루게시판'
+		AND STATUS = 'Y'
+		AND CREW_NO = #{crewId}
+		ORDER BY BOARD_NO DESC -->
+		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE, C.CREW_NAME
+		FROM BOARD B
+        JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
 		WHERE BOARD_TYPE = '크루게시판'
 		AND STATUS = 'Y'
 		AND CREW_NO = #{crewId}
@@ -195,17 +201,18 @@
 	
 	<!-- 크루 게시판 상세보기 -->
 	<select id="crewBoardDetail" resultMap="boardResultSet" parameterType="_int">
+	<!-- SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT
+		FROM BOARD
+		WHERE BOARD_TYPE = 5
+		AND STATUS = 'Y'
+		AND BOARD_NO = #{boardNo} -->
 		SELECT * FROM BOARD B
 		JOIN MEMBER M ON(B.USER_NO = M.USER_NO)
 		LEFT JOIN COMENT C ON(B.BOARD_NO = C.BOARD_NO)
         LEFT JOIN ATTACHMENT A ON(A.REF_NO = B.BOARD_NO)
 		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
-	<!-- 	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT
-		FROM BOARD
-		WHERE BOARD_TYPE = 5
-		AND STATUS = 'Y'
-		AND BOARD_NO = #{boardNo} -->
+		ORDER BY C.COMENT_DATE DESC
 	</select>
 	
 	<!-- 내가 쓴 게시물 조회 -->
@@ -228,9 +235,13 @@
 	<!-- 크루 목록 조회 -->
 	<select id="selectCrewList" resultMap="acceptCrewResultSet">
 		SELECT * 
-		FROM CREW
+		FROM CREW C
+		LEFT JOIN (SELECT * 
+          		   FROM ATTACHMENT 
+           		   WHERE FILE_TYPE = '4'
+           		   AND FILE_NO = 0 )A ON (C.CREW_ID = A.REF_NO)
 		WHERE USER_NO = #{userNo}
-		AND CREW_STATUS = 'Y'
+		AND C.CREW_STATUS = 'Y'
 	</select>
 	
 	<!-- 가입된 크루 목록 조회 -->
@@ -252,7 +263,26 @@
 		JOIN MEMBER M ON(IC.USER_NO = M.USER_NO)
 		JOIN CATEGORY CA ON (C.CATEGORY_NO = CA.CATEGORY_NO)
 		WHERE C.USER_NO =  #{userNo}
+		AND IC.INCREW_STATUS = 'N'
 	</select>
+	
+	<!-- 크루 승인 쿼리 -->
+	<update id="updateCrewApply" parameterType="inCrew">
+		UPDATE INCREW
+		SET INCREW_STATUS = 'Y',
+			START_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+		AND CREW_ID = #{crewId}
+	</update>
+	
+	<!-- 크루게시물 댓글 작성 -->
+	<insert id="insertComent" parameterType="Coment">
+		INSERT INTO COMENT
+		VALUES(COMENT_NO.NEXTVAL, #{reply}, SYSDATE, NULL, 'Y', #{boardNo}, #{userNo})
+	</insert>
+	
+	
+	
 </mapper>
 	
 	

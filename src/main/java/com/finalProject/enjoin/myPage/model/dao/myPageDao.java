@@ -44,6 +44,12 @@ public interface myPageDao {
 	//가입 승인 대기 목록 조회
 	List<Crew> selectCrewAcceptList(int userNo, SqlSessionTemplate sqlSession);
 
+	//크루 승인
+	int updateCrewApply(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//크루게시물 댓글 작성
+	int insertComent(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
 
 
 }
