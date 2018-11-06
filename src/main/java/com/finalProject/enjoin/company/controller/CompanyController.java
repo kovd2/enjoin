@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.company.model.service.CompanyService;
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 
 @SessionAttributes("loginUser")
@@ -49,12 +50,21 @@ public class CompanyController {
 	public String showEnterConfirm() {
 		return "company/enterConfirm";
 	}
+	
+	
+	//리다이렉트용 메소드
+	@RequestMapping("goMainCompany.gs")
+	public String goMainCompany() {
+		
+		return "company/insertComplete";
+	}
 
 
-	@RequestMapping("facilityInsert.gs")
+	@RequestMapping(value="facilityInsert.gs")
 	public String companyInsert(Model model, /*Company c,*/ HttpServletRequest request, 
-									@RequestParam(name="gs_file", required=false) MultipartFile photo) {
-		System.out.println("photo = " + photo);
+									@RequestParam(name="gs_file1", required=false) MultipartFile origin_Name1,
+									@RequestParam(name="gs_file2", required=false) MultipartFile origin_Name2) {
+		
 		
 		//객체 꺼내기
 		/*int facilityNo = Integer.parseInt(request.getParameter("facilityNo"));
@@ -120,41 +130,71 @@ public class CompanyController {
 		System.out.println("filePath = " + filePath);
 		
 		//파일명 변경
-		String originFileName = photo.getOriginalFilename();
-		String ext = originFileName.substring(originFileName.lastIndexOf("."));
-		String changeName = CommonUtils.getRandomString();
+		String originFileName1 = origin_Name1.getOriginalFilename();
+		String ext1 = originFileName1.substring(originFileName1.lastIndexOf("."));
+		String changeName1 = CommonUtils.getRandomString();
+		long fileSize2 = origin_Name1.getSize();
+		String fileSize1 = String.valueOf(fileSize2);
+		
+		//파일명 변경2
+		String originFileName2 = origin_Name2.getOriginalFilename();
+		String ext2 = originFileName2.substring(originFileName2.lastIndexOf("."));
+		String changeName2 = CommonUtils.getRandomString();
+		long fileSize4 = origin_Name2.getSize();
+		String fileSize3 = String.valueOf(fileSize4);
+		
+		//파일명 바꾸기
+		System.out.println("changeName1" + changeName1);
+		System.out.println("changeName2" + changeName2);
+		
+		//사진을 담기위한 객체선언
+		Attachment at1 = new Attachment();
+		
+		
+		String origin_FileNames1 = String.valueOf(originFileName1);
+		String changeNameExt1 = changeName1 + ext1;
+		
+		at1.setOrigin_Name(originFileName1);
+		at1.setFile_Ext(ext1);
+		at1.setUpload_Name(changeNameExt1);
+		at1.setFile_size(fileSize1);
+		
+		Attachment at2 = new Attachment();
+		
+		
+		String origin_FileNames2 = String.valueOf(originFileName2);
+		String changeNameExt2 = changeName2 + ext2;
+		
+		at2.setOrigin_Name(originFileName2);
+		at2.setFile_Ext(ext2);
+		at2.setUpload_Name(changeNameExt2);
+		at2.setFile_size(fileSize3);
 		
 		//업로드된 파일을 지정한 경로에 저장
 		
 		try {
-			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			origin_Name1.transferTo(new File(filePath + "\\" + changeName1 + ext1));
+			origin_Name2.transferTo(new File(filePath + "\\" + changeName2 + ext2));
 			
-			int result = cs.insertCompany(c);
+			int result = cs.insertCompany(c, at1, at2);
 			
-			if(result > 0) {
-				return "company/companyInsert";
+			return "redirect:goMainCompany.gs";
 			
-			}else {
-				return "common/errorPage";
-			}
-			
-			
-			
-		
+					
 		} catch (Exception e) {
 			//실패시 파일 삭제
-			System.out.println("dao company : " + c);
-			new File(filePath + "\\" + changeName + ext).delete();
+			
+			new File(filePath + "\\" + changeName1 + ext1).delete();
+			new File(filePath + "\\" + changeName2 + ext2).delete();
+			
 			model.addAttribute("msg", "제휴시설신청실패");
+
+			e.printStackTrace();
 			
 			
 			return "common/errorPage";
 			
-		}
-		
-		
+		}	
 	}
-
-
 }
 

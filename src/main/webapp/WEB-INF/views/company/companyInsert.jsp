@@ -8018,8 +8018,8 @@ html {
 											</small> <br>
 											<%-- <jsp:include page="profile.jsp"></jsp:include> --%>
 										<div class="img_wrapper">
-											<img class="thumbnail userImg"	src="" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span> 
-											<img class="thumbnail userImg" 	src="" alt=""> <span	id="btn"><input type="file" name="gs_file"	onchange="chg();"></span>
+											<img class="thumbnail userImg"	src="" alt=""> <span	id="btn"><input type="file" name="gs_file1"	onchange="chg();"></span> 
+											<img class="thumbnail userImg" 	src="" alt=""> <span	id="btn"><input type="file" name="gs_file2"	onchange="chg();"></span>
 										</div>
 										</div>
 									</div>

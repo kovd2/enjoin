@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.company.model.dao.CompanyDao;
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 
 @Service
@@ -21,14 +22,20 @@ public class CompanyServiceImpl implements CompanyService{
 	private DataSourceTransactionManager transactionManager;
 	
 	
+	
 	//제휴시설신청용 메소드
 	@Override
-	public int insertCompany(Company c) {
+	public int insertCompany(Company c, Attachment at1, Attachment at2) {
 		
-		System.out.println(c);
+		int result = 0;
 		
-		return cd.insertCompany(sqlSession, c);
+		int result1 =cd.insertCompany(sqlSession, c, at1, at2);
+		
+		return result;
 	}
+	
+	
+
 	
 	
 
