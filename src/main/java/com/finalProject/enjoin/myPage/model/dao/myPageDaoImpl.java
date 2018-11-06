@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
-import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
@@ -121,6 +121,13 @@ public class myPageDaoImpl implements myPageDao{
 		}
 		
 		return result;
+	}
+
+	//가입 승인 대기 목록 조회
+	@Override
+	public List<Crew> selectCrewAcceptList(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectCrewAcceptList", userNo);
 	}
 
 

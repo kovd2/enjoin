@@ -64,12 +64,12 @@
 	<div class="leftContainer">
 	
 			<div class="profil">
-				<c:if test="${ loginUser.getAttachment().get(0).getUpload_Name() ne null}">
+				<c:if test="${ loginUser.upload_name ne null}">
 					<div class="profil_img">
-						<img id="profil_img" src="resources/uploadFiles/myPage/profil/${ loginUser.getAttachment().get(0).getUpload_Name() }">
+						<img id="profil_img" src="resources/uploadFiles/myPage/profil/${ loginUser.upload_name }">
 					</div>
 				</c:if>
-				<c:if test="${ loginUser.getAttachment().get(0).getUpload_Name() eq null}">				
+				<c:if test="${ loginUser.upload_name eq null}">				
 					<div class="profil_img">
 						<img id="profil_img" src="resources/images/myPage/user.png">
 					</div>

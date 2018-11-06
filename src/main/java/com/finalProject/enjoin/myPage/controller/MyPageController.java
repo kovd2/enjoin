@@ -2,7 +2,6 @@ package com.finalProject.enjoin.myPage.controller;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
-import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
 import com.finalProject.enjoin.myPage.model.vo.Board;
@@ -39,7 +37,7 @@ public class MyPageController {
 	
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
-	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
+	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo, HttpServletRequest request) {	
 		
 		List<Pass> pass = mps.selectPass(userNo);
 		System.out.println("pass : " + pass);
@@ -98,7 +96,7 @@ public class MyPageController {
 
 			result = mps.updateMember(m, at);
 			
-			((Member)(request.getSession().getAttribute("loginUser"))).getAttachment().get(0).setUpload_Name(changeName + ext);
+			((Member)(request.getSession().getAttribute("loginUser"))).setUpload_name(changeName + ext);
 			
 			return "redirect:changeInfo.ljs";
 		} catch (Exception e) {
@@ -123,19 +121,32 @@ public class MyPageController {
 		return "myPage/history";
 	}
 	
-	//생성 크루 목록 & 가입된 크루 목록 조회
+	//생성 크루 목록 & 가입된 크루 목록 조회 & 크루 가입 신청한 유저 정보 조회
 	@RequestMapping("crewManager.ljs")
 	public ModelAndView crewManager(ModelAndView mv, @RequestParam("userNo") int userNo) {
 		System.out.println("userNo : " + userNo);
 		List<Crew> crewList = mps.selectCrewList(userNo);
 		List<Crew> inCrewList = mps.selectInCrewList(userNo);
+		List<Crew> crewAcceptList = mps.selectCrewAcceptList(userNo);
+		
 		System.out.println("크로 목록 : " + crewList);
 		System.out.println("inCrewList : " + inCrewList);
+		System.out.println("승인 대기 목록 : " + crewAcceptList);
 		
-		mv.setViewName("myPage/crewManager");
 		mv.addObject("crewList", crewList);
 		mv.addObject("inCrewList", inCrewList);
+		mv.addObject("crewAcceptList", crewAcceptList);
+		mv.setViewName("myPage/crewManager");
 		return mv;
+	}
+	
+	//크루 승인 
+	@RequestMapping("acceptCrew.ljs")
+	public String acceptCrew(HttpServletRequest request, HashMap<String, Object> hmap) {
+		
+		/*String userId*/
+		
+		return null;
 	}
 	
 	//기업관리 페이지 이동
