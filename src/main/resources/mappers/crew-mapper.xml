@@ -81,6 +81,7 @@
 		<result property="parent_Coment_No" column="PARENT_COMENT_NO"/>
 		<result property="user_No" column="USER_NO"/>
 		<result property="user_Name" column="USER_NAME"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
 	</resultMap>
 
 	
@@ -262,6 +263,18 @@
      	COMENT_DATE,COMENT_STATUS,BOARD_NO,PARENT_COMENT_NO,USER_NO)
      	VALUES(SEQ_COMENT_NO.NEXTVAL,#{coment_Content},SYSDATE,'Y',#{board_No},#{coment_No},#{user_No})
      </insert>
+      
+      <!-- 크루활동 모집 댓글 조회 -->
+     <select id="crewComentSelect" resultMap="crewComents">
+     	SELECT C.COMENT_NO,C.COMENT_CONTENT,C.BOARD_NO,C.PARENT_COMENT_NO,M.USER_NAME,A.UPLOAD_NAME 
+			FROM COMENT C
+			JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
+			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+			WHERE C.BOARD_NO = #{board_No}
+			AND A.FILE_NO = 0
+			AND A.FILE_TYPE = 3
+			ORDER BY DECODE(C.PARENT_COMENT_NO,NULL,COMENT_NO,C.PARENT_COMENT_NO)ASC,C.COMENT_NO ASC
+     </select>
      
       
 </mapper>

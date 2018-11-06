@@ -135,6 +135,12 @@ public class CrewServiceImpl implements CrewService {
 		
 		return cd.crewAddchildComent(sqlSession,cc);
 	}
+	//크루 댓글 조회
+	@Override
+	public List<CrewComent> crewComentSelect(int board_No) {
+		
+		return cd.crewComentSelect(sqlSession,board_No);
+	}
 	
 
 

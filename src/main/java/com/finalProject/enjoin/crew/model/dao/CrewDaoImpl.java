@@ -163,6 +163,12 @@ public class CrewDaoImpl implements CrewDao {
 		
 		return sqlSession.insert("Crew.crewAddchildComent",cc);
 	}
+	//크루 댓글 조회
+	@Override
+	public List<CrewComent> crewComentSelect(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectList("Crew.crewComentSelect",board_No);
+	}
 	
 
 }

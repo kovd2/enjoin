@@ -344,9 +344,13 @@ public class CrewController {
 		//작성자 사진 정보 조회
 		Attachment userPhoto = cs.crewUserPhoto(user_No);
 		
+		//크루 댓글 조회
+		List<CrewComent> list3 = cs.crewComentSelect(board_No);
+		
 		mv.setViewName("crew/crewRecruitmentDetails");
 		mv.addObject("list", list);
 		mv.addObject("list1", list1);
+		mv.addObject("list3", list3);
 		mv.addObject("userPhoto", userPhoto);
 		
 	
@@ -452,11 +456,17 @@ public class CrewController {
 			//작성자 사진 정보 조회
 			Attachment userPhoto = cs.crewUserPhoto(userNo);
 			
+			//크루 댓글 조회
+			List<CrewComent> list3 = cs.crewComentSelect(board_No);
+			
+			System.out.println("list3 : " + list3);
+			
 			mv.addObject("list", list);
 			mv.addObject("list1", list1);
+			mv.addObject("list3", list3);
 			mv.addObject("userPhoto", userPhoto);
 			
-			 //mv.setViewName("jsonView");
+			//mv.setViewName("jsonView");
 			mv.setViewName("crew/crewRecruitmentDetails");
 			
 			return mv;

@@ -60,6 +60,9 @@ public interface CrewService {
 	//자식댓글 인서트
 	int crewAddchildComent(CrewComent cc);
 	
+	//크루 댓글 조회
+	List<CrewComent> crewComentSelect(int board_No);
+	
 	
 
 	
