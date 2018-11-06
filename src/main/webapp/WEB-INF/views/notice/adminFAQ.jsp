@@ -40,7 +40,7 @@
 					<th style="width: 200px; height: 60px; font-size: 30px; background: gray;">날짜</th>
 				</tr>
 				<c:forEach var="f" items="${ list }">
-					<tr onclick="selectOneBoard(${ b.boardNo })">
+					<tr onclick="selectOneBoard(${ f.boardNo })">
 						<td>${ f.boardNo }</td>
 						<td>${ f.faqCategory }</td>
 						<td>${ f.boardTitle }</td>
@@ -93,13 +93,8 @@
 			location.href = "adminFAQInsert.hh";
 		}
 		
-		function adminFAQDetail(){
-			
-			location.href = "adminFAQDetail.hh";
-		}
-		
 		function selectOneBoard(boardNo){
-			location.href="adminNoticeDetail.hh?boardNo=" + boardNo;
+			location.href="adminFAQDetail.hh?boardNo=" + boardNo;
 		}
 		
 	</script>

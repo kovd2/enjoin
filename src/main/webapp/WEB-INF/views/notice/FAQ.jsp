@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -282,9 +283,9 @@ strong.phType_4 {
 
             <div class="col-md-12">
               <div class="searchFormBox">
-                <form action="/help/search">
+                <form id="searchForm" action="search.hh" method="post">
                 <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" placeholder="어떤 도움이 필요하세요?" name="keyword" value="센터이용">
+                   <input type="text" class="form-control" value="${keyword}" placeholder="${map.keyword }" name="keyword">
                   <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                   </span>
@@ -292,21 +293,16 @@ strong.phType_4 {
                 </form>
               </div><!-- /.searchFormBox -->
 
-
               <div class="searchedHelpList">
                 <ul style="margin-left:0px; margin-bottom:0px;">
                   <!-- 여기부터 검색결과 -->
-                  <li><strong class="phType phType_1">센터이용/오류</strong> <a href="FAQ_detail.hh"> 응 여기에 FAQ게시판 글 들 카테고리별로 보여줘~  </a></li>
+                  <c:forEach var="mm" items="${map.list}">
 
+                 <li><strong class="phType phType_1">${mm.FAQ_CATEGORY }</strong> <a onclick="FAQ_detail(${mm.BOARD_NO})"> ${mm.BOARD_TITLE}</a></li>
+					
+			      </c:forEach>
                   <!-- 여기까지 검색결과 -->
                 </ul>
-                <nav>
-                    <ul class="pagination pagination-sm">
-                        <li class=" active">
-                            <a href="#">1 응 여기에 페이징 처리!!</a>                
-                        </li>
-                    </ul>
-                </nav>
               </div>
 
 
@@ -324,5 +320,13 @@ strong.phType_4 {
 
 
 </div>
+<script>
+	function FAQ_detail(boardNo){
+		
+		location.href = "FAQ_detail.hh?boardNo=" + boardNo
+		
+	}
+</script>
+
 </body>
 </html>

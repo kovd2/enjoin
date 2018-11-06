@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminPageController {
-
 	
-/*	@RequestMapping("adminMainPage.shw")
-	public String showAdminMainPage() {
+	//관리자페이지 홈
+	@RequestMapping("adminSideBar.hh")
+	public String adminSideBar() {
 		
-		return "admin/adminMainPage";
+		return "admin/adminSideBar";
 	}
 	
 	
@@ -20,5 +20,5 @@ public class AdminPageController {
 		
 		return "admin/adminMember";
 		
-	}*/
+	}
 }

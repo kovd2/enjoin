@@ -94,11 +94,6 @@
 			location.href = "adminNoticeInsert.hh";
 		}
 		
-		function adminNoticeDetail(){
-			
-			location.href = "adminNoticeDetail.hh";
-		}
-		
 		function selectOneBoard(boardNo){
 			location.href="adminNoticeDetail.hh?boardNo=" + boardNo;
 		}

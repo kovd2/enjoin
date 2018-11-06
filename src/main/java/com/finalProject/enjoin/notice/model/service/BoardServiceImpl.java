@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.notice.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +84,6 @@ public class BoardServiceImpl implements BoardService{
 
 		String title = b.getBoardTitle();
 		String content = b.getBoardContent();
-		String faqCategory = b.getFaqCategory();
 		
 		b.setBoardTitle(title);
 		b.setBoardContent(content);
@@ -105,6 +105,48 @@ public class BoardServiceImpl implements BoardService{
 	public int getListCount2() throws Exception {
 		
 		return bd.getListCount2();
+	}
+
+	@Override
+	public Board faqRead(int boardNo) throws Exception {
+		
+		return bd.faqRead(boardNo);
+	}
+
+	@Override
+	public void updateFAQ(Board b, int userNo, int boardNo, String category) throws Exception {
+		String title = b.getBoardTitle();
+		String content = b.getBoardContent();
+		
+		b.setUserNo(userNo);
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		b.setBoardNo(boardNo);
+		b.setFaqCategory(category);
+		
+		bd.updateFAQ(b);
+		
+	}
+
+	@Override
+	public void deleteFAQ(Board b, int userNo, int boardNo) throws Exception {
+		b.setBoardNo(boardNo);
+		b.setUserNo(userNo);
+		
+		bd.deleteFAQ(b);
+		
+	}
+
+	@Override
+	public List<Board> search(String keyword) throws Exception {
+		
+		return bd.search(keyword);
+	}
+
+	@Override
+	public Board userRead(int boardNo) throws Exception {
+		
+		return bd.userRead(boardNo);
 	}
 
 

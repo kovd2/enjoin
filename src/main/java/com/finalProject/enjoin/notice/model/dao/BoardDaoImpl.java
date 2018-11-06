@@ -1,6 +1,8 @@
 package com.finalProject.enjoin.notice.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -92,7 +94,9 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public int insertFAQ(Board b) throws Exception {
-
+		
+		System.out.println("DAO board : " + b);
+		
 		return sqlSession.insert("Board.insertFAQ", b);
 		
 	}
@@ -110,5 +114,35 @@ public class BoardDaoImpl implements BoardDao{
 	public int getListCount2() throws Exception {
 		return sqlSession.selectOne("Board.getListCount2");
 	}
+
+	@Override
+	public Board faqRead(int boardNo) {
+		
+		return sqlSession.selectOne("Board.faqView", boardNo);
+	}
+
+	@Override
+	public void updateFAQ(Board b) throws Exception {
+		sqlSession.update("Board.updateFAQ", b);
+		
+	}
+
+	@Override
+	public void deleteFAQ(Board b) throws Exception {
+		sqlSession.update("Board.deleteFAQ", b);
+		
+	}
+
+	@Override
+	public List<Board> search(String keyword) throws Exception {		
+		return sqlSession.selectList("Board.search", keyword);
+	}
+
+	@Override
+	public Board userRead(int boardNo) throws Exception {
+		
+		return sqlSession.selectOne("Board.userRead", boardNo);
+	}
+
 
 }

@@ -128,4 +128,44 @@
 		ORDER BY BOARD_NO DESC
 	</select>
 	
+	
+	<!-- 관리자 FAQ 상세 보기 -->
+	<select id="faqView" resultMap="boardResultSet" parameterType="_int">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, FAQ_CATEGORY
+		FROM BOARD B
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	<!-- FAQ 수정 -->
+	<update id="updateFAQ" parameterType="Board">
+		UPDATE BOARD
+		SET BOARD_TITLE = #{boardTitle}, 
+			BOARD_CONTENT = #{boardContent},
+			MODIFY_DATE = SYSDATE,
+			FAQ_CATEGORY = #{faqCategory}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- FAQ 삭제 -->
+	<update id="deleteFAQ" parameterType="Board">
+		UPDATE BOARD
+		SET STATUS = 'N'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 검색 기능 -->
+	<select id="search" parameterType="map" resultType="map">
+		SELECT *
+		FROM BOARD
+		WHERE BOARD_TYPE = 'FAQ'
+		AND BOARD_TITLE LIKE '%'|| #{keyword}||'%'
+		ORDER BY BOARD_NO DESC, ENROLL_DATE DESC 
+	</select>
+	
+	<!-- FAQ 상세 보기 -->
+	<select id="userRead" resultMap="boardResultSet" parameterType="_int">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, FAQ_CATEGORY
+		FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
 </mapper>

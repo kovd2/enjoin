@@ -58,7 +58,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집폼</a></li>
-											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
 											<li><a href="adminMember.test">관리자회원정보수정</a></li>
 											<li><a href="adminPay.test">관리자결제정보</a></li>
 										</ul></li>
