@@ -18,6 +18,10 @@ body{
 	text-align: center; /*모달 중앙유지  */
 }
 
+.subHeader h1 img {
+	width: 127px;
+	height: 24px;
+}
 @media screen and (min-width: 768px) { /* 모달 설정  */
 	.container {
 		display: inline-block;
@@ -301,6 +305,15 @@ $(function(){
 	
 </script>
 <body>
+
+		<header class="subHeader">
+			<h1>
+				<a href="goMain.me"><img
+					src="resources/images/member/enjoin_logo_final.png" alt="Enjoin"></a>
+			</h1>
+		</header>
+		
+		
 	<div class="container">
 		<div class="modal-body">
 				
@@ -365,10 +378,8 @@ $(function(){
 					<tr>
 						<div id="fileArea">
 							<td id="writer" colspan="2">
-							<input type="file" id="File"
-								name="origin_Name" onchange="loadImg(this,1)">
-								<input type="file" id="File1"
-								name="origin_Name1" multiple="multiple" onchange="loadImg(this,2)"></td>
+							<input type="file" id="File" name="origin_Name" onchange="loadImg(this,1)">
+							<input type="file" id="File1" name="origin_Name1" multiple="multiple" onchange="loadImg(this,2)"></td>
 						</div>
 					</tr>
 					<tr>
@@ -376,12 +387,12 @@ $(function(){
 						<div id="contentImgArea1">
 							<p class="thumbnailImg">crew logo image</p>
 							<img id="contentImg1" width="262px" height="260px"
-								src="${ contextPath }/resources/images/crew/crossfit-534615_960_720.jpg">
+								src="${ contextPath }/resources/images/crew/thumbnail2.png">
 						</div>
 						<div id="contentImgArea2">
 							<p class="mainImgP">using crew image</p>
 							<img id="contentImg2" width="262px" height="260px"
-								src="${ contextPath }/resources/images/crew/crossfit-534615_960_720.jpg">
+								src="${ contextPath }/resources/images/crew/thumbnail2.png">
 						</div>
 						</td>
 					</tr>
@@ -404,7 +415,15 @@ $(function(){
 				</table>
 			</form>
 			
+			
+			
 		</div>
+			
 	</div>
+		<br>
+			<br>
+			<br>
+	
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

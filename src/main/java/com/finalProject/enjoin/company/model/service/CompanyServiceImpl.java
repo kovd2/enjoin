@@ -25,13 +25,13 @@ public class CompanyServiceImpl implements CompanyService{
 	
 	//제휴시설신청용 메소드
 	@Override
-	public int insertCompany(Company c, Attachment at1, Attachment at2) {
-		
+	public int insertCompany(Company c, Attachment at1, Attachment at2, Attachment at3, Attachment at4) {
 		int result = 0;
 		
-		int result1 =cd.insertCompany(sqlSession, c, at1, at2);
+		int result1 =cd.insertCompany(sqlSession, c, at1, at2, at3, at4);
 		
 		return result;
+
 	}
 	
 	

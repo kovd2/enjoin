@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>제휴시설 신청 양식</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -7928,8 +7929,7 @@ html {
 										<div class="form-group rqLocationFormGroup">
 											<div class="row">
 												<div class="col-md-4">
-													<label>지역</label> <select class="form-control"
-														name="facilityArea" id="local" >
+													<label>지역</label> <select class="form-control"	name="facilityArea" id="local" >
 														<option value="">위치한 지역을 선택해 주세요.</option>
 														<option value="00">서울특별시</option>
 														<option value="10">인천/경기</option>
@@ -7944,9 +7944,9 @@ html {
 													</select>
 												</div>
 												<div class="col-md-4">
-													<label></label> <select class="form-control"
-														name="facilitySection" id="area_code" required=""><option
-															value="">시/군/구까지 알려주세요.</option>
+													<label></label><!-- 공백 -->
+													<select class="form-control" name="facilitySection" id="area_code00" required="">
+														<option	value="">시/군/구까지 알려주세요.</option>
 														<option value="11010">강남구</option>
 														<option value="11020">강동구</option>
 														<option value="11030">강북구</option>
@@ -7973,13 +7973,326 @@ html {
 														<option value="11240">중구</option>
 														<option value="11250">중랑구</option>
 													</select>
+													<select class="form-control" name="facilitySection" id="area_code10" required="">
+														<option value="31370">가평군</option>
+														<option value="31100">고양시</option>
+														<option value="31110">과천시</option>
+														<option value="31060">광명시</option>
+														<option value="31250">광주시</option>
+														<option value="31120">구리시</option>
+														<option value="31160">군포시</option>
+														<option value="31230">김포시</option>
+														<option value="31130">남양주시</option>
+														<option value="31080">동두천시</option>
+														<option value="31050">부천시</option>
+														<option value="31020">성남시</option>
+														<option value="31010">수원시</option>
+														<option value="31150">시흥시</option>
+														<option value="31090">안산시</option>
+														<option value="31220">안성시</option>
+														<option value="31040">안양시</option>
+														<option value="31260">양주시</option>
+														<option value="31380">양평군</option>
+														<option value="31320">여주시</option>
+														<option value="31350">연천군</option>
+														<option value="31140">오산시</option>
+														<option value="31190">용인시</option>
+														<option value="31170">의왕시</option>
+														<option value="31030">의정부시</option>
+														<option value="31210">이천시</option>
+														<option value="23000">인천광역시</option>
+														<option value="31200">파주시</option>
+														<option value="31070">평택시</option>
+														<option value="31270">포천시</option>
+														<option value="31180">하남시</option>
+														<option value="31240">화성시</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code20" required="">
+														<option value="32030">강릉시</option>
+														<option value="32400">고성군</option>
+														<option value="32040">동해시</option>
+														<option value="32070">삼척시</option>
+														<option value="32060">속초시</option>
+														<option value="32380">양구군</option>
+														<option value="32410">양양군</option>
+														<option value="32330">영월군</option>
+														<option value="32020">원주시</option>
+														<option value="32390">인제군</option>
+														<option value="32350">정선군</option>
+														<option value="32360">철원군</option>
+														<option value="32010">춘천시</option>
+														<option value="32050">태백시</option>
+														<option value="32340">평창군</option>
+														<option value="32310">홍천군</option>
+														<option value="32370">화천군</option>
+														<option value="32320">횡성군</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code30" required="">
+														<option value="34070">계룡시</option>
+														<option value="34020">공주시</option>
+														<option value="34310">금산군</option>
+														<option value="34060">논산시</option>
+														<option value="34390">당진군</option>
+														<option value="25000">대전광역시</option>
+														<option value="34030">보령시</option>
+														<option value="34330">부여군</option>
+														<option value="34050">서산시</option>
+														<option value="34340">서천군</option>
+														<option value="34040">아산시</option>
+														<option value="34320">연기군</option>
+														<option value="34370">예산군</option>
+														<option value="34010">천안시</option>
+														<option value="34350">청양군</option>
+														<option value="34380">태안군</option>
+														<option value="34360">홍성군</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code40" required="">
+														<option value="33360">괴산군</option>
+														<option value="33380">단양군</option>
+														<option value="33320">보은군</option>
+														<option value="33340">영동군</option>
+														<option value="33330">옥천군</option>
+														<option value="33370">음성군</option>
+														<option value="33030">제천시</option>
+														<option value="33390">증평군</option>
+														<option value="33350">진천군</option>
+														<option value="33310">청원군</option>
+														<option value="33010">청주시</option>
+														<option value="33020">충주시</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code50" required="">
+														<option value="37100">경산시</option>
+														<option value="37020">경주시</option>
+														<option value="37370">고령군</option>
+														<option value="37050">구미시</option>
+														<option value="37310">군위군</option>
+														<option value="37030">김천시</option>
+														<option value="22000">대구광역시</option>
+														<option value="37090">문경시</option>
+														<option value="37410">봉화군</option>
+														<option value="37080">상주시</option>
+														<option value="37380">성주군</option>
+														<option value="37040">안동시</option>
+														<option value="37350">영덕군</option>
+														<option value="37340">영양군</option>
+														<option value="37060">영주시</option>
+														<option value="37070">영천시</option>
+														<option value="37400">예천군</option>
+														<option value="37430">울릉군</option>
+														<option value="37420">울진군</option>
+														<option value="37320">의성군</option>
+														<option value="37360">청도군</option>
+														<option value="37330">청송군</option>
+														<option value="37390">칠곡군</option>
+														<option value="37010">포항시</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code60" required="">
+														<option value="35370">고창군</option>
+														<option value="35020">군산시</option>
+														<option value="35060">김제시</option>
+														<option value="35050">남원시</option>
+														<option value="35330">무주군</option>
+														<option value="35380">부안군</option>
+														<option value="35360">순창군</option>
+														<option value="35310">완주군</option>
+														<option value="35030">익산시</option>
+														<option value="35350">임실군</option>
+														<option value="35340">장수군</option>
+														<option value="35010">전주시</option>
+														<option value="35040">정읍시</option>
+														<option value="35320">진안군</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code70" required="">
+														<option value="38090">거제시</option>
+														<option value="38070">김해시</option>
+														<option value="21000">부산광역시</option>
+														<option value="38060">사천시</option>
+														<option value="38370">산청군</option>
+														<option value="38100">양산시</option>
+														<option value="26000">울산광역시</option>
+														<option value="38310">의령군</option>
+														<option value="38030">진주시</option>
+														<option value="38010">창원시</option>
+														<option value="38360">하동군</option>
+														<option value="38380">함양군</option>
+														<option value="38480">합천군</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code80" required="">
+														<option value="36390">강진군</option>
+														<option value="36350">고흥군</option>
+														<option value="36320">곡성군</option>
+														<option value="36060">광양시</option>
+														<option value="24000">광주광역시</option>
+														<option value="36330">구례군</option>
+														<option value="36040">나주시</option>
+														<option value="36310">담양군</option>
+														<option value="36010">목포시</option>
+														<option value="36420">무안군</option>
+														<option value="36360">보성군</option>
+														<option value="36030">순천시</option>
+														<option value="36480">신안군</option>
+														<option value="36020">여수시</option>
+														<option value="36440">영광군</option>
+														<option value="36410">영암군</option>
+														<option value="36460">완도군</option>
+														<option value="36450">장성군</option>
+														<option value="36380">장흥군</option>
+														<option value="36470">진도군</option>
+														<option value="36430">함평군</option>
+														<option value="36400">해남군</option>
+														<option value="36370">화순군</option>
+													</select>
+													<select class="form-control" name="facilitySection" id="area_code90" required="">
+														<option value="39020">서귀포시</option>
+														<option value="39010">제주시</option>
+													</select>
 												</div>
 											</div>
 										</div>
+										
+										<script>
+											$(function(){
+												$("#area_code00").css({"display":"block"});
+									            $("#area_code10").css({"display":"none"});
+									            $("#area_code20").css({"display":"none"});
+									            $("#area_code30").css({"display":"none"});
+									            $("#area_code40").css({"display":"none"});
+									            $("#area_code50").css({"display":"none"});
+									            $("#area_code60").css({"display":"none"});
+									            $("#area_code70").css({"display":"none"});
+									            $("#area_code80").css({"display":"none"});
+									            $("#area_code90").css({"display":"none"});
+												
+									            $("#local").on("change", function(){
+									            	if($("#local").val() == "00"){
+											            $("#area_code00").css({"display":"block"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+											         }
+													else if($("#local").val() == "10"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"block"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "20"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"block"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "30"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"block"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "40"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"block"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "50"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"block"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "60"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"block"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "70"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"block"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "80"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"block"});
+											            $("#area_code90").css({"display":"none"});
+													}
+													else if($("#local").val() == "90"){
+														$("#area_code00").css({"display":"none"});
+											            $("#area_code10").css({"display":"none"});
+											            $("#area_code20").css({"display":"none"});
+											            $("#area_code30").css({"display":"none"});
+											            $("#area_code40").css({"display":"none"});
+											            $("#area_code50").css({"display":"none"});
+											            $("#area_code60").css({"display":"none"});
+											            $("#area_code70").css({"display":"none"});
+											            $("#area_code80").css({"display":"none"});
+											            $("#area_code90").css({"display":"block"});
+													}
+												})
+												
+											});
+										</script>
+										
+										
 										<div class="form-group">
 											<label for="center_addr">자세한 주소</label> <input type="text"
-												name="facilityAddress" id="center_addr" class="form-control"
-												placeholder="자세한 주소를 알려주세요." required="">
+												name="facilityAddress" id="center_addr" class="form-control" placeholder="자세한 주소를 알려주세요." required="">
 										</div>
 									</div>
 									<!-- /.rqAddr -->
@@ -8017,12 +8330,52 @@ html {
 													받으면 확인 후 글이 삭제될 수 있습니다.</span>
 											</small> <br>
 											<%-- <jsp:include page="profile.jsp"></jsp:include> --%>
-										<div class="img_wrapper">
-											<img class="thumbnail userImg"	src="" alt=""> <span	id="btn"><input type="file" name="gs_file1"	onchange="chg();"></span> 
-											<img class="thumbnail userImg" 	src="" alt=""> <span	id="btn"><input type="file" name="gs_file2"	onchange="chg();"></span>
+										<div class="img_wrapper" id="fileArea">
+											<img class="thumbnail userImg"	src="${ contextPath }/resources/images/company/thumbnail.png"  id="contentImgArea1"> 
+												<span id="btn"><input type="file" id="file" name="gs_file1"	onchange="loadImg(this,1)"></span> 
+											<img class="thumbnail userImg" 	src="${ contextPath }/resources/images/company/thumbnail.png"  id="contentImgArea2"> 
+												<span id="btn"><input type="file" id="file1" name="gs_file2"  multiple="multiple" onchange="loadImg(this,2)"></span>
+										</div>
+										<div class="img_wrapper" id="fileArea">
+											<img class="thumbnail userImg" 	src="${ contextPath }/resources/images/company/thumbnail.png"  id="contentImgArea3"> 
+												<span id="btn"><input type="file" id="file2" name="gs_file3"  multiple="multiple" onchange="loadImg(this,3)"></span>
+											<img class="thumbnail userImg" 	src="${ contextPath }/resources/images/company/thumbnail.png"  id="contentImgArea4"> 
+												<span id="btn"><input type="file" id="file3" name="gs_file4"  multiple="multiple" onchange="loadImg(this,4)"></span>
+										
 										</div>
 										</div>
 									</div>
+									
+									<script>
+										$(function(){
+												$("#contentImgArea1").click(function(){
+													$("#file").click();
+												})
+												$("#contentImgArea2").click(function(){
+													$("#file1").click();
+												});
+												$("#contentImgArea3").click(function(){
+													$("#file2").click();
+												});
+												$("#contentImgArea4").click(function(){
+													$("#file3").click();
+												});
+										});
+										function loadImg(value, num){
+											if(value.files && value.files[0] ){
+												var reader = new FileReader();
+												reader.onload = function(e){
+													switch(num){
+													case 1 : $("#contentImgArea1").attr("src", e.target.result); break;
+													case 2 : $("#contentImgArea2").attr("src", e.target.result); break;
+													case 3 : $("#contentImgArea3").attr("src", e.target.result); break;
+													case 4 : $("#contentImgArea4").attr("src", e.target.result); break;
+													}
+												}
+												reader.readAsDataURL(value.files[0]);
+											}
+										};
+									</script>
 									
 									<div class="row">
 										<div class="form-group col-md-4">

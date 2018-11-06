@@ -7,7 +7,7 @@ import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 public interface CompanyDao {
 
-	int insertCompany(SqlSessionTemplate sqlSession, Company c, Attachment at1, Attachment at2);
+	int insertCompany(SqlSessionTemplate sqlSession, Company c, Attachment at1, Attachment at2, Attachment at3, Attachment at4);
 
 
 

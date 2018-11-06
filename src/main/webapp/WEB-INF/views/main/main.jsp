@@ -224,7 +224,7 @@ h2.mainSlogan .compName {
 									
 								</li>
 								<li	style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
-									<img src="resources/images/main/fitness06.jpg" alt="">
+									<img src="resources/images/main/crossfit01.jpg" alt="">
 									<div class="flex-caption" style="width:450px;">
 										
 										<div class="container">
@@ -285,7 +285,7 @@ h2.mainSlogan .compName {
 									
 								</li>
 								<li	style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
-									<img src="resources/images/main/fitness06.jpg" alt="">
+									<img src="resources/images/main/crossfit01.jpg" alt="">
 									<div class="flex-caption" style="width:450px;">
 										
 										<div class="container">
