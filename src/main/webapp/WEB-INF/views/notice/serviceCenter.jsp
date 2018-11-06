@@ -203,11 +203,11 @@ h5 {
 													</div>
 													<div class="panel-body">
 														<a href="search.hh?keyword=이용" class="label-faq">센터이용</a>
-														<a href="FAQ.hh" class="label-faq">인증오류</a>
-														<a href="FAQ.hh" class="label-faq">센터입장</a>
-														<a href="FAQ.hh" class="label-faq">PASS변경</a>
-														<a href="FAQ.hh" class="label-faq">원플레이스멤버십</a>
-														<a href="FAQ.hh" class="label-faq">제휴문의</a>
+														<a href="search.hh?keyword=이용" class="label-faq">인증오류</a>
+														<a href="search.hh?keyword=이용" class="label-faq">센터입장</a>
+														<a href="search.hh?keyword=이용" class="label-faq">PASS변경</a>
+														<a href="search.hh?keyword=이용" class="label-faq">원플레이스멤버십</a>
+														<a href="search.hh?keyword=이용" class="label-faq">제휴문의</a>
 													</div>
 												</div>
 												<!-- /.panel -->
@@ -221,12 +221,12 @@ h5 {
 														</h5>
 													</div>
 													<div class="panel-body">
-														<a href="/help/search?tag=4" class="label-faq">결제</a>
-														<a href="/help/search?tag=5" class="label-faq">환불</a>
-														<a href="/help/search?tag=32" class="label-faq">결제방법변경</a>
-														<a href="/help/search?tag=37" class="label-faq">할인코드</a>
-														<a href="/help/search?tag=6" class="label-faq">현금영수증</a>
-														<a href="/help/search?tag=97" class="label-faq">상품권</a>
+														<a href="search.hh?keyword=결제" class="label-faq">결제</a>
+														<a href="search.hh?keyword=환불" class="label-faq">환불</a>
+														<a href="search.hh?keyword=결제" class="label-faq">결제방법변경</a>
+														<a href="search.hh?keyword=할인" class="label-faq">할인코드</a>
+														<a href="search.hh?keyword=현금" class="label-faq">현금영수증</a>
+														<a href="search.hh?keyword=결제"" class="label-faq">상품권</a>
 													</div>
 												</div>
 												<!-- /.panel -->
@@ -240,16 +240,16 @@ h5 {
 														</h5>
 													</div>
 													<div class="panel-body">
-														<a href="/help/search?tag=65" class="label-faq">해지</a>
-														<a href="/help/search?tag=64" class="label-faq">변경</a>
-														<a href="/help/search?tag=10" class="label-faq">일시정지</a>
-														<a href="/help/search?tag=12" class="label-faq">멤버십이용</a> 
-														<a href="/help/search?tag=66" class="label-faq">재이용</a> 
-														<a href="/help/search?tag=13" class="label-faq">카드발급</a> 
-														<a href="/help/search?tag=53" class="label-faq">재가입</a> 
-														<a href="/help/search?tag=8" class="label-faq">멤버십연장</a>
-														<a href="/help/search?tag=75" class="label-faq">추가이용</a>
-														<a href="/help/search?tag=99" class="label-faq">친구초대</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">해지</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">변경</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">일시정지</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">멤버십이용</a> 
+														<a href="search.hh?keyword=멤버십" class="label-faq">재이용</a> 
+														<a href="search.hh?keyword=카드" class="label-faq">카드발급</a> 
+														<a href="search.hh?keyword=가입" class="label-faq">재가입</a> 
+														<a href="search.hh?keyword=멤버십" class="label-faq">멤버십연장</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">추가이용</a>
+														<a href="search.hh?keyword=멤버십" class="label-faq">친구초대</a>
 													</div>
 												</div>
 												<!-- /.panel -->
@@ -263,10 +263,10 @@ h5 {
 														</h5>
 													</div>
 													<div class="panel-body">
-														<a href="/help/search?tag=19" class="label-faq">가족회원</a> <a
-															href="/help/search?tag=52" class="label-faq">제휴임직원회원</a>
-														<a href="/help/search?tag=15" class="label-faq">이메일인증</a>
-														<a href="/help/search?tag=105" class="label-faq">비밀번호찾기</a>
+														<a href="search.hh?keyword=회원" class="label-faq">가족회원</a> <a
+															href="search.hh?keyword=회원" class="label-faq">제휴임직원회원</a>
+														<a href="search.hh?keyword=이메일" class="label-faq">이메일인증</a>
+														<a href="search.hh?keyword=비밀번호" class="label-faq">비밀번호찾기</a>
 													</div>
 												</div>
 												<!-- /.panel -->
@@ -284,16 +284,16 @@ h5 {
 										</small>
 										</h2>
 										<ul style="list-style: none; margin:0px;"  >
-											<li><strong class="phType phType_2">카테고리</strong>
-											<a href="/help/contents/36"> 여기에 베스트질문들 </a></li>	
-											<li><strong class="phType phType_2">카테고리</strong>
-											<a href="/help/contents/36"> 여기에 베스트질문들2 </a></li>	
-											<li><strong class="phType phType_2">카테고리</strong>
-											<a href="/help/contents/36"> 여기에 베스트질문들3</a></li>	
-											<li><strong class="phType phType_2">카테고리</strong>
-											<a href="/help/contents/36"> 여기에 베스트질문들4 </a></li>	
-											<li><strong class="phType phType_2">카테고리</strong>
-											<a href="/help/contents/36"> 여기에 베스트질문들5 </a></li>											
+											<li><strong class="phType phType_2" style="color:#798E19; border-color:#798E19;">센터이용/오류</strong>
+											<a href="search.hh?keyword=센터이용에 문제가 생겼어요."> 센터이용에 문제가 생겼어요. </a></li>	
+											<li><strong class="phType phType_2">결제/환불</strong>
+											<a href="search.hh?keyword=결제내역은 어떻게 확인하나요?"> 결제내역은 어떻게 확인하나요? </a></li>	
+											<li><strong class="phType phType_2" style="color:#798E19; border-color:#798E19;">센터이용/오류</strong>
+											<a href="search.hh?keyword=멤버십 상품과 관계없이 제휴 센터 모두 이용가능하나요?"> 멤버십 상품과 관계없이 제휴 센터 모두 이용가능하나요?</a></li>	
+											<li><strong class="phType phType_2" style="color:#9a90d1; border-color:#9a90d1;">회원정보</strong>
+											<a href="search.hh?keyword=아이디 분실 시 어떻게 확인해야 하나요?"> 아이디 분실 시 어떻게 확인해야 하나요? </a></li>	
+											<li><strong class="phType phType_2" style="color:#9a90d1; border-color:#9a90d1;">회원정보</strong>
+											<a href="search.hh?keyword=회원탈퇴는 어떻게 하나요?"> 회원탈퇴는 어떻게 하나요? </a></li>											
 										</ul>
 									</div>
 								</div>
@@ -309,9 +309,9 @@ h5 {
 											</p>
 											<p class="help-block">
 												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
-												<strong><a href="login.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
+												<strong><a href="memberLogin.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
 											</p>
-											<a href="#" class="btn btn-default"><i class="fa fa-comments-o" style=""></i> 실시간 채팅상담</a>
+											<a class="btn btn-default" name="chatPopUp" id="chatPopUp"><i class="fa fa-comments-o"></i> 실시간 채팅상담</a>
 										</div>
 										<div class="innerBox col-xs-6 col-sm-12">
 											<h3>1:1 문의</h3>
@@ -341,5 +341,22 @@ h5 {
 			</div>
 			<!-- /container -->
 		</div>
+<script>
+	$('#chatPopUp').click(function(event){  //버튼을 클릭 했을시 popupOpen 함수 출력 
+	    popupOpen();	//Popup Open 함수
+	});
+	
+	function popupOpen(){
+		var url= "chatPopUp.hh";    //팝업창 페이지 URL
+		/* var winWidth = 700;
+	    var winHeight = 600; */
+	    var popupX = (window.screen.width / 2) - (600 / 2);
+		var popupY= (window.screen.height /2) - (500 / 2);
+
+	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
+		window.open('', '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+	}
+
+</script>
 </body>
 </html>
