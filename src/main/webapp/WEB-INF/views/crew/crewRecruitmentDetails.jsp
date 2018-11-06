@@ -440,18 +440,17 @@ p.crewComentBox2{
 						 	
 						 	<div class="commentBox">
 								<!-- 여기부터 반복문  -->
-								
-							
+								<c:forEach var="c" items="${list3}" varStatus="status">				
 						 		<div class="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
+						 			<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 						 			<div class="Comment1">
-						 			<p class="userId">파스구찌또치님</p>
+						 			<p class="userId">${ c.user_Name }</p>
 						 				<div class="spansBtn">
 						 				
 						 				<span  class="crewOk">
 						 					<i class="fa fa-user-circle">
 						 					</i>
-						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(coment_No = 1)">
+						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
 						 				</span>
 						 				
 						 				<span style="color:gray" class="editBtn">
@@ -466,12 +465,13 @@ p.crewComentBox2{
 						 				</span>
 						 				</div>
 									<div class="area1">					 			
-						 			<p class="Comment">나는 사나이다. 조장이라구 이춘복 참치는 안간다.나는 회를 싫어한다고
+						 			<p class="Comment">${c.coment_Content }
 						 			</p>
 						 			</div>
 						 			</div>
 						 		</div>
 						 		<!-- 여기까지  -->
+						 		</c:forEach>
 						 	</div>
 						 	<div class="commentWriterBox">
 						 		<form class="comment" id="coment3" action="crewComent.shw2" method="post">

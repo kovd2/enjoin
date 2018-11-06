@@ -64,6 +64,9 @@ public interface CrewDao {
 	//자식 댓글 인서트
 	int crewAddchildComent(SqlSessionTemplate sqlSession, CrewComent cc);
 	
+	//크루 댓글 조회
+	List<CrewComent> crewComentSelect(SqlSessionTemplate sqlSession, int board_No);
+	
 	
 
 }

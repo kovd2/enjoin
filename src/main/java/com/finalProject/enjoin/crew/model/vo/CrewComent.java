@@ -13,11 +13,13 @@ public class CrewComent implements java.io.Serializable {
 	private int parent_Coment_No;	//부모댓글번호
 	private int user_No;			//작성자
 	private String user_Name;		//유저이름
+	private String upload_Name;     //댓글 유저 사진
 	
 	public CrewComent(){}
 
 	public CrewComent(int coment_No, String coment_Content, Date coment_Date, Date coment_ModifyDate,
-			String coment_Status, int board_No, int parent_Coment_No, int user_No, String user_Name) {
+			String coment_Status, int board_No, int parent_Coment_No, int user_No, String user_Name,
+			String upload_Name) {
 		super();
 		this.coment_No = coment_No;
 		this.coment_Content = coment_Content;
@@ -28,6 +30,7 @@ public class CrewComent implements java.io.Serializable {
 		this.parent_Coment_No = parent_Coment_No;
 		this.user_No = user_No;
 		this.user_Name = user_Name;
+		this.upload_Name = upload_Name;
 	}
 
 	public int getComent_No() {
@@ -66,6 +69,10 @@ public class CrewComent implements java.io.Serializable {
 		return user_Name;
 	}
 
+	public String getUpload_Name() {
+		return upload_Name;
+	}
+
 	public void setComent_No(int coment_No) {
 		this.coment_No = coment_No;
 	}
@@ -102,13 +109,18 @@ public class CrewComent implements java.io.Serializable {
 		this.user_Name = user_Name;
 	}
 
+	public void setUpload_Name(String upload_Name) {
+		this.upload_Name = upload_Name;
+	}
+
 	@Override
 	public String toString() {
 		return "CrewComent [coment_No=" + coment_No + ", coment_Content=" + coment_Content + ", coment_Date="
 				+ coment_Date + ", coment_ModifyDate=" + coment_ModifyDate + ", coment_Status=" + coment_Status
 				+ ", board_No=" + board_No + ", parent_Coment_No=" + parent_Coment_No + ", user_No=" + user_No
-				+ ", user_Name=" + user_Name + "]";
+				+ ", user_Name=" + user_Name + ", upload_Name=" + upload_Name + "]";
 	}
+
 	
 	
 	
