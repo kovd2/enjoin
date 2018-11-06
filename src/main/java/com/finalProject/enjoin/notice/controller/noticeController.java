@@ -360,6 +360,14 @@ public class noticeController {
 		
 		return mav;
 	}
+	
+	//채팅 팝업
+	@RequestMapping("chatPopUp.hh")
+	public String chatPopUp() {
+		
+		
+		return "notice/chatPopUp";
+	}
 		
 	
 }

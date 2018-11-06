@@ -50,7 +50,7 @@
 							<article class="notice">
 								<p dir="ltr"
 									style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">
-									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;"><img src="resources/uploadFiles/admin/${detail.upload_name }"> <br><br> ${detail.boardContent } </span>
+									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;"><img style="width:100%; height:100%" src="resources/uploadFiles/admin/${detail.upload_name }"> <br><br> ${detail.boardContent } </span>
 								</p>
 							</article>
 							<div class="articleTail">

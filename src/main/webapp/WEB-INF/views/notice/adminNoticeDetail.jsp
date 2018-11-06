@@ -41,7 +41,7 @@
 			<tr>
 			<th style="vertical-align:middle; width:300px; height:260px; font-size:30px; background:gray;">첨부파일</th>
 			<td  style="width:310px; height:260px;"><div id="contentImgArea1" style="width:310px; height:260px;">
-			<img id=contentImg1 src="resources/uploadFiles/admin/${ detail.upload_name }">
+			<img style="width:100%; height:100%" id=contentImg1 src="resources/uploadFiles/admin/${ detail.upload_name }">
 			</div></td>
 	
 			</tr>

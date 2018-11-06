@@ -27,4 +27,13 @@
 		<beans:property name="maxUploadSize" value="10000000"/> <!-- 파일 용량 제한을 대략 10MB정도 잡은거임 -->
 	</beans:bean>
 	
+	
+	<!-- 웹소켓 채팅 -->
+	<beans:bean id="echoHandler" class="com.finalProject.enjoin.common.util.EchoHandler"/>
+
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:sockjs/>
+	</websocket:handlers>
+	
 </beans:beans>
