@@ -24,6 +24,7 @@
 		<result property="copType" column="COP_TYPE"/>
 		<result property="copCon" column="COP_CON"/>
 		<result property="copEmail" column="COP_EMAIL"/>
+		<result property="upload_name" column="UPLOAD_NAME"/>
 	</resultMap>
 
 	<!-- 로그인 정보 조회용 쿼리문 -->
@@ -60,8 +61,15 @@
 	
 	<!-- 암호화 후 회원 가입용 쿼리 -->
 	<select id="selectLoginUser" resultMap="memberResultSet" parameterType="Member">
-		SELECT *
+		<!-- SELECT *
 		FROM MEMBER
+		WHERE USER_ID = #{userId}
+		AND STATUS = 'Y' -->
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN(SELECT *
+			  	  FROM ATTACHMENT
+			  	  WHERE FILE_TYPE = '3') A ON(M.USER_NO = A.REF_NO)
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</select>

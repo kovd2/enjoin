@@ -16,6 +16,7 @@
 }
 .crewManangerWrap{
 	width:800px;
+	height:300px;
 	margin-top:50px;
 	text-indent:30px;
 }
@@ -137,27 +138,30 @@
 		<jsp:include page="../common/myPage/myPageLeft.jsp" />
 		<input type="hidden" value="a_invite" id="ckPage">
 	<div class="rightContainer">
-		<b id="a_index" class="current" style="font-size: 30px; color: black; text-indent: 30px;"><i class="fa fa-child"></i> 크루관리</b>
-		<br>
-		<div class="acceptMemberArea">
-			<h3>가입 승인</h3>
-				<div class="acceptList">					
-					<table style="width: 800px; border-top:solid 1px black;">
+			<b id="a_index" class="current" style="font-size: 30px; color: black; text-indent: 30px;"><i class="fa fa-child"></i> 크루관리</b> <br>
+			<div class="acceptMemberArea">
+				<h3>가입 승인</h3>
+				<div class="acceptList">
+					<table style="width: 800px; border-top: solid 1px black;">
 						<tr class="titleArea">
-							<td style="width:350px;">회원아이디</td>
-							<td style="width:350px;">구분</td>
+							<td style="width: 100px;">종목</td>
+							<td style="width: 300px;">크루 이름</td>
+							<td style="width: 200px;">유저ID</td>
+							<td style="width: 200px;">구분</td>
 						</tr>
-						<%for(int i = 0; i < 3; i++){ %>
-						<tr>
-							<td>userId</td>
-							<td><button>승인</button></td>
-						</tr>
-						<%} %>
+						<c:forEach var="ac" items="${ crewAcceptList }">
+							<tr>
+								<td>${ ac.category_name }</td>
+								<td>${ ac.crew_Name }</td>
+								<td>${ ac.userId }</td>
+								<td><button onclick="acceptCrew(${ac.userId},${ac.crew_Id});">승인</button></td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
-		</div>
-		<hr>
-		<div class="crewManangerWrap">
+			</div>
+			<hr>
+			<div class="crewManangerWrap">
 			<h3>생성된 크루</h3>
 			<!-- 크루 리스트 반복-->
 			<c:forEach var="c" items="${ crewList }">
@@ -246,6 +250,14 @@
 		function goCrewBoardList(crewId){
 			var crewId = crewId;
 			location.href="goCrewBoardList.ljs?crewId=" + crewId;
+		}
+		
+		//크루 승인 버튼
+		function acceptCrew(userId, crewId){
+			var userId = userId;
+			var crewId = crewId;
+			
+			location.href="acceptCrew.ljs?userId=" + userId + "&crewId=" + crewId;
 		}
 	</script>
 </body>
