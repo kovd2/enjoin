@@ -23,9 +23,7 @@
 <link href="resources/style/skins/default.css" rel="stylesheet">
 </head>
 <body>
-	<c:set var="contextPath"
-		value="${ pageContext.servletContext.contextPath }"
-		scope="application" />
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<c:if test="${ empty sessionScope.loginUser }">
 		<form action="login.me" method="post">
 			<div id="wrapper">
@@ -77,7 +75,7 @@
 	</c:if>
 	
 	
-	<c:if test="${ !empty sessionScope.loginUser }">
+	<c:if test="${ sessionScope.loginUser.userType eq '1' }">
 	<div id="wrapper">
 				<!-- start header -->
 				<header>
@@ -112,6 +110,92 @@
 									<li><a href="logout.me">로그아웃</a></li>
 									<li><a href="passPurchase.hh">멤버십 신청</a></li>
 									<li><a onclick="goProfil(${loginUser.userNo});" style="cursor:pointer;">프로필</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</header>
+			</div>
+	</c:if>
+	
+	<c:if test="${ sessionScope.loginUser.userType eq '2' }">
+	<div id="wrapper">
+				<!-- start header -->
+				<header>
+					<div class="navbar navbar-default navbar-static-top">
+						<div class="container">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle"
+									data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+										class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="index.jsp"><span>E</span>njoin</a>
+							</div>
+							<div class="navbar-collapse collapse ">
+								<ul class="nav navbar-nav">
+									<li><a href="companyInsertForm.gs">제휴시설 관리</a></li>
+									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li class="dropdown "><a href="#" class="dropdown-toggle "
+										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="notice.hh">공지사항</a></li>
+											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
+											<li><a href="informBoard.kch2">크루공고</a></li>
+											<li><a href="crewEventBoard.test">이벤트</a></li>
+											<li><a href="crewApplication.test">크루신청</a></li>
+											<li><a href="crewAffiliate.test">크루제휴</a></li>
+											<li><a href="crewActivity.test">크루활동</a></li>
+											<li><a href="crewRecruitment.test">크루모집</a></li>
+											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+										</ul></li>
+									<li><a href="serviceCenter.hh">고객센터</a></li>
+									<li><a href="logout.me">로그아웃</a></li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</header>
+			</div>
+	</c:if>
+	
+	<c:if test="${ sessionScope.loginUser.userType eq '3' }">
+	<div id="wrapper">
+				<!-- start header -->
+				<header>
+					<div class="navbar navbar-default navbar-static-top">
+						<div class="container">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle"
+									data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+										class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="index.jsp"><span>E</span>njoin</a>
+							</div>
+							<div class="navbar-collapse collapse ">
+								<ul class="nav navbar-nav">
+									<li><a href="adminMainPage.test">관리자 페이지</a></li>
+									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li class="dropdown "><a href="#" class="dropdown-toggle "
+										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="notice.hh">공지사항</a></li>
+											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
+											<li><a href="informBoard.kch2">크루공고</a></li>
+											<li><a href="crewEventBoard.test">이벤트</a></li>
+											<li><a href="crewApplication.test">크루신청</a></li>
+											<li><a href="crewAffiliate.test">크루제휴</a></li>
+											<li><a href="crewActivity.test">크루활동</a></li>
+											<li><a href="crewRecruitment.test">크루모집</a></li>
+											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+										</ul></li>
+									<li><a href="serviceCenter.hh">고객센터</a></li>
+									<li><a href="logout.me">로그아웃</a></li>
+									
 								</ul>
 							</div>
 						</div>

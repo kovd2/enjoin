@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@
 					<img id="profil_img" src="resources/images/myPage/image.png">
 				</div>
 				<div class="profil_info">
-					<h6>UserName 님<br><small>(UserId)</small></h6>
+					<h6><c:out value="${ sessionScope.loginUser.userName }님"/><br><small>(<c:out value="${ sessionScope.loginUser.userId }"/>)</small></h6>
 					<div class="userPicComment upcOK">
 						<p class="text-anc">와~ 멋진 사진이네요!</p>
 						<!-- <p>

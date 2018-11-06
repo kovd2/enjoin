@@ -5,7 +5,7 @@ import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 public interface CompanyService {
 
-	int insertCompany(Company c, Attachment at1, Attachment at2);
+	int insertCompany(Company c, Attachment at1, Attachment at2, Attachment at3, Attachment at4);
 
 
 

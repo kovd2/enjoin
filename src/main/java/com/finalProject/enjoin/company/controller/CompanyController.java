@@ -63,7 +63,9 @@ public class CompanyController {
 	@RequestMapping(value="facilityInsert.gs")
 	public String companyInsert(Model model, /*Company c,*/ HttpServletRequest request, 
 									@RequestParam(name="gs_file1", required=false) MultipartFile origin_Name1,
-									@RequestParam(name="gs_file2", required=false) MultipartFile origin_Name2) {
+									@RequestParam(name="gs_file2", required=false) MultipartFile origin_Name2,
+									@RequestParam(name="gs_file3", required=false) MultipartFile origin_Name3,
+									@RequestParam(name="gs_file4", required=false) MultipartFile origin_Name4) {
 		
 		
 		//객체 꺼내기
@@ -143,40 +145,74 @@ public class CompanyController {
 		long fileSize4 = origin_Name2.getSize();
 		String fileSize3 = String.valueOf(fileSize4);
 		
+		//파일명 변경3
+		String originFileName3 = origin_Name3.getOriginalFilename();
+		String ext3 = originFileName3.substring(originFileName3.lastIndexOf("."));
+		String changeName3 = CommonUtils.getRandomString();
+		long fileSize6 = origin_Name3.getSize();
+		String fileSize5 = String.valueOf(fileSize6);
+		
+		//파일명 변경4
+		String originFileName4 = origin_Name4.getOriginalFilename();
+		String ext4 = originFileName4.substring(originFileName4.lastIndexOf("."));
+		String changeName4 = CommonUtils.getRandomString();
+		long fileSize8 = origin_Name4.getSize();
+		String fileSize7 = String.valueOf(fileSize8);
+
+		
 		//파일명 바꾸기
 		System.out.println("changeName1" + changeName1);
 		System.out.println("changeName2" + changeName2);
+		System.out.println("changeName3" + changeName3);
+		System.out.println("changeName4" + changeName4);
 		
 		//사진을 담기위한 객체선언
+		//1
 		Attachment at1 = new Attachment();
-		
-		
 		String origin_FileNames1 = String.valueOf(originFileName1);
 		String changeNameExt1 = changeName1 + ext1;
-		
 		at1.setOrigin_Name(originFileName1);
 		at1.setFile_Ext(ext1);
 		at1.setUpload_Name(changeNameExt1);
 		at1.setFile_size(fileSize1);
 		
+		
+		//2
 		Attachment at2 = new Attachment();
-		
-		
 		String origin_FileNames2 = String.valueOf(originFileName2);
 		String changeNameExt2 = changeName2 + ext2;
-		
 		at2.setOrigin_Name(originFileName2);
 		at2.setFile_Ext(ext2);
 		at2.setUpload_Name(changeNameExt2);
 		at2.setFile_size(fileSize3);
 		
-		//업로드된 파일을 지정한 경로에 저장
+		//3
+		Attachment at3 = new Attachment();
+		String origin_FileNames3 = String.valueOf(originFileName3);
+		String changeNameExt3 = changeName3 + ext3;
+		at3.setOrigin_Name(originFileName3);
+		at3.setFile_Ext(ext3);
+		at3.setUpload_Name(changeNameExt3);
+		at3.setFile_size(fileSize5);		
 		
+		//4
+		Attachment at4 = new Attachment();
+		String origin_FileNames4 = String.valueOf(originFileName4);
+		String changeNameExt4 = changeName4 + ext4;
+		at4.setOrigin_Name(originFileName4);
+		at4.setFile_Ext(ext4);
+		at4.setUpload_Name(changeNameExt4);
+		at4.setFile_size(fileSize7);
+		
+		
+		//업로드된 파일을 지정한 경로에 저장
 		try {
 			origin_Name1.transferTo(new File(filePath + "\\" + changeName1 + ext1));
 			origin_Name2.transferTo(new File(filePath + "\\" + changeName2 + ext2));
+			origin_Name3.transferTo(new File(filePath + "\\" + changeName3 + ext3));
+			origin_Name4.transferTo(new File(filePath + "\\" + changeName4 + ext4));
 			
-			int result = cs.insertCompany(c, at1, at2);
+			int result = cs.insertCompany(c, at1, at2, at3, at4);
 			
 			return "redirect:goMainCompany.gs";
 			
@@ -186,6 +222,8 @@ public class CompanyController {
 			
 			new File(filePath + "\\" + changeName1 + ext1).delete();
 			new File(filePath + "\\" + changeName2 + ext2).delete();
+			new File(filePath + "\\" + changeName3 + ext3).delete();
+			new File(filePath + "\\" + changeName4 + ext4).delete();
 			
 			model.addAttribute("msg", "제휴시설신청실패");
 
