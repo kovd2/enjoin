@@ -53,7 +53,7 @@
 	
 	
 	<select id="selectBoardNo" resultType="_int" parameterType="_int">
-		SELECT MAX(BOARD_NO) FROM BOARD
+		SELECT BOARD_NO.currval FROM dual
 	</select>
 	
 	<!-- <insert id="insertInformFiles"  parameterType="java.util.Map">
@@ -84,6 +84,25 @@
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
 	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
 	</insert>
+	
+	<select id="getListCount" resultType="_int" parameterType="_int">
+	SELECT COUNT(*)FROM BOARD WHERE BOARD_TYPE='공고'
+	</select>
+	
+	<select id="selectBoardList" resultType="map" parameterType="hashMap">
+	SELECT B.BOARD_NO,B.BOARD_TYPE,B.BOARD_TITLE,B.BOARD_CONTENT,B.ENROLL_DATE,B.PASS_COUNT,
+	B.NOTICE_MAX,B.NOTICE_MIN,B.NOTICE_REQUEST,B.NOTICE_END,B.NOTICE_START,B.STATUS,B.CATEGORY_NO,
+	B.NOTICE_DAILY,B.CREW_AREA,A.ATT_NO,A.FILE_NO,A.UPLOAD_NAME,A.ORIGIN_NAME,A.FILE_SIZE,A.FILE_EXT,
+    A.FILE_DATE,A.FILE_TYPE,A.REF_NO
+    FROM BOARD B
+    JOIN ATTACHMENT A ON  B.BOARD_NO = A.REF_NO
+    WHERE B.BOARD_TYPE='공고'
+	</select>
+	
+	
+	
+	
+	
 	
 </mapper>
 

@@ -1,13 +1,17 @@
 package com.finalProject.enjoin.informBoard.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
+import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
 
 @Repository
 public class InformBoardDaoImpl implements InformBoardDao{
@@ -55,5 +59,38 @@ public class InformBoardDaoImpl implements InformBoardDao{
 		
 		return 1;
 	}
+
+	@Override
+	public int getListCount(SqlSessionTemplate sqlSession) throws BoardSelectListException {
+		
+		int result =sqlSession.selectOne("InformBoard.getListCount");
+		if(result<=0) {
+			
+				throw new BoardSelectListException("메인게시물수 조회 실패");
+			
+		}
+		return result;
+	}
+
+	@Override
+	public  List<Map<String, Object>> selectMainList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		List<Map<String,Object>> list= null;
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		//스프링이알아서 로우바운즈쓴데이
+		list=sqlSession.selectList("InformBoard.selectBoardList", null,rowBounds);
+		
+		System.out.println("DAO:"+list);
+		
+		return list;
+	}
+
+	
+
+
 
 }
