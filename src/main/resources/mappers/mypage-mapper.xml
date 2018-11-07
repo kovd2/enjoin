@@ -239,7 +239,7 @@
 		LEFT JOIN (SELECT * 
           		   FROM ATTACHMENT 
            		   WHERE FILE_TYPE = '4'
-           		   AND FILE_NO = 0 )A ON (C.CREW_ID = A.REF_NO)
+           		   AND FILE_NO = 0 )A ON (C.CREW_ID = A.ATT_NO)
 		WHERE USER_NO = #{userNo}
 		AND C.CREW_STATUS = 'Y'
 	</select>
@@ -278,7 +278,7 @@
 	<!-- 크루게시물 댓글 작성 -->
 	<insert id="insertComent" parameterType="Coment">
 		INSERT INTO COMENT
-		VALUES(COMENT_NO.NEXTVAL, #{reply}, SYSDATE, NULL, 'Y', #{boardNo}, #{userNo})
+		VALUES(SEQ_COMENT_NO.NEXTVAL, #{reply}, SYSDATE, NULL, 'Y', #{boardNo}, #{userNo}, 0)
 	</insert>
 	
 	

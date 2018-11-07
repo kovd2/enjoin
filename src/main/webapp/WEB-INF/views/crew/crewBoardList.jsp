@@ -35,7 +35,7 @@
 				<div class="content col-md-12">
 					<div class="page-header">
 						<h2>
-							크루 게시판 <small>(${ crewName })</small>
+							크루 게시판 <small>${ crewName }</small>
 						</h2>
 					</div>
 					<div class="noticeWrap">
