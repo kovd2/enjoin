@@ -274,7 +274,9 @@ p.crewName {
 			<!-- 여기까지  -->
 		</div>
 	<div class="middle">
+		<c:if test="${!empty sessionScope.loginUser }">
 		<button class="crewBtn" onclick="goCrewActicity()">활동내역작성</button>
+		</c:if>
 	</div>
 	<div class="middle2">
 		<hr>

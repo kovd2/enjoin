@@ -64,7 +64,10 @@ public interface CrewService {
 	List<CrewComent> crewComentSelect(int board_No);
 	
 	//선정된 크루원 조회
-	List<InCrew> crewInCrewY(InCrew ic);
+	List<InCrew> crewInCrewY(int crew_Id);
+	
+	//만든 크루에대해서 조회해서 입력폼에뿌려주기위해 만듬
+	List<Crew> crewInformation(int userNo);
 	
 	
 
