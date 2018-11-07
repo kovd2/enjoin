@@ -314,15 +314,20 @@ public class CrewController {
 			return "redirect:crewRecruitmentBoard.shw2";
 		}
 	}
-	@RequestMapping("crewRecruitmentDetails")
+	@RequestMapping("crewRecruitmentDetails.shw2")
 	public ModelAndView crewRecruitmentDetails(ModelAndView mv,HttpServletRequest request) {
 		
 		int board_No = Integer.parseInt(request.getParameter("board_No"));
 		int user_No = Integer.parseInt(request.getParameter("user_No"));
+		int crew_Id = Integer.parseInt(request.getParameter("crew_No"));
 		
+		
+		InCrew ic = new InCrew();
+		ic.setCrew_Id(crew_Id);
 		
 		System.out.println("board_No : " +  board_No);
 		System.out.println("user_No :" + user_No);
+		System.out.println("crew_No : " + crew_Id);
 		
 		
 		//조회한값을 담아줄 hashMap
@@ -342,10 +347,15 @@ public class CrewController {
 		List<Attachment> list1 = cs.crewAttachmentDetails(board_No);
 		
 		//작성자 사진 정보 조회
-		Attachment userPhoto = cs.crewUserPhoto(user_No);
+		Attachment userPhoto = cs.crewUserPhoto(board_No);
 		
 		//크루 댓글 조회
 		List<CrewComent> list3 = cs.crewComentSelect(board_No);
+		
+		//선정된 크루원 리스트 보여주기
+		List<InCrew> list4 = cs.crewInCrewY(ic);
+		
+		System.out.println("list4 : " + list4 );
 		
 		mv.setViewName("crew/crewRecruitmentDetails");
 		mv.addObject("list", list);
@@ -361,17 +371,17 @@ public class CrewController {
 		public ModelAndView crewInCrew(ModelAndView mv,HttpServletRequest request) {
 		
 			int user_No = Integer.parseInt(request.getParameter("user_No"));
-			int crew_No = Integer.parseInt(request.getParameter("crew_No"));
+			int crew_Id = Integer.parseInt(request.getParameter("crew_No"));
 			int board_No = Integer.parseInt(request.getParameter("board_No"));
 			
 			InCrew ic = new InCrew();
 			
 			System.out.println("user_No :" + user_No);
-			System.out.println("crew_No :" + crew_No);
+			System.out.println("crew_No :" + crew_Id);
 			System.out.println("board_No :" + board_No);
 			
 			ic.setUser_No(user_No);
-			ic.setCrew_Id(crew_No);
+			ic.setCrew_Id(crew_Id);
 			
 			int result = 0;
 			result = cs.insertInCrew(ic);
@@ -383,12 +393,24 @@ public class CrewController {
 			List<Attachment> list1 = cs.crewAttachmentDetails(board_No);
 			
 			//작성자 사진 정보 조회
-			Attachment userPhoto = cs.crewUserPhoto(user_No);
+			Attachment userPhoto = cs.crewUserPhoto(board_No);
+			
+			//크루 댓글 조회
+			List<CrewComent> list3 = cs.crewComentSelect(board_No);
+			
+			//선정된 크루원 리스트 보여주기
+			List<InCrew> list4 = cs.crewInCrewY(ic);
+			System.out.println("list4" + list4);
+			
+			
 			
 			mv.setViewName("crew/crewRecruitmentDetails");
 			mv.addObject("list", list);
 			mv.addObject("list1", list1);
+			mv.addObject("list3",list3);
+			mv.addObject("list4", list4);
 			mv.addObject("userPhoto", userPhoto);
+			
 			
 		
 			
@@ -401,13 +423,12 @@ public class CrewController {
 			String coment_Content = request.getParameter("coment_Content");
 			String checked = request.getParameter("checked11");
 			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			int crew_Id  = Integer.parseInt(request.getParameter("crew_No"));
 			String capy = request.getParameter("capy");
 			
 			System.out.println("capy" + capy);
 					
 					
-			//int board_No = 1;
-			//int coment_No = 1;
 			if(checked == null){
 				checked = capy;
 			}
@@ -423,11 +444,14 @@ public class CrewController {
 			cc.setBoard_No(board_No);
 			cc.setUser_No(userNo);
 			
-			/*System.out.println("comment : " + comment);
-			System.out.println("checked : " + checked);
-			System.out.println("Coment_No :" + Coment_No);
-			System.out.println("loginUser: " + userNo);
-			System.out.println("board_No : " + board_No);*/
+			InCrew ic = new InCrew();
+			
+			System.out.println("user_No :" + userNo);
+			System.out.println("crew_No :" + crew_Id);
+			System.out.println("board_No :" + board_No);
+			
+			ic.setUser_No(userNo);
+			ic.setCrew_Id(crew_Id);
 			
 			int result =0;
 			
@@ -460,10 +484,15 @@ public class CrewController {
 			List<CrewComent> list3 = cs.crewComentSelect(board_No);
 			
 			System.out.println("list3 : " + list3);
+			//선정된 크루원 리스트 보여주기
+			List<InCrew> list4 = cs.crewInCrewY(ic);
+			
+			System.out.println("list4" + list4);
 			
 			mv.addObject("list", list);
 			mv.addObject("list1", list1);
 			mv.addObject("list3", list3);
+			mv.addObject("list4", list4);
 			mv.addObject("userPhoto", userPhoto);
 			
 			//mv.setViewName("jsonView");

@@ -13,7 +13,7 @@
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard" alias="CrewRecruitmentBoard"/>
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
-		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="inCrew1"/>
+		<typeAlias type="com.finalProject.enjoin.crew.model.vo.InCrew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
 	</typeAliases>
 	<mappers>

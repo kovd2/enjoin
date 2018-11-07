@@ -106,9 +106,9 @@ public class CrewServiceImpl implements CrewService {
 	
 	//작성자 사진 조회
 	@Override
-	public Attachment crewUserPhoto(int user_No) {
+	public Attachment crewUserPhoto(int board_No) {
 		
-		return cd.crewUserPhoto(sqlSession,user_No);
+		return cd.crewUserPhoto(sqlSession,board_No);
 	}
 	//크루버튼 클릭시 크루 들어가게
 	@Override
@@ -140,6 +140,13 @@ public class CrewServiceImpl implements CrewService {
 	public List<CrewComent> crewComentSelect(int board_No) {
 		
 		return cd.crewComentSelect(sqlSession,board_No);
+	}
+	
+	//선정된 크루원 조회
+	@Override
+	public List<InCrew> crewInCrewY(InCrew ic) {
+		
+		return cd.crewInCrewY(sqlSession,ic);
 	}
 	
 

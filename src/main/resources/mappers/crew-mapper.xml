@@ -14,6 +14,8 @@
 		<result property="end_Date" column="END_DATE"/>
 		<result property="crew_Status" column="CREW_STATUS"/>
 		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
 	</resultMap>	
 	
 	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
@@ -65,8 +67,9 @@
 		<result property="start_Date" column="START_DATE"/>
 		<result property="end_Date" column="END_DATE"/>
 		<result property="inCrew_Status" column="INCREW_STATUS"/>
+		<result property="inCrew_No" column="INCREW_NO"/>
 		<result property="user_Name" column="USER_NAME"/>
-		
+		<result property="upload_Name" column="UPLOAD_NAME"/>
 	</resultMap>
 	
 	<resultMap type="CrewComent" id="crewComents">
@@ -95,6 +98,7 @@
 	<select id="selectCrewId" parameterType="_int" resultType="_int">
 		SELECT SEQ_CREW_CREW_ID.CURRVAL FROM dual
 	</select>
+	
 	<!-- 크루의 카테고리번호를 받아온다  -->
 	<select id="selectCategoryCode" parameterType="_int" resultType="_int">
 		SELECT CATEGORY_NO
@@ -146,7 +150,7 @@
 	<!-- 크루모집 게시판 조회  -->
 	<select id="crewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,B.CREW_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -167,7 +171,7 @@
 	<!--크루활동 게시판 카테고리별 조회  -->
 	<select id="crewCategoryRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -184,6 +188,7 @@
         AND B.BOARD_TYPE = '크루모집'
         AND B.BOARD_TITLE LIKE '%'|| #{board_Title} || '%'
 	</select>
+	
 	<!-- 크루활동 지역별 게시물 갯수 조회  -->
 	 <select id="getCrewAreaListCount" resultType="_int">	
 		SELECT COUNT(*)
@@ -193,10 +198,11 @@
         AND B.BOARD_TYPE = '크루모집'
         AND B.CREW_AREA LIKE '%'|| #{crew_Area} || '%'
      </select>
+    
      <!-- 크루활동 제목별 검색 게시물 조회  -->
      <select id="crewTitleRecruitmentBoardList" resultMap="CrewRecruitmentSet">
      	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -207,7 +213,7 @@
      <!-- 크루활동 지역별 검색 게시물 조회  -->
      <select id="crewAreaRecruitmentBoardList" resultMap="CrewRecruitmentSet">
      	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -235,10 +241,14 @@
      
      <!-- 크루 작성자 사진 조회 -->
      <select id="crewUserPhoto" resultMap="CrewRmbAttachment">
-     	SELECT FILE_NO,UPLOAD_NAME
-		FROM ATTACHMENT
-		WHERE FILE_TYPE = 3
-		AND REF_NO = #{user_No}
+     	SELECT A.FILE_NO,A.UPLOAD_NAME
+		FROM BOARD B
+        JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+        JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_TYPE =  3
+        AND A.REF_NO = (SELECT B.USER_NO
+                        FROM BOARD B
+                        WHERE B.BOARD_NO = #{board_No})
      </select>
      
      <!-- 크루 모집 버튼 눌렀을시 신청  -->
@@ -246,16 +256,18 @@
      	INSERT INTO INCREW(USER_NO,CREW_ID,REQUEST_DATE,INCREW_STATUS,INCREW_NO)
     	VALUES(#{user_No},#{crew_Id},SYSDATE,'N',SEQ_INCREW_NO.NEXTVAL)
      </insert>
+     
      <!-- 조회수증가 업데이트  -->
      <update id="crewRecruitmentDetailsUpdate" parameterType="Crew">
      	UPDATE BOARD
      	SET BOARD_COUNT = BOARD_COUNT +1
      	WHERE BOARD_NO = #{board_No}
      </update>
+     
      <!-- 크루모집댓글인서트  -->
      <insert id="crewAddComent" parameterType="Crew">
-     	INSERT INTO COMENT(COMENT_NO,COMENT_CONTENT,COMENT_DATE,COMENT_STATUS,BOARD_NO,USER_NO)
-     	VALUES(SEQ_COMENT_NO.NEXTVAL,#{coment_Content},SYSDATE,'Y',#{board_No},#{user_No})
+     	INSERT INTO COMENT(COMENT_NO,COMENT_CONTENT,COMENT_DATE,COMENT_STATUS,BOARD_NO,PARENT_COMENT_NO,USER_NO)
+     	VALUES(SEQ_COMENT_NO.NEXTVAL,#{coment_Content},SYSDATE,'Y',#{board_No},0,#{user_No})
      </insert>
      
      <!-- 크루모집자식댓글인서트 -->
@@ -274,8 +286,19 @@
 			WHERE C.BOARD_NO = #{board_No}
 			AND A.FILE_NO = 0
 			AND A.FILE_TYPE = 3
-			ORDER BY DECODE(C.PARENT_COMENT_NO,NULL,COMENT_NO,C.PARENT_COMENT_NO)ASC,C.COMENT_NO ASC
+			ORDER BY DECODE(C.PARENT_COMENT_NO,0,COMENT_NO,C.PARENT_COMENT_NO)ASC,C.COMENT_NO ASC
      </select>
      
+     <!-- 선정된 크루원 리스트 조회  -->
+     <select id="crewInCrewY"  resultMap="CrewInCrew">
+     	SELECT M.USER_NAME,A.UPLOAD_NAME
+			FROM INCREW I
+			JOIN CREW C ON (I.CREW_ID = C.CREW_ID)
+			JOIN BOARD B ON (C.CREW_ID = B.CREW_NO)
+			JOIN MEMBER M ON (I.USER_NO = M.USER_NO)
+			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+			WHERE I.CREW_ID = #{crew_Id}
+			AND I.INCREW_STATUS = 'Y'
+     </select>
       
 </mapper>
