@@ -44,9 +44,10 @@
 						<c:forEach var="b" items="${ list }">
 							<a class="list-group-item" onclick="detailBoard(${b.boardNo })"> 
 								<span class="label label-info">게시물</span>						
-								<h4 class="list-group-ietm-heading">${b.boardTitle }</h4> 						
-								<span class="date">${b.enrollDate }</span>									
-							</a> 
+								<span style="float:right;">조회수 : ${ b.boardCount }</span> 
+								<h4 class="list-group-ietm-heading">${ b.boardTitle }</h4> 						
+								<span class="date">${ b.enrollDate }</span>									
+							</a>
 						</c:forEach>
 						</div>
 							<button onclick="goCrewBoardForm(${crewId})" style="float:right;">작성하기</button>

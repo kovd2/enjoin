@@ -38,6 +38,8 @@
 		<result property="boardNo" column="BOARD_NO"/>
 		<result property="userNo" column="USER_NO"/>
 		<result property="userName" column="USER_NAME"/>
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
 	</resultMap>
 	
 	<!-- Board -->
@@ -66,23 +68,6 @@
 		<result property="passModifyDate" column="PASS_MODIFYDATE"/>
 		<result property="userNo" column="USER_NO"/>
 	</resultMap>
-	
-	<!-- Crew -->
-	<!-- <resultMap type="Crew" id="crewResultSet">
-		<id property="crew_Id" column="CREW_ID"/>
-		<result property="crew_Name" column="CREW_NAME"/>
-		<result property="crew_Max" column="CREW_MAX"/>
-		<result property="user_No" column="USER_NO"/>
-		<result property="request_Date" column="REQUEST_DATE"/>
-		<result property="start_Date" column="START_DATE"/>
-		<result property="end_Date" column="END_DATE"/>
-		<result property="crew_Status" column="CREW_STATUS"/>
-		<result property="category_No" column="CATEGORY_NO"/>
-		<result property="category_Name" column="CATEGORY_NAME"/>
-		<result property="crew_Address" column="CREW_ADDRESS"/>
-		<result property="board_title" column="BOARD_TITLE"/>
-		<result property="board_Content" column="BOARD_CONTENT"/>
-	</resultMap> -->
 	
 	<!-- inCrew -->
 	<resultMap type="inCrew" id="inCrewResultSet">
@@ -163,8 +148,8 @@
 	
 	<!-- 크루 게시물 작성 쿼리 -->
 	<insert id="insertCrewBoard" parameterType="hashmap">
-		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, CREW_NO, BOARD_COUNT, USER_NO)
-		VALUES(BOARD_NO.NEXTVAL, '크루게시판', #{b.boardTitle}, #{b.boardContent}, SYSDATE, 'Y', #{crewId}, 0, #{userNo})
+		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, CREW_NO, BOARD_COUNT, USER_NO, BOARD_COUNT)
+		VALUES(BOARD_NO.NEXTVAL, '크루게시판', #{b.boardTitle}, #{b.boardContent}, SYSDATE, 'Y', #{crewId}, 0, #{userNo}, 0)
 	</insert>
 	
 	<!-- 크루 게시물 이미지 저장 쿼리 -->
@@ -190,7 +175,7 @@
 		AND STATUS = 'Y'
 		AND CREW_NO = #{crewId}
 		ORDER BY BOARD_NO DESC -->
-		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE, C.CREW_NAME
+		SELECT BOARD_NO, BOARD_TITLE, ENROLL_DATE, C.CREW_NAME, B.BOARD_COUNT
 		FROM BOARD B
         JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
 		WHERE BOARD_TYPE = '크루게시판'
@@ -215,12 +200,30 @@
 		ORDER BY C.COMENT_DATE DESC
 	</select>
 	
-	<!-- 내가 쓴 게시물 조회 -->
+	<!-- 내가 쓴 크루모집 게시물 조회 -->
 	<select id="selectWritePost" resultMap="boardResultSet">
-		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE
+		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT
 		FROM BOARD B
 		JOIN MEMBER M ON(M.USER_NO = B.USER_NO)
 		WHERE B.USER_NO = #{userNo}
+		AND B.BOARD_TYPE = '크루모집'
+	</select>
+	
+	<!-- 내가 쓴 크루게시물 조회 -->
+	<select id="selectWriteCrewBoard" resultMap="boardResultSet">
+		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT
+		FROM BOARD B
+		JOIN MEMBER M ON(M.USER_NO = B.USER_NO)
+		WHERE B.USER_NO = #{userNo}
+		AND B.BOARD_TYPE = '크루게시판'
+	</select>
+	
+	<!-- 내가 쓴 댓글 조회 -->
+	<select id="selectWriteComent" resultMap="comentResultSet">
+		SELECT C.COMENT_NO, C.COMENT_CONTENT, C.COMENT_DATE, B.BOARD_TYPE, B.BOARD_TITLE
+		FROM COMENT C
+		LEFT JOIN BOARD B ON (B.BOARD_NO = C.COMENT_NO)
+		WHERE C.USER_NO =  #{userNo}
 	</select>
 	
 	<!-- 패스 수량 & 수정일 조회 쿼리 -->
@@ -281,7 +284,12 @@
 		VALUES(SEQ_COMENT_NO.NEXTVAL, #{reply}, SYSDATE, NULL, 'Y', #{boardNo}, #{userNo}, 0)
 	</insert>
 	
-	
+	<!-- 게시물 조회수 증가 -->
+	<update id="updateBoardCount">
+		UPDATE BOARD
+     	SET BOARD_COUNT = BOARD_COUNT +1
+     	WHERE BOARD_NO = #{board_No}
+	</update>
 	
 </mapper>
 	

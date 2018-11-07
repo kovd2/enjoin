@@ -11,6 +11,7 @@ import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
 @Repository
@@ -94,7 +95,7 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectList("myPage.selectInCrewList", userNo);
 	}
 
-	//내가 쓴 게시물 조회
+	//내가 쓴 크루모집 게시물 조회
 	@Override
 	public List<Board> selectWritePost(int userNo, SqlSessionTemplate sqlSession) {
 		
@@ -142,6 +143,27 @@ public class myPageDaoImpl implements myPageDao{
 	public int insertComent(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
 	
 		return sqlSession.insert("myPage.insertComent", hmap);
+	}
+
+	//내가 쓴 크루게시물 조회
+	@Override
+	public List<Board> selectWriteCrewBoard(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectWriteCrewBoard", userNo);
+	}
+
+	//내가 쓴 댓글 조회
+	@Override
+	public List<Coment> selectWriteComent(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectWriteComent", userNo);
+	}
+
+	//게시물 조회수 증가
+	@Override
+	public int updateBoardCount(int boardNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updateBoardCount", boardNo);
 	}
 
 
