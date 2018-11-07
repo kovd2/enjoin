@@ -2,16 +2,12 @@ package com.finalProject.enjoin.informBoard.controller;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
-import com.finalProject.enjoin.common.util.Pagination;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
+import com.finalProject.enjoin.informBoard.model.vo.Pagination;
 
 
 @SessionAttributes("loginUser")
@@ -61,6 +57,9 @@ public class InformBoardController {
 		mv.addObject("pi",pi);
 		mv.setViewName("informBoard/informBoard");
 		System.out.println("controllerList:"+list);
+		list.get(0).get("ENROLL_DATE");
+		System.out.println("DAO"+list.get(0).get("ENROLL_DATE"));
+		
 		
 		return mv;
 		

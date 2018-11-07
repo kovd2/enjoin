@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.informBoard.model.vo;
 
+
 public class PageInfo implements java.io.Serializable{
 	private int currentPage;
 	private int listCount;
