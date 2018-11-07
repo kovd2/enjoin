@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,28 +237,66 @@ nav{
 
 			
 		<!-- resultMap은 컬럼명 resultType은 브이오 -->
-		<c:forEach var="item" items="${list} }">
+		
 		
 			<div class="informArea">
-			
+				
+				<c:forEach var="item" items="${list}">
 				<div class="boardList">
 				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/runInfom.png">
+				<img src="${contextPath }resources/images/informBoard/${item.UPLOAD_NAME}">
 					<div class="listContent">
-					-시작일자:${NOTICE_START}<br>
-					-접수기간:${NOTICE_REQUEST } ~ ${NOTICE_END}<br>
-					-지역:${CREW_AREA}<br>
-					-차감패스:${ PASS_COUNT }패스
-					<div></div>
-					<div class="category">${CATEGORY_NO}</div>
-					<div class="status">모집중</div>
+					-시작일자<fmt:formatDate value="${item.NOTICE_START}" pattern="yyyy-MM-dd"/><br>
 					
+					-접수기간:<fmt:formatDate value="${item.NOTICE_REQUEST}" pattern="yyyy-MM-dd"/>
+					 ~ <fmt:formatDate value="${item.NOTICE_END}" pattern="yyyy-MM-dd"/><br>
+					
+					
+					-지역:${item.CREW_AREA}<br>
+					
+					-차감패스:${ item.PASS_COUNT }패스
+					
+					<div></div>
+					
+					<div class="category">
+					
+					<c:if test="${item.CATEGORY_NO==0} }">
+						런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==1} }">
+					
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==2} }">
+					런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==3} }">
+					런닝
+					</c:if>
+					
+					<c:if test="${item.CATEGORY_NO==4} }">
+					런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==5} }">
+					런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==6} }">
+					런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==7} }">
+					런닝
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==8} }">
+					런닝
+					</c:if>
+			
+					</div>
+					<div class="status">모집중</div>
 					</div>
 				</div>	
 				<div class="list" onclick="goDetail()">
 				<img src="resources/images/informBoard/jjs.jpg">
 					<div class="listContent">
-					-시작일자:${NOTICE_START}<br>
+					-시작일자:${item.NOTICE_START}<br>
 					-접수기간:${NOTICE_REQUEST } ~ ${NOTICE_END}<br>
 					-지역:${CREW_AREA}<br>
 					-차감패스:${ PASS_COUNT }패스
@@ -278,95 +317,18 @@ nav{
 					<div class="status">종료</div>
 					</div>
 				</div>
-				
-				
 				</div>
+				</c:forEach>
 				
-			<!-- 	<div class="boardList">
-				<div class="list">
-				
-				<img src="resources/images/informBoard/runInfom.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div class="category">필라테스</div>
-					<div class="status">종료</div>
-					</div>
-				</div>	
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/pila.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div></div>
-					<div class="category">필라테스</div>
-					<div class="status">종료</div>
-					</div>
-				</div>
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/pila.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div></div>
-					<div class="category">필라테스</div>
-					<div class="status">종료</div>
-					</div>
-				</div>
-				</div> -->
-					<!-- <div class="boardList" onclick="goDetail()">
-				<div class="list">
-				<img src="resources/images/informBoard/runInfom.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div class="category">필라테스</div>
-					<div class="status">종료</div></div>
-					</div>
-				
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/pila.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div></div>
-					<div class="category">필라테스</div>
-					<div class="status">종료</div>
-					</div>
-				</div>
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/pila.png">
-					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
-					<div></div>
-					<div class="category">필라테스</div>
-					<div class="status">종료</div>
-					</div>
-				</div>
-
-			</div> -->
-
+			 
+			
 			</div>
-		</c:forEach>
 	<div id="pagingArea" align="center">
 			<c:if test="${ pi.currentPage <= 1 }">
 				[이전] &nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="blistBack" value="/selectList.bo">
+				<c:url var="blistBack" value="/informBoard.kch2">
 					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 				</c:url>
 				<a href="${ blistBack }">[이전]</a>
@@ -377,7 +339,7 @@ nav{
 					<font color="red" size="4"><b>[${ p }]</b></font>
 				</c:if>
 				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="blistCheck" value="selectList.bo">
+					<c:url var="blistCheck" value="/informBoard.kch2">
 						<c:param name="currentPage" value="${ p }"/>
 					</c:url>
 					<a href="${ blistCheck }">${ p }</a>
@@ -390,7 +352,7 @@ nav{
 				&nbsp; [다음]
 			</c:if>
 			<c:if test="${ pi.currentPage < pi.maxPage}">
-				<c:url var="blistEnd" value="selectList.bo">
+				<c:url var="blistEnd" value="/informBoard.kch2">
 					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 				</c:url>
 				&nbsp;
