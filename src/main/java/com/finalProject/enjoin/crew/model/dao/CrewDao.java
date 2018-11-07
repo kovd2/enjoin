@@ -50,7 +50,7 @@ public interface CrewDao {
 	List<Attachment> crewAttachmentDetails(SqlSessionTemplate sqlSession, int board_No);
 	
 	//작성자 사진정보 조회
-	Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int user_No);
+	Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int board_No);
 
 	//크루버튼 누를시 크루 신청 인서트
 	int insertInCrew(SqlSessionTemplate sqlSession, InCrew ic);
@@ -66,6 +66,9 @@ public interface CrewDao {
 	
 	//크루 댓글 조회
 	List<CrewComent> crewComentSelect(SqlSessionTemplate sqlSession, int board_No);
+	
+	//선정된 크루원 조회
+	List<InCrew> crewInCrewY(SqlSessionTemplate sqlSession, InCrew ic);
 	
 	
 

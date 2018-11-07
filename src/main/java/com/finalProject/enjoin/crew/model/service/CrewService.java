@@ -46,7 +46,7 @@ public interface CrewService {
 	List<Attachment> crewAttachmentDetails(int board_No);
 
 	//작성자 사진 조회
-	Attachment crewUserPhoto(int user_No);
+	Attachment crewUserPhoto(int board_No);
 
 	//크루신청 버튼 클릭시 increw로 들어가는것	
 	int insertInCrew(InCrew ic);
@@ -62,6 +62,9 @@ public interface CrewService {
 	
 	//크루 댓글 조회
 	List<CrewComent> crewComentSelect(int board_No);
+	
+	//선정된 크루원 조회
+	List<InCrew> crewInCrewY(InCrew ic);
 	
 	
 

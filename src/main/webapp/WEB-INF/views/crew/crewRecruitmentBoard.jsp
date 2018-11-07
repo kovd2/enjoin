@@ -541,7 +541,7 @@ select.searchSelect {
 				<hr class="boardHr2">
 				<c:forEach var="c" items="${ list }">
 				<div>
-					<a href="crewRecruitmentDetails.shw2?board_No=${c.board_No}&user_No=${c.user_No}"
+					<a href="crewRecruitmentDetails.shw2?board_No=${c.board_No}&user_No=${c.user_No}&crew_No=${c.crew_No}"
 						style="text-decoration: none;">
 						<table>
 							<tr class="boardMenu">

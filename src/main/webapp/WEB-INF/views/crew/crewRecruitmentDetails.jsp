@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <title>Insert title here</title>
 <style>
 .body{
@@ -230,7 +231,7 @@ p.crewComentBox2{
 .userId{
 	position: relative;
     top: 9px;
-    color: #1159b5;
+    color: #12181f;
     font-weight: bold;
     display: -webkit-inline-box;
 }
@@ -249,7 +250,7 @@ p.crewComentBox2{
 }
 .area1::-webkit-scrollbar {display:none;}
 .crewOk {
-	color: #1159b5;
+	color: gray;
     font-weight: bold;
 }
 .editBtn{
@@ -358,6 +359,64 @@ p.crewComentBox2{
     margin-top: 30px;
     width: 120px;
 }
+input.check1 {
+    position: relative;
+    top: 2px;
+    left: 3px;
+}
+/* 대댓글 css  */
+.MemberCommont1{
+	display: inline-flex;
+    width: 480px;
+    height: 88px;
+    border-bottom: 1px solid #d8d2d2;
+    background: #efecec;
+}
+.UserImg1{
+	width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 22px;
+    position: relative;
+    left: -22px;
+}
+i.fa.fa-tag {
+    color: #443d39;
+    margin-top: 6px;
+    position: relative;
+    left: 5px;
+}
+i.fa.fa-level-down {
+	font-size: 20px;
+    position: relative;
+    left: 16px;
+}
+i.fa.fa-comments{
+	color: #7faeea;
+    margin-top: 6px;
+    position: relative;
+    left: 4px;
+    top: 9px;
+}
+.userId1{
+	position: relative;
+    top: 9px;
+    color: #12181f;
+    font-weight: bold;
+    display: -webkit-inline-box;
+}
+.ComentP{
+	font-size: 2px;
+    position: relative;
+    top: 0px;
+    left: -1px;
+    font-weight: bold;
+    color: #4e4d4d;
+}
+.Comment2{
+	height: 110px;
+    margin-left: -8px;
+}
 
 </style>
 </head>
@@ -440,7 +499,9 @@ p.crewComentBox2{
 						 	
 						 	<div class="commentBox">
 								<!-- 여기부터 반복문  -->
-								<c:forEach var="c" items="${list3}" varStatus="status">				
+								<c:forEach var="c" items="${list3}" varStatus="status">
+								<c:choose>
+									<c:when test="${c.parent_Coment_No == 0 }">			
 						 		<div class="MemberCommont">
 						 			<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 						 			<div class="Comment1">
@@ -452,12 +513,7 @@ p.crewComentBox2{
 						 					</i>
 						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
 						 				</span>
-						 				
-						 				<span style="color:gray" class="editBtn">
-						 					<i class="fa fa-edit">
-						 					</i>
-						 					수정
-						 				</span>
+						 		
 						 				<span style="color:gray" class="deleteBtn">
 						 					<i class="fa fa-trash">
 						 					</i>
@@ -471,7 +527,38 @@ p.crewComentBox2{
 						 			</div>
 						 		</div>
 						 		<!-- 여기까지  -->
+						 		</c:when>
+						 		<c:when test="${c.parent_Coment_No != 0 }">
+						 		<div class="MemberCommont1">
+						 			<i class="fa fa-comments" style="font-size:22px"></i>
+						 			<span class="ComentP">답글</span>
+						 			<img class="UserImg1" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
+						 			<div class="Comment2">
+						 			<p class="userId1">${ c.user_Name }</p>
+						 				<div class="spansBtn">
+						 			
+						 				
+						 				<span style="color:gray" class="deleteBtn">
+						 					<i class="fa fa-trash">
+						 					</i>
+						 					삭제
+						 				</span>
+						 				</div>
+									<div class="area1">					 			
+						 			<p class="Comment">${c.coment_Content }
+						 			</p>
+						 			</div>
+						 			</div>
+						 		</div>
+						 		
+						 		
+						 	
+						 		</c:when>
+						 		</c:choose>
+						 		
 						 		</c:forEach>
+						 		
+						 		
 						 	</div>
 						 	<div class="commentWriterBox">
 						 		<form class="comment" id="coment3" action="crewComent.shw2" method="post">
@@ -498,6 +585,7 @@ p.crewComentBox2{
 						 						<c:forEach var="i" items="${list}" varStatus="status">
 						 						<input type="hidden" value="${i.board_No}" name="board_No">
 						 						<input type="hidden" value="abc" name="capy">
+						 						<input type="hidden" value="${i.crew_No }" name="crew_Id">
 						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
 						 						<button type="submit" class="commentWriterBtn">작성하기</button>
 						 						</c:forEach>
@@ -508,36 +596,44 @@ p.crewComentBox2{
 						 	</div>
 						 </div>
 					</div>
-					<c:forEach var="i1" items="${list1}" varStatus="status1">
-					<c:if test="${status1.index eq 1}">
 					<div class="crewImgBox2">
 						<h2 class="crewAtt">크루활동장소</h2>
 						<hr>
 						<p class="AttWriter1">-  같이 운동할려고 계획하는 곳에대해서 올려주세요!</p>
 						<p class="AttWriter2">-  상황에따라서 변경될수 있습니다.</p>
+					<c:forEach var="i1" items="${list1}" varStatus="status1">
+					<c:if test="${status1.index eq 1}">
 						<img class="crewImg1" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
+					</c:if>
+					</c:forEach>	
 						<div class="CrewPicksBox">
 							<p class="crewPickMember">-김창희의 런닝크루 크루원</p>
 							<p class="crewPickMember1">-김창희의 런닝크루 크루에 선정된 회원님을 확인할수있습니다.</p>
 							<div class="crewPickBox1">
+								
+								<c:forEach var="in" items="${list4.list}">
+								
 								<div class="crewPickBox2">
-								<img class="UserImg" src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
+								<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${in.upload_Name}">
 								<div class="crewPickArea">
 								<p class="crewMemberTitle"><i class="fa fa-user-circle" style="font-size:24px"></i>선정된 크루원</p>
-									<p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>파스쿠찌또치님 환영합니다.</p>
+									<p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>${in.user_Name}님 환영합니다.</p>
 								</div>
 								</div>
+								
+								</c:forEach>
+								
+								
 							</div>
 						</div>
 					</div>
-					</c:if>
-					</c:forEach>
+					
 				</div>
-			</div>	
+			
 			<div class="footer1">
 				<jsp:include page="../common/footer.jsp"/>
 			</div>
-	</div>
+	
 	
 </body>
 </html>

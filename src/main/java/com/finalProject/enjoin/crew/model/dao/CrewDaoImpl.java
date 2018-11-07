@@ -135,9 +135,9 @@ public class CrewDaoImpl implements CrewDao {
 	}
 	//크루회원 사진 조회
 	@Override
-	public Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int user_No) {
+	public Attachment crewUserPhoto(SqlSessionTemplate sqlSession, int board_No) {
 		
-		return sqlSession.selectOne("Crew.crewUserPhoto", user_No);
+		return sqlSession.selectOne("Crew.crewUserPhoto", board_No);
 	}
 	//크루버튼 누를시 크루신청
 	@Override
@@ -168,6 +168,12 @@ public class CrewDaoImpl implements CrewDao {
 	public List<CrewComent> crewComentSelect(SqlSessionTemplate sqlSession, int board_No) {
 		
 		return sqlSession.selectList("Crew.crewComentSelect",board_No);
+	}
+	//선정된 크루원 조회
+	@Override
+	public List<InCrew> crewInCrewY(SqlSessionTemplate sqlSession, InCrew ic) {
+		
+		return sqlSession.selectList("Crew.crewInCrewY",ic);
 	}
 	
 
