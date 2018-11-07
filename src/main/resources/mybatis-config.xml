@@ -15,6 +15,8 @@
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
+		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="InformBoard"/>
+		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="InformBoardFiles"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/company-mapper.xml"/>
@@ -22,6 +24,7 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
-		 <mapper resource="mappers/crew-mapper.xml"/>
+		<mapper resource="mappers/crew-mapper.xml"/>
+		<mapper resource="mappers/inform-mapper.xml"/>
 	</mappers>
 </configuration>

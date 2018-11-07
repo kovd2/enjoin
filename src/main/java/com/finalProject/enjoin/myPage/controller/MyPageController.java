@@ -199,7 +199,7 @@ public class MyPageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		//게시물 전체
-		List<Board> list = mps.crewBoardList(pi, crewId);
+			List<Board> list = mps.crewBoardList(pi, crewId);
 		
 			String crewName = list.get(0).getCrewName();
 		
