@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -200,7 +201,7 @@ nav{
 </head>
 <body>
 
-
+	<c:if test="${ !empty loginUser }">
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	
@@ -234,8 +235,8 @@ nav{
 			</div>
 
 			
-		
-		
+		<!-- resultMap은 컬럼명 resultType은 브이오 -->
+		<c:forEach var="item" items="${list} }">
 		
 			<div class="informArea">
 			
@@ -243,12 +244,12 @@ nav{
 				<div class="list" onclick="goDetail()">
 				<img src="resources/images/informBoard/runInfom.png">
 					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
+					-시작일자:${NOTICE_START}<br>
+					-접수기간:${NOTICE_REQUEST } ~ ${NOTICE_END}<br>
+					-지역:${CREW_AREA}<br>
+					-차감패스:${ PASS_COUNT }패스
 					<div></div>
-					<div class="category">런닝</div>
+					<div class="category">${CATEGORY_NO}</div>
 					<div class="status">모집중</div>
 					
 					</div>
@@ -256,24 +257,24 @@ nav{
 				<div class="list" onclick="goDetail()">
 				<img src="resources/images/informBoard/jjs.jpg">
 					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
+					-시작일자:${NOTICE_START}<br>
+					-접수기간:${NOTICE_REQUEST } ~ ${NOTICE_END}<br>
+					-지역:${CREW_AREA}<br>
+					-차감패스:${ PASS_COUNT }패스
 					<div></div>
-					<div class="category">격투기</div>
+					<div class="category">${CATEGORY_NO}</div>
 					<div class="status">모집중</div>
 					</div>
 				</div>	
 				<div class="list" onclick="goDetail()">
 				<img src="resources/images/informBoard/pila.png">
 					<div class="listContent">
-					-시작일자:2018.12.22 오후8시<br>
-					-접수기간:2018.12.11 ~ 2018.12.21<br>
-					-지역:서울<br>
-					-강사:없음
+					-시작일자:${NOTICE_START}<br>
+					-접수기간:${NOTICE_REQUEST} ~ ${NOTICE_END}<br>
+					-지역:${CREW_AREA}<br>
+					-차감패스:${ PASS_COUNT }패스
 					<div></div>
-					<div class="category">필라테스</div>
+					<div class="category">${CATEGORY_NO}</div>
 					<div class="status">종료</div>
 					</div>
 				</div>
@@ -281,7 +282,7 @@ nav{
 				
 				</div>
 				
-				<div class="boardList">
+			<!-- 	<div class="boardList">
 				<div class="list">
 				
 				<img src="resources/images/informBoard/runInfom.png">
@@ -318,8 +319,8 @@ nav{
 					<div class="status">종료</div>
 					</div>
 				</div>
-				</div>
-					<div class="boardList" onclick="goDetail()">
+				</div> -->
+					<!-- <div class="boardList" onclick="goDetail()">
 				<div class="list">
 				<img src="resources/images/informBoard/runInfom.png">
 					<div class="listContent">
@@ -356,33 +357,56 @@ nav{
 					</div>
 				</div>
 
-			</div>
+			</div> -->
 
 			</div>
-	<div class="pageing">
-	
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+		</c:forEach>
+	<div id="pagingArea" align="center">
+			<c:if test="${ pi.currentPage <= 1 }">
+				[이전] &nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="blistBack" value="/selectList.bo">
+					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+				</c:url>
+				<a href="${ blistBack }">[이전]</a>
+			</c:if>
 
-</div>
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="red" size="4"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="blistCheck" value="selectList.bo">
+						<c:param name="currentPage" value="${ p }"/>
+					</c:url>
+					<a href="${ blistCheck }">${ p }</a>
+				</c:if>
+			</c:forEach>
+
+
+
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				&nbsp; [다음]
+			</c:if>
+			<c:if test="${ pi.currentPage < pi.maxPage}">
+				<c:url var="blistEnd" value="selectList.bo">
+					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+				</c:url>
+				&nbsp;
+				<a href="${ blistEnd }">[다음]</a>
+			</c:if>
+
+		</div>
 			
 		</div>
 		</div>
+		
+	</c:if>
+	<c:if test="${ empty loginUser }">
+		<c:set var="message" value="로그인이 필요한 서비스입니다." scope="request"/>
+		<jsp:forward page="../common/errorPage.jsp"/>
+	</c:if>
 		
 		
 

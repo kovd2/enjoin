@@ -2,10 +2,16 @@ package com.finalProject.enjoin.informBoard.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
+import com.finalProject.enjoin.common.util.Pagination;
+import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
+import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
+
 
 @SessionAttributes("loginUser")
 @Controller
@@ -28,9 +39,30 @@ public class InformBoardController {
 	private InformBoardService ibs;
 	
 	@RequestMapping("informBoard.kch2")
-	public String informBoard() {
+	public ModelAndView informBoard(ModelAndView mv,HttpServletRequest request) throws BoardSelectListException {
 		
-		return "informBoard/informBoard";
+		
+		int currentPage=1;
+		
+//		if(pi.getCurrentPage() != 0){
+//			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+//		}
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = ibs.getListCount();
+		System.out.println(listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		List<Map<String,Object>> list=null;
+		list=ibs.selectMainList(pi);
+		mv.addObject("list",list);
+		mv.addObject("pi",pi);
+		mv.setViewName("informBoard/informBoard");
+		System.out.println("controllerList:"+list);
+		
+		return mv;
 		
 	}
 	@RequestMapping("informDetail.kch2")
@@ -51,7 +83,7 @@ public class InformBoardController {
 		return "informBoard/drawForm";
 		
 	}
-	@RequestMapping(value="insertInform.kch2",method=RequestMethod.POST)
+	@RequestMapping(value="/insertInform.kch2",method=RequestMethod.POST)
 	public String insertInform(Model model,HttpServletRequest request
 			,@RequestParam(name="fileImg1",required=false)MultipartFile fileImg1
 			,@RequestParam(name="fileImg2",required=false)MultipartFile fileImg2
