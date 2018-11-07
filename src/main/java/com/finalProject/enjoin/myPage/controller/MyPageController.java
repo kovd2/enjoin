@@ -18,10 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
-import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.service.myPageService;
 import com.finalProject.enjoin.myPage.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
+import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
@@ -200,6 +201,7 @@ public class MyPageController {
 		
 		//게시물 전체
 			List<Board> list = mps.crewBoardList(pi, crewId);
+			System.out.println("list : " + list);
 		
 			String crewName = list.get(0).getCrewName();
 		
@@ -219,6 +221,8 @@ public class MyPageController {
 		Board b = mps.crewBoardDetail(boardNo);
 		
 		int rCount = 0;
+		
+		int result = mps.updateBoardCount(boardNo);
 		
 		if(b.getComentList().get(0).getComentNo() > 0) {
 			rCount = b.getComentList().size();
@@ -247,9 +251,17 @@ public class MyPageController {
 	@RequestMapping("writePosts.ljs")
 	public ModelAndView writePosts(ModelAndView mv, @RequestParam("userNo") int userNo) {
 		List<Board> writePost = mps.selectWritePost(userNo);
+		List<Board> writeCrewBoard = mps.selectWriteCrewBoard(userNo);
+		List<Coment> writeComent = mps.selectWriteComent(userNo);
+		
 		System.out.println("writePost : " + writePost);
+		System.out.println("writeCrewBoard : " + writeCrewBoard);
+		System.out.println("writeComent : " + writeComent);
+		
 		mv.setViewName("myPage/writePosts");
 		mv.addObject("writePost", writePost);
+		mv.addObject("writeCrewBoard", writeCrewBoard);
+		mv.addObject("writeComent", writeComent);
 		
 		return mv;
 	}

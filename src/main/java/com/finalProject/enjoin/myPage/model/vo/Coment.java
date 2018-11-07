@@ -11,11 +11,13 @@ public class Coment {
 	private int boardNo;				//게시물번호
 	private int userNo;					//회원번호
 	private String userName;			//회원이름
+	private String boardType;			//게시물 타입
+	private String boardTitle;			//게시물 제목
 	
 	public Coment() {}
 
 	public Coment(int comentNo, String comentContent, Date comentDate, Date comentModifyDate, String comentStatus,
-			int boardNo, int userNo, String userName) {
+			int boardNo, int userNo, String userName, String boardType, String boardTitle) {
 		super();
 		this.comentNo = comentNo;
 		this.comentContent = comentContent;
@@ -25,6 +27,8 @@ public class Coment {
 		this.boardNo = boardNo;
 		this.userNo = userNo;
 		this.userName = userName;
+		this.boardType = boardType;
+		this.boardTitle = boardTitle;
 	}
 
 	public int getComentNo() {
@@ -91,14 +95,30 @@ public class Coment {
 		this.userName = userName;
 	}
 
+	public String getBoardType() {
+		return boardType;
+	}
+
+	public void setBoardType(String boardType) {
+		this.boardType = boardType;
+	}
+
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+
 	@Override
 	public String toString() {
 		return "Coment [comentNo=" + comentNo + ", comentContent=" + comentContent + ", comentDate=" + comentDate
 				+ ", comentModifyDate=" + comentModifyDate + ", comentStatus=" + comentStatus + ", boardNo=" + boardNo
-				+ ", userNo=" + userNo + ", userName=" + userName + "]";
+				+ ", userNo=" + userNo + ", userName=" + userName + ", boardType=" + boardType + ", boardTitle="
+				+ boardTitle + "]";
 	}
 
-	
 	
 	
 }

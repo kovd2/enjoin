@@ -607,9 +607,7 @@ i.fa.fa-comments{
 							<p class="crewPickMember">-김창희의 런닝크루 크루원</p>
 							<p class="crewPickMember1">-김창희의 런닝크루 크루에 선정된 회원님을 확인할수있습니다.</p>
 							<div class="crewPickBox1">
-								
-								<c:forEach var="i" items="${list4}" varStatus="status">
-								
+								<c:forEach var="i" items="${list4}" varStatus="status">							
 								<div class="crewPickBox2">
 								<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${i.upload_Name}">
 								<div class="crewPickArea">

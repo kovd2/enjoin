@@ -12,6 +12,7 @@ import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
 import com.finalProject.enjoin.myPage.model.vo.Board;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
 @Service
@@ -74,7 +75,7 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectInCrewList(userNo, sqlSession);
 	}
 
-	//내가 쓴 게시물 조회
+	//내가 쓴 크루 모집 게시물 조회
 	@Override
 	public List<Board> selectWritePost(int userNo) {
 		
@@ -112,6 +113,27 @@ public class myPageServiceImpl implements myPageService{
 		
 		return mpd.insertComent(hmap, sqlSession);
  
+	}
+
+	//내가 쓴 크루게시판 조회
+	@Override
+	public List<Board> selectWriteCrewBoard(int userNo) {
+		
+		return mpd.selectWriteCrewBoard(userNo, sqlSession);
+	}
+
+	//내가 쓴 댓글 조회
+	@Override
+	public List<Coment> selectWriteComent(int userNo) {
+		
+		return mpd.selectWriteComent(userNo, sqlSession);
+	}
+
+	//게시물 조회수 증가
+	@Override
+	public int updateBoardCount(int boardNo) {
+		
+		return mpd.updateBoardCount(boardNo, sqlSession);
 	}
 
 

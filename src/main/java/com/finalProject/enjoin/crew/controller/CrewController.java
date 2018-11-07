@@ -357,6 +357,7 @@ public class CrewController {
 		mv.addObject("list1", list1);
 		mv.addObject("list3", list3);
 		mv.addObject("list4",list4);
+
 		mv.addObject("userPhoto", userPhoto);
 		
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,7 @@
 .boardList {
 	margin-left: 30px;
 	text-align: center;
+	margin-top:30px;
 }
 
 .titleArea {
@@ -44,6 +46,7 @@
 .boardList td {
 	text-align: center;
 }
+
 </style>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -66,51 +69,16 @@
 		<div class="rightContainer">
 			<b id="myBoard" class="current" style="font-size: 30px; color: black; text-indent: 30px;"><i class="fa fa-thumb-tack"></i> 내가 쓴 게시물</b>
 			<div class="boardList">
-				<!-- <select style="float: left;" id="boardType">
-					<option value="board">게시물</option>
-					<option value="comment">댓글</option>
-					<option value="question">문의</option>
-				</select> -->
+				<select style="float: left;" id="boardType">
+					<option value="board" selected="selected">크루모집</option>
+					<option value="crewBoard">크루게시판</option>
+					<option value="reply">댓글</option>
+				</select>
+				<br>
 				
-				<!-- 게시물 -->	
-				<div align="left">게시물</div>
-				<table style="width: 800px; border-top: solid 1px black;">
-					<tr class="titleArea">
-						<td style="width: 30px;">번호</td>
-						<td style="width: 150px">제목</td>
-						<td style="width: 100px">작성자</td>
-						<td style="width: 150px">작성일</td>
-					</tr>
-
-					<c:forEach var="wp" items="${ writePost }">
-					<tr>
-						<td>${ wp.boardNo }</td>
-						<td>${ wp.boardTitle }</td>
-						<td>${ wp.userName }</td>
-						<td>${ wp.enrollDate }</td>					
-					</tr>
-					</c:forEach>
-				</table>
-				
-				<!-- 댓글 -->		
-				<table style="width: 800px; border-top: solid 1px black;">
-					<tr class="titleArea">
-						<td style="width: 30px;">번호</td>
-						<td style="width: 150px">댓글 내용</td>
-						<td style="width: 100px">작성자</td>
-						<td style="width: 150px">작성일</td>						
-					</tr>
-
-					<tr>
-						<td>1</td>
-						<td>같이해요</td>
-						<td>홍길동</td>
-						<td>2018-10-26</td>									
-					</tr>
-				</table>
-				
-				<!-- 문의사항 -->		
-				<table style="width: 800px; border-top: solid 1px black;">
+			<div class="boardRecord">
+				<!-- 게시물 -->
+				<table style="width: 800px; border-top: solid 1px black; displya:block;" class="board" id="board" >
 					<tr class="titleArea">
 						<td style="width: 30px;">번호</td>
 						<td style="width: 150px">제목</td>
@@ -118,21 +86,108 @@
 						<td style="width: 150px">작성일</td>
 						<td style="width: 100px">조회수</td>
 					</tr>
-
-					<tr>
-						<td>1</td>
-						<td>수정해주세요</td>
-						<td>홍길동</td>
-						<td>2018-10-26</td>
-						<td>1</td>						
-					</tr>
+					
+					<c:forEach var="wp" items="${ writePost }">
+						<tr>
+							<td>${ wp.boardNo }</td>
+							<td>${ wp.boardTitle }</td>
+							<td>${ wp.userName }</td>
+							<td>${ wp.enrollDate }</td>
+							<td>${ wp.boardCount }</td>
+						</tr>
+					</c:forEach>
 				</table>
+				
+				<!-- crewBoard -->
+				<table style="width: 800px; border-top: solid 1px black; display:none;" class="crewBoard" id="crewBoard">
+					<tr class="titleArea">
+						<td style="width: 30px;">번호</td>
+						<td style="width: 150px">제목</td>
+						<td style="width: 100px">작성자</td>
+						<td style="width: 150px">작성일</td>
+						<td style="width: 100px">조회수</td>
+					</tr>
+					
+					<c:forEach var="wcb" items="${ writeCrewBoard }">
+						<tr>
+							<td>${ wcb.boardNo }</td>
+							<td>${ wcb.boardTitle }</td>
+							<td>${ wcb.userName }</td>
+							<td>${ wcb.enrollDate }</td>
+							<td>${ wcb.boardCount }</td>
+						</tr>
+					</c:forEach>
+				</table>
+				
+				<!-- 댓글 -->
+				<table style="width: 800px; border-top: solid 1px black; display:none;"class="reply" id="reply">
+					<tr class="titleArea">
+						<td style="width: 30px;">번호</td>
+						<td style="width: 100px">게시물종류</td>
+						<td style="width: 200px">게시물제목</td>
+						<td style="width: 250px">댓글내용</td>
+						<td style="width: 70px">작성일</td>
+					</tr>
+					
+					<c:forEach var="wc" items="${ writeComent }">
+						<tr>
+							<td>${ wc.comentNo }</td>
+							<td>${ wc.boardType }</td>
+							<td>${ wc.boardTitle }</td>
+							<td>${ wc.comentContent }</td>
+							<td><fmt:formatDate value="${ wc.comentDate }" pattern="yyyy-MM-dd" /></td>
+						</tr>
+					</c:forEach>
+				</table>
+				
 			</div>
+			
 			<br>
-			<div>
-				페이징 처리
-			</div>
 		</div>
 	</div>
+	</div>
+	
+	<script>
+	//게시물 종류별로 조회
+	$('#boardType').change(function() {
+		var state = $('#boardType option:selected').val();
+		if(state == 'board') {
+			$('.board').show();
+			$('.reply').hide();
+			$('.crewBoard').hide();
+		} 
+		if(state == 'reply'){
+			$('.board').hide();
+			$('.reply').show();
+			$('.crewBoard').hide();
+		}
+		if(state == 'crewBoard'){
+			$('.board').hide();
+			$('.reply').hide();
+			$('.crewBoard').show();
+		}
+	});
+	</script>
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
