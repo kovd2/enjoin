@@ -8,12 +8,13 @@
 <title>제휴시설 신청 양식</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
+
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+ *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*# sourceMappingURL=bootstrap.min.css.map */
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -8314,6 +8315,12 @@ html {
 											<label for="center_contact">연락 받을 전화번호</label> <input
 												type="tel" class="form-control" name="facilityManagerPhone"
 												id="center_contact" placeholder="직접 통화 가능한 휴대전화 번호를 알려주세요."
+												required="">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="center_contact">사업자 등록번호</label> <input
+												type="tel" class="form-control" name="facilityCopNo"
+												id="center_contact" placeholder="사업자 등록번호를 입력해주세요"
 												required="">
 										</div>
 									</div>

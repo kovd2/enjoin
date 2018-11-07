@@ -1,7 +1,7 @@
 package com.finalProject.enjoin.company.controller;
 
 import java.io.File;
-import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.company.model.service.CompanyService;
+import com.finalProject.enjoin.company.model.vo.Attachment;
 import com.finalProject.enjoin.company.model.vo.Company;
-import com.finalProject.enjoin.crew.model.vo.Attachment;
 
 
 @SessionAttributes("loginUser")
@@ -35,14 +36,33 @@ public class CompanyController {
 
 	//나의 제휴시설을 보여주는 메소드
 	@RequestMapping("companylist.gs")
-	public String showCompany(){
-		return "company/companyView";
+	public ModelAndView showCompany(HttpServletRequest request, ModelAndView mv){
+		String userId = request.getParameter("userId");
+		List<Company> CompanyInfoList = cs.selectCompanyInfo(userId);
+		
+		System.out.println("companylist" + CompanyInfoList);
+		//보낼 view페이지를 설정
+		mv.setViewName("company/companyView");
+		
+		//만든 list를 추가
+		mv.addObject("CompanyInfoList", CompanyInfoList);
+		
+		return mv;
 	}
-
+	
 	//나의 시설 이용내역을 보여주는 메소드
 	@RequestMapping("useHistory.gs")
-	public String showUseHistory() {
-		return "company/useHistory";
+	public ModelAndView showUseHistory(HttpServletRequest request, ModelAndView mv) {
+		String userId = request.getParameter("userId");
+		
+		List<Company> UseHistoryList = cs.selectUseHistory(userId);
+		
+		mv.setViewName("company/useHistory");
+		mv.addObject("UseHistoryList", UseHistoryList);
+		
+		System.out.println("useHistory : " +  UseHistoryList);
+		
+		return mv;
 	}
 
 	//입장확인 폼을 보여주는 메소드
@@ -58,8 +78,18 @@ public class CompanyController {
 		
 		return "company/insertComplete";
 	}
+	
+	//나의 제휴시설 상세보기용 메소드
+	@RequestMapping("detailView.gs")
+	public String showDetailView() {
+		
+		return "company/companyDetail";
+	}
+	
+	//
+	
 
-
+	//제휴시설 신청용 컨트롤러
 	@RequestMapping(value="facilityInsert.gs")
 	public String companyInsert(Model model, /*Company c,*/ HttpServletRequest request, 
 									@RequestParam(name="gs_file1", required=false) MultipartFile origin_Name1,
@@ -70,12 +100,12 @@ public class CompanyController {
 		
 		//객체 꺼내기
 		/*int facilityNo = Integer.parseInt(request.getParameter("facilityNo"));
-		int facilityCopNo = Integer.parseInt(request.getParameter("facilityCopNo"));
 		String facilityRequestDate2 = request.getParameter("facilityRequestDate");
 		String facilityStartDate2 = request.getParameter("facilityStartDate");
 		String facilityEndDate2 = request.getParameter("facilityEndDate");
 		String facilityStatus = request.getParameter("facilityStatus");*/
 				
+		int facilityCopNo = Integer.parseInt(request.getParameter("facilityCopNo"));
 		String facilityName = request.getParameter("facilityName");
 		String facilityArea = request.getParameter("facilityArea");
 		String facilitySection = request.getParameter("facilitySection");
@@ -99,12 +129,12 @@ public class CompanyController {
 		
 		//객체에 값 담기
 		/*c.setFacilityNo(facilityNo);
-		c.setFacilityCopNo(facilityCopNo);
 		c.setFacilityRequestDate(facilityRequestDate);
 		c.setFacilityStartDate(facilityStartDate);
 		c.setFacilityEndDate(facilityEndDate);
 		c.setFacilityStatus(facilityStatus);*/
 		
+		c.setFacilityCopNo(facilityCopNo);
 		c.setFacilityName(facilityName);
 		c.setFacilityArea(facilityArea);
 		c.setFacilitySection(facilitySection);
