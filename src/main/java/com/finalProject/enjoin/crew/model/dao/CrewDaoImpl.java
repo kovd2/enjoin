@@ -171,9 +171,15 @@ public class CrewDaoImpl implements CrewDao {
 	}
 	//선정된 크루원 조회
 	@Override
-	public List<InCrew> crewInCrewY(SqlSessionTemplate sqlSession, InCrew ic) {
+	public List<InCrew> crewInCrewY(SqlSessionTemplate sqlSession, int crew_Id) {
 		
-		return sqlSession.selectList("Crew.crewInCrewY",ic);
+		return sqlSession.selectList("Crew.crewInCrewY",crew_Id);
+	}
+	//해당
+	@Override
+	public List<Crew> crewInformation(int userNo) {
+		
+		return null;
 	}
 	
 

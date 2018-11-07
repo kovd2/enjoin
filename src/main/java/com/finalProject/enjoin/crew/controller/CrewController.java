@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,12 +72,6 @@ public class CrewController {
 	public String showCrewActivityBoard() {
 
 		return "crew/crewActivityBoard";	
-	}
-	//크루활동내역폼
-	@RequestMapping("crewActivity.shw2")
-	public String showCrewActivity() {
-			
-		return "crew/crewActivity";
 	}
 	//다시돌려주기
 	
@@ -353,7 +348,7 @@ public class CrewController {
 		List<CrewComent> list3 = cs.crewComentSelect(board_No);
 		
 		//선정된 크루원 리스트 보여주기
-		List<InCrew> list4 = cs.crewInCrewY(ic);
+		List<InCrew> list4 = cs.crewInCrewY(crew_Id);
 		
 		System.out.println("list4 : " + list4 );
 		
@@ -361,6 +356,7 @@ public class CrewController {
 		mv.addObject("list", list);
 		mv.addObject("list1", list1);
 		mv.addObject("list3", list3);
+		mv.addObject("list4",list4);
 		mv.addObject("userPhoto", userPhoto);
 		
 	
@@ -399,7 +395,7 @@ public class CrewController {
 			List<CrewComent> list3 = cs.crewComentSelect(board_No);
 			
 			//선정된 크루원 리스트 보여주기
-			List<InCrew> list4 = cs.crewInCrewY(ic);
+			List<InCrew> list4 = cs.crewInCrewY(crew_Id);
 			System.out.println("list4" + list4);
 			
 			
@@ -416,6 +412,7 @@ public class CrewController {
 			
 			return mv;
 		}
+		//크루모집 댓글
 		@RequestMapping("crewComent.shw2")
 		public ModelAndView crewComent(ModelAndView mv,HttpServletRequest request) {
 			
@@ -423,10 +420,11 @@ public class CrewController {
 			String coment_Content = request.getParameter("coment_Content");
 			String checked = request.getParameter("checked11");
 			int board_No = Integer.parseInt(request.getParameter("board_No"));
-			int crew_Id  = Integer.parseInt(request.getParameter("crew_No"));
+			int crew_Id  = Integer.parseInt(request.getParameter("crew_Id"));
 			String capy = request.getParameter("capy");
 			
 			System.out.println("capy" + capy);
+			System.out.println("crew_Id" + crew_Id);
 					
 					
 			if(checked == null){
@@ -447,7 +445,7 @@ public class CrewController {
 			InCrew ic = new InCrew();
 			
 			System.out.println("user_No :" + userNo);
-			System.out.println("crew_No :" + crew_Id);
+			System.out.println("crew_No 나오냐????? :" + crew_Id);
 			System.out.println("board_No :" + board_No);
 			
 			ic.setUser_No(userNo);
@@ -485,9 +483,13 @@ public class CrewController {
 			
 			System.out.println("list3 : " + list3);
 			//선정된 크루원 리스트 보여주기
-			List<InCrew> list4 = cs.crewInCrewY(ic);
+			List<InCrew> list4 = cs.crewInCrewY(crew_Id);
 			
 			System.out.println("list4" + list4);
+			
+			
+		
+			//HashMap<String,Object> map = new HashMap<String,Object>();
 			
 			mv.addObject("list", list);
 			mv.addObject("list1", list1);
@@ -500,4 +502,24 @@ public class CrewController {
 			
 			return mv;
 		}
+		//크루활동내역폼
+		@RequestMapping("crewActivity.shw2")
+		public ModelAndView showCrewActivity(ModelAndView mv,HttpServletRequest request) {
+				
+			//로그인 유저 넘버를 가져온다
+			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			
+			//크루활동내역폼에 크루에대한 정보를 담아서 보내기 위해 보낸다.
+			//한회원이 크루를 여러개 만들수 있기때문에 list로 보낸다.
+			//List<Crew>list = cs.crewInformation(userNo);
+			
+			
+			
+			
+			
+			mv.setViewName("crew/crewActivity");
+			
+			return mv;
+		}
+		
 }

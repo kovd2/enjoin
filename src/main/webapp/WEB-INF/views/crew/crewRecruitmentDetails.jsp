@@ -426,19 +426,19 @@ i.fa.fa-comments{
 		alert(userNo);
 			
 	}
-	 /*   function goCrewComent(){
+	  /*   function goCrewComent(){
 		$.ajax({
 			url  : "crewComent.shw2",
 			type : "post",
 			data : $("#coment3").serialize(),
 			success:function(data){
-				alert(data);
+				console.log(data);
 			},
 			
 		});
 		
 		return false;
-	}   */
+	}    */
 </script>
 <body>
 
@@ -577,9 +577,6 @@ i.fa.fa-comments{
 						 							alert(coment_No);
 						 							alert($inputHidden1.val());
 						 							
-						 							
-						 							
-						 							
 						 						 }
 						 						</script>
 						 						<c:forEach var="i" items="${list}" varStatus="status">
@@ -611,13 +608,13 @@ i.fa.fa-comments{
 							<p class="crewPickMember1">-김창희의 런닝크루 크루에 선정된 회원님을 확인할수있습니다.</p>
 							<div class="crewPickBox1">
 								
-								<c:forEach var="in" items="${list4.list}">
+								<c:forEach var="i" items="${list4}" varStatus="status">
 								
 								<div class="crewPickBox2">
-								<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${in.upload_Name}">
+								<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${i.upload_Name}">
 								<div class="crewPickArea">
 								<p class="crewMemberTitle"><i class="fa fa-user-circle" style="font-size:24px"></i>선정된 크루원</p>
-									<p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>${in.user_Name}님 환영합니다.</p>
+									<p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>${i.user_Name}</p>
 								</div>
 								</div>
 								

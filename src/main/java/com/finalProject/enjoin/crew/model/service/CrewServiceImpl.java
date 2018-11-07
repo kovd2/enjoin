@@ -144,9 +144,15 @@ public class CrewServiceImpl implements CrewService {
 	
 	//선정된 크루원 조회
 	@Override
-	public List<InCrew> crewInCrewY(InCrew ic) {
+	public List<InCrew> crewInCrewY(int crew_Id) {
 		
-		return cd.crewInCrewY(sqlSession,ic);
+		return cd.crewInCrewY(sqlSession,crew_Id);
+	}
+	//만든 크루에 대해서 조회 해온다.
+	@Override
+	public List<Crew> crewInformation(int userNo) {
+		
+		return cd.crewInformation(userNo);
 	}
 	
 
