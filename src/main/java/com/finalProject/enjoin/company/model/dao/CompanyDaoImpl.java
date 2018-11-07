@@ -1,10 +1,12 @@
 package com.finalProject.enjoin.company.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.company.model.vo.Company;
-import com.finalProject.enjoin.crew.model.vo.Attachment;
+import com.finalProject.enjoin.company.model.vo.Attachment;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao{
@@ -30,6 +32,22 @@ public class CompanyDaoImpl implements CompanyDao{
 			
 		}
 		return result;
+	}
+
+	
+	//제휴시설 리스트 보기용 메소드
+	@Override
+	public List<Company> selectCompanyInfo(SqlSessionTemplate sqlSession, String userId) {
+		
+		
+		return sqlSession.selectList("Company.selectCompanyInfo", userId);
+	}
+
+	//이용내역 리스트 보기용 메소드
+	@Override
+	public List<Company> selectUseHistory(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectList("Company.selectUseHistory", userId);
 	}
 
 

@@ -23,6 +23,7 @@
 		<result property="mon_fri_time" column="MON_FRI_TIME"/>
 		<result property="sat_time" column="SAT_TIME"/>
 		<result property="sun_time" column="SUN_TIME"/>
+		
 
 	</resultMap>
 
@@ -38,6 +39,33 @@
 		<result property="file_Date" column="FILE_DATE"/>
 		<result property="file_Type" column="FILE_TYPE"/>
 		<result property="ref_No" column="REF_NO"/>
+	</resultMap>
+	
+	
+	<resultMap type="com.finalProject.enjoin.member.model.vo.Member" id="memberResultSet">
+		<!-- PRIMARY KEY -->
+		<id property="userNo" column="USER_NO"/>
+		<!-- 컬럼 -->
+		<result property="userType" column="USER_TYPE"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>	
+		<result property="managerName" column="MANAGER_NAME"/>
+		<result property="managerPhone" column="MANAGER_PHONE"/>
+		<result property="managerEmail" column="MANAGER_EMAIL"/>
+		<result property="copNo" column="COP_NO"/>
+		<result property="ceoName" column="CEO_NAME"/>
+		<result property="copName" column="COP_NAME"/>
+		<result property="copAddress" column="COP_ADDRESS"/>
+		<result property="copType" column="COP_TYPE"/>
+		<result property="copCon" column="COP_CON"/>
+		<result property="copEmail" column="COP_EMAIL"/>
+		<result property="upload_name" column="UPLOAD_NAME"/>
 	</resultMap>
 
 	
@@ -79,6 +107,21 @@
 		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{facilityNo})
 	</insert>
 	
+	<!-- 제휴시설 리스트 보기용 쿼리 -->
+	<select id="selectCompanyInfo" parameterType="Company" resultMap="companyResultSet">
+		SELECT F.FACILITY_NO, F.FACILITY_NAME, F.FACILITY_STARTDATE
+		FROM FACILITY F
+		JOIN MEMBER M ON(M.COP_NO = F.FACILITY_COPNO)
+		WHERE M.USER_ID=#{userId}
+	</select>
+	
+	<!-- 이용내역 보기용 쿼리 -->
+	<select id="selectUseHistory" parameterType="Company" resultMap="companyResultSet">
+		SELECT F.FACILITY_NO, F.FACILITY_NAME
+		FROM FACILITY F
+		JOIN MEMBER M ON(M.COP_NO = F.FACILITY_COPNO)
+		WHERE M.USER_ID=#{userId}
+	</select>
 </mapper>
 
 

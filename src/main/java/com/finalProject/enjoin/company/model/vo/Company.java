@@ -24,6 +24,7 @@ public class Company implements Serializable{
 	private String sat_time;				//토요일 이용시간
 	private String sun_time;				//공휴일 및 일요일 이용시간
 	
+	
 	public Company() {}
 
 	public Company(int facilityCopNo, Date facilityRequestDate, Date facilityStartDate, Date facilityEndDate,

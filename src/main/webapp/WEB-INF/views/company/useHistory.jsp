@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7655,14 +7656,16 @@ button.close {
 				</div>
 				<div class="noticeWrap">
 					<div class="list-group">
+						<c:forEach var="ul" items="${ UseHistoryList }">
 						<a class="list-group-item" href="/notice/view/130110/"> <span
 							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
+							<h4 class="list-group-ietm-heading">${ ul.facilityName }</h4>
 							<span class="span_gs label-no">ID : test01 </span><br><br>
 							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
 							<br> <span class="date">2018-06-08 15:30</span>
 						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
+						</c:forEach>
+						<!-- <a class="list-group-item" href="/notice/view/130110/"> <span
 							class="label label-default label-no">125</span>
 							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
 							<span class="span_gs label-no">ID : test01 </span><br><br>
@@ -7717,7 +7720,7 @@ button.close {
 							<span class="span_gs label-no">ID : test01 </span><br><br>
 							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
 							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
+						</a>  -->
 					</div>
 					<!-- /.list-group -->
 

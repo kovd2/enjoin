@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -212,48 +213,22 @@
           </h2>
         </div>
         <div class="noticeWrap">
+        	
           <div class="list-group">
-            <a class="list-group-item" href="/notice/view/130110/">
-              <span class="label label-default label-no">125</span>            
-              <h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-              <span class="label label-default label-no">ID : test01 </span><br>
-              <span class="label label-default label-no">사용 pass개수 : 7개</span><br>
+        	<c:forEach var="cl" items="${ CompanyInfoList }">
+            <a class="list-group-item" href="detailView.gs">
+              <span class="label label-default label-no">${ cl.facilityNo }</span>            
+              	<h4 class="list-group-ietm-heading">${ cl.facilityName }</h4>
+              <!-- <span class="label label-default label-no"></span><br>
+              <span class="label label-default label-no"></span><br> -->
               <br>
-              <span class="date">2018-06-08 15:30</span>
+              <span class="date">${ cl.facilityStartDate }</span>
             </a>
-            <a class="list-group-item" href="/notice/view/130129/">
-              <span class="label label-default label-no">124</span>               
-              <h5 class="list-group-ietm-heading">TLX PASS 회원 가족 초청 무료 영화 관람 이벤트</h5>
-              <span class="date">2018-10-25</span>
-            </a>
-            <a class="list-group-item" href="/notice/view/130128/">
-              <span class="label label-default label-no">123</span>               
-              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트2차 선정자 안내</h5>
-              <span class="date">2018-10-24</span>
-            </a>
-            <a class="list-group-item" href="/notice/view/130127/">
-              <span class="label label-default label-no">122</span>               
-              <h5 class="list-group-ietm-heading">[당첨자발표] TLX X InBody Challenge (8월) </h5>
-              <span class="date">2018-09-17</span>
-            </a>
-            <a class="list-group-item" href="/notice/view/130126/">
-              <span class="label label-default label-no">121</span>               
-              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS x CJONE 매거진 오픈이벤트 선정자 안내</h5>
-              <span class="date">2018-09-17</span>
-            </a>
-            <a class="list-group-item" href="/notice/view/130125/">
-              <span class="label label-default label-no">120</span>               
-              <h5 class="list-group-ietm-heading">[당첨자 발표] TLX PASS와 함께하는 추석 연휴 영화 예매권 이벤트(원더풀고스트)</h5>
-              <span class="date">2018-09-17</span>
-            </a>
-            <a class="list-group-item" href="/notice/view/130124/">
-              <span class="label label-default label-no">119</span>               
-              <h5 class="list-group-ietm-heading">[당첨자발표] 나이키 스포츠세션 참가자</h5>
-              <span class="date">2018-09-10</span>
-            </a>
+          </c:forEach>
           </div><!-- /.list-group -->
+          
 
-          <nav>
+          <!-- <nav>
             <ul class="pagination">
               <li class="active"><a href="/notice/thread/1">1</a></li>
               <li><a href="/notice/thread/2">2</a></li>
@@ -262,7 +237,7 @@
               <li><a href="/notice/thread/5">5</a></li>
               <li><a href="/notice/thread/6" aria-label="Next"><span aria-hidden="true">다음</span></a></li>
             </ul>
-          </nav>
+          </nav> -->
         </div><!-- /.noticeWrap -->
 
 
