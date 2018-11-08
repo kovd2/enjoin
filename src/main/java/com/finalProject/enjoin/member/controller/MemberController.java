@@ -2,7 +2,7 @@ package com.finalProject.enjoin.member.controller;
 
 
 
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,6 +50,12 @@ public class MemberController {
 	public String showCompanyInsertFormView() {
 		return "member/companyMemberInsertForm";
 	}
+	
+	/*//카카오 계정으로 가입하는 폼 보여주는 메소드
+	@RequestMapping("kakaoMemberInsertView.me")
+	public String showkakaoInsertView() {
+		return "member/kakaoMemberInsertForm";
+	}*/
 	
 	//아이디 찾기 폼 보여주는 메소드
 	@RequestMapping("searchIdform.me")

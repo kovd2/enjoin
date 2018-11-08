@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입선택</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -202,15 +203,37 @@ h1 {
 
 						</h2>
 						<div class="register_type_select">
-							<a href="companyInsertView.me" class="via_facebook"><img	class="ico" src="/images/ico_facebook_square_w@2x.png" alt="">
+							<a href="companyInsertView.me" class="via_facebook"><img class="ico" src="/images/ico_facebook_square_w@2x.png" alt="">
 								<b>제휴시설</b> 계정으로 시작하기</a> 
 							
 							<div class="divLine">
 								<span>아니면 그냥,</span>
 							</div>
-
+							<a id="kakao-login-btn" href="/member/login_kakao/?next=" onclick="loginWithKakao();return false;"  class="via_kakaotalk"><img class="ico" src="/images/ico_kakaotalk@2x.png" alt="">
+								 <b>카카오톡</b> 계정으로 시작하기</a>
 							<a href="memberInsertView.me" class="via_email"><b>이메일</b>로
 								시작하기</a>
+
+							<script type='text/javascript'>
+  							
+								Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
+								function loginWithKakao() {
+									// 로그인 창을 띄웁니다.
+									Kakao.Auth
+											.login({
+												success : function(authObj) {
+													location.href = "/member/confirm_token/kakao/?next=&token="
+															+ authObj.access_token;
+												},
+												fail : function(err) {
+													alert("인증에 실패 하였습니다.");
+												}
+											});
+								};
+								
+							</script>
+
+
 						</div>
 						<div class="alreadyMember">
 							<p>
