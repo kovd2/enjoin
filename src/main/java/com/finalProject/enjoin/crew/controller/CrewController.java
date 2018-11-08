@@ -511,16 +511,53 @@ public class CrewController {
 			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 			
 			//크루활동내역폼에 크루에대한 정보를 담아서 보내기 위해 보낸다.
-			//한회원이 크루를 여러개 만들수 있기때문에 list로 보낸다.
-			//List<Crew>list = cs.crewInformation(userNo);
 			
 			
+			//한 회원이 크루를 여러개 만들수 있기때문에 list로 보낸다.
+			List<Crew>list = cs.crewInformation(userNo);
 			
 			
+			System.out.println("list 잘나오냠? " + list);
 			
 			mv.setViewName("crew/crewActivity");
+			mv.addObject("list", list);
 			
 			return mv;
 		}
+		//크루활동게시판 인서트
+		@RequestMapping("crewActivityInsert.shw2")
+		public String insertCrewMember(Model model,HttpServletRequest request,
+				@RequestParam(name="act_Name1",  required=false) MultipartFile act_Name1,
+				@RequestParam(name="act_Name2",  required=false) MultipartFile act_Name2,
+				@RequestParam(name="act_Name3",  required=false) MultipartFile act_Name3,
+				@RequestParam(name="act_Name4",  required=false) MultipartFile act_Name4){
+			
+				
+				int crew_No = Integer.parseInt(request.getParameter("crew_Name"));
+				String board_Title = request.getParameter("board_Title");
+				String crew_Area = request.getParameter("crew_Area");
+				int crew_Count = Integer.parseInt(request.getParameter("crew_Count"));
+				String start_Date1 = request.getParameter("start_Date");
+				String board_Content = request.getParameter("board_Content");
+				String category_Name = request.getParameter("category_Name");
+				
+				
+				System.out.println("category_Name : " + category_Name);
+				
+				java.sql.Date start_Date = java.sql.Date.valueOf(start_Date1);
+				
+				
+				
+				
 		
+			
+				System.out.println("");
+			
+				System.out.println("일단 잘넘어오냐??");
+			
+		
+		
+		
+		 	return "redirect:crewActivityBoard.shw2";
+		}
 }

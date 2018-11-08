@@ -300,5 +300,14 @@
 			WHERE I.CREW_ID = #{crew_Id}
 			AND I.INCREW_STATUS = 'Y'
      </select>
+     
+     <!-- 해당된 크루리스트를 조회 해온다.  -->
+     <select id="crewInformation" resultMap="CrewResultSet">
+     	SELECT C.CREW_NAME,C.CREW_ID,C1.CATEGORY_NAME
+			FROM CREW C
+			JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+			JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
+			WHERE M.USER_NO = #{user_No}
+     </select>
       
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -173,8 +174,11 @@ p.mainImgP {
 }
 .crewImgWriter1{
 	font-size: 12px;
-    color: #f98e2c;
-	
+    color: #f98e2c;	
+}
+.selectOne{
+	width:170px;
+	height:30px;
 }
 </style>
 <script>
@@ -209,40 +213,47 @@ $(function(){
 					reader.readAsDataURL(value.files[0]);
 				}
 			};	
+			
 	
 </script>
 </head>
 <body>
 	<div class="container">
 		<div class="modal-body">
-			<form>
+			<form action="crewActivityInsert.shw2" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td colspan="2">
-							<p class="mainWriter">좋아요!<br>지금부터  oooo크루의  활동내역을 작성해 주세요!</p>
+							<p class="mainWriter">좋아요!<br>지금부터 ${sessionScope.loginUser.userName}님의  활동내역을 작성해 주세요!</p>
 							<hr>
 						</td>
 					</tr>
 					<tr>
 						<td class="crew">
-							<h1 class="crewName">김창희의 런닝 크루</h1>
-							<p class="crewCatagory">런닝 크루</p>
+							<select class="selectOne" name="crew_Name">
+									<option>크루명선택</option>
+								<c:forEach var="c" items="${list}">
+									<option value="${c.crew_Id}" >${c.crew_Name}
+								
+									</option>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>
 						<tr>
 							<td>	
-								<p class="crewAddress"><input type="text" class="crewAddressBox" placeholder="활동제목"></p>
+								<p class="crewAddress"><input type="text" class="crewAddressBox" placeholder="활동제목" name="board_Title"></p>
 							</td>
 						</tr>	
 						<tr>
 							<td>	
-								<p class="crewAddress"><input type="text" class="crewAddressBox" placeholder="활동지역"></p>
+								<p class="crewAddress"><input type="text" class="crewAddressBox" placeholder="활동지역" name="crew_Area"></p>
 							</td>
 						</tr>	
 					<tr>
 						<td colspan="2" class="crewA">
-							<p class="crewMember"><input type="number" class="crewCount"placeholder="활동인원"></p>
-							<p class="crewDate">활동일시<input type="date" placeholder="활동일시" class="crewDate1"></p>
+							<p class="crewMember"><input type="number" class="crewCount"placeholder="활동인원" name="crew_Count"></p>
+							<p class="crewDate">활동일시<input type="date" placeholder="활동일시" class="crewDate1" name="start_Date"></p>
 						<td>
 					</tr>		
 					<tr>
@@ -251,13 +262,13 @@ $(function(){
 							<p class="crewImgWriter1">크루활동 이미지를 올려주세요!</p>
 							<div id="fileArea">
 								<input type="file" id="File" multiple="multiple"
-								name="origin_Name" onchange="loadImg(this,1)">
+								name="act_Name1" onchange="loadImg(this,1)">
 								<input type="file" id="File1"
-								name="origin_Name" multiple="multiple" onchange="loadImg(this,2)">
+								name="act_Name2" multiple="multiple" onchange="loadImg(this,2)">
 								<input type="file" id="File2"
-								name="origin_Name" multiple="multiple" onchange="loadImg(this,3)">
+								name="act_Name3" multiple="multiple" onchange="loadImg(this,3)">
 								<input type="file" id="File3"
-								name="origin_Name" multiple="multiple" onchange="loadImg(this,4)">
+								name="act_Name4" multiple="multiple" onchange="loadImg(this,4)">
 							</div>
 						</td>
 					</tr>
@@ -293,13 +304,13 @@ $(function(){
 					</tr>
 					<tr>
 						<td>
-							<textarea rows="13" cols="96" placeholder="크루님의 활동내역을 작성해주세요!" class="crewNum">
+							<textarea rows="13" cols="96" placeholder="크루님의 활동내역을 작성해주세요!" class="crewNum" name="board_Content">
 							</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button class="crewActBtn">활동내역작성</button>
+							<button type="submit" class="crewActBtn">활동내역작성</button>
 							<button class="backBtn">돌아가기</button>
 						</td>
 					</tr>	

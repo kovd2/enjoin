@@ -71,7 +71,7 @@ public interface CrewDao {
 	List<InCrew> crewInCrewY(SqlSessionTemplate sqlSession, int crew_Id);
 	
 	//만든 크루에대해서 조회해온다.
-	List<Crew> crewInformation(int userNo);
+	List<Crew> crewInformation(SqlSessionTemplate sqlSession, int userNo);
 	
 	
 
