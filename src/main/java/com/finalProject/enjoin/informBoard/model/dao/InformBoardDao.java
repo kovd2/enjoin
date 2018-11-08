@@ -8,9 +8,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
+import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
+import com.finalProject.enjoin.member.model.vo.Member;
 
 public interface InformBoardDao {
 
@@ -20,6 +22,14 @@ public interface InformBoardDao {
 	int getListCount(SqlSessionTemplate sqlSession)throws BoardSelectListException ;
 
 	List<Map<String, Object>> selectMainList(SqlSessionTemplate sqlSession, PageInfo pi);
+
+	Map<String, Object> selectBoardDetail(SqlSessionTemplate sqlSession, InformBoard ib)throws BoardSelectOneException;
+
+	Map<String, Object> selectFileDetail(SqlSessionTemplate sqlSession, InformBoardFiles ibf)throws BoardSelectOneException ;
+
+	
+
+	
 
 	
 

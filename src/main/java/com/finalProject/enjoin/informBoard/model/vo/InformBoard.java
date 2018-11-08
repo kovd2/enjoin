@@ -24,6 +24,8 @@ public class InformBoard implements Serializable{
 	private int userNo;						//회원번호
 	private String noticeDaily;				//공고일정
 	private String crewArea;   				//장소
+	private String userId;					//유저번호
+	
 	
 
 //	private MultipartFile	fileImg1;
@@ -55,6 +57,47 @@ public class InformBoard implements Serializable{
 		this.userNo = userNo;
 		this.noticeDaily = noticeDaily;
 		this.crewArea = crewArea;
+	}
+
+	
+	
+	
+
+	public InformBoard(int boardNo, String informBoardType, String informBoardTitle, String informBoardContent,
+			Date informEnrollDate, Date informModifyDate, int informPassCount, String noticeMax, String noticeMin,
+			String noticeRequest, String noticeStart, String noticeEnd, String noticeStatus, int categoryNo, int userNo,
+			String noticeDaily, String crewArea, String userId) {
+		super();
+		this.boardNo = boardNo;
+		this.informBoardType = informBoardType;
+		this.informBoardTitle = informBoardTitle;
+		this.informBoardContent = informBoardContent;
+		this.informEnrollDate = informEnrollDate;
+		this.informModifyDate = informModifyDate;
+		this.informPassCount = informPassCount;
+		this.noticeMax = noticeMax;
+		this.noticeMin = noticeMin;
+		this.noticeRequest = noticeRequest;
+		this.noticeStart = noticeStart;
+		this.noticeEnd = noticeEnd;
+		this.noticeStatus = noticeStatus;
+		this.categoryNo = categoryNo;
+		this.userNo = userNo;
+		this.noticeDaily = noticeDaily;
+		this.crewArea = crewArea;
+		this.userId = userId;
+	}
+
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 
@@ -236,7 +279,7 @@ public class InformBoard implements Serializable{
 				+ ", noticeMax=" + noticeMax + ", noticeMin=" + noticeMin + ", noticeRequest=" + noticeRequest
 				+ ", noticeStart=" + noticeStart + ", noticeEnd=" + noticeEnd + ", noticeStatus=" + noticeStatus
 				+ ", categoryNo=" + categoryNo + ", userNo=" + userNo + ", noticeDaily=" + noticeDaily + ", crewArea="
-				+ crewArea + "]";
+				+ crewArea + ", userId=" + userId + "]";
 	}
 
 

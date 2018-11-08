@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
+import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
 import com.finalProject.enjoin.informBoard.model.vo.Pagination;
+import com.finalProject.enjoin.member.model.vo.Member;
 
 
 @SessionAttributes("loginUser")
@@ -34,47 +37,63 @@ public class InformBoardController {
 	@Autowired
 	private InformBoardService ibs;
 	
+	
+	//공고 게시판 리스트조회
 	@RequestMapping("informBoard.kch2")
 	public ModelAndView informBoard(ModelAndView mv,HttpServletRequest request) throws BoardSelectListException {
-		
-		
 		int currentPage=1;
-		
-//		if(pi.getCurrentPage() != 0){
-//			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-//		}
 		if(request.getParameter("currentPage") != null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
 		int listCount = ibs.getListCount();
 		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
 		List<Map<String,Object>> list=null;
 		list=ibs.selectMainList(pi);
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
 		mv.setViewName("informBoard/informBoard");
-		System.out.println("controllerList:"+list);
+		//System.out.println("controllerList:"+list);
 		list.get(0).get("ENROLL_DATE");
-		System.out.println("DAO"+list.get(0).get("ENROLL_DATE"));
+		list.get(0).get("ATT_NO");
+	//	System.out.println(list.get(0).get("ATT_NO"));
+//		System.out.println("DAO"+list.get(0).get("ENROLL_DATE"));
+		return mv;
+	}
+	@RequestMapping("informDetail.kch2")
+	public ModelAndView  informDetail(ModelAndView mv,InformBoard ib,InformBoardFiles ibf,HttpSession session,HttpServletRequest request) {
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+		System.out.println("userId:"+loginUser);
+		System.out.println("boardNO:"+ib.getBoardNo());
+		//디테일 정보를 담을 보드객체선언 한행만조회 
+		Map<String,Object> list = null;
+		Map<String,Object> list2=null;
+		//파일객체선언하여 attno를통해 리스트조회
+		System.out.println("attNo"+ibf.getAttNo());
+		try {
+			list=ibs.selectBoardDetail(ib);
+			mv.addObject("list",list);
+			list2=ibs.selectFileDetail(ibf);
+			System.out.println("controller:"+list);
+			mv.addObject("list2", list2);
+			mv.setViewName("informBoard/informDetail");
+		} catch (BoardSelectOneException e) {
+			mv.addObject("msg",e.getMessage());
+		}
+		
+		//사진객체 담아줄 리스트생성 한행만조
+		
+		
+		
+		
+		
 		
 		
 		return mv;
-		
-	}
-	@RequestMapping("informDetail.kch2")
-	public String informDetail() {
-		
-		return "informBoard/informDetail";
 	}
 	
-	@RequestMapping("reviewForm.kch2")
-	public String reviewForm() {
-		
-		return "informBoard/reviewForm";
-	}
+
+	
 	@RequestMapping("drawForm.kch2")
 	public String drawForm() {
 		
@@ -82,6 +101,9 @@ public class InformBoardController {
 		return "informBoard/drawForm";
 		
 	}
+	
+	
+	
 	@RequestMapping(value="/insertInform.kch2",method=RequestMethod.POST)
 	public String insertInform(Model model,HttpServletRequest request
 			,@RequestParam(name="fileImg1",required=false)MultipartFile fileImg1

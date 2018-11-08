@@ -27,7 +27,7 @@
 </resultMap>
 	
 <resultMap type="com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles" id="informBoardFilesResultSet">
-		<id property="att_No" column="ATT_NO"/>
+		<id property="attNo" column="ATT_NO"/>
 		<result property="fileNo" column="FILE_NO"/>
 		<result property="uploadName" column="UPLOAD_NAME"/>
 		<result property="originName" column="ORIGIN_NAME"/>
@@ -46,41 +46,23 @@
 	VALUES(board_no.NEXTVAL,'공고',#{informBoardTitle},#{informBoardContent},SYSDATE,
 	#{informPassCount},#{noticeMax},#{noticeMin},to_date(#{noticeRequest}),
 	to_date(#{noticeEnd}),to_date(#{noticeStart}),0,#{categoryNo},#{noticeDaily},#{crewArea})
-	<!-- <selectKey resultType="int" keyProperty="BOARD_NO" order="AFTER">
-		SELCT BOARD_NO FROM BOARD
-	</selectKey> -->
 	</insert>
-	
 	
 	<select id="selectBoardNo" resultType="_int" parameterType="_int">
 		SELECT BOARD_NO.currval FROM dual
 	</select>
-	
-	<!-- <insert id="insertInformFiles"  parameterType="java.util.Map">
-		<selectKey resultType="int" keyProperty="ATT_NO" order="BEFORE">
-		SELECT SEQ_ATT_NO.NEXTVAL FROM DUAL
-	</selectKey> 
-		<foreach collection="list" item="item" open="INSERT ALL " close=" SELECT * FROM DUAL">
-		INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-		VALUES(SEQ_ATT_NO.NEXTVAL,#{item.fileNo},#{item.uploadName},#{item.originName},#{item.filesize},#{item.fileExt},SYSDATE,'0',#{item.refNo})
-		</foreach>
-		
-	</insert> -->
-	
+
 	<insert id="insertInformFiles0" parameterType="InformBoardFiles">
-	
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
 	VALUES(SEQ_ATT_NO.NEXTVAL,1,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles1" parameterType="InformBoardFiles">
-	
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
 	VALUES(SEQ_ATT_NO.NEXTVAL,2,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles2" parameterType="InformBoardFiles">
-	
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
 	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
 	</insert>
@@ -99,8 +81,13 @@
     WHERE B.BOARD_TYPE='공고' AND A.FILE_NO=1
 	</select>
 	
+	<select id="selectBoardDetail" resultType="map" parameterType="InformBoard">
+	SELECT *FROM BOARD WHERE BOARD_NO=#{boardNo}
+	</select>
 	
-	
+	<select id="ssd" resultType="map" parameterType="_int">
+	SELECT *FROM ATTACHMENT WHERE ATT_NO=#{attNo}
+	</select>
 	
 	
 	

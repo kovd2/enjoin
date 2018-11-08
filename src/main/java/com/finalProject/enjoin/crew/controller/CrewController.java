@@ -519,6 +519,8 @@ public class CrewController {
 			
 			System.out.println("list 잘나오냠? " + list);
 			
+			
+			
 			mv.setViewName("crew/crewActivity");
 			mv.addObject("list", list);
 			

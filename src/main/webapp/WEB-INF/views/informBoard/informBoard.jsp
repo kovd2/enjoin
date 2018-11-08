@@ -15,7 +15,7 @@
 }
 .top{
 	width:1100px;
-	height:1500px;
+	height:1400px;
 	margin:0 auto;
 	display:block;
 	
@@ -31,7 +31,7 @@
 
 .boardList{
 	width:1100px;
-	height:340px;
+	height:980px;
 	background:#f5f5f5;
 	margin:auto;	
 	/* margin-top:10px */
@@ -43,7 +43,7 @@
 	height:310px;
 	background:white; 
 	margin-left:19px;
-	margin-top:20px;
+	margin-top:5px;
 	
 }
 .list>img{
@@ -194,7 +194,18 @@ nav{
 
 
 }
+.listWrap{
+	width:340px;
+	height:310px;
+	display:inline-block;
+	margin-left:8px;
+	margin-top:10px;
 
+}
+#pagingArea{
+	margin:auto;
+	font-size:20px;
+}
 
 
 
@@ -205,7 +216,7 @@ nav{
 	<c:if test="${ !empty loginUser }">
 	<jsp:include page="../common/menubar.jsp"/>
 	
-	
+			
 			<div class="wrap">
 			<div class="top">
 	
@@ -241,10 +252,14 @@ nav{
 		
 			<div class="informArea">
 				
-				<c:forEach var="item" items="${list}">
 				<div class="boardList">
-				<div class="list" onclick="goDetail()">
-				<img src="${contextPath }resources/images/informBoard/${item.UPLOAD_NAME}">
+				
+				
+				<c:forEach var="item" items="${list}">
+				<div class="listWrap">
+				<div class="list" onclick="goDetail(${item.BOARD_NO},${item.ATT_NO})">
+				<img src="${contextPath}resources/images/informBoard/${item.UPLOAD_NAME}">
+				
 					<div class="listContent">
 					-시작일자<fmt:formatDate value="${item.NOTICE_START}" pattern="yyyy-MM-dd"/><br>
 					
@@ -254,76 +269,55 @@ nav{
 					
 					-지역:${item.CREW_AREA}<br>
 					
-					-차감패스:${ item.PASS_COUNT }패스
+					-차감패스:${item.PASS_COUNT }패스
 					
 					<div></div>
 					
 					<div class="category">
 					
-					<c:if test="${item.CATEGORY_NO==0} }">
+					<c:if test="${item.CATEGORY_NO==0}">
 						런닝
 					</c:if>
-					<c:if test="${item.CATEGORY_NO==1} }">
+					<c:if test="${item.CATEGORY_NO==1} ">
+						수영
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==2} ">
+						필라테스
+					</c:if>
+					<c:if test="${item.CATEGORY_NO==3}">
+						격투기
+					</c:if>
 					
+					<c:if test="${item.CATEGORY_NO==4} ">
+						댄스
 					</c:if>
-					<c:if test="${item.CATEGORY_NO==2} }">
-					런닝
+					<c:if test="${item.CATEGORY_NO==5} ">
+						요가
 					</c:if>
-					<c:if test="${item.CATEGORY_NO==3} }">
-					런닝
+					<c:if test="${item.CATEGORY_NO==6} ">
+						헬스
 					</c:if>
-					
-					<c:if test="${item.CATEGORY_NO==4} }">
-					런닝
+					<c:if test="${item.CATEGORY_NO==7} ">
+						크로스핏
 					</c:if>
-					<c:if test="${item.CATEGORY_NO==5} }">
-					런닝
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==6} }">
-					런닝
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==7} }">
-					런닝
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==8} }">
-					런닝
+					<c:if test="${item.CATEGORY_NO==8} ">
+						기타
 					</c:if>
 			
 					</div>
 					<div class="status">모집중</div>
 					</div>
-				</div>	
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/jjs.jpg">
-					<div class="listContent">
-					-시작일자:${item.NOTICE_START}<br>
-					-접수기간:${NOTICE_REQUEST } ~ ${NOTICE_END}<br>
-					-지역:${CREW_AREA}<br>
-					-차감패스:${ PASS_COUNT }패스
-					<div></div>
-					<div class="category">${CATEGORY_NO}</div>
-					<div class="status">모집중</div>
-					</div>
-				</div>	
-				<div class="list" onclick="goDetail()">
-				<img src="resources/images/informBoard/pila.png">
-					<div class="listContent">
-					-시작일자:${NOTICE_START}<br>
-					-접수기간:${NOTICE_REQUEST} ~ ${NOTICE_END}<br>
-					-지역:${CREW_AREA}<br>
-					-차감패스:${ PASS_COUNT }패스
-					<div></div>
-					<div class="category">${CATEGORY_NO}</div>
-					<div class="status">종료</div>
-					</div>
-				</div>
-				</div>
-				</c:forEach>
 				
-			 
+				</div>
+					
+				</div>
+			 </c:forEach>
+				</div>
+				
 			
-			</div>
-	<div id="pagingArea" align="center">
+			</div> <!-- informArea 끝나는영역 -->
+			
+			<div id="pagingArea" align="center">
 			<c:if test="${ pi.currentPage <= 1 }">
 				[이전] &nbsp;
 			</c:if>
@@ -336,7 +330,7 @@ nav{
 
 			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 				<c:if test="${ p eq pi.currentPage }">
-					<font color="red" size="4"><b>[${ p }]</b></font>
+					<font color="ee3e61" size="5"><b>[${ p }]</b></font>
 				</c:if>
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="blistCheck" value="/informBoard.kch2">
@@ -376,10 +370,9 @@ nav{
 
 
 <script>
-	function goDetail(){
+	function goDetail(boardNo,attNo){
 		
-		
-		location.href="informDetail.kch2";
+		location.href="informDetail.kch2?boardNo="+boardNo+"&attNo="+attNo;
 		
 	}
 
