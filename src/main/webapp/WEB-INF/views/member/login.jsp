@@ -7649,24 +7649,50 @@ div {
 									<div class="register_type_select">
 
 										
-											 <a id="kakao-login-btn" style="background:white;"></a> <a style="background:white;" href="http://developers.kakao.com/logout"></a>
+											 <!-- <a id="kakao-login-btn" style="background:white;"></a> -->
+											 <a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
+											<a href="http://developers.kakao.com/logout"></a>
 												<script type='text/javascript'>
+												function kakao(){
 										
 												Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
-											// 카카오 로그인 버튼을 생성합니다.
-												Kakao.Auth
-													.createLoginButton({
+											
+												Kakao.Auth.loginForm({
 														container : '#kakao-login-btn',
-														success : function(
-																authObj) {
-															alert(JSON.stringify(authObj));
+														success : function(authObj) {
+															//alert(JSON.stringify(authObj));
+															var accessToken=Kakao.Auth.getAccessToken();
+															//alert(accessToken);
+													         Kakao.API.request({
+													        	 url:'v1/user/me',
+													        	 success : function(res){
+													        		 ////alert(JSON.stringify(res)); //<---- kakao.api.request 
+																		
+													        		 $("#id").val(res.id);
+													        		 $("#email").val(res.kaccount_email);
+													        		 $("#nickname").val(res.properties.nickname);
+													        		 $("#accessToken").val(authObj.access_token);
+													        		 $("#refreshToken").val(authObj.refresh_token);
+													        		 
+													        		 $("#loginSubmit").submit();
+													        	 }
+													         })
+
+															
 														},
 														fail : function(err) {
 															alert(JSON.stringify(err));
 														}
 													});
-											//]]>
+											}
 										</script>
+										<form id=loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">
+											<input type="hidden" id="id" name="id">
+											<input type="hidden" id="email" name="email">
+											<input type="hidden" id="nickname" name="nickname">
+											<input type="hidden" id="accessToken" name="accessToken">
+											<input type="hidden" id="refreshToken" name="refreshToken">
+										</form>
 
 										<div class="divLine">
 											<span>또는,</span>
