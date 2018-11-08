@@ -432,15 +432,6 @@ label{
 	</div>
 
 
-
-
-
-
-
-
-
-
-
 	<script language="javascript" type="text/javascript">
 		$(document).ready(
 				function() {
