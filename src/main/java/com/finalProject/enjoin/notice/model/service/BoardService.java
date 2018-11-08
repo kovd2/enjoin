@@ -39,6 +39,9 @@ public interface BoardService {
 
 	public Board userRead(int boardNo) throws Exception;
 
+	public int insertContact(Board b, int userNo, Attachment at, String category);
+
+
 
 
 

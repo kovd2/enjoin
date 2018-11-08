@@ -95,8 +95,6 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int insertFAQ(Board b) throws Exception {
 		
-		System.out.println("DAO board : " + b);
-		
 		return sqlSession.insert("Board.insertFAQ", b);
 		
 	}
@@ -142,6 +140,38 @@ public class BoardDaoImpl implements BoardDao{
 	public Board userRead(int boardNo) throws Exception {
 		
 		return sqlSession.selectOne("Board.userRead", boardNo);
+	}
+
+	@Override
+	public int insertContact(Board b, Attachment at) {
+		
+		int result = 0;
+		
+		int result1 = sqlSession.insert("Board.insertContact", b);
+		
+		int result100 = sqlSession.selectOne("Board.selectBoard", b);
+		
+		
+		b.setBoardNo(result100);
+		
+		if(result1 > 0) {
+			
+			int boardNo = b.getBoardNo();
+			
+			int result2 = sqlSession.selectOne("Board.selectPhoto", boardNo);
+			
+			if(result2 == 1) {
+				
+				int result3 = sqlSession.delete("Board.deletePhoto", boardNo);
+			}
+			
+			at.setRef_No(boardNo);
+			
+			int result4 = sqlSession.insert("Board.insertPhoto", at);
+		}
+		
+		return result;
+		
 	}
 
 

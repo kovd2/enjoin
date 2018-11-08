@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" name="guest_name"
+											<input type="text" class="form-control" name="userName"
 												id="userName" placeholder="이름을 입력하세요." value="${ loginUser.getUserName() }">
 										</div>
 									</div>
@@ -104,14 +104,11 @@ h1, h2, h3, h4, h5, h6 {
 										<div class="col-sm-10">
 											<select class="form-control" name="category" id="category">
 												<option>분류를 선택하세요.</option>
-												<optgroup label="아래 분류 중 하나를 선택해 주세요.">
-													<option value="1">가입/로그인/회원정보</option>
-													<option value="2">제휴시설 이용문의</option>
-													<option value="3">입장하기 문의</option>
-													<option value="4">멤버십 이용</option>
-													<option value="5">결제/환불</option>
-													<option value="6">기타</option>
-												</optgroup>
+												<option value="센터이용/오류">센터이용/오류</option>
+												<option value="결제/환불">결제/환불</option>
+												<option value="패스">패스</option>
+												<option value="회원정보">회원정보</option>
+												<option value="기타">기타</option>
 											</select>
 										</div>
 									</div>
@@ -121,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
-											<input type="text" name="title" id="title" class="form-control" placeholder="제목을 입력하세요.">
+											<input type="text" name="boardTitle" id="boardTitle" class="form-control" placeholder="제목을 입력하세요.">
 										</div>
 									</div>
 									<div class="form-group">
@@ -129,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
 											<em>*</em>
 										</label>
 										<div class="col-sm-10">
-											<textarea rows="5" name="content" class="form-control" id="content" placeholder="내용을 입력해 주세요." required=""></textarea>
+											<textarea rows="5" name="boardContent" class="form-control" id="boardContent" placeholder="내용을 입력해 주세요."></textarea>
 										</div>
 									</div>
 									<div class="form-group">

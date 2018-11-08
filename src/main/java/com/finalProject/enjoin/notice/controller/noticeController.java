@@ -84,9 +84,10 @@ public class noticeController {
 		return "notice/contactDetail";
 	}
 	
-	/*//1:1 문의 등록(사용자)
+	//1:1 문의 등록(사용자)
 	@RequestMapping("contactInsert.hh")
-	public String contactInsert(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo, @RequestParam(name="category")int category) {
+	public String contactInsert(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo, @RequestParam(name="category")String category) {
+		
 		//사진 경로 지정
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root +"\\uploadFiles\\admin";
@@ -107,26 +108,32 @@ public class noticeController {
 		
 		String changeNameExt = changeName + ext;
 		
+		System.out.println("b : " + b);
+		System.out.println("ㅇㅇ: " + category);
 		at.setOrigin_Name(originFileName);
 		at.setFile_Ext(ext);
 		at.setUpload_Name(changeNameExt);
 		at.setFile_size(fileSize);
 		
 		try {
+			System.out.println("여기오나");
 			photo.transferTo(new File(filePath + "\\" + changeName+ext));
+			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			
+			int result33 = bs.insertContact(b, userNo, at, category);
+			
+			
+			System.out.println("res" + result33);
 		} catch (Exception e) {
 			
 			new File(filePath + "\\" + changeName + ext).delete();
 		}
-		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
-		
-		bs.insertContact(b, userNo, at);
 		
 		
 		
-		return "notice/contactInsert";
+		return "notice/serviceCenter";
 	}
-	*/
+	
 	@RequestMapping("passPurchase.hh")
 	public String passPurchase() {
 		
@@ -180,7 +187,7 @@ public class noticeController {
 	
 	//FAQ 등록
 	@RequestMapping("adminFAQInsertBtn.hh")
-	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="category")String category) throws Exception {
+	public String adminFAQInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="category")String category) throws Exception {
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
 		bs.insertFAQ(b, userNo, category);

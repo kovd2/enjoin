@@ -168,4 +168,12 @@
 		WHERE BOARD_NO = #{boardNo}
 	</select>
 	
+	<!-- 1:1 문의 등록 -->
+	<insert id="insertContact" parameterType="Board">
+		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, USER_NO)
+		VALUES(BOARD_NO.NEXTVAL, '문의', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo})
+	</insert>
+	
+	
+	
 </mapper>
