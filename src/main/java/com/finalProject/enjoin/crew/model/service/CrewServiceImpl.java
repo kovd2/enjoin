@@ -152,7 +152,7 @@ public class CrewServiceImpl implements CrewService {
 	@Override
 	public List<Crew> crewInformation(int userNo) {
 		
-		return cd.crewInformation(userNo);
+		return cd.crewInformation(sqlSession,userNo);
 	}
 	
 

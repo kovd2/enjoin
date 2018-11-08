@@ -175,12 +175,12 @@ public class CrewDaoImpl implements CrewDao {
 		
 		return sqlSession.selectList("Crew.crewInCrewY",crew_Id);
 	}
-	//해당
+	//해당하는 크루리스트를 조회해온다.
 	@Override
-	public List<Crew> crewInformation(int userNo) {
+	public List<Crew> crewInformation(SqlSessionTemplate sqlSession, int userNo) {
 		
-		return null;
+		return sqlSession.selectList("Crew.crewInformation",userNo);
 	}
-	
+
 
 }
