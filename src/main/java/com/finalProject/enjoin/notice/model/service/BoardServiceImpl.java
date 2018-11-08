@@ -149,5 +149,22 @@ public class BoardServiceImpl implements BoardService{
 		return bd.userRead(boardNo);
 	}
 
+	@Override
+	public int insertContact(Board b, int userNo, Attachment at, String category) {
+		
+		String title = b.getBoardTitle();
+		String content = b.getBoardContent();
+		
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		b.setUserNo(userNo);
+		b.setFaqCategory(category);
+		
+		int result = bd.insertContact(b, at);
+		
+		return result;
+
+	}
+
 
 }

@@ -39,5 +39,7 @@ public interface BoardDao {
 
 	public Board userRead(int boardNo) throws Exception;
 
+	public int insertContact(Board b, Attachment at);
+
 
 }
