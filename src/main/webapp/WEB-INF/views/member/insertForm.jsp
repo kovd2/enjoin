@@ -435,14 +435,30 @@ body.register .subWrap {
 											onfocusout="check_id(this); return false;" autocomplete="off">
 										<span class="help-block" id="user_id_help"></span>
 									</div>
-
 									<div class="form-group passwordShowHide" id="password_div">
+										<label for="password" class="sr-only">비밀번호</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel  "
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
+											<div class="input-append input-group">
+												<input id="password" name="userPwd" class="form-control" type="password" placeholder="비밀번호" autocorrect="off" autocapitalize="none" autocomplete="off"
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
+													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+											</div>
+										</div>
+										<span class="help-block" id="password_help"></span>
+									</div>
+									<!-- <div class="form-group passwordShowHide" id="password_div">
 										<label for="password" class="sr-only">비밀번호</label> <input
 											id="password" name="userPwd" class="form-control"
 											type="password" placeholder="비밀번호" autocorrect="off"
 											autocapitalize="none" autocomplete="off"> <span
 											class="help-block" id="password_help"></span>
-									</div>
+											<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+											<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+									</div> -->
 		
 									<!-- 인증 선택 radio -->
 									<div class="form-group bizAuthType" style="display: none;">
@@ -460,7 +476,7 @@ body.register .subWrap {
 
 										<div id="div_email_free" class="form-group">
 											<input onblur="check_validate(false);" type="email"	class="form-control" id="user_email_free" placeholder="이메일"
-												name="email" value=""	onfocusout="check_email(this); return false;">
+												name="email" value="" onfocusout="check_email(this); return false;">
 										</div>
 
 										<span class="help-block" id="user_email_help"></span>
@@ -571,7 +587,7 @@ body.register .subWrap {
 									<!-- /새 약관동의 상자 끝 -->
 
 									<div class="form-group submitLine">
-										<button type="button" class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
+										<button type=button class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
 									</div>
 
 								</div>
@@ -610,19 +626,113 @@ body.register .subWrap {
 	</script>
 	<script>
 	function CheckForm(){
-		 if($("input:checkbox[id='check1']").is(":checked") == false){
-			alert("이용약관에 동의 해 주세요.");
-			
-			return;
-		 }else if($("input:checkbox[id='check2']").is(":checked") == false){
-			alert("개인정보 수집 및 이용에 동의 해 주세요.");
-			
-			return;
-		}else{
-		 $("#MemberJoin").submit();
+		
+		var userId = $("#user_id").val();
+		var userPwd = $("#password").val();
+		var userName = $("#user_name").val();
+		var phone = $("#user_phone").val();
+		
+		/* for(i = 0; i< userId.length; i++){
+			ch = userId.charAt(i)
+			if(!(ch >= '0' && ch <='9') && !(ch >= 'a') && ch<='z')&&!(ch='A'&& ch<='Z'){
+				alert("아이디는 대소문자, 숫자만 입력 가능해요.")
+				$("#userid").focus();
+				return false;
+			}
+		} */
+		if(userId.length == 0){
+			alert("아이디를 입력해주세요.");
+			$("#user_id").focus();
+			return false;
 		}
 		
+		if(userId.length<4 || userId.length>12){
+			alert("아이디를 4~12자 까지 입력해주세요.")
+			$("#user_id").focus();
+			return false;
+		}
+		
+		if(userPwd.length == 0){
+			alert("비밀번호를 입력해주세요.");
+			$("#password").focus();
+			return false;
+		}
+		if(userPwd.length < 4 || userPwd.length > 12){
+			alert("비밀번호는 4~12자까지 입력해주세요.")
+			$("#password").focus();
+			return false;
+		}
+		
+		if(userName.length == 0){
+			alert("이름을 입력해주세요.");
+			$("#user_name").focus();
+			return false;
+		}
+		if(phone.length == 0){
+			alert("핸드폰 번호를 입력해주세요.");
+			$("#user_phone").focus();
+			return false;
+		}
+		/* for(i=0; i< phone.length; i++){
+			ch = phone.charAt(i)
+			if(!(ch >= '0' && ch<= '9')){
+				alert("휴대폰 번호는 숫자만 가능해요.")
+				$("#user_phone").focus();
+				return false;
+			}
+		} */
+			
+		if($("input:checkbox[id='check1']").is(":checked") == false){
+			alert("이용약관에 동의 해 주세요.");
+			return;
+			
+		}else if($("input:checkbox[id='check2']").is(":checked") == false){
+			alert("개인정보 수집 및 이용에 동의 해 주세요.");
+			return;
+			
+		}else if(confirm("회원가입을 하시겠습니까?")){
+			alert("회원가입을 축하합니다");
+		 	$("#MemberJoin").submit();
+		} 
+		 
+	
 	}
+	
+	// 패스워드폼 show, hide
+    $(function() {
+      $('#password').password().on('show.bs.password', function(e) {
+        //On show event
+        //$('#password_help').text('입력된 비밀번호가 맞는지 확인하세요!');
+      }).on('hide.bs.password', function(e) {
+        //On hide event
+        $('#password_help').text('');
+      });
+    });
+	
+    function check_phone(_this) {
+        var _val = $('input[name=phone]').val();
+        var regPhone = /^(?:(010\d{4})|(070\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
+        var reg_Phone = /^(?:(010-\d{4})|(070-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
+
+        if(!regPhone.test(_val) && !reg_Phone.test(_val)){
+            alert('올바른 휴대전화번호를 입력하세요.');
+            var error = 'error_phone_number';
+            var get_url = '/member/ajax_check_phone/'+error;
+            $.ajax({
+                type : 'GET',
+                url : get_url,
+                dataType : 'json',
+                success : function(_data) {
+                    if (_data.msg) {
+                        $('.btn_cer').removeAttr("disabled");
+                        make_error(false, "user_phone", _data.msg);
+                    }
+                }
+            });
+        }
+    }
+    
+
 	
 	
 	</script>
