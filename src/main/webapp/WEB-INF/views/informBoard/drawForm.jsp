@@ -373,7 +373,7 @@ label{
 								 <tr id="imgArea">
 									<td>
 									<div class="imgWrap">
-									<label class="imgLabel">대표사진1</label>
+									<label class="imgLabel">썸네일</label>
 									<input type="file" name="fileImg1" id="fileImg1"  onchange="readURL1(this);" />
 									</div>
 									 <button type="button"id="imgBtn1"> <img id="blah1" src="#" alt="대표사진1"></button>
@@ -383,7 +383,7 @@ label{
 								
 									<td>
 									<div class="imgWrap">
-									<label class="imgLabel">대표사진2</label>
+									<label class="imgLabel">상세보기</label>
 									<input type="file" size="50"name="fileImg2" id="fileImg2" onchange="readURL2(this);" /></div>
 									 <button type="button"id="imgBtn2"> <img id="blah2" src="#" alt="대표사진2"></button>
 									
@@ -393,7 +393,7 @@ label{
 									
 									<td>
 									<div class="imgWrap">
-									<label class="imgLabel">대표사진3</label>
+									<label class="imgLabel">여분사진</label>
 									<input type="file" size="50"name="fileImg3"  id="fileImg3" onchange="readURL3(this);" /></div>
 									 <button type="button"id="imgBtn3"><img id="blah3" src="#" alt="대표사진3"></button>
 									</td>

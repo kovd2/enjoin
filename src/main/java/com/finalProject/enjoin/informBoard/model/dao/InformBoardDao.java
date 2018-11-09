@@ -25,7 +25,9 @@ public interface InformBoardDao {
 
 	Map<String, Object> selectBoardDetail(SqlSessionTemplate sqlSession, InformBoard ib)throws BoardSelectOneException;
 
-	Map<String, Object> selectFileDetail(SqlSessionTemplate sqlSession, InformBoardFiles ibf)throws BoardSelectOneException ;
+	Map<String, Object> selectFileDetail(SqlSessionTemplate sqlSession, InformBoard ib, InformBoardFiles ibf)throws BoardSelectOneException ;
+
+	Map<String, Object> selectMemberDetail(SqlSessionTemplate sqlSession, Member loginUser);
 
 	
 

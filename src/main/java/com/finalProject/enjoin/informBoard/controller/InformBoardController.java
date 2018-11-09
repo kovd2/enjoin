@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
+import com.finalProject.enjoin.informBoard.model.vo.Coment;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
@@ -64,31 +67,30 @@ public class InformBoardController {
 	public ModelAndView  informDetail(ModelAndView mv,InformBoard ib,InformBoardFiles ibf,HttpSession session,HttpServletRequest request) {
 		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 		System.out.println("userId:"+loginUser);
-		System.out.println("boardNO:"+ib.getBoardNo());
+		//System.out.println("boardNO:"+ib.getBoardNo());
 		//디테일 정보를 담을 보드객체선언 한행만조회 
 		Map<String,Object> list = null;
 		Map<String,Object> list2=null;
+		Map<String,Object> list3=null;
 		//파일객체선언하여 attno를통해 리스트조회
 		System.out.println("attNo"+ibf.getAttNo());
 		try {
 			list=ibs.selectBoardDetail(ib);
 			mv.addObject("list",list);
-			list2=ibs.selectFileDetail(ibf);
 			System.out.println("controller:"+list);
+			list2=ibs.selectFileDetail(ibf,ib);
 			mv.addObject("list2", list2);
+			System.out.println("list2:"+list2);
+			list3=ibs.selectMemberDetail(loginUser);
+			mv.addObject("list3", list3);
+			System.out.println("list3:"+list3);
 			mv.setViewName("informBoard/informDetail");
 		} catch (BoardSelectOneException e) {
 			mv.addObject("msg",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
 		
 		//사진객체 담아줄 리스트생성 한행만조
-		
-		
-		
-		
-		
-		
-		
 		return mv;
 	}
 	
@@ -110,10 +112,6 @@ public class InformBoardController {
 			,@RequestParam(name="fileImg2",required=false)MultipartFile fileImg2
 			,@RequestParam(name="fileImg3",required=false)MultipartFile fileImg3
 			) {
-		
-		
-		
-		
 		
 //		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 //		System.out.println(userNo);
@@ -283,7 +281,23 @@ public class InformBoardController {
 		return "informBoard/informBoard";
 	}
 	
-	
+	@RequestMapping("goComent.kch2")
+	public @ResponseBody Map<String, Object> enrollComent(
+		Coment c,HttpSession session,HttpServletRequest request,
+		@RequestParam String comentContent,
+		@RequestParam String userId,
+		@RequestParam int boardNo){
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+		System.out.println("comentCon:"+loginUser);
+		Map<String,Object> list = null;
+		
+		list.put("Coment", boardNo);
+		
+		
+		
+		return list;
+
+	}
 	
 	
 	
