@@ -86,6 +86,30 @@
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="upload_Name" column="UPLOAD_NAME"/>
 	</resultMap>
+	
+	<resultMap type="CrewActivityBoard" id="CrewActivityBoards">
+	<!-- Primary key  -->
+	<id property="board_No" column="BOARD_NO"/>
+		<!-- 컬럼  -->
+		<result property="board_Type" column="BOARD_TYPE"/>
+		<result property="board_Title" column="BOARD_TITLE"/>
+		<result property="board_Content" column="BOARD_CONTENT"/>
+		<result property="enroll_Date" column="ENROLL_DATE"/>
+		<result property="modify_Date" column="MODIFY_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="crew_Count" column="CREW_COUNT"/>
+		<result property="crew_No" column="CREW_NO"/>
+		<result property="board_Count" column="BOARD_COUNT"/>
+		<result property="crew_Area" column="CREW_AREA"/>
+		<result property="status" column="STATUS"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="file_No" column="FILE_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="crew_Name" column="CREW_NAME"/>
+	</resultMap>	
 
 	
 	<!-- 크루 인서트  -->
@@ -312,5 +336,54 @@
 			JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
 			WHERE M.USER_NO = #{user_No}
      </select>
+     
+     <!-- 크루의 카테고리번호를 받아온다  -->
+	<select id="selectCategoryNo" parameterType="_int" resultType="_int">
+		SELECT CATEGORY_NO
+		FROM CREW
+		WHERE CREW_ID = #{crew_No}
+	</select>
+	
+	<!-- 크루 활동 게시판 인서트  -->
+	
+	<insert id="insertCrewActivity" parameterType="Crew">
+		INSERT INTO BOARD (BOARD_NO,BOARD_TYPE,BOARD_TITLE,BOARD_CONTENT,ENROLL_DATE,
+		CREW_AREA,START_DATE,CREW_COUNT,CREW_NO,BOARD_COUNT,STATUS,USER_NO,CATEGORY_NO)
+		VALUES(BOARD_NO.NEXTVAL,'크루활동',#{board_Title},#{board_Content},SYSDATE,#{crew_Area},
+		#{start_Date},#{crew_Count},#{crew_No},0,'Y',#{user_No},#{category_No})
+	</insert>
+	
+	<!-- 크루 활동 이미지 인서트  -->
+	
+	<insert id="insertCaAttachment" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,0,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,7,#{ref_No})
+	</insert>
+	
+	<insert id="insertCaAttachment1" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,7,#{ref_No})
+	
+	</insert>
+	
+	<insert id="insertCaAttachment2" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,2,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,7,#{ref_No})
+	
+	</insert>
+	
+	<insert id="insertCaAttachment3" parameterType="Crew">
+		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,
+		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
+		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},
+		#{file_Ext},SYSDATE,7,#{ref_No})
+	
+	</insert>
       
 </mapper>

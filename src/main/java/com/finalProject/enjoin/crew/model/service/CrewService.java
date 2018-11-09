@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -68,6 +69,9 @@ public interface CrewService {
 	
 	//만든 크루에대해서 조회해서 입력폼에뿌려주기위해 만듬
 	List<Crew> crewInformation(int userNo);
+
+	//크루 활동 게시판 인서트
+	int insertCrewActivity(CrewActivityBoard cab, Attachment at, Attachment at1, Attachment at3, Attachment at4);
 	
 	
 
