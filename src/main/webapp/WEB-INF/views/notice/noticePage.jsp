@@ -52,7 +52,7 @@
 							</c:forEach>
 						</div>
 
-						<nav>
+						<nav style="text-align:center">
 							<ul class="pagination">
 								<c:if test="${ pi.currentPage <= 1 }">
 									<li><a>이전</a></li>
@@ -109,6 +109,6 @@
 
 
 	</div>
-
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
