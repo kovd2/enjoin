@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>패스 구매</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .sectionTitle h2 {
     font-size: 40px;
@@ -515,8 +520,8 @@
                             </p>
                         </div>
 
-                        <div class="paymentSubmitLine">
-                            <button type="button" onclick="payment()" class="btn btn-lg btn-success" id="btn_go"><i class="fa fa-credit-card"></i> 결제하기</button>
+                        <div class="paymentSubmitLine" onclick="payment()">
+                            <button type="button" class="btn btn-lg btn-success" id="btn_go"><i  class="fa fa-credit-card"></i> 결제하기</button>
                         </div>
                     </div><!-- /.paymentInfo2 -->
                 </div><!-- /.col -->
@@ -529,10 +534,77 @@
 
 <script>
 	function payment(){
+		var IMP = window.IMP;
+		IMP.init("imp11417443"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 		
-		location.href = "passPurchaseFinish.hh";
-	}
+		// IMP.request_pay(param, callback) 호출
+		IMP.request_pay({ // param
+		    pg: "html5_inicis",
+		    pay_method: "card",
+		    merchant_uid: "merchant" + new Date().getTime(),
+		    name: "7 PASS",
+		    amount: 100,
+		    buyer_email: "${ loginUser.getEmail() }",
+		    buyer_name: "${ loginUser.getUserName() }",
+		    buyer_tel: "${ loginUser.getPhone() }",
+		    
+		}, function (rsp) { // callback
+		    if (rsp.success) {
+		    	var msg = '결제가 완료되었습니다.';
+		    	
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+				
+		    	alert("결제 실패하였습니다.");
+		    	location.href = "passPurchase.hh";
+		    }
+		});
+	} 
+
+	/* $(document).ready(function(){
+		console.log("ready!")
+		var IMP = window.IMP; 	  //생략 가능
+		IMP.init('imp11417443');  //가맹점 식별코드 (아임포트 관리자 페이지의 '시스템 설정' > '내 정보'에서 확인 가능) 
+		
+		$("#btn_go").on("click", function(){
+			alert("click");
+			// 결제 요청
+			IMP.request_pay({
+			    pg : 'html5_inicis', // version 1.1.0부터 지원.
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : 1000,
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울특별시 강남구 삼성동',
+			    buyer_postcode : '123-456',
+			    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			        
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			    }
+			    alert(msg);
+			});
+		});
+	});
+	 */
+	
 </script>
+
 
 </body>
 </html>

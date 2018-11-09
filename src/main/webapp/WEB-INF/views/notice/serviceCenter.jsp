@@ -341,6 +341,7 @@ h5 {
 			</div>
 			<!-- /container -->
 		</div>
+	<jsp:include page="../common/footer.jsp" />
 <script>
 	$('#chatPopUp').click(function(event){  //버튼을 클릭 했을시 popupOpen 함수 출력 
 	    popupOpen();	//Popup Open 함수
@@ -348,8 +349,6 @@ h5 {
 	
 	function popupOpen(){
 		var url= "chatPopUp.hh";    //팝업창 페이지 URL
-		/* var winWidth = 700;
-	    var winHeight = 600; */
 	    var popupX = (window.screen.width / 2) - (600 / 2);
 		var popupY= (window.screen.height /2) - (500 / 2);
 
