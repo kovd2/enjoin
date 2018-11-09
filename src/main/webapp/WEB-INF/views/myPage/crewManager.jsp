@@ -166,7 +166,7 @@
 			<h3>생성된 크루</h3>
 			<!-- 크루 리스트 반복-->
 			<c:forEach var="c" items="${ crewList }">
-			<div class="crewList" data-toggle="modal" data-target="#myModal" align="center">
+			<div class="crewList" data-toggle="modal" data-target="#myModal" align="center" onclick="">
 				<img src="resources/uploadFiles/crew/crewRecruitment/${ c.upload_Name }" class="crewLogo">		
 				<div class="crewName">${ c.crew_Name }</div><br>
 			</div>
@@ -195,7 +195,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Crew Name</h4>
+        <h4 class="modal-title" id="myModalLabel">크루 이름</h4>
       </div>
       <div class="modal-body" style="height:350px;">
 		<div class="modal-left">
@@ -237,14 +237,15 @@
   </div>
 </div>
 	
-	
 	</div>
 	<br><br><br><br><br>
 
 	<script>
 		//	모달
 		$('#myModal').click('shown.bs.modal', function() {
-			$('#myInput').focus()
+			$.ajax({
+				type:"post",
+			})
 		});
 		
 		//크루게시판 이동

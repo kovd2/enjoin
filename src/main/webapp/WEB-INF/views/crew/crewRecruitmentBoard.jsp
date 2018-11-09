@@ -422,7 +422,7 @@ select.searchSelect {
 	function goCategory(categoryName){
 		var categoryName = $(categoryName).find('label').text();
 		
-		alert(categoryName);
+	
 		
 		location.href="crewCategorySelectBoard.shw2?categoryName=" + categoryName;
 		
