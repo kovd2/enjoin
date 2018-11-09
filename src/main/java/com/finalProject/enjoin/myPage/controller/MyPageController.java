@@ -280,7 +280,7 @@ public class MyPageController {
 	@RequestMapping("insertCrewBoard.ljs")
 	public ModelAndView insertCrewBoard(@RequestParam(name="crewId") int crewId, ModelAndView mv,
 			@RequestParam(name="attachment", required=false) MultipartFile attachment, HttpServletRequest request) {
-		System.out.println("1");
+		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
 		String title = request.getParameter("title");

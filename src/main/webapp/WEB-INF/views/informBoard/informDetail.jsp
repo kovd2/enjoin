@@ -346,7 +346,6 @@ img {
     padding: 0px 20px 20px 20px;
 }
 
-
 </style>
 </head>
 <body>
@@ -360,7 +359,7 @@ img {
 
 			<div class="main">
 				<div class="imgArea">
-					<img src="${contextPath}/resources/images/informBoard/${list2.UPLOAD_NAME}">
+					<img src="${contextPath}/resources/uploadFiles/informBoard/${list2.UPLOAD_NAME}">
 				</div>
 
 
@@ -700,11 +699,9 @@ img {
 
 				</div>
 			</div>
-
+			<jsp:include page="../common/footer.jsp"/>
 		</div>
 	</div>
-
-
 
 	<script>
 		function goEn() {

@@ -148,8 +148,8 @@
 	
 	<!-- 크루 게시물 작성 쿼리 -->
 	<insert id="insertCrewBoard" parameterType="hashmap">
-		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, CREW_NO, BOARD_COUNT, USER_NO, BOARD_COUNT)
-		VALUES(BOARD_NO.NEXTVAL, '크루게시판', #{b.boardTitle}, #{b.boardContent}, SYSDATE, 'Y', #{crewId}, 0, #{userNo}, 0)
+		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, CREW_NO, BOARD_COUNT, USER_NO)
+		VALUES(BOARD_NO.NEXTVAL, '크루게시판', #{b.boardTitle}, #{b.boardContent}, SYSDATE, 'Y', #{crewId}, 0, #{userNo})
 	</insert>
 	
 	<!-- 크루 게시물 이미지 저장 쿼리 -->
@@ -237,14 +237,15 @@
 	
 	<!-- 크루 목록 조회 -->
 	<select id="selectCrewList" resultMap="acceptCrewResultSet">
-		SELECT * 
-		FROM CREW C
+		SELECT *
+		FROM BOARD B
 		LEFT JOIN (SELECT * 
-          		   FROM ATTACHMENT 
-           		   WHERE FILE_TYPE = '4'
-           		   AND FILE_NO = 0 )A ON (C.CREW_ID = A.ATT_NO)
-		WHERE USER_NO = #{userNo}
-		AND C.CREW_STATUS = 'Y'
+				   FROM ATTACHMENT
+				   WHERE FILE_TYPE = '4'
+				   AND FILE_NO = 0) A ON (B.BOARD_NO = A.REF_NO)
+		JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
+		WHERE B.USER_NO = #{userNo}
+		AND BOARD_TYPE = '크루모집'
 	</select>
 	
 	<!-- 가입된 크루 목록 조회 -->

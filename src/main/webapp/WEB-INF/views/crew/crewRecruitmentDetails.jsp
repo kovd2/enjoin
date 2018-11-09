@@ -423,7 +423,7 @@ i.fa.fa-comments{
 <script>
 	function goInCrew(userNo){
 		
-		alert(userNo);
+		
 			
 	}
 	  /*   function goCrewComent(){
@@ -570,12 +570,12 @@ i.fa.fa-comments{
 						 							var check = $("input:checkbox[class=check1]:checked").val();
 						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
 						 							$('.comment').append($inputHidden);
-						 							alert(check);
+						 							
 						 							
 						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
 						 							$('.comment').append($inputHidden1);
-						 							alert(coment_No);
-						 							alert($inputHidden1.val());
+						 							
+						 							
 						 							
 						 						 }
 						 						</script>

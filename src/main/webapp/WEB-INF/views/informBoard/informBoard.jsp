@@ -258,7 +258,7 @@ nav{
 				<c:forEach var="item" items="${list}">
 				<div class="listWrap">
 				<div class="list" onclick="goDetail(${item.BOARD_NO},${item.ATT_NO})">
-				<img src="${contextPath}resources/images/informBoard/${item.UPLOAD_NAME}">
+				<img src="${contextPath}/resources/uploadFiles/informBoard/${item.UPLOAD_NAME}">
 				
 					<div class="listContent">
 					-시작일자<fmt:formatDate value="${item.NOTICE_START}" pattern="yyyy-MM-dd"/><br>
