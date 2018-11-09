@@ -13,6 +13,7 @@ import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneExcepti
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
+import com.finalProject.enjoin.member.model.vo.Member;
 
 @Repository
 public class InformBoardDaoImpl implements InformBoardDao {
@@ -55,23 +56,32 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		InformBoard selectIb =new InformBoard();
 		selectIb.setBoardNo(ib.getBoardNo());
 		Map<String,Object> list = sqlSession.selectOne("InformBoard.selectBoardDetail", selectIb);
-		System.out.println("DAO:"+list);
+		//System.out.println("DAO:"+list);
 		if(list == null) {
 			throw new BoardSelectOneException("게시물 상세보기 실패!");
 		}
 		return list;
 	}
 	@Override
-	public Map<String, Object> selectFileDetail(SqlSessionTemplate sqlSession, InformBoardFiles ibf) throws BoardSelectOneException {
-		int no = ibf.getAttNo();
-		System.out.println("dazIbf"+ibf);
-		Map<String,Object> list2 = sqlSession.selectOne("InformBoardFiles.ssd",no);
+	public Map<String, Object> selectFileDetail(SqlSessionTemplate sqlSession,InformBoard ib, InformBoardFiles ibf) throws BoardSelectOneException {
+		InformBoardFiles selectIbf = new InformBoardFiles();
+		System.out.println(ib.getBoardNo());
+		selectIbf.setRefNo(ib.getBoardNo());
+		selectIbf.setFileNo(2);
+		selectIbf.setFileType("0");
+		System.out.println("dao:"+selectIbf);
+		Map<String,Object> list2 = sqlSession.selectOne("InformBoard.selectFileDetail",selectIbf);
 		System.out.println("dao:"+list2);
 		if(list2 == null) {
 			throw new BoardSelectOneException("게시물 파일 상세보기 실패");
 		}
 		
 		return list2;
+	}
+	@Override
+	public Map<String, Object> selectMemberDetail(SqlSessionTemplate sqlSession, Member loginUser) {
+		Map<String,Object> list = sqlSession.selectOne("InformBoard.selectMemberDetail",loginUser);
+		return list;
 	}
 
 

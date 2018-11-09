@@ -37,7 +37,36 @@
 		<result property="fileType" column="FILE_TYPE"/>
 		<result property="refNo" column="REF_NO"/>
 		<result property="crewArea" column="CREW_AREA"/>
-</resultMap>	
+</resultMap>
+
+	<resultMap type="com.finalProject.enjoin.member.model.vo.Member" id="memberResultSet">
+		<!-- PRIMARY KEY -->
+		<id property="userNo" column="USER_NO"/>
+		<!-- 컬럼 -->
+		<result property="userType" column="USER_TYPE"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>	
+		<result property="managerName" column="MANAGER_NAME"/>
+		<result property="managerPhone" column="MANAGER_PHONE"/>
+		<result property="managerEmail" column="MANAGER_EMAIL"/>
+		<result property="copNo" column="COP_NO"/>
+		<result property="ceoName" column="CEO_NAME"/>
+		<result property="copName" column="COP_NAME"/>
+		<result property="copAddress" column="COP_ADDRESS"/>
+		<result property="copType" column="COP_TYPE"/>
+		<result property="copCon" column="COP_CON"/>
+		<result property="copEmail" column="COP_EMAIL"/>
+		<result property="upload_name" column="UPLOAD_NAME"/>
+	</resultMap>
+
+
+	
 	
 	<insert id="insertInformBoard" parameterType="InformBoard">
 	INSERT INTO BOARD(BOARD_NO,BOARD_TYPE,BOARD_TITLE,BOARD_CONTENT,ENROLL_DATE,PASS_COUNT,
@@ -85,10 +114,12 @@
 	SELECT *FROM BOARD WHERE BOARD_NO=#{boardNo}
 	</select>
 	
-	<select id="ssd" resultType="map" parameterType="_int">
-	SELECT *FROM ATTACHMENT WHERE ATT_NO=#{attNo}
+	<select id="selectFileDetail" resultType="map" parameterType="InformBoardFiles">
+	SELECT *FROM ATTACHMENT WHERE REF_NO=#{refNo} AND FILE_TYPE=#{fileType} AND FILE_NO=#{fileNo}
 	</select>
-	
+	<select id="selectMemberDetail" resultType="map" parameterType="Member">
+	SELECT *FROM MEMBER WHERE USER_NO=#{userNo}
+	</select>
 	
 	
 </mapper>

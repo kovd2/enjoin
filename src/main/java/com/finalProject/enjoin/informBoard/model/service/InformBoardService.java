@@ -24,7 +24,9 @@ public interface InformBoardService  {
 
 	Map<String, Object> selectBoardDetail(InformBoard ib)throws BoardSelectOneException;
 
-	Map<String, Object> selectFileDetail(InformBoardFiles ibf)throws BoardSelectOneException ;
+	Map<String, Object> selectFileDetail(InformBoardFiles ibf, InformBoard ib)throws BoardSelectOneException ;
+
+	Map<String, Object> selectMemberDetail(Member loginUser);
 
 	
 

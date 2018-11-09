@@ -48,9 +48,14 @@ public class InformBoardServiceImpl implements InformBoardService{
 		return list;
 	}
 	@Override
-	public Map<String, Object> selectFileDetail(InformBoardFiles ibf) throws BoardSelectOneException {
-		Map<String,Object> fList = ibd.selectFileDetail(sqlSession,ibf);
-		return fList;
+	public Map<String, Object> selectFileDetail(InformBoardFiles ibf, InformBoard ib) throws BoardSelectOneException {
+		Map<String,Object> list =ibd.selectFileDetail(sqlSession,ib,ibf);
+		return list;
+	}
+	@Override
+	public Map<String, Object> selectMemberDetail(Member loginUser) {
+		Map<String,Object> list = ibd.selectMemberDetail(sqlSession,loginUser);
+		return list;
 	}
 	
 
