@@ -22,6 +22,7 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.service.CrewService;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -541,22 +542,131 @@ public class CrewController {
 				int crew_Count = Integer.parseInt(request.getParameter("crew_Count"));
 				String start_Date1 = request.getParameter("start_Date");
 				String board_Content = request.getParameter("board_Content");
-				String category_Name = request.getParameter("category_Name");
-				
-				
-				System.out.println("category_Name : " + category_Name);
 				
 				java.sql.Date start_Date = java.sql.Date.valueOf(start_Date1);
 				
+				//로그인 유저 넘버를 가져온다
+				int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+				
+				CrewActivityBoard cab  = new CrewActivityBoard();
+				
+				cab.setCrew_No(crew_No);
+				cab.setBoard_Title(board_Title);
+				cab.setCrew_Area(crew_Area);
+				cab.setCrew_Count(crew_Count);
+				cab.setStart_Date(start_Date);
+				cab.setBoard_Content(board_Content);
+				cab.setUser_No(userNo);
+				
+				//파일 루트 지정
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				//파일경로 저장
+				String filePath = root + "\\uploadFiles\\crew\\crewActivity";
+				
+				//크루활동 사진명 변경
+				
+			
+				//사진1
+				String originFileName = act_Name1.getOriginalFilename();
+				String ext = originFileName.substring(originFileName.lastIndexOf("."));
+				String changeName = CommonUtils.getRandomString();
+				long fileSize1 = act_Name1.getSize();
+				String fileSize = String.valueOf(fileSize1);
+				
+				//사진2
+				String originFileName1 = act_Name2.getOriginalFilename();
+				String ext1 = originFileName1.substring(originFileName1.lastIndexOf("."));
+				String changeName1 = CommonUtils.getRandomString();
+				long fileSize2 = act_Name2.getSize();
+				String fileSize3 = String.valueOf(fileSize2);
+				
+				//사진3
+				String originFileName2 = act_Name3.getOriginalFilename();
+				String ext3 = originFileName2.substring(originFileName2.lastIndexOf("."));
+				String changeName2 = CommonUtils.getRandomString();
+				long fileSize4 = act_Name3.getSize();
+				String fileSize5 = String.valueOf(fileSize4);
+				
+				//사진4
+				String originFileName3 = act_Name4.getOriginalFilename();
+				String ext4 = originFileName3.substring(originFileName3.lastIndexOf("."));
+				String changeName3 = CommonUtils.getRandomString();
+				long fileSize6 = act_Name4.getSize();
+				String fileSize7 = String.valueOf(fileSize6);
+				
+				
+				//크루 활동 사진을 담기위한 객체선언
+				Attachment at = new Attachment();
+			
+				String origin_FileNames = String.valueOf(originFileName);
+				String changeNameExt = changeName + ext;
+				
+				at.setOrigin_Name(originFileName);
+				at.setFile_Ext(ext);
+				at.setUpload_Name(changeNameExt);
+				at.setFile_size(fileSize);
+				
+				//크루 활동 사진2
+				
+				Attachment at1 = new Attachment();
+				
+				String origin_FileNames1 = String.valueOf(originFileName1);
+				String changeNameExt1 = changeName1 + ext1;
+				
+				at1.setOrigin_Name(originFileName1);
+				at1.setFile_Ext(ext1);
+				at1.setUpload_Name(changeNameExt1);
+				at1.setFile_size(fileSize3);
+				
+				//크루 활동 사진3
+				
+				Attachment at3 = new Attachment();
+				
+				String origin_FileNames3 = String.valueOf(originFileName2);
+				String changeNameExt2 = changeName2 + ext3;
+				
+				at3.setOrigin_Name(originFileName2);
+				at3.setFile_Ext(ext3);
+				at3.setUpload_Name(changeNameExt2);
+				at3.setFile_size(fileSize5);
+				
+				//크루 활동 사진 4
+				
+				Attachment at4 = new Attachment();
+				
+				String origin_FileNames4 = String.valueOf(originFileName3);
+				String changeNameExt3 = changeName3 + ext4;
+				
+				at4.setOrigin_Name(originFileName2);
+				at4.setFile_Ext(ext4);
+				at4.setUpload_Name(changeNameExt3);
+				at4.setFile_size(fileSize7);
+				
+				
+				try {
+					//저장할 경로명에 바뀐 파일이름 + 확장자 추가해서 넣어줌
+					act_Name1.transferTo(new File(filePath + "\\" + changeName + ext));
+					act_Name2.transferTo(new File(filePath + "\\" + changeName1 + ext1));
+					act_Name3.transferTo(new File(filePath + "\\" + changeName2 + ext3));
+					act_Name4.transferTo(new File(filePath + "\\" + changeName3 + ext4));
+					
+					int result = cs.insertCrewActivity(cab,at,at1,at3,at4);
+					
+				} catch (Exception e) {
+					//실패할시 파일을 삭제
+					new File(filePath + "\\" + changeName + ext).delete();
+					new File(filePath + "\\" + changeName1 + ext1).delete();
+					new File(filePath + "\\" + changeName2 + ext3).delete();
+					new File(filePath + "\\" + changeName3 + ext4).delete();
+				}
 				
 				
 				
-		
-			
-				System.out.println("");
-			
-				System.out.println("일단 잘넘어오냐??");
-			
+				
+				
+				
+				
+				
 		
 		
 		

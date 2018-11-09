@@ -17,6 +17,7 @@
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.InCrew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
+		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewActivityBoard" alias="CrewActivityBoard"/>
 		
 		
 	</typeAliases>

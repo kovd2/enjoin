@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -72,6 +73,12 @@ public interface CrewDao {
 	
 	//만든 크루에대해서 조회해온다.
 	List<Crew> crewInformation(SqlSessionTemplate sqlSession, int userNo);
+
+	//크루 활동 게시판 인서트
+	int insertCrewActivity(SqlSessionTemplate sqlSession, CrewActivityBoard cab, Attachment at, Attachment at1,
+			Attachment at3, Attachment at4);
+	
+	
 	
 	
 
