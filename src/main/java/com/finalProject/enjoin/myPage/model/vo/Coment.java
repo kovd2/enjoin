@@ -1,8 +1,9 @@
 package com.finalProject.enjoin.myPage.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Coment {
+public class Coment implements Serializable{
 	private int comentNo;				//댓글번호
 	private String comentContent;		//댓글내용
 	private Date comentDate;			//댓글등록일
@@ -10,6 +11,7 @@ public class Coment {
 	private String comentStatus;		//댓글상태
 	private int boardNo;				//게시물번호
 	private int userNo;					//회원번호
+	private String userId;				//회원ID
 	private String userName;			//회원이름
 	private String boardType;			//게시물 타입
 	private String boardTitle;			//게시물 제목
@@ -17,7 +19,7 @@ public class Coment {
 	public Coment() {}
 
 	public Coment(int comentNo, String comentContent, Date comentDate, Date comentModifyDate, String comentStatus,
-			int boardNo, int userNo, String userName, String boardType, String boardTitle) {
+			int boardNo, int userNo, String userId, String userName, String boardType, String boardTitle) {
 		super();
 		this.comentNo = comentNo;
 		this.comentContent = comentContent;
@@ -26,6 +28,7 @@ public class Coment {
 		this.comentStatus = comentStatus;
 		this.boardNo = boardNo;
 		this.userNo = userNo;
+		this.userId = userId;
 		this.userName = userName;
 		this.boardType = boardType;
 		this.boardTitle = boardTitle;
@@ -87,6 +90,14 @@ public class Coment {
 		this.userNo = userNo;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -115,8 +126,8 @@ public class Coment {
 	public String toString() {
 		return "Coment [comentNo=" + comentNo + ", comentContent=" + comentContent + ", comentDate=" + comentDate
 				+ ", comentModifyDate=" + comentModifyDate + ", comentStatus=" + comentStatus + ", boardNo=" + boardNo
-				+ ", userNo=" + userNo + ", userName=" + userName + ", boardType=" + boardType + ", boardTitle="
-				+ boardTitle + "]";
+				+ ", userNo=" + userNo + ", userId=" + userId + ", userName=" + userName + ", boardType=" + boardType
+				+ ", boardTitle=" + boardTitle + "]";
 	}
 
 	

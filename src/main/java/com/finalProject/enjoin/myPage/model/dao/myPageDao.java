@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
@@ -60,6 +61,10 @@ public interface myPageDao {
 	//게시물 조회수 증가
 	int updateBoardCount(int boardNo, SqlSessionTemplate sqlSession);
 
+	//찜 목록 조회
+	List<JJIM> selectJJIM(int userNo, SqlSessionTemplate sqlSession);
 
+	//찜 목록 삭제
+	int deleteJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
 }

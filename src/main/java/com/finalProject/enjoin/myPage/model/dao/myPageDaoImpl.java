@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
@@ -112,10 +113,6 @@ public class myPageDaoImpl implements myPageDao{
 		
 		if(result1 > 0) {
 			
-			/*int boardNo = sqlSession.selectOne("myPage.selectBoardNo");
-			at.setRef_No(boardNo);
-			System.out.println("boardNo : " + boardNo);*/
-			
 			sqlSession.insert("myPage.insertBoardImg", hmap);
 			
 			System.out.println("게시물 등록 & 게시물 이미지 등록 완료");
@@ -166,6 +163,19 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.update("myPage.updateBoardCount", boardNo);
 	}
 
+	//찜 목록 조회
+	@Override
+	public List<JJIM> selectJJIM(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectJJIM", userNo);
+	}
+
+	//찜 목록 삭제
+	@Override
+	public int deleteJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.delete("myPage.deleteJJIM", hmap);
+	}
 
 
 }

@@ -89,7 +89,7 @@
 					<div class="mypageMenu">
 						<ul>
 							<li><b><a href="profil.ljs?userId=${ loginUser.userId }" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  내멤버십</a></b></li>
-							<li><b><a href="wantPlace.ljs?userId=${ loginUser.userId }" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  가보고 싶은 시설</a></b></li>
+							<li><b><a href="wantPlace.ljs?userNo=${ loginUser.userNo }" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  가보고 싶은 시설</a></b></li>
 							<li><b><a href="history.ljs" id="history" class="fontColBlack current"><i class="fa fa-bar-chart"></i>  이용기록</a></b></li>
 							<li><b><a href="crewManager.ljs?userNo=${ loginUser.userNo }" id="a_invite" class="fontColBlack current"><i class="fa fa-child"></i>  크루관리</a></b></li>
 							<li><b><a href="writePosts.ljs?userNo=${ loginUser.userNo }" id="myBoard" class="fontColBlack current"><i class="fa fa-thumb-tack"></i>  내가 쓴 게시물</a></b></li>

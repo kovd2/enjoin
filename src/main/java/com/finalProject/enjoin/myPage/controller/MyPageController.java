@@ -23,6 +23,7 @@ import com.finalProject.enjoin.myPage.model.service.myPageService;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.myPage.model.vo.Pass;
@@ -110,9 +111,43 @@ public class MyPageController {
 	
 	//가고싶은 시설
 	@RequestMapping("wantPlace.ljs")
-	public String wantPlace() {
+	public ModelAndView wantPlace(@RequestParam("userNo") int userNo, ModelAndView mv) {
+		System.out.println("userNo : " + userNo);
 		
-		return "myPage/wantPlace";
+		List<JJIM> jjim = mps.selectJJIM(userNo);
+		
+		System.out.println("jjim : " + jjim);
+		
+		if(jjim != null) {
+			mv.setViewName("myPage/wantPlace");
+			mv.addObject("jjim", jjim);
+		
+			return mv;
+		}else {
+			mv.setViewName("myPage/wantPlace");
+			
+			return mv;
+		}
+	}
+	//찜 목록 삭제
+	@RequestMapping("deleteJJIM.ljs")
+	public ModelAndView deleteJJIM(@RequestParam("userNo") int userNo, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap, ModelAndView mv) {
+		System.out.println("userNo : " + userNo);
+		System.out.println("facilityNo : " + facilityNo);
+		
+		hmap.put("userNo", userNo);
+		hmap.put("facilityNo", facilityNo);
+		
+		int result = mps.deleteJJIM(hmap);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:wantPlace.ljs");
+			mv.addObject("userNo", userNo);
+			
+			return mv;
+		}	
+		
+		return mv;
 	}
 	
 	//이용기록
@@ -138,6 +173,7 @@ public class MyPageController {
 		mv.addObject("crewList", crewList);
 		mv.addObject("inCrewList", inCrewList);
 		mv.addObject("crewAcceptList", crewAcceptList);
+
 		mv.setViewName("myPage/crewManager");
 		return mv;
 	}

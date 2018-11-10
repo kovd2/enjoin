@@ -10,6 +10,7 @@
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Board" alias="mpBoard"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.inCrew" alias="inCrew"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Crew" alias="acceptCrew"/>
+		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.JJIM" alias="jjim"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="InformBoard"/>
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles" alias="InformBoardFiles"/>

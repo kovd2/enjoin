@@ -1,8 +1,10 @@
 package com.finalProject.enjoin.myPage.model.vo;
 
+import java.io.Serializable;
+
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
-public class Pagination {
+public class Pagination implements Serializable{
 
 	public static PageInfo getPageInfo(int currentPage, int listCount){
 		PageInfo pi = null;

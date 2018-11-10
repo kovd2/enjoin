@@ -73,8 +73,8 @@
 								<form action="insertComent.ljs" id="replyForm">
 									<textarea rows="4" cols="100" placeholder="댓글을 입력해 주세요" name="reply" id="reply"></textarea>
 									<div class="commentBtnArea" align="right">
-										<input type="hidden" name="userNo", value="${loginUser.userNo}">
-										<input type="hidden" name="boardNo", value="${Detail.boardNo}">
+										<input type="hidden" name="userNo" value="${loginUser.userNo}">
+										<input type="hidden" name="boardNo" value="${Detail.boardNo}">
 										<button type="button" style="width: 80px;height: 30px;" onclick="insertComent()">등록</button>										
 									</div>
 								</form>
@@ -84,7 +84,7 @@
 								<div class="commentContent" style="display:inline-block; width: 740px;">
 									<c:if test="${ r.comentContent ne null }">
 									<div style="border-bottom:1px solid gray;">
-										<div>${ r.userName }</div><br>
+										<div>${ r.userId }</div><br>
 										<div><p class="Reply">${ r.comentContent }</p></div>
 										<p class="comentDate"><fmt:formatDate value="${ r.comentDate }" pattern="yyyy-MM-dd a HH:mm" /></p>																			
 									</div>		
