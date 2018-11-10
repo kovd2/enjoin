@@ -1,6 +1,8 @@
 package com.finalProject.enjoin.myPage.model.vo;
 
-public class PageInfo {
+import java.io.Serializable;
+
+public class PageInfo implements Serializable{
 	private int currentPage;
 	private int listCount;
 	private int limit;

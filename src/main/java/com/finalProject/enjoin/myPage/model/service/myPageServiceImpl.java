@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
+import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.dao.myPageDao;
 import com.finalProject.enjoin.myPage.model.vo.Board;
@@ -136,5 +137,18 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.updateBoardCount(boardNo, sqlSession);
 	}
 
+	//찜 목록 조회
+	@Override
+	public List<JJIM> selectJJIM(int userNo) {
+		
+		return mpd.selectJJIM(userNo, sqlSession);
+	}
+
+	//찜 목록 삭제
+	@Override
+	public int deleteJJIM(HashMap<String, Object> hmap) {
+		
+		return mpd.deleteJJIM(hmap, sqlSession);	
+	}
 
 }
