@@ -13,6 +13,8 @@ public interface MemberService {
 
 	int insertCompany(Member m);
 
+	int searchId(Member m);
+
 
 
 }

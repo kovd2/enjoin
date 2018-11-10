@@ -59,6 +59,13 @@ public class MemberServiceImpl implements MemberService{
 		return md.insertCompany(sqlSession, m);
 	}
 
+	//아이디 찾기용 메소드
+	@Override
+	public int searchId(Member m) {
+		
+		return md.searchId(sqlSession, m);
+	}
+
 
 
 }

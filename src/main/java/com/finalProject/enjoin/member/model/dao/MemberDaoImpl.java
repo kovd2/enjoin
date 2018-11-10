@@ -39,6 +39,13 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.insert("Member.insertCompany", m);
 	}
 
+	//아이디 찾기용 메소드
+	@Override
+	public int searchId(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("Member.searchId", m);
+	}
+
 
 
 	//아이디 찾기용 메소드
