@@ -228,6 +228,37 @@ public class CrewDaoImpl implements CrewDao {
 		
 		return result;
 	}
+	//크루 활동 게시판 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardList(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardList");
+	}
+	//크루 활동 게시판 상세 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardDetailList(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardDetailList", board_No);
+	}
+	//크루 활동 게시판 작성자 사진 이름 조회
+	@Override
+	public Attachment userPhotos(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectOne("Crew.userPhotos", board_No);
+	}
+	//크루 이름이랑 사진조회
+	@Override
+	public Attachment crewPhotos(SqlSessionTemplate sqlSession, int crew_No) {
+
+		
+		return sqlSession.selectOne("Crew.crewPhotos",crew_No);
+	}
+	//크루 활동 사진 조회
+	@Override
+	public List<Attachment> crewActivityBoardDetailPhoto(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardDetailPhoto", board_No);
+	}
 
 
 }

@@ -13,8 +13,29 @@ public class Attachment implements java.io.Serializable {
 	private Date file_Date;		//등록일자
 	private String file_Type;	//테이블종류
 	private int ref_No;			//참조번호
+	private String user_Name; 	//작성자이름
+	private String crew_Name;	//크루네임
+	private int crew_No;		//크루넘버
 	
 	public Attachment(){}
+
+	public Attachment(int att_No, int file_No, String upload_Name, String origin_Name, String file_size,
+			String file_Ext, Date file_Date, String file_Type, int ref_No, String user_Name, String crew_Name,
+			int crew_No) {
+		super();
+		this.att_No = att_No;
+		this.file_No = file_No;
+		this.upload_Name = upload_Name;
+		this.origin_Name = origin_Name;
+		this.file_size = file_size;
+		this.file_Ext = file_Ext;
+		this.file_Date = file_Date;
+		this.file_Type = file_Type;
+		this.ref_No = ref_No;
+		this.user_Name = user_Name;
+		this.crew_Name = crew_Name;
+		this.crew_No = crew_No;
+	}
 
 	public int getAtt_No() {
 		return att_No;
@@ -50,6 +71,18 @@ public class Attachment implements java.io.Serializable {
 
 	public int getRef_No() {
 		return ref_No;
+	}
+
+	public String getUser_Name() {
+		return user_Name;
+	}
+
+	public String getCrew_Name() {
+		return crew_Name;
+	}
+
+	public int getCrew_No() {
+		return crew_No;
 	}
 
 	public void setAtt_No(int att_No) {
@@ -88,26 +121,28 @@ public class Attachment implements java.io.Serializable {
 		this.ref_No = ref_No;
 	}
 
-	public Attachment(int att_No, int file_No, String upload_Name, String origin_Name, String file_size,
-			String file_Ext, Date file_Date, String file_Type, int ref_No) {
-		super();
-		this.att_No = att_No;
-		this.file_No = file_No;
-		this.upload_Name = upload_Name;
-		this.origin_Name = origin_Name;
-		this.file_size = file_size;
-		this.file_Ext = file_Ext;
-		this.file_Date = file_Date;
-		this.file_Type = file_Type;
-		this.ref_No = ref_No;
+	public void setUser_Name(String user_Name) {
+		this.user_Name = user_Name;
+	}
+
+	public void setCrew_Name(String crew_Name) {
+		this.crew_Name = crew_Name;
+	}
+
+	public void setCrew_No(int crew_No) {
+		this.crew_No = crew_No;
 	}
 
 	@Override
 	public String toString() {
 		return "Attachment [att_No=" + att_No + ", file_No=" + file_No + ", upload_Name=" + upload_Name
 				+ ", origin_Name=" + origin_Name + ", file_size=" + file_size + ", file_Ext=" + file_Ext
-				+ ", file_Date=" + file_Date + ", file_Type=" + file_Type + ", ref_No=" + ref_No + "]";
+				+ ", file_Date=" + file_Date + ", file_Type=" + file_Type + ", ref_No=" + ref_No + ", user_Name="
+				+ user_Name + ", crew_Name=" + crew_Name + ", crew_No=" + crew_No + "]";
 	}
+
+	
+	
 	
 	
 

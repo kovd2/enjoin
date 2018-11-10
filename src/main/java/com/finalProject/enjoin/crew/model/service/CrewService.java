@@ -73,6 +73,21 @@ public interface CrewService {
 	//크루 활동 게시판 인서트
 	int insertCrewActivity(CrewActivityBoard cab, Attachment at, Attachment at1, Attachment at3, Attachment at4);
 	
+	//크루 활동 게시판 조회
+	List<CrewActivityBoard> crewActivityBoardList();
+	
+	//크루 활동 상세 내용 조회
+	List<CrewActivityBoard> crewActivityBoardDetailList(int board_No);
+	
+	//글쓴이 사진 조회
+	Attachment userPhotos(int board_No);
+	
+	//크루사진이랑 이름 조회
+	Attachment crewPhotos(int crew_No);
+	
+	//크루 활동 사진 조회
+	List<Attachment> crewActivityBoardDetailPhoto(int board_No);
+	
 	
 
 	

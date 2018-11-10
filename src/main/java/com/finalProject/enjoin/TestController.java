@@ -72,13 +72,6 @@ public class TestController {
 		
 		return "crew/crewRecruitmentDetails";
 	}
-	//크루활동게시판상세보기
-	@RequestMapping("crewActivityDetails.test")
-	public String showCrewActivityDetails() {
-		
-		
-		return "crew/crewActivityDetails";
-	}
 	//관리자페이지연결
 	@RequestMapping("adminMainPage.test")
 	public String showAdminMainPage() {

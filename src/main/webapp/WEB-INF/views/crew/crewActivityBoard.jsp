@@ -116,11 +116,11 @@
 }
 
 .crewDate {
-	margin-left: 30px;
+	margin-left: 11px;
 }
 
 .crewMember {
-	margin-left: 17px;
+	margin-left: 22px;
 }
 
 .crewEventBox:hover {
@@ -213,6 +213,20 @@ p.crewName {
 	color: #00cbff;
     margin-top: 10px;
 
+}
+.areass{
+	width: 318px;
+	display: -webkit-inline-box;
+}
+.ssa{
+	width: 100px;
+    height: 30px;
+}
+.ssb{
+	width: 126px;
+}
+.ssc{
+	width: 92px;
 }	
 	
 
@@ -269,8 +283,6 @@ p.crewName {
     </div>
     </div>
 </div>
-
-
 			<!-- 여기까지  -->
 		</div>
 	<div class="middle">
@@ -282,202 +294,32 @@ p.crewName {
 		<hr>
 
 
-
+		<c:forEach var="c" items="${ list }">
 		<div class="crewEventBox">
-			<a href="crewActivityDetails.test">
+			<a href="crewActivityDetails.shw2?board_No=${c.board_No }&crew_No=${c.crew_No}">
 				<div class="crewImgBox">
 					<div class="catagory">
-						<p class="catagoryName">필라테스</p>
+						<p class="catagoryName">${c.category_Name }</p>
 						<img src="${ contextPath }/resources/images/crew/logo.png"
 							class="logo">
 					</div>
 					<img
-						src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg"
+						src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${c.upload_Name}"
 						class="crewImg">
-					<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-					<p class="crewName">김창희의 헬스크루</p>
-					<label class="crewAdd"><i class="fa fa-compass"
-						style="font-size: 17px; color: #2196f3"></i>지역:강남 <label class="crewDate"><i class="fa fa-clock-o"
-							style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label class="crewMember"><i class="fa fa-user"
-							style="font-size: 17px; color: #2196f3"></i>인원:7명</label></label>
+					<p class="crewContent">${c.board_Title}</p>
+					<p class="crewName">${c.crew_Name }</p>
+					<div class="areass">
+					<div class="ssa"><label class="crewAdd"><i class="fa fa-compass"
+						style="font-size: 17px; color: #2196f3"></i>지역:${c.crew_Area}</div><div class="ssb"><label class="crewDate"><i class="fa fa-clock-o"
+							style="font-size: 17px; color: #2196f3"></i>일시:${c.start_Date}</label></div><div class="ssc"> <label class="crewMember"><i class="fa fa-user"
+							style="font-size: 17px; color: #2196f3"></i>인원:${c.crew_Count}명</label></div></label>
+					</div>		
 				</div>
 			</a>
 		</div>
+		</c:forEach>
 
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/65446473_1_1504278084_w640.jpg"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/65446473_1_1504278084_w640.jpg"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
-		<div class="crewEventBox">
-			<div class="crewImgBox">
-				<div class="catagory">
-					<p class="catagoryName">필라테스</p>
-					<img src="${ contextPath }/resources/images/crew/logo.png"
-						class="logo">
-				</div>
-				<img
-					src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
-					class="crewImg">
-				<p class="crewContent">즐거운 운동이에요! 한번 같이 해봐요</p>
-				<p class="crewName">김창희의 헬스크루</p>
-				<label class="crewAdd"><i class="fa fa-compass"
-					style="font-size: 17px; color: #2196f3"></i>지역:강남 <label
-					class="crewDate"><i class="fa fa-clock-o"
-						style="font-size: 17px; color: #2196f3"></i>일시:2018-10-25</label> <label
-					class="crewMember"><i class="fa fa-user"
-						style="font-size: 17px; color: #2196f3"></i>인원:7명</label> </label>
-			</div>
-		</div>
-
+		
 
 
 

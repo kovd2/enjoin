@@ -55,6 +55,10 @@
 		<result property="file_Date" column="FILE_DATE"/>
 		<result property="file_Type" column="FILE_TYPE"/>
 		<result property="ref_No" column="REF_NO"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="crew_No" column="CREW_NO"/>
+		
 	</resultMap>
 	
 	<resultMap type="inCrew1" id="CrewInCrew">
@@ -383,7 +387,56 @@
 		FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
 		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},
 		#{file_Ext},SYSDATE,7,#{ref_No})
-	
 	</insert>
-      
+	
+	<!-- 크루활동 게시판 리스트 조회  -->
+     <select id="crewActivityBoardList"  resultMap="CrewActivityBoards">
+     	SELECT B.BOARD_NO,B.BOARD_TITLE,B.CREW_AREA,B.START_DATE,
+		B.CREW_COUNT,B.CREW_NO,C.CREW_NAME,C1.CATEGORY_NAME,A.UPLOAD_NAME
+		FROM BOARD B
+		JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
+		JOIN CATEGORY C1 ON (B.CATEGORY_NO = C1.CATEGORY_NO)
+		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+		WHERE A.FILE_NO = 0
+		AND B.BOARD_TYPE = '크루활동'
+		ORDER BY B.BOARD_NO DESC
+     </select>
+     
+     <!--크루활동 게시판 상세 리스트 조회  -->
+     	 <select id="crewActivityBoardDetailList"  resultMap="CrewActivityBoards">
+     	 	SELECT B.BOARD_NO,B.BOARD_TITLE,B.CREW_AREA,B.START_DATE,
+			B.CREW_COUNT,B.BOARD_CONTENT,C1.CATEGORY_NAME,C.CREW_NAME
+			FROM BOARD B
+			JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
+			JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+			WHERE B.BOARD_TYPE = '크루활동'
+			AND B.BOARD_NO = #{board_No} 
+     	 </select>
+     <!-- 크루활동 작성자 사진 이름 조회  -->
+     	<select id="userPhotos" resultMap="CrewRmbAttachment">
+     		SELECT A.UPLOAD_NAME,M.USER_NAME
+			FROM MEMBER M 
+			JOIN BOARD B ON (M.USER_NO = B.USER_NO)
+			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+			WHERE B.BOARD_NO = #{board_No}
+     	</select>
+     <!-- 크루활동 크루 이름 크루 이미지 조회  -->
+     	<select id="crewPhotos" resultMap="CrewRmbAttachment">
+     		SELECT A.UPLOAD_NAME,C.CREW_NAME
+			FROM CREW C
+			JOIN BOARD B ON (C.CREW_ID = B.CREW_NO)
+			JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+			WHERE C.CREW_ID = #{crew_No}
+			AND A.FILE_NO = 0
+			AND B.BOARD_TYPE = '크루모집'
+     	</select>	
+     <!-- 크루활동게시판 사진 조회  -->	
+     	<select id="crewActivityBoardDetailPhoto" resultMap="CrewRmbAttachment">
+     		SELECT A.UPLOAD_NAME,A.FILE_NO
+			FROM BOARD B
+			JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+			WHERE B.BOARD_TYPE = '크루활동'
+			AND B.BOARD_NO = #{board_No}
+     	</select>
+     		 
 </mapper>

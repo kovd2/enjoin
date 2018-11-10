@@ -68,12 +68,7 @@ public class CrewController {
 		
 		return "crew/crewRecruitment";
 	}
-	//크루활동 게시판연결
-	@RequestMapping("crewActivityBoard.shw2")
-	public String showCrewActivityBoard() {
 
-		return "crew/crewActivityBoard";	
-	}
 	//다시돌려주기
 	
 	@RequestMapping("goCrew1.shw2")
@@ -659,17 +654,162 @@ public class CrewController {
 					new File(filePath + "\\" + changeName2 + ext3).delete();
 					new File(filePath + "\\" + changeName3 + ext4).delete();
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-		
-		
-		
+						
 		 	return "redirect:crewActivityBoard.shw2";
 		}
+		//크루활동 게시판연결
+		@RequestMapping("crewActivityBoard.shw2")
+		public ModelAndView showCrewActivityBoard(ModelAndView mv,HttpServletRequest request) {
+
+			List<CrewActivityBoard> list = cs.crewActivityBoardList();
+			
+			mv.setViewName("crew/crewActivityBoard");
+			mv.addObject("list", list);
+			
+			return mv;	
+		}
+		//크루활동게시판상세보기
+		@RequestMapping("crewActivityDetails.shw2")
+		public ModelAndView showCrewActivityDetails(ModelAndView mv,HttpServletRequest request) {
+			
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			int crew_No = Integer.parseInt(request.getParameter("crew_No"));
+			
+			
+			//상세내용 조회
+			List<CrewActivityBoard> list = cs.crewActivityBoardDetailList(board_No);
+			
+			//상새내용 사진 조회
+			List<Attachment> list1 = cs.crewActivityBoardDetailPhoto(board_No);
+			
+			//글쓴이 사진이랑 정보 나오게 조회
+			Attachment ac = cs.userPhotos(board_No);
+			
+			//크루이름이랑 사진 조회
+			Attachment ac1 = cs.crewPhotos(crew_No);
+			
+			int crew_Id = crew_No;
+			//크루원 리스트 보여주기
+			List<InCrew> list2 = cs.crewInCrewY(crew_Id);
+			
+			//댓글 리스트 불러오기
+			List<CrewComent> list3 = cs.crewComentSelect(board_No);
+			
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			
+			map.put("list", list);
+			map.put("list1", list1);
+			map.put("list2", list2);
+			map.put("list3", list3);
+			
+			
+			
+			
+			
+			
+			mv.setViewName("crew/crewActivityDetails");
+			mv.addObject("map", map);
+			mv.addObject("ac",ac);
+			mv.addObject("ac1",ac1);
+			
+			return mv;
+		}
+		//크루활동 댓글
+				@RequestMapping("crewComent1.shw2")
+				public ModelAndView crewComent1(ModelAndView mv,HttpServletRequest request) {
+					
+					//입력한 댓글내용, 대댓글체크,댓글번호 를 가져온다
+					String coment_Content = request.getParameter("coment_Content");
+					String checked = request.getParameter("checked11");
+					int board_No = Integer.parseInt(request.getParameter("board_No"));
+					int crew_Id  = Integer.parseInt(request.getParameter("crew_Id"));
+					String capy = request.getParameter("capy");
+					int crew_No = crew_Id;
+					
+					System.out.println("capy" + capy);
+					System.out.println("crew_Id" + crew_Id);
+							
+							
+					if(checked == null){
+						checked = capy;
+					}
+					
+					
+					//로그인 유저 넘버를 가져온다
+					int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+					
+					
+					CrewComent cc = new CrewComent();
+					
+					cc.setComent_Content(coment_Content);
+					cc.setBoard_No(board_No);
+					cc.setUser_No(userNo);
+					
+					InCrew ic = new InCrew();
+					
+					System.out.println("user_No :" + userNo);
+					System.out.println("crew_No 나오냐????? :" + crew_Id);
+					System.out.println("board_No :" + board_No);
+					
+					ic.setUser_No(userNo);
+					ic.setCrew_Id(crew_Id);
+					
+					int result =0;
+					
+					if(checked.equals("check")){
+						
+						int coment_No = Integer.parseInt(request.getParameter("coment_No"));
+						System.out.println("나옴??/");
+						//자식 댓글 작성
+						cc.setComent_No(coment_No);	
+						int result2 = cs.crewAddchildComent(cc);
+						
+					}else{
+						System.out.println("들어오긴하냐?");
+						//일반 댓글 작성
+						int result1 = cs.crewAddComent(cc);
+						
+					}
+					
+					//상세내용 조회
+					List<CrewActivityBoard> list = cs.crewActivityBoardDetailList(board_No);
+					
+					//상새내용 사진 조회
+					List<Attachment> list1 = cs.crewActivityBoardDetailPhoto(board_No);
+					
+					//글쓴이 사진이랑 정보 나오게 조회
+					Attachment ac = cs.userPhotos(board_No);
+					
+					//크루이름이랑 사진 조회
+					Attachment ac1 = cs.crewPhotos(crew_No);
+					
+					//크루원 리스트 보여주기
+					List<InCrew> list2 = cs.crewInCrewY(crew_Id);
+					
+					//댓글 리스트 불러오기
+					List<CrewComent> list3 = cs.crewComentSelect(board_No);
+					
+					
+					
+					
+				
+					HashMap<String,Object> map = new HashMap<String,Object>();
+					
+					map.put("list", list);
+					map.put("list1", list1);
+					map.put("list2", list2);
+					map.put("list3", list3);
+					
+					
+					
+					mv.setViewName("crew/crewActivityDetails");
+					mv.addObject("map", map);
+					mv.addObject("ac",ac);
+					mv.addObject("ac1",ac1);
+					
+					return mv;
+				}
+		
+		
 }
