@@ -16,7 +16,7 @@
 		<result property="faqCategory" column="FAQ_CATEGORY"/>
 	</resultMap>
 
-<!-- Attachment -->
+	<!-- Attachment -->
    <resultMap type="Attachment" id="AttachmentResultSet">
       <id property="att_No" column="ATT_NO"/>
       <result property="file_No" column="FILE_NO"/>
@@ -28,6 +28,16 @@
       <result property="file_Type" column="FILE_TYPE"/>
       <result property="ref_No" column="REF_NO"/>
    </resultMap>
+   
+   <!-- PASS -->
+    <resultMap type="Pass" id="passResultSet">
+      <id property="passNo" column="PASS_NO"/>
+      <result property="userNo" column="USER_NO"/>
+      <result property="passCount" column="PASS_COUNT"/>
+      <result property="passModifyDate" column="PASS_MODIFYDATE"/>
+      
+   </resultMap>
+   
 
 	<!-- 공지사항 전체 목록 조회 -->
 	<select id="listAll" resultMap="boardResultSet">
@@ -174,6 +184,12 @@
 		VALUES(BOARD_NO.NEXTVAL, '문의', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo})
 	</insert>
 	
+	<!-- 패스 등록 -->
+	<insert id="insertPass" parameterType="Pass">
+		INSERT INTO PASS
+		VALUES(#{userNo}, '7', SYSDATE, SEQ_PASS_NO.NEXTVAL)
+		
+	</insert>
 	
 	
 </mapper>

@@ -506,21 +506,21 @@
                     <div class="membershipSummary col-md-8 col-sm-7 col-xs-12">
                         <!-- 이전 단계에서 선택한 요금제를 표시합니다 -->
                         <div class="selectedPrice">
-                                <h6 class="aq">여기에 패스 수</h6>
+                                <h6 class="aq">7 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
-
+					
                 </div> <!-- /.membershipSummary -->
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="paymentInfo2" id="mobilePaymentInfo">
                         <div class="payDiv">
                             <h5 style="font-size:x-large;">결제금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">응 여기에 결제금액</span>
+                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>
                             </p>
                         </div>
 
-                        <div class="paymentSubmitLine" onclick="payment()">
+                        <div class="paymentSubmitLine" onclick="payment(${sessionScope.loginUser.userNo})">
                             <button type="button" class="btn btn-lg btn-success" id="btn_go"><i  class="fa fa-credit-card"></i> 결제하기</button>
                         </div>
                     </div><!-- /.paymentInfo2 -->
@@ -533,7 +533,7 @@
 </div><!-- /wrap -->
 
 <script>
-	function payment(){
+	function payment(userNo){
 		var IMP = window.IMP;
 		IMP.init("imp11417443"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 		
@@ -550,58 +550,26 @@
 		    
 		}, function (rsp) { // callback
 		    if (rsp.success) {
-		    	var msg = '결제가 완료되었습니다.';
+		    	var msg = '결제가 완료되었습니다. \n';
 		    	
-		        msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		       msg += '고유ID : ' + rsp.imp_uid + '\n';
+		       msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
+		       msg += '결제 금액 : ' + rsp.paid_amount + '\n';
+		       msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        alert(msg);
+		        
+		        location.href = "passPurchaseFinish.hh";
 		    } else {
 				
-		    	alert("결제 실패하였습니다.");
+		    	var msg = '결제에 실패하였습니다. \n';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        alert(msg);
 		    	location.href = "passPurchase.hh";
 		    }
 		});
 	} 
 
-	/* $(document).ready(function(){
-		console.log("ready!")
-		var IMP = window.IMP; 	  //생략 가능
-		IMP.init('imp11417443');  //가맹점 식별코드 (아임포트 관리자 페이지의 '시스템 설정' > '내 정보'에서 확인 가능) 
-		
-		$("#btn_go").on("click", function(){
-			alert("click");
-			// 결제 요청
-			IMP.request_pay({
-			    pg : 'html5_inicis', // version 1.1.0부터 지원.
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 1000,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456',
-			    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			        
-			        
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			    }
-			    alert(msg);
-			});
-		});
-	});
-	 */
 	
 </script>
 

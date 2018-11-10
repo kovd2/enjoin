@@ -29,6 +29,7 @@ import com.finalProject.enjoin.notice.model.vo.Board;
 @Controller
 public class noticeController {
 	
+	//의존성 주입
 	@Autowired
 	private BoardService bs;
 	
@@ -68,18 +69,21 @@ public class noticeController {
 		return mv;
 	}
 	
+	//고객센터 이동
 	@RequestMapping("serviceCenter.hh")
 	public String serviceCenter() {
 		
 		return "notice/serviceCenter";
 	}
 	
+	//1:1 문의 이동
 	@RequestMapping("contact.hh")
 	public String contact() {
 		
 		return "notice/contact";
 	}
 	
+	//1:1 문의상세 이동
 	@RequestMapping("contactDetail.hh")
 	public String contactDetail() {
 		
@@ -136,24 +140,62 @@ public class noticeController {
 		return "notice/serviceCenter";
 	}
 	
+	//결제 페이지
 	@RequestMapping("passPurchase.hh")
 	public String passPurchase() {
 		
 		return "notice/passPurchase";
 	}
 	
+	//7패스 이동
 	@RequestMapping("passPurchaseDetail.hh")
 	public String passPurchaseDetail() {
-		
-		
 		
 		return "notice/passPurchaseDetail";
 	}
 	
-	@RequestMapping("passPurchaseFinish.hh")
-	public String passPurchaseFinish() {
+	//30패스 이동
+	@RequestMapping("passPurchaseDetail2.hh")
+	public String passPurchaseDetail2() {
 		
-		return "notice/passPurchaseFinish";
+		return "notice/passPurchaseDetail2";
+	}
+	
+	//78패스 이동
+	@RequestMapping("passPurchaseDetail3.hh")
+	public String passPurchaseDetail3() {
+		
+		return "notice/passPurchaseDetail3";
+	}
+	
+	//240패스 이동
+	@RequestMapping("passPurchaseDetail4.hh")
+	public String passPurchaseDetail4() {
+		
+		return "notice/passPurchaseDetail4";
+	}
+	
+	
+	
+	//30패스 결제완료
+	@RequestMapping("passPurchaseFinish2.hh")
+	public String passPurchaseFinish2() {
+		
+		return "notice/passPurchaseFinish2";
+	}
+	
+	//78패스 결제완료
+	@RequestMapping("passPurchaseFinish3.hh")
+	public String passPurchaseFinish3() {
+		
+		return "notice/passPurchaseFinish3";
+	}
+	
+	//240패스 결제완료
+	@RequestMapping("passPurchaseFinish4.hh")
+	public String passPurchaseFinish4() {
+		
+		return "notice/passPurchaseFinish4";
 	}
 	
 	//관리자 FAQ 목록
@@ -183,6 +225,7 @@ public class noticeController {
 		
 	}
 	
+	//FAQ 등록페이지
 	@RequestMapping("adminFAQInsert.hh")
 	public String adminFAQInsert() {
 		
@@ -199,6 +242,7 @@ public class noticeController {
 		return "redirect:adminFAQ.hh";
 	}
 	
+	//FAQ페이지 이동
 	@RequestMapping("FAQ.hh")
 	public String FAQ() {
 		

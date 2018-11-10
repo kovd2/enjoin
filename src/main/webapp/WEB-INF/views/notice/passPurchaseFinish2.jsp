@@ -507,7 +507,7 @@
                     <div class="membershipSummary col-md-8 col-sm-7 col-xs-12">
                         <!-- 이전 단계에서 선택한 요금제를 표시합니다 -->
                         <div class="selectedPrice">
-                                <h6 class="aq">7 PASS</h6>
+                                <h6 class="aq">30 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
 
