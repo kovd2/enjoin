@@ -450,6 +450,21 @@ body.register .subWrap {
 										</div>
 										<span class="help-block" id="password_help"></span>
 									</div>
+									<div class="form-group passwordShowHide" id="password_div">
+										<label for="password" class="sr-only">비밀번호</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel  "
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
+											<div class="input-append input-group">
+												<input id="password2" name="userPwd2" class="form-control" type="password" placeholder="비밀번호확인" autocorrect="off" autocapitalize="none" autocomplete="off"
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
+													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+											</div>
+										</div>
+										<span class="help-block" id="password_help"></span>
+									</div>
 									<!-- <div class="form-group passwordShowHide" id="password_div">
 										<label for="password" class="sr-only">비밀번호</label> <input
 											id="password" name="userPwd" class="form-control"
@@ -475,8 +490,8 @@ body.register .subWrap {
 										<label for="user_email" class="sr-only">이메일</label>
 
 										<div id="div_email_free" class="form-group">
-											<input onblur="check_validate(false);" type="email"	class="form-control" id="user_email_free" placeholder="이메일"
-												name="email" value="" onfocusout="check_email(this); return false;">
+											<input type="email"	class="form-control" id="user_email" placeholder="이메일"
+												name="email" value="" >
 										</div>
 
 										<span class="help-block" id="user_email_help"></span>
@@ -628,9 +643,21 @@ body.register .subWrap {
 	function CheckForm(){
 		
 		var userId = $("#user_id").val();
+		var regId = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{4,12}$/;
 		var userPwd = $("#password").val();
+		var regPwd = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+		var userPwd2 = $("#password2").val();
+		var regPwd2 = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+		
 		var userName = $("#user_name").val();
+		var regName= /^[가-힝]{2,}$/;
 		var phone = $("#user_phone").val();
+		var regPhone = /^[0-9]+$/;
+		
+		var email = $("user_email").value;
+		var regEmail=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
+		  
+		
 		
 		/* for(i = 0; i< userId.length; i++){
 			ch = userId.charAt(i)
@@ -645,10 +672,9 @@ body.register .subWrap {
 			$("#user_id").focus();
 			return false;
 		}
-		
-		if(userId.length<4 || userId.length>12){
-			alert("아이디를 4~12자 까지 입력해주세요.")
-			$("#user_id").focus();
+		if(!regId.test($('#user_id').val())){
+			alert("아이디는 영문과 숫자 또는  4~12자로 입력해주세요.")
+			$('#user_id').focus();
 			return false;
 		}
 		
@@ -657,15 +683,36 @@ body.register .subWrap {
 			$("#password").focus();
 			return false;
 		}
-		if(userPwd.length < 4 || userPwd.length > 12){
-			alert("비밀번호는 4~12자까지 입력해주세요.")
+		if(!regPwd.test($('#password').val())){
+			alert("비밀번호는 영문+숫자 조합 또는 6~12자로 입력해주세요.")
 			$("#password").focus();
 			return false;
 		}
+		if(userPwd2.length == 0){
+			alert("비밀번호 확인창을 입력해주세요.");
+			$("#password2").focus();
+			return false;
+		}
+		if(!regPwd2.test($('#password2').val())){
+			alert("비밀번호는 영문+숫자 조합 또는 6~12자로 입력해주세요.")
+			$("#password2").focus();
+			return false;
+		}
+		if($('#password').val() != $('#password2').val()){
+            alert("입력하신 비밀번호를 확인 해 주세요");
+            $('#password2').focus();
+            return false;
+        }
 		
+				
 		if(userName.length == 0){
 			alert("이름을 입력해주세요.");
 			$("#user_name").focus();
+			return false;
+		}
+		if(!regName.test($('#user_name').val())){
+			alert("이름을 한글 2글자 이상으로 입력해주세요.");
+			$('#user_name').focus();
 			return false;
 		}
 		if(phone.length == 0){
@@ -673,15 +720,30 @@ body.register .subWrap {
 			$("#user_phone").focus();
 			return false;
 		}
-		/* for(i=0; i< phone.length; i++){
-			ch = phone.charAt(i)
-			if(!(ch >= '0' && ch<= '9')){
-				alert("휴대폰 번호는 숫자만 가능해요.")
-				$("#user_phone").focus();
-				return false;
-			}
+		if(!regPhone.test($('#user_phone').val())){
+			alert("휴대폰 번호를 숫자로만 입력해주세요.");
+			$("#user_phone").focus();
+			return false;
+		}
+		
+		if(!regEmail.test($('#user_email').val())) {  
+		    alert("잘못된 이메일 형식입니다.");  
+		    $('#user_email').focus();
+		    return false;
+		}
+		/* if(email.length == 0){
+			alert("이메일을 입력해주세요.");
+			$("user_email").focus();
+			return false;
+		}
+		if(!regEmail.test($('#user_email').val())){
+			alert("이메일 형식이 잘못되었습니다.");
+			$("user_email").focus();
+			return false;
 		} */
 			
+		
+		//이용약관
 		if($("input:checkbox[id='check1']").is(":checked") == false){
 			alert("이용약관에 동의 해 주세요.");
 			return;
@@ -709,28 +771,7 @@ body.register .subWrap {
       });
     });
 	
-    function check_phone(_this) {
-        var _val = $('input[name=phone]').val();
-        var regPhone = /^(?:(010\d{4})|(070\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
-        var reg_Phone = /^(?:(010-\d{4})|(070-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
-
-        if(!regPhone.test(_val) && !reg_Phone.test(_val)){
-            alert('올바른 휴대전화번호를 입력하세요.');
-            var error = 'error_phone_number';
-            var get_url = '/member/ajax_check_phone/'+error;
-            $.ajax({
-                type : 'GET',
-                url : get_url,
-                dataType : 'json',
-                success : function(_data) {
-                    if (_data.msg) {
-                        $('.btn_cer').removeAttr("disabled");
-                        make_error(false, "user_phone", _data.msg);
-                    }
-                }
-            });
-        }
-    }
+    
     
 
 	

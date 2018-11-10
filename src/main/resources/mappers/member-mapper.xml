@@ -80,7 +80,7 @@
 	FROM MEMBER
 	WHERE USER_NAME = #{userName} 
 	AND EMAIL = #{email}
-	AND USER_STATUS = 'Y'
+	AND STATUS = 'Y'
 	</select>
 	
 </mapper>

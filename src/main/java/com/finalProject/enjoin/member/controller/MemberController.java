@@ -4,6 +4,8 @@ package com.finalProject.enjoin.member.controller;
 
 
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -64,14 +66,21 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 컨트롤러
-	/*@RequestMapping("searchId.me")
+	@RequestMapping("searchId.me")
 	public String SearchId(Member m, HttpServletResponse response, Model model) {
 		
 		System.out.println(m.getUserName());
 		System.out.println(m.getEmail());
 		
-		return "member/searchId";
-	}*/
+		int result = ms.searchId(m);
+		if(result > 0) {
+			System.out.println("Member : " + m );
+			return "member/searchIdComplete";
+		}else {
+			return "member/searchIdFail";
+		}
+		
+	}
 	
 	//비밀번호 찾기 폼 보여주는 메소드
 	@RequestMapping("searchPasswordform.me")
