@@ -5,7 +5,7 @@
 		<typeAlias type="com.finalProject.enjoin.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.finalProject.enjoin.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="Crew"/>
-		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Pass" alias="Pass"/>
+		
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Coment" alias="Coment"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Board" alias="mpBoard"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.inCrew" alias="inCrew"/>
@@ -19,6 +19,8 @@
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.InCrew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewActivityBoard" alias="CrewActivityBoard"/>
+		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Payment" alias="Payment"/>
+		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Pass" alias="Pass"/>
 		
 		
 	</typeAliases>

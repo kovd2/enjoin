@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>패스 구매</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .sectionTitle h2 {
     font-size: 40px;
@@ -468,12 +473,6 @@
   color: #32c7be;
 }
 
-.membershipSummary h5 {
-    font-size: 18px;
-    color: #00bff0;
-    letter-spacing: -1px;
-    font-weight: 300;
-}
 </style>
 </head>
 <body>
@@ -486,7 +485,7 @@
 						<ul class="breadcrumb">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
-							<li class="active">멤버십 결제완료</li>
+							<li class="active">멤버십 결제</li>
 						</ul>
 					</div>
 				</div>
@@ -498,7 +497,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="sectionTitle priceSectionTitle">
-                <h2><strong>멤버십 결제완료</strong> <small>구매해주셔서 감사합니다!</small></h2>
+                <h2><strong>멤버십 결제</strong> <small>마지막 결제 단계입니다</small></h2>
                 
             </div>
             
@@ -507,31 +506,23 @@
                     <div class="membershipSummary col-md-8 col-sm-7 col-xs-12">
                         <!-- 이전 단계에서 선택한 요금제를 표시합니다 -->
                         <div class="selectedPrice">
-                                <h6 class="aq">7 PASS</h6>
+                                <h6 class="aq">240 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
-
-                        <div class="timeline longterm_timeline"> <!-- .lognterm_timeline -->
-                            <h5><strong>결제 내역</strong></h5>
-                            
-                        <div class="paymentSubmitLine">
-                            <h1>응 여기에 결제내역</h1>
-                            <button type="button" onclick="home()" class="btn btn-lg btn-success" id="btn_go"> 메인으로 </button>
-                        </div>
-                            
-                        </div>
 
                 </div> <!-- /.membershipSummary -->
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="paymentInfo2" id="mobilePaymentInfo">
                         <div class="payDiv">
-                            <h5 style="font-size:x-large;">결제된 금액</h5>
+                            <h5 style="font-size:x-large;">결제금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>                    
+                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>
                             </p>
-                            <hr>
                         </div>
 
+                        <div class="paymentSubmitLine" onclick="payment()">
+                            <button type="button" class="btn btn-lg btn-success" id="btn_go"><i  class="fa fa-credit-card"></i> 결제하기</button>
+                        </div>
                     </div><!-- /.paymentInfo2 -->
                 </div><!-- /.col -->
         </div> <!-- /.row -->
@@ -542,12 +533,42 @@
 </div><!-- /wrap -->
 
 <script>
-	function home(){
+	function payment(){
+		var IMP = window.IMP;
+		IMP.init("imp11417443"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 		
-		location.href = "index.jsp";
-		
-	}
+		// IMP.request_pay(param, callback) 호출
+		IMP.request_pay({ // param
+		    pg: "html5_inicis",
+		    pay_method: "card",
+		    merchant_uid: "merchant" + new Date().getTime(),
+		    name: "240 PASS",
+		    amount: 100,
+		    buyer_email: "${ loginUser.getEmail() }",
+		    buyer_name: "${ loginUser.getUserName() }",
+		    buyer_tel: "${ loginUser.getPhone() }",
+		    
+		}, function (rsp) { // callback
+		    if (rsp.success) {
+		    	var msg = '결제가 완료되었습니다. \n';
+		    	
+		        msg += '고유ID : ' + rsp.imp_uid + '\n';
+		        msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
+		        msg += '결제 금액 : ' + rsp.paid_amount + '\n';
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        location.href = "passPurchaseFinish4.hh";
+		    } else {
+				
+		    	alert("결제 실패하였습니다. \n");
+		    	location.href = "passPurchase.hh";
+		    }
+		});
+	} 
+
 	
 </script>
+
+
 </body>
 </html>

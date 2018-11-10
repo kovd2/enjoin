@@ -340,7 +340,6 @@
 			</div>
 		</section>
 	</div>
-
 	<div class="wrap">
 		<div class="container">
 			<div class="row">
@@ -396,7 +395,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="passPurchaseDetail2.hh" class="btn-white">시작하기</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -419,7 +418,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="passPurchaseDetail3.hh" class="btn-white">시작하기</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -444,7 +443,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="passPurchaseDetail4.hh" class="btn-white">시작하기</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -663,8 +662,6 @@
 </c:if>
 <script>
 	function passPurchaseDetail(){
-		
-		var price = 700;
 		
 		location.href = "passPurchaseDetail.hh";
 	}
