@@ -502,7 +502,7 @@ i.fa.fa-comments{
 								<c:forEach var="c" items="${list3}" varStatus="status">
 								<c:choose>
 									<c:when test="${c.parent_Coment_No == 0 }">			
-						 		<div class="MemberCommont">
+						 		<div class="MemberCommont" id="MemberCommont">
 						 			<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 						 			<div class="Comment1">
 						 			<p class="userId">${ c.user_Name }</p>
@@ -561,7 +561,7 @@ i.fa.fa-comments{
 						 		
 						 	</div>
 						 	<div class="commentWriterBox">
-						 		<form class="comment" id="coment3" action="crewComent.shw2" method="post">
+						 		<form class="comment" id="coment3" action="crewComent.shw2#MemberCommont" method="post">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">

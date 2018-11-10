@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   	
 <!DOCTYPE html>
 <html>
 <head>
@@ -403,7 +404,7 @@ p.crewComentBox2{
 .userId{
 	position: relative;
     top: 9px;
-    color: #1159b5;
+    color: #12181f;
     font-weight: bold;
     display: -webkit-inline-box;
 }
@@ -579,28 +580,92 @@ p.crewComentBox2{
     position: relative;
     right: 5px;
 }
+/* 대댓글 css  */
+.MemberCommont1{
+	display: inline-flex;
+    width: 480px;
+    height: 88px;
+    border-bottom: 1px solid #d8d2d2;
+    background: #efecec;
+}
+.UserImg1{
+	width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 22px;
+    position: relative;
+    left: -22px;
+}
+i.fa.fa-tag {
+    color: #443d39;
+    margin-top: 6px;
+    position: relative;
+    left: 5px;
+}
+i.fa.fa-level-down {
+	font-size: 20px;
+    position: relative;
+    left: 16px;
+}
+i.fa.fa-comments{
+	color: #7faeea;
+    margin-top: 6px;
+    position: relative;
+    left: 4px;
+    top: 9px;
+}
+.userId1{
+	position: relative;
+    top: 9px;
+    color: #12181f;
+    font-weight: bold;
+    display: -webkit-inline-box;
+}
+.ComentP{
+	font-size: 2px;
+    position: relative;
+    top: 0px;
+    left: -1px;
+    font-weight: bold;
+    color: #4e4d4d;
+}
+.Comment2{
+	height: 110px;
+    margin-left: -8px;
+}
 
 </style>
 
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
+	<c:set var="ac" value="${ac}"/>
+	<c:set var="ac1" value="${ac1}"/>
 	<div class="body">
 		<div class="header">
 			<div class="crewImgArea">
 				<%-- <img class="crewImgBox" src="${ contextPath }/resources/images/crew/shutterstock_269242565.jpg"> --%>
+				
+				<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+						<c:if test="${status1.index eq 0}">
 				<img class="crewImgBox"
-					src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
+					src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}">
+						</c:if>
+				</c:forEach>		
+						<c:forEach var="i" items="${map.list}" varStatus="status1">
+						<c:if test="${status1.index eq 0}">
 				<div class="info">
 					<h3>
 						<smail class="crewNameLabel">ENJOIN 크루활동</smail>
-						<span class="crewTitle">김창희의 런닝크루 한강을 달리다.</span>
-						<p class="crewCatagory">런닝</p>
-						<p class="address">서울 강남구 한강</p>
-						<span class="crewDate">활동일시 2018-10-26 ~ 2018-11-26</span>
-						<p class="crewMember">활동인원 7명</p>
+						<span class="crewTitle">${i.board_Title }</span>
+						<p class="crewCatagory">${i.category_Name }</p>
+						<p class="address">${i.crew_Area }</p>
+						<span class="crewDate">활동일시 ${i.start_Date }</span>
+						<p class="crewMember">활동인원 ${i.crew_Count }명</p>
 					</h3>
 				</div>
+					</c:if>
+					</c:forEach>
 			</div>
 		</div>
 		<div class="middleArea">
@@ -612,17 +677,19 @@ p.crewComentBox2{
 					<p class="crewWiter1">- 크루님들의 생생한 경험을 전달해주세요!</p>
 					<div class="crews">
 						<img class="writerImg"
-							src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
-						<p class="crewBoss">김창희님</p>
+							src="${ contextPath }/resources/uploadFiles/myPage/profil/${ac.upload_Name}">
+						<p class="crewBoss">${ac.user_Name }</p>
 						<hr>
 						<i class="fa fa-twitch" style="font-size: 36px" class="btn1"></i>
+						<c:forEach var="i" items="${map.list}" varStatus="status1">
+						<c:if test="${status1.index eq 0}">
 						<div class="crews2">
 							<p class="Content">
-								안녕하세요 김창희런닝크루 크루장 입니다.<br> 이번에는 크루들끼리 뼈빠지게 한강을 달렸습니다! 정말
-								힘들었어요 왜하는지도 모르겠고요 그냥 주저리 해봤네요 여러분들은 한강을 달리시나요? 집에서 쉬는게 최고입니다
-								여러분들! 한강은 자전거를 타는거지 달리려고 있는곳이 아니에요 그럼이만! 아 한강은 뭐다? 치킨먹는곳!
+								안녕하세요 ${ac1.crew_Name} 크루장 입니다.<br> ${i.board_Content }
 							</p>
 						</div>
+						</c:if>
+						</c:forEach>
 					</div>
 					<div class="crewcomment">
 						<p class="crewCommentBox">-회원님들의 댓글을 작성할수 있는곳입니다.</p>
@@ -630,201 +697,96 @@ p.crewComentBox2{
 
 						<div class="commentBox">
 							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
+							<c:forEach var="c" items="${map.list3}" varStatus="status">
+							<c:choose>
+									<c:when test="${c.parent_Coment_No == 0 }">			
+							<div class="MemberCommont" id="MemberComment">
 								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif">
+									src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 								<div class="Comment1">
-									<p class="userId">파스구찌또치님</p>
+									<p class="userId">${ c.user_Name }</p>
 									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
+										
+										<span  class="crewOk">
+						 					<i class="fa fa-user-circle">
+						 					</i>
+						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
+						 				</span>
+										
+										
 										</span> <span style="color: gray" class="deleteBtn"> <i
 											class="fa fa-trash"> </i> 삭제
 										</span>
 									</div>
 									<div class="area1">
-										<p class="Comment">나는 사나이다. 조장이라구 이춘복 참치는 안간다.나는 회를 싫어한다고
+										<p class="Comment">${c.coment_Content }
 										</p>
 									</div>
 								</div>
 							</div>
 							<!-- 여기까지  -->
-
+							</c:when>
+							<c:when test="${c.parent_Coment_No != 0 }">
 							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/10.jpg">
-								<div class="Comment1">
-									<p class="userId">또치님</p>
+							<div class="MemberCommont1">
+								<i class="fa fa-comments" style="font-size:22px"></i>
+								<span class="ComentP">답글</span>
+								<img class="UserImg1"
+									src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
+								<div class="Comment2">
+									<p class="userId1">${ c.user_Name }</p>
 									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
 										</span> <span style="color: gray" class="deleteBtn"> <i
 											class="fa fa-trash"> </i> 삭제
 										</span>
 									</div>
 									<div class="area1">
-										<p class="Comment">저는 또치 입니다.</p>
+										<p class="Comment">${c.coment_Content }
+										</p>
 									</div>
 								</div>
 							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/1521087687340.gif">
-								<div class="Comment1">
-									<p class="userId">할리스지옥님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">할리스커피맛있쪙</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
-								<div class="Comment1">
-									<p class="userId">7그램짱짱님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">이곳은 너무 창렬합니다. 모두들 알고 있졍?? 뭐 다 그런거
-											아니겠습니까</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg">
-								<div class="Comment1">
-									<p class="userId">할께너무많아님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">할꺼는 너무많고 졸립고 피곤하고 또 피곤합니다.^^</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/235E8E33597B3F3529.jpg">
-								<div class="Comment1">
-									<p class="userId">인생그것은무엇인가님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">인생그것은 한순간이다 알아둬</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/441771_92228_4732.jpg">
-								<div class="Comment1">
-									<p class="userId">설빙님</p>
-									<div class="spansBtn">
-										<span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">설빙맛없쪄여</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
-
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg">
-								<div class="Comment1">
-									<p class="userId">감성발라더님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">이시대의 최고 댄스곡은 뭐다? 뭐다!</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
 							
-							<!-- 여기부터 반복문  -->
-							<div class="MemberCommont">
-								<img class="UserImg"
-									src="${ contextPath }/resources/images/crew/test/536d81c07984b66dbdf623032ee4dd5b.jpg">
-								<div class="Comment1">
-									<p class="userId">감성발라더님</p>
-									<div class="spansBtn">
-										 <span style="color: gray" class="editBtn"> <i
-											class="fa fa-edit"> </i> 수정
-										</span> <span style="color: gray" class="deleteBtn"> <i
-											class="fa fa-trash"> </i> 삭제
-										</span>
-									</div>
-									<div class="area1">
-										<p class="Comment">이시대의 최고 댄스곡은 뭐다? 뭐다!</p>
-									</div>
-								</div>
-							</div>
-							<!-- 여기까지  -->
+							</c:when>
+							</c:choose>
+			
+							</c:forEach>
+							
 							
 							
 							
 						</div>
-							<div class="commentWriterBox">
-						 		<form>
+							<div class="commentWriterBox" id="comentBox1">
+						 		<form class="comment" id="coment3" action="crewComent1.shw2#MemberComment" method="post">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">
-						 						<input type="text" class="commentWriter" placeholder="크루신청 댓글을 작성해주세요!">
-						 						<button class="commentWriterBtn">작성하기</button>
+						 						<script>
+						 						 function check(coment_No){
+						 							var check = $("input:checkbox[class=check1]:checked").val();
+						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
+						 							$('.comment').append($inputHidden);
+						 							
+						 							
+						 							
+						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
+						 							$('.comment').append($inputHidden1);
+						 							
+						 							
+						 							
+						 						 }
+						 						</script>
+						 						<c:forEach var="i" items="${map.list}" varStatus="status">
+						 						<input type="hidden" value="${i.board_No}" name="board_No">
+						 						<input type="hidden" value="abc" name="capy">
+						 						<input type="hidden" value="${i.crew_No }" name="crew_Id">
+						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
+						 						<button type="submit" class="commentWriterBtn">작성하기</button>
+						 						</c:forEach>
 						 					</td>
 						 				</tr>
 						 			</table>
-						 		</form>
+						 		</form>	
 						 	</div>
 					</div>
 				</div>
@@ -835,39 +797,55 @@ p.crewComentBox2{
 						<p class="AttWriter2">- 크루님들의 생생한 경험을 전달해주세요!</p>
 						<div class="imgArea">
 							<img class="writerImg"
-								src="${ contextPath }/resources/images/crew/test/65446473_1_1504278084_w640.jpg">
-							<p class="crewBoss1">김창희의 런닝크루</p>
+								src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${ac1.upload_Name}">
+							<p class="crewBoss1">${ac1.crew_Name }</p>
 							<hr>
 							<section id="slider">
 								<ul class="slider-wrapper">
+									<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+									<c:if test="${status1.index eq 0}">
 									<li class="current-slide"><img
-										src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
+										src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 										title="" alt="">
 										<div class="caption">
-											<h2 class="slider-title">크루활동 첫번째 사진입니다.</h2>
-											<p>김창희의 런닝크루</p>
+											<h2 class="slider-title">${ac1.crew_Name} 크루활동 첫번째 사진입니다.</h2>
+											<p>${ac1.crew_Name}</p>
 										</div></li>
+									</c:if>
+									</c:forEach>
+									<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+									<c:if test="${status1.index eq 1}">	
 									<li><img
-										src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
+										src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 										title="" alt="">
 										<div class="caption">
-											<h2 class="slider-title">크루활동 두번째 사진입니다.</h2>
-											<p>김창희의 런닝크루</p>
+											<h2 class="slider-title">${ac1.crew_Name} 크루활동 두번째 사진입니다.</h2>
+											<p>${ac1.crew_Name}</p>
 										</div></li>
+									</c:if>
+									</c:forEach>
+									<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+									<c:if test="${status1.index eq 2}">		
 									<li><img
-										src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg"
+										src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 										title="" alt="">
 										<div class="caption">
-											<h2 class="slider-title">크루활동 세번째 사진입니다.</h2>
-											<p>김창희의 런닝크루</p>
+											<h2 class="slider-title">${ac1.crew_Name} 크루활동 세번째 사진입니다.</h2>
+											<p>${ac1.crew_Name}</p>
 										</div></li>
+									</c:if>
+									</c:forEach>
+									<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+									<c:if test="${status1.index eq 3}">		
 									<li><img
-										src="${ contextPath }/resources/images/crew/test/235E8E33597B3F3529.jpg"
+										src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 										title="" alt="">
 										<div class="caption">
-											<h2 class="slider-title">크루활동 네번째 사진입니다.</h2>
-											<p>김창희의 런닝크루</p>
+											<h2 class="slider-title">${ac1.crew_Name} 크루활동 네번째 사진입니다.</h2>
+											<p>${ac1.crew_Name}</p>
 										</div></li>
+									</c:if>
+									</c:forEach>	
 								</ul>
 								<!-- Sombras -->
 								<div class="slider-shadow"></div>
@@ -878,30 +856,46 @@ p.crewComentBox2{
 								<table>
 									<tr>
 										<td colspan="2" class="imgBox">
+											<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+											<c:if test="${status1.index eq 0}">	
 											<div class="img1">
 												<img
-													src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif"
+													src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 													class="crewImg1">
 											</div>
+											</c:if>
+											</c:forEach>
+											<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+											<c:if test="${status1.index eq 1}">
 											<div class="img2">
 												<img
-													src="${ contextPath }/resources/images/crew/test/KakaoTalk_20180817_154814344.gif"
+													src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 													class="crewImg2">
 											</div>
+											</c:if>
+											</c:forEach>
 										</td>
 									</tr>
 									<tr>
 										<td colspan="2" class="imgBox1">
+											<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+											<c:if test="${status1.index eq 2}">
 											<div class="img3">
 												<img
-													src="${ contextPath }/resources/images/crew/test/20180111_hazzys_acc-e1515632554131.jpg"
+													src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 													class="crewImg3">
 											</div>
+											</c:if>
+											</c:forEach>
+											<c:forEach var="i1" items="${map.list1}" varStatus="status1">
+											<c:if test="${status1.index eq 3}">
 											<div class="img4">
 												<img
-													src="${ contextPath }/resources/images/crew/test/235E8E33597B3F3529.jpg"
+													src="${ contextPath }/resources/uploadFiles/crew/crewActivity/${i1.upload_Name}"
 													class="crewImg4">
 											</div>
+											</c:if>
+											</c:forEach>
 										</td>
 									</tr>
 								</table>
@@ -917,22 +911,24 @@ p.crewComentBox2{
 								<!--크루장  -->
 								<div class="MemberCommont">
 									<img class="writerImg"
-										src="${ contextPath }/resources/images/crew/test/1dbd795fe4d541afe414dd9e5eb015ca.gif">
+										src="${ contextPath }/resources/uploadFiles/myPage/profil/${ac.upload_Name}">
 										<div class="crewMember5">
 										<p class="crewBoss3"><i class="fa fa-star"></i>크루장</p>
-										<p class="crewBossName"><i class="fa fa-user-circle"></i>김창희</p>
+										<p class="crewBossName"><i class="fa fa-user-circle"></i>${ac.user_Name }</p>
 										</div>
 								</div>
 								<!-- 여기까지  -->
 								<!--크루원  -->
+								<c:forEach var="i2" items="${map.list2}" varStatus="status1">
 								<div class="MemberCommont">
 									<img class="writerImg"
-										src="${ contextPath }/resources/images/crew/test/65446473_1_1504278084_w640.jpg">
+										src="${ contextPath }/resources/uploadFiles/myPage/profil/${i2.upload_Name}">
 										<div class="crewMember5">
 										<p class="crewMembers3"><!-- <i class="fa fa-diamond" style="margin-left:-4px"></i> --><i class="fa fa-users" style="margin-left:-4px"></i>크루원</p>
-										<p class="crewMemberNames"><i class="fa fa-user-circle"></i>할리스지옥</p>
+										<p class="crewMemberNames"><i class="fa fa-user-circle"></i>${i2.user_Name }</p>
 										</div>
 								</div>
+								</c:forEach>
 								<!-- 여기까지  -->
 							</div>
 					</div>

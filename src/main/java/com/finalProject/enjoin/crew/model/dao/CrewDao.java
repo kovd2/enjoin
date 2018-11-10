@@ -78,6 +78,21 @@ public interface CrewDao {
 	int insertCrewActivity(SqlSessionTemplate sqlSession, CrewActivityBoard cab, Attachment at, Attachment at1,
 			Attachment at3, Attachment at4);
 	
+	//크루 활동 게시판 조회
+	List<CrewActivityBoard> crewActivityBoardList(SqlSessionTemplate sqlSession);
+	
+	//크루 활동 게시판 상세 조회
+	List<CrewActivityBoard> crewActivityBoardDetailList(SqlSessionTemplate sqlSession, int board_No);
+	
+	//글쓴이 사진이랑 정보 조회
+	Attachment userPhotos(SqlSessionTemplate sqlSession, int board_No);
+	
+	//크루 이름 크루 사진 조회
+	Attachment crewPhotos(SqlSessionTemplate sqlSession, int crew_No);
+	
+	//크루 활동 사진 조회
+	List<Attachment> crewActivityBoardDetailPhoto(SqlSessionTemplate sqlSession, int board_No);
+	
 	
 	
 	
