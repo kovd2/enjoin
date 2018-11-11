@@ -186,8 +186,7 @@ body.register .subWrap {
 						</h2>
 
 
-						<form class="memberForm findPWForm" name="frm"
-							action="/member/reset_pw/" method="post">
+						<form class="memberForm findPWForm" name="frm" action="searchPassword.me" method="post">
 							<div class="form-group">
 								<label>아이디</label>
 								<div class="floatlabel-wrapper" style="position: relative">
@@ -258,11 +257,7 @@ body.register .subWrap {
 					<!-- /.memberBox -->
 				</div>
 				<!-- /.row -->
-				<div class="mb_footDeco">
-					<img class="tlx_symbol" src="/images/tlx_pass_symbol_alt.svg"
-						alt="">
 				</div>
-			</div>
 			<!-- /.memberWrap -->
 			<br> <br> <br> <br> <br> <br>
 

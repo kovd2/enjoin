@@ -20,7 +20,9 @@ public interface MemberDao {
 
 	int insertCompany(SqlSessionTemplate sqlSession, Member m);
 
-	int searchId(SqlSessionTemplate sqlSession, Member m);
+	
+	//아이디 찾기
+	Member searchId(SqlSessionTemplate sqlSession, Member m);
 
 
 

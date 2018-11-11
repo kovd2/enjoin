@@ -61,7 +61,7 @@ public class MemberServiceImpl implements MemberService{
 
 	//아이디 찾기용 메소드
 	@Override
-	public int searchId(Member m) {
+	public Member searchId(Member m) {
 		
 		return md.searchId(sqlSession, m);
 	}

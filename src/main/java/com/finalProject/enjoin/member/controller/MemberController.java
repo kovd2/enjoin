@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.member.model.exception.LoginException;
 import com.finalProject.enjoin.member.model.service.MemberService;
@@ -67,17 +68,24 @@ public class MemberController {
 	
 	//아이디 찾기 컨트롤러
 	@RequestMapping("searchId.me")
-	public String SearchId(Member m, HttpServletResponse response, Model model) {
+	public ModelAndView SearchId(Member m, HttpServletResponse response, ModelAndView mv) {
 		
-		System.out.println(m.getUserName());
-		System.out.println(m.getEmail());
+		m = ms.searchId(m);
 		
-		int result = ms.searchId(m);
-		if(result > 0) {
+		if(m != null) {
+			
 			System.out.println("Member : " + m );
-			return "member/searchIdComplete";
+			
+			mv.setViewName("member/searchIdComplete");
+			
+			mv.addObject("m", m);
+			
+			return mv;
+			
+			
 		}else {
-			return "member/searchIdFail";
+			mv.setViewName("common/errorPage");
+			return mv;
 		}
 		
 	}
@@ -87,6 +95,12 @@ public class MemberController {
 	public String showSearchPassword() {
 		return "member/searchPassword";
 	}
+	
+	//비밀번호 찾기용 컨트롤러
+	/*@RequestMapping("searchPassword.me")
+	public String searchPassword() {
+		return "";
+	}*/
 	
 	//제휴시설 회원가입용 컨트롤러
 	@RequestMapping("companyInsert.me")

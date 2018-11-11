@@ -41,18 +41,10 @@ public class MemberDaoImpl implements MemberDao{
 
 	//아이디 찾기용 메소드
 	@Override
-	public int searchId(SqlSessionTemplate sqlSession, Member m) {
+	public Member searchId(SqlSessionTemplate sqlSession, Member m) {
 		
 		return sqlSession.selectOne("Member.searchId", m);
 	}
-
-
-
-	//아이디 찾기용 메소드
-
-
-	
-	
 	
 
 }
