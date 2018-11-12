@@ -1,7 +1,7 @@
 package com.finalProject.enjoin.member.model.service;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +57,21 @@ public class MemberServiceImpl implements MemberService{
 	public int insertCompany(Member m) {
 		
 		return md.insertCompany(sqlSession, m);
+	}
+
+	//아이디 찾기용 메소드
+	@Override
+	public Member searchId(Member m) {
+		
+		return md.searchId(sqlSession, m);
+	}
+
+	
+	//비밀번호 찾기용 메소드
+	@Override
+	public Member getPw(Map<String, Object> paramMap) {
+		
+		return md.getPw(paramMap);
 	}
 
 

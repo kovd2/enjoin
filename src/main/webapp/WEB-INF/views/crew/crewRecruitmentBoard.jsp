@@ -422,7 +422,7 @@ select.searchSelect {
 	function goCategory(categoryName){
 		var categoryName = $(categoryName).find('label').text();
 		
-		alert(categoryName);
+	
 		
 		location.href="crewCategorySelectBoard.shw2?categoryName=" + categoryName;
 		
@@ -540,7 +540,7 @@ select.searchSelect {
 				</table>
 				<hr class="boardHr2">
 				<c:forEach var="c" items="${ list }">
-				<div>
+				<div class="a">
 					<a href="crewRecruitmentDetails.shw2?board_No=${c.board_No}&user_No=${c.user_No}&crew_No=${c.crew_No}"
 						style="text-decoration: none;">
 						<table>
@@ -592,7 +592,7 @@ select.searchSelect {
 						<button class="writerBtn" onclick="goCrew()">크루모집작성</button>
 					</div>
 					</c:if>
-					<form action="crewSearchList.sh2" method="get">
+					<form action="MemberSearchList.shw2" method="get">
 						<table >
 							<tr>
 								<td colspan="2">

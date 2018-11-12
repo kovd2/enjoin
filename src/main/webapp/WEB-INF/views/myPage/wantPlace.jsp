@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,29 +215,27 @@
 			<br>
 			<div class="favoriteCenterList">
 				<ul class="row">
-					<%for(int i = 0; i < 5; i++){ %>
-					<li class="col col-sm-6 col-md-4 col-lg-3"><a
-						href="/center/detail/fc06008" class="favoriteCenter">
+					<c:forEach var="j" items="${ jjim }">
+					<li class="col col-sm-6 col-md-4 col-lg-3">
+					<a href="/center/detail/fc06008" class="favoriteCenter">
 
 							<div class="responsibleImgBox">
-								<img class="centerThumb"
-									src="https://s3-ap-northeast-2.amazonaws.com/tlx.production/M95caibZkerI045ZReh1E2mAPmxVXls0QLaBRqJQTrFXHLoc0NU2QmZDMdkBhM6t_300"
-									alt="잠실수상레저파크">
+								<img class="centerThumb" src="resources/uploadFiles/facility/${ j.uploadName }">
 							</div>
-							<h4>잠실수상레저파크</h4>
+							<h4>${ j.facilityName }</h4>
 
-							<p>서울 송파구 백제고분로 2 (잠실동) 1층 잠실유람선선착장</p> <small class="events"><span>기타</span></small>
+							<p>${ j.facilityAddress }</p> <small class="events"><span>${ j.facilityEvent }</span></small>
 
 							<!-- 하나의 버튼에.... 상태에 따라 on off 를 붙입니다 -->
 
 					</a>
 						<button id="bookmark_action-btn_fc06008"
 							class="btn btn-default btn_favorite on"
-							onclick="bookmark_action('fc06008')">
+							onclick="deleteJJIM(${ j.userNo },${ j.facilityNo })">
 							<i class="fa fa-heart"></i>
 						</button>
 						<div class="favoriteAlertMsg"></div></li>
-					<%} %>
+					</c:forEach>
 
 				</ul>
 
@@ -254,5 +253,34 @@
 		</div>
 	</div>
 	<br><br><br><br><br>
+	
+	<script>
+		function deleteJJIM(userNo, facilityNo){
+			var userNo = userNo;
+			var facilityNo = facilityNo;
+
+			if (confirm("삭제 하시겠습니까?") == true){    //확인
+				location.href="deleteJJIM.ljs?userNo=" + userNo + "&facilityNo=" + facilityNo;
+			}else{   //취소
+			    return;
+			}
+		}
+	</script>
+	
+	
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

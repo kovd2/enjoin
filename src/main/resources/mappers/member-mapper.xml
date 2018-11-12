@@ -80,7 +80,16 @@
 	FROM MEMBER
 	WHERE USER_NAME = #{userName} 
 	AND EMAIL = #{email}
-	AND USER_STATUS = 'Y'
+	<!-- AND STATUS = 'Y' -->
+	</select>
+	
+	<!-- 비밀번호 찾기용 쿼리 -->
+	<select id="emailSendPW" resultMap="memberResultSet" parameterType="Map">
+	SELECT USER_PWD
+	FROM MEMBER
+	WHERE USER_ID = #{userId}
+	AND USER_NAME = #{userName}
+	AND EMAIL = #{email}
 	</select>
 	
 </mapper>

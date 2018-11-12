@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.finalProject.enjoin.crew.model.dao.CrewDao;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -153,6 +154,44 @@ public class CrewServiceImpl implements CrewService {
 	public List<Crew> crewInformation(int userNo) {
 		
 		return cd.crewInformation(sqlSession,userNo);
+	}
+	//크루 활동 게시판 인서트
+	@Override
+	public int insertCrewActivity(CrewActivityBoard cab, Attachment at, Attachment at1, Attachment at3,
+			Attachment at4) {
+		
+		return cd.insertCrewActivity(sqlSession,cab,at,at1,at3,at4);
+	}
+	
+	//크루 활동 게시판 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardList() {
+		
+		return cd.crewActivityBoardList(sqlSession);
+	}
+	//크루 활동 게시판 상세 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardDetailList(int board_No) {
+		
+		return cd.crewActivityBoardDetailList(sqlSession,board_No);
+	}
+	//글쓴이 사진 조회
+	@Override
+	public Attachment userPhotos(int board_No) {
+		
+		return cd.userPhotos(sqlSession,board_No);
+	}
+	//크루이름이랑 사진 조회
+	@Override
+	public Attachment crewPhotos(int crew_No) {
+		
+		return cd.crewPhotos(sqlSession,crew_No);
+	}
+	//크루활동 사진 조회
+	@Override
+	public List<Attachment> crewActivityBoardDetailPhoto(int board_No) {
+		
+		return cd.crewActivityBoardDetailPhoto(sqlSession,board_No);
 	}
 	
 

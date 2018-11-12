@@ -5,11 +5,12 @@
 		<typeAlias type="com.finalProject.enjoin.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.finalProject.enjoin.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Crew" alias="Crew"/>
-		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Pass" alias="Pass"/>
+		
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Coment" alias="Coment"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Board" alias="mpBoard"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.inCrew" alias="inCrew"/>
 		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.Crew" alias="acceptCrew"/>
+		<typeAlias type="com.finalProject.enjoin.myPage.model.vo.JJIM" alias="jjim"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoard" alias="InformBoard"/>
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformComent" alias="InformComent"/>
@@ -18,6 +19,9 @@
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.InCrew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
+		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewActivityBoard" alias="CrewActivityBoard"/>
+		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Payment" alias="Payment"/>
+		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Pass" alias="Pass"/>
 		
 		
 	</typeAliases>
@@ -29,5 +33,6 @@
 		<mapper resource="mappers/crew-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
 		<mapper resource="mappers/inform-mapper.xml"/>
+		<mapper resource="mappers/admin-mapper.xml"/>
 	</mappers>
 </configuration>

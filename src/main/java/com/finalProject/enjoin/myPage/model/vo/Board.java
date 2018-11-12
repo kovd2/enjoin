@@ -14,7 +14,7 @@ public class Board implements Serializable {
 	private Date enrollDate; 							//작성일
 	private Date modifyDate; 							//수정일
 	private String status; 								//삭제여부
-	private int userNo; 								//작성자
+	private int userNo; 								//작성자NO
 	private int crewNo;									//크루 번호
 	private String userName;							//유저 이름
 	private String crewName;

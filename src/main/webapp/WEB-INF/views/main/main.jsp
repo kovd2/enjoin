@@ -352,7 +352,7 @@ h2.mainSlogan .compName {
 
 									</div>
 									<div class="box-bottom">
-										<a href="pricingbox.test">좀 더 알아보기</a>
+										<a href="informBoard.kch2">좀 더 알아보기</a>
 									</div>
 								</div>
 							</div>

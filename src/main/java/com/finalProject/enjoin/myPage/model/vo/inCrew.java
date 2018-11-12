@@ -1,8 +1,9 @@
 package com.finalProject.enjoin.myPage.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class inCrew {
+public class inCrew implements Serializable{
 	private int userNo;
 	private int crewId;
 	private Date requestDate;
@@ -10,11 +11,13 @@ public class inCrew {
 	private Date endDate;
 	private String inCrewStatus;
 	private int increwNo;
+	private String crewName;
+	private String uploadName;
 	
 	public inCrew() {}
 
 	public inCrew(int userNo, int crewId, Date requestDate, Date startDate, Date endDate, String inCrewStatus,
-			int increwNo) {
+			int increwNo, String crewName, String uploadName) {
 		super();
 		this.userNo = userNo;
 		this.crewId = crewId;
@@ -23,6 +26,8 @@ public class inCrew {
 		this.endDate = endDate;
 		this.inCrewStatus = inCrewStatus;
 		this.increwNo = increwNo;
+		this.crewName = crewName;
+		this.uploadName = uploadName;
 	}
 
 	public int getUserNo() {
@@ -81,11 +86,27 @@ public class inCrew {
 		this.increwNo = increwNo;
 	}
 
+	public String getCrewName() {
+		return crewName;
+	}
+
+	public void setCrewName(String crewName) {
+		this.crewName = crewName;
+	}
+
+	public String getUploadName() {
+		return uploadName;
+	}
+
+	public void setUploadName(String uploadName) {
+		this.uploadName = uploadName;
+	}
+
 	@Override
 	public String toString() {
 		return "inCrew [userNo=" + userNo + ", crewId=" + crewId + ", requestDate=" + requestDate + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", inCrewStatus=" + inCrewStatus + ", increwNo=" + increwNo
-				+ "]";
+				+ ", crewName=" + crewName + ", uploadName=" + uploadName + "]";
 	}
 
 	

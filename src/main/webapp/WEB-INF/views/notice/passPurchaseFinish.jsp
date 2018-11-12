@@ -507,7 +507,7 @@
                     <div class="membershipSummary col-md-8 col-sm-7 col-xs-12">
                         <!-- 이전 단계에서 선택한 요금제를 표시합니다 -->
                         <div class="selectedPrice">
-                                <h6 class="aq">여기에 결제한 패스 수</h6>
+                                <h6 class="aq">7 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
 
@@ -516,7 +516,7 @@
                             
                         <div class="paymentSubmitLine">
                             <h1>응 여기에 결제내역</h1>
-                            <button type="button" onclick="#" class="btn btn-lg btn-success" id="btn_go"> 응 이거 결제다하고 홈버튼</button>
+                            <button type="button" onclick="home()" class="btn btn-lg btn-success" id="btn_go"> 메인으로 </button>
                         </div>
                             
                         </div>
@@ -527,7 +527,7 @@
                         <div class="payDiv">
                             <h5 style="font-size:x-large;">결제된 금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">응 여기에 결제된 금액</span>                    
+                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>                    
                             </p>
                             <hr>
                         </div>
@@ -541,6 +541,13 @@
 </div><!-- /container -->
 </div><!-- /wrap -->
 
-
+<script>
+	function home(){
+		
+		location.href = "index.jsp";
+		
+	}
+	
+</script>
 </body>
 </html>

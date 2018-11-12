@@ -2,7 +2,10 @@ package com.finalProject.enjoin.member.model.dao;
 
 
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.member.model.vo.Member;
@@ -11,6 +14,9 @@ import com.finalProject.enjoin.member.model.vo.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao{
 
+	@Autowired
+    private SqlSessionTemplate sqlSession;
+	
 	//암호화된 비밀번호 조회 메소드
 	@Override
 	public String selectEncPassword(SqlSessionTemplate sqlSession, Member m) {
@@ -39,13 +45,19 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.insert("Member.insertCompany", m);
 	}
 
-
-
 	//아이디 찾기용 메소드
+	@Override
+	public Member searchId(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("Member.searchId", m);
+	}
 
-
-	
-	
+	//비밀번호 찾기용 메소드
+	@Override
+	public Member getPw(Map<String, Object> paramMap) {
+		
+		return sqlSession.selectOne("Member.emailSendPW", paramMap);
+	}
 	
 
 }

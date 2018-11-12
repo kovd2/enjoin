@@ -93,7 +93,7 @@
 	</insert>
 	
 	<select id="selectBoardNo" resultType="_int" parameterType="_int">
-		SELECT BOARD_NO.currval FROM dual
+		SELECT MAX(BOARD_NO) FROM BOARD
 	</select>
 
 	<insert id="insertInformFiles0" parameterType="InformBoardFiles">

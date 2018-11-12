@@ -423,7 +423,7 @@ i.fa.fa-comments{
 <script>
 	function goInCrew(userNo){
 		
-		alert(userNo);
+		
 			
 	}
 	  /*   function goCrewComent(){
@@ -502,7 +502,7 @@ i.fa.fa-comments{
 								<c:forEach var="c" items="${list3}" varStatus="status">
 								<c:choose>
 									<c:when test="${c.parent_Coment_No == 0 }">			
-						 		<div class="MemberCommont">
+						 		<div class="MemberCommont" id="MemberCommont">
 						 			<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 						 			<div class="Comment1">
 						 			<p class="userId">${ c.user_Name }</p>
@@ -561,7 +561,7 @@ i.fa.fa-comments{
 						 		
 						 	</div>
 						 	<div class="commentWriterBox">
-						 		<form class="comment" id="coment3" action="crewComent.shw2" method="post">
+						 		<form class="comment" id="coment3" action="crewComent.shw2#MemberCommont" method="post">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">
@@ -570,12 +570,12 @@ i.fa.fa-comments{
 						 							var check = $("input:checkbox[class=check1]:checked").val();
 						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
 						 							$('.comment').append($inputHidden);
-						 							alert(check);
+						 							
 						 							
 						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
 						 							$('.comment').append($inputHidden1);
-						 							alert(coment_No);
-						 							alert($inputHidden1.val());
+						 							
+						 							
 						 							
 						 						 }
 						 						</script>

@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>패스 구매</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .sectionTitle h2 {
     font-size: 40px;
@@ -501,22 +506,22 @@
                     <div class="membershipSummary col-md-8 col-sm-7 col-xs-12">
                         <!-- 이전 단계에서 선택한 요금제를 표시합니다 -->
                         <div class="selectedPrice">
-                                <h6 class="aq">여기에 패스 수</h6>
+                                <h6 class="aq">7 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
-
+					
                 </div> <!-- /.membershipSummary -->
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="paymentInfo2" id="mobilePaymentInfo">
                         <div class="payDiv">
                             <h5 style="font-size:x-large;">결제금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">응 여기에 결제금액</span>
+                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>
                             </p>
                         </div>
 
-                        <div class="paymentSubmitLine">
-                            <button type="button" onclick="payment()" class="btn btn-lg btn-success" id="btn_go"><i class="fa fa-credit-card"></i> 결제하기</button>
+                        <div class="paymentSubmitLine" onclick="payment(${sessionScope.loginUser.userNo})">
+                            <button type="button" class="btn btn-lg btn-success" id="btn_go"><i  class="fa fa-credit-card"></i> 결제하기</button>
                         </div>
                     </div><!-- /.paymentInfo2 -->
                 </div><!-- /.col -->
@@ -528,11 +533,46 @@
 </div><!-- /wrap -->
 
 <script>
-	function payment(){
+	function payment(userNo){
+		var IMP = window.IMP;
+		IMP.init("imp11417443"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 		
-		location.href = "passPurchaseFinish.hh";
-	}
+		// IMP.request_pay(param, callback) 호출
+		IMP.request_pay({ // param
+		    pg: "html5_inicis",
+		    pay_method: "card",
+		    merchant_uid: "merchant" + new Date().getTime(),
+		    name: "7 PASS",
+		    amount: 100,
+		    buyer_email: "${ loginUser.getEmail() }",
+		    buyer_name: "${ loginUser.getUserName() }",
+		    buyer_tel: "${ loginUser.getPhone() }",
+		    
+		}, function (rsp) { // callback
+		    if (rsp.success) {
+		    	var msg = '결제가 완료되었습니다. \n';
+		    	
+		       msg += '고유ID : ' + rsp.imp_uid + '\n';
+		       msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
+		       msg += '결제 금액 : ' + rsp.paid_amount + '\n';
+		       msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        alert(msg);
+		        
+		        location.href = "passPurchaseFinish.hh";
+		    } else {
+				
+		    	var msg = '결제에 실패하였습니다. \n';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        alert(msg);
+		    	location.href = "passPurchase.hh";
+		    }
+		});
+	} 
+
+	
 </script>
+
 
 </body>
 </html>

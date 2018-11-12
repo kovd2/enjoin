@@ -1,8 +1,9 @@
 package com.finalProject.enjoin.myPage.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pass {
+public class Pass implements Serializable{
 	private int userNo;				//회원번호
 	private int passNo;				//회원패스관리번호
 	private int passCount;			//수량

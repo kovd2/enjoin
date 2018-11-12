@@ -347,7 +347,6 @@ img {
     padding: 0px 20px 20px 20px;
 }
 
-
 </style>
 </head>
 <body>
@@ -650,14 +649,29 @@ img {
 				
 				
 			</div>
+
 	<jsp:include page="../common/footer.jsp"/>
-	
 
 		</div>
 	</div>
 	</c:if>
 
 
+
+	<script>
+		function goEn() {
+			
+			var con = document.getElementById('en');
+			
+			if(con.style.display=='none'){
+				
+				con.style.display='block';
+			}else{
+				con.style.display='none';
+			}
+
+		}
+	</script>
 
 	
 	

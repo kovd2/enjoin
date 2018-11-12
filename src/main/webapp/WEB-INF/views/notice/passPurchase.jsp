@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -322,6 +323,176 @@
 </style>
 </head>
 <body>
+<c:if test="${ !empty sessionScope.loginUser }">
+	<div id="wrapper">
+		<jsp:include page="../common/menubar.jsp" />
+		<section id="inner-headline">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<ul class="breadcrumb">
+							<li><a href="#"><i class="fa fa-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							<li class="active">멤버십 신청</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="wrap">
+		<div class="container">
+			<div class="row">
+				<div class="sectionTitle priceSectionTitle col-xs-12">
+					<h2>
+						<strong>멤버십 신청</strong> <small>원하는 날부터 자유롭게 운동을 시작해 보세요!</small>
+					</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<section class="serviceApplyWrap">
+						<!--B2C 롱텀 상품 표기 - START* -->
+						<!-- 일반결제 -->
+						<div class=" col-md-12 col-sm-12  longterm_0105">
+							<div class="row">
+								<div class="col-sm-3 col-xs-6">
+									<div class="priceTagPiece priceTagLT priceTagNotOptionalCheck">
+										<div class="priceTagHead">
+											<strong class="aq">7</strong> <span class="aq">PASS</span>
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagHead -->
+										<div class="priceTagBody">
+											<div class="priceWon originWon">
+												<strong>₩34,300</strong> <small class="discountNum">
+												</small>
+											</div>
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagBody -->
+										<div class="priceTagFoot">
+											<a onclick="passPurchaseDetail()" class="btn-white" >시작하기</a>
+										</div>
+										<!-- /.priceTagFoot -->
+									</div>
+									<!-- /.priceTagPiece -->
+								</div>
+								<div class="col-sm-3 col-xs-6">
+									<div class="priceTagPiece priceTagLT priceTagNotOptionalCheck">
+										<div class="priceTagHead">
+											<strong class="aq">30</strong> <span class="aq">PASS</span>
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagHead -->
+										<div class="priceTagBody">
+											<div class="priceWon originWon">
+												<strong>₩120,000</strong> <small class="discountNum">
+												</small>
+											</div>
+
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagBody -->
+										<div class="priceTagFoot">
+											<a href="passPurchaseDetail2.hh" class="btn-white">시작하기</a>
+										</div>
+										<!-- /.priceTagFoot -->
+									</div>
+									<!-- /.priceTagPiece -->
+								</div>
+								<div class="col-sm-3 col-xs-6">
+									<div class="priceTagPiece priceTagLT priceTagNotOptionalCheck">
+										<div class="priceTagHead">
+											<strong class="aq">78</strong> <span class="aq">PASS</span>
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagHead -->
+										<div class="priceTagBody">
+											<div class="priceWon originWon">
+												<strong>₩299,000</strong> <small class="discountNum">
+												</small>
+											</div>
+
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagBody -->
+										<div class="priceTagFoot">
+											<a href="passPurchaseDetail3.hh" class="btn-white">시작하기</a>
+										</div>
+										<!-- /.priceTagFoot -->
+									</div>
+									<!-- /.priceTagPiece -->
+								</div>
+								<div class="col-sm-3 col-xs-6">
+									<div class="priceTagPiece priceTagLT priceTagNotOptionalCheck">
+										<div class="priceTagHead">
+											<strong class="aq">240</strong> <span class="aq">PASS</span>
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagHead -->
+
+										<div class="priceTagBody">
+											<div class="priceWon originWon">
+												<strong>₩899,990</strong> <small class="discountNum">
+												</small>
+
+											</div>
+
+											<!-- 보너스 패스 -->
+										</div>
+										<!-- /.priceTagBody -->
+										<div class="priceTagFoot">
+											<a href="passPurchaseDetail4.hh" class="btn-white">시작하기</a>
+										</div>
+										<!-- /.priceTagFoot -->
+									</div>
+									<!-- /.priceTagPiece -->
+								</div>
+							</div>
+						</div>
+						<!-- /.col -->
+
+
+						<div class="col-md-12 col-sm-12">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 priceAdditionalInfo">
+
+									<div class="startDateCheckBox">
+										<h4>지금 신청하세요!</h4>
+										<h5>
+											<strong>이용 시작일</strong>은 <b>오늘부터 10일 후까지</b> 선택이 가능합니다.
+										</h5>
+									</div>
+
+									<ul>
+										<li><b>PASS는 제휴시설을 이용할 수 있는 단위</b>입니다.</li>
+										<li><b>제휴시설을 한번 이용할 때 시설별로 정해진 PASS가 차감</b> 됩니다.</li>
+										<li>이용하고 싶은 제휴시설과, 횟수, 기간 따라 나에게 맞는 요금제를 선택하세요.</li>
+										<li>이용기간 만료 시 잔여 PASS는 자동 소멸됩니다.</li>
+										<li>더 궁금하신게 있으신가요? <a href="serviceCenter.hh" target="_blank">고객센터
+												도움말</a>을 확인해 보세요.
+										</li>
+									</ul>
+								</div>
+								<!-- /.priceAdditionalInfo -->
+							</div>
+							<!-- /.row -->
+						</div>
+					</section>
+					<!-- /.serviceApplyWrap -->
+				</div>
+			</div>
+			<!--/.row -->
+		</div>
+		<!-- /container -->
+
+
+	</div>
+</c:if>
+
+
+<c:if test="${ empty sessionScope.loginUser }">
 	<div id="wrapper">
 		<jsp:include page="../common/menubar.jsp" />
 		<section id="inner-headline">
@@ -371,7 +542,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white" >시작하기</a>
+											<a href="memberLogin.me" class="btn-white" >로그인</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -394,7 +565,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="memberLogin.me" class="btn-white" >로그인</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -417,7 +588,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="memberLogin.me" class="btn-white" >로그인</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -442,7 +613,7 @@
 										</div>
 										<!-- /.priceTagBody -->
 										<div class="priceTagFoot">
-											<a href="passPurchaseDetail.hh" class="btn-white">시작하기</a>
+											<a href="memberLogin.me" class="btn-white" >로그인</a>
 										</div>
 										<!-- /.priceTagFoot -->
 									</div>
@@ -488,5 +659,13 @@
 
 
 	</div>
+</c:if>
+<script>
+	function passPurchaseDetail(){
+		
+		location.href = "passPurchaseDetail.hh";
+	}
+</script>
+
 </body>
 </html>

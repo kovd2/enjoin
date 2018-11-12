@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -180,6 +181,83 @@ public class CrewDaoImpl implements CrewDao {
 	public List<Crew> crewInformation(SqlSessionTemplate sqlSession, int userNo) {
 		
 		return sqlSession.selectList("Crew.crewInformation",userNo);
+	}
+	//크루 활동 게시판 인서트
+	@Override
+	public int insertCrewActivity(SqlSessionTemplate sqlSession, CrewActivityBoard cab, Attachment at, Attachment at1,
+			Attachment at3, Attachment at4) {
+		
+		
+		int result = 0;
+		
+		int crew_No = cab.getCrew_No();
+		
+		//크루 번호 조회해오기
+		int category_No = sqlSession.selectOne("Crew.selectCategoryNo",crew_No);
+		
+		//조회해온 카테고리 코드를 담는다.
+		cab.setCategory_No(category_No);
+		
+		int result1 = sqlSession.insert("Crew.insertCrewActivity",cab);
+		
+		if(result1  > 0 ) {
+			int board_No =  sqlSession.selectOne("Crew.selectBoardId");
+			
+			at.setRef_No(board_No);
+			at1.setRef_No(board_No);
+			at3.setRef_No(board_No);
+			at4.setRef_No(board_No);
+			
+			//크루 활동 이미지 인서트 
+			
+			int result2 = sqlSession.insert("Crew.insertCaAttachment",at);
+			
+			int result3 = sqlSession.insert("Crew.insertCaAttachment1",at1);
+			
+			int result4 = sqlSession.insert("Crew.insertCaAttachment2",at3);
+			
+			int result5 = sqlSession.insert("Crew.insertCaAttachment3",at4);
+			
+			System.out.println("잘됨??" + result2 + result3 + result4 + result5);
+			
+			
+		}
+		
+		
+		
+		
+		return result;
+	}
+	//크루 활동 게시판 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardList(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardList");
+	}
+	//크루 활동 게시판 상세 조회
+	@Override
+	public List<CrewActivityBoard> crewActivityBoardDetailList(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardDetailList", board_No);
+	}
+	//크루 활동 게시판 작성자 사진 이름 조회
+	@Override
+	public Attachment userPhotos(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectOne("Crew.userPhotos", board_No);
+	}
+	//크루 이름이랑 사진조회
+	@Override
+	public Attachment crewPhotos(SqlSessionTemplate sqlSession, int crew_No) {
+
+		
+		return sqlSession.selectOne("Crew.crewPhotos",crew_No);
+	}
+	//크루 활동 사진 조회
+	@Override
+	public List<Attachment> crewActivityBoardDetailPhoto(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.selectList("Crew.crewActivityBoardDetailPhoto", board_No);
 	}
 
 

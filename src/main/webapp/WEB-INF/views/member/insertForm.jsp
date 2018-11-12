@@ -435,14 +435,45 @@ body.register .subWrap {
 											onfocusout="check_id(this); return false;" autocomplete="off">
 										<span class="help-block" id="user_id_help"></span>
 									</div>
-
 									<div class="form-group passwordShowHide" id="password_div">
+										<label for="password" class="sr-only">비밀번호</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel  "
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
+											<div class="input-append input-group">
+												<input id="password" name="userPwd" class="form-control" type="password" placeholder="비밀번호" autocorrect="off" autocapitalize="none" autocomplete="off"
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
+													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+											</div>
+										</div>
+										<span class="help-block" id="password_help"></span>
+									</div>
+									<div class="form-group passwordShowHide" id="password_div">
+										<label for="password" class="sr-only">비밀번호</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel  "
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
+											<div class="input-append input-group">
+												<input id="password2" name="userPwd2" class="form-control" type="password" placeholder="비밀번호확인" autocorrect="off" autocapitalize="none" autocomplete="off"
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
+													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+											</div>
+										</div>
+										<span class="help-block" id="password_help"></span>
+									</div>
+									<!-- <div class="form-group passwordShowHide" id="password_div">
 										<label for="password" class="sr-only">비밀번호</label> <input
 											id="password" name="userPwd" class="form-control"
 											type="password" placeholder="비밀번호" autocorrect="off"
 											autocapitalize="none" autocomplete="off"> <span
 											class="help-block" id="password_help"></span>
-									</div>
+											<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
+											<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+									</div> -->
 		
 									<!-- 인증 선택 radio -->
 									<div class="form-group bizAuthType" style="display: none;">
@@ -459,8 +490,8 @@ body.register .subWrap {
 										<label for="user_email" class="sr-only">이메일</label>
 
 										<div id="div_email_free" class="form-group">
-											<input onblur="check_validate(false);" type="email"	class="form-control" id="user_email_free" placeholder="이메일"
-												name="email" value=""	onfocusout="check_email(this); return false;">
+											<input type="email"	class="form-control" id="user_email" placeholder="이메일"
+												name="email" value="" >
 										</div>
 
 										<span class="help-block" id="user_email_help"></span>
@@ -571,7 +602,7 @@ body.register .subWrap {
 									<!-- /새 약관동의 상자 끝 -->
 
 									<div class="form-group submitLine">
-										<button type="button" class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
+										<button type=button class="btn btn-block btn-signup" onclick="CheckForm()">회원 가입</button>
 									</div>
 
 								</div>
@@ -610,19 +641,139 @@ body.register .subWrap {
 	</script>
 	<script>
 	function CheckForm(){
-		 if($("input:checkbox[id='check1']").is(":checked") == false){
-			alert("이용약관에 동의 해 주세요.");
-			
-			return;
-		 }else if($("input:checkbox[id='check2']").is(":checked") == false){
-			alert("개인정보 수집 및 이용에 동의 해 주세요.");
-			
-			return;
-		}else{
-		 $("#MemberJoin").submit();
+		
+		var userId = $("#user_id").val();
+		var regId = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{4,12}$/;
+		var userPwd = $("#password").val();
+		var regPwd = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+		var userPwd2 = $("#password2").val();
+		var regPwd2 = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+		
+		var userName = $("#user_name").val();
+		var regName= /^[가-힝]{2,}$/;
+		var phone = $("#user_phone").val();
+		var regPhone = /^[0-9]+$/;
+		
+		var email = $("user_email").value;
+		var regEmail=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
+		  
+		
+		
+		/* for(i = 0; i< userId.length; i++){
+			ch = userId.charAt(i)
+			if(!(ch >= '0' && ch <='9') && !(ch >= 'a') && ch<='z')&&!(ch='A'&& ch<='Z'){
+				alert("아이디는 대소문자, 숫자만 입력 가능해요.")
+				$("#userid").focus();
+				return false;
+			}
+		} */
+		if(userId.length == 0){
+			alert("아이디를 입력해주세요.");
+			$("#user_id").focus();
+			return false;
+		}
+		if(!regId.test($('#user_id').val())){
+			alert("아이디는 영문과 숫자 또는  4~12자로 입력해주세요.")
+			$('#user_id').focus();
+			return false;
 		}
 		
+		if(userPwd.length == 0){
+			alert("비밀번호를 입력해주세요.");
+			$("#password").focus();
+			return false;
+		}
+		if(!regPwd.test($('#password').val())){
+			alert("비밀번호는 영문+숫자 조합 또는 6~12자로 입력해주세요.")
+			$("#password").focus();
+			return false;
+		}
+		if(userPwd2.length == 0){
+			alert("비밀번호 확인창을 입력해주세요.");
+			$("#password2").focus();
+			return false;
+		}
+		if(!regPwd2.test($('#password2').val())){
+			alert("비밀번호는 영문+숫자 조합 또는 6~12자로 입력해주세요.")
+			$("#password2").focus();
+			return false;
+		}
+		if($('#password').val() != $('#password2').val()){
+            alert("입력하신 비밀번호를 확인 해 주세요");
+            $('#password2').focus();
+            return false;
+        }
+		
+				
+		if(userName.length == 0){
+			alert("이름을 입력해주세요.");
+			$("#user_name").focus();
+			return false;
+		}
+		if(!regName.test($('#user_name').val())){
+			alert("이름을 한글 2글자 이상으로 입력해주세요.");
+			$('#user_name').focus();
+			return false;
+		}
+		if(phone.length == 0){
+			alert("핸드폰 번호를 입력해주세요.");
+			$("#user_phone").focus();
+			return false;
+		}
+		if(!regPhone.test($('#user_phone').val())){
+			alert("휴대폰 번호를 숫자로만 입력해주세요.");
+			$("#user_phone").focus();
+			return false;
+		}
+		
+		if(!regEmail.test($('#user_email').val())) {  
+		    alert("잘못된 이메일 형식입니다.");  
+		    $('#user_email').focus();
+		    return false;
+		}
+		/* if(email.length == 0){
+			alert("이메일을 입력해주세요.");
+			$("user_email").focus();
+			return false;
+		}
+		if(!regEmail.test($('#user_email').val())){
+			alert("이메일 형식이 잘못되었습니다.");
+			$("user_email").focus();
+			return false;
+		} */
+			
+		
+		//이용약관
+		if($("input:checkbox[id='check1']").is(":checked") == false){
+			alert("이용약관에 동의 해 주세요.");
+			return;
+			
+		}else if($("input:checkbox[id='check2']").is(":checked") == false){
+			alert("개인정보 수집 및 이용에 동의 해 주세요.");
+			return;
+			
+		}else if(confirm("회원가입을 하시겠습니까?")){
+			alert("회원가입을 축하합니다");
+		 	$("#MemberJoin").submit();
+		} 
+		 
+	
 	}
+	
+	// 패스워드폼 show, hide
+    $(function() {
+      $('#password').password().on('show.bs.password', function(e) {
+        //On show event
+        //$('#password_help').text('입력된 비밀번호가 맞는지 확인하세요!');
+      }).on('hide.bs.password', function(e) {
+        //On hide event
+        $('#password_help').text('');
+      });
+    });
+	
+    
+    
+
 	
 	
 	</script>

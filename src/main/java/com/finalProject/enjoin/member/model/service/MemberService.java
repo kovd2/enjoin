@@ -1,6 +1,6 @@
 package com.finalProject.enjoin.member.model.service;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 import com.finalProject.enjoin.member.model.exception.LoginException;
 import com.finalProject.enjoin.member.model.vo.Member;
@@ -12,6 +12,10 @@ public interface MemberService {
 	int insertMember(Member m);
 
 	int insertCompany(Member m);
+
+	Member searchId(Member m);
+	
+	Member getPw(Map<String, Object> paramMap);
 
 
 

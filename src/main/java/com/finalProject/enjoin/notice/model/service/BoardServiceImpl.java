@@ -13,7 +13,8 @@ import com.finalProject.enjoin.notice.model.vo.Board;
 
 @Service
 public class BoardServiceImpl implements BoardService{
-
+	
+	//의존성 주입
 	@Autowired	
 	private BoardDao bd;
 	

@@ -22,6 +22,7 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.service.CrewService;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewComent;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.crew.model.vo.InCrew;
@@ -67,12 +68,7 @@ public class CrewController {
 		
 		return "crew/crewRecruitment";
 	}
-	//크루활동 게시판연결
-	@RequestMapping("crewActivityBoard.shw2")
-	public String showCrewActivityBoard() {
 
-		return "crew/crewActivityBoard";	
-	}
 	//다시돌려주기
 	
 	@RequestMapping("goCrew1.shw2")
@@ -104,7 +100,7 @@ public class CrewController {
 		return mv;
 	}
 	//크루 제목 , 작성자 검색
-	@RequestMapping("crewSearchList.sh2")
+	@RequestMapping("crewSearchList.shw2")
 	public ModelAndView crewSearchListBoard(ModelAndView mv,HttpServletRequest request) {
 		
 		String option = request.getParameter("option");
@@ -541,25 +537,279 @@ public class CrewController {
 				int crew_Count = Integer.parseInt(request.getParameter("crew_Count"));
 				String start_Date1 = request.getParameter("start_Date");
 				String board_Content = request.getParameter("board_Content");
-				String category_Name = request.getParameter("category_Name");
-				
-				
-				System.out.println("category_Name : " + category_Name);
 				
 				java.sql.Date start_Date = java.sql.Date.valueOf(start_Date1);
 				
+				//로그인 유저 넘버를 가져온다
+				int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+				
+				CrewActivityBoard cab  = new CrewActivityBoard();
+				
+				cab.setCrew_No(crew_No);
+				cab.setBoard_Title(board_Title);
+				cab.setCrew_Area(crew_Area);
+				cab.setCrew_Count(crew_Count);
+				cab.setStart_Date(start_Date);
+				cab.setBoard_Content(board_Content);
+				cab.setUser_No(userNo);
+				
+				//파일 루트 지정
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				//파일경로 저장
+				String filePath = root + "\\uploadFiles\\crew\\crewActivity";
+				
+				//크루활동 사진명 변경
+				
+			
+				//사진1
+				String originFileName = act_Name1.getOriginalFilename();
+				String ext = originFileName.substring(originFileName.lastIndexOf("."));
+				String changeName = CommonUtils.getRandomString();
+				long fileSize1 = act_Name1.getSize();
+				String fileSize = String.valueOf(fileSize1);
+				
+				//사진2
+				String originFileName1 = act_Name2.getOriginalFilename();
+				String ext1 = originFileName1.substring(originFileName1.lastIndexOf("."));
+				String changeName1 = CommonUtils.getRandomString();
+				long fileSize2 = act_Name2.getSize();
+				String fileSize3 = String.valueOf(fileSize2);
+				
+				//사진3
+				String originFileName2 = act_Name3.getOriginalFilename();
+				String ext3 = originFileName2.substring(originFileName2.lastIndexOf("."));
+				String changeName2 = CommonUtils.getRandomString();
+				long fileSize4 = act_Name3.getSize();
+				String fileSize5 = String.valueOf(fileSize4);
+				
+				//사진4
+				String originFileName3 = act_Name4.getOriginalFilename();
+				String ext4 = originFileName3.substring(originFileName3.lastIndexOf("."));
+				String changeName3 = CommonUtils.getRandomString();
+				long fileSize6 = act_Name4.getSize();
+				String fileSize7 = String.valueOf(fileSize6);
 				
 				
+				//크루 활동 사진을 담기위한 객체선언
+				Attachment at = new Attachment();
+			
+				String origin_FileNames = String.valueOf(originFileName);
+				String changeNameExt = changeName + ext;
 				
-		
-			
-				System.out.println("");
-			
-				System.out.println("일단 잘넘어오냐??");
-			
-		
-		
-		
+				at.setOrigin_Name(originFileName);
+				at.setFile_Ext(ext);
+				at.setUpload_Name(changeNameExt);
+				at.setFile_size(fileSize);
+				
+				//크루 활동 사진2
+				
+				Attachment at1 = new Attachment();
+				
+				String origin_FileNames1 = String.valueOf(originFileName1);
+				String changeNameExt1 = changeName1 + ext1;
+				
+				at1.setOrigin_Name(originFileName1);
+				at1.setFile_Ext(ext1);
+				at1.setUpload_Name(changeNameExt1);
+				at1.setFile_size(fileSize3);
+				
+				//크루 활동 사진3
+				
+				Attachment at3 = new Attachment();
+				
+				String origin_FileNames3 = String.valueOf(originFileName2);
+				String changeNameExt2 = changeName2 + ext3;
+				
+				at3.setOrigin_Name(originFileName2);
+				at3.setFile_Ext(ext3);
+				at3.setUpload_Name(changeNameExt2);
+				at3.setFile_size(fileSize5);
+				
+				//크루 활동 사진 4
+				
+				Attachment at4 = new Attachment();
+				
+				String origin_FileNames4 = String.valueOf(originFileName3);
+				String changeNameExt3 = changeName3 + ext4;
+				
+				at4.setOrigin_Name(originFileName2);
+				at4.setFile_Ext(ext4);
+				at4.setUpload_Name(changeNameExt3);
+				at4.setFile_size(fileSize7);
+				
+				
+				try {
+					//저장할 경로명에 바뀐 파일이름 + 확장자 추가해서 넣어줌
+					act_Name1.transferTo(new File(filePath + "\\" + changeName + ext));
+					act_Name2.transferTo(new File(filePath + "\\" + changeName1 + ext1));
+					act_Name3.transferTo(new File(filePath + "\\" + changeName2 + ext3));
+					act_Name4.transferTo(new File(filePath + "\\" + changeName3 + ext4));
+					
+					int result = cs.insertCrewActivity(cab,at,at1,at3,at4);
+					
+				} catch (Exception e) {
+					//실패할시 파일을 삭제
+					new File(filePath + "\\" + changeName + ext).delete();
+					new File(filePath + "\\" + changeName1 + ext1).delete();
+					new File(filePath + "\\" + changeName2 + ext3).delete();
+					new File(filePath + "\\" + changeName3 + ext4).delete();
+				}
+						
 		 	return "redirect:crewActivityBoard.shw2";
 		}
+		//크루활동 게시판연결
+		@RequestMapping("crewActivityBoard.shw2")
+		public ModelAndView showCrewActivityBoard(ModelAndView mv,HttpServletRequest request) {
+
+			List<CrewActivityBoard> list = cs.crewActivityBoardList();
+			
+			mv.setViewName("crew/crewActivityBoard");
+			mv.addObject("list", list);
+			
+			return mv;	
+		}
+		//크루활동게시판상세보기
+		@RequestMapping("crewActivityDetails.shw2")
+		public ModelAndView showCrewActivityDetails(ModelAndView mv,HttpServletRequest request) {
+			
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			int crew_No = Integer.parseInt(request.getParameter("crew_No"));
+			
+			
+			//상세내용 조회
+			List<CrewActivityBoard> list = cs.crewActivityBoardDetailList(board_No);
+			
+			//상새내용 사진 조회
+			List<Attachment> list1 = cs.crewActivityBoardDetailPhoto(board_No);
+			
+			//글쓴이 사진이랑 정보 나오게 조회
+			Attachment ac = cs.userPhotos(board_No);
+			
+			//크루이름이랑 사진 조회
+			Attachment ac1 = cs.crewPhotos(crew_No);
+			
+			int crew_Id = crew_No;
+			//크루원 리스트 보여주기
+			List<InCrew> list2 = cs.crewInCrewY(crew_Id);
+			
+			//댓글 리스트 불러오기
+			List<CrewComent> list3 = cs.crewComentSelect(board_No);
+			
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			
+			map.put("list", list);
+			map.put("list1", list1);
+			map.put("list2", list2);
+			map.put("list3", list3);
+			
+			
+			
+			
+			
+			
+			mv.setViewName("crew/crewActivityDetails");
+			mv.addObject("map", map);
+			mv.addObject("ac",ac);
+			mv.addObject("ac1",ac1);
+			
+			return mv;
+		}
+		//크루활동 댓글
+				@RequestMapping("crewComent1.shw2")
+				public ModelAndView crewComent1(ModelAndView mv,HttpServletRequest request) {
+					
+					//입력한 댓글내용, 대댓글체크,댓글번호 를 가져온다
+					String coment_Content = request.getParameter("coment_Content");
+					String checked = request.getParameter("checked11");
+					int board_No = Integer.parseInt(request.getParameter("board_No"));
+					int crew_Id  = Integer.parseInt(request.getParameter("crew_Id"));
+					String capy = request.getParameter("capy");
+					int crew_No = crew_Id;
+					
+					System.out.println("capy" + capy);
+					System.out.println("crew_Id" + crew_Id);
+							
+							
+					if(checked == null){
+						checked = capy;
+					}
+					
+					
+					//로그인 유저 넘버를 가져온다
+					int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+					
+					
+					CrewComent cc = new CrewComent();
+					
+					cc.setComent_Content(coment_Content);
+					cc.setBoard_No(board_No);
+					cc.setUser_No(userNo);
+					
+					InCrew ic = new InCrew();
+					
+					System.out.println("user_No :" + userNo);
+					System.out.println("crew_No 나오냐????? :" + crew_Id);
+					System.out.println("board_No :" + board_No);
+					
+					ic.setUser_No(userNo);
+					ic.setCrew_Id(crew_Id);
+					
+					int result =0;
+					
+					if(checked.equals("check")){
+						
+						int coment_No = Integer.parseInt(request.getParameter("coment_No"));
+						System.out.println("나옴??/");
+						//자식 댓글 작성
+						cc.setComent_No(coment_No);	
+						int result2 = cs.crewAddchildComent(cc);
+						
+					}else{
+						System.out.println("들어오긴하냐?");
+						//일반 댓글 작성
+						int result1 = cs.crewAddComent(cc);
+						
+					}
+					
+					//상세내용 조회
+					List<CrewActivityBoard> list = cs.crewActivityBoardDetailList(board_No);
+					
+					//상새내용 사진 조회
+					List<Attachment> list1 = cs.crewActivityBoardDetailPhoto(board_No);
+					
+					//글쓴이 사진이랑 정보 나오게 조회
+					Attachment ac = cs.userPhotos(board_No);
+					
+					//크루이름이랑 사진 조회
+					Attachment ac1 = cs.crewPhotos(crew_No);
+					
+					//크루원 리스트 보여주기
+					List<InCrew> list2 = cs.crewInCrewY(crew_Id);
+					
+					//댓글 리스트 불러오기
+					List<CrewComent> list3 = cs.crewComentSelect(board_No);
+					
+					
+					
+					
+				
+					HashMap<String,Object> map = new HashMap<String,Object>();
+					
+					map.put("list", list);
+					map.put("list1", list1);
+					map.put("list2", list2);
+					map.put("list3", list3);
+					
+					
+					
+					mv.setViewName("crew/crewActivityDetails");
+					mv.addObject("map", map);
+					mv.addObject("ac",ac);
+					mv.addObject("ac1",ac1);
+					
+					return mv;
+				}
+		
+		
 }

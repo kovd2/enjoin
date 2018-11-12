@@ -5,12 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/style/js/admin/adminPage.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/style/css/admin/adminPage.css">
 <title>Insert title here</title>
 <style>
 .content {
@@ -138,7 +132,7 @@ h2 {
 .fromArea::-webkit-scrollbar {display:none;}
 
 .fromArea1 {
-	width: 717px;
+	width: 736px;
     height: 638px;
     border-radius: 20px;
     border: 1px solid black;
@@ -213,13 +207,15 @@ h2 {
 .m7 {
 	font-size: 16px;
     font-weight: bold;
-    margin-left: 54px;
+    margin-left: 56px;
 }
-.m8{
-	font-weight: bold;
-    font-size: 16px;
-    margin-left: 24px;
+span.m8 {
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 14px;
 }
+
+
 
 .MemberAreas {
 	width: 540px;
@@ -399,7 +395,7 @@ hr {
 	margin: 0;
     line-height: 20px;
     font-size: 2px;
-    margin-left: 5px;
+    margin-left: 16px;
     float: left;
 }
 .mArea6A2{
@@ -422,25 +418,27 @@ hr {
 }
 .mArea8{
 	width: 75px;
+    margin-left: 18px;
     
 }
 .memberDate{
 	margin: 0;
     line-height: 20px;
     font-size: 2px;
-    margin-left: 0px;
+    margin-left: 12px;
 }
 .MemberAreas1{
 	width: 540px;
-    height: 20px;
+    height: 47px;
     margin-left: 0px;
     display: -webkit-box;
 }
 </style>
 </head>
 <body>
+
 	<!-- 여기부터  -->
-</script>
+	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrapper">
 		<div class="sidebar">
 			<div class="title">ENJOIN ADMIN</div>
