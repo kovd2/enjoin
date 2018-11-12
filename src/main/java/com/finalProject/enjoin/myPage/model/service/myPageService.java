@@ -8,7 +8,7 @@ import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.inCrew;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
 
@@ -18,7 +18,7 @@ public interface myPageService {
 	int updateMember(Member m, Attachment at);
 	
 	//회원 패스 조회
-	List<Pass> selectPass(int userNo);
+	int selectPass(int userNo);
 
 	//크루 게시판 조회
 	List<Board> crewBoardList(PageInfo pi, int crewId);
@@ -64,6 +64,9 @@ public interface myPageService {
 
 	//찜 목록 삭제
 	int deleteJJIM(HashMap<String, Object> hmap);
+
+	//크루원 조회
+	List<inCrew> selectCrewMember(HashMap<String, Object> hmap);
 
 
 }

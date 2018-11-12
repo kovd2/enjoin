@@ -8531,11 +8531,11 @@ body.register .subWrap {
 			$("#copNo").focus();
 			return false;
 		}
-		if(regCopEmail.test($("#copEmail").val())){
+		/* if(regCopEmail.test($("#copEmail").val())){
 			alert("전자세금계산서용 이메일 형식이 잘못되었어요.");
 			$("#copEmail").focus();
 			return false;
-		}
+		} */
 		if(!regPhone.test($("#phone").val())){
 			alert("휴대폰 번호 형식이 잘못되었어요.");
 			$("#phone").focus();

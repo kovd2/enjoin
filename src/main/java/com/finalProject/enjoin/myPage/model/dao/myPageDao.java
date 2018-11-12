@@ -10,7 +10,7 @@ import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.inCrew;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
 
@@ -20,7 +20,7 @@ public interface myPageDao {
 	int updateMember(Member m, Attachment at, SqlSessionTemplate sqlSession);
 	
 	//회원 패스 조회
-	List<Pass> selectPass(int userNo, SqlSessionTemplate sqlSession);
+	int selectPass(int userNo, SqlSessionTemplate sqlSession);
 
 	//크루 게시판 조회
 	List<Board> crewBoardList(PageInfo pi, int crewId, SqlSessionTemplate sqlSession);
@@ -66,5 +66,8 @@ public interface myPageDao {
 
 	//찜 목록 삭제
 	int deleteJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//크루원 조회
+	List<inCrew> selectCrewMember(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
 }

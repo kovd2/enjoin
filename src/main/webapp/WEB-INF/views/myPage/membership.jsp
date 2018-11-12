@@ -15,7 +15,7 @@
 }
 .rightContainer{
 	width:800px;
-	height:auto;
+	height:500px;
 	margin-top:100px;
 	display:inline-block;
 	border-left: solid 0.5px lightgray;
@@ -158,6 +158,13 @@
 	width:1100px;
 	height:auto;
 }
+.bmiArea{
+	margin-left:30px;
+}
+.MembershipOk{
+	margin-top:80px;
+	margin-bottom:80px;
+}
 </style>
 </head>
 <body>
@@ -179,64 +186,61 @@
 		<jsp:include page="../common/myPage/myPageLeft.jsp" />
 		<input type="hidden" value="a_index" id="ckPage">
 		<div class="rightContainer">
-			<b id="a_index" class="current" style="font-size:30px; color:black; text-indent:30px;"><i class="fa fa-clone"></i>  내멤버십</b>
-			<c:forEach var="pass" items="${pass }">
-				<c:set var="sum" value="${sum + pass.passCount }"/>		
-				<c:if test="${sum <= 0}">
-					<div class="notYetMembership">
-						<h4>필요한 만큼 결제하세요!!</h4>
-						<p>
-							<a href="/service/select/" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 신청하기</a>
-						</p>
-					</div>
-				</c:if>
-			</c:forEach>
-			
-			<div class="MembershipOk" align="center">
-				<h2>현재 보유 PASS권</h2>
-				<c:forEach var="pass" items="${ pass }">
-					<c:if test="${pass.passCount > 0}">
-						<c:set var="sum2" value="${sum2 + pass.passCount }"/>					
+			<b id="a_index" class="current" style="font-size:30px; color:black; text-indent:30px;"><i class="fa fa-clone"></i>  내멤버십</b>			
+				<c:set var="pass" value="${pass }"/>		
+					<c:if test="${pass <= 0}">
+						<div class="notYetMembership">
+							<h4>필요한 만큼 결제하세요!!</h4>
+							<p>
+								<a href="passPurchase.hh" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 신청하기</a>
+							</p>
+						</div>
 					</c:if>
-				</c:forEach>
-						<h3><c:out value="${ sum2 }"/> PASS</h3>
+					
+			<div class="MembershipOk" align="center">
+				<c:if test="${pass > 0}">
+					<h2>현재 보유 PASS권</h2>				
+						<h3><c:out value="${ pass }"/> PASS</h3>					
+				</c:if>
 			</div>
 			<hr>
-			<div style="height:65px;">
-				<h5 style="text-indent:30px;">멤버십 이용기간</h5>
+			
+			<div style="margin-left:30px;">
+				<h3><i class="fa fa-magic"></i>BMI측정</h3>
 			</div>
-			<br><br>
-			<div class="timeline longterm_timeline"> <!-- .lognterm_timeline -->
-                            <ul>
-                                <li class="m_step m_step_1" style="float:left; list-style:none; text-align:center;">
-                                    <h4>선택한 이용 시작일 <small class="date" id="s1"><b class="aq">2018.10.23</b>(화)</small></h4>
-                                    <span class="stressLine passedline"></span>
-                                    <span class="stressLine sl50 slRight"></span>
-                                    <span class="point"><i class="fa fa-credit-card"></i></span>
-                                    <div class="pointDesc">
-                                    <div class="arrow"></div>
-                                    <h5>첫결제</h5>
-                                    <strong class="price" id="price_first_pay">34,300 원</strong>
-                      <span class="hint">멤버십 이용요금
-                      </span>
-                        </div>
-                        </li>
 
-                        <li class="m_step m_step_3" style="float:right; list-style:none; text-align:center;">
-                            <h4>이용 종료일 <small class="date" id="s2"><b class="aq">11.22</b>(목)</small></h4>
-                            <span class="stressLine sl50 slLeft"></span>
-                            <span class="point"><i class="fa fa-circle-o"></i></span>
-                            <div class="pointDesc">
-                                <div class="arrow"></div>
-                                <h5>이용 종료</h5>
-                                <span class="hint">잔여 패스는 모두 소멸됩니다.<br>패스가 모두 소진 되면, 추가 이용 하실 수 없습니다.</span>
-                            </div>
-                        </li>
-                        </ul>
-                    </div>
+			<div class="bmiArea">
+				<!-- 키 : <input type="text" placeholder="키(cm)를 입력해 주세요." id="height">
+				몸무게 : <input type="text" placeholder="몸무게(kg)를 입력해 주세요." id="weight"> -->
+				<input type="button" value="BMI측정" onclick="bmiCalculator()">
+			</div>
 		</div>
 		</div>
 		<br><br><br><br><br><br>
+		<script>
+		function bmiCalculator() {     //bmi와 적정체중 계산 함수
+	        var height = Number(prompt('키(cm)를 입력해주세요'));   //키(cm)를 입력받음
+	        var height_m_conversion = height / 100;     //cm to m
+	        var weight = Number(prompt('무게(kg)를 입력해주세요'));  //무게를 입력받음
+	        var user_BMI = weight / (height_m_conversion * height_m_conversion);    //BMI 계산
+	        var user_BMI_decimal = Math.round(user_BMI * 10) / 10; //소수점 변환
+	        var healthy_weight = (height - 100) * 0.9;  //적정 체중 계산
+	        var bmi_output;     //리턴할 변수 선언
+	        if (user_BMI < 18.6) {      //케이스에 따라 선언한 변수에 안내문 대입
+	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 저체중이며 적정 체중은 " + healthy_weight + "kg 입니다.";
+	        } else if (user_BMI < 22.9) {
+	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 정상이며 적정 체중은 " + healthy_weight + "kg 입니다.";
+	        } else if (user_BMI < 24.9) {
+	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 과체중이며 적정 체중은 " + healthy_weight + "kg 입니다.";
+	        } else if (user_BMI < 30) {
+	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
+	        } else if (user_BMI >= 30) {
+	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 고도비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
+	        }
+	        return alert(bmi_output);       //리턴
+	    }
+	    bmi_calculator();       //함수 호출
+		</script>
 	
 </body>
 </html>

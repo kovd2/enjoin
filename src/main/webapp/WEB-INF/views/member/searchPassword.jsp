@@ -186,14 +186,13 @@ body.register .subWrap {
 						</h2>
 
 
-						<form class="memberForm findPWForm" name="frm"
-							action="/member/reset_pw/" method="post">
+						<form class="memberForm findPWForm" name="frm" action="searchPassword.me" method="get">
 							<div class="form-group">
 								<label>아이디</label>
 								<div class="floatlabel-wrapper" style="position: relative">
 									<label for="user_id" class="label-floatlabel  "
 										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디를
-										입력하세요</label><input name="user_id" id="user_id" value="" type="text"
+										입력하세요</label><input name="userId" id="user_id" value="" type="text"
 										class="form-control" placeholder="아이디를 입력하세요"
 										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 								</div>
@@ -204,7 +203,7 @@ body.register .subWrap {
 								<div class="floatlabel-wrapper" style="position: relative">
 									<label for="user_name" class="label-floatlabel  "
 										style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">가입하신
-										분의 이름을 입력하세요</label><input name="user_name" id="user_name" value=""
+										분의 이름을 입력하세요</label><input name="userName" id="user_name" value=""
 										type="text" class="form-control"
 										placeholder="가입하신 분의 이름을 입력하세요"
 										style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
@@ -228,7 +227,7 @@ body.register .subWrap {
 										<div class="floatlabel-wrapper" style="position: relative">
 											<label for="user_email" class="label-floatlabel  "
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">이메일
-												주소를 입력하세요</label><input name="user_email" id="user_email" value=""
+												주소를 입력하세요</label><input name="email" id="email" value=""
 												type="email" class="form-control"
 												placeholder="이메일 주소를 입력하세요"
 												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
@@ -248,7 +247,7 @@ body.register .subWrap {
 							<!-- /.tab-content -->
 
 							<div class="form-group submitLine">
-								<button type="button" onclick="chk_frm()" class="btn btn-signup">
+								<button type="submit" class="btn btn-signup">
 									<i class="fa fa-search"></i> 비밀번호를 찾아주세요!
 								</button>
 							</div>
@@ -258,11 +257,7 @@ body.register .subWrap {
 					<!-- /.memberBox -->
 				</div>
 				<!-- /.row -->
-				<div class="mb_footDeco">
-					<img class="tlx_symbol" src="/images/tlx_pass_symbol_alt.svg"
-						alt="">
 				</div>
-			</div>
 			<!-- /.memberWrap -->
 			<br> <br> <br> <br> <br> <br>
 
