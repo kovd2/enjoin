@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,9 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
 import com.finalProject.enjoin.informBoard.model.service.InformBoardService;
-import com.finalProject.enjoin.informBoard.model.vo.Coment;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
+import com.finalProject.enjoin.informBoard.model.vo.InformComent;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
 import com.finalProject.enjoin.informBoard.model.vo.Pagination;
 import com.finalProject.enjoin.member.model.vo.Member;
@@ -35,12 +34,8 @@ import com.finalProject.enjoin.member.model.vo.Member;
 @SessionAttributes("loginUser")
 @Controller
 public class InformBoardController {
-	
-
 	@Autowired
 	private InformBoardService ibs;
-	
-	
 	//공고 게시판 리스트조회
 	@RequestMapping("informBoard.kch2")
 	public ModelAndView informBoard(ModelAndView mv,HttpServletRequest request) throws BoardSelectListException {
@@ -57,10 +52,10 @@ public class InformBoardController {
 		mv.addObject("pi",pi);
 		mv.setViewName("informBoard/informBoard");
 		//System.out.println("controllerList:"+list);
-		list.get(0).get("ENROLL_DATE");
-		list.get(0).get("ATT_NO");
+		//list.get(0).get("ENROLL_DATE");
+		//list.get(0).get("ATT_NO");
 	//	System.out.println(list.get(0).get("ATT_NO"));
-//		System.out.println("DAO"+list.get(0).get("ENROLL_DATE"));
+		//System.out.println("DAO"+list.get(0).get("ENROLL_DATE"));
 		return mv;
 	}
 	@RequestMapping("informDetail.kch2")
@@ -77,13 +72,14 @@ public class InformBoardController {
 		try {
 			list=ibs.selectBoardDetail(ib);
 			mv.addObject("list",list);
-			System.out.println("controller:"+list);
+			//System.out.println("controller:"+list);
 			list2=ibs.selectFileDetail(ibf,ib);
 			mv.addObject("list2", list2);
-			System.out.println("list2:"+list2);
+			//System.out.println("list2:"+list2);
 			list3=ibs.selectMemberDetail(loginUser);
 			mv.addObject("list3", list3);
-			System.out.println("list3:"+list3);
+			//System.out.println("list3:"+list3);
+			
 			mv.setViewName("informBoard/informDetail");
 		} catch (BoardSelectOneException e) {
 			mv.addObject("msg",e.getMessage());
@@ -125,6 +121,7 @@ public class InformBoardController {
 		String noticeEnd = request.getParameter("noticeEnd");
 		String noticeStatus = request.getParameter("noticeStatus");
 		String categoryNo = request.getParameter("categoryNo");
+		System.out.println("categoryNo:"+categoryNo);
 		String noticeDaily = request.getParameter("noticeDaily");
 		String crewArea = request.getParameter("crewArea");
 
@@ -281,25 +278,58 @@ public class InformBoardController {
 		return "informBoard/informBoard";
 	}
 	
-	@RequestMapping("goComent.kch2")
-	public @ResponseBody Map<String, Object> enrollComent(
-		Coment c,HttpSession session,HttpServletRequest request,
-		@RequestParam String comentContent,
-		@RequestParam String userId,
-		@RequestParam int boardNo){
-		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-		System.out.println("comentCon:"+loginUser);
-		Map<String,Object> list = null;
+//	@RequestMapping("goComent.kch2")
+//	public @ResponseBody List<Map<String, Object>> enrollComent(
+//		InformComent ic,HttpSession session,HttpServletRequest request,
+//		@RequestParam (value="comentContent")String comentContent,
+//		@RequestParam (value="userNo")int userNo,
+//		@RequestParam (value="boardNo")int boardNo){
+//		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+//		System.out.println("comentCon:"+loginUser);
+//		System.out.println("booardNo:"+boardNo);
+//		ic.setBoardNo(boardNo);
+//		ic.setComentContent(comentContent);
+//		ic.setUserNo(userNo);
+//		List<Map<String,Object>> list = null;
+//		list = ibs.insertComent(ic);
+//		return list;
+//	}
+	
+	@RequestMapping(value="/goComent.kch2",method=RequestMethod.POST)
+	public @ResponseBody List<Map<String,Object>> insertComent(HttpServletRequest request,HttpSession session,InformComent ic,
+		@RequestParam(value="boardNo")int boardNo,
+		@RequestParam(value="userNo")int userNo,
+		@RequestParam(value="comentContent")String comentContent) {
 		
-		list.put("Coment", boardNo);
+		ic.setBoardNo(boardNo);
+		ic.setUserNo(userNo);
+		ic.setComentContent(comentContent);
+		
+		List<Map<String,Object>> map = null;
+		
+		map=ibs.insertComent(ic);
 		
 		
 		
-		return list;
-
+		
+		
+		
+		
+		return map;
+		
 	}
 	
 	
 	
 	
 }
+
+
+
+
+	
+	
+	
+	
+	
+

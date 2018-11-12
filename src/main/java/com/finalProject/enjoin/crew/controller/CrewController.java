@@ -100,7 +100,7 @@ public class CrewController {
 		return mv;
 	}
 	//크루 제목 , 작성자 검색
-	@RequestMapping("crewSearchList.sh2")
+	@RequestMapping("crewSearchList.shw2")
 	public ModelAndView crewSearchListBoard(ModelAndView mv,HttpServletRequest request) {
 		
 		String option = request.getParameter("option");

@@ -1,22 +1,23 @@
 package com.finalProject.enjoin.informBoard.model.vo;
 
-public class Coment {
+import java.sql.Date;
+
+public class InformComent {
 
 	private int comentNo;
 	private String comentContent;
-	private String comentDate;
-	private String comentModifyDate;
+	private Date comentDate;
+	private Date comentModifyDate;
 	private String comentStatus;
 	private int boardNo;
 	private int userNo;
 	private int parentComentNo;
 	
 	
-	public Coment() {}
-	
-	
+	public InformComent() {}
 
-	public Coment(int comentNo, String comentContent, String comentDate, String comentModifyDate, String comentStatus,
+
+	public InformComent(int comentNo, String comentContent, Date comentDate, Date comentModifyDate, String comentStatus,
 			int boardNo, int userNo, int parentComentNo) {
 		super();
 		this.comentNo = comentNo;
@@ -30,63 +31,74 @@ public class Coment {
 	}
 
 
-
 	public int getComentNo() {
 		return comentNo;
 	}
+
 
 	public void setComentNo(int comentNo) {
 		this.comentNo = comentNo;
 	}
 
+
 	public String getComentContent() {
 		return comentContent;
 	}
+
 
 	public void setComentContent(String comentContent) {
 		this.comentContent = comentContent;
 	}
 
-	public String getComentDate() {
+
+	public Date getComentDate() {
 		return comentDate;
 	}
 
-	public void setComentDate(String comentDate) {
+
+	public void setComentDate(Date comentDate) {
 		this.comentDate = comentDate;
 	}
 
-	public String getComentModifyDate() {
+
+	public Date getComentModifyDate() {
 		return comentModifyDate;
 	}
 
-	public void setComentModifyDate(String comentModifyDate) {
+
+	public void setComentModifyDate(Date comentModifyDate) {
 		this.comentModifyDate = comentModifyDate;
 	}
+
 
 	public String getComentStatus() {
 		return comentStatus;
 	}
 
+
 	public void setComentStatus(String comentStatus) {
 		this.comentStatus = comentStatus;
 	}
 
-	public int getBoardNo(int boardNo2) {
+
+	public int getBoardNo() {
 		return boardNo;
 	}
+
 
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
 
+
 	public int getUserNo() {
 		return userNo;
 	}
 
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-
 
 
 	public int getParentComentNo() {
@@ -94,27 +106,20 @@ public class Coment {
 	}
 
 
-
 	public void setParentComentNo(int parentComentNo) {
 		this.parentComentNo = parentComentNo;
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Coment [comentNo=" + comentNo + ", comentContent=" + comentContent + ", comentDate=" + comentDate
+		return "InformComent [comentNo=" + comentNo + ", comentContent=" + comentContent + ", comentDate=" + comentDate
 				+ ", comentModifyDate=" + comentModifyDate + ", comentStatus=" + comentStatus + ", boardNo=" + boardNo
 				+ ", userNo=" + userNo + ", parentComentNo=" + parentComentNo + "]";
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }

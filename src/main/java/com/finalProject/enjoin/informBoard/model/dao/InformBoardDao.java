@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
+import com.finalProject.enjoin.informBoard.model.vo.InformComent;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
@@ -29,8 +30,12 @@ public interface InformBoardDao {
 
 	Map<String, Object> selectMemberDetail(SqlSessionTemplate sqlSession, Member loginUser);
 
+	List<Map<String, Object>> insertComent(SqlSessionTemplate sqlSession, InformComent ic);
+
 	
 
+	
+	
 	
 
 	

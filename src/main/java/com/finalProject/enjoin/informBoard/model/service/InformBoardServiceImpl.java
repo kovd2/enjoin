@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.finalProject.enjoin.informBoard.model.dao.InformBoardDao;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
+import com.finalProject.enjoin.informBoard.model.vo.InformComent;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
@@ -57,8 +58,17 @@ public class InformBoardServiceImpl implements InformBoardService{
 		Map<String,Object> list = ibd.selectMemberDetail(sqlSession,loginUser);
 		return list;
 	}
+	@Override
+	public List<Map<String, Object>> insertComent(InformComent ic) {
+		
+		List<Map<String,Object>> map= ibd.insertComent(sqlSession,ic);
+		
+		
+		
+		return map;
+	}
 	
-
+	
 
 
 

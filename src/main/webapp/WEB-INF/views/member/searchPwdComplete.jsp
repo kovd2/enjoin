@@ -7532,7 +7532,6 @@ body.register .subWrap {
     height: 50px;
     border-radius: 4px;
 }
-
 </style>
 </head>
 <body class="register register1">
@@ -7553,24 +7552,20 @@ body.register .subWrap {
 					
 					<div class="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 memberBox loginBox">
 						<h2>
-							<span><b>회원님의 잃어버린 아이디는</b> <b style="color:red">${m.userId }</b> <b>입니다.</b></span> 
+							<span><b>회원님의 임시 비밀번호를</b> <b style="color:red">가입하신 이메일</b> <b>로 보내드렸어요.</b></span> 
 						</h2>
-						
+							<br>
+							<br>
 							<div class="form-group submitLine">
-								<button  class="btn btn-signup" onclick="login()" id="login">
+								<button  class="btn btn-signup" onclick="login()" id="login" >
 									<i class="fa fa-search"></i> 로그인하러 가기
 								</button>
-								<button  class="btn btn-signup" onclick="searchPassword()" id="searchId" style="float:right";>
-									<i class="fa fa-search"></i> 비밀번호 찾기
-								</button>
-								
+																
 								<script>
 								function login(){
 									location.href="memberLogin.me";
 								}
-								function searchPassword(){
-									location.href="searchPasswordform.me";
-								}
+								
 								</script>
 								
 							</div>
