@@ -57,4 +57,65 @@
 		AND STATUS = 'Y'
 		ORDER BY USER_NO ASC
 	</select>
+	<!-- 회원 번호로 회원 정보 조회  -->
+	<select id="userNoSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		AND USER_NO = #{userNo}
+		ORDER BY USER_NO ASC
+	</select>
+	<!-- 회원 아이디를 통한 회원 정보 조회  -->
+	<select id="userIdSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		AND USER_Id = #{userId}
+		ORDER BY USER_NO ASC
+	</select>
+	<!-- 회원 동일이름 리스트 갯수 -->
+	<select id="getMemberNameListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS= 'Y'
+		AND M.USER_TYPE = 1
+		AND M.USER_NAME = #{userName}
+	</select>
+	<!--회원 이름을 통한 정보 조회 -->
+	<select id="userNameSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		AND USER_Name = #{userName}
+		ORDER BY USER_NO ASC
+	</select>
+	<!--회원 전화번호를 통한 정보 조회  -->
+	<select id="userPhoneSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		AND PHONE = #{phone}
+		ORDER BY USER_NO ASC
+	</select>
+	<!--회원 이메일을 통한 정보 조회  -->
+	<select id="userEmailSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		AND EMAIL = #{email}
+		ORDER BY USER_NO ASC
+	</select>
+	<!-- 회원 블랙처리  -->
+	<select id="updateStatusMember">
+		UPDATE MEMBER 
+		SET STATUS = 'N',
+			MODIFY_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+	</select>
+	
 </mapper>
