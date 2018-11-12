@@ -10,10 +10,13 @@ public class Payment {
 	private String proofNo;
 	private int payType;
 	private int userNo;
+	private String refundNo;
+	private int passPlus;
 	
 	public Payment() {}
 
-	public Payment(int payNo, int price, Date payDate, String proofNo, int payType, int userNo) {
+	public Payment(int payNo, int price, Date payDate, String proofNo, int payType, int userNo, String refundNo,
+			int passPlus) {
 		super();
 		this.payNo = payNo;
 		this.price = price;
@@ -21,6 +24,8 @@ public class Payment {
 		this.proofNo = proofNo;
 		this.payType = payType;
 		this.userNo = userNo;
+		this.refundNo = refundNo;
+		this.passPlus = passPlus;
 	}
 
 	public int getPayNo() {
@@ -71,11 +76,27 @@ public class Payment {
 		this.userNo = userNo;
 	}
 
+	public String getRefundNo() {
+		return refundNo;
+	}
+
+	public void setRefundNo(String refundNo) {
+		this.refundNo = refundNo;
+	}
+
+	public int getPassPlus() {
+		return passPlus;
+	}
+
+	public void setPassPlus(int passPlus) {
+		this.passPlus = passPlus;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [payNo=" + payNo + ", price=" + price + ", payDate=" + payDate + ", proofNo=" + proofNo
-				+ ", payType=" + payType + ", userNo=" + userNo + "]";
+				+ ", payType=" + payType + ", userNo=" + userNo + ", refundNo=" + refundNo + ", passPlus=" + passPlus
+				+ "]";
 	}
-	
 	
 }

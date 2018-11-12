@@ -182,7 +182,7 @@ h5 {
 											<div class="input-group input-group-lg">
 											  <input type="text" class="form-control" value="${keyword}" placeholder="어떤 도움이 필요하세요?" name="keyword">
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="suwbmit">
+													<button class="btn btn-primary" type="submit">
 														<i class="fa fa-search"></i>
 													</button>
 												</span>
