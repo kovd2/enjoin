@@ -69,7 +69,7 @@ public class MyPageController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
-		String filePath = root + "\\uploadFiles\\myPage\\profil";
+		String filePath = root + "/uploadFiles/myPage/profil";
 		System.out.println("filePath : " + filePath);
 		String originFileName = photo.getOriginalFilename();
 		String ext = originFileName.substring(originFileName.lastIndexOf("."));
@@ -92,7 +92,7 @@ public class MyPageController {
 		System.out.println("Attatch : " + at);
 		
 		try {
-			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			photo.transferTo(new File(filePath + "/" + changeName + ext));
 
 			int result = 0;
 
@@ -102,7 +102,7 @@ public class MyPageController {
 			
 			return "redirect:changeInfo.ljs";
 		} catch (Exception e) {
-			new File(filePath + "\\" + changeName + ext).delete();
+			new File(filePath + "/" + changeName + ext).delete();
 			System.out.println(e.getMessage());
 			return "redirect:changeInfo.ljs";
 		}

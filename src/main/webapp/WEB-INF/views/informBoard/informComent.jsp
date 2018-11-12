@@ -1,0 +1,361 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>Insert title here</title>
+<style>
+.right {
+	width: 550px;
+	height: 800px;
+}
+
+.explanArea {
+	width: 550px;
+	height: 250px;
+	font-size: 24px;
+	margin-top: 30px;
+	overflow:scroll;
+	border-bottom:1px solid #eee;
+}
+
+.explan {
+	font-size: 20px;
+	margin-top: 20px;
+	line-height: initial;
+
+	
+}
+
+.miniDate {
+	width: 550px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.mDate {
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.miniDate {
+	width: 550px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.mDate {
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.mainContent {
+	width: 550px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 30px;
+}
+
+.mContent {
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.certiArea {
+	width: 550px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.certi {
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+.diaryArea {
+	width: 550px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.diary {
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.comentArea {
+	width: 550px;
+	height: 30px;
+	font-size: 24px;
+	display: -webkit-box;
+}
+
+.comentTop {
+	margin-left: 20px;
+	margin-top: 20px;
+	display: -webkit-box;
+}
+
+.coWrap {
+	 margin-left: 20px;
+    margin-top: 35px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.coImg {
+	width: 60px;
+	height: 60px;
+}
+
+.coImg>img {
+	width: 60px;
+	height: 60px;
+	/*  object-fit: cover; */
+	/* object-position: top; */
+	border-radius: 50%;
+}
+
+.coName {
+	width: 400px;
+	height: 60px;
+	border-bottom: 1px solid #eee;
+	font-size: 20px;
+	color: #ccc;
+	font-weight: bold;
+	padding: 20px;
+	font-weight: bold;
+}
+
+.coCount {
+	width: 100px;
+	height: 60px;
+	color: #333333;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#myco {
+	width: 400px;
+	height: 30px;
+	color: #333333;
+	font-size: 20px;
+	font-weight: bold;
+	border: 0px;
+	autocomplete:false;
+	
+}
+
+#en {
+	display: none;
+	width: 100px;
+	height: 30px;
+	background: #00bff0;
+	border-radius: 3px;
+	text-align: center;
+	font-weight: bold;
+	text-size: 20px;
+	border: 1px solid #00bff0;
+	margin-top: 20px;
+	margin-left: 280px;
+}
+
+#en:hover {
+	background: white;
+}
+
+.userInfo {
+	width: 200px;
+	height: 30px;
+	display: -webkit-box;
+	margin-left: 20px;
+}
+
+.userid {
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+	text-size: 20px;
+	border-right: 1px solid #eee;
+}
+
+.userdate {
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+	text-size: 20px;
+}
+
+.imgList {
+	width: 60px;
+	height: 60px;
+}
+
+.list1 {
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.imgList>img {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.userWrap {
+	display: -webkit-box;
+	/*  margin-left:30px; */
+}
+
+#comentContent {
+	    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 60px;
+    border-bottom: 1px solid #eee;
+    margin-right: 50px;
+    padding: 0px 20px 20px 20px;
+}
+
+</style>
+</head>
+<body>
+
+	 <div class="right">
+					
+					<div class="coWrap">
+
+						<div class="comentArea">
+							<i class="fa fa-music" style="font-size: 24px">댓글</i>
+							<div class="coCount">20개</div>
+						</div>
+					
+						<div class="comentTop">
+							<div class="coImg">
+								<%-- <img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}"> --%>
+							</div>
+							<div class="coName">
+							<!-- form action="goComent.kch2" method="POST"  autocomplete="off"> --> 
+								<input type="hidden"  value="${list.BOARD_NO }"id="boardNo" name="boardNo">
+								<input type="hidden" value="${list3.USER_NO}"id="userNo" name="userNo">
+								
+								<input type="text" id="myco"  name="comentContent" 
+									placeholder="공개적으로 댓글을 남길 아이디 " onclick="goEn()">
+								<button id="en"  onclick="enrollComent()">댓글</button>
+							<!-- </form> --> 
+							</div>
+
+						</div>
+						
+
+						
+						<div class="listcoTop">
+
+						
+							<div class="list1">
+								<div class="userWrap">
+									<div class="imgList">
+										<%-- <img src="${contextPath}/resources/uploadFiles/myPage/profil/"> --%>
+									</div>
+
+									<div class="userInfo">
+										<div class="userid">kch4361</div>
+										<div class="userdate">2018.10.21</div>
+									</div>
+								</div>
+								<div id="comentContent">댓글입니다.</div>
+							</div>
+						
+						</div>
+					</div>
+
+				</div> 
+				
+				<script>
+		function goEn() {
+			
+			var con = document.getElementById('en');
+			
+			if(con.style.display=='none'){
+				
+				con.style.display='block';
+			}else{
+				con.style.display='none';
+			}
+			
+		}
+	</script>
+	<script>
+	function enrollComent(){
+	
+			var comentContent=$('#myco').val();
+			var userNo=$('#userNo').val();
+			var boardNo=$('#boardNo').val();
+			$.ajax({
+				
+				url:"goComent.kch2",
+				type:"POST",
+				dataType:"json",
+				data:{comentContent:comentContent,
+						userNo:userNo,
+						boardNo:boardNo
+						},
+				success:function(data){
+					console.log(data);
+					$(".list1").empty();
+					for(var key in data){
+						console.log(data[key]);
+						console.log(data[key].COMENT_NO);
+	
+					 $div1=$("<div class='list1'>");
+					
+					$div2=$("<div class='userWrap'>");
+					$div3=$("<div class='imgList'>")
+					/* $div3.append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */
+					/* $('.list1').append($('.userWrap')); */
+					/* $('.imgList').append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
+					/* $('.list1').append($('.imgList')) */
+					$div4=$("<div class='userInfo'>");
+					$div5=$("<div class='userid'>"); 
+					/* $('.userInfo').append(data[key].USER_ID).append($('.userid')) */
+					$div5.append(data[key].USER_ID); 
+					$div4.append($div5); 
+					$div6=$("<div class='userdate'>"); 
+					/* $('.userdate').append(data[key].COMENT_DATE); */
+					$div4.append(data[key].COMENT_DATE);
+					$div4.append($div6); 
+					/* $('.comentContent').append(data[key].COMENT_CONTENT); */
+					 $div7=$("<div id='comentContent'>"); 
+					 $div7.append(data[key].COMENT_CONTENT); 
+					 $div2.append($div6);
+					 $div2.append($div4);
+					 
+					 $div1.append($div7); 
+					
+					/* $('.userWrap').append($('.userdate')); */
+					/* $('.list1').append($('.comentContent')); */
+					$('.listcoTop').append($div1); 
+					
+					}
+				},error:function(){
+					
+					console.log("에러닷!!");
+				}
+				
+			});
+		
+		
+	}
+	
+	</script>
+	
+</body>
+</html>
