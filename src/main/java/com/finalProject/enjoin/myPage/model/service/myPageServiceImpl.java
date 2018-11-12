@@ -15,7 +15,7 @@ import com.finalProject.enjoin.myPage.model.dao.myPageDao;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.inCrew;
 @Service
 public class myPageServiceImpl implements myPageService{
 	@Autowired
@@ -36,7 +36,7 @@ public class myPageServiceImpl implements myPageService{
 	
 	//회원 패스 조회
 	@Override
-	public List<Pass> selectPass(int userNo) {
+	public int selectPass(int userNo) {
 		
 		return mpd.selectPass(userNo, sqlSession);
 	}
@@ -149,6 +149,13 @@ public class myPageServiceImpl implements myPageService{
 	public int deleteJJIM(HashMap<String, Object> hmap) {
 		
 		return mpd.deleteJJIM(hmap, sqlSession);	
+	}
+
+	//크루원 조회
+	@Override
+	public List<inCrew> selectCrewMember(HashMap<String, Object> hmap) {
+		
+		return mpd.selectCrewMember(hmap, sqlSession);
 	}
 
 }

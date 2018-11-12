@@ -26,7 +26,7 @@ import com.finalProject.enjoin.myPage.model.vo.Crew;
 import com.finalProject.enjoin.myPage.model.vo.JJIM;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
-import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.inCrew;
 
 @Controller
 public class MyPageController {
@@ -39,12 +39,13 @@ public class MyPageController {
 	
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
-	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo, HttpServletRequest request) {	
+	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
 		
-		List<Pass> pass = mps.selectPass(userNo);
-		System.out.println("pass : " + pass);
+		int pass = mps.selectPass(userNo);
+		
 		mv.setViewName("myPage/membership");
 		mv.addObject("pass", pass);
+		
 		return mv;
 	}
 	
@@ -123,8 +124,10 @@ public class MyPageController {
 			mv.addObject("jjim", jjim);
 		
 			return mv;
+			
 		}else {
 			mv.setViewName("myPage/wantPlace");
+			mv.addObject("jjim", jjim);
 			
 			return mv;
 		}
@@ -200,14 +203,7 @@ public class MyPageController {
 		return mv;
 		
 	}
-	
-	//기업관리 페이지 이동
-	@RequestMapping("Enterprise.ljs")
-	public String Enterprise() {
-		
-		return "myPage/enterprise";
-	}
-	
+
 	//시설이용내역 페이지 이동
 	@RequestMapping("enterpriseUseHistory.ljs")
 	public String enterpriseUseHistory() {
@@ -255,7 +251,7 @@ public class MyPageController {
 	public ModelAndView crewBoardDetail(@RequestParam("boardNo") int boardNo, ModelAndView mv) {
 		System.out.println("boardNo : " + boardNo);
 		Board b = mps.crewBoardDetail(boardNo);
-		
+		System.out.println("b:" + b);
 		int rCount = 0;
 		
 		int result = mps.updateBoardCount(boardNo);
@@ -332,7 +328,7 @@ public class MyPageController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
-		String filePath = root + "\\uploadFiles\\myPage\\board";
+		String filePath = root + "/uploadFiles/myPage/board";
 		System.out.println("filePath : " + filePath);
 		String originFileName = attachment.getOriginalFilename();
 		String ext = originFileName.substring(originFileName.lastIndexOf("."));
@@ -360,7 +356,7 @@ public class MyPageController {
 		hmap.put("at", at);
 		
 		try {
-			attachment.transferTo(new File(filePath + "\\" + changeName + ext));
+			attachment.transferTo(new File(filePath + "/" + changeName + ext));
 			
 			int result = 0;
 			result = mps.insertCrewBoard(hmap);
@@ -372,7 +368,7 @@ public class MyPageController {
 			
 			
 		} catch (Exception e) {
-			new File(filePath + "\\" + changeName + ext).delete();
+			new File(filePath + "/" + changeName + ext).delete();
 			System.out.println(e.getMessage());
 			mv.setViewName("redirect:goCrewBoardForm.ljs");
 			return mv;
@@ -397,6 +393,25 @@ public class MyPageController {
 		
 		mv.setViewName("redirect:crewBoardDetail.ljs");
 		mv.addObject("boardNo", boardNo);
+		return mv;
+	}
+	
+	@RequestMapping("selectCrewMember.ljs")
+	public ModelAndView selectCrewMember(@RequestParam("crewId") int crewId, @RequestParam("userNo") int userNo, ModelAndView mv, HashMap<String, Object> hmap) {
+
+		System.out.println("crewId : " + crewId);
+		System.out.println("userNo : " + userNo);
+		
+		hmap.put("crewId", crewId);
+		hmap.put("userNo", userNo);
+		
+		List<inCrew> increwMember = mps.selectCrewMember(hmap);
+		System.out.println("increwMember : " + increwMember);
+		hmap.put("increwMember", increwMember);
+		
+		mv.setViewName("myPage/crewMemberModal");
+		mv.addObject("hmap", hmap);
+		
 		return mv;
 	}
 }

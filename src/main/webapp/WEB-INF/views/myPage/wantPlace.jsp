@@ -9,7 +9,7 @@
 <style>
 .rightContainer {
 	width: 800px;
-	height: auto;
+	height: 800px;
 	margin-top: 100px;
 	display: inline-block;
 	border-left: solid 0.5px lightgray;
@@ -214,45 +214,44 @@
 				class="fa fa-heart-o"></i> 가보고 싶은 시설</b> <br>
 			<br>
 			<div class="favoriteCenterList">
-				<ul class="row">
-					<c:forEach var="j" items="${ jjim }">
-					<li class="col col-sm-6 col-md-4 col-lg-3">
-					<a href="/center/detail/fc06008" class="favoriteCenter">
+					<c:if test="${ jjim == '[]' }">
+						<ul class="row">
+							<li class="col-sm-12">
+								<div class="fCempty">
+									등록한 시설이 없습니다.<br> 마음에 드는 시설을 가보고 싶은 시설로 등록하세요!<br>
+								</div>
+							</li>
+						</ul>
+					</c:if>
+					<c:if test="${ jjim != '[]' }">
+					<c:forEach var="j" items="${ jjim }">					
+						<ul class="row">
+							<li class="col col-sm-6 col-md-4 col-lg-3">
+								<a href="/center/detail/fc06008" class="favoriteCenter">
 
-							<div class="responsibleImgBox">
-								<img class="centerThumb" src="resources/uploadFiles/facility/${ j.uploadName }">
-							</div>
-							<h4>${ j.facilityName }</h4>
+									<div class="responsibleImgBox">
+										<img class="centerThumb"
+											src="resources/uploadFiles/facility/${ j.uploadName }">
+									</div>
+									<h4>${ j.facilityName }</h4>
 
-							<p>${ j.facilityAddress }</p> <small class="events"><span>${ j.facilityEvent }</span></small>
+									<p>${ j.facilityAddress }</p> <small class="events"><span>${ j.facilityEvent }</span></small>
 
-							<!-- 하나의 버튼에.... 상태에 따라 on off 를 붙입니다 -->
+									<!-- 하나의 버튼에.... 상태에 따라 on off 를 붙입니다 -->
 
-					</a>
-						<button id="bookmark_action-btn_fc06008"
-							class="btn btn-default btn_favorite on"
-							onclick="deleteJJIM(${ j.userNo },${ j.facilityNo })">
-							<i class="fa fa-heart"></i>
-						</button>
-						<div class="favoriteAlertMsg"></div></li>
+							</a>
+								<button id="bookmark_action-btn_fc06008" class="btn btn-default btn_favorite on" onclick="deleteJJIM(${ j.userNo },${ j.facilityNo })">
+									<i class="fa fa-heart"></i>
+								</button>
+								<div class="favoriteAlertMsg"></div></li>
+						</ul>
 					</c:forEach>
-
-				</ul>
-
-				<nav>
-					<ul class="pagination">
-						<li class="page-item active"><a class="page-link"
-							style="cursor: pointer" onclick="move('favorite_center','1')">1</a>
-						</li>
-					</ul>
-				</nav>
-
-
+					</c:if>
+				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-	<br><br><br><br><br>
+	<br><br><br>
 	
 	<script>
 		function deleteJJIM(userNo, facilityNo){
