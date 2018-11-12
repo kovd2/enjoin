@@ -89,22 +89,22 @@
 	<!-- 사진 등록  -->
 	<insert id="insertAttachment1" parameterType="Company">
 		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
-		VALUES(SEQ_ATT_NO.NEXTVAL,0,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{facilityNo})
+		VALUES(SEQ_ATT_NO.NEXTVAL,0,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,SEQ_FACILITY_NO.NEXTVAL)
 	</insert>
 
 	<insert id="insertAttachment2" parameterType="Company">
 		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
-		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{facilityNo})
+		VALUES(SEQ_ATT_NO.NEXTVAL,1,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,SEQ_FACILITY_NO.NEXTVAL)
 	</insert>
 
 	<insert id="insertAttachment3" parameterType="Company">
 		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
-		VALUES(SEQ_ATT_NO.NEXTVAL,2,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{facilityNo})
+		VALUES(SEQ_ATT_NO.NEXTVAL,2,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,SEQ_FACILITY_NO.NEXTVAL)
 	</insert>
 	
 	<insert id="insertAttachment4" parameterType="Company">
 		INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE,FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO) 
-		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,#{facilityNo})
+		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,SEQ_FACILITY_NO.NEXTVAL)
 	</insert>
 	
 	<!-- 제휴시설 리스트 보기용 쿼리 -->

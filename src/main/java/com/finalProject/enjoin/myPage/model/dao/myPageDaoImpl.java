@@ -14,7 +14,7 @@ import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.Board;
 import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
-import com.finalProject.enjoin.myPage.model.vo.Pass;
+import com.finalProject.enjoin.myPage.model.vo.inCrew;
 @Repository
 public class myPageDaoImpl implements myPageDao{
 
@@ -52,9 +52,9 @@ public class myPageDaoImpl implements myPageDao{
 
 	//회원 패스 조회
 	@Override
-	public List<Pass> selectPass(int userNo, SqlSessionTemplate sqlSession) {
+	public int selectPass(int userNo, SqlSessionTemplate sqlSession) {
 		
-		return sqlSession.selectList("myPage.selectPass", userNo);
+		return sqlSession.selectOne("myPage.selectPass", userNo);
 	}
 
 	//크루 게시판 조회
@@ -175,6 +175,13 @@ public class myPageDaoImpl implements myPageDao{
 	public int deleteJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.delete("myPage.deleteJJIM", hmap);
+	}
+
+	//크루원 조회
+	@Override
+	public List<inCrew> selectCrewMember(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectCrewMember", hmap);
 	}
 
 

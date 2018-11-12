@@ -8,7 +8,7 @@
 <style>
 .rightContainer {
 	width: 800px;
-	height: auto;
+	height: 500px;
 	margin-top: 100px;
 	display: inline-block;
 	border-left: solid 0.5px lightgray;

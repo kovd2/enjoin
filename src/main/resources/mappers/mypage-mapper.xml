@@ -75,6 +75,7 @@
 		<id property="increwNo" column="INCREW_NO"/>
 		<result property="crewId" column="CREW_ID"/>
 		<result property="userNo" column="USER_NO"/>
+		<result property="userId" column="USER_ID"/>
 		<result property="requestDate" column="REQUEST_DATE"/>
 		<result property="startDate" column="START_DATE"/>
 		<result property="endDate" column="END_DATE"/>
@@ -200,13 +201,14 @@
 	</select>
 	
 	<!-- 크루 게시판 상세보기 -->
-	<select id="crewBoardDetail" resultMap="boardResultSet" parameterType="_int">
+	<select id="crewBoardDetail" resultMap="boardResultSet" parameterType="mpBoard"> 
 		<!-- SELECT * FROM BOARD B
-		JOIN MEMBER M ON(B.USER_NO = M.USER_NO)
+		JOIN MEMBER M USING (USER_NO)
 		LEFT JOIN COMENT C ON(B.BOARD_NO = C.BOARD_NO)
         LEFT JOIN ATTACHMENT A ON(A.REF_NO = B.BOARD_NO)
 		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
+		AND B.BOARD_TYPE = '크루게시판'
 		ORDER BY C.COMENT_DATE DESC -->
 		SELECT * FROM COMENT C
 		JOIN MEMBER M USING (USER_NO)
@@ -214,6 +216,7 @@
         LEFT JOIN ATTACHMENT A ON(A.REF_NO = B.BOARD_NO)
 		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
+		AND B.BOARD_TYPE = '크루게시판'
 		ORDER BY C.COMENT_DATE DESC
 	</select>
 	
@@ -239,17 +242,20 @@
 	<select id="selectWriteComent" resultMap="comentResultSet">
 		SELECT C.COMENT_NO, C.COMENT_CONTENT, C.COMENT_DATE, B.BOARD_TYPE, B.BOARD_TITLE
 		FROM COMENT C
-		LEFT JOIN BOARD B ON (B.BOARD_NO = C.COMENT_NO)
+		LEFT JOIN BOARD B ON (B.BOARD_NO = C.BOARD_NO)
 		WHERE C.USER_NO =  #{userNo}
 	</select>
 	
 	<!-- 패스 수량 & 수정일 조회 쿼리 -->
-	<select id="selectPass" resultMap="passResultSet">
-		SELECT PASS_COUNT, PASS_MODIFYDATE
+	<select id="selectPass" resultType="_int">
+		<!-- SELECT PASS_COUNT, PASS_MODIFYDATE
 		FROM PASS
 		WHERE USER_NO = (SELECT USER_NO
 						 FROM MEMBER
-						 WHERE USER_NO = #{userNo})
+						 WHERE USER_NO = #{userNo}) -->
+		SELECT SUM(PASS_COUNT)
+		FROM PASS
+		WHERE USER_NO = #{userNo}
 	</select>
 	
 	<!-- 크루 목록 조회 -->
@@ -267,14 +273,7 @@
 	
 	<!-- 가입된 크루 목록 조회 -->
 	<select id="selectInCrewList" resultMap="acceptCrewResultSet">
-		<!-- SELECT CREW_NAME, CREW_ID
-		FROM CREW C
-		JOIN INCREW IC USING(CREW_ID)
-		WHERE IC.USER_NO = (SELECT USER_NO
-                   		 	FROM MEMBER
-                   	 		WHERE USER_NO = #{userNo})
-        AND INCREW_STATUS = 'Y' -->
-        SELECT CREW_NAME, CREW_ID, USER_ID
+        <!-- SELECT CREW_NAME, CREW_ID, USER_ID
 		FROM CREW C
 		JOIN INCREW IC USING(CREW_ID)
         JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
@@ -282,7 +281,17 @@
                    		 	FROM MEMBER
                    	 		WHERE USER_NO = #{userNo})
         AND INCREW_STATUS = 'Y'
-        ORDER BY CREW_ID DESC
+        ORDER BY CREW_ID ASC -->
+        SELECT *
+		FROM BOARD B
+		LEFT JOIN (SELECT * 
+				   FROM ATTACHMENT
+				   WHERE FILE_TYPE = '4'
+				   AND FILE_NO = 0) A ON (B.BOARD_NO = A.REF_NO)
+		JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
+		WHERE B.USER_NO = #{userNo}
+		AND BOARD_TYPE = '크루모집'
+		ORDER BY CREW_ID ASC
 	</select>
 	
 	<!-- 가입 승인 대기 목록 조회 쿼리 -->
@@ -326,6 +335,7 @@
 		LEFT JOIN ATTACHMENT A ON (A.REF_NO = F.FACILITY_NO)
 		WHERE J.USER_NO = #{userNo}
 		AND A.FILE_NO = 0
+		AND A.FILE_TYPE = '6'
 	</select>
 	
 	<!-- 찜 목록 삭제 쿼리 -->
@@ -336,7 +346,24 @@
 		AND FACILITY_NO = #{facilityNo}
 	</delete>
 	
-	
+	<!-- 크루원 조회 -->
+	<select id="selectCrewMember" parameterType="hashmap" resultMap="inCrewResultSet">
+		SELECT M.USER_ID, CM.CREW_ID, CM.USER_NO, CM.CREW_NAME, CM.UPLOAD_NAME
+		FROM MEMBER M
+		JOIN (SELECT IC.CREW_ID, IC.USER_NO, C.CREW_NAME, BA.UPLOAD_NAME
+     		  FROM INCREW IC
+      		  JOIN CREW C ON (IC.CREW_ID = C.CREW_ID)
+      		  JOIN (SELECT B.USER_NO, B.BOARD_NO, B.CREW_NO, A.UPLOAD_NAME, A.REF_NO
+            		FROM BOARD B
+            		LEFT JOIN (SELECT UPLOAD_NAME, REF_NO
+                       		   FROM ATTACHMENT 
+                       		   WHERE FILE_TYPE = '4'
+                       		   AND FILE_NO = 0) A ON (B.BOARD_NO = A.REF_NO)
+                    JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
+                    WHERE B.USER_NO = #{userNo}
+                    AND BOARD_TYPE = '크루모집' ) BA ON (BA.CREW_NO = C.CREW_ID)) CM ON (M.USER_NO = CM.USER_NO)
+		WHERE CM.CREW_ID = #{crewId}
+	</select>
 </mapper>
 	
 	

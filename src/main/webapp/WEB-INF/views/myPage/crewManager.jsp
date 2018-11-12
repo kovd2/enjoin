@@ -71,10 +71,10 @@
 	height: 100px;
 	font-size: 30px;
 	text-align: center;
-	top: 75px;
+	top: 90px;
 	font-weight: bold;
 	position: absolute;
-	left: 0;
+	left: -15px;
 }
 
 .joinCrewManger {
@@ -204,8 +204,7 @@
 				<h3>생성된 크루</h3>
 				<!-- 크루 리스트 반복-->
 				<c:forEach var="c" items="${ crewList }">
-					<div class="crewList" data-toggle="modal" data-target="#myModal"
-						align="center" onclick="">
+					<div class="crewList" data-toggle="modal" data-target="#myModal" align="center" onclick="selectCrewMember(${c.crew_Id},${c.user_No});">
 						<img src="resources/uploadFiles/crew/crewRecruitment/${ c.upload_Name }" class="crewLogo">
 						<div class="crewName">${ c.crew_Name }</div>
 						<br>
@@ -217,7 +216,12 @@
 				<div class="joinCrew">
 					<h3>가입한 크루<small>(게시판)</small></h3>
 					<c:forEach var="ic" items="${ inCrewList }">
-						<div class="joinCrewList" onclick="goCrewBoardList(${ ic.crew_Id });">
+					<div class="crewList" onclick="goCrewBoardList(${ ic.crew_Id });">
+						<img src="resources/uploadFiles/crew/crewRecruitment/${ ic.upload_Name }" class="crewLogo">
+						<div class="crewName">${ ic.crew_Name }</div>
+						<br>
+					</div>
+						<%-- <div class="joinCrewList" onclick="goCrewBoardList(${ ic.crew_Id });">
 							<div style="width: 190px; height: 190px;">
 								<div class="joinCrewName">${ ic.crew_Name }</div>
 								<br>
@@ -229,67 +233,16 @@
 								</table>
 								
 							</div>
-						</div>
+						</div> --%>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" style="margin: 95px auto;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">크루 이름</h4>
-					</div>
-					<div class="modal-body" style="height: 350px;">
-						<div class="modal-left">
-							<div class="crewImg">
-								<img src="" style="width: 200px; height: 200px;">
-							</div>
-						</div>
-						<div class="modal-right">
-							<table>
-								<tr class="title">
-									<td><input type="checkBox"></td>
-									<td style="width: 30px;">번호</td>
-									<td style="width: 100px;">크루원</td>
-									<td></td>
-									<td><input type="checkBox"></td>
-									<td style="width: 30px;">번호</td>
-									<td style="width: 100px;">크루원</td>
-								</tr>
-
-								<%
-									for (int i = 0; i < 10; i++) {
-								%>
-								<tr>
-									<td><input type="checkBox"></td>
-									<td>1</td>
-									<td>크루원ID</td>
-									<td></td>
-									<td><input type="checkBox"></td>
-									<td>1</td>
-									<td>크루원ID</td>
-								</tr>
-								<%
-									}
-								%>
-							</table>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">나기기</button>
-						<button type="button" class="btn btn-primary"
-							style="background: #68A4C4;">추방</button>
-					</div>
-				</div>
-			</div>
+		
+		<div id="myModal1"><!-- 모달 영역 -->
+		
 		</div>
+		
 
 	</div>
 	<br>
@@ -300,11 +253,21 @@
 
 	<script>
 		//	모달
-		$('#myModal').click('shown.bs.modal', function() {
+		
+		function selectCrewMember(crew_Id, userNo){
 			$.ajax({
+				url:"selectCrewMember.ljs",
 				type:"post",
-			})
-		});
+				data:{crewId:crew_Id,
+					  userNo:userNo},
+				success:function(data){
+					$('#myModal1').append(data);
+				},
+				error:function(){
+					console.log("에러");
+				}
+			});
+		}
 		
 		//크루게시판 이동
 		function goCrewBoardList(crewId){

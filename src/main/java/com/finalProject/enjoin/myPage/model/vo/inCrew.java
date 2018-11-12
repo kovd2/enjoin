@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class inCrew implements Serializable{
 	private int userNo;
+	private String userId;
 	private int crewId;
 	private Date requestDate;
 	private Date startDate;
@@ -16,10 +17,11 @@ public class inCrew implements Serializable{
 	
 	public inCrew() {}
 
-	public inCrew(int userNo, int crewId, Date requestDate, Date startDate, Date endDate, String inCrewStatus,
-			int increwNo, String crewName, String uploadName) {
+	public inCrew(int userNo, String userId, int crewId, Date requestDate, Date startDate, Date endDate,
+			String inCrewStatus, int increwNo, String crewName, String uploadName) {
 		super();
 		this.userNo = userNo;
+		this.userId = userId;
 		this.crewId = crewId;
 		this.requestDate = requestDate;
 		this.startDate = startDate;
@@ -36,6 +38,14 @@ public class inCrew implements Serializable{
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getCrewId() {
@@ -104,9 +114,9 @@ public class inCrew implements Serializable{
 
 	@Override
 	public String toString() {
-		return "inCrew [userNo=" + userNo + ", crewId=" + crewId + ", requestDate=" + requestDate + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", inCrewStatus=" + inCrewStatus + ", increwNo=" + increwNo
-				+ ", crewName=" + crewName + ", uploadName=" + uploadName + "]";
+		return "inCrew [userNo=" + userNo + ", userId=" + userId + ", crewId=" + crewId + ", requestDate=" + requestDate
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", inCrewStatus=" + inCrewStatus + ", increwNo="
+				+ increwNo + ", crewName=" + crewName + ", uploadName=" + uploadName + "]";
 	}
 
 	
