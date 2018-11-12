@@ -187,7 +187,7 @@ nav{
 	
 }
 #notice{
-	width: 170px;
+	width: 190px;
 	height: 50px;
 	font-weight: bold;
 	font-size: 20px;
@@ -216,13 +216,14 @@ nav{
 	<c:if test="${ !empty loginUser }">
 	<jsp:include page="../common/menubar.jsp"/>
 	
-			
+	
 			<div class="wrap">
 			<div class="top">
 	
+			
 			<div class="realImg">
 			<div class="imgArea">
-			<img src="resources/images/informBoard/fitness.jpg">
+			<img src="${contextPath}/resources/images/informBoard/cross.jpg">
 			</div>
 			<div class="realTitle"> 
 				<div class="title">
@@ -245,6 +246,7 @@ nav{
 			
 			</div>
 			</div>
+			
 
 			
 		<!-- resultMap은 컬럼명 resultType은 브이오 -->
@@ -255,11 +257,12 @@ nav{
 				<div class="boardList">
 				
 				
-				<c:forEach var="item" items="${list}">
+				<c:forEach var="item" items="${list}" varStatus="status"> 
 				<div class="listWrap">
 				<div class="list" onclick="goDetail(${item.BOARD_NO},${item.ATT_NO})">
-				<img src="${contextPath}resources/images/informBoard/${item.UPLOAD_NAME}">
-				
+				<%-- <c:if test="${status.index eq 0}"> --%>
+				<img src="${contextPath}/resources/uploadFiles/informBoard/${item.UPLOAD_NAME}">
+				<%-- </c:if> --%>
 					<div class="listContent">
 					-시작일자<fmt:formatDate value="${item.NOTICE_START}" pattern="yyyy-MM-dd"/><br>
 					
@@ -269,40 +272,40 @@ nav{
 					
 					-지역:${item.CREW_AREA}<br>
 					
-					-차감패스:${item.PASS_COUNT }패스
+					-차감패스:${item.PASS_COUNT}패스
 					
 					<div></div>
 					
 					<div class="category">
-					
-					<c:if test="${item.CATEGORY_NO==0}">
-						런닝
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==1} ">
+					<c:choose>
+					<c:when test="${item.CATEGORY_NO==0}">
+        			런닝	
+  				  </c:when>
+					<c:when test="${item.CATEGORY_NO==1}">
 						수영
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==2} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==2}">
 						필라테스
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==3}">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==3}">
 						격투기
-					</c:if>
-					
-					<c:if test="${item.CATEGORY_NO==4} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==4}">
 						댄스
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==5} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==5}">
 						요가
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==6} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==6}">
 						헬스
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==7} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==7}">
 						크로스핏
-					</c:if>
-					<c:if test="${item.CATEGORY_NO==8} ">
+					</c:when>
+					<c:when test="${item.CATEGORY_NO==8}">
 						기타
-					</c:if>
+					</c:when>
+					</c:choose>
 			
 					</div>
 					<div class="status">모집중</div>
@@ -311,7 +314,7 @@ nav{
 				</div>
 					
 				</div>
-			 </c:forEach>
+			   </c:forEach> 
 				</div>
 				
 			

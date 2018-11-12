@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectListException;
 import com.finalProject.enjoin.informBoard.model.exception.BoardSelectOneException;
+import com.finalProject.enjoin.informBoard.model.vo.InformComent;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles;
 import com.finalProject.enjoin.informBoard.model.vo.PageInfo;
@@ -22,6 +23,7 @@ public class InformBoardDaoImpl implements InformBoardDao {
 	public int insertInform(SqlSessionTemplate sqlSession, InformBoard ib, ArrayList<InformBoardFiles> fileList) {
 		int result = 0;
 		result = sqlSession.insert("InformBoard.insertInformBoard", ib);
+		System.out.println("비교ib"+ib);
 		if (result > 0) {
 			int Board_no = sqlSession.selectOne("InformBoard.selectBoardNo");
 			System.out.println(Board_no);
@@ -48,7 +50,7 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		// 스프링이알아서 로우바운즈쓴데이
 		list = sqlSession.selectList("InformBoard.selectBoardList", null, rowBounds);
-//		System.out.println("DAO:" + list);
+	System.out.println("DAO:" + list);
 		return list;
 	}
 	@Override
@@ -83,6 +85,24 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		Map<String,Object> list = sqlSession.selectOne("InformBoard.selectMemberDetail",loginUser);
 		return list;
 	}
+	@Override
+	public List<Map<String, Object>> insertComent(SqlSessionTemplate sqlSession, InformComent ic) {
+		
+		int result = 0;
+		result = sqlSession.insert("InformBoard.insertComent",ic);
+		List<Map<String,Object>> map = null;
+		
+		if (result>0) {
+			
+			map=sqlSession.selectList("InformBoard.selectComent",ic);
+			
+		}
+		
+		return map;
+		
+	}
+	
+	
 
 
 }

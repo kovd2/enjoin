@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -180,7 +181,7 @@ img {
 	width: 550px;
 	height: 50px;
 	font-size: 24px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .mContent {
@@ -351,7 +352,7 @@ img {
 </head>
 <body>
 
-
+<c:if test="${ !empty loginUser }">
 	<jsp:include page="../common/menubar.jsp" />
 
 
@@ -360,7 +361,7 @@ img {
 
 			<div class="main">
 				<div class="imgArea">
-					<img src="${contextPath}/resources/images/informBoard/${list2.UPLOAD_NAME}">
+					<img src="${contextPath}/resources/uploadFiles/informBoard/${list2.UPLOAD_NAME}">
 				</div>
 
 
@@ -386,7 +387,7 @@ img {
 
 				<div id="btn">
 					<button type="button" class="btn btn-success" id="enroll">
-						<i class="fa fa-handshake-o"></i>크루신청하기
+						<i class="fa fa-handshake-o"></i>공고신청하기
 					</button>
 					<button type="button" class="btn btn-warning" id="list">
 						<i class="fa fa-laptop"></i>신청현황
@@ -399,8 +400,8 @@ img {
 
 				<div class="left">
 					<div class="explanArea">
-					
-					<c:if test="${list.CATEGORY_NO==0}">
+					<c:choose>
+					<c:when test="${list.CATEGORY_NO==0}">
 					<b>enjoin런닝?</b>
 					<div class="explan">
 							
@@ -416,8 +417,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==1} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==1}">
 					<b>enjoin수영?</b>
 					<div class="explan">
 							
@@ -433,8 +434,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==2} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==2}">
 						<b>enjoin필라테스?</b>
 						<div class="explan">
 							
@@ -450,8 +451,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==3}">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==3}">
 						<b>enjoin격투기?</b>
 						<div class="explan">
 							
@@ -467,9 +468,9 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
+					</c:when>
 					
-					<c:if test="${list.CATEGORY_NO==4} ">
+					<c:when test="${list.CATEGORY_NO==4}">
 						<b>enjoin댄스?</b>
 						<div class="explan">
 							
@@ -485,8 +486,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==5} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==5}">
 						<b>enjoin요가?</b>
 						<div class="explan">
 							
@@ -502,8 +503,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==6} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==6}">
 						<b>enjoin헬스?</b>
 						<div class="explan">
 							
@@ -519,8 +520,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==7} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==7}">
 						<b>enjoin크로스핏?</b>
 						<div class="explan">
 							
@@ -536,8 +537,8 @@ img {
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 
 						</div>
-					</c:if>
-					<c:if test="${list.CATEGORY_NO==8} ">
+					</c:when>
+					<c:when test="${list.CATEGORY_NO==8}">
 						<b>enjoin기타?</b>
 						<div class="explan">
 							Enjoin에서 제안하는 크루공고는 혼자서 하는 운동들을 크루를 결성하여 외롭고 힘들지 않게 운동을 즐길수
@@ -550,8 +551,8 @@ img {
 							균형감각, 정확성, 파워, 스태미너, 속도가 들어간다.<br> 덧붙여 이 10가지를 능력을 배양하기 위한
 							방법으로 "지속적이고 다양한 고강도 기능성운동"을 주문하고 있다.<br>
 						</div>
-					</c:if>
-						
+					</c:when>
+					</c:choose>
 						
 						
 				
@@ -592,166 +593,125 @@ img {
 					</div>
 					<br>
 					<hr>
-
-
-
-
 				</div>
-				<div class="right">
-
+				
+				
+				
+			<jsp:include page="../informBoard/informComent.jsp" />
+			<%-- 	 <div class="right">
+					
 					<div class="coWrap">
 
 						<div class="comentArea">
 							<i class="fa fa-music" style="font-size: 24px">댓글</i>
 							<div class="coCount">20개</div>
 						</div>
-
+					
 						<div class="comentTop">
 							<div class="coImg">
-								<img src="resources/images/informBoard/runInfom.png">
+								<img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}">
 							</div>
-
+							<form action="goComent.kch2" method="POST">
 							<div class="coName">
-								<input type="hidden" value="${list.BOARD_NO}" id="boardNo">
-								<input type="hidden" value="${list3.USER_NO}" id="userId">
+								<input type="hidden" value="${list.BOARD_NO}" id="boardNo" name="boardNo">
+								<input type="hidden" value="${list3.USER_NO}" id="userNo" name="userNo">
 								
-								<input type="text" id="myco" name="comentContent"
-									placeholder="공개적으로 댓글을 남길 아이디 kch4361" onclick="goEn()">
-								<button id="en" onclick="goComent">댓글</button>
+								<input type="text" id="myco"  name="comentContent"
+									placeholder="공개적으로 댓글을 남길 아이디 ${list3.USER_ID}" onclick="goEn()">
+								<button id="en" type="submit" >댓글</button>
 							</div>
+							</form>
 
 						</div>
+						
 
-						<div class="listcoTop">
-
-							<div class="list1">
-								<div class="userWrap">
-									<div class="imgList">
-										<img src="resources/images/informBoard/pila.png">
-									</div>
-
-									<div class="userInfo">
-										<div class="userid">kch4612</div>
-										<div class="userdate">18.10.29</div>
-									</div>
-								</div>
-								<div id="comentContent">할리슨데예!!!!!</div>
-
-
-							</div>
-
-
-
-						</div>
-						<div class="listcoTop">
-
-							<div class="list1">
-								<div class="userWrap">
-									<div class="imgList">
-										<img src="resources/images/informBoard/pila.png">
-									</div>
-
-									<div class="userInfo">
-										<div class="userid">kch4612</div>
-										<div class="userdate">18.10.29</div>
-									</div>
-								</div>
-								<div id="comentContent">할리슨데예!!!!!</div>
-							</div>
-
-
-
-						</div>
-						<div class="listcoTop">
-
-							<div class="list1">
-								<div class="userWrap">
-									<div class="imgList">
-										<img src="resources/images/informBoard/pila.png">
-									</div>
-
-									<div class="userInfo">
-										<div class="userid">kch4612</div>
-										<div class="userdate">18.10.29</div>
-									</div>
-								</div>
-								<div id="comentContent">할리슨데예!!!!!</div>
-							</div>
-						</div>
 						
 						<div class="listcoTop">
 
+						
 							<div class="list1">
 								<div class="userWrap">
 									<div class="imgList">
-										<img src="resources/images/informBoard/pila.png">
+										<img src="${contextPath}/resources/uploadFiles/myPage/profil/${cList.UPLOAD_NAME}">
 									</div>
 
 									<div class="userInfo">
-										<div class="userid">kch4612</div>
-										<div class="userdate">18.10.29</div>
+										<div class="userid">kch4361</div>
+										<div class="userdate">2018.10.21</div>
 									</div>
 								</div>
-								<div id="comentContent">할리슨데예!!!!!</div>
+								<div id="comentContent">댓글입니다.</div>
 							</div>
-						</div>
 						
+						</div>
 					</div>
 
-				</div>
+				</div>  --%>
+				
+				
 			</div>
+	<jsp:include page="../common/footer.jsp"/>
+	
 
 		</div>
 	</div>
+	</c:if>
 
 
 
-	<script>
-		function goEn() {
-			
-			var con = document.getElementById('en');
-			
-			if(con.style.display=='none'){
-				
-				con.style.display='block';
-			}else{
-				con.style.display='none';
-			}
-
-		}
-	</script>
 	
-	<script>
-	function goComent(){
-		var comentContent=$('#myco').val();
-		var userId=$('#userId').val();
-		var boardNo=$('#boardNo').val();
-		$.ajax({
-			
-			url:"goComent.kch2",
-			type:"post",
-			data:{comentContent:comentContent,
-					userId:userid,
-					boardNo:boardNo
-					},
-			success:function(data){
-				console.log(data);
-				alert(data);
-			},error:function(){
+	
+	<!--  <script>
+	$(document).ready(function(){
+		$("#en").click(function(){
+			var comentContent=$('#myco').val();
+			var userNo=$('#userNo').val();
+			var boardNo=$('#boardNo').val();
+			$.ajax({
 				
-				console.log("에러닷!!");
-			}
-			
+				url:"goComent.kch2",
+				type:"POST",
+				dataType:"json",
+				data:{comentContent:comentContent,
+						userNo:userNo,
+						boardNo:boardNo
+						},
+				success:function(data){
+					console.log(data);
+					alert(JSON.stringify(data));
+					var result = JSON.stringify(data);
+					$(".list1").empty();
+					for(var i=0; i<result.length; i++){
+					$div1=$("<div class='list1'>");
+					$div2=$("<div class='userWrap'>");
+					$div3=$("<div class='imgList'>")
+					$div3.append("<img src=${contextPath}/resources/myPage/profil/'result[i].UPLOAD_NAME'>");
+					$div1.append($div2);
+					$div1.append($div3);
+					$div4=$("<div class='userInfo'>");
+					$div5=$("<div class='userid'>");
+					$div5.append('result[i].USER_ID');
+					$div4.append($div5);
+					$div6=$("<div class='userdate'>");
+					$div4.append('result.COMENT_DATE');
+					$div4.append($div6);
+					$div7=$("<div id='comentContent'>");
+					$div7.append('result.COMENT_CONTENT');
+					$div2.append($div6);
+					$div1.append($div7);
+					}
+				},error:function(){
+					
+					console.log("에러닷!!");
+				}
+				
+			});
 		});
 		
-		
-	}
-	
-	
-	
+	});
 	
 	</script>
-
+  -->
 
 
 

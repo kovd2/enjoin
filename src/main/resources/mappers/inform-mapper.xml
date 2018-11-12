@@ -13,7 +13,7 @@
   		<result property="informBoardTitle" column="BOARD_TITLE"/>
   		<result property="informBoardContent" column="BOARD_CONTENT"/>
   		<result property="informEnrollDate" column="ENROLL_DATE"/>
-  		<result property="infromModifyDate" column="MODIFY_DATE"/>
+  		<result property="informModifyDate" column="MODIFY_DATE"/>
   		<result property="informPassCount" column="PASS_COUNT"/>
   		<result property="noticeMax" column="NOTICE_MAX"/>
   		<result property="noticeMin" column="NOTICE_MIN"/>
@@ -64,6 +64,21 @@
 		<result property="copEmail" column="COP_EMAIL"/>
 		<result property="upload_name" column="UPLOAD_NAME"/>
 	</resultMap>
+	
+	<resultMap type="com.finalProject.enjoin.informBoard.model.vo.InformComent" id="comentResultSet">
+		<id property="comentNo" column="COMENT_NO"/>
+		<result property="comentContent" column="COMENT_CONTENT"/>
+		<result property="comentDate" column="COMENT_DATE"/>
+		<result property="comentModifyDate" column="COMENT_MODIFYDATE"/>
+		<result property="comentStatus" column="COMENT_STATUS"/>
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="parentComentNo" column="PARENT_COMENT_NO"/>
+		
+		
+	</resultMap>
+	
+	
 
 
 	
@@ -74,7 +89,7 @@
 	NOTICE_DAILY,CREW_AREA)
 	VALUES(board_no.NEXTVAL,'공고',#{informBoardTitle},#{informBoardContent},SYSDATE,
 	#{informPassCount},#{noticeMax},#{noticeMin},to_date(#{noticeRequest}),
-	to_date(#{noticeEnd}),to_date(#{noticeStart}),0,#{categoryNo},#{noticeDaily},#{crewArea})
+	to_date(#{noticeEnd}),to_date(#{noticeStart}),'Y',#{categoryNo},#{noticeDaily},#{crewArea})
 	</insert>
 	
 	<select id="selectBoardNo" resultType="_int" parameterType="_int">
@@ -107,7 +122,7 @@
     A.FILE_DATE,A.FILE_TYPE,A.REF_NO
     FROM BOARD B
     JOIN ATTACHMENT A ON  B.BOARD_NO = A.REF_NO
-    WHERE B.BOARD_TYPE='공고' AND A.FILE_NO=1
+    WHERE B.BOARD_TYPE='공고' AND A.FILE_NO=1 ORDER BY B.BOARD_NO DESC
 	</select>
 	
 	<select id="selectBoardDetail" resultType="map" parameterType="InformBoard">
@@ -117,9 +132,28 @@
 	<select id="selectFileDetail" resultType="map" parameterType="InformBoardFiles">
 	SELECT *FROM ATTACHMENT WHERE REF_NO=#{refNo} AND FILE_TYPE=#{fileType} AND FILE_NO=#{fileNo}
 	</select>
+	
 	<select id="selectMemberDetail" resultType="map" parameterType="Member">
-	SELECT *FROM MEMBER WHERE USER_NO=#{userNo}
+	SELECT *FROM MEMBER
+    JOIN ATTACHMENT A ON(USER_NO=A.REF_NO)
+    WHERE USER_NO=1
+    AND FILE_NO=0
 	</select>
+	
+	<insert id="insertComent" parameterType="InformComent">
+	 INSERT INTO COMENT (COMENT_NO,COMENT_CONTENT,COMENT_DATE,COMENT_STATUS,BOARD_NO,USER_NO)
+    VALUES(SEQ_COMENT_NO.NEXTVAL,#{comentContent},SYSDATE,'Y',#{boardNo},#{userNo})
+	</insert>
+	<select id="selectComent" resultType="map" parameterType="InformComent">
+	SELECT C.COMENT_NO,C.COMENT_CONTENT,C.COMENT_DATE,C.BOARD_NO,M.USER_ID,A.UPLOAD_NAME
+    FROM COMENT C
+    JOIN MEMBER M ON(M.USER_NO=C.USER_NO)
+    JOIN ATTACHMENT A ON (C.USER_NO=A.REF_NO)
+    WHERE C.BOARD_NO=#{boardNo}
+    AND A.FILE_TYPE=3
+    ORDER BY COMENT_DATE DESC
+	</select>
+	
 	
 	
 </mapper>
