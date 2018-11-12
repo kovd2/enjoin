@@ -33,5 +33,6 @@
 		<mapper resource="mappers/crew-mapper.xml"/>
 		<mapper resource="mappers/crew-mapper.xml"/>
 		<mapper resource="mappers/inform-mapper.xml"/>
+		<mapper resource="mappers/admin-mapper.xml"/>
 	</mappers>
 </configuration>

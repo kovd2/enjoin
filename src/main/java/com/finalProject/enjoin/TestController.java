@@ -84,7 +84,7 @@ public class TestController {
 	public String showAdminMember(){
 		
 		
-		return "admin/adminMember";
+		return "admin/adminMemberTable";
 	}
 	//관리자페이지 결제정보
 	@RequestMapping("adminPay")
