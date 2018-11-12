@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Payment">
+   <!-- 결제 -->
+   <resultMap type="Payment" id="paymentResultSet">
+   		<id property="payNo" column="PAY_NO"/>
+   		<result property="price" column="PRICE"/>
+   		<result property="payDate" column="PAY_DATE"/>
+   		<result property="proofNo" column="PROOF_NO"/>
+   		<result property="payType" column="PAY_TYPE"/>
+   		<result property="userNo" column="USER_NO"/>
+   		<result property="refundNo" column="REFUND_NO"/>
+   </resultMap>
+   
+   <!-- 패스이력 -->
+   <resultMap type="Passrecord" id="passRecordResultSet">
+      <id property="ppStatus" column="PP_STATUS"/>
+      <result property="ppDate" column="PP_DATE"/>
+      <result property="ppCount" column="PP_COUNT"/>
+      <result property="payNo" column="PAY_NO"/>
+   </resultMap>
+   
+   <!-- 패스 -->
+   <resultMap type="Pass" id="passResultSet">
+      <id property="passNo" column="PASS_NO"/>
+      <result property="userNo" column="USER_NO"/>
+      <result property="passCount" column="PASS_COUNT"/>
+      <result property="passModifyDate" column="PASS_MODIFYDATE"/>
+   </resultMap>
+   
+	<!-- 결제 내역 등록 -->
+	<insert id="insertPayment" parameterType="Payment">
+		INSERT INTO PAYMENT
+		VALUES(SEQ_PAY_NO.NEXTVAL, #{price}, SYSDATE, #{proofNo}, '0', #{refundNo}, '7', #{userNo})
+		<selectKey keyProperty="payNo" resultType="_int" order="AFTER">
+		SELECT SEQ_PAY_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 패스 이력 등록 -->
+	<insert id="insertPassrecord" parameterType="Payment">
+		
+		MERGE INTO
+			PASSRECORD  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PP_COUNT = PP_COUNT + '7' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo})
+				
+		<!-- INSERT INTO PASSRECORD(PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+		VALUES(SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo}) -->
+	</insert>
+      
+   <!-- 패스 등록 -->
+	<insert id="insertPass" parameterType="Pass">
+	
+		MERGE INTO
+			PASS  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PASS_COUNT = PASS_COUNT + '7' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (USER_NO, PASS_COUNT, PASS_MODIFYDATE, PASS_NO)
+				VALUES (#{userNo}, '7', SYSDATE, SEQ_PASS_NO.NEXTVAL)	
+	
+	
+		<!-- INSERT INTO PASS
+		VALUES(#{userNo}, '7', SYSDATE, SEQ_PASS_NO.NEXTVAL) -->
+	</insert>
+	
+	<!-- 결제 갯수  조회-->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PAYMENT
+	</select>
+	
+	<!-- 결제 내역 목록 조회 -->
+	<select id="listAll" resultType="map">
+		SELECT PM.USER_NO, PM.PAY_NO, M.USER_ID, PM.PAY_DATE, PM.PROOF_NO, PM.PRICE, PM.PASS_PLUS, PM.PAY_TYPE, PM.REFUND_NO
+		FROM PAYMENT PM
+		JOIN MEMBER M ON(PM.USER_NO = M.USER_NO)
+	</select>
+	
+
+</mapper>
