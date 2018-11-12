@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	.Area {
@@ -203,7 +205,8 @@ span.m8 {
 
 .searchBtn {
 	width: 60px;
-	height: 30px;
+    height: 30px;
+    margin-right: 30px;
 }
 
 /* 페이징 버튼  */
@@ -265,7 +268,12 @@ hr {
 	background:#54d4f5;
 }
 /* 여기까지  */
-
+.selectBox1 {
+    width: 106px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 60px;
+}
 
 /* 기업검색  */
 
@@ -336,6 +344,20 @@ hr {
 
 </style>
 </head>
+<script>
+	function goStatus(userNo,userId){
+		var userNo = userNo;
+		var userId = userId;
+		
+		if(confirm(userId + "를 블랙처리 하시겠습니까?") == true){
+			location.href="statusMember.shw?userNo=" + userNo;
+			alert("블랙 처리 완료!");
+		}else{
+			return;
+		}
+	}
+
+</script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	
@@ -362,7 +384,7 @@ hr {
 							<tr>
 								<td colspan="6">
 									<c:forEach var="m" items="${map.list}" varStatus="status">
-									<div class="MemberAreas">
+									<div class="MemberAreas" onclick="goStatus(${m.userNo},'${m.userId}')">
 										<div class="mArea">
 											<span class="memberNum">${m.userNo}</span>
 										</div>
@@ -387,21 +409,25 @@ hr {
 								</td>
 							</tr>
 							<!-- 여기까지  -->
-							<tr>
-								<td colspan="3">
-									<div class="searchArea1">
-										<select class="selectBox">
-											<option>번호</option>
-											<option>회원아이디</option>
-											<option>이름</option>
-											<option>연락처</option>
-											<option>이메일</option>
-											<option>가입날짜</option>
-										</select> <input type="text" class="searchBar1">
-										<button class="searchBtn">검색</button>
-									</div>
-								</td>
-							</tr>
+							<form action="memberSearchList.shw" method="get">
+								<table>
+									<tr>
+										<td colspan="3">
+											<div class="searchArea1">
+												<select class="selectBox1" name="option">
+													<option>번호</option>
+													<option>회원아이디</option>
+													<option>이름</option>
+													<option>연락처</option>
+													<option>이메일</option>
+													
+												</select> <input type="text" class="searchBar1" name="searchList">
+												<button type="submit" class="searchBtn">검색</button>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</form>
 									<div class="paginBtn1">
 										<div class="pagination1">
 											<ul class="pagination">
@@ -501,68 +527,71 @@ hr {
 							<!-- 여기까지  --> 
 							
 							
-							<tr>
-								<td colspan="3">
-									<div class="searchArea1">
-										<select class="selectBox">
-											<option>상호명</option>
-											<option>아이디</option>
-											<option>전화번호</option>
-											<option>등록번호</option>
-											<option>이메일</option>
-											<option>주소</option>
-											<option>결제이메일</option>
-											<option>가입날짜</option>
-										</select> <input type="text" class="searchBar1">
-										<button class="searchBtn">검색</button>
-									</div>
-								</td>
-							</tr>
-									<div class="paginBtn1">
-										<div class="pagination1">
-											<nav>
-							<ul class="pagination">
-								<c:if test="${ pi.currentPage <= 1 }">
-									<li><a>이전</a></li>
-								</c:if>
-								<c:if test="${ pi.currentPage > 1 }">
-									<c:url var="listBack" value="crewRecruitmentBoard.shw2">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
-									
-									</c:url>
-									<li><a href="${ listBack }">이전</a></li>
-								</c:if>
-
-								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-									<c:if test="${ p eq pi.currentPage }">
-										<li class="active"><a>${ p }</a></li>
-									</c:if>
-									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
-											<c:param name="currentPage" value="${ p }" />
-										</c:url>
-										<li><a href="${ listCheck }">${ p }</a></li>
-									</c:if>
-								</c:forEach>
-
-								<c:if test="${ pi.currentPage >= pi.maxPage }">
-									<li><a>다음</a></li>
-								</c:if>
-								<c:if test="${ pi.currentPage < pi.maxPage }">
-									<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
-										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
-					
-									</c:url>
-									<li><a href="${ listEnd }">다음</a></li>
-								</c:if>
-							</ul>
-						</nav>
-										</div>
-									</div>
-							</tabel>
+									<tr>
+										<td colspan="3">
+											<form action="companyMemberSearchList.shw" method="get">
+												<table align="center">
+													<tr>
+														<td>
+															<div class="searchArea1">
+																<select class="selectBox" name="option">
+																	<option>상호명</option>
+																	<option>아이디</option>
+																	<option>등록번호</option>
+																	<option>이메일</option>
+																</select> <input type="text" class="searchBar1" name="searchList">
+																<button type="submit" class="searchBtn">검색</button>
+															</div>
+														</td>
+													</tr>
+												</table>	
+											</form>		
+										</td>
+									</tr>
+											<div class="paginBtn1">
+												<div class="pagination1">
+													<nav>
+									<ul class="pagination">
+										<c:if test="${ pi1.currentPage <= 1 }">
+											<li><a>이전</a></li>
+										</c:if>
+										<c:if test="${ pi1.currentPage > 1 }">
+											<c:url var="listBack" value="crewRecruitmentBoard.shw2">
+												<c:param name="currentPage" value="${ pi1.currentPage - 1 }" />
+											
+											</c:url>
+											<li><a href="${ listBack }">이전</a></li>
+										</c:if>
+		
+										<c:forEach var="p" begin="${ pi1.startPage }" end="${ pi1.endPage }">
+											<c:if test="${ p eq pi1.currentPage }">
+												<li class="active"><a>${ p }</a></li>
+											</c:if>
+											<c:if test="${ p ne pi1.currentPage }">
+												<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
+													<c:param name="currentPage" value="${ p }" />
+												</c:url>
+												<li><a href="${ listCheck }">${ p }</a></li>
+											</c:if>
+										</c:forEach>
+		
+										<c:if test="${ pi1.currentPage >= pi1.maxPage }">
+											<li><a>다음</a></li>
+										</c:if>
+										<c:if test="${ pi1.currentPage < pi1.maxPage }">
+											<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
+												<c:param name="currentPage" value="${ pi1.currentPage + 1 }" />
+							
+											</c:url>
+											<li><a href="${ listEnd }">다음</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 						</div>
-					</div>
+					</tabel>
 				</div>
-			
+			</div>
+		</div>
 </body>
 </html>
