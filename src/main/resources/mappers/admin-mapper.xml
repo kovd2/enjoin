@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Admin">
+	<resultMap type="com.finalProject.enjoin.member.model.vo.Member" id="memberResultSet">
+		<!-- PRIMARY KEY -->
+		<id property="userNo" column="USER_NO"/>
+		<!-- 컬럼 -->
+		<result property="userType" column="USER_TYPE"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>	
+		<result property="managerName" column="MANAGER_NAME"/>
+		<result property="managerPhone" column="MANAGER_PHONE"/>
+		<result property="managerEmail" column="MANAGER_EMAIL"/>
+		<result property="copNo" column="COP_NO"/>
+		<result property="ceoName" column="CEO_NAME"/>
+		<result property="copName" column="COP_NAME"/>
+		<result property="copAddress" column="COP_ADDRESS"/>
+		<result property="copType" column="COP_TYPE"/>
+		<result property="copCon" column="COP_CON"/>
+		<result property="copEmail" column="COP_EMAIL"/>
+		<result property="upload_name" column="UPLOAD_NAME"/>
+	</resultMap>
+	
+	<!-- 일반 회원수 조회  -->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS= 'Y'
+		AND M.USER_TYPE = 1
+	</select>
+	<!-- 일반 회원 정보 리스트 조회 -->
+	<select id="memberSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'Y'
+		ORDER BY USER_NO ASC
+	</select>
+	<!-- 기업 회원수 조회  -->
+	<select id="getListCount1" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS = 'Y'
+		AND M.USER_TYPE = 2
+	</select>
+	<!-- 기업 회원 정보 리스트 조회  -->
+	<select id="companyMemberSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'Y'
+		ORDER BY USER_NO ASC
+	</select>
+</mapper>
