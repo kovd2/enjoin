@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	.Area {
@@ -26,12 +24,13 @@
     border-radius: 20px;
     border: 1px solid black;
     background: white;
-   	overflow-y: overlay;
+    overflow-y: overlay;
+    margin-left: 60px;
 }
 .fromArea::-webkit-scrollbar {display:none;}
 
 .fromArea1 {
-	width: 740px;
+	width: 520px;
     height: 638px;
     border-radius: 20px;
     border: 1px solid black;
@@ -45,7 +44,7 @@
     height: 638px;
     border-radius: 20px;
     background: white;
-    margin-left: 10px;
+    margin-left: 80px;
     margin-top: 50px;
 }
 
@@ -134,30 +133,28 @@ span.m8 {
 
 .userId {
 	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
-	margin-right: 19px;
+    line-height: 20px;
+    font-size: 8px;
 }
 
 .userName {
 	margin: 0;
     line-height: 20px;
     font-size: 9px;
-    margin-left: -22px;
+    margin-left: -12px;
 }
 
 .phone {
 	margin: 0;
     line-height: 11px;
     font-size: 11px;
-    margin-left: -5px;
+    margin-left: 14px;
 }
 
 .email {
 	margin: 0;
-    line-height: 20px;
-    margin-left: 10px;
-    font-size: 8px;
+	line-height: 20px;
+	font-size: 8px;
 }
 
 .memberName {
@@ -168,15 +165,16 @@ span.m8 {
 }
 
 .mArea {
-	width: 57px;
+	width: 85px;
 }
 
 .mArea2 {
-	width: 95px;
+	width: 93px;
+    margin-left: -2px;
 }
 
 .mArea3 {
-	width: 68px;
+	width: 56px;
 }
 
 .mArea4 {
@@ -195,6 +193,7 @@ span.m8 {
 	width: 106px;
     height: 30px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .searchBar1 {
@@ -280,14 +279,15 @@ hr {
 
 .m4A2{
 	font-size: 16px;
-    margin-right: 7px;
+    margin-right: 17px;
     font-weight: bold;
+    margin-left: 16px;
 }
 .m5A2{
 	font-size: 16px;
     margin-right: 25px;
     font-weight: bold;
-    margin-left: 0px;
+    margin-left: 16px;
 }
 .m6A2{
 	font-size: 16px;
@@ -304,16 +304,16 @@ hr {
     line-height: 20px;
     font-size: 2px;
     margin-left: 16px;
+    margin-top: 1px;
     float: left;
 }
 .mArea6A2{
-	width: 99px;
+	width: 39px;
     height: 38px;
-    margin-left: -15px;
+    margin-left: 27px;
 }
 .mArea7A2{
 	width: 126px;
-    margin-left: 17px;
 
 }
 .email1{
@@ -324,11 +324,13 @@ hr {
     margin-left: 10px;
 }
 .mArea5A2{
-	width: 140px;
+	width: 90px;
+    margin-left: 29px;
+    margin-top: 3px;
 }
 .mArea8{
 	width: 75px;
-    
+    margin-left: 18px;
     
 }
 .memberDate{
@@ -338,33 +340,34 @@ hr {
     margin-left: 12px;
 }
 .MemberAreas1{
-	width: 740px;
+	width: 520px;
     height: 47px;
     margin-left: 0px;
     display: -webkit-box;
 }
 
 </style>
+
 </head>
 <script>
-	function goStatus(userNo,userId){
-		var userNo = userNo;
-		var userId = userId;
+	function StatusCrew(crew_Id,crew_Name){
+		var crew_Id = crew_Id;
+		var crew_Name = crew_Name;
 		
-		if(confirm(userId + "를 블랙처리 하시겠습니까?") == true){
-			location.href="statusMember.shw?userNo=" + userNo;
-			alert("블랙 처리 완료!");
+		if(confirm(crew_Name + " 크루를 블랙처리 시키겠습니까?") == true){
+			location.href="statusBlackCrew.shw?crew_Id=" + crew_Id; 
+			alert("처리 완료!");
 		}else{
 			return;
 		}
 	}
-	function copStatusMember(userNo,userId){
-		var userNo = userNo;
-		var userId = userId;
+	function StatusCrewY(crew_Id,crew_Name){
+		var crew_Id = crew_Id;
+		var crew_Name = crew_Name;
 		
-		if(confirm(userId + "를 블랙처리 하시겠습니까?") == true){
-			location.href="copStatusMember.shw?userNo=" + userNo;
-			alert("블랙처리완료!");
+		if(confirm(crew_Name + " 크루를  복구 시키겠습니까?") == true){
+			location.href="StatusCrew.shw?crew_Id=" + crew_Id;
+			alert("처리완료!");
 		}else{
 			return;
 		}
@@ -373,23 +376,22 @@ hr {
 </script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
-	
-			<div class="Area">
-					<div class="memberArea">
-						<div class="fromArea">
+		<div class="Area">
+					<!-- 기업회원검색  -->
+					<div class="formArea2">
+						<div class="fromArea1">
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain">일반 회원 검색</h2>
+									<h2 class="MemberSearchMain"> 크루 검색</h2>
 									<hr>
 								</td>
 							</tr>
 							<tr>
-								<td class="MemberTitleArea"><span class="m1">번호</span> <span
-									class="m2">회원아이디</span> <span class="m4">이름</span> <span
-									class="m5">연락처</span> <span class="m6">이메일 </span> <span
-									class="m3">가입날짜</span>
-									
+								<td class="MemberTitleArea"><span class="m1">카테고리</span> <span
+									class="m2">크루명</span> <span class="m4A2">인원</span> <span
+									class="m5A2">크루장</span> <span class="m6A2">생성일</span> 
+									  <span class="m8">크루상태 </span>
 									
 									<hr></td>
 							</tr>
@@ -397,109 +399,114 @@ hr {
 							<tr>
 								<td colspan="6">
 									<c:forEach var="m" items="${map.list}" varStatus="status">
-									<div class="MemberAreas" onclick="goStatus(${m.userNo},'${m.userId}')">
+									<div class="MemberAreas1" onclick="StatusCrew(${m.crew_Id},'${m.crew_Name}')">
 										<div class="mArea">
-											<span class="memberNum">${m.userNo}</span>
+											<span class="memberNum">${m.category_Name }</span>
 										</div>
 										<div class="mArea2">
-											<span class="userId">${m.userId }</span>
+											<span class="userId">${m.crew_Name}</span>
 										</div>
 										<div class="mArea3">
-											<span class="userName">${m.userName }</span>
+											<span class="userName">${m.crew_Max }</span>
 										</div>
 										<div class="mArea4">
-											<span class="phone">${m.phone }</span>
+											<span class="phone">${m.user_Id}</span>
 										</div>
-										<div class="mArea5">
-											<span class="email">${m.email }</span>
+										<div class="mArea5A2">
+											<span class="email1">${m.start_Date }</span>
 										</div>
-										<div class="mArea6">
-											<span class="memberName">${m.enrollDate}</span>
+										<div class="mArea6A2">
+											<span class="memberAdd">${m.crew_Status}</span>
 										</div>
 									</div>
 									<hr>
 									</c:forEach>
+									
 								</td>
 							</tr>
-							<!-- 여기까지  -->
-							<form action="memberSearchList.shw" method="get">
-								<table>
+							<!-- 여기까지  --> 
+							
+							
 									<tr>
 										<td colspan="3">
-											<div class="searchArea1">
-												<select class="selectBox1" name="option">
-													<option>번호</option>
-													<option>회원아이디</option>
-													<option>이름</option>
-													<option>연락처</option>
-													<option>이메일</option>
-													
-												</select> <input type="text" class="searchBar1" name="searchList">
-												<button type="submit" class="searchBtn">검색</button>
-											</div>
+											<form action="companyMemberSearchList.shw" method="get">
+												<table align="center">
+													<tr>
+														<td>
+															<div class="searchArea1">
+																<select class="selectBox" name="option">
+																	<option>상호명</option>
+																	<option>아이디</option>
+																	<option>등록번호</option>
+																	<option>이메일</option>
+																</select> <input type="text" class="searchBar1" name="searchList">
+																<button type="submit" class="searchBtn">검색</button>
+															</div>
+														</td>
+													</tr>
+												</table>	
+											</form>		
 										</td>
 									</tr>
-								</table>
-							</form>
-									<div class="paginBtn1">
-										<div class="pagination1">
-											<ul class="pagination">
-								<c:if test="${ pi.currentPage <= 1 }">
-									<li><a>이전</a></li>
-								</c:if>
-								<c:if test="${ pi.currentPage > 1 }">
-									<c:url var="listBack" value="crewRecruitmentBoard.shw2">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
-									
-									</c:url>
-									<li><a href="${ listBack }">이전</a></li>
-								</c:if>
-
-								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-									<c:if test="${ p eq pi.currentPage }">
-										<li class="active"><a>${ p }</a></li>
-									</c:if>
-									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
-											<c:param name="currentPage" value="${ p }" />
-										</c:url>
-										<li><a href="${ listCheck }">${ p }</a></li>
-									</c:if>
-								</c:forEach>
-
-								<c:if test="${ pi.currentPage >= pi.maxPage }">
-									<li><a>다음</a></li>
-								</c:if>
-								<c:if test="${ pi.currentPage < pi.maxPage }">
-									<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
-										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
-					
-									</c:url>
-									<li><a href="${ listEnd }">다음</a></li>
-								</c:if>
-							</ul>
-										</div>
-									</div>
-							</tabel>
+											<div class="paginBtn1">
+												<div class="pagination1">
+													<nav>
+									<ul class="pagination">
+										<c:if test="${ pi.currentPage <= 1 }">
+											<li><a>이전</a></li>
+										</c:if>
+										<c:if test="${ pi.currentPage > 1 }">
+											<c:url var="listBack" value="crewRecruitmentBoard.shw2">
+												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+											
+											</c:url>
+											<li><a href="${ listBack }">이전</a></li>
+										</c:if>
+		
+										<c:forEach var="p" begin="${ pi1.startPage }" end="${ pi.endPage }">
+											<c:if test="${ p eq pi.currentPage }">
+												<li class="active"><a>${ p }</a></li>
+											</c:if>
+											<c:if test="${ p ne pi.currentPage }">
+												<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
+													<c:param name="currentPage" value="${ p }" />
+												</c:url>
+												<li><a href="${ listCheck }">${ p }</a></li>
+											</c:if>
+										</c:forEach>
+		
+										<c:if test="${ pi1.currentPage >= pi1.maxPage }">
+											<li><a>다음</a></li>
+										</c:if>
+										<c:if test="${ pi1.currentPage < pi1.maxPage }">
+											<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
+												<c:param name="currentPage" value="${ pi1.currentPage + 1 }" />
+							
+											</c:url>
+											<li><a href="${ listEnd }">다음</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 						</div>
-					</div>
-					<!-- 기업회원검색  -->
+					</tabel>
+				</div>
+			</div>
+			<!-- 기업회원검색  -->
 					<div class="formArea2">
 						<div class="fromArea1">
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain">기업 회원 검색</h2>
+									<h2 class="MemberSearchMain"> 블랙크루 검색</h2>
 									<hr>
 								</td>
 							</tr>
 							<tr>
-								<td class="MemberTitleArea"><span class="m1">상호명</span> <span
-									class="m2">아이디</span> <span class="m4A2">전화번호</span> <span
-									class="m5A2">등록번호</span> <span class="m6A2">이메일 </span> <span
-									class="m3A2">주소</span>
-									 <span class="m7">결제이메일 </span>
-									  <span class="m8">가입날짜 </span>
+								<td class="MemberTitleArea"><span class="m1">카테고리</span> <span
+									class="m2">크루명</span> <span class="m4A2">인원</span> <span
+									class="m5A2">신청일</span> <span class="m6A2">생성일</span> 
+									  <span class="m8">크루상태 </span>
 									
 									<hr></td>
 							</tr>
@@ -507,30 +514,24 @@ hr {
 							<tr>
 								<td colspan="6">
 									<c:forEach var="m1" items="${map.list1}" varStatus="status">
-									<div class="MemberAreas1" onclick="copStatusMember(${m1.userNo},'${m1.userId}')">
+									<div class="MemberAreas1" onclick="StatusCrewY(${m1.crew_Id},'${m1.crew_Name}')">
 										<div class="mArea">
-											<span class="memberNum">${m1.copName}</span>
+											<span class="memberNum">${m1.category_Name}</span>
 										</div>
 										<div class="mArea2">
-											<span class="userId">${m1.userId}</span>
+											<span class="userId">${m1.crew_Name }</span>
 										</div>
 										<div class="mArea3">
-											<span class="userName">${m1.managerPhone}</span>
+											<span class="userName">${m1.crew_Max }</span>
 										</div>
 										<div class="mArea4">
-											<span class="phone">${m1.copNo }</span>
+											<span class="phone">${m1.user_Id }</span>
 										</div>
 										<div class="mArea5A2">
-											<span class="email1">${m1.managerEmail }</span>
+											<span class="email1">${m1.start_Date}</span>
 										</div>
 										<div class="mArea6A2">
-											<span class="memberAdd">${m1.copAddress }</span>
-										</div>
-										<div class="mArea7A2">
-											<span class="memberAdd">${m1.copEmail }</span>
-										</div>
-										<div class="mArea8">
-											<span class="memberDate">${m1.enrollDate }</span>
+											<span class="memberAdd">${m1.crew_Status}</span>
 										</div>
 									</div>
 									<hr>
@@ -606,5 +607,6 @@ hr {
 				</div>
 			</div>
 		</div>
+	
 </body>
 </html>

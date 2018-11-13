@@ -16,6 +16,7 @@
 		<result property="category_No" column="CATEGORY_NO"/>
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
 	</resultMap>	
 	
 	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
