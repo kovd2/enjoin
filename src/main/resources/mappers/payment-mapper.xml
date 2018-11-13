@@ -38,8 +38,7 @@
 	</insert>
 
 	<!-- 패스 이력 등록 -->
-	<insert id="insertPassrecord" parameterType="Payment">
-		
+	<insert id="insertPassrecord" parameterType="Passrecord">
 		MERGE INTO
 			PASSRECORD  
 		USING DUAL 
@@ -50,14 +49,10 @@
 	    	WHEN NOT MATCHED THEN
 	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
 				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo})
-				
-		<!-- INSERT INTO PASSRECORD(PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
-		VALUES(SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo}) -->
 	</insert>
       
    <!-- 패스 등록 -->
 	<insert id="insertPass" parameterType="Pass">
-	
 		MERGE INTO
 			PASS  
 		USING DUAL 
@@ -68,10 +63,6 @@
 	    	WHEN NOT MATCHED THEN
 	        	INSERT (USER_NO, PASS_COUNT, PASS_MODIFYDATE, PASS_NO)
 				VALUES (#{userNo}, '7', SYSDATE, SEQ_PASS_NO.NEXTVAL)	
-	
-	
-		<!-- INSERT INTO PASS
-		VALUES(#{userNo}, '7', SYSDATE, SEQ_PASS_NO.NEXTVAL) -->
 	</insert>
 	
 	<!-- 결제 갯수  조회-->
@@ -85,7 +76,206 @@
 		SELECT PM.USER_NO, PM.PAY_NO, M.USER_ID, PM.PAY_DATE, PM.PROOF_NO, PM.PRICE, PM.PASS_PLUS, PM.PAY_TYPE, PM.REFUND_NO
 		FROM PAYMENT PM
 		JOIN MEMBER M ON(PM.USER_NO = M.USER_NO)
+		ORDER BY PM.PAY_NO DESC
 	</select>
 	
+	<!-- 환불 처리 -->
+	<update id="updatePayment" parameterType="Payment">
+		UPDATE (
+			    	SELECT PM.PASS_PLUS AS PASS_PLUS, P.PASS_COUNT AS PASS_COUNT, PM.PAY_TYPE AS PAY_TYPE, PM.USER_NO
+			    	FROM PAYMENT PM
+			    	JOIN PASS P ON(PM.USER_NO = P.USER_NO)
+			    	<![CDATA[WHERE PM.PASS_PLUS <= P.PASS_COUNT]]>
+			    	AND REFUND_NO = #{refundNo}
+				)
+		SET PAY_TYPE = '1'
 
+	</update>
+	
+	<!-- 환불 처리 (패스이력 차감)-->
+	<update id="updatePayment2" parameterType="Passrecord">
+		UPDATE PASSRECORD
+		SET PP_COUNT = PP_COUNT - '7'  
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<!-- 환불 처리 (패스 차감)-->
+	<update id="updatePayment3" parameterType="Pass">
+		UPDATE PASS
+		SET PASS_COUNT = PASS_COUNT - '7' 
+		WHERE USER_NO = #{userNo}
+	</update>
+
+	<!-- 결제 회원번호 조회 -->
+	<select id="selectPaymentUserNo" resultType="_int">
+  		SELECT PM.USER_NO
+    	FROM PAYMENT PM
+    	JOIN PASS P ON(PM.USER_NO = P.USER_NO)
+    	<![CDATA[WHERE PM.PASS_PLUS <= P.PASS_COUNT]]>
+    	AND REFUND_NO = #{refundNo}
+			
+	</select>
+	
+	<!-- 30패스 결제 내역 등록 -->
+	<insert id="insertPayment2" parameterType="Payment">
+		INSERT INTO PAYMENT
+		VALUES(SEQ_PAY_NO.NEXTVAL, #{price}, SYSDATE, #{proofNo}, '0', #{refundNo}, '30', #{userNo})
+		<selectKey keyProperty="payNo" resultType="_int" order="AFTER">
+		SELECT SEQ_PAY_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 30패스 이력 등록 -->
+	<insert id="insertPassrecord2" parameterType="Passrecord">
+		MERGE INTO
+			PASSRECORD  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PP_COUNT = PP_COUNT + '30' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '30', #{payNo}, #{userNo})
+	</insert>
+
+   <!-- 30패스 등록 -->
+	<insert id="insertPass2" parameterType="Pass">
+		MERGE INTO
+			PASS  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PASS_COUNT = PASS_COUNT + '30' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (USER_NO, PASS_COUNT, PASS_MODIFYDATE, PASS_NO)
+				VALUES (#{userNo}, '30', SYSDATE, SEQ_PASS_NO.NEXTVAL)	
+	</insert>
+	
+	<!-- 78패스 결제 내역 등록 -->
+	<insert id="insertPayment3" parameterType="Payment">
+		INSERT INTO PAYMENT
+		VALUES(SEQ_PAY_NO.NEXTVAL, #{price}, SYSDATE, #{proofNo}, '0', #{refundNo}, '78', #{userNo})
+		<selectKey keyProperty="payNo" resultType="_int" order="AFTER">
+		SELECT SEQ_PAY_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 78패스 이력 등록 -->
+	<insert id="insertPassrecord3" parameterType="Passrecord">
+		MERGE INTO
+			PASSRECORD  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PP_COUNT = PP_COUNT + '78' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '78', #{payNo}, #{userNo})
+	</insert>
+
+   <!-- 78패스 등록 -->
+	<insert id="insertPass3" parameterType="Pass">
+		MERGE INTO
+			PASS  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PASS_COUNT = PASS_COUNT + '78' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (USER_NO, PASS_COUNT, PASS_MODIFYDATE, PASS_NO)
+				VALUES (#{userNo}, '78', SYSDATE, SEQ_PASS_NO.NEXTVAL)	
+	</insert>
+	      
+	<!-- 240패스 결제 내역 등록 -->
+	<insert id="insertPayment4" parameterType="Payment">
+		INSERT INTO PAYMENT
+		VALUES(SEQ_PAY_NO.NEXTVAL, #{price}, SYSDATE, #{proofNo}, '0', #{refundNo}, '240', #{userNo})
+		<selectKey keyProperty="payNo" resultType="_int" order="AFTER">
+		SELECT SEQ_PAY_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 240패스 이력 등록 -->
+	<insert id="insertPassrecord4" parameterType="Passrecord">
+		MERGE INTO
+			PASSRECORD  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PP_COUNT = PP_COUNT + '240' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '240', #{payNo}, #{userNo})
+	</insert>
+
+   <!-- 240패스 등록 -->
+	<insert id="insertPass4" parameterType="Pass">
+		MERGE INTO
+			PASS  
+		USING DUAL 
+	    	ON (USER_NO = #{userNo})
+	    	WHEN MATCHED THEN     
+	        	UPDATE SET 
+	        			PASS_COUNT = PASS_COUNT + '240' 
+	    	WHEN NOT MATCHED THEN
+	        	INSERT (USER_NO, PASS_COUNT, PASS_MODIFYDATE, PASS_NO)
+				VALUES (#{userNo}, '240', SYSDATE, SEQ_PASS_NO.NEXTVAL)	
+	</insert>
+
+	<!-- 환불 처리 (30패스이력 차감)-->
+	<update id="updatePayment22" parameterType="Passrecord">
+		UPDATE PASSRECORD
+		SET PP_COUNT = PP_COUNT - '30'  
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<!-- 환불 처리 (30패스 차감)-->
+	<update id="updatePayment33" parameterType="Pass">
+		UPDATE PASS
+		SET PASS_COUNT = PASS_COUNT - '30' 
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<!-- 환불 처리 (78패스이력 차감)-->
+	<update id="updatePayment222" parameterType="Passrecord">
+		UPDATE PASSRECORD
+		SET PP_COUNT = PP_COUNT - '78'  
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<!-- 환불 처리 (78패스 차감)-->
+	<update id="updatePayment333" parameterType="Pass">
+		UPDATE PASS
+		SET PASS_COUNT = PASS_COUNT - '78' 
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+		<!-- 환불 처리 (240패스이력 차감)-->
+	<update id="updatePayment2222" parameterType="Passrecord">
+		UPDATE PASSRECORD
+		SET PP_COUNT = PP_COUNT - '240'  
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<!-- 환불 처리 (240패스 차감)-->
+	<update id="updatePayment3333" parameterType="Pass">
+		UPDATE PASS
+		SET PASS_COUNT = PASS_COUNT - '240' 
+		WHERE USER_NO = #{userNo}
+	</update>
+		
+	<!-- 추가 패스 조회 -->
+	<select id="selectplusPass" resultType="_int">
+  		SELECT PM.PASS_PLUS
+    	FROM PAYMENT PM
+    	JOIN PASS P ON(PM.USER_NO = P.USER_NO)
+    	<![CDATA[WHERE PM.PASS_PLUS <= P.PASS_COUNT]]>
+    	AND REFUND_NO = #{refundNo}
+			
+	</select>		
 </mapper>

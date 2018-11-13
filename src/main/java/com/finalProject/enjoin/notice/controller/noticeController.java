@@ -1,7 +1,6 @@
 package com.finalProject.enjoin.notice.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,22 +113,18 @@ public class noticeController {
 		
 		String changeNameExt = changeName + ext;
 		
-		System.out.println("b : " + b);
-		System.out.println("ㅇㅇ: " + category);
 		at.setOrigin_Name(originFileName);
 		at.setFile_Ext(ext);
 		at.setUpload_Name(changeNameExt);
 		at.setFile_size(fileSize);
 		
 		try {
-			System.out.println("여기오나");
 			photo.transferTo(new File(filePath + "\\" + changeName+ext));
 			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 			
 			int result33 = bs.insertContact(b, userNo, at, category);
 			
 			
-			System.out.println("res" + result33);
 		} catch (Exception e) {
 			
 			new File(filePath + "\\" + changeName + ext).delete();
@@ -173,29 +168,6 @@ public class noticeController {
 	public String passPurchaseDetail4() {
 		
 		return "notice/passPurchaseDetail4";
-	}
-	
-	
-	
-	//30패스 결제완료
-	@RequestMapping("passPurchaseFinish2.hh")
-	public String passPurchaseFinish2() {
-		
-		return "notice/passPurchaseFinish2";
-	}
-	
-	//78패스 결제완료
-	@RequestMapping("passPurchaseFinish3.hh")
-	public String passPurchaseFinish3() {
-		
-		return "notice/passPurchaseFinish3";
-	}
-	
-	//240패스 결제완료
-	@RequestMapping("passPurchaseFinish4.hh")
-	public String passPurchaseFinish4() {
-		
-		return "notice/passPurchaseFinish4";
 	}
 	
 	//관리자 FAQ 목록
@@ -423,6 +395,6 @@ public class noticeController {
 		
 		return "notice/chatPopUp";
 	}
-		
+
 	
 }

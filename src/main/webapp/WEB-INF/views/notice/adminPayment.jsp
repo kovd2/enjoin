@@ -27,6 +27,10 @@ th {
 	border-left:1px solid;
 }
 
+td {
+	border-left:1px solid;
+}
+
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
@@ -50,7 +54,6 @@ th {
 			<br><br>
 			<table>
 				<tr style="border: 1px solid black;">
-					<th style="width: 90px; height: 100px; font-size: 20px; background: gray;">회원번호</th>
 					<th style="width: 150px; height: 100px; font-size: 20px; background: gray;">결제번호</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">아이디</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">결제일</th>
@@ -63,22 +66,30 @@ th {
 				</tr>
 				<c:forEach var="list" items="${ list }">
 					<tr>	
-						<td>${ list.USER_NO }</td>
 						<td>${ list.PAY_NO }</td>
 						<td>${ list.USER_ID }</td>
 						<td>${ list.PAY_DATE }</td>
 						<td>${ list.PROOF_NO }</td>
 						<td>${ list.PRICE }</td>
 						<td>${ list.PASS_PLUS }</td>
-						<td>${ list.PAY_TYPE }</td>
-						<td><input type="button" value="환불" onclick="refund('${list.REFUND_NO}')"></td>
+					<c:if test="${ list.PAY_TYPE == 0}">
+						<td>구매</td>
+					</c:if>
+					<c:if test="${ list.PAY_TYPE == 1}">
+						<td>환불</td>
+					</c:if>
+					<c:if test="${ list.PAY_TYPE == 0 }">
+						<td><input class="refund${list.REFUND_NO}" type="button" value="환불" onclick="refund('${list.REFUND_NO}')"></td>
+					</c:if>
+					<c:if test="${ list.PAY_TYPE == 1 }">
+						<td><input class="refund${list.REFUND_NO}" type="button" value="환불완료"></td>
+					</c:if>
+					
 					</tr>	
 						
 				</c:forEach>
 			</table>
 			<br>
-			
-			
 			
 			<!-- 페이징처리 -->
 			<nav>
@@ -118,14 +129,23 @@ th {
 			</nav>
 		</div>
 	</div>
-	
+
 <script>
 	function refund(refundNo){
-		
-		location.href = "refundBtn.hh?refundNo=" + refundNo;
-		
+		$.ajax({
+			url:'refundBtn.hh',
+			data : {
+				refundNo : refundNo
+			},
+			success : function(data){
+				console.log(data);
+				$('.refund' + refundNo).attr('value', '환불완료');
+				window.location.reload();
+			}
+		});
 	}
+	
+</script>	
 
-</script>
 </body>
 </html>
