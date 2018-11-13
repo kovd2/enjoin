@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -107,6 +108,33 @@ public interface AdminService {
 	
 	//크루의 블랙상태를 풀음
 	int updateStatusCrew(int crew_Id);
+	
+	//크루 네임을 통한 조회
+	List<Crew> crewNameSelect(String crew_Name);
+	
+	//크루장을 통한 조회
+	List<Crew> crewBoassSelect(String user_Id);
+	
+	//블랙크루 이름을 통한 조회
+	List<Crew> crewBlackName(String crew_Name);
+	
+	//블랙크루 크루장을 통한 조회
+	List<Crew> crewBlackUser(String user_Id);
+	
+	//크루 모집 게시판 게시글 갯수 조회
+	int getCrtListCount();
+	
+	//크루 모집 게시판 보기
+	List<CrewRecruitmentBoard> selectCrewRecruitmentBoardList(PageInfo pi);
+	
+	//크루활동 게시글 관리자 권한으로 삭제하기
+	int updateAdminCrewRecruitmentStatus(int board_No);
+	
+	//크루활동 제목으로 게시물 조회
+	List<CrewRecruitmentBoard> selectCrewRecruitmentBoardTitle(String board_Title);
+	
+	//크루활동 작성자로 게시물 조회
+	List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(String user_Id);
 	
 	
 

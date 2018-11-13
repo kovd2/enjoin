@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -240,15 +241,22 @@
 					
 						<div class="comentTop">
 							<div class="coImg">
-								<%-- <img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}"> --%>
-							</div>
+							<c:choose>
+							<c:when test="${list3.UPLOAD_NAME eq null || list3.UPLOAD_NAME == ''}">
+							<img src="${contextPath}/resources/uploadFiles/images/profil/user.png">
+							</c:when>
+							<c:when test="${list3.UPLOAD_NAME != null || list3.UPLOAD_NAME != ''}">
+							 <img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}"> 
+							</c:when>
+							 </c:choose>
+							</div> 
 							<div class="coName">
 							<!-- form action="goComent.kch2" method="POST"  autocomplete="off"> --> 
-								<input type="hidden"  value="${list.BOARD_NO }"id="boardNo" name="boardNo">
+								<input type="hidden"  value="${list.BOARD_NO}"id="boardNo" name="boardNo">
 								<input type="hidden" value="${list3.USER_NO}"id="userNo" name="userNo">
 								
 								<input type="text" id="myco"  name="comentContent" 
-									placeholder="공개적으로 댓글을 남길 아이디 " onclick="goEn()">
+									placeholder="공개적으로 댓글을 남길 아이디 ${list3.USER_ID}" onclick="goEn()">
 								<button id="en"  onclick="enrollComent()">댓글</button>
 							<!-- </form> --> 
 							</div>
@@ -263,7 +271,7 @@
 							<div class="list1">
 								<div class="userWrap">
 									<div class="imgList">
-										<%-- <img src="${contextPath}/resources/uploadFiles/myPage/profil/"> --%>
+										<img src="${contextPath}/resources/uploadFiles/myPage/profil/"> 
 									</div>
 
 									<div class="userInfo">
@@ -314,12 +322,11 @@
 					for(var key in data){
 						console.log(data[key]);
 						console.log(data[key].COMENT_NO);
-	
-					 $div1=$("<div class='list1'>");
-					
+					$div0=$("<div class='listcoTop'>");
+					$div1=$("<div class='list1'>");
 					$div2=$("<div class='userWrap'>");
 					$div3=$("<div class='imgList'>")
-					/* $div3.append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */
+					/* $div3.append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
 					/* $('.list1').append($('.userWrap')); */
 					/* $('.imgList').append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
 					/* $('.list1').append($('.imgList')) */
@@ -335,10 +342,11 @@
 					/* $('.comentContent').append(data[key].COMENT_CONTENT); */
 					 $div7=$("<div id='comentContent'>"); 
 					 $div7.append(data[key].COMENT_CONTENT); 
-					 $div2.append($div6);
+					 $div2.append($div3);
 					 $div2.append($div4);
 					 
 					 $div1.append($div7); 
+					 $div1.append($div2);
 					
 					/* $('.userWrap').append($('.userdate')); */
 					/* $('.list1').append($('.comentContent')); */

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -236,6 +237,63 @@ public class AdminDaoImpl implements AdminDao {
 	public int updateStatusCrew(SqlSession sqlSession, int crew_Id) {
 		
 		return sqlSession.update("Admin.updateStatusCrew", crew_Id);
+	}
+	//크루명을 통한 조회
+	@Override
+	public List<Crew> crewNameSelect(SqlSession sqlSession, String crew_Name) {
+		
+		return sqlSession.selectList("Admin.crewNameSelect", crew_Name);
+	}
+	//크루장을 통한 조회
+	@Override
+	public List<Crew> crewBoassSelect(SqlSession sqlSession, String user_Id) {
+		
+		return sqlSession.selectList("Admin.crewBoassSelect", user_Id);
+	}
+	//블랙크루 크루명을 통한 조회
+	@Override
+	public List<Crew> crewBlackName(SqlSession sqlSession, String crew_Name) {
+		
+		return sqlSession.selectList("Admin.crewBlackName",crew_Name);
+	}
+	//블랙크루 크루장을 통한 조회
+	@Override
+	public List<Crew> crewBlackUser(SqlSession sqlSession, String user_Id) {
+		
+		return sqlSession.selectList("Admin.crewBlackUser",user_Id);
+	}
+	//크루모집게시판 게시글 갯수 조회
+	@Override
+	public int getCrtListCount(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getCrtListCount");
+	}
+	//크루 모집 게시판 정보 조회
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentBoardList(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectCrewRecruitmentBoardList", null, rowBounds);
+	}
+	//크루 모집 게시판 관리자 권한으로 삭제처리
+	@Override
+	public int updateAdminCrewRecruitmentStatus(SqlSession sqlSession, int board_No) {
+		
+		return sqlSession.update("Admin.updateAdminCrewRecruitmentStatus", board_No);
+	}
+	//크루 모집 제목별 검색
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentBoardTitle(SqlSession sqlSession, String board_Title) {
+
+		return sqlSession.selectList("Admin.selectCrewRecruitmentBoardTitle",board_Title);
+	}
+	//크루 모집 작성자로 검색
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(SqlSession sqlSession, String user_Id) {
+		
+		return sqlSession.selectList("Admin.selectCrewRecruitmentUserId", user_Id);
 	}
 	
 

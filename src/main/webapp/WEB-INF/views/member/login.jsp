@@ -7650,9 +7650,9 @@ div {
 
 										
 											 <!-- <a id="kakao-login-btn" style="background:white;"></a> -->
-											 <a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
-											<a href="http://developers.kakao.com/logout"></a>
-												<script type='text/javascript'>
+											<%--  <a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
+											<a href="http://developers.kakao.com/logout"></a> --%>
+												<!-- <script type='text/javascript'>
 												function kakao(){
 										
 												Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
@@ -7685,14 +7685,14 @@ div {
 														}
 													});
 											}
-										</script>
-										<form id=loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">
+										</script> -->
+										<%-- <form id=loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">
 											<input type="hidden" id="id" name="id">
 											<input type="hidden" id="email" name="email">
 											<input type="hidden" id="nickname" name="nickname">
 											<input type="hidden" id="accessToken" name="accessToken">
 											<input type="hidden" id="refreshToken" name="refreshToken">
-										</form>
+										</form> --%>
 
 										<div class="divLine">
 											<span>또는,</span>

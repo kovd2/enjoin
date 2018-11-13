@@ -597,57 +597,7 @@ img {
 				
 				
 			<jsp:include page="../informBoard/informComent.jsp" />
-			<%-- 	 <div class="right">
-					
-					<div class="coWrap">
-
-						<div class="comentArea">
-							<i class="fa fa-music" style="font-size: 24px">댓글</i>
-							<div class="coCount">20개</div>
-						</div>
-					
-						<div class="comentTop">
-							<div class="coImg">
-								<img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}">
-							</div>
-							<form action="goComent.kch2" method="POST">
-							<div class="coName">
-								<input type="hidden" value="${list.BOARD_NO}" id="boardNo" name="boardNo">
-								<input type="hidden" value="${list3.USER_NO}" id="userNo" name="userNo">
-								
-								<input type="text" id="myco"  name="comentContent"
-									placeholder="공개적으로 댓글을 남길 아이디 ${list3.USER_ID}" onclick="goEn()">
-								<button id="en" type="submit" >댓글</button>
-							</div>
-							</form>
-
-						</div>
-						
-
-						
-						<div class="listcoTop">
-
-						
-							<div class="list1">
-								<div class="userWrap">
-									<div class="imgList">
-										<img src="${contextPath}/resources/uploadFiles/myPage/profil/${cList.UPLOAD_NAME}">
-									</div>
-
-									<div class="userInfo">
-										<div class="userid">kch4361</div>
-										<div class="userdate">2018.10.21</div>
-									</div>
-								</div>
-								<div id="comentContent">댓글입니다.</div>
-							</div>
-						
-						</div>
-					</div>
-
-				</div>  --%>
-				
-				
+		
 			</div>
 
 	<jsp:include page="../common/footer.jsp"/>
@@ -675,57 +625,7 @@ img {
 
 	
 	
-	<!--  <script>
-	$(document).ready(function(){
-		$("#en").click(function(){
-			var comentContent=$('#myco').val();
-			var userNo=$('#userNo').val();
-			var boardNo=$('#boardNo').val();
-			$.ajax({
-				
-				url:"goComent.kch2",
-				type:"POST",
-				dataType:"json",
-				data:{comentContent:comentContent,
-						userNo:userNo,
-						boardNo:boardNo
-						},
-				success:function(data){
-					console.log(data);
-					alert(JSON.stringify(data));
-					var result = JSON.stringify(data);
-					$(".list1").empty();
-					for(var i=0; i<result.length; i++){
-					$div1=$("<div class='list1'>");
-					$div2=$("<div class='userWrap'>");
-					$div3=$("<div class='imgList'>")
-					$div3.append("<img src=${contextPath}/resources/myPage/profil/'result[i].UPLOAD_NAME'>");
-					$div1.append($div2);
-					$div1.append($div3);
-					$div4=$("<div class='userInfo'>");
-					$div5=$("<div class='userid'>");
-					$div5.append('result[i].USER_ID');
-					$div4.append($div5);
-					$div6=$("<div class='userdate'>");
-					$div4.append('result.COMENT_DATE');
-					$div4.append($div6);
-					$div7=$("<div id='comentContent'>");
-					$div7.append('result.COMENT_CONTENT');
-					$div2.append($div6);
-					$div1.append($div7);
-					}
-				},error:function(){
-					
-					console.log("에러닷!!");
-				}
-				
-			});
-		});
-		
-	});
 	
-	</script>
-  -->
 
 
 

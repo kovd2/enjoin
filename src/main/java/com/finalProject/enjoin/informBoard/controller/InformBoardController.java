@@ -300,7 +300,6 @@ public class InformBoardController {
 		@RequestParam(value="boardNo")int boardNo,
 		@RequestParam(value="userNo")int userNo,
 		@RequestParam(value="comentContent")String comentContent) {
-		
 		ic.setBoardNo(boardNo);
 		ic.setUserNo(userNo);
 		ic.setComentContent(comentContent);
@@ -308,12 +307,6 @@ public class InformBoardController {
 		List<Map<String,Object>> map = null;
 		
 		map=ibs.insertComent(ic);
-		
-		
-		
-		
-		
-		
 		
 		return map;
 		

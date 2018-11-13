@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Facility">
+
+<resultMap type="com.finalProject.enjoin.searchMap.model.vo.Facility" id="facilityResultSet">
+<!-- PRIMARY KEY -->
+		<id property="facilityNo" column="FACILITY_NO"/>
+		<!-- 컬럼 -->
+		<result property="facilityRequestDate" column="FACILITY_REQUESTDATE"/>
+		<result property="facilityStartDate" column="FACILITY_STARTDATE"/>
+		<result property="facilityEndDate" column="FACILITY_ENDDATE"/>
+		<result property="facilityStatus" column="FACILITY_STATUS"/>
+		<result property="passCount" column="PASS_COUNT"/>
+		<result property="facilityCopNo" column="FACILITY_COPNO"/>
+		<result property="facilityName" column="FACILITY_NAME"/>
+		<result property="facilityArea" column="FACILITY_AREA"/>
+		<result property="facilitySection" column="FACILITY_SECTION"/>
+		<result property="facilityAddress" column="FACILITY_ADDRESS"/>	
+		<result property="facilityEvent" column="FACILITY_EVENT"/>
+		<result property="facilityManagerName" column="FACILITY_MANAGER_NAME"/>
+		<result property="facilityManagerPhone" column="FACILITY_MANAGER_PHONE"/>
+		<result property="timeForCall" column="TIME_FOR_CALL"/>
+		<result property="mon_fri_time" column="MON_FRI_TIME"/>
+		<result property="sat_time" column="SAT_TIME"/>
+		<result property="sun_time" column="SUN_TIME"/>
+		
+
+</resultMap>
+
+
+<resultMap type="Attachment" id="facilityAttachment">
+	<!-- Primary key  -->
+	<id property="att_No" column="ATT_NO"/>
+		<!-- 컬럼  -->
+		<result property="file_No" column="FILE_NO"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="origin_Name" column="ORIGIN_NAME"/>
+		<result property="file_size" column="FILE_SIZE"/>
+		<result property="file_Ext" column="FILE_EXT"/>
+		<result property="file_Date" column="FILE_DATE"/>
+		<result property="file_Type" column="FILE_TYPE"/>
+		<result property="ref_No" column="REF_NO"/>
+	</resultMap>
+	
+<select id="facilityList" resultType="map" parameterType="hashMap">
+SELECT F.FACILITY_COPNO,F.FACILITY_REQUESTDATE,F.FACILITY_STARTDATE,F.FACILITY_ENDDATE,F.FACILITY_STATUS,
+        F.PASS_COUNT,F.FACILITY_NO,F.FACILITY_NAME,F.FACILITY_AREA,F.FACILITY_SECTION,F.FACILITY_ADDRESS,F.FACILITY_EVENT,
+        F.FACILITY_MANAGER_NAME,F.FACILITY_MANAGER_PHONE,F.TIME_FOR_CALL,F.MON_FRI_TIME,F.SAT_TIME,F.SUN_TIME,A.ATT_NO,
+        A.FILE_NO,A.UPLOAD_NAME,A.FILE_TYPE,A.REF_NO
+FROM FACILITY F
+JOIN ATTACHMENT A ON(F.FACILITY_NO=A.REF_NO)
+WHERE A.FILE_TYPE=6
+AND FILE_NO=0
+</select>
+
+
+
+
+
+</mapper>
+

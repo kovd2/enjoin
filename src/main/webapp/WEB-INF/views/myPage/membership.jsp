@@ -162,8 +162,8 @@
 	margin-left:30px;
 }
 .MembershipOk{
-	margin-top:80px;
-	margin-bottom:80px;
+	margin-top:60px;
+	margin-bottom:60px;
 }
 </style>
 </head>
@@ -200,7 +200,10 @@
 			<div class="MembershipOk" align="center">
 				<c:if test="${pass > 0}">
 					<h2>현재 보유 PASS권</h2>				
-						<h3><c:out value="${ pass }"/> PASS</h3>					
+						<h3><c:out value="${ pass }"/> PASS</h3>
+						<p>
+							<a href="passPurchase.hh" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 추가하기</a>
+						</p>					
 				</c:if>
 			</div>
 			<hr>
@@ -239,7 +242,6 @@
 	        }
 	        return alert(bmi_output);       //리턴
 	    }
-	    bmi_calculator();       //함수 호출
 		</script>
 	
 </body>

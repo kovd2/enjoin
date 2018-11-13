@@ -157,7 +157,7 @@ public class CompanyController {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
 		//파일의 저장 경로는 root 하위의 uploadfiles이다.
-		String filePath = root + "\\uploadFiles\\facility";
+		String filePath = root + "/uploadFiles/facility";
 		
 		System.out.println("filePath = " + filePath);
 		
@@ -237,10 +237,10 @@ public class CompanyController {
 		
 		//업로드된 파일을 지정한 경로에 저장
 		try {
-			origin_Name1.transferTo(new File(filePath + "\\" + changeName1 + ext1));
-			origin_Name2.transferTo(new File(filePath + "\\" + changeName2 + ext2));
-			origin_Name3.transferTo(new File(filePath + "\\" + changeName3 + ext3));
-			origin_Name4.transferTo(new File(filePath + "\\" + changeName4 + ext4));
+			origin_Name1.transferTo(new File(filePath + "/" + changeName1 + ext1));
+			origin_Name2.transferTo(new File(filePath + "/" + changeName2 + ext2));
+			origin_Name3.transferTo(new File(filePath + "/" + changeName3 + ext3));
+			origin_Name4.transferTo(new File(filePath + "/" + changeName4 + ext4));
 			
 			int result = cs.insertCompany(c, at1, at2, at3, at4);
 			
@@ -250,10 +250,10 @@ public class CompanyController {
 		} catch (Exception e) {
 			//실패시 파일 삭제
 			
-			new File(filePath + "\\" + changeName1 + ext1).delete();
-			new File(filePath + "\\" + changeName2 + ext2).delete();
-			new File(filePath + "\\" + changeName3 + ext3).delete();
-			new File(filePath + "\\" + changeName4 + ext4).delete();
+			new File(filePath + "/" + changeName1 + ext1).delete();
+			new File(filePath + "/" + changeName2 + ext2).delete();
+			new File(filePath + "/" + changeName3 + ext3).delete();
+			new File(filePath + "/" + changeName4 + ext4).delete();
 			
 			model.addAttribute("msg", "제휴시설신청실패");
 
