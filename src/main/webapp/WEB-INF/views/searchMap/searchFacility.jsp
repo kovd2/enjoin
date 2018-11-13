@@ -281,56 +281,67 @@ p{
 			
 		</div>
 		<div class="mapArea">
-			<div id="map" style="width:600px;height:500px;"></div>
+			<div id="map" style="width:600px;height:500px; margin:auto;"></div>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
 		<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
+		 
+			function init() {
+				window.navigator.geolocation
+						.getCurrentPosition(current_position);
+			}
+			function current_position(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
 
-	// 지도를 생성합니다    
-	var map = new daum.maps.Map(mapContainer, mapOption); 
+				showPosition(latitude, longitude);
+			}
+			window.addEventListener("load", init);
 
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new daum.maps.services.Geocoder();
+			function showPosition(latitude, longitude) {
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+					center : new daum.maps.LatLng(latitude, longitude),
+					level : 5
+				// 지도의 확대 레벨
+				};
+				// 지도를 생성합니다    
+				var map = new daum.maps.Map(mapContainer, mapOption);
 
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(
-			'제주특별자치도 제주시 첨단로 242',
-			'서울 강남구 테헤란로 142',
-			'서울 강남구 테헤란로 125',
-			'서울 강남구 테헤란로8길 7',
-			'서울 강남구 역삼동 823-40 3층',
-			
-		function(result, status) {
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new daum.maps.services.Geocoder();
 
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
+				// 주소로 좌표를 검색합니다  (c:forEach)
+				geocoder.addressSearch(
+					'서울 강남구 테헤란로 125',
+						function(result, status) {
 
-	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+							// 정상적으로 검색이 완료됐으면 
+							if (status === daum.maps.services.Status.OK) {
 
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new daum.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
+								var coords = new daum.maps.LatLng(
+									result[0].y, result[0].x);
 
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new daum.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-	        });
-	        infowindow.open(map, marker);
+							// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new daum.maps.Marker({
+									map : map,
+									position : coords
+								});
 
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});    
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+								var infowindow = new daum.maps.InfoWindow({
+									content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+								});
+									infowindow.open(map, marker);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+									map.setCenter(coords);
+								}
+							})
+						};
 		</script>
 
 	</div>
