@@ -15,6 +15,7 @@
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformComent" alias="InformComent"/>
 		<typeAlias type="com.finalProject.enjoin.informBoard.model.vo.InformBoardFiles" alias="InformBoardFiles"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard" alias="CrewRecruitmentBoard"/>
+		<typeAlias type="com.finalProject.enjoin.searchMap.model.vo.Facility" alias="Facility"/>
 		<typeAlias type="com.finalProject.enjoin.company.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.InCrew" alias="inCrew1"/>
 		<typeAlias type="com.finalProject.enjoin.crew.model.vo.CrewComent" alias="CrewComent"/>
@@ -33,5 +34,6 @@
 		<mapper resource="mappers/inform-mapper.xml"/>
 		<mapper resource="mappers/payment-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
+		<mapper resource="mappers/facility-mapper.xml"/>
 	</mappers>
 </configuration>

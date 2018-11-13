@@ -21,6 +21,12 @@
 
 <style>
 
+header{
+	width:100%;
+	top:0;
+	position:fixed;
+
+}
 .wrap{
 	width:100%;
 }
@@ -37,12 +43,15 @@
 	width:400px;
 	/* height:800px; */
 	background:#f5f5f5;
+	margin-top:80px;
 }
 .mapArea{
 	
 	width:620px;
-	/* height:800px; */
+	 height:800px;
 	background:#bcdeb0;
+	margin-top:80px;
+	position:fixed;	
 }
 .searchWrap{
 	margin-top:20px;
@@ -147,22 +156,23 @@ p{
 			</div>
 			<br>
 			
+			<c:forEach var="item" items="${list}">
 			<div class="listArea">
-			
+				
 				<div class="list" onclick="goDetail()">
 				<div class="imgArea">
-							<img src="">
+							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
 				</div>
 							<div class="contents">
-							<h4>또치의 헬스</h4>
-							<p>서울특별시 강남구 역삼동 kh파워헬스</p>
-							 <div class="category"><b>피트니스</b></div>
+							<h4>${item.FACILITY_NAME}</h4>
+							<p>${item.FACILITY_ADDRESS}</p>
+							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
 							</div>
 				</div>
 				
 				
 				
-				<div class="list" onclick="goDetail()">
+				<!-- <div class="list" onclick="goDetail()">
 				<div class="imgArea">			
 							<img src="">
 				</div>
@@ -173,10 +183,11 @@ p{
 							 <div class="category"><b>피트니스</b></div>
 							</div>
 							
-				</div>
+				</div> -->
 				
 				
 			</div>
+			</c:forEach>
 			
 			<div class="listArea">
 			
@@ -281,67 +292,57 @@ p{
 			
 		</div>
 		<div class="mapArea">
-			<div id="map" style="width:600px;height:500px; margin:auto;"></div>
+			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
 		<script>
-		 
-			function init() {
-				window.navigator.geolocation
-						.getCurrentPosition(current_position);
-			}
-			function current_position(position) {
-				var latitude = position.coords.latitude;
-				var longitude = position.coords.longitude;
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
 
-				showPosition(latitude, longitude);
-			}
-			window.addEventListener("load", init);
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption); 
 
-			function showPosition(latitude, longitude) {
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				mapOption = {
-					center : new daum.maps.LatLng(latitude, longitude),
-					level : 5
-				// 지도의 확대 레벨
-				};
-				// 지도를 생성합니다    
-				var map = new daum.maps.Map(mapContainer, mapOption);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
 
-				// 주소-좌표 변환 객체를 생성합니다
-				var geocoder = new daum.maps.services.Geocoder();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(
+				
+			'서울 강남구 테헤란로 142',
+			'서울 강남구 테헤란로 125',
+			'서울 강남구 테헤란로8길 7',
+			'서울 강남구 역삼동 823-40 3층',
+			
+		function(result, status) {
 
-				// 주소로 좌표를 검색합니다  (c:forEach)
-				geocoder.addressSearch(
-					'서울 강남구 테헤란로 125',
-						function(result, status) {
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
 
-							// 정상적으로 검색이 완료됐으면 
-							if (status === daum.maps.services.Status.OK) {
+	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 
-								var coords = new daum.maps.LatLng(
-									result[0].y, result[0].x);
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
 
-							// 결과값으로 받은 위치를 마커로 표시합니다
-								var marker = new daum.maps.Marker({
-									map : map,
-									position : coords
-								});
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new daum.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+	        });
+	        infowindow.open(map, marker);
 
-							// 인포윈도우로 장소에 대한 설명을 표시합니다
-								var infowindow = new daum.maps.InfoWindow({
-									content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-								});
-									infowindow.open(map, marker);
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
 
-							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-									map.setCenter(coords);
-								}
-							})
-						};
 		</script>
 
 	</div>
