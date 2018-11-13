@@ -92,5 +92,10 @@
 	AND EMAIL = #{email}
 	</select>
 	
+	<select id="idck" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
 </mapper>
 

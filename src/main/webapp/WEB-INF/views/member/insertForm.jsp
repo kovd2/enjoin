@@ -446,7 +446,7 @@ body.register .subWrap {
 												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
 													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
 													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
-											</div>
+											</div>z
 										</div>
 										<span class="help-block" id="password_help"></span>
 									</div>
@@ -770,12 +770,7 @@ body.register .subWrap {
         $('#password_help').text('');
       });
     });
-	
-    
-    
 
-	
-	
 	</script>
 	<br>
 	<br>
