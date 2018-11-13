@@ -15,11 +15,12 @@ public class Board implements Serializable {
 	private int userNo; //작성자
 	private String upload_name; //첨부파일 이름
 	private String faqCategory; //FAQ카테고리
+	private int contactStatus; //문의글 상태
 	
 	public Board() {}
 
 	public Board(int boardNo, String boardType, String boardTitle, String boardContent, Date enrollDate,
-			Date modifyDate, String status, int userNo, String upload_name, String faqCategory) {
+			Date modifyDate, String status, int userNo, String upload_name, String faqCategory, int contactStatus) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -31,6 +32,7 @@ public class Board implements Serializable {
 		this.userNo = userNo;
 		this.upload_name = upload_name;
 		this.faqCategory = faqCategory;
+		this.contactStatus = contactStatus;
 	}
 
 	public int getBoardNo() {
@@ -113,12 +115,20 @@ public class Board implements Serializable {
 		this.faqCategory = faqCategory;
 	}
 
+	public int getContactStatus() {
+		return contactStatus;
+	}
+
+	public void setContactStatus(int contactStatus) {
+		this.contactStatus = contactStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
 				+ ", status=" + status + ", userNo=" + userNo + ", upload_name=" + upload_name + ", faqCategory="
-				+ faqCategory + "]";
+				+ faqCategory + ", contactStatus=" + contactStatus + "]";
 	}
 	
 }

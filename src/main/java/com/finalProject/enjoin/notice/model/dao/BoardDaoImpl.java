@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
@@ -200,6 +201,38 @@ public class BoardDaoImpl implements BoardDao{
 		
 
 		return sqlSession.selectOne("Board.adminContactDetail", boardNo);
+	}
+
+	@Override
+	public int insertContactReply(String comentContent, int boardNo, int userNo) {
+		
+		Coment c = new Coment();
+		
+		c.setBoardNo(boardNo);
+		c.setComentContent(comentContent);
+		c.setUserNo(userNo);
+		
+		return sqlSession.insert("Board.adminContactReply", c);
+	}
+
+	@Override
+	public int updateContactStatus(int boardNo) {
+
+		Board b = new Board();
+		
+		b.setBoardNo(boardNo);
+		
+		return sqlSession.update("Board.updateContactStatus", b);
+	}
+
+	@Override
+	public Coment comentCheck(int boardNo) {
+
+		Coment c = new Coment();
+		
+		c.setBoardNo(boardNo);
+		
+		return sqlSession.selectOne("Board.comentCheck", c);
 	}
 
 

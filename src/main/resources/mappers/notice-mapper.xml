@@ -14,6 +14,7 @@
 		<result property="userNo" column="USER_NO"/>
 		<result property="upload_name" column="UPLOAD_NAME"/>
 		<result property="faqCategory" column="FAQ_CATEGORY"/>
+		<result property="contactStatus" column="CONTACT_STATUS"/>
 	</resultMap>
 
 	<!-- Attachment -->
@@ -28,6 +29,21 @@
       <result property="file_Type" column="FILE_TYPE"/>
       <result property="ref_No" column="REF_NO"/>
    </resultMap>
+   
+   	<!-- Coment -->
+	<resultMap type="Coment" id="comentResultSet">
+		<id property="comentNo" column="COMENT_NO"/>
+		<result property="comentContent" column="COMENT_CONTENT"/>
+		<result property="comentDate" column="COMENT_DATE"/>
+		<result property="comentModifyDate" column="COMENT_MODIFYDATE"/>
+		<result property="comentStatus" column="COMENT_STATUS"/>
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+	</resultMap>
    
 	<!-- 공지사항 전체 목록 조회 -->
 	<select id="listAll" resultMap="boardResultSet">
@@ -170,8 +186,8 @@
 	
 	<!-- 1:1 문의 등록 -->
 	<insert id="insertContact" parameterType="Board">
-		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, USER_NO)
-		VALUES(BOARD_NO.NEXTVAL, '문의', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo})
+		INSERT INTO BOARD(BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, ENROLL_DATE, STATUS, USER_NO, CONTACT_STATUS)
+		VALUES(BOARD_NO.NEXTVAL, '문의', #{boardTitle}, #{boardContent}, SYSDATE, 'Y', #{userNo}, '0')
 	</insert>
 	
 	<!-- 1:1 문의 목록  조회-->
@@ -184,7 +200,7 @@
 
 	<!-- 1:1 문의 전체 목록 조회 -->
 	<select id="contactListAll" resultMap="boardResultSet">
-		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, ENROLL_DATE
+		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, ENROLL_DATE, CONTACT_STATUS
 		FROM BOARD
 		WHERE BOARD_TYPE = '문의'
 		AND STATUS = 'Y'
@@ -193,11 +209,32 @@
 	
 	<!-- 1:1 문의 상세보기 (관리자) -->
 	<select id="adminContactDetail" resultMap="boardResultSet" parameterType="_int">
-		SELECT BOARD_NO, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, UPLOAD_NAME
+		SELECT B.BOARD_NO, B.BOARD_TYPE, B.BOARD_TITLE, B.BOARD_CONTENT, AT.UPLOAD_NAME, C.COMENT_CONTENT, B.CONTACT_STATUS
 		FROM BOARD B
 		LEFT JOIN ATTACHMENT AT ON(AT.REF_NO = B.BOARD_NO)
-		WHERE BOARD_NO = #{boardNo}
+		LEFT JOIN COMENT C ON(C.BOARD_NO = B.BOARD_NO)
+		WHERE B.BOARD_NO = #{boardNo}
 	</select>
 	
+	<!-- 1:1 문의 답변등록 -->
+	<insert id="adminContactReply" parameterType="Coment">
+		INSERT INTO COMENT(COMENT_NO, COMENT_CONTENT, COMENT_DATE, COMENT_STATUS, BOARD_NO, USER_NO)
+		VALUES(SEQ_COMENT_NO.NEXTVAL, #{comentContent}, SYSDATE, 'Y', #{boardNo}, #{userNo})
+	</insert>
+	
+	<!-- 1:1 문의 처리상태 변경 -->
+	<update id="updateContactStatus" parameterType="Board">
+		UPDATE BOARD
+		SET CONTACT_STATUS = '1',
+			MODIFY_DATE = SYSDATE
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 문의 상세 보기 답변 조회 -->
+	<select id="comentCheck" resultMap="comentResultSet">
+		SELECT COMENT_CONTENT
+		FROM COMENT
+		WHERE BOARD_NO = #{boardNo}
+	</select>
 	
 </mapper>

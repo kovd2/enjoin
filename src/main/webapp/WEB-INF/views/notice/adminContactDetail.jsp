@@ -55,21 +55,25 @@
 		</table>
 		<br><br><br><br>
 			<div class="anRdj">
-					<div class="commentArea" >
-				<form action="contactComent.hh" id="replyForm" style="display:inline-block;">
-					<textarea style="float:left" rows="4" cols="100%" placeholder="답변을 입력해 주세요" name="reply" id="reply"></textarea><button type="button" style="width: 80px;height: 100px; float:left;" onclick="insertComent()">등록</button>
-					<div class="commentBtnArea" align="right">
-																
-					</div>
+					<div class="commentArea">
+				<c:if test="${ detail.contactStatus == 0 }">
+				<form action="contactComent.hh" id="contactReplyForm" style="display:inline-block;">
+					<input type="hidden" name="boardNo" id="boardNo" value="${ detail.boardNo }">
+					<textarea style="float:left; width:930px; height:200px;" rows="4" cols="100%" placeholder="답변을 입력해 주세요!" name="comentContent" id="comentContent"></textarea>
+					<button type="submit" style="width:80px; height: 200px; float:left;">등록</button>
 				</form>
+				</c:if>
+				<c:if test="${ detail.contactStatus == 1 }">
+					<form id="contactReplyForm" style="display:inline-block;">
+					<input type="hidden" name="boardNo" id="boardNo" value="${ detail.boardNo }">
+					<textarea style="float:left; width:930px; height:200px;" rows="4" cols="100%" name="comentContent" id="comentContent">${ detail2.comentContent }</textarea>
+					</form>
+				</c:if>
 					</div>
 			</div>
 		</div>
 		<br><br><br><br><br>
-
-	
 	</div>
-	
 
 </body>
 </html>

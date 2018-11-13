@@ -1,9 +1,9 @@
 package com.finalProject.enjoin.notice.model.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.vo.Board;
 
@@ -48,6 +48,12 @@ public interface BoardService {
 	public List<Board> ContactlistAll(PageInfo pi);
 
 	public Board adminContactDetail(int boardNo);
+
+	public int insertContactReply(String comentContent, int boardNo, int userNo);
+
+	public int updateContactStatus(int boardNo);
+
+	public Coment comentCheck(int boardNo);
 
 
 
