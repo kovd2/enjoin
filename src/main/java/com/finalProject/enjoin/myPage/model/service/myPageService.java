@@ -68,5 +68,8 @@ public interface myPageService {
 	//크루원 조회
 	List<inCrew> selectCrewMember(HashMap<String, Object> hmap);
 
+	//이용내역조회
+	List<HashMap<String, Object>> selectUseHistory(HashMap<String, Object> hmap);
+
 
 }

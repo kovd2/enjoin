@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,37 +75,54 @@ li {
 				</div>
 				<br>
 				<div class="memberList">
-					<table style="width: 800px; border-top: solid 1px black;">
+					<table class="useHistoryTable" style="width: 800px; border-top: solid 1px black;">
 						<tr class="titleArea">
 							<td style="width: 30px;">번호</td>
-							<td style="width: 100px">이름</td>
-							<td style="width: 150px">구매일</td>
+							<td style="width: 150px">시설이름</td>
 							<td style="width: 150px">사용일</td>
 							<td style="width: 100px">사용Pass</td>
 							<td style="width: 80px">구분</td>
 						</tr>
-
-						<%for(int i = 0; i < 10; i++){ %>
-						<tr>
-							<td>1</td>
-							<td>홍길동</td>
-							<td>2018-10-25</td>
-							<td>2018-10-26</td>
-							<td>1 Pass</td>
-							<td>사용완료</td>
-						</tr>
-						<%} %>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script>
-		$('#datepicker1, #datepicker2').change(function(){
+		$('#datepicker2').change(function(){
 			var date1 = $('#datepicker1').val();
 			var date2 = $('#datepicker2').val();
-			console.log(date1, date2);
+			var userNo = ${loginUser.userNo};
+			
+			$.ajax({
+				url:"useHistory.ljs",
+				type:"post",
+				data:{date1:date1,
+					  date2:date2,
+					  userNo:userNo},
+				success:function(data){
+					for(var key in data){
+						$useHistoryTr = $('<tr>');
+						$useHistoryTd1 = $('<td>').append(data[key].ROWNUM);
+						$useHistoryTd2 = $('<td>').append(data[key].FACILITY_NAME);
+						$useHistoryTd3 = $('<td>').append(data[key].PP_DATE);
+						$useHistoryTd4 = $('<td>').append(data[key].PP_COUNT);
+						$useHistoryTd5 = $('<td>').append("사용완료");
+						$useHistoryTr.append($useHistoryTd1);
+						$useHistoryTr.append($useHistoryTd2);
+						$useHistoryTr.append($useHistoryTd3);
+						$useHistoryTr.append($useHistoryTd4);
+						$useHistoryTr.append($useHistoryTd5);
+						
+						$('.useHistoryTable').append($useHistoryTr);
+					}
+				},
+				error:function(){
+					console.log("에러");
+				}
+			})
 		});
+		
 		
 	</script>
 </body>

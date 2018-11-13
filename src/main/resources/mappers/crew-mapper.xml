@@ -16,6 +16,7 @@
 		<result property="category_No" column="CATEGORY_NO"/>
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
 	</resultMap>	
 	
 	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
@@ -439,4 +440,8 @@
 			AND B.BOARD_NO = #{board_No}
      	</select>
      		 
+     <!-- 크루 생성한 사람 바로 크루 가입 -->
+     <insert id="insertInCrew2" parameterType="_int">
+     	INSERT INTO INCREW VALUES(#{user_No}, #{crew_Id}, SYSDATE, SYSDATE, NULL, 'Y', SEQ_INCREW_NO.NEXTVAL)
+     </insert>
 </mapper>

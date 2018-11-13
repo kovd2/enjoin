@@ -365,7 +365,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩34,300</strong> <small class="discountNum">
+												<strong>₩100</strong> <small class="discountNum">
 												</small>
 											</div>
 											<!-- 보너스 패스 -->
@@ -387,7 +387,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩120,000</strong> <small class="discountNum">
+												<strong>₩200</strong> <small class="discountNum">
 												</small>
 											</div>
 
@@ -410,7 +410,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩299,000</strong> <small class="discountNum">
+												<strong>₩300</strong> <small class="discountNum">
 												</small>
 											</div>
 
@@ -434,7 +434,7 @@
 
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩899,990</strong> <small class="discountNum">
+												<strong>₩400</strong> <small class="discountNum">
 												</small>
 
 											</div>
@@ -535,7 +535,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩34,300</strong> <small class="discountNum">
+												<strong>₩100</strong> <small class="discountNum">
 												</small>
 											</div>
 											<!-- 보너스 패스 -->
@@ -557,7 +557,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩120,000</strong> <small class="discountNum">
+												<strong>₩200</strong> <small class="discountNum">
 												</small>
 											</div>
 
@@ -580,7 +580,7 @@
 										<!-- /.priceTagHead -->
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩299,000</strong> <small class="discountNum">
+												<strong>₩300</strong> <small class="discountNum">
 												</small>
 											</div>
 
@@ -604,7 +604,7 @@
 
 										<div class="priceTagBody">
 											<div class="priceWon originWon">
-												<strong>₩899,990</strong> <small class="discountNum">
+												<strong>\400</strong> <small class="discountNum">
 												</small>
 
 											</div>

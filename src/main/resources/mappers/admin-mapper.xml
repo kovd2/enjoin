@@ -27,6 +27,23 @@
 		<result property="upload_name" column="UPLOAD_NAME"/>
 	</resultMap>
 	
+	<resultMap type="Crew" id="CrewResultSet">
+		<!-- Primary key  -->
+		<id property="crew_Id" column="CREW_ID"/>
+		<!-- 컬럼  -->
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="crew_Max" column="CREW_MAX"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="request_Date" column="REQUEST_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="end_Date" column="END_DATE"/>
+		<result property="crew_Status" column="CREW_STATUS"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
+	</resultMap>	
+	
 	<!-- 일반 회원수 조회  -->
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -111,11 +128,207 @@
 		ORDER BY USER_NO ASC
 	</select>
 	<!-- 회원 블랙처리  -->
-	<select id="updateStatusMember">
+	<update id="updateStatusMember">
 		UPDATE MEMBER 
 		SET STATUS = 'N',
 			MODIFY_DATE = SYSDATE
 		WHERE USER_NO = #{userNo}
+		AND USER_TYPE = 1
+	</update>
+	<!-- 기업명을 통한 조회  -->
+	<select id="copNameSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'Y'
+        AND COP_NAME LIKE '%'||#{copName}||'%'
+        ORDER BY USER_NO ASC
 	</select>
+	<!-- 기업 회원 아이디를 통한 조회  -->
+	<select id="copUserIdSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'Y'
+        AND USER_ID = #{userId}
+        ORDER BY USER_NO ASC
+	</select>
+	<!-- 기업 회원 사업자등록번호를 통한 조회  -->
+	<select id="copNoSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'Y'
+        AND COP_NO = #{copNo}
+        ORDER BY USER_NO ASC
+	</select>
+	<!-- 기업 회원 담장자 이메일을 통한 조회  -->
+	<select id="managerEmailSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'Y'
+        AND MANAGER_EMAIL = #{managerEmail}
+        ORDER BY USER_NO ASC
+	</select>
+	<!-- 기업회원 블랙 처리  -->
+	<update id="updateCopStatusMember">
+		UPDATE MEMBER 
+		SET STATUS = 'N',
+			MODIFY_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+		AND USER_TYPE = 2
+	</update>
+	<!-- 블랙 일반 회원 리스트수  -->
+	<select id="getBlackListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS = 'N'
+		AND M.USER_TYPE = 1
+	</select>
+	
+	<!--블랙 일반 회원 정보 조회  -->
+	<select id="selectBlackMemberList" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'N'
+		ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 블랙 기업 회원 정보 조회  -->
+	<select id="getBlackListCount1" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS = 'N'
+		AND M.USER_TYPE = 2
+	</select>
+	
+	<!--블랙 기업 회원 정보 조회  -->
+	<select id="companyBlackMemberSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'N'
+		ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 블랙 일반회원 해제 처리  -->
+	<update id="updateStatusBlackMember">
+		UPDATE MEMBER 
+		SET STATUS = 'Y',
+			MODIFY_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+		AND USER_TYPE = 1
+	</update>
+	
+	<!-- 블랙 기업회원 해제 처리  -->
+	<update id="updateCopStatusBlackMember">
+		UPDATE MEMBER 
+		SET STATUS = 'Y',
+			MODIFY_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+		AND USER_TYPE = 2
+	</update>
+	
+	<!-- 블랙 일반회원 아이디 검색  -->
+	<select id="userBlackIdSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'N'
+		AND USER_Id = #{userId}
+		ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 블랙 일반회원 이름 리스트 갯수  -->
+	<select id="getBlackMemberNameListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		WHERE M.STATUS= 'N'
+		AND M.USER_TYPE = 1
+		AND M.USER_NAME = #{userName}
+	</select>
+	
+	<!-- 블랙 일반회원 이름으로 정보 조회  -->
+	<select id="userBlackNameSelect" resultMap="memberResultSet">
+		SELECT USER_NO,USER_TYPE,USER_NAME,USER_ID,PHONE,EMAIL,STATUS,ENROLL_DATE,MODIFY_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 1
+		AND STATUS = 'N'
+		AND USER_Name = #{userName}
+		ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 블랙 기업회원 상호명으로 정보 조회  -->
+	<select id="copNameBlackSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'N'
+        AND COP_NAME LIKE '%'||#{copName}||'%'
+        ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 블랙 기업회원 아이디로 정보 조회  -->
+	<select id="blackCopUserIdSelect" resultMap="memberResultSet">
+		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
+		FROM MEMBER
+		WHERE USER_TYPE = 2
+		AND STATUS = 'N'
+        AND USER_ID = #{userId}
+        ORDER BY USER_NO ASC
+	</select>
+	
+	<!-- 크루 리스트 갯수 조회  -->
+	<select id="getCrewListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM CREW
+		WHERE CREW_STATUS = 'Y'
+	</select>
+	
+	<!-- 크루 리스트 정보 조회  -->
+	<select id="crewListSelect" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'Y'
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 블랙 크루 리스트 갯수 조회  -->
+	<select id="getCrewBlackListCount1" resultType="_int">
+		SELECT COUNT(*)
+		FROM CREW
+		WHERE CREW_STATUS = 'N'	
+	</select>
+	
+	<!-- 블랙크루 리스트 정보 조회  -->
+	<select id="blackCrewListSelect" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'N'
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 크루를 블랙상태로 만듬  -->
+	<update id="updateStatusBlackCrew">
+		UPDATE CREW
+		SET CREW_STATUS = 'N',
+			END_DATE = SYSDATE
+		WHERE CREW_ID = #{crew_Id}
+	</update>
+	
+	<!-- 크루의 블랙상태를 풀음  -->
+	<update id="updateStatusCrew">
+		UPDATE CREW
+		SET CREW_STATUS = 'Y',
+			END_DATE = SYSDATE
+		WHERE CREW_ID = #{crew_Id}
+	</update>
+	
 	
 </mapper>

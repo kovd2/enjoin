@@ -342,6 +342,7 @@ p{
 	        map.setCenter(coords);
 	    } 
 	});    
+
 		</script>
 
 	</div>

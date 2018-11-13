@@ -158,4 +158,11 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectCrewMember(hmap, sqlSession);
 	}
 
+	//이용내역 조회
+	@Override
+	public List<HashMap<String, Object>> selectUseHistory(HashMap<String, Object> hmap) {
+		
+		return mpd.selectUseHistory(hmap, sqlSession);
+	}
+
 }

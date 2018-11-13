@@ -53,8 +53,9 @@ public class myPageDaoImpl implements myPageDao{
 	//회원 패스 조회
 	@Override
 	public int selectPass(int userNo, SqlSessionTemplate sqlSession) {
-		
-		return sqlSession.selectOne("myPage.selectPass", userNo);
+		int pass = sqlSession.selectOne("myPage.selectPass", userNo);
+		System.out.println("dao : " + pass);
+		return pass;
 	}
 
 	//크루 게시판 조회
@@ -182,6 +183,13 @@ public class myPageDaoImpl implements myPageDao{
 	public List<inCrew> selectCrewMember(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectList("myPage.selectCrewMember", hmap);
+	}
+
+	//이용내역 조회
+	@Override
+	public List<HashMap<String, Object>> selectUseHistory(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectUseHistory", hmap);
 	}
 
 
