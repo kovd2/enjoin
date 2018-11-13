@@ -17,6 +17,10 @@ public interface MemberService {
 	
 	Member getPw(Map<String, Object> paramMap);
 
+	int updateNewPwd(Member m);
+
+	int idcheck(String userid);
+
 
 
 

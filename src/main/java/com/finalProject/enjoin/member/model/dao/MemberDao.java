@@ -29,6 +29,12 @@ public interface MemberDao {
 	//비밀번호 찾기
 	Member getPw(Map<String, Object> paramMap);
 
+	//암호화된 비밀번호 업데이트
+	int updateNewPwd(SqlSessionTemplate sqlSession, Member m);
+
+	//아이디 중복체크
+	int idcheck(SqlSessionTemplate sqlSession, String userid);
+
 
 
 

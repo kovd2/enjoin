@@ -74,6 +74,20 @@ public class MemberServiceImpl implements MemberService{
 		return md.getPw(paramMap);
 	}
 
+	//임시 비번 암호화 메소드
+	@Override
+	public int updateNewPwd(Member m) {
+		
+		return md.updateNewPwd(sqlSession, m);
+	}
+
+	//아이디중복확인
+	@Override
+	public int idcheck(String userid) {
+
+		return md.idcheck(sqlSession, userid);
+	}
+
 
 
 }

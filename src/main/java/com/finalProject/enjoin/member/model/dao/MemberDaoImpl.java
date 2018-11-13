@@ -58,7 +58,20 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return sqlSession.selectOne("Member.emailSendPW", paramMap);
 	}
+	
+	//임시비번 암호화 메소드
+	@Override
+	public int updateNewPwd(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.update("Member.updateNewPwd", m);
+	}
 
+	//아이디 중복확인
+	@Override
+	public int idcheck(SqlSessionTemplate sqlSession, String userid) {
+		
+		return sqlSession.selectOne("Member.idCheck", userid);
+	}
 
 
 }
