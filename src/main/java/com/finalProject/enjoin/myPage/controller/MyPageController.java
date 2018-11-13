@@ -41,7 +41,7 @@ public class MyPageController {
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
 	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
-		System.out.println("들어오냐?");
+		
 		int pass = mps.selectPass(userNo);
 		System.out.println("pass : " + pass);
 		if(pass != 0) {
@@ -69,7 +69,7 @@ public class MyPageController {
 	}
 	//정보수정 저장
 	@RequestMapping("saveInfo.ljs")
-	public String updateMember(Model model, Member m, HttpServletRequest request, 
+	public String updateMember(ModelAndView mv, Member m, HttpServletRequest request, 
 			@RequestParam(name="photo", required=false) MultipartFile photo) {
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		m.setUserNo(userNo);
@@ -112,6 +112,9 @@ public class MyPageController {
 			result = mps.updateMember(m, at);
 			
 			((Member)(request.getSession().getAttribute("loginUser"))).setUpload_name(changeName + ext);
+			((Member)(request.getSession().getAttribute("loginUser"))).setEmail(m.getEmail());
+			((Member)(request.getSession().getAttribute("loginUser"))).setPhone(m.getPhone());
+			
 			
 			return "redirect:changeInfo.ljs";
 		} catch (Exception e) {

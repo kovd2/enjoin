@@ -457,9 +457,11 @@ body.register .subWrap {
 												<input id="password" name="userPwd" class="form-control" type="password" placeholder="비밀번호" autocorrect="off" autocapitalize="none" autocomplete="off"
 													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s; width:360px;">
 												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
+
 													
 													
 											</div>
+
 										</div>
 										<span class="help-block" id="password_help"></span>
 									</div>
@@ -782,6 +784,7 @@ body.register .subWrap {
         $('#password_help').text('');
       });
     });
+
 	
 	</script>
 	
@@ -829,6 +832,7 @@ $(function() {
  
  
 </script>
+
 
 	<br>
 	<br>

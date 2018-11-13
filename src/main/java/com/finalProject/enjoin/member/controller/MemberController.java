@@ -282,9 +282,6 @@ public class MemberController {
 	        return map;
 	    }
 
-
-	
-	
 	
 	
 	

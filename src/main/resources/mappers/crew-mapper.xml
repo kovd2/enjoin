@@ -440,4 +440,8 @@
 			AND B.BOARD_NO = #{board_No}
      	</select>
      		 
+     <!-- 크루 생성한 사람 바로 크루 가입 -->
+     <insert id="insertInCrew2" parameterType="_int">
+     	INSERT INTO INCREW VALUES(#{user_No}, #{crew_Id}, SYSDATE, SYSDATE, NULL, 'Y', SEQ_INCREW_NO.NEXTVAL)
+     </insert>
 </mapper>

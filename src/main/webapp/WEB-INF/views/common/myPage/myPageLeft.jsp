@@ -105,15 +105,15 @@
 			var ckPage = $("#ckPage").val();
 			
 			if(ckPage == "a_index"){
-				$("#a_index").css("color","#00bff0");
+				$("#a_index").css("color","rgb(0, 191, 240)");
 			}else if(ckPage == "a_favorite_center"){
-				$("#a_favorite_center").css("color","#00bff0");
+				$("#a_favorite_center").css("color","rgb(0, 191, 240)");
 			}else if(ckPage == "history"){
-				$("#history").css("color","#00bff0");
+				$("#history").css("color","rgb(0, 191, 240)");
 			}else if(ckPage == "a_invite"){
-				$("#a_invite").css("color","#00bff0");
+				$("#a_invite").css("color","rgb(0, 191, 240)");
 			}else if(ckPage == "myBoard"){
-				$("#myBoard").css("color","#00bff0");
+				$("#myBoard").css("color","rgb(0, 191, 240)");
 			}
 		});
 		

@@ -28,10 +28,10 @@ public class CrewDaoImpl implements CrewDao {
 		//커발하여서 현재 크루번호를 받아옴
 		if(result1 > 0) {
 			int crew_Id = sqlSession.selectOne("Crew.selectCrewId");
-
 			//조회한 크루번호를 객체에 담는다
 			c.setCrew_Id(crew_Id);
 			crb.setCrew_No(crew_Id);
+			int result0 = sqlSession.insert("Crew.insertInCrew2", c);
 
 			//크루게시판등록
 			int category_Code = sqlSession.selectOne("Crew.selectCategoryCode", crew_Id);

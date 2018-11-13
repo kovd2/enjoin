@@ -99,13 +99,13 @@
 	AND USER_NAME = #{userName}
 	AND EMAIL = #{email}
 	</select>
-	
+
 	<!-- 아이디 중복확인 -->
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) 
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
 	</select>
-	
+
 </mapper>
 
