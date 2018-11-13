@@ -54,6 +54,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="adminNotice.hh">공지사항</a>
             <a class="dropdown-item" href="adminFAQ.hh">FAQ</a>
+            <a class="dropdown-item" href="adminContact.hh">문의</a>
            </div>
         </li>
         <li class="nav-item">

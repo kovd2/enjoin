@@ -41,5 +41,13 @@ public interface BoardDao {
 
 	public int insertContact(Board b, Attachment at);
 
+	public void insertContact2(Board b);
+
+	public int getListCount3();
+
+	public List<Board> ContactlistAll(PageInfo pi);
+
+	public Board adminContactDetail(int boardNo);
+
 
 }

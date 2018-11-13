@@ -23,6 +23,14 @@
 	background:yellow;
 }
 
+th {
+	border-left:1px solid;
+}
+
+td {
+	border-left:1px solid;
+}
+
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
@@ -34,10 +42,10 @@
 			<p style="text-align:right; margin-right:190px"><input type="button" value="FAQ 등록" onclick="adminFAQInsert()" style="width:150px; height:50px;"></p>
 			<table>
 				<tr style="border: 1px solid black;">
-					<th style="width: 100px; height: 60px; font-size: 30px; background: gray;">번호</th>
-					<th style="width: 250px; height: 60px; font-size: 30px; background: gray;">카테고리</th>
+					<th style="width: 70px; height: 60px; font-size: 30px; background: gray;">번호</th>
+					<th style="width: 180px; height: 60px; font-size: 30px; background: gray;">카테고리</th>
 					<th style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
-					<th style="width: 200px; height: 60px; font-size: 30px; background: gray;">날짜</th>
+					<th style="width: 100px; height: 60px; font-size: 30px; background: gray;">날짜</th>
 				</tr>
 				<c:forEach var="f" items="${ list }">
 					<tr onclick="selectOneBoard(${ f.boardNo })">

@@ -152,7 +152,7 @@ h5 {
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
 							<li class="active">고객센터</li>
 						</ul>
@@ -318,7 +318,7 @@ h5 {
 											<p class="help-block">
 												<span>게시판에 문의사항을 남겨주시면 정확하게 답변해 드립니다.</span>
 											</p>
-											<a href="contact.hh" class="btn btn-default btnQuestion">1:1 문의 남기기 </a>
+											<a href="contactDetail.hh" class="btn btn-default btnQuestion">1:1 문의 남기기 </a>
 										</div>
 									</div>
 									<div class="row">

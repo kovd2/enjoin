@@ -250,229 +250,6 @@
   font-size: 20px;
 }
 
-
-.membershipSummary {
-}
-.membershipSummary .selectedPrice {
-  margin-bottom: 30px;
-}
-.membershipSummary .selectedPrice h5 {
-  font-size: 14px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  letter-spacing: 0;
-}
-.membershipSummary .selectedPrice h6 {
-  margin-bottom: 0;
-}
-.membershipSummary h5 {
-  font-size: 18px;
-  color: #00bff0;
-  letter-spacing: -1px;
-  font-weight: 300;
-}
-.membershipSummary .selectedPrice .timesAnc {
-  color: #777;
-}
-.membershipSummary .selectedPrice .timesAnc strong {
-  font-size: 18px;
-  font-weight: 200;
-  display: block;
-  color: #00bff0;
-}
-.membershipSummary .startDateCheckBox {
-  width: 50%;
-  margin: 30px 0;
-}
-.membershipSummary .startDateCheckBox input {
-  font-size: 18px;
-  font-weight: 600;
-}
-.membershipSummary .startDateCheckBox .form-control-feedback {
-  top: 10px;
-}
-
-.timeline {
-  margin: 30px 0;
-}
-.timeline h3 {
-  font-size: 14px;
-  text-align: center;
-  letter-spacing: -0.5px;
-}
-.timeline ul {
-  border-top: 2px dotted #ccc;
-  position: relative;
-  margin-top: 130px;
-  list-style: none;
-}
-.timeline li {
-  float: left;
-  width: 25%;
-  position: relative;
-  text-align: center;
-}
-.longterm_timeline li {
-  width: 50%;
-}
-/* 시작일 종료일 표시 timeline */
-.timeline li h4 {
-  margin-top: -75px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.timeline li h4 .date {
-  display: block;
-  font-size: 16px;
-  font-weight: 400;
-  margin: 15px 0 0;
-  color: #00bff0;
-  letter-spacing: 0;
-}
-.timeline li h4 .date b {
-  font-size: 18px;
-  font-weight: 400;
-}
-.timeline li .stressLine {
-  border-top: 4px solid #00bff0;
-  display: inline-block;
-  position: absolute;
-  top: -3px;
-}
-.timeline li .passedline {
-  border-top: 2px solid #ccc;
-  display: inline-block;
-  width: 50%;
-  position: absolute;
-  left: 0;
-  top: -2px;
-}
-.timeline li .stressLine.sl100 {
-  left: 0;
-  width: 100%;
-}
-.timeline li .stressLine.sl50 {
-  width: 50%
-}
-.timeline li .stressLine.slLeft {
-  left: 0;
-}
-.timeline li .stressLine.slRight {
-  right: 0;
-}
-.timeline li .point {
-  display: inline-block;
-  background: #00bff0;
-  border-radius: 50%;
-  text-align: center;
-  color: #fff;
-  width: 32px;
-  height: 32px;
-  padding-top: 4px;
-  position: relative;
-}
-.timeline li .pointDesc {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 15px;
-  margin: 15px;
-  font-size: 12px;
-  color: #888;
-}
-.membershipSummary .timeline li .pointDesc {
-  min-height: 150px;
-}
-.timeline li .pointDesc .price {
-  display: block;
-  font-size: 20px;
-  font-weight: 300;
-  margin: 10px 0;
-}
-.timeline li .pointDesc b {
-  color: #00bff0;
-}
-.timeline li .pointDesc .hint {
-  margin: 10px 0 0;
-  display: block;
-}
-.timeline li .pointDesc h5 {
-  color: #00bff0;
-}
-.timeline li .pointDesc .arrow,
-.timeline li .pointDesc .arrow:after {
-  position: absolute;
-  display: block;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-}
-.timeline li .pointDesc .arrow {
-  top: 8px;
-  left: 50%;
-  margin-left: -11px;
-  border-top-width: 0;
-  border-bottom-color: #999;
-  border-bottom-color: rgba(0,0,0,.25);
-  border-width: 11px;
-}
-.timeline li .pointDesc .arrow:after {
-  content: "";
-  border-width: 10px;
-  top: 1px;
-  margin-left: -10px;
-  border-top-width: 0;
-  border-bottom-color: #fff;
-}
-
-.timeline li.m_step_1 .point:after {
-  content:"";
-  border: 1px solid #91e9ff;
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  left: -2px;
-  top: -2px;
-  border-radius: 50%;
-}
-.timeline li.m_step_3 h4 .date {
-  color: #32c7be;
-}
-.timeline li.m_step_3 .point {
-  background: #32c7be;
-}
-.timeline li.m_step_3 .pointDesc h5 {
-  color: #32c7be;
-}
-.timeline li.m_step_4 h4 {
-  color: #999;
-}
-.timeline li.m_step_4 h4 .date {
-  color: #999;
-}
-.timeline li.m_step_4 .point {
-  background: #999;
-}
-.timeline li.m_step_4 .pointDesc h5 {
-  color: #999;
-  font-size: 12px;
-  font-weight: 400;
-}
-.timeline li.m_step_today .point {
-  background: #fff;
-  border: 1px solid #00bff0;
-  color: #00bff0;
-}
-.timeline li.m_step_currentSet h4 .date{
-  color: #32c7be;
-}
-.timeline li.m_step_currentSet .point {
-  background: #32c7be;
-}
-.timeline li.m_step_currentSet .pointDesc h5 {
-  color: #32c7be;
-}
-
 </style>
 </head>
 <body>
@@ -482,7 +259,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
 							<li class="active">멤버십 결제</li>
@@ -509,7 +286,8 @@
                                 <h6 class="aq">240 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
-					
+					<br>
+					<img src="${contextPath }/resources/images/payment/iamport.png" width="100%">					
                 </div> <!-- /.membershipSummary -->
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="paymentInfo2" id="mobilePaymentInfo">
@@ -531,6 +309,8 @@
 </div><!-- /.row -->
 </div><!-- /container -->
 </div><!-- /wrap -->
+
+<jsp:include page="../common/footer.jsp" />
 
 <script>
 	function payment(userNo){

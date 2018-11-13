@@ -1,7 +1,6 @@
 package com.finalProject.enjoin.notice.model.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -165,6 +164,39 @@ public class BoardServiceImpl implements BoardService{
 		
 		return result;
 
+	}
+
+	@Override
+	public void insertContact2(Board b, int userNo, String category) {
+		
+		String title = b.getBoardTitle();
+		String content = b.getBoardContent();
+		
+		b.setBoardTitle(title);
+		b.setBoardContent(content);
+		b.setUserNo(userNo);
+		b.setFaqCategory(category);
+		
+		bd.insertContact2(b);
+		
+	}
+
+	@Override
+	public int getListCount3() {
+		
+		return bd.getListCount3();
+	}
+
+	@Override
+	public List<Board> ContactlistAll(PageInfo pi) {
+		
+		return bd.ContactlistAll(pi);
+	}
+
+	@Override
+	public Board adminContactDetail(int boardNo) {
+		
+		return bd.adminContactDetail(boardNo);
 	}
 
 

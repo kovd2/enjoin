@@ -515,7 +515,8 @@
                             <h5><strong>결제 내역</strong></h5>
                             
                         <div class="paymentSubmitLine">
-                            <h1>응 여기에 결제내역</h1>
+                            <h5 style="color: #656565;">카드승인번호 : ${ proofNo }</h5>
+                            <h5 style="color: #656565;">구매번호 : ${ refundNo }</h5>
                             <button type="button" onclick="home()" class="btn btn-lg btn-success" id="btn_go"> 메인으로 </button>
                         </div>
                             

@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 										</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="userName"
-												id="userName" placeholder="이름을 입력하세요." value="${ loginUser.getUserName() }">
+												id="userName" placeholder="이름을 입력하세요." value="${ loginUser.getUserName() }" readonly>
 										</div>
 									</div>
 									

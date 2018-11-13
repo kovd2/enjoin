@@ -57,7 +57,7 @@ td {
 					<th style="width: 150px; height: 100px; font-size: 20px; background: gray;">결제번호</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">아이디</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">결제일</th>
-					<th style="width: 150px; height: 100px; font-size: 20px; background: gray;">카드승인번호</th>
+					<th style="width: 150px; height: 100px; font-size: 20px; background: gray;">구매번호</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">결제금액</th>
 					<th style="width: 100px; height: 100px; font-size: 20px; background: gray;">충전 패스</th>
 					<th style="width: 50px; height: 100px; font-size: 20px; background: gray;">구분</th>
@@ -69,7 +69,7 @@ td {
 						<td>${ list.PAY_NO }</td>
 						<td>${ list.USER_ID }</td>
 						<td>${ list.PAY_DATE }</td>
-						<td>${ list.PROOF_NO }</td>
+						<td>${ list.REFUND_NO }</td>
 						<td>${ list.PRICE }</td>
 						<td>${ list.PASS_PLUS }</td>
 					<c:if test="${ list.PAY_TYPE == 0}">
@@ -98,7 +98,7 @@ td {
 						<li><a>이전</a></li>
 					</c:if>
 					<c:if test="${ pi.currentPage > 1 }">
-						<c:url var="listBack" value="adminFAQ.hh">
+						<c:url var="listBack" value="adminPayment.hh">
 							<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 						</c:url>
 						<li><a href="${ listBack }">이전&nbsp; </a></li>
@@ -109,7 +109,7 @@ td {
 							<li class="active"><a>&nbsp;${ p }&nbsp;</a></li>
 						</c:if>
 						<c:if test="${ p ne pi.currentPage }">
-							<c:url var="listCheck" value="adminFAQ.hh">
+							<c:url var="listCheck" value="adminPayment.hh">
 								<c:param name="currentPage" value="${ p }" />
 							</c:url>
 							<li><a href="${ listCheck }"> ${ p } </a></li>
@@ -120,7 +120,7 @@ td {
 						<li><a> 다음</a></li>
 					</c:if>
 					<c:if test="${ pi.currentPage < pi.maxPage }">
-						<c:url var="listEnd" value="adminFAQ.hh">
+						<c:url var="listEnd" value="adminPayment.hh">
 							<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 						</c:url>
 						<li><a href="${ listEnd }">&nbsp; 다음</a></li>
