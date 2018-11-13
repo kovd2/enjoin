@@ -42,6 +42,7 @@
 		<result property="file_No" column="FILE_NO"/>
 		<result property="category_Name" column="CATEGORY_NAME"/>
 		<result property="user_Name" column="USER_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="CrewRmbAttachment">
@@ -431,7 +432,8 @@
 			AND A.FILE_NO = 0
 			AND B.BOARD_TYPE = '크루모집'
      	</select>	
-     <!-- 크루활동게시판 사진 조회  -->	
+     	
+     	<!-- 크루활동게시판 사진 조회  -->	
      	<select id="crewActivityBoardDetailPhoto" resultMap="CrewRmbAttachment">
      		SELECT A.UPLOAD_NAME,A.FILE_NO
 			FROM BOARD B
@@ -439,5 +441,7 @@
 			WHERE B.BOARD_TYPE = '크루활동'
 			AND B.BOARD_NO = #{board_No}
      	</select>
+     	
+     
      		 
 </mapper>

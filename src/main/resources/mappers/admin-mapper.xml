@@ -42,6 +42,32 @@
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="upload_Name" column="UPLOAD_NAME"/>
 		<result property="user_Id" column="USER_ID"/>
+	</resultMap>
+	
+	<resultMap type="CrewRecruitmentBoard" id="CrewRecruitmentSet">
+		<!-- Primary key  -->
+		<id property="board_No" column="BOARD_NO"/>
+		<!-- 컬럼  -->
+		<result property="board_Type" column="BOARD_TYPE"/>
+		<result property="board_Title" column="BOARD_TITLE"/>
+		<result property="board_Content" column="BOARD_CONTENT"/>
+		<result property="enroll_Date" column="ENROLL_DATE"/>
+		<result property="crew_Area" column="CREW_AREA"/>
+		<result property="crew_No" column="CREW_NO"/>
+		<result property="board_Count" column="BOARD_COUNT"/>
+		<result property="recruit_Max" column="RECRUIT_MAX"/>
+		<result property="recruit_Start" column="RECRUIT_START"/>
+		<result property="recruit_End" column="RECRUIT_END"/>
+		<result property="recruit_Status" column="RECRUIT_STATUS"/>
+		<result property="status" column="STATUS"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="file_No" column="FILE_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
 	</resultMap>	
 	
 	<!-- 일반 회원수 조회  -->
@@ -153,6 +179,7 @@
         AND USER_ID = #{userId}
         ORDER BY USER_NO ASC
 	</select>
+	
 	<!-- 기업 회원 사업자등록번호를 통한 조회  -->
 	<select id="copNoSelect" resultMap="memberResultSet">
 		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
@@ -162,6 +189,7 @@
         AND COP_NO = #{copNo}
         ORDER BY USER_NO ASC
 	</select>
+	
 	<!-- 기업 회원 담장자 이메일을 통한 조회  -->
 	<select id="managerEmailSelect" resultMap="memberResultSet">
 		SELECT USER_NO,COP_NO,COP_NAME ,USER_ID,MANAGER_PHONE,MANAGER_EMAIL,COP_ADDRESS,COP_EMAIL,ENROLL_DATE
@@ -171,6 +199,7 @@
         AND MANAGER_EMAIL = #{managerEmail}
         ORDER BY USER_NO ASC
 	</select>
+	
 	<!-- 기업회원 블랙 처리  -->
 	<update id="updateCopStatusMember">
 		UPDATE MEMBER 
@@ -179,6 +208,7 @@
 		WHERE USER_NO = #{userNo}
 		AND USER_TYPE = 2
 	</update>
+	
 	<!-- 블랙 일반 회원 리스트수  -->
 	<select id="getBlackListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -330,5 +360,103 @@
 		WHERE CREW_ID = #{crew_Id}
 	</update>
 	
+	<!-- 크루명을 통한 조회  -->
+	<select id="crewNameSelect" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'Y'
+		AND C.CREW_NAME = #{crew_Name}
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 크루장을 통한 조회  -->
+	<select id="crewBoassSelect" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'Y'
+		AND M.USER_ID = #{user_Id}
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 블랙크루명을 통한 조회  -->
+	<select id="crewBlackName" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'N'
+		AND C.CREW_NAME = #{crew_Name}
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 크루장을 통한 조회  -->
+	<select id="crewBlackUser" resultMap="CrewResultSet">
+		SELECT C.CREW_ID,C.CREW_NAME,C.CREW_MAX,M.USER_ID,C.CREW_STATUS,C.START_DATE,C1.CATEGORY_NAME
+		FROM CREW C
+		JOIN MEMBER M ON(C.USER_NO = M.USER_NO)
+		JOIN CATEGORY C1 ON (C.CATEGORY_NO = C1.CATEGORY_NO)
+		WHERE C.CREW_STATUS = 'N'
+		AND M.USER_ID = #{user_Id}
+		ORDER BY C.CREW_ID ASC
+	</select>
+	
+	<!-- 크루모집 게시판 게시글 갯수 조회  -->
+	<select id="getCrtListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS = 'N'
+		AND BOARD_TYPE = '크루모집'
+	</select>
+	
+	<!-- 크루모집 게시판 게시글 정보 조회  -->
+	<select id="selectCrewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
+		SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루모집'
+		AND B.STATUS = 'N'
+		ORDER BY B.BOARD_NO ASC
+	</select>
+	
+	<!-- 크루모집 게시판 관리자 권한으로 삭제처리  -->
+	<update id="updateAdminCrewRecruitmentStatus">
+		UPDATE BOARD
+		SET STATUS = 'Y',
+		MODIFY_DATE = SYSDATE
+		WHERE BOARD_TYPE = '크루모집'
+		AND BOARD_NO = #{board_No}
+	</update>
+	
+	<!-- 크루 모집 게시판 제목별 검색  -->
+	<select id="selectCrewRecruitmentBoardTitle" resultMap="CrewRecruitmentSet">
+		SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루모집'
+		AND B.STATUS = 'N'
+		AND B.BOARD_TITLE = #{board_No}
+		ORDER BY B.BOARD_NO ASC
+	</select>
+	
+	<!--크루 모집 작성자로 검색  -->
+	<select id="selectCrewRecruitmentUserId" resultMap="CrewRecruitmentSet">
+		SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루모집'
+		AND B.STATUS = 'N'
+		AND M.USER_ID = #{user_Id}
+		ORDER BY B.BOARD_NO ASC
+	</select>
 	
 </mapper>

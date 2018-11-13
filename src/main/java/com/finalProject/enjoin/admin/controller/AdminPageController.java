@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.admin.model.service.AdminService;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
@@ -441,6 +442,172 @@ public class AdminPageController {
 			
 			return "redirect:adminCrew.shw";
 		}
+		@RequestMapping("crewSearchList.shw")
+		public ModelAndView crewSearchList(ModelAndView mv , HttpServletRequest request){
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			
+			if(option.equals("크루명")) {
+				String crew_Name = searchList;
+				
+				List<Crew> list = as.crewNameSelect(crew_Name);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				map.put("list", list);
+				
+				mv.addObject("map", map);
+				
+			}else if(option.equals("크루장")) {
+				String user_Id = searchList;
+				
+				List<Crew> list = as.crewBoassSelect(user_Id);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				map.put("list", list);
+				
+				mv.addObject("map", map);
+			}
+			mv.setViewName("admin/adminCrewTable");
+
+			
+			return mv;
+		}
+		@RequestMapping("crewBlackSearchList.shw")
+		public ModelAndView crewBlackSearchList(ModelAndView mv , HttpServletRequest request){
 		
+			String option = request.getParameter("option");
+			String searchList =request.getParameter("searchList");
+					
+			if(option.equals("크루명")) {
+				String crew_Name = searchList;
+				
+				List<Crew> list1 = as.crewBlackName(crew_Name);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				map.put("list1", list1);
+				
+				mv.addObject("map", map);
+				
+			}else if(option.equals("크루장")) {
+				String user_Id = searchList;
+				
+				List<Crew> list1 = as.crewBlackUser(user_Id);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				map.put("list1", list1);
+				
+				mv.addObject("map", map);
+			}
 	
+			mv.setViewName("admin/adminCrewTable");
+			
+			return mv;
+
+		}
+		//관리자 크루 모집 게시판
+		@RequestMapping("adminCrewRecruitment.shw")
+		public ModelAndView adminCrewRecruitment(ModelAndView mv , HttpServletRequest request){
+			
+			//크루 모집게시판 리스트 카운트
+			int currentPage = 1;
+			
+			if(request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+			}
+			int listCount = as.getCrtListCount();
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			List<CrewRecruitmentBoard>list = as.selectCrewRecruitmentBoardList(pi);
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			
+			map.put("list", list);
+			
+			
+			mv.addObject("map", map);
+			mv.addObject("pi", pi);
+			
+			
+			mv.setViewName("admin/adminCrewRecruitment");
+			
+			
+			return mv;
+		}
+		//게시글 삭제 삭제여부 'Y' 값으로 만들기
+		@RequestMapping(value="adminCrewRecruitmentStatus.shw")
+		public String adminCrewRecruitmentStatus(Model model,HttpServletRequest request) {
+			
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			int result = as.updateAdminCrewRecruitmentStatus(board_No);
+			
+			return "redirect:adminCrewRecruitment.shw";
+				
+		}
+		//크루모집 게시판 검색을 통한 게시글 검색
+		@RequestMapping("adminCrcSearchList.shw")
+		public ModelAndView adminCrcSearchList(ModelAndView mv,HttpServletRequest request) {
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			if(option.equals("제목")){
+				String board_Title = searchList;
+				
+				List<CrewRecruitmentBoard> list = as.selectCrewRecruitmentBoardTitle(board_Title);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				
+				map.put("list", list);
+				mv.addObject("map", map);
+				
+			}else if(option.equals("작성자")){
+				String user_Id = searchList;
+				
+				List<CrewRecruitmentBoard> list = as.selectCrewRecruitmentUserId(user_Id);
+				
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				
+				map.put("list", list);
+				mv.addObject("map", map);
+				
+			}
+			
+			
+			
+			
+			mv.setViewName("admin/adminCrewRecruitment");
+			
+			return mv;
+		}
+		
+		
+		
+		//관리자 크루 활동 게시판
+		@RequestMapping("adminAdminCrewActivity.shw")
+		public ModelAndView dminAdminCrewActivity(ModelAndView mv , HttpServletRequest request){
+			
+			
+			mv.setViewName("admin/adminCrewActivity");
+			
+			
+			return mv;
+		}
+		//관리자 공고 게시판
+		@RequestMapping("adminInformBoard.shw")
+		public ModelAndView adminInformBoard(ModelAndView mv , HttpServletRequest request){
+			
+			
+			
+			
+			mv.setViewName("admin/adminInformBoard");
+			
+			
+			return mv;
+		}
+		
+		
 }
