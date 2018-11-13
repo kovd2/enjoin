@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.admin.model.dao.AdminDao;
+import com.finalProject.enjoin.crew.model.vo.Crew;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -84,6 +85,138 @@ public class AdminServiceImpl implements AdminService {
 	public int updateStatusMember(int userNo) {
 		
 		return ad.updateStatusMember(sqlSession,userNo);
+	}
+	//기업 상호명을 통한 조회
+	@Override
+	public List<Member> copNameSelect(String copName) {
+		
+		return ad.copNameSelect(sqlSession,copName);
+	}
+	//기업 아이디를 통한 조회
+	@Override
+	public List<Member> copUserIdSelect(String userId) {
+
+		return ad.copUserIdSelect(sqlSession,userId);
+	}
+	//기업 사업자 등록번호를 통한 조회
+	@Override
+	public List<Member> copNoSelect(String copNo) {
+
+		return ad.copNoSelect(sqlSession,copNo);
+	}
+	//기업 담당자 이메일을 통한 조회
+	@Override
+	public List<Member> managerEmailSelect(String managerEmail) {
+		
+		return ad.managerEmailSelect(sqlSession,managerEmail);
+	}
+	//기업회원 블랙처리
+	@Override
+	public int updateCopStatusMember(int userNo) {
+		
+		return ad.updateCopStatusMember(sqlSession,userNo);
+	}
+	//블랙회원 리스트 갯수
+	@Override
+	public int getBlackListCount() {
+		
+		return ad.getBlackListCount(sqlSession);
+	}
+	//블랙 일반회원 정보 조회
+	@Override
+	public List<Member> selectBlackMemberList(PageInfo pi) {
+		
+		return ad.selectBlackMemberList(sqlSession,pi);
+	}
+	//블랙 기업회원 리스트 갯수
+	@Override
+	public int getBlackListCount1() {
+		
+		return ad.getBlackListCount1(sqlSession);
+	}
+	//블랙 기업회원 정보 조회
+	@Override
+	public List<Member> companyBlackMemberSelect(PageInfo pi1) {
+		
+		return ad.companyBlackMemberSelect(sqlSession,pi1);
+	}
+	//블랙 일반회원 해제처리
+	@Override
+	public int updateStatusBlackMember(int userNo) {
+		
+		return ad.updateStatusBlackMember(sqlSession,userNo);
+	}
+	//블랙 기업회원 해제처리
+	@Override
+	public int updateCopStatusBlackMember(int userNo) {
+		
+		return ad.updateCopStatusBlackMember(sqlSession,userNo);
+	}
+	//블랙회원 아이디 검색
+	@Override
+	public List<Member> userBlackIdSelect(String userId) {
+		
+		return ad.userBlackIdSelect(sqlSession,userId);
+	}
+	//블랙회원 이름 리스트 갯수 조회
+	@Override
+	public int getBlackMemberNameListCount(String userName) {
+		
+		return ad.getBlackMemberNameListCount(sqlSession,userName);
+	}
+	//블랙회원 이름 일반 정보 조회
+	@Override
+	public List<Member> userBlackNameSelect(String userName, PageInfo pi) {
+		
+		return ad.userBlackNameSelect(sqlSession,userName,pi);
+	}
+	//블랙회원 상호명으로 정보 조회
+	@Override
+	public List<Member> copNameBlackSelect(String copName) {
+		
+		return ad.copNameBlackSelect(sqlSession,copName);
+	}
+	//블랙 기업회원 아이디로 정보 조회
+	@Override
+	public List<Member> blackCopUserIdSelect(String userId) {
+		
+		return ad.blackCopUserIdSelect(sqlSession,userId);
+	}
+	//크루 리스트 갯수 조회
+	@Override
+	public int getCrewListCount() {
+		
+		return ad.getCrewListCount(sqlSession);
+	}
+	//크루 리스트 정보 조회
+	@Override
+	public List<Crew> crewListSelect(PageInfo pi) {
+		
+		return ad.crewListSelect(sqlSession,pi);
+	}
+	//블랙 크루 리스트 갯수 조회
+	@Override
+	public int getCrewBlackListCount1() {
+		
+		return ad.getCrewBlackListCount1(sqlSession);
+	}
+	//블랙 크루 리스트 정보 조회
+	@Override
+	public List<Crew> blackCrewListSelect(PageInfo pi1) {
+		
+		return ad.blackCrewListSelect(sqlSession,pi1);
+	}
+	//크루를 블랙 상태로 만듬
+	@Override
+	public int updateStatusBlackCrew(int crew_Id) {
+		
+		return ad.updateStatusBlackCrew(sqlSession,crew_Id);
+	}
+	//크루의 블랙 상태를 풀음
+	@Override
+	public int updateStatusCrew(int crew_Id) {
+		
+		return ad.updateStatusCrew(sqlSession,crew_Id);
 	}
 	
 

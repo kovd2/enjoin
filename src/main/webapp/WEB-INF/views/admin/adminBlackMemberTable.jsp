@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	.Area {
@@ -155,9 +153,8 @@ span.m8 {
 
 .email {
 	margin: 0;
-    line-height: 20px;
-    margin-left: 10px;
-    font-size: 8px;
+	line-height: 20px;
+	font-size: 8px;
 }
 
 .memberName {
@@ -313,7 +310,6 @@ hr {
 }
 .mArea7A2{
 	width: 126px;
-    margin-left: 17px;
 
 }
 .email1{
@@ -328,7 +324,7 @@ hr {
 }
 .mArea8{
 	width: 75px;
-    
+    margin-left: 18px;
     
 }
 .memberDate{
@@ -351,9 +347,9 @@ hr {
 		var userNo = userNo;
 		var userId = userId;
 		
-		if(confirm(userId + "를 블랙처리 하시겠습니까?") == true){
-			location.href="statusMember.shw?userNo=" + userNo;
-			alert("블랙 처리 완료!");
+		if(confirm(userId + "를 일반회원 으로 복구 시키겠습니까?") == true){
+			location.href="statusBlackMember.shw?userNo=" + userNo;
+			alert("처리 완료!");
 		}else{
 			return;
 		}
@@ -362,9 +358,9 @@ hr {
 		var userNo = userNo;
 		var userId = userId;
 		
-		if(confirm(userId + "를 블랙처리 하시겠습니까?") == true){
-			location.href="copStatusMember.shw?userNo=" + userNo;
-			alert("블랙처리완료!");
+		if(confirm(userId + "를 일반회원 으로 복구 시키겠습니까?") == true){
+			location.href="copStatusBlackMember.shw?userNo=" + userNo;
+			alert("처리완료!");
 		}else{
 			return;
 		}
@@ -373,14 +369,13 @@ hr {
 </script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
-	
-			<div class="Area">
+		<div class="Area">
 					<div class="memberArea">
 						<div class="fromArea">
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain">일반 회원 검색</h2>
+									<h2 class="MemberSearchMain">블랙일반 회원 검색</h2>
 									<hr>
 								</td>
 							</tr>
@@ -422,18 +417,14 @@ hr {
 								</td>
 							</tr>
 							<!-- 여기까지  -->
-							<form action="memberSearchList.shw" method="get">
+							<form action="memberBlackSearchList.shw" method="get">
 								<table>
 									<tr>
 										<td colspan="3">
 											<div class="searchArea1">
 												<select class="selectBox1" name="option">
-													<option>번호</option>
 													<option>회원아이디</option>
 													<option>이름</option>
-													<option>연락처</option>
-													<option>이메일</option>
-													
 												</select> <input type="text" class="searchBar1" name="searchList">
 												<button type="submit" class="searchBtn">검색</button>
 											</div>
@@ -489,7 +480,7 @@ hr {
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain">기업 회원 검색</h2>
+									<h2 class="MemberSearchMain">블랙기업 회원 검색</h2>
 									<hr>
 								</td>
 							</tr>
@@ -542,7 +533,7 @@ hr {
 							
 									<tr>
 										<td colspan="3">
-											<form action="companyMemberSearchList.shw" method="get">
+											<form action="companyBlackMemberSearchList.shw" method="get">
 												<table align="center">
 													<tr>
 														<td>
@@ -550,8 +541,6 @@ hr {
 																<select class="selectBox" name="option">
 																	<option>상호명</option>
 																	<option>아이디</option>
-																	<option>등록번호</option>
-																	<option>이메일</option>
 																</select> <input type="text" class="searchBar1" name="searchList">
 																<button type="submit" class="searchBtn">검색</button>
 															</div>
