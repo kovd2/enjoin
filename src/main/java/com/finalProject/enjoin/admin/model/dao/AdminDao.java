@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -109,6 +110,33 @@ public interface AdminDao {
 	
 	//크루의 블랙상태를 풀음
 	int updateStatusCrew(SqlSession sqlSession, int crew_Id);
+	
+	//크루명을 통한 조회
+	List<Crew> crewNameSelect(SqlSession sqlSession, String crew_Name);
+	
+	//크루장을 통한 조회
+	List<Crew> crewBoassSelect(SqlSession sqlSession, String user_Id);
+	
+	//블랙크루 크루명을 통한 조회
+	List<Crew> crewBlackName(SqlSession sqlSession, String crew_Name);
+
+	//블랙 크루 크루장을 통한 조회
+	List<Crew> crewBlackUser(SqlSession sqlSession, String user_Id);
+	
+	//크루 모집 게시판 게시글 갯수 조회
+	int getCrtListCount(SqlSession sqlSession);
+	
+	//크루 모집 게시판 정보 보기
+	List<CrewRecruitmentBoard> selectCrewRecruitmentBoardList(SqlSession sqlSession, PageInfo pi);
+	
+	//크루게시글 관리자 권한으로 삭제 처리
+	int updateAdminCrewRecruitmentStatus(SqlSession sqlSession, int board_No);
+	
+	//크루게시판 제목으로 게시물 조회
+	List<CrewRecruitmentBoard> selectCrewRecruitmentBoardTitle(SqlSession sqlSession, String board_Title);
+	
+	//크루게시판 작성자로 게시물 조회
+	List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(SqlSession sqlSession, String user_Id);
 	
 	
 

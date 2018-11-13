@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.admin.model.dao.AdminDao;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -217,6 +218,60 @@ public class AdminServiceImpl implements AdminService {
 	public int updateStatusCrew(int crew_Id) {
 		
 		return ad.updateStatusCrew(sqlSession,crew_Id);
+	}
+	//크루명을 통한 조회
+	@Override
+	public List<Crew> crewNameSelect(String crew_Name) {
+		
+		return ad.crewNameSelect(sqlSession,crew_Name);
+	}
+	//크루장을 통한 조회
+	@Override
+	public List<Crew> crewBoassSelect(String user_Id) {
+		
+		return ad.crewBoassSelect(sqlSession,user_Id);
+	}
+	//블랙크루 크루명을 통한 조회
+	@Override
+	public List<Crew> crewBlackName(String crew_Name) {
+		
+		return ad.crewBlackName(sqlSession,crew_Name);
+	}
+	//블랙크루 크루장을 통한 조회
+	@Override
+	public List<Crew> crewBlackUser(String user_Id) {
+		
+		return ad.crewBlackUser(sqlSession,user_Id);
+	}
+	//크루모집 게시판 게시글 갯수 조회
+	@Override
+	public int getCrtListCount() {
+		
+		return ad.getCrtListCount(sqlSession);
+	}
+	//크루모집 게시판 정보 조회
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentBoardList(PageInfo pi) {
+		
+		return ad.selectCrewRecruitmentBoardList(sqlSession,pi);
+	}
+	//크루모집 게시글 관리자 권한으로 삭제
+	@Override
+	public int updateAdminCrewRecruitmentStatus(int board_No) {
+		
+		return ad.updateAdminCrewRecruitmentStatus(sqlSession,board_No);
+	}
+	//크루모집 제목으로 게시물 조회
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentBoardTitle(String board_Title) {
+		
+		return ad.selectCrewRecruitmentBoardTitle(sqlSession,board_Title);
+	}
+	//크루모집 작성자로  게시물 조회
+	@Override
+	public List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(String user_Id) {
+		
+		return ad.selectCrewRecruitmentUserId(sqlSession,user_Id);
 	}
 	
 
