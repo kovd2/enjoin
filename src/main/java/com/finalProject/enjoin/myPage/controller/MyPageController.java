@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,13 +41,24 @@ public class MyPageController {
 	//프로필 (pass수량 조회)
 	@RequestMapping("profil.ljs")
 	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
-		
+		System.out.println("들어오냐?");
 		int pass = mps.selectPass(userNo);
-		
-		mv.setViewName("myPage/membership");
-		mv.addObject("pass", pass);
-		
-		return mv;
+		System.out.println("pass : " + pass);
+		if(pass != 0) {
+			System.out.println("pass : " + pass);
+			
+			mv.setViewName("myPage/membership");
+			mv.addObject("pass", pass);
+			
+			return mv;			
+		}else {
+			System.out.println("pass : " + pass);
+			
+			mv.setViewName("myPage/membership");
+			mv.addObject("pass", 0);
+			
+			return mv;
+		}
 	}
 	
 	//정보수정 페이지
@@ -204,11 +216,19 @@ public class MyPageController {
 		
 	}
 
-	//시설이용내역 페이지 이동
-	@RequestMapping("enterpriseUseHistory.ljs")
-	public String enterpriseUseHistory() {
+	//이용내역 조회
+	@RequestMapping("useHistory.ljs")
+	public @ResponseBody List<HashMap<String, Object>> useHistory(@RequestParam("date1") String date1, @RequestParam("date2") String date2, @RequestParam("userNo") int userNo) {
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		
-		return "myPage/enterpriseUseHistory";
+		hmap.put("date1", date1);
+		hmap.put("date2", date2);
+		hmap.put("userNo", userNo);
+		
+		List<HashMap<String, Object>> useHistory = mps.selectUseHistory(hmap);
+		System.out.println("useHistory : " + useHistory);
+		
+		return useHistory;
 	}
 	
 	//크루 게시판 조회

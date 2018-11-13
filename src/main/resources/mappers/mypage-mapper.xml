@@ -128,6 +128,48 @@
 		<result property="uploadName" column="UPLOAD_NAME"/>
 	</resultMap>
 	
+	<!-- 결제 -->
+   <resultMap type="Payment" id="paymentResultSet">
+   		<id property="payNo" column="PAY_NO"/>
+   		<result property="price" column="PRICE"/>
+   		<result property="payDate" column="PAY_DATE"/>
+   		<result property="proofNo" column="PROOF_NO"/>
+   		<result property="payType" column="PAY_TYPE"/>
+   		<result property="userNo" column="USER_NO"/>
+   		<result property="refundNo" column="REFUND_NO"/>
+   </resultMap>
+   
+   <!-- 패스이력 -->
+   <resultMap type="Passrecord" id="passRecordResultSet">
+      <id property="ppStatus" column="PP_STATUS"/>
+      <result property="ppDate" column="PP_DATE"/>
+      <result property="ppCount" column="PP_COUNT"/>
+      <result property="payNo" column="PAY_NO"/>
+   </resultMap>
+   
+   <resultMap type="com.finalProject.enjoin.company.model.vo.Company" id="companyResultSet">
+		<!-- PRIMARY KEY -->
+		<id property="facilityNo" column="FACILITY_NO"/>
+		<!-- 컬럼 -->
+		<result property="facilityRequestDate" column="FACILITY_REQUESTDATE"/>
+		<result property="facilityStartDate" column="FACILITY_STARTDATE"/>
+		<result property="facilityEndDate" column="FACILITY_ENDDATE"/>
+		<result property="facilityStatus" column="FACILITY_STATUS"/>
+		<result property="passCount" column="PASS_COUNT"/>
+		<result property="facilityCopNo" column="FACILITY_COPNO"/>
+		<result property="facilityName" column="FACILITY_NAME"/>
+		<result property="facilityArea" column="FACILITY_AREA"/>
+		<result property="facilitySection" column="FACILITY_SECTION"/>
+		<result property="facilityAddress" column="FACILITY_ADDRESS"/>	
+		<result property="facilityEvent" column="FACILITY_EVENT"/>
+		<result property="facilityManagerName" column="FACILITY_MANAGER_NAME"/>
+		<result property="facilityManagerPhone" column="FACILITY_MANAGER_PHONE"/>
+		<result property="timeForCall" column="TIME_FOR_CALL"/>
+		<result property="mon_fri_time" column="MON_FRI_TIME"/>
+		<result property="sat_time" column="SAT_TIME"/>
+		<result property="sun_time" column="SUN_TIME"/>
+	</resultMap>
+	
 	<!-- 회원 정보 수정 쿼리 -->
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
@@ -253,7 +295,7 @@
 		WHERE USER_NO = (SELECT USER_NO
 						 FROM MEMBER
 						 WHERE USER_NO = #{userNo}) -->
-		SELECT SUM(PASS_COUNT)
+		SELECT NVL(SUM(PASS_COUNT) , 0) PASS_COUNT
 		FROM PASS
 		WHERE USER_NO = #{userNo}
 	</select>
@@ -363,6 +405,14 @@
                     WHERE B.USER_NO = #{userNo}
                     AND BOARD_TYPE = '크루모집' ) BA ON (BA.CREW_NO = C.CREW_ID)) CM ON (M.USER_NO = CM.USER_NO)
 		WHERE CM.CREW_ID = #{crewId}
+	</select>
+	
+	<select id="selectUseHistory" parameterType="hashmap" resultType="hashmap">
+		SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
+		FROM PASSRECORD PR
+		JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
+		WHERE USER_NO = ${userNo}
+		AND PR.PP_DATE BETWEEN '${date1}' AND '${date2}'
 	</select>
 </mapper>
 	

@@ -111,7 +111,7 @@
 		class="com.finalProject.enjoin.member.model.vo.Email">
 	</bean>
 	<bean id="emailSender"
-		class=" com.finalProject.enjoin.common.util.EmailSender">
+		class="com.finalProject.enjoin.common.util.EmailSender">
 	</bean>
 
 
