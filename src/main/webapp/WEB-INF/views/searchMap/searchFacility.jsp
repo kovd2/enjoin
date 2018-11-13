@@ -21,6 +21,12 @@
 
 <style>
 
+header{
+	width:100%;
+	top:0;
+	position:fixed;
+
+}
 .wrap{
 	width:100%;
 }
@@ -37,12 +43,15 @@
 	width:400px;
 	/* height:800px; */
 	background:#f5f5f5;
+	margin-top:80px;
 }
 .mapArea{
 	
 	width:620px;
-	/* height:800px; */
+	 height:800px;
 	background:#bcdeb0;
+	margin-top:80px;
+	position:fixed;	
 }
 .searchWrap{
 	margin-top:20px;
@@ -147,22 +156,23 @@ p{
 			</div>
 			<br>
 			
+			<c:forEach var="item" items="${list}">
 			<div class="listArea">
-			
+				
 				<div class="list" onclick="goDetail()">
 				<div class="imgArea">
-							<img src="">
+							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
 				</div>
 							<div class="contents">
-							<h4>또치의 헬스</h4>
-							<p>서울특별시 강남구 역삼동 kh파워헬스</p>
-							 <div class="category"><b>피트니스</b></div>
+							<h4>${item.FACILITY_NAME}</h4>
+							<p>${item.FACILITY_ADDRESS}</p>
+							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
 							</div>
 				</div>
 				
 				
 				
-				<div class="list" onclick="goDetail()">
+				<!-- <div class="list" onclick="goDetail()">
 				<div class="imgArea">			
 							<img src="">
 				</div>
@@ -173,10 +183,11 @@ p{
 							 <div class="category"><b>피트니스</b></div>
 							</div>
 							
-				</div>
+				</div> -->
 				
 				
 			</div>
+			</c:forEach>
 			
 			<div class="listArea">
 			
@@ -281,7 +292,7 @@ p{
 			
 		</div>
 		<div class="mapArea">
-			<div id="map" style="width:600px;height:500px;"></div>
+			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 		</div>
 	</div>
 
@@ -302,7 +313,7 @@ p{
 
 	// 주소로 좌표를 검색합니다
 	geocoder.addressSearch(
-			'제주특별자치도 제주시 첨단로 242',
+				
 			'서울 강남구 테헤란로 142',
 			'서울 강남구 테헤란로 125',
 			'서울 강남구 테헤란로8길 7',
