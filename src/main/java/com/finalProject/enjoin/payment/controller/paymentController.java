@@ -38,7 +38,7 @@ public class paymentController {
 	
 	//7패스 결제완료
 	@RequestMapping("passPurchaseFinish.hh")
-	public String passPurchaseFinish(@ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
+	public ModelAndView passPurchaseFinish(ModelAndView mav, @ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
 			@RequestParam(value="merchant_uid")String merchant_uid, @RequestParam(value="paid_amount")int paid_amount, @RequestParam(value="apply_num")String apply_num) {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
@@ -64,13 +64,17 @@ public class paymentController {
 			}
 		}
 		
+		mav.setViewName("notice/passPurchaseFinish");
+		mav.addObject("price", price);
+		mav.addObject("proofNo", proofNo);
+		mav.addObject("refundNo", refundNo);
 		
-		return "notice/passPurchaseFinish";
+		return mav;
 	}
 	
 	//30패스 결제완료
 	@RequestMapping("passPurchaseFinish2.hh")
-	public String passPurchaseFinish2(@ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
+	public ModelAndView passPurchaseFinish2(ModelAndView mav, @ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
 			@RequestParam(value="merchant_uid")String merchant_uid, @RequestParam(value="paid_amount")int paid_amount, @RequestParam(value="apply_num")String apply_num) {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
@@ -95,14 +99,19 @@ public class paymentController {
 				
 			}
 		}
+
+		mav.setViewName("notice/passPurchaseFinish2");
+		mav.addObject("price", price);
+		mav.addObject("proofNo", proofNo);
+		mav.addObject("refundNo", refundNo);
 		
 		
-		return "notice/passPurchaseFinish2";
+		return mav;
 	}
 	
 	//78패스 결제완료
 	@RequestMapping("passPurchaseFinish3.hh")
-	public String passPurchaseFinish3(@ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
+	public ModelAndView passPurchaseFinish3(ModelAndView mav, @ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
 			@RequestParam(value="merchant_uid")String merchant_uid, @RequestParam(value="paid_amount")int paid_amount, @RequestParam(value="apply_num")String apply_num) {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
@@ -127,14 +136,19 @@ public class paymentController {
 			}
 		}
 		
+		mav.setViewName("notice/passPurchaseFinish3");
+		mav.addObject("price", price);
+		mav.addObject("proofNo", proofNo);
+		mav.addObject("refundNo", refundNo);
 		
-		return "notice/passPurchaseFinish3";
+		
+		return mav;
 	}
 	
 	
 	//240패스 결제완료
 	@RequestMapping("passPurchaseFinish4.hh")
-	public String passPurchaseFinish4(@ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
+	public ModelAndView passPurchaseFinish4(ModelAndView mav, @ModelAttribute Pass p, HttpServletRequest request, @RequestParam(value="imp_uid")String imp_uid, 
 			@RequestParam(value="merchant_uid")String merchant_uid, @RequestParam(value="paid_amount")int paid_amount, @RequestParam(value="apply_num")String apply_num) {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
@@ -158,9 +172,13 @@ public class paymentController {
 				
 			}
 		}
+		mav.setViewName("notice/passPurchaseFinish4");
+		mav.addObject("price", price);
+		mav.addObject("proofNo", proofNo);
+		mav.addObject("refundNo", refundNo);
 		
 		
-		return "notice/passPurchaseFinish4";
+		return mav;
 	}
 	
 	//결제 관리 페이지

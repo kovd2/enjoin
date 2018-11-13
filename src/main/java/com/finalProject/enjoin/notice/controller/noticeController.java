@@ -75,13 +75,6 @@ public class noticeController {
 		return "notice/serviceCenter";
 	}
 	
-	//1:1 문의 이동
-	@RequestMapping("contact.hh")
-	public String contact() {
-		
-		return "notice/contact";
-	}
-	
 	//1:1 문의상세 이동
 	@RequestMapping("contactDetail.hh")
 	public String contactDetail() {
@@ -93,44 +86,50 @@ public class noticeController {
 	@RequestMapping("contactInsert.hh")
 	public String contactInsert(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo, @RequestParam(name="category")String category) {
 		
-		//사진 경로 지정
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root +"\\uploadFiles\\admin";
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		//파일명 변경
-		String originFileName = photo.getOriginalFilename();
-		String ext = originFileName.substring(originFileName.lastIndexOf("."));
-		
-		String changeName = CommonUtils.getRandomString();
-		
-		long fileSize1 = photo.getSize();
-		
-		String fileSize = String.valueOf(fileSize1);
-		
-		Attachment at = new Attachment();
-		
-		String origin_fileNames = String.valueOf(originFileName);
-		
-		String changeNameExt = changeName + ext;
-		
-		at.setOrigin_Name(originFileName);
-		at.setFile_Ext(ext);
-		at.setUpload_Name(changeNameExt);
-		at.setFile_size(fileSize);
-		
-		try {
-			photo.transferTo(new File(filePath + "\\" + changeName+ext));
-			int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		if(photo.getOriginalFilename() != "") {
 			
-			int result33 = bs.insertContact(b, userNo, at, category);
+			//사진 경로 지정
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String filePath = root +"\\uploadFiles\\contact";
 			
+			//파일명 변경
+			String originFileName = photo.getOriginalFilename();
+			String ext = originFileName.substring(originFileName.lastIndexOf("."));
 			
-		} catch (Exception e) {
+			String changeName = CommonUtils.getRandomString();
 			
-			new File(filePath + "\\" + changeName + ext).delete();
+			long fileSize1 = photo.getSize();
+			
+			String fileSize = String.valueOf(fileSize1);
+			
+			Attachment at = new Attachment();
+			
+			String origin_fileNames = String.valueOf(originFileName);
+			
+			String changeNameExt = changeName + ext;
+			
+			at.setOrigin_Name(originFileName);
+			at.setFile_Ext(ext);
+			at.setUpload_Name(changeNameExt);
+			at.setFile_size(fileSize);
+			
+			try {
+				photo.transferTo(new File(filePath + "\\" + changeName+ext));
+				
+				int result33 = bs.insertContact(b, userNo, at, category);
+				
+				
+			} catch (Exception e) {
+				
+				new File(filePath + "\\" + changeName + ext).delete();
+			}
+			
+		}else {
+			
+			bs.insertContact2(b, userNo, category);
 		}
-		
-		
 		
 		return "notice/serviceCenter";
 	}
@@ -274,6 +273,7 @@ public class noticeController {
 		
 		return "notice/adminNoticeInsert";
 	}
+	
 	//공지사항 등록
 	@RequestMapping("adminNoticeInsertBtn.hh")
 	public String adminNoticeInsertBtn(@ModelAttribute Board b, HttpServletRequest request, @RequestParam(name="photo",required=false)MultipartFile photo) throws Exception {
@@ -395,6 +395,42 @@ public class noticeController {
 		
 		return "notice/chatPopUp";
 	}
+	
+	//1:1문의 목록(관리자)
+	@RequestMapping("adminContact.hh")
+	public ModelAndView adminContact(ModelAndView mav, HttpServletRequest request) throws Exception{
+		
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = bs.getListCount3();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		//리스트 조회
+		List<Board> list = bs.ContactlistAll(pi);
 
+		mav.setViewName("notice/adminContact");
+		mav.addObject("list", list);
+		mav.addObject("pi", pi);
+		
+		return mav;
+	}
+
+
+	//관리자 공지사항 상세보기
+	@RequestMapping("adminContactDetail.hh")
+	public ModelAndView adminContactDetail(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
+		
+		Board detail = bs.adminContactDetail(boardNo);
+		System.out.println("detail : " + detail);
+		mv.setViewName("notice/adminContactDetail");
+		mv.addObject("detail", detail);
+		
+		return mv;
+	}
 	
 }

@@ -41,6 +41,14 @@ public interface BoardService {
 
 	public int insertContact(Board b, int userNo, Attachment at, String category);
 
+	public void insertContact2(Board b, int userNo, String category);
+
+	public int getListCount3();
+
+	public List<Board> ContactlistAll(PageInfo pi);
+
+	public Board adminContactDetail(int boardNo);
+
 
 
 

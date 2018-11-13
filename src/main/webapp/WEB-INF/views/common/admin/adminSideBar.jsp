@@ -54,11 +54,13 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="adminNotice.hh">공지사항</a>
             <a class="dropdown-item" href="adminFAQ.hh">FAQ</a>
+            <a class="dropdown-item" href="adminContact.hh">문의</a>
             <a class="dropdown-item" href="adminCrewRecruitment.shw">크루모집</a>
             <a class="dropdown-item" href="adminInformBoard.shw">크루공고</a>
             <a class="dropdown-item" href="adminAdminCrewActivity.shw">크루활동</a>
             <a class="dropdown-item" href="adminFAQ.hh">크루제휴</a>
              <a class="dropdown-item" href="adminFAQ.hh">블랙게시글</a>
+
            </div>
         </li>
         <li class="nav-item">

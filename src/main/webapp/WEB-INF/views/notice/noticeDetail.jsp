@@ -9,16 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
-<!-- css -->
-<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/style/css/fancybox/jquery.fancybox.css"
-	rel="stylesheet">
-<link href="resources/style/css/jcarousel.css" rel="stylesheet">
-<link href="resources/style/css/flexslider.css" rel="stylesheet">
-<link href="resources/style/css/style.css" rel="stylesheet">
 
-<!-- Theme skin -->
-<link href="resources/style/skins/default.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrapper">
@@ -27,7 +18,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
 							<li class="active">공지사항</li>
 						</ul>
@@ -63,5 +54,6 @@
 				
 			</div>
 			</div>
+		<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

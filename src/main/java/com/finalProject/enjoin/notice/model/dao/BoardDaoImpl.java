@@ -1,8 +1,6 @@
 package com.finalProject.enjoin.notice.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -172,6 +170,36 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return result;
 		
+	}
+
+	@Override
+	public void insertContact2(Board b) {
+		
+		sqlSession.insert("Board.insertContact", b);
+	}
+
+	@Override
+	public int getListCount3() {
+		
+		return sqlSession.selectOne("Board.getListCount3");
+	}
+
+	@Override
+	public List<Board> ContactlistAll(PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Board.contactListAll", null, rowBounds);
+	}
+
+	@Override
+	public Board adminContactDetail(int boardNo) {
+		
+		
+
+		return sqlSession.selectOne("Board.adminContactDetail", boardNo);
 	}
 
 
