@@ -209,8 +209,8 @@ h1 {
 							<div class="divLine">
 								<span>아니면 그냥,</span>
 							</div>
-							<a id="kakao-login-btn" href="/member/login_kakao/?next=" onclick="loginWithKakao();return false;"  class="via_kakaotalk"><img class="ico" src="/images/ico_kakaotalk@2x.png" alt="">
-								 <b>카카오톡</b> 계정으로 시작하기</a>
+							<!-- <a id="kakao-login-btn" href="/member/login_kakao/?next=" onclick="loginWithKakao();return false;"  class="via_kakaotalk"><img class="ico" src="/images/ico_kakaotalk@2x.png" alt="">
+								 <b>카카오톡</b> 계정으로 시작하기</a> -->
 							<a href="memberInsertView.me" class="via_email"><b>이메일</b>로
 								시작하기</a>
 
