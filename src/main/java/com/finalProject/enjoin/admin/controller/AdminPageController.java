@@ -28,7 +28,7 @@ public class AdminPageController {
 	@RequestMapping("adminSideBar.hh")
 	public String adminSideBar() {
 		
-		return "admin/adminSideBar";
+		return "common/admin/adminSideBar";
 	}
 	
 	//관리자 회원 조회

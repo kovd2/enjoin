@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta charset="utf-8">
-<title>Moderna - Bootstrap 3 flat corporate template</title>
+<title> </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!-- css -->
@@ -57,8 +57,6 @@
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집폼</a></li>
 											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
-											<li><a href="adminMember.test">관리자회원정보수정</a></li>
-											<li><a href="adminPay.test">관리자결제정보</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="memberLogin.me">로그인</a></li>
@@ -104,7 +102,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집</a></li>
-											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
@@ -148,7 +146,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집</a></li>
-											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
@@ -177,7 +175,7 @@
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
-									<li><a href="adminMainPage.test">관리자 페이지</a></li>
+									<li><a href="adminSideBar.hh">관리자 페이지</a></li>
 									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
@@ -191,7 +189,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집</a></li>
-											<li><a href="adminMainPage.test">관리자메인페이지</a></li>
+											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>

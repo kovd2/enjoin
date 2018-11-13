@@ -509,18 +509,18 @@
                                 <h6 class="aq">30 PASS</h6>
                         </div>
 					<!-- startDateCheckBox -->
-
+					
                 </div> <!-- /.membershipSummary -->
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="paymentInfo2" id="mobilePaymentInfo">
                         <div class="payDiv">
                             <h5 style="font-size:x-large;">결제금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>
+                                <span class="aq" id="span_cost" style="font-size:large;">200원</span>
                             </p>
                         </div>
 
-                        <div class="paymentSubmitLine" onclick="payment()">
+                        <div class="paymentSubmitLine" onclick="payment(${sessionScope.loginUser.userNo})">
                             <button type="button" class="btn btn-lg btn-success" id="btn_go"><i  class="fa fa-credit-card"></i> 결제하기</button>
                         </div>
                     </div><!-- /.paymentInfo2 -->
@@ -533,7 +533,7 @@
 </div><!-- /wrap -->
 
 <script>
-	function payment(){
+	function payment(userNo){
 		var IMP = window.IMP;
 		IMP.init("imp11417443"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 		
@@ -543,24 +543,24 @@
 		    pay_method: "card",
 		    merchant_uid: "merchant" + new Date().getTime(),
 		    name: "30 PASS",
-		    amount: 100,
+		    amount: 200,
 		    buyer_email: "${ loginUser.getEmail() }",
 		    buyer_name: "${ loginUser.getUserName() }",
 		    buyer_tel: "${ loginUser.getPhone() }",
 		    
 		}, function (rsp) { // callback
 		    if (rsp.success) {
-		    	var msg = '결제가 완료되었습니다. \n';
-		    	
-		        msg += '고유ID : ' + rsp.imp_uid + '\n';
-		        msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
-		        msg += '결제 금액 : ' + rsp.paid_amount + '\n';
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
-		        
-		        location.href = "passPurchaseFinish2.hh";
+		      
+		      var imp_uid = rsp.imp_uid;
+		      var merchant_uid = rsp.merchant_uid;
+		      var paid_amount = rsp.paid_amount;
+		      var apply_num = rsp.apply_num;
+		     
+		      location.href = "passPurchaseFinish2.hh?imp_uid=" + imp_uid + "&merchant_uid=" + merchant_uid + "&paid_amount=" + paid_amount + "&apply_num=" + apply_num;
 		    } else {
-				
-		    	alert("결제 실패하였습니다. \n");
+		    	var msg = '결제에 실패하였습니다. \n';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        alert(msg);
 		    	location.href = "passPurchase.hh";
 		    }
 		});

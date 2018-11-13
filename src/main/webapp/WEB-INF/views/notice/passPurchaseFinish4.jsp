@@ -527,7 +527,7 @@
                         <div class="payDiv">
                             <h5 style="font-size:x-large;">결제된 금액</h5>
                             <p class="price" id="cost_p_normal">
-                                <span class="aq" id="span_cost" style="font-size:large;">100원</span>                    
+                                <span class="aq" id="span_cost" style="font-size:large;">400원</span>                    
                             </p>
                             <hr>
                         </div>
