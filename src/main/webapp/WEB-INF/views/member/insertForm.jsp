@@ -256,9 +256,11 @@ body.register .subWrap {
 #password_div {}
 #password_div .input-group-addon {
   padding: 0 18px;
-  background: #f5f5f5;
+  background: #00bff0;
   border: 0 none;
-  border-radius: 50%;
+  color: white;
+  font-weight: 800;
+
 }
 
 .agreementLine a {
@@ -426,14 +428,25 @@ body.register .subWrap {
 							<div class="row">
 								<div class="memberBox_left col-sm-6">
 
-									<div class="form-group" id="user_id_div">
-										<label for="id" class="sr-only">아이디</label> <input
-											onblur="check_validate(false);" type="text"
-											class="form-control" id="user_id" placeholder="아이디"
-											name="userId" maxlength="24" autocorrect="off"
-											autocapitalize="none"
-											onfocusout="check_id(this); return false;" autocomplete="off">
-										<span class="help-block" id="user_id_help"></span>
+									<!-- <div class="form-group" id="user_id_div">
+										<label for="id" class="sr-only">아이디</label> 
+										<input onblur="check_validate(false);" type="text"	class="form-control" id="user_id" placeholder="아이디" name="userId" maxlength="24" autocorrect="off"	autocapitalize="none" onfocusout="check_id(this); return false;" autocomplete="off">
+											
+											<span class="help-block" id="user_id_help"></span>
+											
+									</div> -->
+									
+									<div class="form-group passwordShowHide" id="password_div">
+										<label for="userId" class="sr-only">아이디</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel" style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
+											<div class="input-append input-group">
+												<input id="user_id" name="userId" class="form-control" type="text" placeholder="아이디" style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												
+													<span tabindex="100" title="아아디 중복체크" class="add-on input-group-addon"  id="idck"style="cursor: pointer;">중복확인</span>
+											</div>
+										</div>
+										<span class="help-block" id="password_help"></span>
 									</div>
 									<div class="form-group passwordShowHide" id="password_div">
 										<label for="password" class="sr-only">비밀번호</label>
@@ -442,10 +455,10 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
 											<div class="input-append input-group">
 												<input id="password" name="userPwd" class="form-control" type="password" placeholder="비밀번호" autocorrect="off" autocapitalize="none" autocomplete="off"
-													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s; width:360px;">
 												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
-													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
-													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+													
+													
 											</div>
 										</div>
 										<span class="help-block" id="password_help"></span>
@@ -457,10 +470,9 @@ body.register .subWrap {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label>
 											<div class="input-append input-group">
 												<input id="password2" name="userPwd2" class="form-control" type="password" placeholder="비밀번호확인" autocorrect="off" autocapitalize="none" autocomplete="off"
-													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s; width:360px;">
 												<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
-													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
-													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+													
 											</div>
 										</div>
 										<span class="help-block" id="password_help"></span>
@@ -771,12 +783,53 @@ body.register .subWrap {
       });
     });
 	
-    
-    
-
-	
-	
 	</script>
+	
+	
+<script type="text/javascript">
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+var idck = 0;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#idck").click(function() {
+        
+        //userid 를 param.
+        var userid =  $("#user_id").val(); 
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : userid,
+            url : "duplicationCheck.me",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data.cnt > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                 
+                    $("#userid").focus();
+                } else {
+                    alert("사용가능한 아이디입니다.");
+                   
+                    
+                    $("#userpwd").focus();
+                    //아이디가 중복하지 않으면  idck = 1 
+                    idck = 1;
+                    
+                }
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+});
+ 
+ 
+</script>
+
 	<br>
 	<br>
 	<br>

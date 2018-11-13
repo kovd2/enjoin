@@ -1,5 +1,7 @@
 package com.finalProject.enjoin.member.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -13,15 +15,17 @@ import org.springframework.messaging.MessagingException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalProject.enjoin.common.util.EmailSender;
-import com.finalProject.enjoin.common.util.FindUtil;
+
 import com.finalProject.enjoin.member.model.exception.LoginException;
 import com.finalProject.enjoin.member.model.service.MemberService;
 import com.finalProject.enjoin.member.model.vo.Email;
@@ -67,11 +71,6 @@ public class MemberController {
 		return "member/companyMemberInsertForm";
 	}
 	
-	/*//카카오 계정으로 가입하는 폼 보여주는 메소드
-	@RequestMapping("kakaoMemberInsertView.me")
-	public String showkakaoInsertView() {
-		return "member/kakaoMemberInsertForm";
-	}*/
 	
 	//아이디 찾기 폼 보여주는 메소드
 	@RequestMapping("searchIdform.me")
@@ -112,7 +111,7 @@ public class MemberController {
 	//비밀번호 찾기용 컨트롤러
 	@RequestMapping(value="searchPassword.me", method=RequestMethod.GET)
 	public ModelAndView searchPassword(@RequestParam Map <String, Object> paramMap, 
-			Model model, ModelAndView mv) throws Exception{
+			Model model, ModelAndView mv, Member m) throws Exception{
 		
 		String password2 = "";
 		  for(int i = 0; i < 8; i++){
@@ -126,6 +125,8 @@ public class MemberController {
 		  }
 		  
 		System.out.println(password2);
+		
+		
 
 		String USERID = (String) paramMap.get("userId");
         String USERNAME = (String) paramMap.get("userName");
@@ -136,7 +137,7 @@ public class MemberController {
 
         if(PASSWORD!=null) {
         	
-            email.setContent("비밀번호는 "+password2+" 입니다."); // 이메일로 보낼 메시지
+            email.setContent("임시 비밀번호는 "+password2+" 입니다. 비밀번호를 변경해 주세요."); // 이메일로 보낼 메시지
             email.setReceiver(EMAIL); //수신자
             email.setSubject(USERID+"("+USERNAME+")"+"님 비밀번호 찾기 메일입니다."); // 이메일로 보낼 제목
              
@@ -150,7 +151,16 @@ public class MemberController {
                 messageHelper.setFrom("tomatoqqll@gmail.com"); // 발신자
                 msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email.getReceiver()));
                 mailSender.send(msg);
+                
+                String encPassword = passwordEncoder.encode(password2);
+        		m.setUserPwd(encPassword);
                  
+        		System.out.println(encPassword);
+        		
+        		
+        		int result = ms.updateNewPwd(m);
+        		
+        		
             }catch(MessagingException e) {
                 
                 e.printStackTrace();
@@ -254,8 +264,25 @@ public class MemberController {
 		
 		return "redirect:goMain.me";
 	}
-	
-	
+
+	//아이디 중복 확인용 
+	 @RequestMapping("duplicationCheck.me")
+	    @ResponseBody
+	    public Map<Object, Object> idcheck(@RequestBody String userid) {
+	        
+	        int count = 0;
+	        Map<Object, Object> map = new HashMap<Object, Object>();
+	 
+	        count = ms.idcheck(userid);
+	        map.put("cnt", count);
+	        
+	        System.out.println("map : " + map);
+	   
+	 
+	        return map;
+	    }
+
+
 	
 	
 	
