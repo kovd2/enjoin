@@ -243,4 +243,10 @@ public class PaymnetServiceImpl implements PaymentService{
 		return pd.updatePayment3333(p, userNo);
 	}
 
+	@Override
+	public List<Payment> listAll(String searchOption, String keyword) {
+
+		return pd.listAll(searchOption, keyword);
+	}
+
 }

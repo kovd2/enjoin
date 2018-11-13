@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.payment.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -282,4 +283,26 @@ public class paymentController {
 		return "redirect:adminPayment.hh";
 	      
 	}
+	
+	@RequestMapping("paymentSearch.hh")
+	public ModelAndView paymentSearch(@RequestParam(defaultValue="all")String searchOption, @RequestParam("keyword")String keyword, ModelAndView mav) {
+		
+		List<com.finalProject.enjoin.payment.model.vo.Payment> list = ps.listAll(searchOption, keyword); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		System.out.println("map : " + map);
+		mav.addObject("map", map);
+		mav.setViewName("notice/adminPayment");
+		
+		
+		return mav;
+		
+	}
+	
+	
 }

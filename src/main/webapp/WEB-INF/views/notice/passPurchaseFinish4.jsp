@@ -483,7 +483,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
 							<li class="active">멤버십 결제완료</li>
@@ -515,7 +515,8 @@
                             <h5><strong>결제 내역</strong></h5>
                             
                         <div class="paymentSubmitLine">
-                            <h1>응 여기에 결제내역</h1>
+                            <h5 style="color: #656565;">카드승인번호 : ${ proofNo }</h5>
+                            <h5 style="color: #656565;">구매번호 : ${ refundNo }</h5>
                             <button type="button" onclick="home()" class="btn btn-lg btn-success" id="btn_go"> 메인으로 </button>
                         </div>
                             
@@ -540,7 +541,7 @@
 </div><!-- /.row -->
 </div><!-- /container -->
 </div><!-- /wrap -->
-
+<jsp:include page="../common/footer.jsp" />
 <script>
 	function home(){
 		

@@ -129,7 +129,5 @@ public class Coment implements Serializable{
 				+ ", userNo=" + userNo + ", userId=" + userId + ", userName=" + userName + ", boardType=" + boardType
 				+ ", boardTitle=" + boardTitle + "]";
 	}
-
-	
 	
 }
