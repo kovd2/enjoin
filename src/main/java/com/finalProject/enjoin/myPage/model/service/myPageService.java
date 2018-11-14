@@ -71,5 +71,8 @@ public interface myPageService {
 	//이용내역조회
 	List<HashMap<String, Object>> selectUseHistory(HashMap<String, Object> hmap);
 
+	//회원 탈퇴처리
+	int deleteMember(String userId);
+
 
 }

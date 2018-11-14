@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script charset="UTF-8" type="text/javascript" src="http://t1.daumcdn.net/postcode/api/core/180928/1538455030985/180928.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 .rightContainer {
 	width: 800px;
@@ -50,7 +49,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
 							<li class="active">마이페이지</li>
@@ -141,34 +140,13 @@
               <button id="saveBtn" class="btn btn-lg btn-primary btn_mobileAppFloat" style="background:#00bff0;" onclick="saveBtn()"><i class="fa fa-check"></i> 저장하기</button>
               <a href="javascript:history.go(-1)" class="btn btn-link"><i class="fa fa-close"></i> 취소</a>
               <span class="withdraw">
-                <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#myModal">탈퇴</button>
+                <button type="button" class="btn btn-sm btn-link" id="deleteMember" onclick="deleteMember('${loginUser.userId}')">탈퇴</button>
               </span>
             </div>
 	</div>
-	<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="margin: 95px auto;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">회원 탈퇴 신청</h4>
-      </div>
-      <div class="modal-body" style="height:200px;">
-			<div class="alert alert-warning">
-          <p>탈퇴하면 회원 정보가 삭제되고, 되돌릴 수 없습니다. 잔여 패스가 있더라도 사용할 수 없으니 유의하세요. 즉시 탈퇴를 원하시는 경우 탈퇴 버튼을 눌러주세요</p>
-          <p>정말 탈퇴하실 건가요? (마지막 질문입니다)</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" style="background:#68A4C4;" onclick="deleteMember.ljs(${loginUser.userId})">탈퇴</button>
-      </div>
-    </div>
-  </div>
-</div>
 	</div>
 	<br><br><br><br><br><br>
-
+<jsp:include page="../common/footer.jsp"/>
 	<script>
 //	 모달
 		$('#myModal').click('shown.bs.modal', function () {
@@ -224,7 +202,7 @@
 		   		$("#modify_form").submit();
 		   		
 		   }
-		}
+		};
 		
  		//프로필  사진 변경 스크립트
  		function previewFile() {
@@ -243,13 +221,22 @@
       if(file) {
          reader.readAsDataURL(file);
       }
-   }
+   };
  		//회원탈퇴 스트립트
  		function deleteMember(userId){
- 			location.href="deleteMember?userId=" + userId;
+ 			var userId = userId;
+ 			var password = String(prompt('비밀번호를 입력해주세요')); 
+ 			
+ 			$.ajax({
+ 				url:"deleteMember.ljs",
+ 				type:"post",
+ 				data:{password:password},
+ 				success:function(data){
+ 					
+ 				} 				
+ 			})
+ 			
  		}
-
-	
 </script>
 
 </body>

@@ -73,4 +73,7 @@ public interface myPageDao {
 	//이용내역 조회
 	List<HashMap<String, Object>> selectUseHistory(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
+	//회원 탈퇴처리
+	int deleteMember(String userId, SqlSessionTemplate sqlSession);
+
 }

@@ -53,7 +53,7 @@ li {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<ul class="breadcrumb">
+					<ul class="breadcrumb" style="background-color: #68A4C4;">
 						<li><a href="#"><i class="fa fa-home"></i></a><i
 							class="icon-angle-right"></i></li>
 						<li class="active">마이페이지</li>
@@ -88,6 +88,7 @@ li {
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../common/footer.jsp"/>
 	<script>
 		$('#datepicker2').change(function(){
 			var date1 = $('#datepicker1').val();
