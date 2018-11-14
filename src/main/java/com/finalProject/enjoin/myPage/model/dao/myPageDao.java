@@ -58,6 +58,9 @@ public interface myPageDao {
 	//내가 쓴 댓글 조회
 	List<Coment> selectWriteComent(int userNo, SqlSessionTemplate sqlSession);
 
+	//내가 쓴 1:1문의 조회
+	List<Board> selectAsBoard(int userNo, SqlSessionTemplate sqlSession);
+	
 	//게시물 조회수 증가
 	int updateBoardCount(int boardNo, SqlSessionTemplate sqlSession);
 
@@ -75,5 +78,10 @@ public interface myPageDao {
 
 	//회원 탈퇴처리
 	int deleteMember(String userId, SqlSessionTemplate sqlSession);
+
+	//1:1문의 상세보기
+	List<Board> selectAsDetail(int boardNo, SqlSessionTemplate sqlSession);
+
+	
 
 }

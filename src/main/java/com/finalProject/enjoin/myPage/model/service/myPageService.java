@@ -56,6 +56,9 @@ public interface myPageService {
 	//내가 쓴 댓글 조회
 	List<Coment> selectWriteComent(int userNo);
 
+	//1:1문의 조회
+	List<Board> selectAsBoard(int userNo);
+	
 	//게시물 조회수 증가
 	int updateBoardCount(int boardNo);
 
@@ -73,6 +76,10 @@ public interface myPageService {
 
 	//회원 탈퇴처리
 	int deleteMember(String userId);
+
+	//1:1문의 상세보기
+	List<Board> selectAsDetail(int boardNo);
+
 
 
 }

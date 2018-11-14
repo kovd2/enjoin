@@ -58,6 +58,7 @@
 		<result property="userNo" column="USER_NO"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="crewName" column="CREW_NAME"/>
+		<result property="contactStatus" column="CONTACT_STATUS"/>
 		<collection property="attachment" javaType="java.util.ArrayList" resultMap="AttachmentResultSet"/>
 		<collection property="comentList" javaType="java.util.ArrayList" resultMap="comentResultSet"/>
 	</resultMap>
@@ -252,13 +253,14 @@
 		AND B.STATUS = 'Y'
 		AND B.BOARD_TYPE = '크루게시판'
 		ORDER BY C.COMENT_DATE DESC -->
-		SELECT * FROM COMENT C
-		JOIN MEMBER M USING (USER_NO)
-		LEFT JOIN BOARD B ON(B.BOARD_NO = C.BOARD_NO)
-        LEFT JOIN ATTACHMENT A ON(A.REF_NO = B.BOARD_NO)
-		WHERE B.BOARD_NO = #{boardNo}
+		SELECT * 
+		FROM BOARD B
+		JOIN MEMBER M USING(USER_NO)
+		LEFT JOIN COMENT C ON (B.BOARD_NO = C.BOARD_NO)
+		LEFT JOIN ATTACHMENT A ON (A.REF_NO = B.BOARD_NO)
+		WHERE B.BOARD_NO = 24
 		AND B.STATUS = 'Y'
-		AND B.BOARD_TYPE = '크루게시판'
+		AND B.BOARD_TYPE= '크루게시판'
 		ORDER BY C.COMENT_DATE DESC
 	</select>
 	
@@ -286,6 +288,34 @@
 		FROM COMENT C
 		LEFT JOIN BOARD B ON (B.BOARD_NO = C.BOARD_NO)
 		WHERE C.USER_NO =  #{userNo}
+	</select>
+
+	<!-- 내가 쓴 1:1문의 조회 -->
+	<select id="selectAsBoard" resultMap="boardResultSet">
+		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.CONTACT_STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON(M.USER_NO = B.USER_NO)
+		WHERE B.USER_NO = #{userNo}
+		AND B.BOARD_TYPE = '문의'
+	</select>
+	
+	<!-- 내가 쓴 1:1문의 상세보기 -->
+	<select id="selectAsDetail" resultMap="boardResultSet" parameterType="mpBoard">
+		<!-- SELECT B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CONTENT, A.UPLOAD_NAME
+		FROM BOARD B
+		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+		WHERE B.BOARD_NO = #{boardNo} -->
+		SELECT * 
+		FROM BOARD B	
+		LEFT JOIN (SELECT C.COMENT_CONTENT, C.BOARD_NO, C.COMENT_DATE
+                   FROM COMENT C
+                   LEFT JOIN BOARD B ON (B.BOARD_NO = C.BOARD_NO)) CB ON (B.BOARD_NO = CB.BOARD_NO)
+		LEFT JOIN (SELECT A.UPLOAD_NAME, A.REF_NO
+                   FROM ATTACHMENT A) AB ON (AB.REF_NO = CB.BOARD_NO)
+		WHERE B.BOARD_NO = #{boardNo}
+		AND B.STATUS = 'Y'
+		AND B.BOARD_TYPE= '문의'
+		ORDER BY CB.COMENT_DATE DESC
 	</select>
 	
 	<!-- 패스 수량 & 수정일 조회 쿼리 -->

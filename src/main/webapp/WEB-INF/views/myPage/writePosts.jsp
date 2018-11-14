@@ -73,6 +73,7 @@
 					<option value="board" selected="selected">크루모집</option>
 					<option value="crewBoard">크루게시판</option>
 					<option value="reply">댓글</option>
+					<option value="as">1:1문의사항</option>
 				</select>
 				<br>
 				
@@ -140,6 +141,31 @@
 					</c:forEach>
 				</table>
 				
+				<!-- 1:1문의 사항 -->
+				<table style="width: 800px; border-top: solid 1px black; display:none;"class="as" id="as">
+					<tr class="titleArea">
+						<td style="width: 30px;">번호</td>
+						<td style="width: 100px">게시물제목</td>
+						<td style="width: 200px">이름</td>
+						<td style="width: 250px">작성일</td>
+						<td style="width: 70px">상태</td>
+					</tr>
+					
+					<c:forEach var="ab" items="${ asBoard }">
+						<tr onclick="asBoardDetail(${ab.boardNo});">
+							<td>${ ab.boardNo }</td>
+							<td>${ ab.boardTitle }</td>
+							<td>${ ab.userName }</td>
+							<td>${ ab.enrollDate }</td>
+							<c:if test="${ ab.contactStatus == 0 }">
+								<td>답변대기</td>
+							</c:if>
+							<c:if test="${ ab.contactStatus == 1 }">
+								<td>답변완료</td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 			
 			<br>
@@ -148,6 +174,12 @@
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
 	<script>
+	//1:1문의 상세보기
+	function asBoardDetail(boardNo){
+		location.href="asBoardDetail.ljs?boardNo=" + boardNo;
+	}
+	
+	
 	//게시물 종류별로 조회
 	$('#boardType').change(function() {
 		var state = $('#boardType option:selected').val();
@@ -155,16 +187,25 @@
 			$('.board').show();
 			$('.reply').hide();
 			$('.crewBoard').hide();
+			$('.as').hide();
 		} 
 		if(state == 'reply'){
 			$('.board').hide();
 			$('.reply').show();
 			$('.crewBoard').hide();
+			$('.as').hide();
 		}
 		if(state == 'crewBoard'){
 			$('.board').hide();
 			$('.reply').hide();
 			$('.crewBoard').show();
+			$('.as').hide();
+		}
+		if(state == 'as'){
+			$('.board').hide();
+			$('.reply').hide();
+			$('.crewBoard').hide();
+			$('.as').show();
 		}
 	});
 	</script>

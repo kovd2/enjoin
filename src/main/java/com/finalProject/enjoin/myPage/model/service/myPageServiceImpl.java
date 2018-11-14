@@ -129,6 +129,13 @@ public class myPageServiceImpl implements myPageService{
 		
 		return mpd.selectWriteComent(userNo, sqlSession);
 	}
+	
+	//내가 쓴 1:1문의 조회
+	@Override
+	public List<Board> selectAsBoard(int userNo) {
+		
+		return mpd.selectAsBoard(userNo, sqlSession);
+	}
 
 	//게시물 조회수 증가
 	@Override
@@ -171,5 +178,14 @@ public class myPageServiceImpl implements myPageService{
 		
 		return mpd.deleteMember(userId, sqlSession);
 	}
+
+	//1:1문의 상세보기
+	@Override
+	public List<Board> selectAsDetail(int boardNo) {
+		
+		return mpd.selectAsDetail(boardNo, sqlSession);
+	}
+
+	
 
 }

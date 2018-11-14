@@ -157,6 +157,14 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectList("myPage.selectWriteComent", userNo);
 	}
 
+	//내가 쓴 1:1문의 조회
+	@Override
+	public List<Board> selectAsBoard(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectAsBoard", userNo);
+	}
+
+
 	//게시물 조회수 증가
 	@Override
 	public int updateBoardCount(int boardNo, SqlSessionTemplate sqlSession) {
@@ -199,5 +207,13 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.update("myPage.deleteMember", userId);
 	}
 
+	//1:1문의 상세보기
+	@Override
+	public List<Board> selectAsDetail(int boardNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectAsDetail", boardNo);
+	}
+
+	
 
 }
