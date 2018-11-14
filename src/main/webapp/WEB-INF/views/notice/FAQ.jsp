@@ -261,7 +261,7 @@ strong.phType_4 {
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
 							<li class="active">고객센터</li>
 						</ul>
@@ -317,7 +317,7 @@ strong.phType_4 {
       </div> <!-- /.content -->
     </div><!-- /.row -->
   </div><!-- /container -->
-
+<jsp:include page="../common/footer.jsp" />
 
 </div>
 <script>

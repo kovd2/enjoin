@@ -61,4 +61,6 @@ public interface PaymentDao {
 
 	int updatePayment3333(Pass p, int userNo);
 
+	List<Payment> listAll(String searchOption, String keyword);
+
 }

@@ -50,6 +50,10 @@ td {
 						style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
 					<th
 						style="width: 100px; height: 60px; font-size: 30px; background: gray;">날짜</th>
+					<th
+						style="width: 100px; height: 60px; font-size: 30px; background: gray;">구분</th>
+					
+					
 				</tr>
 				<c:forEach var="b" items="${ list }">
 					<tr onclick="selectOneBoard(${ b.boardNo })">
@@ -57,6 +61,13 @@ td {
 						<td>${ b.boardType }</td>
 						<td>${ b.boardTitle }</td>
 						<td>${ b.enrollDate }</td>
+						<td>
+						<c:if test="${ b.contactStatus == 0 }">
+							대기
+						</c:if>
+						<c:if test="${ b.contactStatus == 1 }">
+							답변완료
+						</c:if></td>
 					</tr>
 				</c:forEach>
 			</table>

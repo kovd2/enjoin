@@ -39,12 +39,12 @@ td {
 			<p style="font-size: 100px; text-align: center">결제 관리</p>
 
 			<hr>
-			<form>
-			<select class="searchSelect" name="option" style="height:30px;">
-				<option>전체</option>	
-				<option>아이디</option>
+			<form id="paymentSearchForm" action="paymentSearch.hh" method="post">
+			<select class="searchSelect" name="searchOption" style="height:30px;">
+				<option value="all">전체</option>	
+				<option value="USER_ID">아이디</option>
 			</select>
-			 <input type="text" value="${keyword}" name="keyword" style="width:500px">
+			 <input type="text" value="${keyword}" name="keyword" style="width:500px;">
 				<span class="input-group-btn">
 					<button class="btn btn-primary" type="submit">
 						<i class="fa fa-search"></i>
@@ -52,6 +52,7 @@ td {
 				</span>
 			</form>
 			<br><br>
+		
 			<table>
 				<tr style="border: 1px solid black;">
 					<th style="width: 150px; height: 100px; font-size: 20px; background: gray;">결제번호</th>
@@ -64,7 +65,8 @@ td {
 					<th style="width: 80px; height: 100px; font-size: 20px; background: gray;">환불</th>
 					
 				</tr>
-				<c:forEach var="list" items="${ list }">
+			
+				<c:forEach var="list" items="${ map.list }">
 					<tr>	
 						<td>${ list.PAY_NO }</td>
 						<td>${ list.USER_ID }</td>
@@ -85,10 +87,10 @@ td {
 						<td><input class="refund${list.REFUND_NO}" type="button" value="환불완료"></td>
 					</c:if>
 					
-					</tr>	
-						
+					</tr>
 				</c:forEach>
 			</table>
+		
 			<br>
 			
 			<!-- 페이징처리 -->

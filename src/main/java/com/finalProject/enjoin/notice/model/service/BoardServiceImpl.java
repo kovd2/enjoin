@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.notice.model.dao.BoardDao;
 import com.finalProject.enjoin.notice.model.vo.Board;
@@ -197,6 +198,28 @@ public class BoardServiceImpl implements BoardService{
 	public Board adminContactDetail(int boardNo) {
 		
 		return bd.adminContactDetail(boardNo);
+	}
+
+	@Override
+	public int insertContactReply(String comentContent, int boardNo, int userNo) {
+
+		int result = bd.insertContactReply(comentContent, boardNo, userNo);
+		
+		return result;
+	}
+
+	@Override
+	public int updateContactStatus(int boardNo) {
+		
+		int result = bd.updateContactStatus(boardNo);
+		
+		return result;
+	}
+
+	@Override
+	public Coment comentCheck(int boardNo) {
+		
+		return bd.comentCheck(boardNo);
 	}
 
 

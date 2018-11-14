@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.Coment;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 import com.finalProject.enjoin.myPage.model.vo.Pagination;
 import com.finalProject.enjoin.notice.model.service.BoardService;
@@ -426,11 +427,29 @@ public class noticeController {
 	public ModelAndView adminContactDetail(@RequestParam("boardNo")int boardNo, ModelAndView mv) throws Exception{
 		
 		Board detail = bs.adminContactDetail(boardNo);
-		System.out.println("detail : " + detail);
+		Coment detail2 = bs.comentCheck(boardNo);
+		
 		mv.setViewName("notice/adminContactDetail");
 		mv.addObject("detail", detail);
+		mv.addObject("detail2", detail2);
 		
 		return mv;
+	}
+	
+	//1:1 문의 답변등록
+	@RequestMapping("contactComent.hh")
+	public String contactComent(@RequestParam("boardNo")int boardNo, @RequestParam("comentContent")String comentContent, HttpServletRequest request) {
+		
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		
+		int result = bs.insertContactReply(comentContent, boardNo, userNo);
+		
+		if(result > 0) {
+			
+			int result2 = bs.updateContactStatus(boardNo);
+		}
+		
+		return "redirect:adminContact.hh";
 	}
 	
 }
