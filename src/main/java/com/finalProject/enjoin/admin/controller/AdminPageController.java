@@ -3,6 +3,7 @@ package com.finalProject.enjoin.admin.controller;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -776,8 +777,32 @@ public class AdminPageController {
 		@RequestMapping("adminChart.shw")
 		public ModelAndView adminChart(ModelAndView mv , HttpServletRequest request) {
 			
+			//월별수입조회
+			List<Map<String,Object>> list = as.selectMonthlyincome();
+			//일별수입조회
+			List<Map<String,Object>> list1 = as.selectDayincome();
+			//유저 요일별 가입수치
+			List<Map<String,Object>> list2 = as.selectUserJoinIncome();
+			//크루생성 요일별 생성수치
+			List<Map<String,Object>> list3 = as.selectCrewJoinIncome();
+			//카테고리별 게시물 작성 수치
+			List<Map<String,Object>> list4 = as.selectCategoryBoardIncome();
 			
 			
+			
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			
+			map.put("list", list);
+			map.put("list1", list1);
+			map.put("list2", list2);
+			map.put("list3", list3);
+			map.put("list4", list4);
+			
+			
+			
+			
+			mv.addObject("map", map);
 			mv.setViewName("admin/adminChart");
 			
 			return mv;

@@ -2,6 +2,7 @@ package com.finalProject.enjoin.admin.model.dao;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -384,6 +385,36 @@ public class AdminDaoImpl implements AdminDao {
 	public List<CrewActivityBoard> blackTitleSelectBoard(SqlSession sqlSession, String board_Title) {
 		
 		return sqlSession.selectList("Admin.blackTitleSelectBoard", board_Title);
+	}
+	//월별 수익 조회
+	@Override
+	public List<Map<String, Object>> selectMonthlyincome(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("Admin.selectMonthlyincome");
+	}
+	//일별 수익 조회
+	@Override
+	public List<Map<String, Object>> selectDayincome(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("Admin.selectDayincome");
+	}
+	//유저 요일별 가입수치
+	@Override
+	public List<Map<String, Object>> selectUserJoinIncome(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("Admin.selectUserJoinIncome");
+	}
+	//크루 요일별 가입수치
+	@Override
+	public List<Map<String, Object>> selectCrewJoinIncome(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("Admin.selectCrewJoinIncome");
+	}
+	//크루 카테고리별 게시물 생성수치
+	@Override
+	public List<Map<String, Object>> selectCategoryBoardIncome(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("Admin.selectCategoryBoardIncome");
 	}
 	
 

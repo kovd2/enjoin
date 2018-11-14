@@ -2,6 +2,7 @@ package com.finalProject.enjoin.admin.model.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -353,6 +354,36 @@ public class AdminServiceImpl implements AdminService {
 	public List<CrewActivityBoard> blackTitleSelectBoard(String board_Title) {
 		
 		return ad.blackTitleSelectBoard(sqlSession,board_Title);
+	}
+	//월간 수입 차트 조회
+	@Override
+	public List<Map<String, Object>> selectMonthlyincome() {
+		
+		return ad.selectMonthlyincome(sqlSession);
+	}
+	//일별 수입 조회
+	@Override
+	public List<Map<String, Object>> selectDayincome() {
+		
+		return ad.selectDayincome(sqlSession);
+	}
+	//유저 요일별 가입수치
+	@Override
+	public List<Map<String, Object>> selectUserJoinIncome() {
+		
+		return ad.selectUserJoinIncome(sqlSession);
+	}
+	//크루 요일별 가입수치
+	@Override
+	public List<Map<String, Object>> selectCrewJoinIncome() {
+		
+		return ad.selectCrewJoinIncome(sqlSession);
+	}
+	//카테고리별 게시글 생성수치
+	@Override
+	public List<Map<String, Object>> selectCategoryBoardIncome() {
+		
+		return ad.selectCategoryBoardIncome(sqlSession);
 	}
 	
 
