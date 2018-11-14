@@ -155,11 +155,11 @@ p{
 #previewArea{
 	width: 300px;
     height: 500px;
-    background: blue;
     position: relative;
     z-index: 10;
-	margin-left:300px;
-	margin-top:200px;
+	margin-left:250px;
+	margin-top:150px;
+	display:none;
 
 }
 </style>
@@ -201,21 +201,18 @@ p{
 			</div>
 			</c:forEach>	
 			</div>
-			
-			
-			
-			
 		</div>
+		
+		
 		<div class="mapArea">
 			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 			
+			<!-- 모달영역 -->
 			<div id="previewArea">
-			
-			
+			<jsp:include page="../searchMap/searchDetail.jsp"/>
 			
 			</div>
-			
-			
+			<!-- 모달 -->	
 			
 		</div>
 	</div>
@@ -275,27 +272,12 @@ p{
 	
 	function goDetail(){
 		
-		
+		document.getElementById('previewArea').style.display='block';
 		
 				
-	}
-
-
+	};
 	</script>
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

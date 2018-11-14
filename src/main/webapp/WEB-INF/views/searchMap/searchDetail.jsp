@@ -26,12 +26,12 @@
 	
 
 }
-.imgArea{
+.imgModalArea{
 	/* border-radius:3px; */
 	width:300px;
 
 }
-.imgArea>img{
+.imgModalArea>img{
 	
 	border-radius:3px;
 	width:300px;
@@ -47,7 +47,7 @@
 	height:30px; */
 	/* margin:10px; */
 	color:#00bff0;
-	padding-top:30px;
+	padding-top:10px;
 
 }
 #address{
@@ -55,8 +55,14 @@
 	text-align:center;
 	font-size:15px;
 	margin-top:20px;
+}
+#address>p{
+text-align:center;
+	font-size:15px;
+	margin-top:20px;
 
 }
+
 #tel{
 
 text-align:center;
@@ -106,11 +112,18 @@ height:20px;
 	background:#00bff0;
 	cursor:pointer;
 }
+#closeBtn{
+	width:30px;
+	height:30px;
+	border:1px solid black;
+	border-radius:3px;
+
+}
 
 </style>
 </head>
 <body>
-<jsp:include page="../common/menubar.jsp"/>
+
 <hr>
 
 
@@ -120,16 +133,23 @@ height:20px;
 		
 		
 			<div class="modalContent">
+			<button id="closeBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+         	<span aria-hidden="true">&times;</span>
+        	</button>
+				 	
 			
-				 <div class="imgArea">
-				 		<img src="resources/images/searchMap/mb.jpg">
-				 		
-		
-				 </div>
-				 <div class="contentArea">
-				 	<div id="title">
-				 			<b>{}</b>
-				 	</div>
+			
+			<div class="imgModalArea">
+				 	
+			<img src="resources/images/searchMap/mb.jpg">
+				
+			</div>
+			<div class="contentArea">
+			<div id="title">
+			<b>여그가바로또치헬스장</b>
+			</div>
+				 	
+				 	
 				 	
 				 	<div id="address">	
 				 	 <p>서울특별시 강남구 역삼동 232-2</p>
@@ -175,11 +195,7 @@ height:20px;
 		
 	}
 
-
-
 </script>
-
-
 
 
 
