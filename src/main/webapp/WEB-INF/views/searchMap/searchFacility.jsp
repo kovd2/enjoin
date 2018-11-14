@@ -128,6 +128,7 @@ header{
 	
 	margin-bottom:5px;
 }
+
 .category{
 	width:70px;
 	height:25px;
@@ -156,11 +157,11 @@ p{
 #previewArea{
 	width: 300px;
     height: 500px;
-    /* background: blue; */
     position: relative;
     z-index: 10;
-	margin-left:300px;
-	margin-top:200px;
+	margin-left:250px;
+	margin-top:150px;
+	display:none;
 
 }
 </style>
@@ -211,13 +212,11 @@ p{
 			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;">
 			<!-- 모달영역 -->
 			<div id="previewArea">
-			
-			
-			
+			<jsp:include page="../searchMap/searchDetail.jsp"/>
 			
 			</div>
-			
-			
+			<!-- 모달 -->	
+		
 			</div>
 			
 		</div>
@@ -250,7 +249,7 @@ p{
 		function(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
+	     if (status === daum.maps.services.Status.OK){
 
 	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 
@@ -284,11 +283,9 @@ p{
 		/* location.href="searchDetail.kch?uploadName="+uploadName+"&facilityAddress="+facilityAddress+"&facilityEvent="+facilityEvent+
 					"&facilityManagerPhone="+facilityManagerPhone+"&facilityPassCount="+facilityPassCount+"&mon_Fri_Time="+mon_Fri_Time+"&sun_Time="sun_Time; */
 		
+					
+		document.getElementById('previewArea').style.display='block';
 		
-		location.href="searchDetail.kch";
-					
-					
-					
 	};
 
 
