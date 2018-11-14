@@ -323,12 +323,23 @@ public class MyPageController {
 	
 	//회원 탈퇴
 	@RequestMapping("deleteMember.ljs")
-	public String deleteMember(@RequestParam("userId") String userId) {
+	public @ResponseBody int deleteMember(@RequestParam("userId") String userId, @RequestParam("password") String password) {
 		System.out.println("userId : " + userId);
+		System.out.println("password : " + password);
 		
-		//mps.deleteMember(userId);
+		String encPassword = passwordEncoder.encode(password);
 		
-		return "";
+		if(encPassword == password) {
+			
+			int result = mps.deleteMember(userId);
+			
+			return result;
+		}else {
+			int result = 0;
+			
+			return result;
+		}
+		
 	}
 	
 	//크루 게시물 작성

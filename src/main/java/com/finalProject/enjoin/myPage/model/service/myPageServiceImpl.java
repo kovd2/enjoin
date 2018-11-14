@@ -165,4 +165,11 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectUseHistory(hmap, sqlSession);
 	}
 
+	//회원 탈퇴처리
+	@Override
+	public int deleteMember(String userId) {
+		
+		return mpd.deleteMember(userId, sqlSession);
+	}
+
 }

@@ -192,5 +192,12 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectList("myPage.selectUseHistory", hmap);
 	}
 
+	//회원 탈퇴처리
+	@Override
+	public int deleteMember(String userId, SqlSessionTemplate sqlSession) {
+	
+		return sqlSession.update("myPage.deleteMember", userId);
+	}
+
 
 }

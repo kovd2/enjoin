@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 .rightContainer {
@@ -165,7 +164,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<ul class="breadcrumb">
+					<ul class="breadcrumb" style="background-color: #68A4C4;">
 						<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
 						<li class="active">마이페이지</li>
 					</ul>
@@ -250,7 +249,7 @@
 	<br>
 	<br>
 	<br>
-
+<jsp:include page="../common/footer.jsp"/>
 	<script>
 		//	모달
 		

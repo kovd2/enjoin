@@ -173,7 +173,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="breadcrumb">
+						<ul class="breadcrumb" style="background-color: #68A4C4;">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
 							<li class="active">마이페이지</li>
@@ -220,6 +220,7 @@
 		</div>
 		</div>
 		<br><br><br><br><br><br>
+		<jsp:include page="../common/footer.jsp"/>
 		<script>
 		function bmiCalculator() {     //bmi와 적정체중 계산 함수
 	        var height = Number(prompt('키(cm)를 입력해주세요'));   //키(cm)를 입력받음

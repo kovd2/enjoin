@@ -407,6 +407,7 @@
 		WHERE CM.CREW_ID = #{crewId}
 	</select>
 	
+	<!-- 이용내역 조회 -->
 	<select id="selectUseHistory" parameterType="hashmap" resultType="hashmap">
 		SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
 		FROM PASSRECORD PR
@@ -414,6 +415,14 @@
 		WHERE USER_NO = ${userNo}
 		AND PR.PP_DATE BETWEEN '${date1}' AND '${date2}'
 	</select>
+	
+	<!-- 회원 탈퇴처리 -->
+	<update id="deleteMember">
+		UPDATE MEMBER
+		SET MODIFY_DATE = SYSDATE,
+			STATUS = 'N'
+		WHERE USER_ID = #{userId}
+	</update>
 </mapper>
 	
 	
