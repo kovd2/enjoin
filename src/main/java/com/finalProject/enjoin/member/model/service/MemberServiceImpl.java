@@ -88,6 +88,13 @@ public class MemberServiceImpl implements MemberService{
 		return md.idcheck(sqlSession, userid);
 	}
 
+	//이메일중복확인
+	@Override
+	public int emailcheck(String user_email) {
+		
+		return md.emailcheck(sqlSession, user_email);
+	}
+
 
 
 }

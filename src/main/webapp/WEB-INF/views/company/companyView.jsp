@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>제휴시설보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -216,7 +217,7 @@
         	
           <div class="list-group">
         	<c:forEach var="cl" items="${ CompanyInfoList }">
-            <a class="list-group-item" href="detailView.gs">
+            <a class="list-group-item" onclick="detailView('${ sessionScope.loginUser.userId}', ${ cl.facilityNo });">
               <span class="label label-default label-no">${ cl.facilityNo }</span>            
               	<h4 class="list-group-ietm-heading">${ cl.facilityName }</h4>
               <!-- <span class="label label-default label-no"></span><br>
@@ -226,6 +227,14 @@
             </a>
           </c:forEach>
           </div><!-- /.list-group -->
+          
+          <script>
+          function detailView(userId, facilityNo){
+        	  location.href="detailView.gs?userId="+userId+"&facilityNo="+facilityNo;
+          }
+          
+          </script>
+          
           
 
           <!-- <nav>

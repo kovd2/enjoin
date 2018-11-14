@@ -8046,6 +8046,15 @@ body.register .subWrap {
 	padding: 8px 0;
 	color: #000;
 }
+
+#password_div .input-group-addon {
+  padding: 0 18px;
+  background: #00bff0;
+  border: 0 none;
+  color: white;
+  font-weight: 800;
+  border-radius: 0%;
+}
 </style>
 </head>
 <body class="register register2">
@@ -8084,14 +8093,25 @@ body.register .subWrap {
 							<div class="row">
 								<div class="memberBox_left col-sm-6">
 
-									<div class="form-group" id="user_id_div">
+									<!-- <div class="form-group" id="user_id_div">
 										<label for="id" class="sr-only">아이디</label>
 										<div class="floatlabel-wrapper" style="position: relative">
 											<label for="user_id" class="label-floatlabel  "
-												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label><input
-												type="text"	class="form-control" id="userId" placeholder="아이디"
-												name="userId" maxlength="24" autocomplete="off"
-												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
+												<input type="text"	class="form-control" id="userId" placeholder="아이디" name="userId" maxlength="24" autocomplete="off"	style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+										</div>
+										<span class="help-block" id="user_id_help"></span>
+									</div> -->
+									
+									<div class="form-group passwordShowHide" id="password_div">
+										<label for="userId" class="sr-only">아이디</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel" style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
+											<div class="input-append input-group">
+												<input id="userId" name="userId" class="form-control" type="text" placeholder="아이디" style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												
+													<span tabindex="100" title="아아디 중복체크" class="add-on input-group-addon"  id="idck"style="cursor: pointer;">중복확인</span>
+											</div>
 										</div>
 										<span class="help-block" id="user_id_help"></span>
 									</div>
@@ -8105,10 +8125,9 @@ body.register .subWrap {
 												<input id="password" name="userPwd" class="form-control"
 													type="password" placeholder="비밀번호" autocorrect="off"
 													autocapitalize="none" autocomplete="off"
-													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s; width:360px;">
 													<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
-													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
-													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+													
 													
 											</div>
 										</div>
@@ -8123,10 +8142,9 @@ body.register .subWrap {
 												<input id="password2" name="userPwd2" class="form-control"
 													type="password" placeholder="비밀번호 확인" autocorrect="off"
 													autocapitalize="none" autocomplete="off"
-													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+													style="padding-top: 0px; transition: all 0.1s ease-in-out 0s; width:360px;">
 													<input type="text" class="form-control"	style="padding-top: 0px; display: none;" placeholder="비밀번호">
-													<span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;">
-													<i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span>
+													
 													
 											</div>
 										</div>
@@ -8143,18 +8161,18 @@ body.register .subWrap {
 										</div>
 										<span class="help-block" id="user_name_help"></span>
 									</div>
-									
-									<div class="form-group" id="user_email_div">
-										<label for="user_email" class="sr-only">이메일</label>
-
-										<div id="div_email_free" class="form-group">
-											<input type="email"	class="form-control" id="user_email" placeholder="이메일"
-												name="email" value="" >
+													
+									<div class="form-group passwordShowHide" id="password_div">
+										<label for="userId" class="sr-only">이메일</label>
+										<div class="floatlabel-wrapper" style="position: relative">
+											<label for="password" class="label-floatlabel" style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
+											<div class="input-append input-group">
+												<input id="user_email" name="email" class="form-control" type="text" placeholder="이메일" style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												
+													<span tabindex="100" title="이메일 중복체크" class="add-on input-group-addon"  id="emailck"style="cursor: pointer;">중복확인</span>
+											</div>
 										</div>
-
-										<span class="help-block" id="user_email_help"></span>
-
-										
+										<span class="help-block" id="password_help"></span>
 									</div>
 
 									<div class="form-group" id="user_name_div">
@@ -8573,6 +8591,99 @@ body.register .subWrap {
 		<!-- /.memeberWtap -->
 	</div>
 	<!-- /container -->
+	
+	
+	
+	<script type="text/javascript">
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+var idck = 0;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#idck").click(function() {
+        
+        //userid 를 param.
+        var userid =  $("#userId").val(); 
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : userid,
+            url : "duplicationCheck.me",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data*1 > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                 
+                    $("#userId").focus();
+                } else {
+                    alert("사용가능한 아이디입니다.");
+                   
+                    
+                    $("#password").focus();
+                    //아이디가 중복하지 않으면  idck = 1 
+                    idck = 1;
+                    
+                }
+            },
+            error : function(request,status,error) {
+                
+                alert("code : "+request.status+"\n"+"message : "+request.responseText+"\n"+"error : " + error);
+            }
+        });
+    });
+});
+ 
+
+</script>
+
+
+<!-- 이메일 중복체크 -->
+<script type="text/javascript">
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+var idck = 0;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#emailck").click(function() {
+        
+        //userid 를 param.
+        var user_email =  $("#user_email").val(); 
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : user_email,
+            url : "duplicationCheck2.me",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data*1 > 0) {
+                    
+                    alert("이메일이 존재합니다. 다른 이메일을 입력해주세요.");
+                 
+                    $("#user_email").focus();
+                } else {
+                    alert("사용가능한 이메일입니다.");
+                   
+                    
+                    $("#userName").focus();
+                    //아이디가 중복하지 않으면  idck = 1 
+                    idck = 1;
+                    
+                }
+            },
+            error : function(request,status,error) {
+                
+                alert("code : "+request.status+"\n"+"message : "+request.responseText+"\n"+"error : " + error);
+            }
+        });
+    });
+});
+ 
+ 
+</script>
+	
 
 	
 

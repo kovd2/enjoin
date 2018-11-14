@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.company.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,6 +53,15 @@ public class CompanyServiceImpl implements CompanyService{
 	public List<Company> selectUseHistory(String userId) {
 		// 
 		return cd.selectUseHistory(sqlSession, userId);
+	}
+
+
+
+	//데이터 뿌려주기용
+	@Override
+	public HashMap<String, Object> selectCompany(HashMap<String, Object> hmap) {
+		
+		return cd.selectCompany(sqlSession, hmap);
 	}
 
 

@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.company.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -48,6 +49,15 @@ public class CompanyDaoImpl implements CompanyDao{
 	public List<Company> selectUseHistory(SqlSessionTemplate sqlSession, String userId) {
 		
 		return sqlSession.selectList("Company.selectUseHistory", userId);
+	}
+
+
+	//데이터 뿌려주기용 상세보기
+	@Override
+	public HashMap<String, Object> selectCompany(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		
+		
+		return sqlSession.selectOne("Company.selectDetailCompany", hmap);
 	}
 
 
