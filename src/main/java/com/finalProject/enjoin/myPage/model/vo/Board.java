@@ -18,13 +18,14 @@ public class Board implements Serializable {
 	private int crewNo;									//크루 번호
 	private String userName;							//유저 이름
 	private String crewName;
+	private int contactStatus; 							//문의글 상태
 	private ArrayList<Attachment> attachment;			//파일 업로드 이름
 	private ArrayList<Coment> comentList;				//댓글리스트
 	
 	public Board() {}
 
 	public Board(int boardNo, String boardType, String boardTitle, String boardContent, int boardCount, Date enrollDate,
-			Date modifyDate, String status, int userNo, int crewNo, String userName, String crewName,
+			Date modifyDate, String status, int userNo, int crewNo, String userName, String crewName, int contactStatus,
 			ArrayList<Attachment> attachment, ArrayList<Coment> comentList) {
 		super();
 		this.boardNo = boardNo;
@@ -39,6 +40,7 @@ public class Board implements Serializable {
 		this.crewNo = crewNo;
 		this.userName = userName;
 		this.crewName = crewName;
+		this.contactStatus = contactStatus;
 		this.attachment = attachment;
 		this.comentList = comentList;
 	}
@@ -139,6 +141,14 @@ public class Board implements Serializable {
 		this.crewName = crewName;
 	}
 
+	public int getContactStatus() {
+		return contactStatus;
+	}
+
+	public void setContactStatus(int contactStatus) {
+		this.contactStatus = contactStatus;
+	}
+
 	public ArrayList<Attachment> getAttachment() {
 		return attachment;
 	}
@@ -160,8 +170,8 @@ public class Board implements Serializable {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", boardCount=" + boardCount + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", status=" + status + ", userNo=" + userNo + ", crewNo=" + crewNo
-				+ ", userName=" + userName + ", crewName=" + crewName + ", attachment=" + attachment + ", comentList="
-				+ comentList + "]";
+				+ ", userName=" + userName + ", crewName=" + crewName + ", contactStatus=" + contactStatus
+				+ ", attachment=" + attachment + ", comentList=" + comentList + "]";
 	}
 
 	

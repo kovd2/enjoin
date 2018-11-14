@@ -227,7 +227,7 @@ public class MyPageController {
 		hmap.put("date1", date1);
 		hmap.put("date2", date2);
 		hmap.put("userNo", userNo);
-		
+
 		List<HashMap<String, Object>> useHistory = mps.selectUseHistory(hmap);
 		System.out.println("useHistory : " + useHistory);
 		
@@ -302,21 +302,24 @@ public class MyPageController {
 		return mv;
 	}
 	
-	//내가 쓴 게시물 / 리뷰/ 댓글 페이지
+	//내가 쓴 게시물 / 리뷰 / 댓글 페이지 / 1:1문의 
 	@RequestMapping("writePosts.ljs")
 	public ModelAndView writePosts(ModelAndView mv, @RequestParam("userNo") int userNo) {
 		List<Board> writePost = mps.selectWritePost(userNo);
 		List<Board> writeCrewBoard = mps.selectWriteCrewBoard(userNo);
 		List<Coment> writeComent = mps.selectWriteComent(userNo);
+		List<Board> asBoard = mps.selectAsBoard(userNo);
 		
 		System.out.println("writePost : " + writePost);
 		System.out.println("writeCrewBoard : " + writeCrewBoard);
 		System.out.println("writeComent : " + writeComent);
+		System.out.println("asBoard : " + asBoard);
 		
 		mv.setViewName("myPage/writePosts");
 		mv.addObject("writePost", writePost);
 		mv.addObject("writeCrewBoard", writeCrewBoard);
 		mv.addObject("writeComent", writeComent);
+		mv.addObject("asBoard", asBoard);
 		
 		return mv;
 	}
@@ -430,6 +433,7 @@ public class MyPageController {
 		return mv;
 	}
 	
+	//크루원 조회
 	@RequestMapping("selectCrewMember.ljs")
 	public ModelAndView selectCrewMember(@RequestParam("crewId") int crewId, @RequestParam("userNo") int userNo, ModelAndView mv, HashMap<String, Object> hmap) {
 
@@ -445,6 +449,18 @@ public class MyPageController {
 		
 		mv.setViewName("myPage/crewMemberModal");
 		mv.addObject("hmap", hmap);
+		
+		return mv;
+	}
+	
+	//1:1문의 게시판 상세보기
+	@RequestMapping("asBoardDetail.ljs")
+	public ModelAndView asBoardDetail(@RequestParam("boardNo") int boardNo, ModelAndView mv) {
+		
+		List<Board> asDetail = mps.selectAsDetail(boardNo);
+		System.out.println("asDetail : " + asDetail);
+		mv.setViewName("myPage/asBoardDetail");
+		mv.addObject("asDetail", asDetail);		
 		
 		return mv;
 	}
