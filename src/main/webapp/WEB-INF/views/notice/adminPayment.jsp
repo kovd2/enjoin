@@ -39,12 +39,12 @@ td {
 			<p style="font-size: 100px; text-align: center">결제 관리</p>
 
 			<hr>
-			<form id="paymentSearchForm" action="paymentSearch.hh" method="post">
+			<form id="paymentSearchForm" action="adminPayment.hh" method="post">
 			<select class="searchSelect" name="searchOption" style="height:30px;">
-				<option value="all">전체</option>	
+				<option value="PROOF_NO">전체</option>	
 				<option value="USER_ID">아이디</option>
 			</select>
-			 <input type="text" value="${keyword}" name="keyword" style="width:500px;">
+			 <input value="${keyword}" name="keyword" style="width:500px;">
 				<span class="input-group-btn">
 					<button class="btn btn-primary" type="submit">
 						<i class="fa fa-search"></i>

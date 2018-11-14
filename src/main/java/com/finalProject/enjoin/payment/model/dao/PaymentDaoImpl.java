@@ -238,7 +238,7 @@ public class PaymentDaoImpl implements PaymentDao{
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		
-		return sqlSession.selectList("Payment.searchListAll", map);
+		return sqlSession.selectList("Payment.listAll", map);
 	}
 
 }
