@@ -68,13 +68,7 @@ public class searchFacilityController {
 	}
 	@RequestMapping("searchDetail.kch")
 	public String searchDetail() {
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		return "searchMap/searchDetail";
 	}

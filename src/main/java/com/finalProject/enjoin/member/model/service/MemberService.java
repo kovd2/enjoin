@@ -21,6 +21,8 @@ public interface MemberService {
 
 	int idcheck(String userid);
 
+	int emailcheck(String user_email);
+
 
 
 

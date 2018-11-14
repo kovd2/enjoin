@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -510,14 +511,15 @@ color:#feab2a;
 				<div class="imgArea">
 					<img src="resources/images/searchMap/mb.jpg">
 				</div>
+				
 				<div class="imgTitle">
-					<b>또치헬스장</b>
+					<b>${ com.facilityName }</b>
 				</div>
 				<div class="imgAddress">
-					<b>서울 강남구 역삼동 233-2</b><br>
+					<b>${ com.facilityAddress }</b><br>
 				</div>
 				<div class="imgTel">
-					<b>02)1234-4565</b>
+					<b>${ com.facilityManagerPhone }</b>
 				</div>
 				<div class="like">
 					<i class="glyphicon glyphicon-thumbs-up"></i> 1230
@@ -591,6 +593,8 @@ color:#feab2a;
 						</div>
 					</div>
 				</div>
+				
+				
 
 				<div class="right">
 					<div class="detailPic">
@@ -631,7 +635,9 @@ color:#feab2a;
 						</div>
 
 					</div>
-
+				
+				
+				
 
 					<div class="reviewWrap">
 						<b>회원리뷰</b>

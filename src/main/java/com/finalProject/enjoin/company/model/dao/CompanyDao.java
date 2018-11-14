@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.company.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,6 +15,8 @@ public interface CompanyDao {
 	List<Company> selectCompanyInfo(SqlSessionTemplate sqlSession, String userId);
 
 	List<Company> selectUseHistory(SqlSessionTemplate sqlSession, String userId);
+
+	HashMap<String, Object> selectCompany(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
 
 

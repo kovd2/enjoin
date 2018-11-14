@@ -265,25 +265,36 @@ public class MemberController {
 		return "redirect:goMain.me";
 	}
 
-	//아이디 중복 확인용 
+	//아이디 중복 확인용 컨트롤러
 	 @RequestMapping("duplicationCheck.me")
 	    @ResponseBody
-	    public Map<Object, Object> idcheck(@RequestBody String userid) {
+	    public String idcheck(@RequestBody String userid) {
 	        
 	        int count = 0;
-	        Map<Object, Object> map = new HashMap<Object, Object>();
-	 
 	        count = ms.idcheck(userid);
-	        map.put("cnt", count);
+
+	       
+	        System.out.println(count);
 	        
-	        System.out.println("map : " + map);
-	   
-	 
-	        return map;
+	        return String.valueOf(count);
+	        
 	    }
 
 	
-	
+	 //이메일 중복 확인용 컨트롤러
+	 @RequestMapping("duplicationCheck2.me")
+	    @ResponseBody
+	    public String emailcheck(@RequestBody String user_email) {
+	        
+	        int count = 0;
+	        count = ms.emailcheck(user_email);
+
+	       
+	        System.out.println(count);
+	        
+	        return String.valueOf(count);
+	        
+	    }
 	
 	
 	

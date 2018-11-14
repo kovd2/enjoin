@@ -73,5 +73,12 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne("Member.idCheck", userid);
 	}
 
+	//이메일 중복확인
+	@Override
+	public int emailcheck(SqlSessionTemplate sqlSession, String user_email) {
+		
+		return sqlSession.selectOne("Member.emailCheck", user_email);
+	}
+
 
 }

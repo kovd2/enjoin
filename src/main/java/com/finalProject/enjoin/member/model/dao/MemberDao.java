@@ -35,6 +35,9 @@ public interface MemberDao {
 	//아이디 중복체크
 	int idcheck(SqlSessionTemplate sqlSession, String userid);
 
+	//이메일 중복체크
+	int emailcheck(SqlSessionTemplate sqlSession, String user_email);
+
 
 
 

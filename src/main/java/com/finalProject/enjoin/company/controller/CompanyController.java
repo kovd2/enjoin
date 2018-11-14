@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.company.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,14 +82,26 @@ public class CompanyController {
 	
 	//나의 제휴시설 상세보기용 메소드
 	@RequestMapping("detailView.gs")
-	public String showDetailView() {
+	public ModelAndView showDetailView(HttpServletRequest request, ModelAndView mv, 
+										@RequestParam("facilityNo") int facilityNo, @RequestParam("userId") String userId) {
 		
-		return "company/companyDetail";
+		
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("userId", userId);
+		hmap.put("facilityNo", facilityNo);
+		
+		HashMap<String, Object> com = cs.selectCompany(hmap);
+		
+		System.out.println("com : " + com);
+		
+		mv.setViewName("company/companyDetail");
+		mv.addObject("com", com);
+
+		
+		
+		return mv;
 	}
 	
-	//
-	
-
 	//제휴시설 신청용 컨트롤러
 	@RequestMapping(value="facilityInsert.gs")
 	public String companyInsert(Model model, /*Company c,*/ HttpServletRequest request, 

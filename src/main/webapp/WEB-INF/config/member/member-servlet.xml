@@ -25,8 +25,15 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-<context:component-scan base-package="com.finalProject.enjoin" />
+
+	<!-- json view -->
+	<!-- ajax JSON parsing -->
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"/>
+	</bean>
+
+	<context:component-scan
+		base-package="com.finalProject.enjoin" />
 	
 	
 </beans:beans>
