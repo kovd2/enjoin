@@ -772,6 +772,17 @@ public class AdminPageController {
 			
 			return mv;
 		}
+		
+		@RequestMapping("adminChart.shw")
+		public ModelAndView adminChart(ModelAndView mv , HttpServletRequest request) {
+			
+			
+			
+			mv.setViewName("admin/adminChart");
+			
+			return mv;
+		}
+		
 			
 }
 		
