@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>Insert title here</title>
 <style>
 	.Area {
 	width: 100%;
@@ -111,7 +110,7 @@
     margin-left: 56px;
 }
 span.m8 {
-   	margin-left: 42px;
+   	margin-left: 115px;
     font-weight: bold;
     font-size: 20px;
 }
@@ -315,14 +314,14 @@ hr {
 .m3A2{
 	font-size: 20px;
     font-weight: bold;
-    margin-left: 55px;
+    margin-left: 62px;
 }
 .memberAdd{
 	margin: 0;
     line-height: 35px;
     font-size: 14px;
     margin-top: -1px;
-    margin-left: 2px;
+    margin-left: 9px;
     float: left;
     font-weight: bold;
     color: #676565;
@@ -341,7 +340,7 @@ hr {
     line-height: 35px;
     font-size: 17px;
     float: left;
-    margin-left: 6px;
+    margin-left: -40px;
     font-weight: bold;
     color: #676565;
    
@@ -383,29 +382,30 @@ button.Contentbtn {
 }
 
 </style>
+<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/style/css/fancybox/jquery.fancybox.css"
+	rel="stylesheet">
+<!-- <link href="resources/style/css/jcarousel.css" rel="stylesheet"> -->
+<!-- <link href="resources/style/css/flexslider.css" rel="stylesheet"> -->
+<!-- <link href="resources/style/css/style.css" rel="stylesheet"> -->
+
+<title>Insert title here</title>
+
+</head>
 <script>
-	function adminCrewActivityDetails(board_No,crew_No){
-		var board_No = board_No;
-		var crew_No = crew_No;
-		
-		location.href = "crewActivityDetails.shw2?board_No=" + board_No +"&crew_No=" + crew_No;
-		
-	}
 	function StatusBoard(board_No,board_Title){
 		var board_No = board_No;
 		var board_Title = board_Title;
 		
-		if(confirm(board_Title + "를 삭제시키겠습니까?") == true){
-			location.href="adminCrewActivityStatus.shw?board_No=" + board_No;
-			alert("삭제완료!");
+		if(confirm(board_Title + "를 복원 시키겠습니까 ?") == true){
+			location.href="adminBoardStatus.shw?board_No=" + board_No;
+			alert("복원 완료!");
 		}else{
 			return;
 		}
 		
-		
 	}
 </script>
-</head>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="Area">
@@ -415,7 +415,7 @@ button.Contentbtn {
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain"> 크루활동게시판</h2>
+									<h2 class="MemberSearchMain"> 게시물삭제목록게시판</h2>
 									<hr>
 								</td>
 							</tr>
@@ -424,9 +424,9 @@ button.Contentbtn {
 									
 									<span class="m1">게시물번호</span> <span
 									class="m2">카테고리</span> <span class="m4A2">제목</span> <span
-									class="m5A2">활동구역</span> <span class="m6A2">조회수</span> 
-									  <span class="m8">작성자 </span>
-									   <span class="m3A2">작성일시</span>
+									class="m5A2">지역</span> <span class="m6A2">구분</span> 
+									  <span class="m8">수정일 </span>
+									   <span class="m3A2">작성일</span>
 									<hr class="22">
 									
 								</td>
@@ -435,33 +435,30 @@ button.Contentbtn {
 							<tr>
 								<td colspan="6">
 									<c:forEach var="m" items="${map.list}" varStatus="status">
-									<div class="MemberAreas1">
+									<div class="MemberAreas1" onclick="StatusBoard(${m.board_No},'${m.board_Title}')">
 										<div class="mArea">
 											<span class="memberNum">${m.board_No}</span>
 										</div>
 										<div class="mArea2">
-											<span class="userId">${m.category_Name }</span>
+											<span class="userId">${m.category_Name}</span>
 										</div>
-										<div class="mArea3"onclick="StatusBoard(${m.board_No},'${m.board_Title}')">
+										<div class="mArea3">
 											<span class="userName">${m.board_Title}</span>
 										</div>
 										<div class="mArea4">
-											<span class="phone">${m.crew_Area}</span>
+											<span class="phone">${m.crew_Area }</span>
 										</div>
 										<div class="mArea5A2">
-											<span class="email1">${m.board_Count }</span>
+											<span class="email1">${m.board_Type}</span>
 										</div>
 										<div class="mArea6A2">
-											<span class="memberAdd">${m.user_Id }</span>
+											<span class="memberAdd">${m.modify_Date}</span>
 										</div>
 										<div class="mArea7A2">
 											<span class="memberAdd">${m.enroll_Date }</span>
 										</div>
-										<div class="ContentBtnBox">
-										<button class="Contentbtn" onclick="adminCrewActivityDetails(${m.board_No },${m.crew_No})">
-											본문
-										</button>
-										</div>
+										
+										
 									</div>
 									<hr>
 									</c:forEach>
@@ -473,14 +470,14 @@ button.Contentbtn {
 							
 									<tr>
 										<td colspan="3">
-											<form action="adminCaSearchList.shw" method="get">
+											<form action="blackBoardSearchList.shw" method="get">
 												<table align="center">
 													<tr>
 														<td>
 															<div class="searchArea1">
 																<select class="selectBox" name="option">
 																	<option>제목</option>
-																	<option>작성자</option>
+																	<option>구분</option>
 																</select> <input type="text" class="searchBar1" name="searchList">
 																<button type="submit" class="searchBtn">검색</button>
 															</div>
@@ -498,7 +495,7 @@ button.Contentbtn {
 											<li><a>이전</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage > 1 }">
-											<c:url var="listBack" value="crewRecruitmentBoard.shw2">
+											<c:url var="listBack" value="adminBlackBoard.shw">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 											
 											</c:url>
@@ -510,7 +507,7 @@ button.Contentbtn {
 												<li class="active"><a>${ p }</a></li>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
+												<c:url var="listCheck" value="adminBlackBoard.shw">
 													<c:param name="currentPage" value="${ p }" />
 												</c:url>
 												<li><a href="${ listCheck }">${ p }</a></li>
@@ -520,8 +517,8 @@ button.Contentbtn {
 										<c:if test="${ pi.currentPage >= pi.maxPage }">
 											<li><a>다음</a></li>
 										</c:if>
-										<c:if test="${ pi1.currentPage < pi.maxPage }">
-											<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
+										<c:if test="${ pi.currentPage < pi.maxPage }">
+											<c:url var="listEnd" value="adminBlackBoard.shw">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							
 											</c:url>
@@ -535,6 +532,5 @@ button.Contentbtn {
 				</div>
 			</div>
 		</div>
-	
 </body>
 </html>

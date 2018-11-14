@@ -259,6 +259,12 @@ public class CrewDaoImpl implements CrewDao {
 		
 		return sqlSession.selectList("Crew.crewActivityBoardDetailPhoto", board_No);
 	}
+	//크루 활동 상세보기 클릭시 조회수 증가
+	@Override
+	public int updateBoardCount(SqlSessionTemplate sqlSession, int board_No) {
+		
+		return sqlSession.update("Crew.updateBoardCount", board_No);
+	}
 
 
 }

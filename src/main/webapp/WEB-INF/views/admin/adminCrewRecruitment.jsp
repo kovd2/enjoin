@@ -363,7 +363,7 @@ hr {
     margin-left: 12px;
 }
 .MemberAreas1{
-	width: 1152px;
+	width: 1082px;
     height: 21px;
     margin-left: 0px;
     display: -webkit-box;
@@ -440,14 +440,14 @@ button.Contentbtn {
 							<tr>
 								<td colspan="6">
 									<c:forEach var="m" items="${map.list}" varStatus="status">
-									<div class="MemberAreas1" onclick="StatusBoard(${m.board_No},'${m.board_Title}')">
+									<div class="MemberAreas1">
 										<div class="mArea">
 											<span class="memberNum">${m.board_No}</span>
 										</div>
 										<div class="mArea2">
 											<span class="userId">${m.category_Name }</span>
 										</div>
-										<div class="mArea3">
+										<div class="mArea3"onclick="StatusBoard(${m.board_No},'${m.board_Title}')">
 											<span class="userName">${m.board_Title}</span>
 										</div>
 										<div class="mArea4">
@@ -503,7 +503,7 @@ button.Contentbtn {
 											<li><a>이전</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage > 1 }">
-											<c:url var="listBack" value="crewRecruitmentBoard.shw2">
+											<c:url var="listBack" value="adminCrewRecruitment.shw">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 											
 											</c:url>
@@ -515,19 +515,19 @@ button.Contentbtn {
 												<li class="active"><a>${ p }</a></li>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="listCheck" value="crewRecruitmentBoard.shw2">
+												<c:url var="listCheck" value="adminCrewRecruitment.shw">
 													<c:param name="currentPage" value="${ p }" />
 												</c:url>
 												<li><a href="${ listCheck }">${ p }</a></li>
 											</c:if>
 										</c:forEach>
 		
-										<c:if test="${ pi1.currentPage >= pi1.maxPage }">
+										<c:if test="${ pi.currentPage >= pi.maxPage }">
 											<li><a>다음</a></li>
 										</c:if>
-										<c:if test="${ pi1.currentPage < pi1.maxPage }">
+										<c:if test="${ pi.currentPage < pi.maxPage }">
 											<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
-												<c:param name="currentPage" value="${ pi1.currentPage + 1 }" />
+												<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							
 											</c:url>
 											<li><a href="${ listEnd }">다음</a></li>

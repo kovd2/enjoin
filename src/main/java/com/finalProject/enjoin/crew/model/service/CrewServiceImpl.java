@@ -193,6 +193,12 @@ public class CrewServiceImpl implements CrewService {
 		
 		return cd.crewActivityBoardDetailPhoto(sqlSession,board_No);
 	}
+	//크루활동 상세보기 클릭시 조회수 증가
+	@Override
+	public int updateBoardCount(int board_No) {
+		
+		return cd.updateBoardCount(sqlSession,board_No);
+	}
 	
 
 

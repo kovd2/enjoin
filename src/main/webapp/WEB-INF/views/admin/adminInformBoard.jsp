@@ -137,8 +137,8 @@ span.m8 {
 .userId {
 	margin: 0;
     line-height: 35px;
-    margin-right: 68px;
-    font-size: 17px;
+    margin-right: 54px;
+    font-size: 12px;
     font-weight: bold;
     color: #676565;
 }
@@ -297,6 +297,8 @@ hr {
     margin-right: 17px;
     font-weight: bold;
     margin-left: 6px;
+    position: relative;
+    left: 72px;
 }
 .m5A2{
 	font-size: 20px;
@@ -317,9 +319,9 @@ hr {
 .memberAdd{
 	margin: 0;
     line-height: 35px;
-    font-size: 17px;
+    font-size: 14px;
     margin-top: -1px;
-    margin-left: 2px;
+    margin-left: 20px;
     float: left;
     font-weight: bold;
     color: #676565;
@@ -330,8 +332,6 @@ hr {
 }
 .mArea7A2{
 	width: 92px;
-    
-
 }
 .email1{
 	margin: 0;
@@ -359,11 +359,11 @@ hr {
     margin-left: 12px;
 }
 .MemberAreas1{
-	width: 1152px;
+	width: 1082px;
     height: 21px;
     margin-left: 0px;
     display: -webkit-box;
-    border-top: 1px solid gray;
+
 }
 .ContentBtnBox{
 	width: 63px;
@@ -381,6 +381,28 @@ button.Contentbtn {
 
 </style>
 </head>
+<script>
+	function goInformboard(boardNo,attNo){
+		var boardNo = boardNo;
+		var attNo = attNo;
+		
+		location.href = "informDetail.kch2?boardNo="+boardNo+"&attNo="+attNo;
+	}
+	function StatusBoard(boardNo,informBoardTitle){
+		var boardNo = boardNo;
+		var informBoardTitle = informBoardTitle;
+		
+		if(confirm(informBoardTitle + "를 삭제시키겠습니까?") == true){
+			location.href="adminInformBoardStatus.shw?boardNo=" + boardNo;
+			alert("삭제완료!");
+		}else{
+			return;
+		}
+		
+		
+	}
+
+</script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="Area">
@@ -399,9 +421,9 @@ button.Contentbtn {
 									
 									<span class="m1">게시물번호</span> <span
 									class="m2">카테고리</span> <span class="m4A2">제목</span> <span
-									class="m5A2">활동구역</span> <span class="m6A2">조회수</span> 
+									class="m5A2">활동구역</span> <span class="m6A2">차감패스</span> 
 									  <span class="m8">작성자 </span>
-									   <span class="m3A2">작성일시</span>
+									   <span class="m3A2">공고일</span>
 									<hr class="22">
 									
 								</td>
@@ -409,37 +431,37 @@ button.Contentbtn {
 							<!--여기부터  -->
 							<tr>
 								<td colspan="6">
-									<%-- <c:forEach var="m" items="${map.list}" varStatus="status"> --%>
+									<c:forEach var="m" items="${map.list}" varStatus="status">
 									<div class="MemberAreas1" onclick="StatusCrew(<%-- ${m.crew_Id},'${m.crew_Name}' --%>)">
 										<div class="mArea">
-											<span class="memberNum">1</span>
+											<span class="memberNum">${m.boardNo}</span>
 										</div>
 										<div class="mArea2">
-											<span class="userId">런닝</span>
+											<span class="userId">${m.categoryName}</span>
 										</div>
 										<div class="mArea3">
-											<span class="userName">김창희의런닝크루달리다</span>
+											<span class="userName" onclick="StatusBoard(${m.boardNo},'${m.informBoardTitle}')">${m.informBoardTitle}</span>
 										</div>
 										<div class="mArea4">
-											<span class="phone">강남할리스</span>
+											<span class="phone">${m.crewArea }</span>
 										</div>
 										<div class="mArea5A2">
-											<span class="email1">1000</span>
+											<span class="email1">${m.informPassCount}pass</span>
 										</div>
 										<div class="mArea6A2">
-											<span class="memberAdd">user01</span>
+											<span class="memberAdd">관리자</span>
 										</div>
 										<div class="mArea7A2">
-											<span class="memberAdd">18-11-04</span>
+											<span class="memberAdd">${m.noticeStart}</span>
 										</div>
 										<div class="ContentBtnBox">
-										<button class="Contentbtn">
+										<button class="Contentbtn" onclick="goInformboard(${m.boardNo},${m.attNo})">
 											본문
 										</button>
 										</div>
 									</div>
 									<hr>
-									<%-- </c:forEach> --%>
+									</c:forEach>
 									
 								</td>
 							</tr>
@@ -448,14 +470,13 @@ button.Contentbtn {
 							
 									<tr>
 										<td colspan="3">
-											<form action="crewSearchList.shw" method="get">
+											<form action="InformBoardSearchList.shw" method="get">
 												<table align="center">
 													<tr>
 														<td>
 															<div class="searchArea1">
 																<select class="selectBox" name="option">
-																	<option>크루명</option>
-																	<option>크루장</option>
+																	<option>제목</option>
 																</select> <input type="text" class="searchBar1" name="searchList">
 																<button type="submit" class="searchBtn">검색</button>
 															</div>

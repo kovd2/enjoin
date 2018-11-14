@@ -18,6 +18,7 @@ public class Crew implements java.io.Serializable{
 	private String board_Content;	//글내용
 	private String user_Name;		//유저네임
 	private String user_Id;			//유저 아이디
+	private int page;
 
 	
 	
@@ -27,7 +28,7 @@ public class Crew implements java.io.Serializable{
 
 	public Crew(int crew_Id, String crew_Name, int crew_Max, int user_No, Date request_Date, Date start_Date,
 			Date end_Date, String crew_Status, int category_No, String category_Name, String crew_Address,
-			String board_title, String board_Content, String user_Name, String user_Id) {
+			String board_title, String board_Content, String user_Name, String user_Id, int page) {
 		super();
 		this.crew_Id = crew_Id;
 		this.crew_Name = crew_Name;
@@ -44,6 +45,7 @@ public class Crew implements java.io.Serializable{
 		this.board_Content = board_Content;
 		this.user_Name = user_Name;
 		this.user_Id = user_Id;
+		this.page = page;
 	}
 
 
@@ -138,6 +140,12 @@ public class Crew implements java.io.Serializable{
 
 
 
+	public int getPage() {
+		return page;
+	}
+
+
+
 	public void setCrew_Id(int crew_Id) {
 		this.crew_Id = crew_Id;
 	}
@@ -228,14 +236,21 @@ public class Crew implements java.io.Serializable{
 
 
 
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Crew [crew_Id=" + crew_Id + ", crew_Name=" + crew_Name + ", crew_Max=" + crew_Max + ", user_No="
 				+ user_No + ", request_Date=" + request_Date + ", start_Date=" + start_Date + ", end_Date=" + end_Date
 				+ ", crew_Status=" + crew_Status + ", category_No=" + category_No + ", category_Name=" + category_Name
 				+ ", crew_Address=" + crew_Address + ", board_title=" + board_title + ", board_Content=" + board_Content
-				+ ", user_Name=" + user_Name + ", user_Id=" + user_Id + "]";
+				+ ", user_Name=" + user_Name + ", user_Id=" + user_Id + ", page=" + page + "]";
 	}
+
 
 
 
