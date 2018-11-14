@@ -152,11 +152,10 @@ p{
 
 }
 
-
 #previewArea{
 	width: 300px;
     height: 500px;
-    /* background: blue; */
+    background: blue;
     position: relative;
     z-index: 10;
 	margin-left:300px;
@@ -184,12 +183,10 @@ p{
 			</div>
 			<br>
 			<div id="loofWrap">
-			<c:forEach var="item" items="${list}" varStatus="status">
+			<c:forEach var="item" items="${result}" varStatus="status">
 			<div class="listArea">
 				
-				<div class="list" onclick="goDetail(<%-- ${item.UPLOAD_NAME},${item.FACILITY_NAME},${FACILITY_ADDRESS },
-													${item.FACILITY_ENVET},${item.FACILITY_MANAGER_PHONE},${item.PASS_COUNT},
-													${MON_FRI_TIME},${SUN_TIME} --%>)">
+				<div class="list" onclick="goDetail()">
 				<div class="imgArea">
 							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
 				</div>
@@ -204,29 +201,31 @@ p{
 			</div>
 			</c:forEach>	
 			</div>
+			
+			
+			
+			
 		</div>
-		
-		<!--지도영역 -->
 		<div class="mapArea">
-			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;">
-			<!-- 모달영역 -->
+			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
+			
 			<div id="previewArea">
 			
 			
 			
-			
 			</div>
 			
 			
-			</div>
 			
 		</div>
 	</div>
-	</div>
+</div>
+
+
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
-	<script>
+		<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표
@@ -268,31 +267,24 @@ p{
 
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	        map.setCenter(coords);
-			
 	    } 
 	});
-	
 
 		</script>
-
-	
-
-<script>
+	<script>
 	
 	function goDetail(){
 		
-		/* location.href="searchDetail.kch?uploadName="+uploadName+"&facilityAddress="+facilityAddress+"&facilityEvent="+facilityEvent+
-					"&facilityManagerPhone="+facilityManagerPhone+"&facilityPassCount="+facilityPassCount+"&mon_Fri_Time="+mon_Fri_Time+"&sun_Time="sun_Time; */
 		
 		
-		location.href="searchDetail.kch";
-					
-					
-					
-	};
+				
+	}
 
 
-</script>
+	</script>
+	
+
+
 
 
 

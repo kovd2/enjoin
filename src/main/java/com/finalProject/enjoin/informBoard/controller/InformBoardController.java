@@ -78,8 +78,11 @@ public class InformBoardController {
 			//System.out.println("list2:"+list2);
 			list3=ibs.selectMemberDetail(loginUser);
 			mv.addObject("list3", list3);
-			//System.out.println("list3:"+list3);
+			System.out.println("list3:"+list3);
 			
+			mv.addObject("list", list);
+			mv.addObject("list2", list2);
+			mv.addObject("list3", list3);
 			mv.setViewName("informBoard/informDetail");
 		} catch (BoardSelectOneException e) {
 			mv.addObject("msg",e.getMessage());
@@ -260,7 +263,7 @@ public class InformBoardController {
 			fileImg2.transferTo(new File(filePath+"/"+changeName[2]+ext2));
 			fileImg3.transferTo(new File(filePath+"/"+changeName[3]+ext3));
 			ibs.insertInform(ib,fileList);
-			return "redirect:goMain.kch2";
+			return "redirect:informBoard.kch2";
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			new File(filePath+"/"+changeName[1]+ext1).delete();
@@ -271,30 +274,7 @@ public class InformBoardController {
 		}
 		
 	}
-	
-	@RequestMapping("goMain.kch2")
-	public String goMain() {
-		
-		return "informBoard/informBoard";
-	}
-	
-//	@RequestMapping("goComent.kch2")
-//	public @ResponseBody List<Map<String, Object>> enrollComent(
-//		InformComent ic,HttpSession session,HttpServletRequest request,
-//		@RequestParam (value="comentContent")String comentContent,
-//		@RequestParam (value="userNo")int userNo,
-//		@RequestParam (value="boardNo")int boardNo){
-//		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-//		System.out.println("comentCon:"+loginUser);
-//		System.out.println("booardNo:"+boardNo);
-//		ic.setBoardNo(boardNo);
-//		ic.setComentContent(comentContent);
-//		ic.setUserNo(userNo);
-//		List<Map<String,Object>> list = null;
-//		list = ibs.insertComent(ic);
-//		return list;
-//	}
-	
+
 	@RequestMapping(value="/goComent.kch2",method=RequestMethod.POST)
 	public @ResponseBody List<Map<String,Object>> insertComent(HttpServletRequest request,HttpSession session,InformComent ic,
 		@RequestParam(value="boardNo")int boardNo,
@@ -307,9 +287,8 @@ public class InformBoardController {
 		List<Map<String,Object>> map = null;
 		
 		map=ibs.insertComent(ic);
-		
+		System.out.println(map);
 		return map;
-		
 	}
 	
 	
