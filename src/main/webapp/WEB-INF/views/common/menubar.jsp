@@ -175,7 +175,7 @@
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
-									<li><a href="adminSideBar.hh">관리자 페이지</a></li>
+									<li><a href="adminChart.shw">관리자 페이지</a></li>
 									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
@@ -189,7 +189,7 @@
 											<li><a href="crewAffiliate.test">크루제휴</a></li>
 											<li><a href="crewActivity.test">크루활동</a></li>
 											<li><a href="crewRecruitment.test">크루모집</a></li>
-											<li><a href="adminSideBar.hh">관리자메인페이지</a></li>
+											<li><a href="adminChart.shw">관리자메인페이지</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>

@@ -82,7 +82,7 @@
 	            <a class="dropdown-item" href="adminCrew.shw">크루 조회</a>
 	            <div class="dropdown-divider"></div>
 	            <h6 class="dropdown-header">결제 내역 조회</h6>
-	            <a class="dropdown-item" href="404.html">결제 조회</a>
+	            <a class="dropdown-item" href="adminChart.shw">차트</a>
 	            <a class="dropdown-item" href="blank.html">pass이력 조회</a>
             </div>
         </li>
