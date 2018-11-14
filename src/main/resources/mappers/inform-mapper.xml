@@ -136,7 +136,7 @@
 	<select id="selectMemberDetail" resultType="map" parameterType="Member">
 	SELECT *FROM MEMBER
     JOIN ATTACHMENT A ON(USER_NO=A.REF_NO)
-    WHERE USER_NO=1
+    WHERE USER_NO=#{userNo}
     AND FILE_NO=0
 	</select>
 	

@@ -242,10 +242,10 @@
 						<div class="comentTop">
 							<div class="coImg">
 							<c:choose>
-							<c:when test="${list3.UPLOAD_NAME eq null || list3.UPLOAD_NAME == ''}">
-							<img src="${contextPath}/resources/uploadFiles/images/profil/user.png">
+							<c:when test="${list3.UPLOAD_NAME eq null || list3.UPLOAD_NAME ==''}">
+							<img src="${contextPath}/resources/images/myPage/user.png">
 							</c:when>
-							<c:when test="${list3.UPLOAD_NAME != null || list3.UPLOAD_NAME != ''}">
+							<c:when test="${list3.UPLOAD_NAME != null || list3.UPLOAD_NAME !=''}">
 							 <img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}"> 
 							</c:when>
 							 </c:choose>
@@ -271,7 +271,7 @@
 							<div class="list1">
 								<div class="userWrap">
 									<div class="imgList">
-										<img src="${contextPath}/resources/uploadFiles/myPage/profil/"> 
+										<img src="${contextPath}/resources/images/myPage/user.png"> 
 									</div>
 
 									<div class="userInfo">
@@ -326,9 +326,9 @@
 					$div1=$("<div class='list1'>");
 					$div2=$("<div class='userWrap'>");
 					$div3=$("<div class='imgList'>")
-					/* $div3.append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
+					$div3.append("<img src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].UPLOAD_NAME+">"); 
 					/* $('.list1').append($('.userWrap')); */
-					/* $('.imgList').append("<img src="${contextPath}"/resources/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
+					/* $('.imgList').append("<img src="${contextPath}"/resources/uploadFiles/myPage/profil/"data[key].UPLOAD_NAME">"); */ 
 					/* $('.list1').append($('.imgList')) */
 					$div4=$("<div class='userInfo'>");
 					$div5=$("<div class='userid'>"); 

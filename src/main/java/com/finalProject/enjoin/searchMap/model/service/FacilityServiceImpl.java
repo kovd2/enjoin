@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.searchMap.model.dao.FacilityDao;
+import com.finalProject.enjoin.searchMap.model.exception.SearchListResultException;
 
 
 
@@ -29,6 +30,16 @@ public class FacilityServiceImpl implements FacilityService{
 		return list;
 	}
 
+	@Override
+	public List<Map<String, Object>> searchFacility(String search) throws SearchListResultException {
+		
+		List<Map<String,Object>> list =null;
+		list=fd.facility(sqlSession,search);
+		
+		
+		return list;
+	}
 
+	
 
 }

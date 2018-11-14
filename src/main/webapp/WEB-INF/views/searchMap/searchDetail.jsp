@@ -128,7 +128,7 @@ height:20px;
 				 </div>
 				 <div class="contentArea">
 				 	<div id="title">
-				 			<b>또치헬스장</b>
+				 			<b>{}</b>
 				 	</div>
 				 	
 				 	<div id="address">	
