@@ -675,6 +675,8 @@ public class CrewController {
 			int board_No = Integer.parseInt(request.getParameter("board_No"));
 			int crew_No = Integer.parseInt(request.getParameter("crew_No"));
 			
+			//조회수증가
+			int result = cs.updateBoardCount(board_No);
 			
 			//상세내용 조회
 			List<CrewActivityBoard> list = cs.crewActivityBoardDetailList(board_No);

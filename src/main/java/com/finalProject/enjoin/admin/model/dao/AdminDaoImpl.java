@@ -7,8 +7,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.finalProject.enjoin.admin.model.vo.AdminInformBoard;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -294,6 +297,93 @@ public class AdminDaoImpl implements AdminDao {
 	public List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(SqlSession sqlSession, String user_Id) {
 		
 		return sqlSession.selectList("Admin.selectCrewRecruitmentUserId", user_Id);
+	}
+	//크루활동 게시판 갯수 조회
+	@Override
+	public int getActListCount(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getActListCount");
+	}
+	//크루활동게시판 정보 조회
+	@Override
+	public List<CrewActivityBoard> selectCrewActivityBoard(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectCrewActivityBoard", null, rowBounds);
+	}
+	//크루 활동 게시글 삭제처리
+	@Override
+	public int updateadminCrewActivityStatus(SqlSession sqlSession, int board_No) {
+		
+		return sqlSession.update("Admin.updateadminCrewActivityStatus", board_No);
+	}
+	//크루 활동 제목을 통한 검색처리
+	@Override
+	public List<CrewActivityBoard> selectCaSearchList(SqlSession sqlSession, String board_Title) {
+		
+		return sqlSession.selectList("Admin.selectCaSearchList", board_Title);
+	}
+	//크루 활동 작성자를 통한 검색처리
+	@Override
+	public List<CrewActivityBoard> selectCaIdSearchList(SqlSession sqlSession, String user_Id) {
+		
+		return sqlSession.selectList("Admin.selectCaIdSearchList",user_Id);
+	}
+	//공고게시판 리스트 카운트
+	@Override
+	public int getInformListCount(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getInformListCount");
+	}
+	//공고페이지 정보 조회
+	@Override
+	public List<AdminInformBoard> selectAdminInformBoard(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectAdminInformBoard", null, rowBounds);
+	}
+	//공고 번호를 통한 삭제처리
+	@Override
+	public int updateAdminInformBoardStatus(SqlSession sqlSession, int boardNo) {
+		
+		return sqlSession.update("Admin.updateAdminInformBoardStatus", boardNo);
+	}
+	//공고 제목을 통한 검색처리
+	@Override
+	public List<AdminInformBoard> selectInformTitle(SqlSession sqlSession, String informBoardTitle) {
+		
+		return sqlSession.selectList("Admin.selectInformTitle", informBoardTitle);
+	}
+	//블랙 리스트 갯수 조회
+	@Override
+	public int getBlackBoardListCount(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getBlackBoardListCount");
+	}
+	//블랙 리스트 정보 조회
+	@Override
+	public List<CrewActivityBoard> selectBalckBoardList(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectBalckBoardList", null, rowBounds);
+	}
+	//블랙 게시물 원래대로 돌리기
+	@Override
+	public int updateAdminBoardStatus(SqlSession sqlSession, int board_No) {
+		
+		return sqlSession.update("Admin.updateAdminBoardStatus", board_No);
+	}
+	//블랙 게시물 제목으로 조회
+	@Override
+	public List<CrewActivityBoard> blackTitleSelectBoard(SqlSession sqlSession, String board_Title) {
+		
+		return sqlSession.selectList("Admin.blackTitleSelectBoard", board_Title);
 	}
 	
 

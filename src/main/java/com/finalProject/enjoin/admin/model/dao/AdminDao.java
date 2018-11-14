@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.finalProject.enjoin.admin.model.vo.AdminInformBoard;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -137,6 +140,46 @@ public interface AdminDao {
 	
 	//크루게시판 작성자로 게시물 조회
 	List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(SqlSession sqlSession, String user_Id);
+	
+	//크루활동 게시판 갯수 조회
+	int getActListCount(SqlSession sqlSession);
+
+	//크루활동 게시판 정보 조회
+	List<CrewActivityBoard> selectCrewActivityBoard(SqlSession sqlSession, PageInfo pi);
+	
+	//크루 활동 게시글 삭제처리
+	int updateadminCrewActivityStatus(SqlSession sqlSession, int board_No);
+	
+	//크루활동 제목을 통한 검색처리
+	List<CrewActivityBoard> selectCaSearchList(SqlSession sqlSession, String board_Title);
+	
+	//크루활동 작성자를 통한 검색처리
+	List<CrewActivityBoard> selectCaIdSearchList(SqlSession sqlSession, String user_Id);
+	
+	//공고페이지 리스트 카운트
+	int getInformListCount(SqlSession sqlSession);
+	
+	//공고페이지 정보 조회
+	List<AdminInformBoard> selectAdminInformBoard(SqlSession sqlSession, PageInfo pi);
+	
+	//공고번호를 통한 공고 업데이트
+	int updateAdminInformBoardStatus(SqlSession sqlSession, int boardNo);
+	
+	//공고제목을 통한 검색처리
+	List<AdminInformBoard> selectInformTitle(SqlSession sqlSession, String informBoardTitle);
+	
+	//블랙리스트 갯수 조회
+	int getBlackBoardListCount(SqlSession sqlSession);
+	
+	//블랙리스트 게시물 조회
+	List<CrewActivityBoard> selectBalckBoardList(SqlSession sqlSession, PageInfo pi);
+	
+	//블랙 게시물 원래대로 돌리기
+	int updateAdminBoardStatus(SqlSession sqlSession, int board_No);
+	
+	//블랙 게시물 제목으로조회
+	List<CrewActivityBoard> blackTitleSelectBoard(SqlSession sqlSession, String board_Title);
+	
 	
 	
 

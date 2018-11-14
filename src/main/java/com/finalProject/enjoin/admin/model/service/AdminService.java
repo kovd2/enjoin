@@ -3,8 +3,11 @@ package com.finalProject.enjoin.admin.model.service;
 import java.sql.Date;
 import java.util.List;
 
+import com.finalProject.enjoin.admin.model.vo.AdminInformBoard;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -135,6 +138,45 @@ public interface AdminService {
 	
 	//크루활동 작성자로 게시물 조회
 	List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(String user_Id);
+	
+	//크루 활동 게시판 게시글 갯수 조회
+	int getActListCount();
+	
+	//크루 활동 게시판 정보 조회
+	List<CrewActivityBoard> selectCrewActivityBoard(PageInfo pi);
+	
+	//크루 활동 게시글 삭제처리
+	int updateadminCrewActivityStatus(int board_No);
+	
+	//크루 활동 제목을 통한 크루게시판 게시글 조회
+	List<CrewActivityBoard> selectCaSearchList(String board_Title);
+	
+	//크루 활동 작성자를 통한 조회
+	List<CrewActivityBoard> selectCaIdSearchList(String user_Id);
+	
+	//공고 페이지 리스트 카운트
+	int getInformListCount();
+	
+	//공고 페이지 정보 조회
+	List<AdminInformBoard> selectAdminInformBoard(PageInfo pi);
+	
+	//공고 번호를 통한 삭제처리
+	int updateAdminInformBoardStatus(int boardNo);
+	
+	//공고 제목을 통한 검색처리
+	List<AdminInformBoard> selectInformTitle(String informBoardTitle);
+	
+	//블랙게시물 전체조회
+	int getBlackBoardListCount();
+	
+	//블랙걸린 게시물 전체조회
+	List<CrewActivityBoard> selectBalckBoardList(PageInfo pi);
+	
+	//블랙 게시물 원래대로 돌리기
+	int updateAdminBoardStatus(int board_No);
+	
+	//블랙 게시물 제목으로 조회
+	List<CrewActivityBoard> blackTitleSelectBoard(String board_Title);
 	
 	
 

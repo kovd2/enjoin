@@ -144,6 +144,7 @@ img {
 	overflow:scroll;
 	border-bottom:1px solid #eee;
 }
+.explanArea::-webkit-scrollbar {display:none;}
 
 .explan {
 	font-size: 20px;
@@ -232,6 +233,7 @@ img {
     height: 600px;
     overflow-y: scroll;
 }
+.coWrap::-webkit-scrollbar {display:none;}
 
 .coImg {
 	width: 60px;

@@ -59,7 +59,7 @@
             <a class="dropdown-item" href="adminInformBoard.shw">크루공고</a>
             <a class="dropdown-item" href="adminAdminCrewActivity.shw">크루활동</a>
             <a class="dropdown-item" href="adminFAQ.hh">크루제휴</a>
-             <a class="dropdown-item" href="adminFAQ.hh">블랙게시글</a>
+             <a class="dropdown-item" href="adminBlackBoard.shw">블랙게시글</a>
 
            </div>
         </li>

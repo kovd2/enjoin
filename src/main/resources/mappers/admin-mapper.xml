@@ -68,7 +68,56 @@
 		<result property="category_Name" column="CATEGORY_NAME"/>
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="user_Id" column="USER_ID"/>
-	</resultMap>	
+	</resultMap>
+	
+	<resultMap type="CrewActivityBoard" id="CrewActivityBoards">
+	<!-- Primary key  -->
+	<id property="board_No" column="BOARD_NO"/>
+		<!-- 컬럼  -->
+		<result property="board_Type" column="BOARD_TYPE"/>
+		<result property="board_Title" column="BOARD_TITLE"/>
+		<result property="board_Content" column="BOARD_CONTENT"/>
+		<result property="enroll_Date" column="ENROLL_DATE"/>
+		<result property="modify_Date" column="MODIFY_DATE"/>
+		<result property="start_Date" column="START_DATE"/>
+		<result property="crew_Count" column="CREW_COUNT"/>
+		<result property="crew_No" column="CREW_NO"/>
+		<result property="board_Count" column="BOARD_COUNT"/>
+		<result property="crew_Area" column="CREW_AREA"/>
+		<result property="status" column="STATUS"/>
+		<result property="user_No" column="USER_NO"/>
+		<result property="category_No" column="CATEGORY_NO"/>
+		<result property="upload_Name" column="UPLOAD_NAME"/>
+		<result property="file_No" column="FILE_NO"/>
+		<result property="category_Name" column="CATEGORY_NAME"/>
+		<result property="user_Name" column="USER_NAME"/>
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="user_Id" column="USER_ID"/>
+	</resultMap>
+	
+	<resultMap type="AdminInformBoard" id="adminInformBoardResultSet">
+
+	<id property="boardNo" column= "BOARD_NO"/>
+	<result property="informBoardType" column="BOARD_TYPE"/>
+  		<result property="informBoardTitle" column="BOARD_TITLE"/>
+  		<result property="informBoardContent" column="BOARD_CONTENT"/>
+  		<result property="informEnrollDate" column="ENROLL_DATE"/>
+  		<result property="informModifyDate" column="MODIFY_DATE"/>
+  		<result property="informPassCount" column="PASS_COUNT"/>
+  		<result property="noticeMax" column="NOTICE_MAX"/>
+  		<result property="noticeMin" column="NOTICE_MIN"/>
+  		<result property="noticeRequest" column="NOTICE_REQUEST"/>
+  		<result property="noticeEnd" column="NOTICE_END"/>
+  		<result property="noticeStart" column="NOTICE_START"/>
+  		<result property="noticeStatus" column="STATUS"/>
+  		<result property="categoryNo" column="CATEGORY_NO"/>
+  		<result property="categoryName" column="CATEGORY_NAME"/>
+  		<result property="userNo" column="USER_NO"/>
+  		<result property="noticeDaily" column="NOTICE_DAILY"/>
+  		<result property="crewArea" column="CREW_AREA"/>
+  		<result property="userId" column="USER_ID"/>
+  		<result property="attNo" column="ATT_NO"/>
+	</resultMap>		
 	
 	<!-- 일반 회원수 조회  -->
 	<select id="getListCount" resultType="_int">
@@ -420,14 +469,14 @@
 		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
 		WHERE B.BOARD_TYPE = '크루모집'
-		AND B.STATUS = 'N'
+		AND B.STATUS = 'Y'
 		ORDER BY B.BOARD_NO ASC
 	</select>
 	
 	<!-- 크루모집 게시판 관리자 권한으로 삭제처리  -->
 	<update id="updateAdminCrewRecruitmentStatus">
 		UPDATE BOARD
-		SET STATUS = 'Y',
+		SET STATUS = 'N',
 		MODIFY_DATE = SYSDATE
 		WHERE BOARD_TYPE = '크루모집'
 		AND BOARD_NO = #{board_No}
@@ -442,7 +491,7 @@
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
 		WHERE B.BOARD_TYPE = '크루모집'
 		AND B.STATUS = 'N'
-		AND B.BOARD_TITLE = #{board_No}
+		AND B.BOARD_TITLE LIKE '%'||#{board_Title}||'%'
 		ORDER BY B.BOARD_NO ASC
 	</select>
 	
@@ -459,4 +508,138 @@
 		ORDER BY B.BOARD_NO ASC
 	</select>
 	
+	<!-- 크루활동 게시판 리스트 갯수  -->
+	<select id="getActListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS = 'Y'
+		AND BOARD_TYPE = '크루활동'
+	</select>
+	
+	<!-- 크루활동 게시판 정보 조회  -->
+	<select id="selectCrewActivityBoard" resultMap="CrewActivityBoards">
+		SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루활동'
+		AND B.STATUS = 'Y'
+		ORDER BY B.BOARD_NO ASC
+	</select>
+	
+	<!--크루활동 게시글 삭제처리  -->
+	<update id="updateadminCrewActivityStatus">
+		UPDATE BOARD
+		SET STATUS = 'N',
+		MODIFY_DATE = SYSDATE
+		WHERE BOARD_TYPE = '크루활동'
+		AND BOARD_NO = #{board_No}
+	
+	</update>
+	
+	 <!-- 크루 활동 게시판 제목을 통한 상세검색  -->
+     <select id="selectCaSearchList" resultMap="CrewActivityBoards">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루활동'
+		AND B.STATUS = 'Y'
+		AND B.BOARD_TITLE LIKE '%'||#{board_Title}||'%'
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
+     <!--크루 활동 작성자를 통한 조회  -->
+     <select id="selectCaIdSearchList" resultMap="CrewActivityBoards">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_CONTENT,B.BOARD_TITLE,B.CREW_AREA,
+		B.BOARD_COUNT,M.USER_ID,B.ENROLL_DATE,B.USER_NO,B.CREW_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
+		WHERE B.BOARD_TYPE = '크루활동'
+		AND B.STATUS = 'Y'
+		AND M.USER_ID = #{user_Id}
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
+     <!-- 공고게시판 리스트 카운트  -->
+     <select id="getInformListCount" resultType="_int">
+     	SELECT COUNT(*)
+     	FROM BOARD
+     	WHERE STATUS = 'Y'
+     	AND BOARD_TYPE = '공고'
+     </select>
+     
+     <!-- 공고게시판 리스트 정보 조회  --> 
+     <select id="selectAdminInformBoard" resultMap="adminInformBoardResultSet">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_TITLE,B.CREW_AREA,B.PASS_COUNT,
+     	SUBSTR(B.NOTICE_START,1,8) AS NOTICE_START,B.BOARD_TYPE,A.ATT_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+		WHERE B.STATUS = 'Y'
+		AND B.BOARD_TYPE= '공고'
+		AND A.FILE_NO = 1
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
+     <!-- 공고 게시글 삭제  -->
+   	 <update id="updateAdminInformBoardStatus">
+     	UPDATE BOARD
+     	SET STATUS = 'N',
+     	MODIFY_DATE = SYSDATE
+     	WHERE BOARD_TYPE='공고'
+     	AND BOARD_NO = #{boardNo}
+     </update>
+     
+     <!-- 공고 제목을 통한 검색  -->
+     <select id="selectInformTitle" resultMap="adminInformBoardResultSet">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_TITLE,B.CREW_AREA,B.PASS_COUNT,
+     	SUBSTR(B.NOTICE_START,1,8) AS NOTICE_START,B.BOARD_TYPE,A.ATT_NO
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
+		WHERE B.STATUS = 'Y'
+		AND B.BOARD_TYPE= '공고'
+		AND A.FILE_NO = 1
+		AND B.BOARD_TITLE LIKE '%'||#{informBoardTitle}||'%'
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
+     <!--블랙리스트 갯수 조회  -->
+     <select id="getBlackBoardListCount" resultType="_int">
+     	SELECT COUNT(*)
+     	FROM BOARD
+     	WHERE STATUS = 'N'
+     </select>
+     
+     <!-- 블랙 리스트 전체 조회  -->
+     <select id="selectBalckBoardList" resultMap="CrewActivityBoards">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_TITLE,B.CREW_AREA,B.BOARD_TYPE,B.MODIFY_DATE,B.ENROLL_DATE
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		WHERE B.STATUS = 'N'
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
+     <!--블랙 게시물 원래대로 돌리기  -->
+     <update id="updateAdminBoardStatus">
+     	UPDATE BOARD
+     	SET STATUS = 'Y',
+     	MODIFY_DATE = SYSDATE
+     	WHERE BOARD_NO = #{board_No}
+     </update>
+     
+     <!-- 블랙 게시물 제목으로 조회  -->
+     <select id="blackTitleSelectBoard" resultMap="CrewActivityBoards">
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.BOARD_TITLE,B.CREW_AREA,B.BOARD_TYPE,B.MODIFY_DATE,B.ENROLL_DATE
+		FROM BOARD B
+		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+		WHERE B.STATUS = 'N'
+		AND B.BOARD_TITLE LIKE '%'||#{board_Title}||'%'
+		ORDER BY B.BOARD_NO ASC
+     </select>
+     
 </mapper>

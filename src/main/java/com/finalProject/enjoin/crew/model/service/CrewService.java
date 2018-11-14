@@ -88,6 +88,9 @@ public interface CrewService {
 	//크루 활동 사진 조회
 	List<Attachment> crewActivityBoardDetailPhoto(int board_No);
 	
+	//크루 활동 상세보기 클릭시 조회수 1증가
+	int updateBoardCount(int board_No);
+	
 	
 
 	

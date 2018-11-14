@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.admin.model.dao.AdminDao;
+import com.finalProject.enjoin.admin.model.vo.AdminInformBoard;
 import com.finalProject.enjoin.crew.model.vo.Crew;
+import com.finalProject.enjoin.crew.model.vo.CrewActivityBoard;
 import com.finalProject.enjoin.crew.model.vo.CrewRecruitmentBoard;
+import com.finalProject.enjoin.informBoard.model.vo.InformBoard;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.myPage.model.vo.PageInfo;
 
@@ -267,11 +270,89 @@ public class AdminServiceImpl implements AdminService {
 		
 		return ad.selectCrewRecruitmentBoardTitle(sqlSession,board_Title);
 	}
-	//크루모집 작성자로  게시물 조회
+	//크루모집 작성자로 게시물 조회
 	@Override
 	public List<CrewRecruitmentBoard> selectCrewRecruitmentUserId(String user_Id) {
 		
 		return ad.selectCrewRecruitmentUserId(sqlSession,user_Id);
+	}
+	//크루활동 게시판 리스트 갯수
+	@Override
+	public int getActListCount() {
+		
+		return ad.getActListCount(sqlSession);
+	}
+	//크루 활동 게시판 정보 조회
+	@Override
+	public List<CrewActivityBoard> selectCrewActivityBoard(PageInfo pi) {
+		
+		return ad.selectCrewActivityBoard(sqlSession,pi);
+	}
+	//크루 활동 게시글 삭제처리
+	@Override
+	public int updateadminCrewActivityStatus(int board_No) {
+		
+		return ad.updateadminCrewActivityStatus(sqlSession,board_No);
+	}
+	//크루활동 제목을 통한 검색처리
+	@Override
+	public List<CrewActivityBoard> selectCaSearchList(String board_Title) {
+		
+		return ad.selectCaSearchList(sqlSession,board_Title);
+	}
+	//크루활동 작성자를 통한 검색처리
+	@Override
+	public List<CrewActivityBoard> selectCaIdSearchList(String user_Id) {
+		
+		return ad.selectCaIdSearchList(sqlSession,user_Id);
+	}
+	//공고 페이지 리스트 카운트
+	@Override
+	public int getInformListCount() {
+		
+		return ad.getInformListCount(sqlSession);
+	}
+	//공고 페이지 정보 조회
+	@Override
+	public List<AdminInformBoard> selectAdminInformBoard(PageInfo pi) {
+		
+		return ad.selectAdminInformBoard(sqlSession,pi);
+	}
+	//공고 번호를 통한 삭제처리
+	@Override
+	public int updateAdminInformBoardStatus(int boardNo) {
+		
+		return ad.updateAdminInformBoardStatus(sqlSession,boardNo);
+	}
+	//공고 검색을 통한 검색처리
+	@Override
+	public List<AdminInformBoard> selectInformTitle(String informBoardTitle) {
+		
+		return ad.selectInformTitle(sqlSession,informBoardTitle);
+	}
+	//블랙리스트 갯수 리스트 조회
+	@Override
+	public int getBlackBoardListCount() {
+		
+		return ad.getBlackBoardListCount(sqlSession);
+	}
+	//블랙 리스트 게시물 조회
+	@Override
+	public List<CrewActivityBoard> selectBalckBoardList(PageInfo pi) {
+		
+		return ad.selectBalckBoardList(sqlSession,pi);
+	}
+	//블랙 게시물 원래대로 돌리기
+	@Override
+	public int updateAdminBoardStatus(int board_No) {
+		
+		return ad.updateAdminBoardStatus(sqlSession,board_No);
+	}
+	//블랙 게시물 제목으로 조회
+	@Override
+	public List<CrewActivityBoard> blackTitleSelectBoard(String board_Title) {
+		
+		return ad.blackTitleSelectBoard(sqlSession,board_Title);
 	}
 	
 

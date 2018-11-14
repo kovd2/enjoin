@@ -23,6 +23,7 @@
 		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Pass" alias="Pass"/>
 		<typeAlias type="com.finalProject.enjoin.payment.model.vo.Passrecord" alias="Passrecord"/>
+		<typeAlias type="com.finalProject.enjoin.admin.model.vo.AdminInformBoard" alias="AdminInformBoard"/>
 		
 	</typeAliases>
 	<mappers>

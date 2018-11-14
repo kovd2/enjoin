@@ -93,6 +93,9 @@ public interface CrewDao {
 	//크루 활동 사진 조회
 	List<Attachment> crewActivityBoardDetailPhoto(SqlSessionTemplate sqlSession, int board_No);
 	
+	//크루활동 상세보기 클릭시 조회수증가
+	int updateBoardCount(SqlSessionTemplate sqlSession, int board_No);
+	
 	
 	
 	
