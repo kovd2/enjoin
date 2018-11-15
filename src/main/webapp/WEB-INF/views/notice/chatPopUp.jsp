@@ -1,38 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ page session="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="resources/sockjs.min.js"></script>
-<title>실시간 채팅 상담</title>
+	<title>실시간 채팅 상담</title>
+	<meta charset="UTF-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="resources/js/sockjs.min.js"></script>
 </head>
 <body>
-	<form id="chatForm">
-		<input type="text" id="message"/>
-		<button>send</button>
-	</form>
-	<div id="chat"></div>
-	<script>
-		$(document).ready(function(){
-			$("#chatForm").submit(function(event){
-				event.preventDefault();
-				sock.send($("#message").val());
-				$("#message").val('').focus();
-			});
-		});
-		
-		var sock = new SockJS("/echo");
-		sock.onmessage = function(e){
-			$("#chat").append(e.data + "<br/>");
-		}
-		
-		sock.onclose = function(){
-			$("#chat").append("연결 종료");
-		}
-		
-	</script>
+	<input type="text" id="message"/>
+    <input type="button" id="sendBtn" value="전송"/>
+    <div id="data"></div>
+<script>
+ 
+    $(document).ready(function(){
+        $("#sendBtn").click(function(){
+            sendMessage();
+        });
+    });
+    
+    //websocket을 지정한 URL로 연결
+    var sock= new SockJS("<c:url value="/echo"/>");
+    //websocket 서버에서 메시지를 보내면 자동으로 실행된다.
+    sock.onmessage = onMessage;
+    //websocket 과 연결을 끊고 싶을때 실행하는 메소드
+    sock.onclose = onClose;
+    
+    
+    function sendMessage(){
+        
+            //websocket으로 메시지를 보내겠다.
+            sock.send($("#message").val());
+        
+    }
+            
+    //evt 파라미터는 websocket이 보내준 데이터다.
+    function onMessage(evt){  //변수 안에 function자체를 넣음.
+        var data = evt.data;
+        $("#data").append(data+"<br/>");
+        /* sock.close(); */
+    }
+    
+    function onClose(evt){
+        $("#data").append("연결 끊김");
+    }
+    
+</script>
 </body>
 </html>

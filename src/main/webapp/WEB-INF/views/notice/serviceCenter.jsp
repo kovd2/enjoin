@@ -311,7 +311,7 @@ h5 {
 												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
 												<strong><a href="memberLogin.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
 											</p>
-											<a class="btn btn-default" name="chatPopUp" id="chatPopUp"><i class="fa fa-comments-o"></i> 실시간 채팅상담</a>
+											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 실시간 채팅상담</a>
 										</div>
 										<div class="innerBox col-xs-6 col-sm-12">
 											<h3>1:1 문의</h3>
@@ -343,17 +343,13 @@ h5 {
 		</div>
 	<jsp:include page="../common/footer.jsp" />
 <script>
-	$('#chatPopUp').click(function(event){  //버튼을 클릭 했을시 popupOpen 함수 출력 
-	    popupOpen();	//Popup Open 함수
-	});
-	
-	function popupOpen(){
-		var url= "chatPopUp.hh";    //팝업창 페이지 URL
-	    var popupX = (window.screen.width / 2) - (600 / 2);
+	function chatPopUp(){
+		var url = "chatPopUp.hh";    //팝업창 페이지 URL
+ 	    var popupX = (window.screen.width / 2) - (600 / 2);
 		var popupY= (window.screen.height /2) - (500 / 2);
 
 	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
-		window.open('', '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+		window.open(url, '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	}
 
 </script>

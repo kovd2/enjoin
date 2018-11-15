@@ -339,6 +339,14 @@
 		    <artifactId>iamport-rest-client-java</artifactId>
 		    <version>0.2.0</version>
 		</dependency>
+		
+		<!-- 웹소켓 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.0.8.RELEASE</version>
+		</dependency>
+		
 
 
 		
