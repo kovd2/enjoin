@@ -409,6 +409,11 @@
      	WHERE BOARD_NO = #{board_No}
 	</update>
 	
+	<!-- 찜 목록 등록 -->
+	<insert id="insertJJIM">
+		INSERT INTO JJIM VALUES(#{userNo}, #{facilityNo})
+	</insert>
+	
 	<!-- 찜 목록 조회 쿼리 -->
 	<select id="selectJJIM" resultMap="jjimResultSet">
 		SELECT J.USER_NO, F.FACILITY_NO, F.PASS_COUNT, F.FACILITY_NAME, F.FACILITY_AREA, F.FACILITY_SECTION, F.FACILITY_ADDRESS, F.FACILITY_EVENT, A.UPLOAD_NAME 

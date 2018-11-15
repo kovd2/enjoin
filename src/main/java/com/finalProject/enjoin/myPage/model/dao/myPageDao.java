@@ -82,6 +82,9 @@ public interface myPageDao {
 	//1:1문의 상세보기
 	Board selectAsDetail(int boardNo, SqlSessionTemplate sqlSession);
 
+	//가고싶은 시설 등록
+	int insertJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
 	
 
 }

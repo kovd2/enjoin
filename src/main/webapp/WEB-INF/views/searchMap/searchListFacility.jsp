@@ -315,8 +315,8 @@ height:20px;
 				</div>
 							<div class="contents">
 							<h4>${item.FACILITY_NAME}</h4>
-							<p>${item.FACILITY_ADDRESS}</p>
-							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
+							<p>${item.FACILITY_AREA} ${item.FACILITY_SECTION} ${item.FACILITY_ADDRESS}</p>
+							<div class="category"><b>${item.FACILITY_EVENT}</b></div>
 							</div>
 				</div>
 				
@@ -363,19 +363,12 @@ height:20px;
 
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
-
+	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new daum.maps.services.Geocoder();
 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(
-				
-			'서울 강남구 테헤란로 142',
-			'서울 강남구 테헤란로 125',
-			'서울 강남구 테헤란로8길 7',
-			'서울 강남구 역삼동 823-40 3층',
-			
-		function(result, status) {
+	geocoder.addressSearch(positionfunction(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 
 	     if (status === daum.maps.services.Status.OK) {
