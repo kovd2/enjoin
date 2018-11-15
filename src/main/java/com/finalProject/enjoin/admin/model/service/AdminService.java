@@ -2,6 +2,7 @@ package com.finalProject.enjoin.admin.model.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.finalProject.enjoin.admin.model.vo.AdminInformBoard;
 import com.finalProject.enjoin.crew.model.vo.Crew;
@@ -177,6 +178,21 @@ public interface AdminService {
 	
 	//블랙 게시물 제목으로 조회
 	List<CrewActivityBoard> blackTitleSelectBoard(String board_Title);
+	
+	//월별수입조회
+	List<Map<String, Object>> selectMonthlyincome();
+	
+	//일별수입조회
+	List<Map<String, Object>> selectDayincome();
+	
+	//유저 요일별 가입 수치
+	List<Map<String, Object>> selectUserJoinIncome();
+	
+	//크루 요일별 가입 수치
+	List<Map<String, Object>> selectCrewJoinIncome();
+	
+	//카테고리별 게시글 생성수치
+	List<Map<String, Object>> selectCategoryBoardIncome();
 	
 	
 

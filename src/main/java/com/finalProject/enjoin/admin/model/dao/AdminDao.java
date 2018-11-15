@@ -2,6 +2,7 @@ package com.finalProject.enjoin.admin.model.dao;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -179,6 +180,21 @@ public interface AdminDao {
 	
 	//블랙 게시물 제목으로조회
 	List<CrewActivityBoard> blackTitleSelectBoard(SqlSession sqlSession, String board_Title);
+	
+	//월간 수입 조회
+	List<Map<String, Object>> selectMonthlyincome(SqlSession sqlSession);
+	
+	//일별 수입 조회
+	List<Map<String, Object>> selectDayincome(SqlSession sqlSession);
+	
+	//유저 요일별 가입수치
+	List<Map<String, Object>> selectUserJoinIncome(SqlSession sqlSession);
+	
+	//크루 요일별 가입수치
+	List<Map<String, Object>> selectCrewJoinIncome(SqlSession sqlSession);
+	
+	//게시글 카테고리별 생성수치
+	List<Map<String, Object>> selectCategoryBoardIncome(SqlSession sqlSession);
 	
 	
 	
