@@ -78,7 +78,7 @@
 				<br>
 				
 			<div class="boardRecord">
-				<!-- 게시물 -->
+				<!-- 크루 모집 게시물 -->
 				<table style="width: 800px; border-top: solid 1px black; displya:block;" class="board" id="board" >
 					<tr class="titleArea">
 						<td style="width: 30px;">번호</td>
@@ -89,7 +89,7 @@
 					</tr>
 					
 					<c:forEach var="wp" items="${ writePost }">
-						<tr>
+						<tr onclick="goCrewRecruitmentBoardDetail(${wp.boardNo}, ${wp.userNo}, ${wp.crewNo})">
 							<td>${ wp.boardNo }</td>
 							<td>${ wp.boardTitle }</td>
 							<td>${ wp.userName }</td>
@@ -110,7 +110,7 @@
 					</tr>
 					
 					<c:forEach var="wcb" items="${ writeCrewBoard }">
-						<tr>
+						<tr onclick="goCrewBoardList(${ wcb.boardNo});">
 							<td>${ wcb.boardNo }</td>
 							<td>${ wcb.boardTitle }</td>
 							<td>${ wcb.userName }</td>
@@ -178,7 +178,14 @@
 	function asBoardDetail(boardNo){
 		location.href="asBoardDetail.ljs?boardNo=" + boardNo;
 	}
-	
+	//크루게시판 상세보기
+	function goCrewBoardList(boardNo){
+		location.href="crewBoardDetail.ljs?boardNo=" + boardNo;
+	};
+	//크루모집 게시판으로 이동
+	function goCrewRecruitmentBoardDetail(boardNo, userNo, crewNo){
+		location.href="crewRecruitmentDetails.shw2?board_No=" + boardNo + "&user_No=" + userNo + "&crew_No=" + crewNo;
+	}
 	
 	//게시물 종류별로 조회
 	$('#boardType').change(function() {

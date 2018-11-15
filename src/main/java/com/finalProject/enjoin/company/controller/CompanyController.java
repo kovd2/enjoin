@@ -82,20 +82,20 @@ public class CompanyController {
 	
 	//나의 제휴시설 상세보기용 메소드
 	@RequestMapping("detailView.gs")
-	public ModelAndView showDetailView(HttpServletRequest request, ModelAndView mv, 
-										@RequestParam("facilityNo") int facilityNo, @RequestParam("userId") String userId) {
+	public ModelAndView showDetailView(ModelAndView mv, @RequestParam("facilityNo") int facilityNo, @RequestParam("userId") String userId, HashMap<String, Object> hmap) {
 		
-		
-		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		hmap.put("userId", userId);
 		hmap.put("facilityNo", facilityNo);
-		
+		System.out.println("facilityNo : " + facilityNo);
 		HashMap<String, Object> com = cs.selectCompany(hmap);
+		List<HashMap<String, Object>> comImg = cs.selectCompanyImg(hmap);
 		
 		System.out.println("com : " + com);
+		System.out.println("comImg : " + comImg);
 		
 		mv.setViewName("company/companyDetail");
 		mv.addObject("com", com);
+		mv.addObject("comImg", comImg);
 
 		
 		

@@ -216,19 +216,21 @@ color:#feab2a;
 	height:320px;
 }
 #listwrap1{
-	width:150px;
+	width:500px;
 	height:300px;
 	position:absolute;	
-
-	
 }
 
-#listwrap1>.list{
-	
-	width:150px;
-	height:100px;
+#listwrap1>.list{	
+	width:245px;
+	height:140px;
 	/* border:1px solid black; */
 	padding:3px;
+	display:inline-block;
+}
+#listwrap1>.list>img{
+	width:245px;
+	height:140px;
 }
 #listwrap2{
 	margin-left:150px;
@@ -513,13 +515,13 @@ color:#feab2a;
 				</div>
 				
 				<div class="imgTitle">
-					<b>${ com.facilityName }</b>
+					<b>${ com.FACILITY_NAME }</b>
 				</div>
 				<div class="imgAddress">
-					<b>${ com.facilityAddress }</b><br>
+					<b>${ com.FACILITY_ADDRESS }</b><br>
 				</div>
 				<div class="imgTel">
-					<b>${ com.facilityManagerPhone }</b>
+					<b>${ com.FACILITY_MANAGER_PHONE }</b>
 				</div>
 				<div class="like">
 					<i class="glyphicon glyphicon-thumbs-up"></i> 1230
@@ -541,13 +543,14 @@ color:#feab2a;
 					<div class="resultContent">
 						<b>이용상품</b>
 						<div class="product">
-							<b>헬스</b> <img src="resources/images/searchMap/health.png">
+							<b>${ com.FACILITY_EVENT }</b> <img src="resources/images/searchMap/health.png">
 							<br>
 							<hr>
 							<b>p.t</b> <img src="resources/images/searchMap/health.png">
 							<br>
 							<hr>
-							<br> <b>- 이용 상품별로 PASS가 차감됩니다.</b><br> <b>- 이용 패스가
+							<br> 
+							<b>- 이용 상품별로 PASS가 차감됩니다.</b><br> <b>- 이용 패스가
 								변경되는 경우에는 사전에 알려드립니다.</b>
 
 						</div>
@@ -558,15 +561,15 @@ color:#feab2a;
 						<div class="time">
 
 							<p class="monToFri">
-								<b>평일</b>11:20 ~ 02:30
+								<b>평일</b>${ com.MON_FRI_TIME }
 							</p>
 							<hr>
 							<p class="sat">
-								<b>토요일</b>12:00 ~ 03:00
+								<b>토요일</b>${ com.SAT_TIME }
 							</p>
 							<hr>
 							<p class="sun">
-								<b>일요일</b> 2:00 ~ 04:00
+								<b>일요일</b>${ com.SUN_TIME }
 							</p>
 							<hr>
 
@@ -578,7 +581,7 @@ color:#feab2a;
 
 						<div class="tel">
 
-							<p>02)1234-2323</p>
+							<p>${ com.PHONE }</p>
 							<hr>
 						</div>
 					</div>
@@ -588,7 +591,7 @@ color:#feab2a;
 						<b>주소</b>
 						<div class="address">
 
-							<p>서울특별시 강남구 역삼동 123-3</p>
+							<p>${ com.FACILITY_AREA } ${ com.FACILITY_SECTION } ${ com.FACILITY_ADDRESS }</p>
 							<hr>
 						</div>
 					</div>
@@ -601,44 +604,14 @@ color:#feab2a;
 
 						<b>제휴시설 미리보기</b>
 						<div id="listwrap1">
+						<c:forEach var="ci" items="${ comImg }" varStatus="status">
 							<div class="list">
-								<img src="resources/images/searchMap/mb.jpg">
+								<img src="resources/uploadFiles/facility/${ ci.UPLOAD_NAME }">
 							</div>
-							<div class="list">
-								<img src="resources/images/searchMap/mb5.jpg">
-							</div>
-							<div class="list">
-								<img src="resources/images/searchMap/mb2.png">
-							</div>
+						</c:forEach>
 						</div>
-
-						<div id="listwrap2">
-							<div class="list">
-								<img src="resources/images/searchMap/mb3.jpeg">
-							</div>
-							<div class="list">
-								<img src="resources/images/searchMap/mb4.jpg">
-							</div>
-							<div class="list">
-								<img src="resources/images/searchMap/mb4.jpg">
-							</div>
-						</div>
-
-						<div id="listwrap3">
-							<div class="list">
-								<img src="resources/images/searchMap/mb4.jpg">
-							</div>
-							<div class="list">
-								<img src="resources/images/searchMap/mb4.jpg">
-							</div>
-							<div class="list"></div>
-						</div>
-
 					</div>
-				
-				
-				
-
+					
 					<div class="reviewWrap">
 						<b>회원리뷰</b>
 						<div class="rwArea">

@@ -209,9 +209,9 @@ public class myPageDaoImpl implements myPageDao{
 
 	//1:1문의 상세보기
 	@Override
-	public List<Board> selectAsDetail(int boardNo, SqlSessionTemplate sqlSession) {
+	public Board selectAsDetail(int boardNo, SqlSessionTemplate sqlSession) {
 		
-		return sqlSession.selectList("myPage.selectAsDetail", boardNo);
+		return sqlSession.selectOne("myPage.selectAsDetail", boardNo);
 	}
 
 	

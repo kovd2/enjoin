@@ -18,6 +18,9 @@ public interface CompanyDao {
 
 	HashMap<String, Object> selectCompany(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
+	//제휴시설 상세보기 이미지
+	List<HashMap<String, Object>> selectCompanyImg(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+
 
 
 

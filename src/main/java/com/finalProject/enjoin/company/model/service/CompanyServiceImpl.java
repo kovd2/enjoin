@@ -65,6 +65,14 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 
+	//제휴 시설 상세보기 이미지
+	@Override
+	public List<HashMap<String, Object>> selectCompanyImg(HashMap<String, Object> hmap) {
+	
+		return cd.selectCompanyImg(sqlSession, hmap);
+	}
+
+
 
 		
 		

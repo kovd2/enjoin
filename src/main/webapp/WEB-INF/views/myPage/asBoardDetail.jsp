@@ -59,37 +59,33 @@
 				<div class="row">
 					<div class="content col-md-12">					
 						<div class="page-header noticeViewHeader">
-							<c:forEach var="as" items="${ asDetail }">
-								<h2>${ as.boardTitle }</h2>
-							</c:forEach>
+								<h2>${ asDetail.boardTitle }</h2>			
 							<div align="right"></div>
 						</div>
 						<div class="noticeWrap">
-						<c:forEach var="as" items="${ asDetail }">
 							<div class="boardContentArea">
-									<img src="resources/uploadFiles/contact/${as.attachment[0].upload_Name }" style="width:200px;">
+									<img src="resources/uploadFiles/contact/${asDetail.attachment[0].upload_Name }" style="width:200px;">
 									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">
-										${as.boardContent }
+										${asDetail.boardContent }
 									</span>
-							</div>
-							</c:forEach>
+							</div>						
 							<div class="commentWrap" style="width: 740px;">
-							<c:forEach var="as" items="${ asDetail }">
+							<c:forEach var="r" items="${ asDetail.comentList }">
 								<div class="commentContent" style="display:inline-block; width: 740px;">
-									<c:if test="${ as.comentContent ne null }">
+									<c:if test="${ r.comentContent ne null }">
 									<div style="border-bottom:1px solid gray;">
-										<div>${ as.userId }</div><br>
-										<div><p class="Reply">${ as.comentContent }</p></div>
-										<p class="comentDate"><fmt:formatDate value="${ as.comentDate }" pattern="yyyy-MM-dd a HH:mm" /></p>																			
+										<div>관리자</div><br>
+										<div><p class="Reply">${ r.comentContent }</p></div>
+										<p class="comentDate"><fmt:formatDate value="${ r.comentDate }" pattern="yyyy-MM-dd a HH:mm" /></p>																			
 									</div>		
 									</c:if>						
 								</div>
-							</c:forEach>				
+							</c:forEach>	
 							</div>
 						</div>
 							<div class="articleTail">
-								<a href="javascript:history.go(-1)" class="btn btn-default"><i
-									class="fa fa-arrow-left"></i> 목록으로 돌아가기</a>
+								<a href="javascript:history.go(-1)" class="btn btn-default">
+								<i class="fa fa-arrow-left"></i> 목록으로 돌아가기</a>
 							</div>
 						</div>
 					</div>

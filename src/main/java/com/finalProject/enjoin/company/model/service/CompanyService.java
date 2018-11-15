@@ -19,6 +19,9 @@ public interface CompanyService {
 	//상세보기 데이터 뿌려주기용 
 	HashMap<String, Object> selectCompany(HashMap<String, Object> hmap);
 
+	//제휴시설 상세보기 이미지
+	List<HashMap<String, Object>> selectCompanyImg(HashMap<String, Object> hmap);
+
 
 
 

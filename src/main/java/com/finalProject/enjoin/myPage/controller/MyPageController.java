@@ -457,10 +457,19 @@ public class MyPageController {
 	@RequestMapping("asBoardDetail.ljs")
 	public ModelAndView asBoardDetail(@RequestParam("boardNo") int boardNo, ModelAndView mv) {
 		
-		List<Board> asDetail = mps.selectAsDetail(boardNo);
+		Board asDetail = mps.selectAsDetail(boardNo);
+		
+		int rCount = 0;
+		
+		if(asDetail.getComentList().get(0).getComentNo() > 0) {
+			rCount = asDetail.getComentList().size();
+		}
 		System.out.println("asDetail : " + asDetail);
+		System.out.println("rCount : " + rCount);
+		
 		mv.setViewName("myPage/asBoardDetail");
 		mv.addObject("asDetail", asDetail);		
+		mv.addObject("rCount", rCount);
 		
 		return mv;
 	}
