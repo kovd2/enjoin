@@ -58,10 +58,10 @@ public class FacilityDaoImpl implements FacilityDao{
 	}
 
 	@Override
-	public Map<String, Object> detailResult(SqlSessionTemplate sqlSession, int facilityNo) {
+	public List<Map<String, Object>> detailResult(SqlSessionTemplate sqlSession, int facilityNo) {
 		
-		Map<String,Object> list = null;
-		list = sqlSession.selectOne("Facility.detailResult", facilityNo);
+		List<Map<String,Object>> list = null;
+		list = sqlSession.selectList("Facility.detailResult", facilityNo);
 	
 		return list;
 	}

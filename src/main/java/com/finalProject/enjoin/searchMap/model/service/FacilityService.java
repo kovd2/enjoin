@@ -13,6 +13,6 @@ public interface FacilityService {
 
 	Map<String, Object> selectOneDetail(int facilityNo);
 
-	Map<String, Object> detailResult(int facilityNo);
+	List<Map<String, Object>> detailResult(int facilityNo);
 
 }

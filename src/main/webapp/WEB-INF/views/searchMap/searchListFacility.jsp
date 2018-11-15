@@ -277,8 +277,8 @@ height:20px;
 }
 #closeBtn{
 
-    width: 36px;
-    height: 28px;
+    width: 45px;
+    height: 27px;
     border: 1px solid black;
     border-radius: 3px;
     float: right;
@@ -338,12 +338,6 @@ height:20px;
 			 <jsp:include page="../searchMap/searchDetail.jsp"/> 
 	
 			</div> 
-	 
-			
-			
-			
-			
-			
 			<!-- 모달 -->	
 		
 		
@@ -400,106 +394,7 @@ height:20px;
 	});
 
 		</script>
-	<!--  <script>
 	
-	function goDetail(facilityNo){
-		
-		 
-		
-		$.ajax({
-			
-			url:"searchDetail.kch",
-			type:"post",
-			dataType:"json",
-			data:{facilityNo:facilityNo
-			},
-			success:function(data){
-				alert(JSON.Stringify);
-				$(".previewArea").empty();
-				for(key in data){
-				
-					console.log(data[key]);
-					
-					
-				$div1=$("<div id='modalWrap'>");
-				$div2=$("<div class='modalMiddle'>");
-				$div3=$("<div class='modalContent'>");	
-				$button1=$("<button id='closeBtn' type='button' onclick='close()'>");
-				$i=$("<i class='material-icons'>");
-	
-				$div3.append($button1);
-				$i.append('close');
-				$button1.append($i);
-				
-				
-				$div4=$("<div class='imgModalArea'>");
-				$div4.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
-				
-				
-				$div5=$("<div class='contentArea'>");
-				$div6=$("<div id='title'>");
-				$b1=$("<b>");
-				$b1.append(data[key].FACILITY_NAME);
-				
-				$div6.append($b1);
-				
-				
-				
-				
-				$div7=$("<div id='address'>");
-				$p1=$("<p>");
-				$p1.append(data[key].FACILITY_ADDRESS);
-				$div7.append($p1);
-				
-				
-				$div8=$("<div id='tel'>");
-				$div8.append(data[key].FACILITY_MANAGER_PHONE);
-				
-				
-				$div9=$("<div id='pass'>");
-				$b2=$("<b>")
-				$div9.append(data[key].PASS_COUNT+'PASS');
-				$div10=$("<div id='passImg'>");
-				$div10.append("<img src=${contextPath}/resources/images/searchMap/running.png>");
-				$div9.append($b2);
-				$div9.append($div10);
-				
-				
-				$div11=$("<div id=detail onclick='detailResult()'>");
-				$b3=$("<b>");
-				$b3.append('자세히보기');
-				
-				$('#previewArea').append($div1);
-				$div1.append($div2);
-				$div2.append($div3);
-				$div3.append($div4);
-				$div3.append($div5);
-				$div5.append($div6);
-				$div5.append($div7);
-				$div5.append($div8);
-				$div5.append($div9);
-				$div5.append($div11);
-				
-				
-				}
-				
-			},
-		})	
-	};
-	
-	</script> -->
-	
-	<!-- <script>
-
-	function detailResult(){
-		
-		location.href="detailResult.kch"
-		
-	}
-
-</script> -->
-	
- 
 	
 	
 

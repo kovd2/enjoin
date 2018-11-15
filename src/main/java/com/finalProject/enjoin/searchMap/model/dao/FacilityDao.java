@@ -15,7 +15,7 @@ public interface FacilityDao {
 
 	Map<String, Object> selectOneDetail(SqlSessionTemplate sqlSession, int facilityNo);
 
-	Map<String, Object> detailResult(SqlSessionTemplate sqlSession, int facilityNo);
+	List<Map<String, Object>> detailResult(SqlSessionTemplate sqlSession, int facilityNo);
 	
 	
 	

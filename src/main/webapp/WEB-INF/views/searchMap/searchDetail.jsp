@@ -126,8 +126,8 @@ height:20px;
 }
 #closeBtn{
 
-    width: 36px;
-    height: 28px;
+    width: 45px;
+    height: 27px;
     border: 1px solid black;
     border-radius: 3px;
     float: right;
@@ -138,64 +138,7 @@ height:20px;
 </head>
 <body>
 
-<hr>
 
-<!-- 	 
-	<div id="modalWrap">
-		
-		<div class="modalMiddle">
-		
-		
-			<div class="modalContent">
-			
-			<button id="closeBtn" type="button" onclick="close()"><i class="material-icons">close</i></button>
-				 	
-			
-			
-			<div class="imgModalArea">
-				 	
-			<img src="resources/images/searchMap/mb.jpg">
-				
-			</div>
-			
-			<div class="contentArea">
-			<div id="title">
-			<b>또치헬스장</b>
-			</div>
-				 	
-				 	
-				 	
-				 	<div id="address">	
-				 	 <p>서울특별시 강남구 역삼동 232-2</p>
-				 	</div>
-				 	
-				 	<div id="tel">
-				 	02)1234-5454
-				 	</div>
-				 	
-				 	<div id="pass">
-				 	<b>2pass</b>
-				 	<div id="passImg">
-				 
-				 		<img src="resources/images/searchMap/running.png">
-				 	</div>
-				 	</div>
-				 	
-				 	<div id="detail" onclick="detailResult()">
-				 	
-				 		<b>자세히보기</b>
-				 	
-				 	</div>
-				 
-				 </div>
-			</div>
-			
-		
-		</div>
-		
-	</div> 
-	
-	 -->
 	 <script> 
 	
 	function goDetail(facilityNo){
@@ -209,31 +152,31 @@ height:20px;
 			data:{facilityNo:facilityNo},
 			success:function(data){
 				console.log(data);
-				$(".previewArea").empty();
-				for(var key in data){
-					console.log(data[key]);
+				$("#previewArea").empty();
+				
+					
 					
 				$div1=$("<div id='modalWrap'>");
 				$div2=$("<div class='modalMiddle'>");
 				$div3=$("<div class='modalContent'>");	
-				$button1=$("<button id='closeBtn' type='button'>");
-				$i=$("<i class='material-icons'>");
+				$button1=$("<button  id='closeBtn' onclick='closeBtn()'>");
+				$i1=$("<i class='material-icons'>");
+				$i1.append('close');
+				$button1.append($i1);
+				$div3.append($button1);
 				$div1.append($div2);
 				$div2.append($div3);
 				
-				$div3.append($button1);
-				$i.append('close');
-				$button1.append($i);
 				
 				
 				$div4=$("<div class='imgModalArea'>");
-				$div4.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
+				$div4.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data.UPLOAD_NAME+">");
 				$div3.append($div4);
 				
 				$div5=$("<div class='contentArea'>");
 				$div6=$("<div id='title'>");
 				$b1=$("<b>");
-				$b1.append(data[key].FACILITY_NAME);
+				$b1.append(data.FACILITY_NAME);
 				
 				$div6.append($b1);
 				$div5.append($div6);
@@ -242,33 +185,34 @@ height:20px;
 				
 				$div7=$("<div id='address'>");
 				$p1=$("<p>");
-				$p1.append(data[key].FACILITY_ADDRESS);
+				$p1.append(data.FACILITY_ADDRESS);
 				$div7.append($p1);
 				$div5.append($div7);
 				
 				$div8=$("<div id='tel'>");
-				$div8.append(data[key].FACILITY_MANAGER_PHONE);
+				$div8.append(data.FACILITY_MANAGER_PHONE);
 				$div5.append($div8);
 				
 				$div9=$("<div id='pass'>");
-				$b2=$("<b>").append(data[key].PASS_COUNT+'PASS');
+				$b2=$("<b>").append(data.PASS_COUNT+'PASS');
 				$div10=$("<div id='passImg'>");
 				$div10.append("<img src=${contextPath}/resources/images/searchMap/running.png>");
 				$div9.append($b2);
 				$div9.append($div10);
 				$div5.append($div9);
 				
-				$div11=$("<div id=detail onclick='detailResult("+data[key].FACILITY_NO+")'>");
+				$div11=$("<div id=detail onclick='detailResult("+data.FACILITY_NO+")'>");
 				$b3=$("<b>");
 				$b3.append('자세히보기');
+				$div11.append($b3);
 				$div5.append($div11);
 				$div3.append($div5);
 				$('#previewArea').append($div1);
 				
-				}
+				
 
 				
-			},
+			}
 			
 			
 			
@@ -279,12 +223,21 @@ height:20px;
 	
 	</script> 
 <script>
-$(document).ready(function(){
+
 	function detailResult(facilityNo){
-		
+		console.log(facilityNo);
 		location.href="detailResult.kch?facilityNo="+facilityNo;
 		
 	}
+
+</script>
+
+<script>
+	function closeBtn(){
+		console.log('오나?');
+		 $('#modalWrap').remove(); 
+	}
+	
 
 </script>
 
