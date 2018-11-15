@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ENJOIN</title>
+<title>Insert title here</title>
 
 <style>
-
 .realUserReview .btnMore {
     display: block;
     margin-top: 5px;
@@ -495,7 +493,40 @@ color:#feab2a;
 	cursor:pointer;
 }
 
-
+.rightContainer {
+	width: 800px;
+	height: auto;
+	margin-top: 100px;
+	display: inline-block;
+	border-left: solid 0.5px lightgray;
+	float:left;
+}
+.memberForm{
+	margin-left:50px;
+}
+.withdraw{
+	float:right;
+}
+.bodyArea{
+	margin:auto;
+	width:1100px;
+	height:auto;
+}
+.profilPhoto{
+	width:150px;
+	height:150px;
+	border:solid 0.5px lightgray;
+}
+.SHInsertImg_plusImg{
+	width:150px;
+	height:150px;
+}
+.drawThumbnailImg{
+	width:150px;
+	height:150px;
+	display:none;
+}
+</style>
 
 
 </style>
@@ -506,199 +537,94 @@ color:#feab2a;
 		<jsp:include page="../common/menubar.jsp" />
 		<jsp:include page="companyLeft.jsp" />
 	</div>
+	
+	<div class="bodyArea">
+		
+	<div class="rightContainer">
+		<b id="a_index" class="current" style="font-size:30px; color:black; text-indent:30px;"><i class="fa fa-clone"></i>  내 정보 수정</b>
+		<form class="memberForm" action="saveInfo.ljs" enctype="multipart/form-data" method="post" name="modify_form" id="modify_form">
 
-	<div class="resultTop">
-		<div class="resultMiddle">
-			<div class="resultList">
-				<c:forEach var="ci" items="${ comImg }" varStatus="status">
-				<div class="imgArea">
-					<img src="resources/uploadFiles/facility/${ ci.UPLOAD_NAME }">
-				</div>
-				</c:forEach>
-				
-				<div class="imgTitle">
-					<b>${ com.FACILITY_NAME }</b>
-				</div>
-				<div class="imgAddress">
-					<b>${ com.FACILITY_ADDRESS }</b><br>
-				</div>
-				<div class="imgTel">
-					<b>${ com.FACILITY_MANAGER_PHONE }</b>
-				</div>
-				<div class="like">
-					<i class="glyphicon glyphicon-thumbs-up"></i> 1230
-				</div>
-				<div class="preview">
-					<i class="fa fa-file-image-o"></i> <b>시설미리보기</b>
-				</div>
-				<div class="enBtn">
-					<i class="fa fa-address-card"></i> <b>시설이용하기</b>
-				</div>
-				<div class="totalCount">
-					누적이용수 <b class="aq">222</b>
-
-				</div>
-
-			</div>
-			<div class="rowWrap">
-				<div class="left">
-					<div class="resultContent">
-						<b>이용상품</b>
-						<div class="product">
-							<b>${ com.FACILITY_EVENT }</b> <img src="resources/images/searchMap/health.png">
-							<br>
-							<hr>
-							<b>p.t</b> <img src="resources/images/searchMap/health.png">
-							<br>
-							<hr>
-							<br> 
-							<b>- 이용 상품별로 PASS가 차감됩니다.</b><br> <b>- 이용 패스가
-								변경되는 경우에는 사전에 알려드립니다.</b>
-
-						</div>
-					</div>
-
-					<div class="resultDate">
-						<b>이용시간</b>
-						<div class="time">
-
-							<p class="monToFri">
-								<b>평일</b>${ com.MON_FRI_TIME }
-							</p>
-							<hr>
-							<p class="sat">
-								<b>토요일</b>${ com.SAT_TIME }
-							</p>
-							<hr>
-							<p class="sun">
-								<b>일요일</b>${ com.SUN_TIME }
-							</p>
-							<hr>
-
-						</div>
-					</div>
-
-					<div class="resultTel">
-						<b>전화</b>
-
-						<div class="tel">
-
-							<p>${ com.PHONE }</p>
-							<hr>
-						</div>
-					</div>
+            <!-- <input type="hidden" name="img_temp" id="img_temp">
+            <input type="hidden" name="r" value="">
+            <input style="visibility: hidden; width: 0;height: 0;"> -->
 
 
-					<div class="resultAddress">
-						<b>주소</b>
-						<div class="address">
+            <div class="row">
+              <div class="col-md-6">
+               <div class="form-group">
+                  <label for="userName" class="">아이디</label>
+                  <input type="text" class="form-control" id="userId" value="${loginUser.userId}" name="userId" readonly>
+               </div>
+               <div class="form-group">
+                  <label for="userName" class="">이름</label>
+                  <input type="text" class="form-control" id="userName" placeholder="이름" value="${loginUser.userName}" name="userName">
+                </div>
+                <div class="form-group">
+                  <label for="password" class="">비밀번호</label>
+                  <input type="password" class="form-control" id="password" placeholder="비밀번호" name="userPwd">
+                </div>
+                <div class="form-group">
+                  <label for="password2" class="">비밀번호 다시 입력</label>
+                  <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호를 한번 더 입력">
+                </div>
+                <div class="form-group" id="user_email_div">
+                  <label for="email" class="">이메일</label>
+                  <input type="email" class="form-control" id="email" placeholder="이메일" value="${ loginUser.email }" name="email">
+                  <span class="help-block" id="email"></span>
+                </div>
 
-							<p>${ com.FACILITY_AREA } ${ com.FACILITY_SECTION } ${ com.FACILITY_ADDRESS }</p>
-							<hr>
-						</div>
-					</div>
-				</div>
-				
-				
+                <div class="form-group">
+                  <label class="">휴대폰 번호</label>
+                  <div class="input-group">
+                    <input type="tel" class="form-control" placeholder="휴대폰 번호를 입력하세요" value="${ loginUser.phone }" name="phone" id="phoneValue">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" id="phone" onclick="changePhone();"><span class="text-info">새 번호 입력하기</span></button>
+                    </span>
+                  </div>
+                  <p class="help-block">
+                   	 전화번호를 변경하시려면 <strong class="text-info">새 번호 입력하기</strong> 를 누르세요.
+                  </p>
+                </div>
+              </div><!--/.col -->
 
-				<div class="right">
-					<div class="detailPic">
 
-						<b>제휴시설 미리보기</b>
-						<div id="listwrap1">
-						<c:forEach var="ci" items="${ comImg }" varStatus="status">
-							<div class="list">
-								<img src="resources/uploadFiles/facility/${ ci.UPLOAD_NAME }">
+					<div class="col-md-6">
+						<div class="form-group userPicUploadBox">
+								<label style="font-size:25px;"><b>프로필 사진</b></label>			
+							<div class="inputMemberInfo">	
+								<label>
+									<img class="SHInsertImg_plusImg" id="SHInsertImg_plusImg" src="resources/images/myPage/user.png" />
+									<img class="drawThumbnailImg" id="drawThumbnailImg" /> 
+									<input type="file" onchange="previewFile()" class="SGThumbnailImg" id="SGThumbnailImg" name="photo" />
+								</label>
 							</div>
-						</c:forEach>
+							<!-- <div class="profilImg">
+                 		<label class="">프로필 사진</label>
+                 		<div class="profilPhoto"><img src="resources/images/myPage/user.png" style="width:150px; height:150px;"></div>
+                 		<input type="file" name="photo">
+                  	</div> -->
+							<span class="text-danger">미리보기로 업로드된 사진을 확인하신 후, 하단의 저장하기
+								버튼을 꼭 눌러주세요.</span> <span>정면, 상반신 사진 / 가로 400px*세로400px 이상의 사진을
+								등록해주세요.</span> <span>프로필 사진은 제휴시설 이용시 본인 확인 용도로 사용됩니다.</span> <span>사진으로
+								본인 확인이 어려울 경우, 제휴시설 입장이 제한 될 수 있습니다.</span>
 						</div>
-					</div>
-					
-					<div class="reviewWrap">
-						<b>회원리뷰</b>
-						<div class="rwArea">
-							<div class="totalScore">
-								<img src="resources/images/searchMap/5score.png">
-							</div>
-							<div class="rwCountNum">이용회원 28명의 평가</div>
-							<div class="score">
-								<b>8.0</b>
-							</div>
-
-							<div class="rwList1">
-								<div class="userInfo">
-									<p>
-										<b>kch4*** 2018.10월 이용</b>
-									</p>
-								</div>
-								<div class="listScore">
-									<img src="resources/images/searchMap/mini.png"> 9.3
-
-								</div>
-								<div class="listContent">
-									<b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b>
-								</div>
-
-							</div>
-							<div class="rwList2">
-								<div class="userInfo">
-									<p>
-										<b>kch4*** 2018.10월 이용</b>
-									</p>
-								</div>
-								<div class="listScore">
-									<img src="resources/images/searchMap/mini.png"> 9.3
-
-								</div>
-								<div class="listContent">
-									<b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b>
-								</div>
-
-							</div>
-							<div class="rwList3">
-								<div class="userInfo">
-									<p>
-										<b>kch4*** 2018.10월 이용</b>
-									</p>
-								</div>
-								<div class="listScore">
-									<img src="resources/images/searchMap/mini.png"> 9.3
-
-								</div>
-								<div class="listContent">
-									<b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b>
-								</div>
-								<div id="allReview" onclick="goReview()">
-									<b>리뷰모두보기</b>
-
-								</div>
-							</div>
-
-
-
-
-						</div>
-
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
+					</div><!-- /.col -->
+            </div><!-- /.row -->
+			
+          </form>
+           <div class="form-group submitLine forMobileAppFloat" style="margin-left:50px;">
+              <button id="saveBtn" class="btn btn-lg btn-primary btn_mobileAppFloat" style="background:#00bff0;" onclick="saveBtn()"><i class="fa fa-check"></i> 저장하기</button>
+              <a href="javascript:history.go(-1)" class="btn btn-link"><i class="fa fa-close"></i> 취소</a>
+              <span class="withdraw">
+                <button type="button" class="btn btn-sm btn-link" id="deleteMember" onclick="deleteMember('${loginUser.userId}')">탈퇴</button>
+              </span>
+            </div>
 	</div>
-	
-		<script>
-	function goReview(){
-		
-		location.href="reviewForm.kch";	
-		
-	}
+	</div>
+	<br><br><br><br><br><br>
 	
 	
-	</script>
-
-
+	
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

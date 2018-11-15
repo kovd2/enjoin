@@ -22,6 +22,12 @@ public interface CompanyService {
 	//제휴시설 상세보기 이미지
 	List<HashMap<String, Object>> selectCompanyImg(HashMap<String, Object> hmap);
 
+	//이용코드 조회 메소드
+	int codeCk(String useCode);
+
+	//이용코드 업데이트 메소드
+	int updateCode(String useCode);
+
 
 
 

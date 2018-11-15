@@ -73,6 +73,22 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 
+	//이용코드 조회 메소드
+	@Override
+	public int codeCk(String useCode) {
+		
+		return cd.codeCk(sqlSession, useCode);
+	}
+
+
+
+	@Override
+	public int updateCode(String useCode) {
+		
+		return cd.updateCode(sqlSession, useCode);
+	}
+
+
 
 		
 		
