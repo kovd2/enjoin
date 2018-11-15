@@ -41,7 +41,7 @@
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
-									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li><a href="searchListFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
@@ -89,7 +89,7 @@
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
-									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li><a href="searchListFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
@@ -133,7 +133,7 @@
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
 									<li><a href="companyInsertForm.gs">제휴시설 관리</a></li>
-									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li><a href="searchListFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
@@ -176,7 +176,7 @@
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
 									<li><a href="adminChart.shw">관리자 페이지</a></li>
-									<li><a href="searchFacility.kch">주변제휴시설 찾기</a></li>
+									<li><a href="searchListFacility.kch">주변제휴시설 찾기</a></li>
 									<li class="dropdown "><a href="#" class="dropdown-toggle "
 										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>

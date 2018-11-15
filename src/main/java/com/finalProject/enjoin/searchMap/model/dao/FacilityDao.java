@@ -12,6 +12,10 @@ public interface FacilityDao {
 	List<Map<String, Object>> facilityList(SqlSessionTemplate sqlSession);
 
 	List<Map<String, Object>> facility(SqlSessionTemplate sqlSession, String search)throws SearchListResultException ;
+
+	Map<String, Object> selectOneDetail(SqlSessionTemplate sqlSession, int facilityNo);
+
+	Map<String, Object> detailResult(SqlSessionTemplate sqlSession, int facilityNo);
 	
 	
 	

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%--  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -188,9 +188,9 @@ p{
 			<c:forEach var="item" items="${list}" varStatus="status">
 			<div class="listArea">
 				
-				<div class="list" onclick="goDetail(<%-- ${item.UPLOAD_NAME},${item.FACILITY_NAME},${FACILITY_ADDRESS },
+				<div class="list" onclick="goDetail(${item.UPLOAD_NAME},${item.FACILITY_NAME},${FACILITY_ADDRESS },
 													${item.FACILITY_ENVET},${item.FACILITY_MANAGER_PHONE},${item.PASS_COUNT},
-													${MON_FRI_TIME},${SUN_TIME} --%>)">
+													${MON_FRI_TIME},${SUN_TIME})">
 				<div class="imgArea">
 							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
 				</div>
@@ -290,7 +290,7 @@ p{
 
 
 </script>
-
+ 
 
 
 
@@ -306,7 +306,7 @@ p{
 </html>
 
 
-
+ --%>
 
 
 

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- css -->
 <link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/style/css/fancybox/jquery.fancybox.css"
@@ -159,9 +160,131 @@ p{
     z-index: 10;
 	margin-left:250px;
 	margin-top:150px;
-	display:none;
+	
 
 }
+#closeBtnArea{
+		background:red;
+		width:30px;
+		height:30px;
+			
+
+}
+#modalWrap{
+	width:100%;
+}
+.modalMiddle{
+	width:340px;
+	height:100%;
+	margin:0 auto;
+	background:gray;
+	display:-webkit-box;
+	border-radius:3px;
+ 	box-shadow:3px 3px 3px 3px #999;
+}
+.modalContent{
+	width:320px;
+	background:white;
+	margin:10px 10px 10px 10px;
+	
+
+}
+.imgModalArea{
+	/* border-radius:3px; */
+	width:300px;
+
+}
+.imgModalArea>img{
+	
+	border-radius:3px;
+	width:300px;
+	margin:5px 0px 5px 10px;
+
+}
+#title{
+	/* border:2px solid #00bff0; */
+	/* border-radius:3px; */
+	text-align:center;
+	font-size:25px;
+	/* width:300px;
+	height:30px; */
+	/* margin:10px; */
+	color:#00bff0;
+	padding-top:10px;
+
+}
+#address{
+	
+	text-align:center;
+	font-size:15px;
+	margin-top:20px;
+}
+#address>p{
+text-align:center;
+	font-size:15px;
+	margin-top:20px;
+
+}
+
+#tel{
+
+text-align:center;
+	font-size:15px;
+	margin-top:6px;
+
+
+
+}
+
+#pass{
+	text-align:center;
+	font-size:20px;
+	margin-top:6px;
+	height:30px;
+	/* margin-left:120px; */
+ 	border-bottom:1px solid gray;
+ 	color:#00bff0;
+ 	display:-webkit-box;
+ 	margin:10px 30px 0 30px;
+ 	padding-left:95px;
+ 	
+ 	
+}
+#passImg{
+width:40px;
+height:20px;
+}
+#passImg>img{
+	width:35px;
+	height:26px;
+
+}
+#detail{
+  border:2px solid #00bff0; 
+	 border-radius:3px;
+	 margin:20px 30px 30px 30px;
+	height:40px;
+	font-size:20px;
+	text-align:center;
+	vertical-align:center;
+	padding:5px 10px 10px 10px;
+	
+}
+#detail:hover{
+
+	background:#00bff0;
+	cursor:pointer;
+}
+#closeBtn{
+
+    width: 36px;
+    height: 28px;
+    border: 1px solid black;
+    border-radius: 3px;
+    float: right;
+    text-align: center;
+}
+
 </style>
 
 
@@ -186,7 +309,7 @@ p{
 			<c:forEach var="item" items="${result}" varStatus="status">
 			<div class="listArea">
 				
-				<div class="list" onclick="goDetail()">
+				<div class="list" onclick="goDetail(${item.FACILITY_NO})">
 				<div class="imgArea">
 							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
 				</div>
@@ -207,14 +330,23 @@ p{
 		<div class="mapArea">
 			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 			
-			<!-- 모달영역 -->
-			<div id="previewArea">
-			<jsp:include page="../searchMap/searchDetail.jsp"/>
-			
-			</div>
-			<!-- 모달 -->	
 			
 		</div>
+			<!-- 모달영역 -->
+			
+			<div id="previewArea">
+			 <jsp:include page="../searchMap/searchDetail.jsp"/> 
+	
+			</div> 
+	 
+			
+			
+			
+			
+			
+			<!-- 모달 -->	
+		
+		
 	</div>
 </div>
 
@@ -268,15 +400,107 @@ p{
 	});
 
 		</script>
-	<script>
+	<!--  <script>
 	
-	function goDetail(){
+	function goDetail(facilityNo){
 		
-		document.getElementById('previewArea').style.display='block';
+		 
 		
+		$.ajax({
+			
+			url:"searchDetail.kch",
+			type:"post",
+			dataType:"json",
+			data:{facilityNo:facilityNo
+			},
+			success:function(data){
+				alert(JSON.Stringify);
+				$(".previewArea").empty();
+				for(key in data){
 				
+					console.log(data[key]);
+					
+					
+				$div1=$("<div id='modalWrap'>");
+				$div2=$("<div class='modalMiddle'>");
+				$div3=$("<div class='modalContent'>");	
+				$button1=$("<button id='closeBtn' type='button' onclick='close()'>");
+				$i=$("<i class='material-icons'>");
+	
+				$div3.append($button1);
+				$i.append('close');
+				$button1.append($i);
+				
+				
+				$div4=$("<div class='imgModalArea'>");
+				$div4.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
+				
+				
+				$div5=$("<div class='contentArea'>");
+				$div6=$("<div id='title'>");
+				$b1=$("<b>");
+				$b1.append(data[key].FACILITY_NAME);
+				
+				$div6.append($b1);
+				
+				
+				
+				
+				$div7=$("<div id='address'>");
+				$p1=$("<p>");
+				$p1.append(data[key].FACILITY_ADDRESS);
+				$div7.append($p1);
+				
+				
+				$div8=$("<div id='tel'>");
+				$div8.append(data[key].FACILITY_MANAGER_PHONE);
+				
+				
+				$div9=$("<div id='pass'>");
+				$b2=$("<b>")
+				$div9.append(data[key].PASS_COUNT+'PASS');
+				$div10=$("<div id='passImg'>");
+				$div10.append("<img src=${contextPath}/resources/images/searchMap/running.png>");
+				$div9.append($b2);
+				$div9.append($div10);
+				
+				
+				$div11=$("<div id=detail onclick='detailResult()'>");
+				$b3=$("<b>");
+				$b3.append('자세히보기');
+				
+				$('#previewArea').append($div1);
+				$div1.append($div2);
+				$div2.append($div3);
+				$div3.append($div4);
+				$div3.append($div5);
+				$div5.append($div6);
+				$div5.append($div7);
+				$div5.append($div8);
+				$div5.append($div9);
+				$div5.append($div11);
+				
+				
+				}
+				
+			},
+		})	
 	};
-	</script>
+	
+	</script> -->
+	
+	<!-- <script>
+
+	function detailResult(){
+		
+		location.href="detailResult.kch"
+		
+	}
+
+</script> -->
+	
+ 
+	
 	
 
 </body>
