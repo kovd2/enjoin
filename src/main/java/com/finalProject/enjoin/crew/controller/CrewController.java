@@ -1,11 +1,13 @@
 package com.finalProject.enjoin.crew.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.crew.model.service.CrewService;
 import com.finalProject.enjoin.crew.model.vo.Attachment;
@@ -353,6 +358,8 @@ public class CrewController {
 		mv.addObject("list1", list1);
 		mv.addObject("list3", list3);
 		mv.addObject("list4",list4);
+		
+		
 
 		mv.addObject("userPhoto", userPhoto);
 		
@@ -411,7 +418,10 @@ public class CrewController {
 		}
 		//크루모집 댓글
 		@RequestMapping("crewComent.shw2")
-		public ModelAndView crewComent(ModelAndView mv,HttpServletRequest request) {
+		public void crewComent(ModelAndView mv,HttpServletRequest request,HttpServletResponse response) {
+			
+			
+			ObjectMapper mapper = new ObjectMapper();
 			
 			//입력한 댓글내용, 대댓글체크,댓글번호 를 가져온다
 			String coment_Content = request.getParameter("coment_Content");
@@ -486,18 +496,34 @@ public class CrewController {
 			
 			
 		
-			//HashMap<String,Object> map = new HashMap<String,Object>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			
-			mv.addObject("list", list);
-			mv.addObject("list1", list1);
+			//mv.addObject("list", list);
+			//mv.addObject("list1", list1);
 			mv.addObject("list3", list3);
-			mv.addObject("list4", list4);
-			mv.addObject("userPhoto", userPhoto);
+			//mv.addObject("list4", list4);
+			//mv.addObject("userPhoto", userPhoto);
+			
+			map.put("list3", list3);
+			
 			
 			//mv.setViewName("jsonView");
-			mv.setViewName("crew/crewRecruitmentDetails");
+			//mv.setViewName("crew/crewRecruitmentDetails");
 			
-			return mv;
+			try {
+				response.getWriter().println(mapper.writeValueAsString(map)); //json문자열로 바꿔줌
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
 		}
 		//크루활동내역폼
 		@RequestMapping("crewActivity.shw2")

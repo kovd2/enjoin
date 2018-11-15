@@ -426,19 +426,28 @@ i.fa.fa-comments{
 		
 			
 	}
-	  /*   function goCrewComent(){
+	    function goCrewComent(){
 		$.ajax({
 			url  : "crewComent.shw2",
 			type : "post",
 			data : $("#coment3").serialize(),
 			success:function(data){
-				console.log(data);
+				alert(data);
+				
+				for(var key in data){
+					alert(data[key]);
+					alert(data[key].parent_Coment_No);
+				}
+				
+				alert(data1);
+				
+				
 			},
 			
 		});
 		
 		return false;
-	}    */
+	}   
 </script>
 <body>
 
@@ -561,7 +570,7 @@ i.fa.fa-comments{
 						 		
 						 	</div>
 						 	<div class="commentWriterBox">
-						 		<form class="comment" id="coment3" action="crewComent.shw2#MemberCommont" method="post">
+						 		<form class="comment" id="coment3">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">
@@ -584,7 +593,7 @@ i.fa.fa-comments{
 						 						<input type="hidden" value="abc" name="capy">
 						 						<input type="hidden" value="${i.crew_No }" name="crew_Id">
 						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
-						 						<button type="submit" class="commentWriterBtn">작성하기</button>
+						 						<button type="button" class="commentWriterBtn" onclick="goCrewComent()">작성하기</button>
 						 						</c:forEach>
 						 					</td>
 						 				</tr>
