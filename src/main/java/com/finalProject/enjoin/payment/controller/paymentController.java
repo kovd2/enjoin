@@ -184,7 +184,7 @@ public class paymentController {
 	
 	//결제 관리 페이지
 	@RequestMapping("adminPayment.hh")
-	public ModelAndView adminPayment(ModelAndView mav, HttpServletRequest request) {
+	public ModelAndView adminPayment(@RequestParam(defaultValue="PROOF_NO")String searchOption, @RequestParam(defaultValue="")String keyword, ModelAndView mav, HttpServletRequest request) {
 		
 		//페이징 처리
 		int currentPage = 1;
@@ -197,12 +197,24 @@ public class paymentController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		//내역 조회
+		/*//내역 조회
 		List<Map<String, Object>> list = ps.listAll(pi);
 		
 		mav.setViewName("notice/adminPayment");
 		mav.addObject("list", list);
-		mav.addObject("pi", pi);
+		mav.addObject("pi", pi);*/
+		
+		List<com.finalProject.enjoin.payment.model.vo.Payment> list = ps.listAll(searchOption, keyword); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("notice/adminPayment");
+				
 		
 		return mav;
 	}
@@ -283,26 +295,5 @@ public class paymentController {
 		return "redirect:adminPayment.hh";
 	      
 	}
-	
-	@RequestMapping("paymentSearch.hh")
-	public ModelAndView paymentSearch(@RequestParam(defaultValue="all")String searchOption, @RequestParam("keyword")String keyword, ModelAndView mav) {
 		
-		List<com.finalProject.enjoin.payment.model.vo.Payment> list = ps.listAll(searchOption, keyword); 
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("list", list);
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		
-		System.out.println("map : " + map);
-		mav.addObject("map", map);
-		mav.setViewName("notice/adminPayment");
-		
-		
-		return mav;
-		
-	}
-	
-	
 }

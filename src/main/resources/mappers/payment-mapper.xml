@@ -76,8 +76,20 @@
 		SELECT PM.USER_NO, PM.PAY_NO, M.USER_ID, PM.PAY_DATE, PM.PROOF_NO, PM.PRICE, PM.PASS_PLUS, PM.PAY_TYPE, PM.REFUND_NO
 		FROM PAYMENT PM
 		JOIN MEMBER M ON(PM.USER_NO = M.USER_NO)
+		<include refid="search"></include>
 		ORDER BY PM.PAY_NO DESC
 	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="searchOption == 'PROOF_NO'">
+				WHERE M.USER_ID LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
 	
 	<!-- 환불 처리 -->
 	<update id="updatePayment" parameterType="Payment">
@@ -278,25 +290,5 @@
     	AND REFUND_NO = #{refundNo}
 	</select>
 	
-	<!-- 결제내역 검색 -->
-	<select id="searchListAll" resultType="map">
-		SELECT PM.USER_NO, PM.PAY_NO, M.USER_ID, PM.PAY_DATE, PM.PROOF_NO, PM.PRICE, PM.PASS_PLUS, PM.PAY_TYPE, PM.REFUND_NO
-		FROM PAYMENT PM
-		JOIN MEMBER M ON(PM.USER_NO = M.USER_NO)
-		<include refid="search"></include>
-		ORDER BY PM.PAY_NO DESC
-	</select>
-	
-	<sql id="search">
-		<choose>
-			<when test="searchOption == 'all'">
-				WHERE PAY_NO LIKE '%'
-			</when>
-			<otherwise>
-				WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
-			</otherwise>
-		</choose>
-	</sql>
-	
-	
+
 </mapper>
