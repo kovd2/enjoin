@@ -214,6 +214,13 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectOne("myPage.selectAsDetail", boardNo);
 	}
 
+	//가고싶은 시설 등록
+	@Override
+	public int insertJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.insert("myPage.insertJJIM", hmap);
+	}
+
 	
 
 }

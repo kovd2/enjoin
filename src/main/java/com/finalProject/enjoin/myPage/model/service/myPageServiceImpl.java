@@ -186,6 +186,13 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectAsDetail(boardNo, sqlSession);
 	}
 
+	//가고싶은 시설 등록
+	@Override
+	public int insertJJIM(HashMap<String, Object> hmap) {
+		
+		return mpd.insertJJIM(hmap, sqlSession);
+	}
+
 	
 
 }

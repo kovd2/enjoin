@@ -125,7 +125,19 @@ public class MyPageController {
 		
 	}
 	
-	//가고싶은 시설
+	//가고싶은 시설 등록
+	@RequestMapping("addJJIM")
+	public @ResponseBody int addJJIM(@RequestParam("facilityNo") int facilityNo, @RequestParam("userNo") int userNo, HashMap<String, Object> hmap) {
+		hmap.put("facilityNo", facilityNo);
+		hmap.put("userNo", userNo);
+		
+		int result = mps.insertJJIM(hmap);
+		System.out.println("result : " + result);
+		
+		return result;
+	}
+	
+	//가고싶은 시설 목록
 	@RequestMapping("wantPlace.ljs")
 	public ModelAndView wantPlace(@RequestParam("userNo") int userNo, ModelAndView mv) {
 		System.out.println("userNo : " + userNo);

@@ -498,9 +498,9 @@ color:#feab2a;
 			<div class="imgTel">
 			<b>02)1234-4565</b>
 			</div>
-			<div class="like">
+			<div class="like" onclick="addJJIM(${com.FACILITY_NO}, ${ loginUser.userNo })">
 			<i class="glyphicon glyphicon-thumbs-up"></i>
-			1230
+			관심시설
 			</div>
 			<div class="preview">
 				<i class="fa fa-file-image-o"></i>
@@ -659,6 +659,25 @@ color:#feab2a;
 		
 	}
 	
+	function addJJIM(facilityNo, userNo){
+		$.ajax({
+			url:"addJJIM.ljs",
+			type:"GET",
+			data:{facilityNo:facilityNo,
+				  userNo:userNo},
+			success:function(data){
+				if(confirm("가기 싶은 시설로 등록이 되었습니다. 확인하러 가시겠습니까?") == true){
+					location.href="wantPlace.ljs?userNo=" + userNo;
+				}else{
+					return;
+				}
+			}
+		},
+			error:function(){
+				console.log("에러");
+		});
+		
+	}
 	
 	</script>
 
