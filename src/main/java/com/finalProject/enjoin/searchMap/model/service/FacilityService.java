@@ -11,4 +11,8 @@ public interface FacilityService {
 
 	List<Map<String, Object>> searchFacility(String search)throws SearchListResultException ;
 
+	Map<String, Object> selectOneDetail(int facilityNo);
+
+	Map<String, Object> detailResult(int facilityNo);
+
 }

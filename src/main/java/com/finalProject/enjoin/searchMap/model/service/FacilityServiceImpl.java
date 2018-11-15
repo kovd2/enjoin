@@ -40,6 +40,25 @@ public class FacilityServiceImpl implements FacilityService{
 		return list;
 	}
 
+	@Override
+	public Map<String, Object> selectOneDetail(int facilityNo) {
+		
+		Map<String,Object> list = null;
+		list=fd.selectOneDetail(sqlSession,facilityNo);
+		return list;
+	}
+
+	@Override
+	public Map<String, Object> detailResult(int facilityNo) {
+		
+		Map<String,Object> list = null;
+		list = fd.detailResult(sqlSession,facilityNo);
+		
+		
+		
+		return list;
+	}
+
 	
 
 }

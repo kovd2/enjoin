@@ -1,13 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/style/css/fancybox/jquery.fancybox.css"
+	rel="stylesheet">
+<link href="resources/style/css/jcarousel.css" rel="stylesheet">
+<link href="resources/style/css/flexslider.css" rel="stylesheet">
+<link href="resources/style/css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Theme skin -->
+<link href="resources/style/skins/default.css" rel="stylesheet">
 <style>
 
-.modalWrap{
+#modalWrap{
 	width:100%;
 }
 .modalMiddle{
@@ -113,11 +125,13 @@ height:20px;
 	cursor:pointer;
 }
 #closeBtn{
-	width:30px;
-	height:30px;
-	border:1px solid black;
-	border-radius:3px;
 
+    width: 36px;
+    height: 28px;
+    border: 1px solid black;
+    border-radius: 3px;
+    float: right;
+    text-align: center;
 }
 
 </style>
@@ -126,16 +140,15 @@ height:20px;
 
 <hr>
 
-
-	<div class="modalWrap">
+<!-- 	 
+	<div id="modalWrap">
 		
 		<div class="modalMiddle">
 		
 		
 			<div class="modalContent">
-			<button id="closeBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
-         	<span aria-hidden="true">&times;</span>
-        	</button>
+			
+			<button id="closeBtn" type="button" onclick="close()"><i class="material-icons">close</i></button>
 				 	
 			
 			
@@ -144,9 +157,10 @@ height:20px;
 			<img src="resources/images/searchMap/mb.jpg">
 				
 			</div>
+			
 			<div class="contentArea">
 			<div id="title">
-			<b>여그가바로또치헬스장</b>
+			<b>또치헬스장</b>
 			</div>
 				 	
 				 	
@@ -172,30 +186,108 @@ height:20px;
 				 		<b>자세히보기</b>
 				 	
 				 	</div>
-				 	
-				 	
-				 	
-				 	
+				 
 				 </div>
-				 
-				 
-				
-			
 			</div>
 			
 		
 		</div>
 		
-	</div>
-<script>
-
-	function detailResult(){
+	</div> 
+	
+	 -->
+	 <script> 
+	
+	function goDetail(facilityNo){
 		
-		location.href="detailResult.kch"
+		
+		$.ajax({
+			
+			url:"searchDetail.kch",
+			type:"post",
+			dataType:"json",
+			data:{facilityNo:facilityNo},
+			success:function(data){
+				console.log(data);
+				$(".previewArea").empty();
+				for(var key in data){
+					console.log(data[key]);
+					
+				$div1=$("<div id='modalWrap'>");
+				$div2=$("<div class='modalMiddle'>");
+				$div3=$("<div class='modalContent'>");	
+				$button1=$("<button id='closeBtn' type='button'>");
+				$i=$("<i class='material-icons'>");
+				$div1.append($div2);
+				$div2.append($div3);
+				
+				$div3.append($button1);
+				$i.append('close');
+				$button1.append($i);
+				
+				
+				$div4=$("<div class='imgModalArea'>");
+				$div4.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
+				$div3.append($div4);
+				
+				$div5=$("<div class='contentArea'>");
+				$div6=$("<div id='title'>");
+				$b1=$("<b>");
+				$b1.append(data[key].FACILITY_NAME);
+				
+				$div6.append($b1);
+				$div5.append($div6);
+				
+				
+				
+				$div7=$("<div id='address'>");
+				$p1=$("<p>");
+				$p1.append(data[key].FACILITY_ADDRESS);
+				$div7.append($p1);
+				$div5.append($div7);
+				
+				$div8=$("<div id='tel'>");
+				$div8.append(data[key].FACILITY_MANAGER_PHONE);
+				$div5.append($div8);
+				
+				$div9=$("<div id='pass'>");
+				$b2=$("<b>").append(data[key].PASS_COUNT+'PASS');
+				$div10=$("<div id='passImg'>");
+				$div10.append("<img src=${contextPath}/resources/images/searchMap/running.png>");
+				$div9.append($b2);
+				$div9.append($div10);
+				$div5.append($div9);
+				
+				$div11=$("<div id=detail onclick='detailResult("+data[key].FACILITY_NO+")'>");
+				$b3=$("<b>");
+				$b3.append('자세히보기');
+				$div5.append($div11);
+				$div3.append($div5);
+				$('#previewArea').append($div1);
+				
+				}
+
+				
+			},
+			
+			
+			
+			
+			
+		})	
+	};
+	
+	</script> 
+<script>
+$(document).ready(function(){
+	function detailResult(facilityNo){
+		
+		location.href="detailResult.kch?facilityNo="+facilityNo;
 		
 	}
 
 </script>
+
 
 
 

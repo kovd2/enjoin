@@ -302,6 +302,7 @@
 		}
 	</script>
 	<script>
+	
 	function enrollComent(){
 	
 			var comentContent=$('#myco').val();
@@ -359,8 +360,6 @@
 				}
 				
 			});
-		
-		
 	}
 	
 	</script>
