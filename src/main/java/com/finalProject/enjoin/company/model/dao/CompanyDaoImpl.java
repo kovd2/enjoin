@@ -68,6 +68,22 @@ public class CompanyDaoImpl implements CompanyDao{
 	}
 
 
+	//이용코드 확인 메소드
+	@Override
+	public int codeCk(SqlSessionTemplate sqlSession, String useCode) {
+		
+		return sqlSession.selectOne("Company.codeCheck", useCode);
+	}
+
+
+	//이용코드 수정 메소드
+	@Override
+	public int updateCode(SqlSessionTemplate sqlSession, String useCode) {
+		
+		return sqlSession.update("Company.codeUpdate", useCode);
+	}
+
+
 	
 	
 

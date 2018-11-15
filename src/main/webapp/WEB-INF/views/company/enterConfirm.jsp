@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>입장내역 확인</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 
 /* 프로필 - 상품권 등록 */
@@ -278,16 +280,70 @@
 
         <div class="redeemBox">
             <h6>입장코드 확인</h6>
+            
             <div class="form-group"> <!-- 오류 일때 여기에 has-error -->
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" id="redeem_code" placeholder="입장코드를 입력하세요" value="">
+                    <input type="text" class="form-control" id="useCode" name="useCode" placeholder="입장코드를 입력하세요" value="">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="submit" onclick="go_redeem();return false;">등록하기</button>
+                      <button class="btn btn-default" type="button" id="use_code">등록하기</button>
                     </span>
                 </div>
                 <!-- 오류 일때!!! -->
             </div>
         </div><!-- /.redeemBox -->
+        
+   
+        
+        <!-- 이용코드 확인 -->
+        <script type="text/javascript">
+        //이용코드 체크여부
+        var codeck = 0;
+        $(function() {
+            //idck 버튼을 클릭했을 때 
+            $("#use_code").click(function() {
+                
+                //userid 를 param.
+                var useCode = $("#useCode").val(); 
+                
+                $.ajax({
+                    async: true,
+                    type : 'POST',
+                    data : useCode,
+                    url : "useCode.gs",
+                    success : function(data) {
+                        if (data*1 == 1) {
+
+                            if(confirm("이용코드를 사용하시겠습니까?")==true){
+                            	 
+                            		  $.ajax({
+                               	      async: true,
+                               	      type : 'POST',
+                               	      data : useCode,
+                               	      url : "updateCode.gs",
+                               	      success : function(data){
+                               		     	 if(data*1 == 1){
+                                    		 
+                                	    	 alert("사용이 완료되었습니다.");
+                                	    	 }
+                                    	 }
+                                     });
+                            };
+                            $("#useCode").focus();
+                        } else {
+                            alert("잘못된 코드입니다. 다시 한번 확인해주세요.");
+                           
+                            $("#useCode").focus();
+                            
+                        }
+                    },
+                    error : function(request,status,error) {
+                        
+                        alert("code : "+request.status+"\n"+"message : "+request.responseText+"\n"+"error : " + error);
+                    }
+                });
+            });
+        });
+        </script>
 
 
         <div class="fiHelpWrap">

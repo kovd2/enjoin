@@ -21,6 +21,12 @@ public interface CompanyDao {
 	//제휴시설 상세보기 이미지
 	List<HashMap<String, Object>> selectCompanyImg(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
+	//이용코드 확인 메소드
+	int codeCk(SqlSessionTemplate sqlSession, String useCode);
+
+	//이용코드 수정 메소드
+	int updateCode(SqlSessionTemplate sqlSession, String useCode);
+
 
 
 

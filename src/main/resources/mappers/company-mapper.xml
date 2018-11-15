@@ -107,6 +107,8 @@
 		VALUES(SEQ_ATT_NO.NEXTVAL,3,#{upload_Name},#{origin_Name},#{file_size},#{file_Ext},SYSDATE,6,SEQ_FACILITY_NO.CURRVAL)
 	</insert>
 	
+	
+	
 	<!-- 제휴시설 리스트 보기용 쿼리 -->
 	<select id="selectCompanyInfo" parameterType="Company" resultMap="companyResultSet">
 		SELECT F.FACILITY_NO, F.FACILITY_NAME, F.FACILITY_STARTDATE
@@ -139,6 +141,21 @@
 		WHERE REF_NO = #{facilityNo}
 		AND FILE_TYPE = 6
 	</select>
+	
+	<!-- 이용코드 확인용 쿼리문 -->
+	<select id="codeCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM PASSRECORD
+		WHERE PP_STATUS = 1
+		AND USE_CODE=#{useCode}
+	</select>
+	
+	<!-- 이용코드 업데이트 쿼리문 -->
+	<update id="codeUpdate" parameterType="Company">
+		UPDATE PASSRECORD
+		SET PP_STATUS = 2
+		WHERE USE_CODE=#{useCode}
+	</update>
 </mapper>
 
 

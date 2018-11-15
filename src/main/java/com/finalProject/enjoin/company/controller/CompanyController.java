@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +31,12 @@ public class CompanyController {
 	private CompanyService cs;
 
 
+	//회원정보 수정 폼 보여주는 메소드
+	@RequestMapping("changeInfo.gs")
+	public String showChangeInfo() {
+		
+		return "company/changeInfoForm";
+	}
 	//제휴시설 등록폼 보여주는 메소드
 	@RequestMapping("companyInsertForm.gs")
 	public String showCompanyInsertForm(){
@@ -100,6 +108,35 @@ public class CompanyController {
 		
 		
 		return mv;
+	}
+	
+	//이용코드 읽어오는 컨트롤러
+	@RequestMapping("useCode.gs")
+	@ResponseBody
+	public String confirmCode(@RequestBody String useCode) {
+		
+		System.out.println("이용코드 : " + useCode.substring(0, 7));
+		
+		
+		int result = 0;
+		result = cs.codeCk(useCode.substring(0, 7));
+		
+		
+		System.out.println("result : " + result);
+		
+		return String.valueOf(result);
+	}
+	
+	//이용코드 업데이트 컨트롤러
+	@RequestMapping("updateCode.gs")
+	@ResponseBody
+	public String updateCode(@RequestBody String useCode) {
+	
+		int result = 0;
+		result = cs.updateCode(useCode.substring(0, 7));
+		
+		System.out.println("result2 : " + result);
+		return String.valueOf(result);
 	}
 	
 	//제휴시설 신청용 컨트롤러

@@ -63,15 +63,15 @@
 	
 			<div class="profil">
 				<div class="profil_img">
-					<img id="profil_img" src="resources/images/myPage/image.png">
+					<img id="profil_img" src="resources/images/company/thumbnail.png">
 				</div>
 				<div class="profil_info">
 					<h6><c:out value="${ sessionScope.loginUser.userName }님"/><br><small>(<c:out value="${ sessionScope.loginUser.userId }"/>)</small></h6>
 					<div class="userPicComment upcOK">
-						<p class="text-anc">와~ 멋진 사진이네요!</p>
-						<!-- <p>
-							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.ljs">회원정보 수정</a>
-						</p> -->
+						
+						 <p>
+							<a class="btn btn-default btn-xs btn-editProfile" href="changeInfo.gs?userId=${ loginUser.userId }">회원정보 수정</a>
+						</p>
 					</div>
 				</div>
 				<div class="companyWrap">
