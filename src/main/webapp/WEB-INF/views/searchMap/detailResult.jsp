@@ -196,7 +196,7 @@ color:#feab2a;
 	height:320px;
 }
 #listwrap1{
-	width:150px;
+	width:200px;
 	height:300px;
 	position:absolute;	
 
@@ -211,8 +211,8 @@ color:#feab2a;
 	padding:3px;
 }
 #listwrap2{
-	margin-left:150px;
-	width:150px;
+	margin-left:230px;
+	width:200px;
 	height:300px;
 	position:absolute;
 	
@@ -239,7 +239,7 @@ color:#feab2a;
 	
 }
 .list>img{
-	width:140px;
+	width:200px;
 	border-radius:3px;
 
 }
@@ -481,7 +481,7 @@ color:#feab2a;
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	
-	
+
 	
 	<div class="resultTop">
 		<div class="resultMiddle">
@@ -490,13 +490,13 @@ color:#feab2a;
 			<img src="resources/images/searchMap/mb.jpg">
 			</div>
 			<div class="imgTitle">
-				<b>또치헬스장</b>
+				<b>${list[0].FACILITY_NAME}</b>
 			</div>
 			<div class="imgAddress">
-			 <b>서울 강남구 역삼동 233-2</b><br>
+			 <b>${list[0].FACILITY_ADDRESS}</b><br>
 			</div>
 			<div class="imgTel">
-			<b>02)1234-4565</b>
+			<b>${list[0].FACILITY_MANAGER_PHONE}</b>
 			</div>
 			<div class="like" onclick="addJJIM(${com.FACILITY_NO}, ${ loginUser.userNo })">
 			<i class="glyphicon glyphicon-thumbs-up"></i>
@@ -511,7 +511,7 @@ color:#feab2a;
 				<b>시설이용하기</b>
 			</div>
 			<div class="totalCount">
-				누적이용수 <b>222</b>
+				차감패스 <b>${list[0].PASS_COUNT}</b>pass
 			
 			</div>
 				
@@ -521,10 +521,10 @@ color:#feab2a;
 			<div class="resultContent">
 			<b>이용상품</b>
 				<div class="product">
-				 <b>헬스</b>
+				 <b>${list[0].FACILITY_EVENT}</b>
 				 <img src="resources/images/searchMap/health.png">
 				 <br><hr>
-				 <b>p.t</b>
+				 <b>${list[0].PASS_COUNT}PASS</b>
 				 <img src="resources/images/searchMap/health.png">
 				 <br><hr><br>
 				 <b>- 이용 상품별로 PASS가 차감됩니다.</b><br>
@@ -537,9 +537,9 @@ color:#feab2a;
 				<b>이용시간</b>
 				<div class="time">
 				
-				<p class="monToFri"><b>평일</b>11:20 ~ 02:30</p><hr>
-				<p class="sat"><b>토요일</b>12:00 ~ 03:00</p><br><hr>
-				<p class="sun"><b>일요일</b> 2:00 ~ 04:00</p><hr>
+				<p class="monToFri"><b>평일</b>  ${list[0].MON_FRI_TIME}</p><hr>
+				<p class="sat"><b>토요일</b>  ${list[0].SUN_TIME}</p><br><hr>
+				<p class="sun"><b>일요일</b>  ${list[0].SUN_TIME}</p><hr>
 				
 				</div>
 				</div>	
@@ -549,7 +549,7 @@ color:#feab2a;
 					
 					<div class="tel">
 					
-					<p>02)1234-2323</p><hr>
+					<p>${list[0].FACILITY_MANAGER_PHONE}</p><hr>
 					</div>
 				</div>
 			
@@ -558,33 +558,33 @@ color:#feab2a;
 					<b>주소</b>
 					<div class="address">
 					
-					<p>서울특별시 강남구 역삼동 123-3</p><hr>
+					<p>${list[0].FACILITY_ADDRESS}</p><hr>
 					</div>
 				</div>
 				</div>
 				
-				<div class="right">
-				<div class="detailPic">
 				
+				<div class="right">
+				
+				<div class="detailPic">
 					<b>제휴시설 미리보기</b>
 				<div id="listwrap1">	
-					<div class="list"> <img src="resources/images/searchMap/mb.jpg"></div>
-					<div class="list"> <img src="resources/images/searchMap/mb5.jpg"></div>
-					<div class="list"> <img src="resources/images/searchMap/mb2.png"></div>
+					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[0].UPLOAD_NAME}"></div>
+					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[1].UPLOAD_NAME}"></div>
 				</div>
 				
 				<div id="listwrap2">	
-					<div class="list"> <img src="resources/images/searchMap/mb3.jpeg"></div>
-					<div class="list"> <img src="resources/images/searchMap/mb4.jpg"></div>
-					<div class="list"><img src="resources/images/searchMap/mb4.jpg"></div>
+					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[2].UPLOAD_NAME}"></div>
+					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[3].UPLOAD_NAME}"></div>
 				</div>
 				
-				<div id="listwrap3">	
+				<!-- <div id="listwrap3">	
 					<div class="list"><img src="resources/images/searchMap/mb4.jpg"></div>
 					<div class="list"><img src="resources/images/searchMap/mb4.jpg"></div>
 					<div class="list"></div>
 				</div>
-					
+					 -->
+				
 				</div>
 				
 				
@@ -651,6 +651,8 @@ color:#feab2a;
 			</div>
 			
 		</div>
+		
+		
 <jsp:include page="../common/footer.jsp"/>
 	<script>
 	function goReview(){

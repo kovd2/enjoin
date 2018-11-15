@@ -49,9 +49,9 @@ public class FacilityServiceImpl implements FacilityService{
 	}
 
 	@Override
-	public Map<String, Object> detailResult(int facilityNo) {
+	public List<Map<String, Object>> detailResult(int facilityNo) {
 		
-		Map<String,Object> list = null;
+		List<Map<String,Object>> list = null;
 		list = fd.detailResult(sqlSession,facilityNo);
 		
 		

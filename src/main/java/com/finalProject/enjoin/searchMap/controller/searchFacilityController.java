@@ -69,14 +69,11 @@ public class searchFacilityController {
 									HttpSession session,int facilityNo) {
 		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 		System.out.println("resultControllerNo:"+facilityNo);
-		Map<String,Object> list = null;
+		List<Map<String,Object>> list = null;
 		list =fs.detailResult(facilityNo);
 		mv.addObject("list",list);
 		mv.setViewName("searchMap/detailResult");
 		System.out.println("resultController:"+list);
-		
-		
-		
 		return mv;
 	}
 	@RequestMapping(value="/searchDetail.kch",method=RequestMethod.POST)
@@ -85,11 +82,7 @@ public class searchFacilityController {
 		System.out.println("facilityNo:"+facilityNo);
 		Map<String,Object> map = null;
 		map=fs.selectOneDetail(facilityNo);
-		System.out.println("detailcon:"+map);
-		
-	
-	
-		
+		System.out.println("detailcon:"+map);	
 		return map;
 	}
 	
