@@ -58,6 +58,7 @@
 		<result property="userNo" column="USER_NO"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="crewName" column="CREW_NAME"/>
+		<result property="crewNo" column="CREW_NO"/>
 		<result property="contactStatus" column="CONTACT_STATUS"/>
 		<collection property="attachment" javaType="java.util.ArrayList" resultMap="AttachmentResultSet"/>
 		<collection property="comentList" javaType="java.util.ArrayList" resultMap="comentResultSet"/>
@@ -266,7 +267,7 @@
 	
 	<!-- 내가 쓴 크루모집 게시물 조회 -->
 	<select id="selectWritePost" resultMap="boardResultSet">
-		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT
+		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT, M.USER_NO, B.CREW_NO
 		FROM BOARD B
 		JOIN MEMBER M ON(M.USER_NO = B.USER_NO)
 		WHERE B.USER_NO = #{userNo}
@@ -275,7 +276,7 @@
 	
 	<!-- 내가 쓴 크루게시물 조회 -->
 	<select id="selectWriteCrewBoard" resultMap="boardResultSet">
-		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT
+		SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_NAME, B.ENROLL_DATE, B.BOARD_COUNT, B.CREW_NO
 		FROM BOARD B
 		JOIN MEMBER M ON(M.USER_NO = B.USER_NO)
 		WHERE B.USER_NO = #{userNo}
@@ -305,7 +306,7 @@
 		FROM BOARD B
 		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
 		WHERE B.BOARD_NO = #{boardNo} -->
-		SELECT * 
+		<!-- SELECT * 
 		FROM BOARD B	
 		LEFT JOIN (SELECT C.COMENT_CONTENT, C.BOARD_NO, C.COMENT_DATE
                    FROM COMENT C
@@ -315,7 +316,16 @@
 		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
 		AND B.BOARD_TYPE= '문의'
-		ORDER BY CB.COMENT_DATE DESC
+		ORDER BY CB.COMENT_DATE DESC -->
+		SELECT * 
+		FROM BOARD B
+		JOIN MEMBER M USING(USER_NO)
+		LEFT JOIN COMENT C ON (B.BOARD_NO = C.BOARD_NO)
+		LEFT JOIN ATTACHMENT A ON (A.REF_NO = B.BOARD_NO)
+		WHERE B.BOARD_NO = #{boardNo}
+		AND B.STATUS = 'Y'
+		AND B.BOARD_TYPE= '문의'
+		ORDER BY C.COMENT_DATE DESC
 	</select>
 	
 	<!-- 패스 수량 & 수정일 조회 쿼리 -->

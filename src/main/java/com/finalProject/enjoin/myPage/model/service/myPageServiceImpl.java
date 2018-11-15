@@ -181,7 +181,7 @@ public class myPageServiceImpl implements myPageService{
 
 	//1:1문의 상세보기
 	@Override
-	public List<Board> selectAsDetail(int boardNo) {
+	public Board selectAsDetail(int boardNo) {
 		
 		return mpd.selectAsDetail(boardNo, sqlSession);
 	}

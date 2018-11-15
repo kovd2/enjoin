@@ -78,7 +78,7 @@ public interface myPageService {
 	int deleteMember(String userId);
 
 	//1:1문의 상세보기
-	List<Board> selectAsDetail(int boardNo);
+	Board selectAsDetail(int boardNo);
 
 
 

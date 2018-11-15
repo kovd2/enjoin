@@ -60,6 +60,13 @@ public class CompanyDaoImpl implements CompanyDao{
 		return sqlSession.selectOne("Company.selectDetailCompany", hmap);
 	}
 
+	//제휴시설 상세보기 이미지 
+	@Override
+	public List<HashMap<String, Object>> selectCompanyImg(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		
+		return sqlSession.selectList("Company.selectCompanyImg", hmap);
+	}
+
 
 	
 	
