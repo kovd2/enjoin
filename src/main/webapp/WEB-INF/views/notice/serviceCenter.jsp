@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,24 +127,7 @@ h5 {
 }
 
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link rel="stylesheet" href="/css/animate.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/lightgallery.css">
-    <link rel="stylesheet" href="/css/radios-to-slider.css">
-    <link rel="stylesheet" href="/css/daterangepicker.css">
-    <link rel="stylesheet" href="/css/jquery.bxslider.css">
-    <link rel="stylesheet" href="/css/sweetalert2.css">
-    <link rel="stylesheet" href="/css/style.css?v=180808">
-<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/style/css/fancybox/jquery.fancybox.css"
-	rel="stylesheet">
-<link href="resources/style/css/jcarousel.css" rel="stylesheet">
-<link href="resources/style/css/flexslider.css" rel="stylesheet">
-<link href="resources/style/css/style.css" rel="stylesheet">
 
-<!-- Theme skin -->
-<link href="resources/style/skins/default.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrapper">
@@ -311,7 +295,12 @@ h5 {
 												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
 												<strong><a href="memberLogin.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
 											</p>
-											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 실시간 채팅상담</a>
+											<c:if test="${ empty sessionScope.loginUser }">
+											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" href="memberLogin.me"><i class="fa fa-comments-o"></i> 로그인</a>
+											</c:if>
+											<c:if test="${ !empty sessionScope.loginUser }">
+											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 모두의 채팅</a>
+											</c:if>
 										</div>
 										<div class="innerBox col-xs-6 col-sm-12">
 											<h3>1:1 문의</h3>

@@ -8,11 +8,13 @@
 	<script src="resources/js/sockjs.min.js"></script>
 </head>
 <body>
+	<input type="hidden" name="userId" id="userId" value="${ loginUser.getUserId() }">
 	<input type="text" id="message"/>
     <input type="button" id="sendBtn" value="전송"/>
     <div id="data"></div>
 <script>
- 
+	var userId = document.getElementById("userId").value;
+
     $(document).ready(function(){
         $("#sendBtn").click(function(){
             sendMessage();
@@ -26,18 +28,15 @@
     //websocket 과 연결을 끊고 싶을때 실행하는 메소드
     sock.onclose = onClose;
     
-    
     function sendMessage(){
-        
-            //websocket으로 메시지를 보내겠다.
-            sock.send($("#message").val());
-        
+    	//websocket으로 메시지를 보내겠다.
+        sock.send(userId + " : "+ $("#message").val());
     }
             
     //evt 파라미터는 websocket이 보내준 데이터다.
     function onMessage(evt){  //변수 안에 function자체를 넣음.
         var data = evt.data;
-        $("#data").append(data+"<br/>");
+        $("#data").append(data + "<br/>");
         /* sock.close(); */
     }
     
@@ -45,6 +44,19 @@
         $("#data").append("연결 끊김");
     }
     
+/* 	function dataArea(refundNo){
+		$.ajax({
+			url:'chatPopUp.hh',
+			data : {
+				data : data
+			},
+			success : function(data){
+				console.log(data);
+				$('.refund' + refundNo).attr('value', '환불완료');
+				window.location.reload();
+			}
+		});
+	} */
 </script>
 </body>
 </html>
