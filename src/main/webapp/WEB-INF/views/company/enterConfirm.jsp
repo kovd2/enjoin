@@ -303,8 +303,7 @@
             $("#use_code").click(function() {
                 
                 //userid 를 param.
-                var useCode = $("#useCode").val(); 
-                alert(useCode);
+                var useCode = $("#useCode").val();
                 $.ajax({
                     async: true,
                     type : 'POST',

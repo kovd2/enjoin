@@ -502,7 +502,7 @@ color:#feab2a;
 				<i class="fa fa-file-image-o"></i>
 					<b>시설미리보기</b>
 			</div>
-			<div class="enBtn" onclick="useFacility(${loginUser.userNo},${list[0].PASS_COUNT},${list[0].FACILITY_NO})">
+			<div class="enBtn" id="enBtn" onclick="useFacility(${loginUser.userNo},${list[0].PASS_COUNT},${list[0].FACILITY_NO})">
 				<i class="fa fa-address-card"></i>
 				<b>시설이용하기</b>
 			</div>
@@ -675,8 +675,26 @@ color:#feab2a;
 					console.log(data);
 					if(data > 0){
 						$('#like').css({"background":"#00bff0"});
+						$("#like").click(function(){
+							$.ajax({
+								url:"deleteJJIM.ljs2",
+								type:"get",
+								data:{
+									userNo:userNo,
+									facilityNo:facilityNo
+								},
+								success:function(data){
+									$('#like').css({"background":"none"});
+									location.reload();
+								},
+								error:function(){
+									console.log("에러");
+								}
+							});
+						});
 					} 
 					//클릭하면 실행
+					console.log(data);
 					if(data != 1){
 						$("#like").click(function(){
 							$.ajax({
@@ -693,7 +711,7 @@ color:#feab2a;
 									if(confirm("가기 싶은 시설로 등록이 되었습니다. 확인하러 가시겠습니까?") == true){
 										location.href="wantPlace.ljs?userNo=" + userNo;
 									}else{
-										return;
+										location.reload();
 									}
 								}
 							});
@@ -706,6 +724,7 @@ color:#feab2a;
 			});	
 		}
 	});
+	
 		
 	function useFacility(userNo, deductPass, facilityNo){
 		console.log(deductPass);
@@ -734,7 +753,10 @@ color:#feab2a;
 							facilityNo:facilityNo
 						},
 						success:function(data){
-							confirm("시설이용 등록 완료되었습니다. 이용코드는 마이페이지에서 확인할수 있습니다.");
+							console.log(data);
+							popupOpen(data);
+							/* confirm("시설이용 등록 완료되었습니다. 이용코드는 마이페이지에서 확인할수 있습니다.");
+							$('#enBtn').removeAttr("onclick"); */
 						},
 						error:function(){
 							console.log("에러");
@@ -746,7 +768,17 @@ color:#feab2a;
 				console.log("에러");
 			}
 		});
-	}
+	};
+	
+	function popupOpen(data){
+		alert(data);
+		var url = "popUp.ljs?data=" + data;    //팝업창 페이지 URL
+ 	    var popupX = (window.screen.width / 2) - (600 / 2);
+		var popupY= (window.screen.height /2) - (500 / 2);
+
+	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
+		window.open(url, '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+	};
 	
 	</script>
 

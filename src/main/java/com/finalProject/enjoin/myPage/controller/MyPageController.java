@@ -178,7 +178,7 @@ public class MyPageController {
 	}
 	//찜 목록 삭제
 	@RequestMapping("deleteJJIM.ljs")
-	public ModelAndView deleteJJIM(@RequestParam("userNo") int userNo, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap, ModelAndView mv) {
+	public ModelAndView deleteJJIM2(@RequestParam("userNo") int userNo, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap, ModelAndView mv) {
 		System.out.println("userNo : " + userNo);
 		System.out.println("facilityNo : " + facilityNo);
 		
@@ -196,6 +196,19 @@ public class MyPageController {
 		
 		return mv;
 	}
+	//좋아요 취소
+	@RequestMapping("deleteJJIM.ljs2")
+	public @ResponseBody int deleteJJIM(@RequestParam("userNo") int userNo, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap) {
+		System.out.println("userNo : " + userNo);
+		System.out.println("facilityNo : " + facilityNo);
+		
+		hmap.put("userNo", userNo);
+		hmap.put("facilityNo", facilityNo);
+		
+		int result = mps.deleteJJIM(hmap);
+		
+		return result;
+	}
 	
 	//시설 이용전 패스 유/무 확인
 	@RequestMapping(value="checkPass.ljs")
@@ -209,9 +222,12 @@ public class MyPageController {
 	
 	//시설 이용을 위한 패스 차감
 	@RequestMapping(value="deductPass.ljs")
-	public @ResponseBody int deductPass(@RequestParam("userNo") int userNo, @RequestParam("deductPass") int deductPass, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap) {
+	public @ResponseBody List<HashMap<String, Object>> deductPass(@RequestParam("userNo") int userNo, @RequestParam("deductPass") int deductPass, @RequestParam("facilityNo") int facilityNo) {
 		System.out.println("userNo : " + userNo);
 		System.out.println("deductPass : " + deductPass);
+		System.out.println("facilityNo : " + facilityNo);
+		
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		
 		hmap.put("userNo", userNo);
 		hmap.put("deductPass", deductPass);
@@ -235,8 +251,13 @@ public class MyPageController {
 			System.out.println("useCode : " + useCode);
 		}
 		int result2 = mps.updateUseCode(hmap);
-		
-		return result;
+		if(result2 > 0) {
+			System.out.println("result2 : " + result2);
+			List<HashMap<String, Object>> showUseCode = mps.selectUseCode(hmap);
+			System.out.println("showUseCode : " + showUseCode);
+			return showUseCode;
+		}
+		return null;
 	}
 	
 	//이용기록
@@ -542,6 +563,13 @@ public class MyPageController {
 		mv.addObject("asDetail", asDetail);		
 		mv.addObject("rCount", rCount);
 		
+		return mv;
+	}
+	
+	//시설 이용 정보 팝업창
+	@RequestMapping(value="popUp.ljs")
+	public ModelAndView showUseCode(ModelAndView mv, @RequestParam("data") List<HashMap<String, Object>> data) {
+		System.out.println("data : " + data);
 		return mv;
 	}
 }

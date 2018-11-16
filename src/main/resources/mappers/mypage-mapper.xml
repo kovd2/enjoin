@@ -147,6 +147,8 @@
       <result property="ppDate" column="PP_DATE"/>
       <result property="ppCount" column="PP_COUNT"/>
       <result property="payNo" column="PAY_NO"/>
+      <result property="userNo" column="USER_NO"/>
+      <result property="useCode" column="USE_CODE"/>
    </resultMap>
    
    <resultMap type="com.finalProject.enjoin.company.model.vo.Company" id="companyResultSet">
@@ -506,6 +508,16 @@
 		USE_CODE = #{useCode}
 		WHERE USER_NO = #{userNo}
 	</update>
+	
+	<!-- 시설 이용등록 완료후 정보 띄우기 -->
+	<select id="selectUseCode" parameterType="hashmap" resultType="hashmap">
+		SELECT P.PP_COUNT, P.USE_CODE, F.FACILITY_NAME, F.PASS_COUNT
+		FROM PASSRECORD P 
+		JOIN (SELECT FACILITY_NAME, PASS_COUNT, FACILITY_NO
+      		  FROM FACILITY
+      		  WHERE FACILITY_NO = #{facilityNo}) F USING(FACILITY_NO)
+		WHERE USER_NO = #{userNo}
+	</select>
 </mapper>
 	
 	

@@ -10,10 +10,11 @@ public class Passrecord {
 	private int ppCount;
 	private int payNo;
 	private int userNo;
+	private String useCode;
 	
 	public Passrecord() {}
 
-	public Passrecord(int ppNo, String ppStatus, Date ppDate, int ppCount, int payNo, int userNo) {
+	public Passrecord(int ppNo, String ppStatus, Date ppDate, int ppCount, int payNo, int userNo, String useCode) {
 		super();
 		this.ppNo = ppNo;
 		this.ppStatus = ppStatus;
@@ -21,6 +22,7 @@ public class Passrecord {
 		this.ppCount = ppCount;
 		this.payNo = payNo;
 		this.userNo = userNo;
+		this.useCode = useCode;
 	}
 
 	public int getPpNo() {
@@ -71,10 +73,18 @@ public class Passrecord {
 		this.userNo = userNo;
 	}
 
+	public String getUseCode() {
+		return useCode;
+	}
+
+	public void setUseCode(String useCode) {
+		this.useCode = useCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Passrecord [ppNo=" + ppNo + ", ppStatus=" + ppStatus + ", ppDate=" + ppDate + ", ppCount=" + ppCount
-				+ ", payNo=" + payNo + ", userNo=" + userNo + "]";
+				+ ", payNo=" + payNo + ", userNo=" + userNo + ", useCode=" + useCode + "]";
 	}
 
 	
