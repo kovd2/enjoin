@@ -147,14 +147,14 @@
 		SELECT COUNT(*) 
 		FROM PASSRECORD
 		WHERE PP_STATUS = 1
-		AND USE_CODE=#{useCode}
+		AND USE_CODE = #{useCode}
 	</select>
 	
 	<!-- 이용코드 업데이트 쿼리문 -->
 	<update id="codeUpdate" parameterType="Company">
 		UPDATE PASSRECORD
 		SET PP_STATUS = 2
-		WHERE USE_CODE=#{useCode}
+		WHERE USE_CODE = #{useCode}
 	</update>
 </mapper>
 

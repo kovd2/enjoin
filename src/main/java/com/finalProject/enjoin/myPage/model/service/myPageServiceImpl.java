@@ -189,8 +189,42 @@ public class myPageServiceImpl implements myPageService{
 	//가고싶은 시설 등록
 	@Override
 	public int insertJJIM(HashMap<String, Object> hmap) {
-		
+			
 		return mpd.insertJJIM(hmap, sqlSession);
+	}
+	
+	//가고싶은 시설 조회
+	@Override
+	public int selectJJIMCheck(HashMap<String, Object> hmap) {
+		
+		return mpd.selectJJIMCheck(hmap, sqlSession);
+	}
+
+	//시설 이용전 패스 유무 확인
+	@Override
+	public int selectCheckPass(int userNo) {
+		
+		return mpd.selectCheckPass(userNo, sqlSession);
+	}
+
+	//시설 이용을 위한 패스 차감
+	@Override
+	public int updatePassCount(HashMap<String, Object> hmap) {
+		int result = mpd.updatePassCount(hmap, sqlSession);
+		
+		if(result > 0) {
+			int result2 = mpd.updatePassCountRecord(hmap, sqlSession);
+				
+			return result;
+		}
+		return result;
+	}
+
+	//이용코드 입력
+	@Override
+	public int updateUseCode(HashMap<String, Object> hmap) {
+		
+		return mpd.updateUseCode(hmap, sqlSession);
 	}
 
 	

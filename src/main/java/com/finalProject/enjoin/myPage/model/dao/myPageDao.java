@@ -82,8 +82,26 @@ public interface myPageDao {
 	//1:1문의 상세보기
 	Board selectAsDetail(int boardNo, SqlSessionTemplate sqlSession);
 
+	//가고싶은 시설 등록전 조회
+	int selectJJIMCheck(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+	
 	//가고싶은 시설 등록
 	int insertJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//시설 이용전 패스 유무 확인
+	int selectCheckPass(int userNo, SqlSessionTemplate sqlSession);
+
+	//시설 이용을 위한 패스 차감
+	int updatePassCount(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//시설 이용을 위한 패스내역 패스 차감
+	int updatePassCountRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//이용코드 입력
+	int updateUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+	
+
+
 
 	
 
