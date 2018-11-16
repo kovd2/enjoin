@@ -99,6 +99,9 @@ public interface myPageDao {
 
 	//이용코드 입력
 	int updateUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+
+	//시설 이용등록 완료후 정보 띄우기
+	List<HashMap<String, Object>> selectUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 	
 
 

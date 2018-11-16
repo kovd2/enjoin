@@ -226,6 +226,13 @@ public class myPageServiceImpl implements myPageService{
 		
 		return mpd.updateUseCode(hmap, sqlSession);
 	}
+	
+	//시설 이용등록 완료후 정보 띄우기
+	@Override
+	public List<HashMap<String, Object>> selectUseCode(HashMap<String, Object> hmap) {
+		
+		return mpd.selectUseCode(hmap, sqlSession);
+	}
 
 	
 

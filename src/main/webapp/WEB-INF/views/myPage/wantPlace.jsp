@@ -223,9 +223,9 @@
 							</li>
 						</ul>
 					</c:if>
+						<ul class="row">
 					<c:if test="${ jjim != '[]' }">
 					<c:forEach var="j" items="${ jjim }">					
-						<ul class="row">
 							<li class="col col-sm-6 col-md-4 col-lg-3">
 								<a href="/center/detail/fc06008" class="favoriteCenter">
 
@@ -244,9 +244,9 @@
 									<i class="fa fa-heart"></i>
 								</button>
 								<div class="favoriteAlertMsg"></div></li>
-						</ul>
 					</c:forEach>
 					</c:if>
+						</ul>
 				</div>
 			</div>
 		</div>

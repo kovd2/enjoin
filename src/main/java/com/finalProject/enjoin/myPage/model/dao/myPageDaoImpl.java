@@ -248,11 +248,19 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.update("myPage.updatePassCountRecord", hmap);
 	}
-
+	
+	//이용코드 입력
 	@Override
 	public int updateUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.update("myPage.updateUseCode", hmap);
+	}
+
+	//시설 이용등록 완료후 정보 띄우기
+	@Override
+	public List<HashMap<String, Object>> selectUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectUseCode", hmap);
 	}
 
 }

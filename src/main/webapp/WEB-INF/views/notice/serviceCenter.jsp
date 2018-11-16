@@ -339,7 +339,7 @@ h5 {
 
 	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
 		window.open(url, '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
-	}
+	};
 
 </script>
 </body>
