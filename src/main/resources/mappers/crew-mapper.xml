@@ -455,4 +455,17 @@
      	WHERE BOARD_NO = #{board_No}
      </update>
      
+     <!-- 대댓글 처리 ajax  -->
+     <select id="crewAjaxComentSelect" resultMap="crewComents">
+     	SELECT C.COMENT_NO,C.COMENT_CONTENT,C.BOARD_NO,C.PARENT_COMENT_NO,M.USER_NAME,A.UPLOAD_NAME 
+			FROM COMENT C
+			JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
+			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+			AND A.FILE_NO = 0
+			AND A.FILE_TYPE = 3
+            AND C.COMENT_NO = (SELECT MAX(COMENT_NO)
+                               FROM COMENT)
+			ORDER BY DECODE(C.PARENT_COMENT_NO,0,COMENT_NO,C.PARENT_COMENT_NO)ASC,C.COMENT_NO ASC
+     </select>
+     
 </mapper>

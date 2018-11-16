@@ -96,6 +96,9 @@ public interface CrewDao {
 	//크루활동 상세보기 클릭시 조회수증가
 	int updateBoardCount(SqlSessionTemplate sqlSession, int board_No);
 	
+	//대댓글 ajax처리
+	List<CrewComent> crewAjaxComentSelect(SqlSessionTemplate sqlSession);
+	
 	
 	
 	

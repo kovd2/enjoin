@@ -199,6 +199,12 @@ public class CrewServiceImpl implements CrewService {
 		
 		return cd.updateBoardCount(sqlSession,board_No);
 	}
+	//ajax를 통한 댓글 조회
+	@Override
+	public List<CrewComent> crewAjaxComentSelect() {
+		
+		return cd.crewAjaxComentSelect(sqlSession);
+	}
 	
 
 
