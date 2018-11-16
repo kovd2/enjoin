@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -418,8 +419,7 @@ public class CrewController {
 		}
 		//크루모집 댓글
 		@RequestMapping("crewComent.shw2")
-		public void crewComent(ModelAndView mv,HttpServletRequest request,HttpServletResponse response) {
-			
+		public @ResponseBody List<CrewComent> crewComent(ModelAndView mv,HttpServletRequest request,HttpServletResponse response) {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
@@ -506,11 +506,12 @@ public class CrewController {
 			
 			map.put("list3", list3);
 			
+			System.out.println("list3 : " + list3);
 			
 			//mv.setViewName("jsonView");
 			//mv.setViewName("crew/crewRecruitmentDetails");
 			
-			try {
+			/*try {
 				response.getWriter().println(mapper.writeValueAsString(map)); //json문자열로 바꿔줌
 				
 			} catch (JsonGenerationException e) {
@@ -522,7 +523,9 @@ public class CrewController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}		
+			}*/
+			
+			return list3;
 			
 		}
 		//크루활동내역폼
@@ -816,7 +819,7 @@ public class CrewController {
 					List<InCrew> list2 = cs.crewInCrewY(crew_Id);
 					
 					//댓글 리스트 불러오기
-					List<CrewComent> list3 = cs.crewComentSelect(board_No);
+					List<CrewComent> list3 = cs.crewAjaxComentSelect();
 					
 					
 					

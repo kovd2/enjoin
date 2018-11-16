@@ -265,6 +265,12 @@ public class CrewDaoImpl implements CrewDao {
 		
 		return sqlSession.update("Crew.updateBoardCount", board_No);
 	}
+	//대댓글 ajax처리
+	@Override
+	public List<CrewComent> crewAjaxComentSelect(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("Crew.crewAjaxComentSelect");
+	}
 
 
 }
