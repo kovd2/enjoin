@@ -71,9 +71,8 @@
 			</div>
 		</form>
 	</c:if>
-	
-	
-	<c:if test="${ sessionScope.loginUser.userType eq '1' }">
+		
+	<c:if test="${ sessionScope.loginUser.userType eq null }">
 	<div id="wrapper">
 				<!-- start header -->
 				<header>

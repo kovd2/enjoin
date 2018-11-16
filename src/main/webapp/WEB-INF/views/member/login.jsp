@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style>
 /*부트스트랩*/
 /*!
@@ -7649,50 +7652,45 @@ div {
 									<div class="register_type_select">
 
 										
-											 <!-- <a id="kakao-login-btn" style="background:white;"></a> -->
-											<%--  <a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
-											<a href="http://developers.kakao.com/logout"></a> --%>
-												<!-- <script type='text/javascript'>
-												function kakao(){
-										
-												Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
-											
-												Kakao.Auth.loginForm({
-														container : '#kakao-login-btn',
-														success : function(authObj) {
-															//alert(JSON.stringify(authObj));
-															var accessToken=Kakao.Auth.getAccessToken();
-															//alert(accessToken);
-													         Kakao.API.request({
-													        	 url:'v1/user/me',
-													        	 success : function(res){
-													        		 ////alert(JSON.stringify(res)); //<---- kakao.api.request 
-																		
-													        		 $("#id").val(res.id);
-													        		 $("#email").val(res.kaccount_email);
-													        		 $("#nickname").val(res.properties.nickname);
-													        		 $("#accessToken").val(authObj.access_token);
-													        		 $("#refreshToken").val(authObj.refresh_token);
-													        		 
-													        		 $("#loginSubmit").submit();
-													        	 }
-													         })
-
-															
-														},
-														fail : function(err) {
-															alert(JSON.stringify(err));
-														}
-													});
-											}
-										</script> -->
-										<%-- <form id=loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">
-											<input type="hidden" id="id" name="id">
-											<input type="hidden" id="email" name="email">
-											<input type="hidden" id="nickname" name="nickname">
-											<input type="hidden" id="accessToken" name="accessToken">
-											<input type="hidden" id="refreshToken" name="refreshToken">
-										</form> --%>
+										<a id="kakao-login-btn"></a>
+										<a href="http://developers.kakao.com/logout"></a>
+										<script type='text/javascript'>
+										//<![CDATA[
+    										// 사용할 앱의 JavaScript 키를 설정해 주세요.
+    										Kakao.init('40037ba50ae87e3f127d19505e76a8d4');
+    										// 카카오 로그인 버튼을 생성합니다.
+    										Kakao.Auth.createLoginButton({
+    											container: '#kakao-login-btn',
+    											success: function(authObj) {
+    												Kakao.API.request({
+    													url : '/v2/user/me',
+    													success: function(res){
+    														console.log(JSON.stringify(res));
+    														console.log(JSON.stringify(res.kakao_account.email));
+    														console.log(JSON.stringify(res.properties.nickname));
+    														
+    														var email = JSON.stringify(res.kakao_account.email);
+    														var userName = JSON.stringify(res.properties.nickname);
+    														
+    														$.ajax({
+    															type : 'POST',
+    															data : {userName:userName, email:email},
+    															url : "kakaoLogin.me",
+    															success : function(data){
+    																
+    															}
+    														})
+    														
+    													}
+    												})
+    												/* alert(JSON.stringify(authObj)); */
+    												},
+    												fail: function(err) {
+    													alert(JSON.stringify(err));
+    													}
+    												});
+    										//]]>
+    										</script>
 
 										<div class="divLine">
 											<span>또는,</span>
@@ -7709,15 +7707,12 @@ div {
 
 									<div class="form-group form-group-lg">
 										<label for="id" class="sr-only">아이디</label> <label
-											for="user_id" class="label-floatlabel  "
+											for="user_id" class="label-floatlabel"
 											style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
 										<div class="floatlabel-wrapper" style="position: relative">
 											<label for="user_id" class="label-floatlabel  "
-												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label><input
-												type="text" class="form-control floatlabel" id="user_id"
-												value="" name="userId" placeholder="아이디" autocorrect="off"
-												autocapitalize="none"
-												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">아이디</label>
+												<input type="text" class="form-control floatlabel" id="user_id"	value="" name="userId" placeholder="아이디" style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 										<!--  -->
 
@@ -7732,8 +7727,7 @@ div {
 												style="position: absolute; top: 0px; left: 0px; display: none; opacity: 0; font-size: 11px; font-weight: 600; color: rgb(153, 153, 153); transition: all 0.1s ease-in-out 0s;">비밀번호</label><input
 												type="password" name="userPwd"
 												class="form-control floatlabel" id="password"
-												placeholder="비밀번호" autocorrect="off" autocapitalize="none"
-												style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
+												placeholder="비밀번호" style="padding-top: 0px; transition: all 0.1s ease-in-out 0s;">
 										</div>
 									</div>
 									<div class="form-group submitLine">
@@ -7741,6 +7735,15 @@ div {
 											value="1"> 나를 기억해 주세요.
 										</label>
 										<button type="submit" class="btn btn-block btn-signup">로그인</button>
+										<c:choose>
+											<c:when test="${empty sessionScope.loginUser and !empty msg }">
+											<br>
+												<div id="loginMsg" style="color:red">${ msg }</div>
+											</c:when>
+											<c:when test="${empty sessionScope.loginUser and empty msg }">
+												<div id="loginMsg"></div>
+											</c:when>
+										</c:choose>
 									</div>
 									<div class="notYetMember">
 										아직 계정이 없으신가요?&nbsp;&nbsp;&nbsp;&nbsp;<a
@@ -7758,18 +7761,15 @@ div {
 						</form>
 					</div>
 				</div>
-				<!-- /.row -->
-				<div class="mb_footDeco">
-					<img class="tlx_symbol" src="/images/tlx_pass_symbol_alt.svg"
-						alt="">
-				</div>
+		
 			</div>
 			<!-- /.memberWrap -->
 		</div>
 		<!-- /container -->
 
 		<br> <br> <br>
-
+		
+	
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	</div>

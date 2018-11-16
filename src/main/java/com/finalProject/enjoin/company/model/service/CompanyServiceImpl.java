@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.company.model.dao.CompanyDao;
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 
 
@@ -81,11 +82,19 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 
-
+	//이용코드 상태 업데이트 메소드
 	@Override
 	public int updateCode(String useCode) {
 		
 		return cd.updateCode(sqlSession, useCode);
+	}
+
+
+	//회원정보 수정 메소드
+	@Override
+	public int updateMember(Member m) {
+		
+		return cd.updateMember(sqlSession, m);
 	}
 
 

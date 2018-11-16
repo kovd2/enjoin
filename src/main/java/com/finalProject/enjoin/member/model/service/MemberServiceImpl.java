@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.member.model.service;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -34,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 		String encPassword = md.selectEncPassword(sqlSession, m);
 		
 		if(!passwordEncoder.matches(m.getUserPwd(), encPassword)) {
-			throw new LoginException("로그인 실패");
+			throw new LoginException("아이디와 비밀번호를 확인해주세요.");
 			
 			
 		}else {
@@ -93,6 +94,26 @@ public class MemberServiceImpl implements MemberService{
 	public int emailcheck(String user_email) {
 		
 		return md.emailcheck(sqlSession, user_email);
+	}
+
+	//카카오 로그인
+	@Override
+	public Member kakaoLogin(Member m) {
+		
+		return md.kakaoLogin(sqlSession, m);
+	}
+
+	@Override
+	public int loginCheck2(HashMap<String, Object> hmap) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//db에 카카오 계정 추가
+	@Override
+	public int kakaoInsert(Member m) {
+		
+		return md.kakaoInsert(sqlSession, m);
 	}
 
 
