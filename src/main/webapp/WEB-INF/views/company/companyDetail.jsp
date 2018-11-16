@@ -510,11 +510,11 @@ color:#feab2a;
 	<div class="resultTop">
 		<div class="resultMiddle">
 			<div class="resultList">
-				<c:forEach var="ci" items="${ comImg }" varStatus="status">
+			
 				<div class="imgArea">
-					<img src="resources/uploadFiles/facility/${ ci.UPLOAD_NAME }">
+					<img src="resources/uploadFiles/facility/${ comImg[0].UPLOAD_NAME }">
 				</div>
-				</c:forEach>
+				
 				
 				<div class="imgTitle">
 					<b>${ com.FACILITY_NAME }</b>

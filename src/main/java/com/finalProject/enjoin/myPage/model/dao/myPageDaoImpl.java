@@ -214,6 +214,13 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectOne("myPage.selectAsDetail", boardNo);
 	}
 
+	//가고싶은 시설 등록 전 조회
+	@Override
+	public int selectJJIMCheck(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("myPage.selectJJIMCheck", hmap);
+	}
+	
 	//가고싶은 시설 등록
 	@Override
 	public int insertJJIM(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
@@ -221,6 +228,31 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.insert("myPage.insertJJIM", hmap);
 	}
 
-	
+	//시설 이용전 패스 유무 확인
+	@Override
+	public int selectCheckPass(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("myPage.selectCheckPass", userNo);
+	}
+
+	//시설이용을 위한 패스 차감
+	@Override
+	public int updatePassCount(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updatePassCount", hmap);
+	}
+
+	//시설이용을 위한 패스내역 패스 차감
+	@Override
+	public int updatePassCountRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updatePassCountRecord", hmap);
+	}
+
+	@Override
+	public int updateUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updateUseCode", hmap);
+	}
 
 }

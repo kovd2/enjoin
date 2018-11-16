@@ -83,6 +83,18 @@ public interface myPageService {
 	//가고싶은 시설 등록
 	int insertJJIM(HashMap<String, Object> hmap);
 
+	//가고싶은 시설 등록 확인
+	int selectJJIMCheck(HashMap<String, Object> hmap);
+
+	//시설 이용전 패스 유무 확인
+	int selectCheckPass(int userNo);
+
+	//시설 이용을 위한 패스 차감
+	int updatePassCount(HashMap<String, Object> hmap);
+
+	//이용코드 입력
+	int updateUseCode(HashMap<String, Object> hmap);
+
 
 
 }

@@ -113,13 +113,13 @@ public class CompanyController {
 	//이용코드 읽어오는 컨트롤러
 	@RequestMapping("useCode.gs")
 	@ResponseBody
-	public String confirmCode(@RequestBody String useCode) {
+	public String confirmCode(@RequestParam(value="useCode") String useCode) {
 		
-		System.out.println("이용코드 : " + useCode.substring(0, 7));
+		System.out.println("이용코드 : " + useCode);
 		
 		
 		int result = 0;
-		result = cs.codeCk(useCode.substring(0, 7));
+		result = cs.codeCk(useCode);
 		
 		
 		System.out.println("result : " + result);
@@ -130,10 +130,10 @@ public class CompanyController {
 	//이용코드 업데이트 컨트롤러
 	@RequestMapping("updateCode.gs")
 	@ResponseBody
-	public String updateCode(@RequestBody String useCode) {
+	public String updateCode(@RequestParam(value="useCode") String useCode) {
 	
 		int result = 0;
-		result = cs.updateCode(useCode.substring(0, 7));
+		result = cs.updateCode(useCode);
 		
 		System.out.println("result2 : " + result);
 		return String.valueOf(result);

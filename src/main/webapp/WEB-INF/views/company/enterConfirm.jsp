@@ -304,11 +304,13 @@
                 
                 //userid 를 param.
                 var useCode = $("#useCode").val(); 
-                
+                alert(useCode);
                 $.ajax({
                     async: true,
                     type : 'POST',
-                    data : useCode,
+                    data : {
+                    	useCode : useCode
+                    },
                     url : "useCode.gs",
                     success : function(data) {
                         if (data*1 == 1) {
@@ -318,7 +320,9 @@
                             		  $.ajax({
                                	      async: true,
                                	      type : 'POST',
-                               	      data : useCode,
+                               	      data : {
+                               	    	  useCode : useCode
+                               	      },
                                	      url : "updateCode.gs",
                                	      success : function(data){
                                		     	 if(data*1 == 1){

@@ -493,7 +493,8 @@ color:#feab2a;
 			<div class="imgTel">
 			<b>${list[0].FACILITY_MANAGER_PHONE}</b>
 			</div>
-			<div class="like">
+
+			<div class="like" id="like">
 			<i class="glyphicon glyphicon-thumbs-up"></i>
 			1230
 			</div>
@@ -501,7 +502,7 @@ color:#feab2a;
 				<i class="fa fa-file-image-o"></i>
 					<b>시설미리보기</b>
 			</div>
-			<div class="enBtn">
+			<div class="enBtn" onclick="useFacility(${loginUser.userNo},${list[0].PASS_COUNT},${list[0].FACILITY_NO})">
 				<i class="fa fa-address-card"></i>
 				<b>시설이용하기</b>
 			</div>
@@ -650,12 +651,102 @@ color:#feab2a;
 		
 <jsp:include page="../common/footer.jsp"/>
 	<script>
-	function goReview(){
+	/* function goReview(){
 		
 		location.href="reviewForm.kch";	
+	} */
+    
+	$(function(){
+		var facilityNo = ${list[0].FACILITY_NO};
+		var userNo = ${ loginUser.userNo };
 		
+		//들어오자마자 시실핼
+		addJJIM(facilityNo, userNo);
+		
+		function addJJIM(facilityNo, userNo){
+			$.ajax({
+				url:"addJJIMCheck.ljs",
+				type:"GET",
+				data:{
+					facilityNo : facilityNo,
+					userNo : userNo
+				},
+				success:function(data){
+					console.log(data);
+					if(data > 0){
+						$('#like').css({"background":"#00bff0"});
+					} 
+					//클릭하면 실행
+					if(data != 1){
+						$("#like").click(function(){
+							$.ajax({
+								url:"addJJIM.ljs",
+								type:"get",
+								data:{
+									facilityNo : facilityNo,
+									userNo : userNo
+								},
+								success:function(data){
+									if(data > 0){
+										$('#like').css({"background":"#00bff0"});
+									} 
+									if(confirm("가기 싶은 시설로 등록이 되었습니다. 확인하러 가시겠습니까?") == true){
+										location.href="wantPlace.ljs?userNo=" + userNo;
+									}else{
+										return;
+									}
+								}
+							});
+						});
+					}
+				},
+				error:function(){
+					console.log("에러");
+				}
+			});	
+		}
+	});
+		
+	function useFacility(userNo, deductPass, facilityNo){
+		console.log(deductPass);
+		$.ajax({
+			url:"checkPass.ljs",
+			type:"get",
+			data:{
+				userNo:userNo
+			},
+			success:function(data){
+				console.log(data);
+				if(data < 0){
+					if(confirm("보유하고 있는 패스가 없습니다. 충전하러 가시겠습니까?") == true){
+						location.href="passPurchase.hh";
+					}else{
+						return;
+					}
+				}else if(data > deductPass){
+					console.log(data);
+					$.ajax({
+						url:"deductPass.ljs",
+						type:"get",
+						data:{
+							userNo:userNo,
+							deductPass:deductPass,
+							facilityNo:facilityNo
+						},
+						success:function(data){
+							confirm("시설이용 등록 완료되었습니다. 이용코드는 마이페이지에서 확인할수 있습니다.");
+						},
+						error:function(){
+							console.log("에러");
+						}
+					});
+				}
+			},
+			error:function(){
+				console.log("에러");
+			}
+		});
 	}
-	
 	
 	</script>
 

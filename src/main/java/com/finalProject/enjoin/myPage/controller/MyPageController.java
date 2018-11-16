@@ -125,14 +125,31 @@ public class MyPageController {
 		
 	}
 	
-	//가고싶은 시설 등록
-	@RequestMapping("addJJIM")
-	public @ResponseBody int addJJIM(@RequestParam("facilityNo") int facilityNo, @RequestParam("userNo") int userNo, HashMap<String, Object> hmap) {
+	//가고싶은 시설 등록 확인
+	@RequestMapping(value="addJJIMCheck.ljs")
+	public @ResponseBody int addJJIMCheck(@RequestParam("facilityNo") int facilityNo, @RequestParam("userNo") int userNo) {
+		
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		
 		hmap.put("facilityNo", facilityNo);
 		hmap.put("userNo", userNo);
 		
-		int result = mps.insertJJIM(hmap);
-		System.out.println("result : " + result);
+		int result = mps.selectJJIMCheck(hmap);
+		
+		return result;
+	}
+	
+	//가고싶은 시설 등록
+	@RequestMapping(value="addJJIM.ljs")
+	public @ResponseBody int addJJIM(@RequestParam("facilityNo") int facilityNo, @RequestParam("userNo") int userNo) {
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		
+		hmap.put("facilityNo", facilityNo);
+		hmap.put("userNo", userNo);
+		
+		int result = -1;
+				
+		result = mps.insertJJIM(hmap);
 		
 		return result;
 	}
@@ -178,6 +195,48 @@ public class MyPageController {
 		}	
 		
 		return mv;
+	}
+	
+	//시설 이용전 패스 유/무 확인
+	@RequestMapping(value="checkPass.ljs")
+	public @ResponseBody int checkPass(@RequestParam("userNo") int userNo) {
+		
+		int passCount = mps.selectCheckPass(userNo);
+		System.out.println("passCount : " + passCount);
+		
+		return passCount;
+	}
+	
+	//시설 이용을 위한 패스 차감
+	@RequestMapping(value="deductPass.ljs")
+	public @ResponseBody int deductPass(@RequestParam("userNo") int userNo, @RequestParam("deductPass") int deductPass, @RequestParam("facilityNo") int facilityNo, HashMap<String, Object> hmap) {
+		System.out.println("userNo : " + userNo);
+		System.out.println("deductPass : " + deductPass);
+		
+		hmap.put("userNo", userNo);
+		hmap.put("deductPass", deductPass);
+		hmap.put("facilityNo", facilityNo);
+		
+		int result = mps.updatePassCount(hmap);
+		
+		if(result > 0) {
+			String useCode = "";
+			for(int i = 0; i < 8; i++){
+
+				char lowerStr = (char)(Math.random() * 26 + 97);
+				if(i % 2 == 0){
+					useCode += (int)(Math.random() * 10);
+				}else{
+					useCode += lowerStr;
+				}
+			}
+			String.valueOf(useCode);
+			hmap.put("useCode", useCode);
+			System.out.println("useCode : " + useCode);
+		}
+		int result2 = mps.updateUseCode(hmap);
+		
+		return result;
 	}
 	
 	//이용기록
