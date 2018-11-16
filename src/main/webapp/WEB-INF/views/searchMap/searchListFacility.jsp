@@ -21,6 +21,9 @@
 <!-- Theme skin -->
 <link href="resources/style/skins/default.css" rel="stylesheet">
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
+
 <style>
 
 header{
@@ -315,8 +318,10 @@ height:20px;
 				</div>
 							<div class="contents">
 							<h4>${item.FACILITY_NAME}</h4>
-							<p>${item.FACILITY_AREA} ${item.FACILITY_SECTION} ${item.FACILITY_ADDRESS}</p>
-							<div class="category"><b>${item.FACILITY_EVENT}</b></div>
+							<p class="facility_address">${item.FACILITY_ADDRESS}</p>
+							<input type="hidden" class="facility_area" value="${item.FACILITY_AREA}">
+							<input type="hidden" class="facility_section" value="${item.FACILITY_SECTION}">
+							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
 							</div>
 				</div>
 				
@@ -328,6 +333,7 @@ height:20px;
 		
 		
 		<div class="mapArea">
+		<!-- 지도 -->
 			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 			
 			
@@ -345,11 +351,8 @@ height:20px;
 </div>
 
 
-
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
-		<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
@@ -357,12 +360,36 @@ height:20px;
 
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
-	
+
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new daum.maps.services.Geocoder();
 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(positionfunction(result, status) {
+	
+	var address = [];
+
+	<c:forEach items="${result}" var="item">
+
+	address.push("${item}");
+
+	</c:forEach>
+	console.log(address);
+	console.log(address.FACILITY_AREA);
+	console.log(address[1].FACILITY_SECTION);
+	for(var i=0; i<address.length; i++){
+		
+		
+	}
+	
+	
+
+
+		
+	geocoder.addressSearch(
+			
+			'서울 강남구 테헤란로 142',
+			
+		function(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 
 	     if (status === daum.maps.services.Status.OK) {
