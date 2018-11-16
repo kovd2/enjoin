@@ -502,7 +502,9 @@ i.fa.fa-comments{
 						
 						
 					}else if(data[key].parent_Coment_No != 0){
-						
+						$('#test').remove();
+							
+							$('#test1').remove();
 						$div0=$("<div class='MemberCommont1'>");
 						$i1=$("<i class='fa fa-comments'>");
 						$div0.append($i1);
@@ -685,12 +687,20 @@ i.fa.fa-comments{
 						 						<script>
 						 						 function check(coment_No){
 						 							var check = $("input:checkbox[class=check1]:checked").val();
-						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
+						 							
+						 							if(check=="check"){
+						 							$inputHidden = $('<input type="hidden" name="checked11" id="test">').attr('value',check);
 						 							$('.comment').append($inputHidden);
 						 							
 						 							
-						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
+						 							$inputHidden1 = $('<input type="hidden" name="coment_No" id="test1">').attr('value',coment_No);
 						 							$('.comment').append($inputHidden1);
+						 								
+						 							}else{
+							 							$('#test').remove();
+							 							
+							 							$('#test1').remove();
+						 							}
 						 							
 						 						 }
 						 						</script>

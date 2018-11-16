@@ -592,7 +592,7 @@ select.searchSelect {
 						<button class="writerBtn" onclick="goCrew()">크루모집작성</button>
 					</div>
 					</c:if>
-					<form action="MemberSearchList.shw2" method="get">
+					<form action="crewSearchList.shw2" method="get">
 						<table >
 							<tr>
 								<td colspan="2">
@@ -618,10 +618,12 @@ select.searchSelect {
 									<li><a>이전</a></li>
 								</c:if>
 								<c:if test="${ pi.currentPage > 1 }">
+									
 									<c:url var="listBack" value="crewRecruitmentBoard.shw2">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
-									
 									</c:url>
+									
+									
 									<li><a href="${ listBack }">이전</a></li>
 								</c:if>
 
