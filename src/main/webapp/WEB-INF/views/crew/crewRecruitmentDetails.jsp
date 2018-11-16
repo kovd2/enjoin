@@ -417,6 +417,13 @@ i.fa.fa-comments{
 	height: 110px;
     margin-left: -8px;
 }
+.deleteBtn{
+	color:gray;
+
+}
+.fa fa-comments{
+	font-size:22px;
+}
 
 </style>
 </head>
@@ -432,14 +439,115 @@ i.fa.fa-comments{
 			type : "post",
 			data : $("#coment3").serialize(),
 			success:function(data){
-				alert(data);
+				for(var key in data){
+					
+					data[key].coment_No;
+					
+					
+				}
+				$(".commentBox").empty();
+				
 				
 				for(var key in data){
-					alert(data[key]);
-					alert(data[key].parent_Coment_No);
+						
+					if(data[key].parent_Coment_No == 0){
+						
+						$div0=$("<div class='MemberCommont'id='MemberCommont'>");
+					
+						$div0.append("<img class='UserImg'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+						
+						$div1=$("<div class='Comment1'>");
+						$div0.append($div1);
+						
+						$p1=$("<p class='userId'>");
+						$div1.append($p1);
+						
+						$p1.append(data[key].user_Name);
+						
+						$div2=$("<div class='spansBtn'>");
+						$div1.append($div2);
+						
+												
+						$span1=$("<span class='crewOk'>");
+						$div2.append($span1);
+						$i1=$("<i class='fa fa-user-circle'>");
+						
+						$span1.append($i1);
+						$span1.append('답글');
+						
+						$input1 = $("<input class='check1' type='checkbox' name='check' value='check' onclick='check(" + data[key].coment_No + ")'>");
+						$span1.append($input1);
+						
+						$span2=$("<span class='deleteBtn'>");
+						$div2.append($span2);
+						
+						$i2 = $("<i clss='fa fa-trash'>");
+						$span2.append($i2);
+						$span2.append('삭제');
+						
+						$div3=$("<div class='area1'>");
+						$div1.append($div3);
+						
+						$p2=$("<p class='Comment'>");
+						$div3.append($p2);
+						
+						$p2.append(data[key].coment_Content);
+						
+						
+						$('.commentBox').append($div0);
+						$(".check1").attr("name","uncheck");
+						
+						
+						
+						
+						
+					}else if(data[key].parent_Coment_No != 0){
+						
+						$div0=$("<div class='MemberCommont1'>");
+						$i1=$("<i class='fa fa-comments'>");
+						$div0.append($i1);
+						
+						$span0=$("<span class='ComentP'>");
+						$div0.append($span0);
+						$span0.append('답글');
+						$div0.append("<img class='UserImg1'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+						
+						$div1=$("<div class='Comment2'>");
+						$div0.append($div1);
+						
+						$p0=$("<p class='userId1'>");
+						$div1.append($p0);
+						$p0.append(data[key].user_Name);
+						
+						$div2=$("<div class='spansBtn'>");
+						$div1.append($div2);
+						
+						$span1=$("<span class='deleteBtn'>");
+						$div2.append($span1);
+						
+						$i2=$("<i class='fa fa-trash'>");
+						
+						$span1.append($i2);
+						$i2.append('삭제');
+						
+						$div3=$("<div class='area1'>");
+						$div1.append($div3);
+						
+						$p1=$("<p class='Comment'>");
+						$div3.append($p1);
+						$p1.append(data[key].coment_Content);
+						
+						$('.commentBox').append($div0);
+						$(".check1").attr("name","uncheck");
+					
+						
+						
+						
+					}
+					
+					
 				}
 				
-				alert(data1);
 				
 				
 			},
@@ -523,7 +631,7 @@ i.fa.fa-comments{
 						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
 						 				</span>
 						 		
-						 				<span style="color:gray" class="deleteBtn">
+						 				<span  class="deleteBtn">
 						 					<i class="fa fa-trash">
 						 					</i>
 						 					삭제
@@ -539,7 +647,7 @@ i.fa.fa-comments{
 						 		</c:when>
 						 		<c:when test="${c.parent_Coment_No != 0 }">
 						 		<div class="MemberCommont1">
-						 			<i class="fa fa-comments" style="font-size:22px"></i>
+						 			<i class="fa fa-comments"></i>
 						 			<span class="ComentP">답글</span>
 						 			<img class="UserImg1" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 						 			<div class="Comment2">
@@ -547,7 +655,7 @@ i.fa.fa-comments{
 						 				<div class="spansBtn">
 						 			
 						 				
-						 				<span style="color:gray" class="deleteBtn">
+						 				<span class="deleteBtn">
 						 					<i class="fa fa-trash">
 						 					</i>
 						 					삭제
@@ -583,8 +691,6 @@ i.fa.fa-comments{
 						 							
 						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
 						 							$('.comment').append($inputHidden1);
-						 							
-						 							
 						 							
 						 						 }
 						 						</script>

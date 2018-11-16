@@ -205,10 +205,12 @@ color:#feab2a;
 
 #listwrap1>.list{
 	
-	width:150px;
+	width:200px;
 	height:100px;
 	/* border:1px solid black; */
 	padding:3px;
+	margin-bottom:70px;
+	
 }
 #listwrap2{
 	margin-left:230px;
@@ -218,29 +220,21 @@ color:#feab2a;
 	
 }
 #listwrap2>.list{
-	width:150px;
-	height:100px;
-	/* border:1px solid black; */
-	padding:3px;
-	
-}
-#listwrap3{
-	margin-left:300px;
-	width:150px;
-	height:300px;
-	position:absolute;
-	
-}
-#listwrap3>.list{
-	width:150px;
-	height:100px;
-	padding:3px;
-	/* border:1px solid black; */
-	
-}
-.list>img{
 	width:200px;
+	height:100px;
+	/* border:1px solid black; */
+	padding:3px;
+	margin-bottom:70px;
+	margin-left:50px;
+	
+}
+
+
+.list>img{
+	width:250px;
 	border-radius:3px;
+	height:150px;
+	
 
 }
 .list>img:hover{
@@ -255,6 +249,7 @@ color:#feab2a;
 	width:500px;
 	height:400px;
 	padding-top:10px;
+	margin-top:80px;
 	border-top:1px solid #eee;
 }
 
@@ -498,9 +493,10 @@ color:#feab2a;
 			<div class="imgTel">
 			<b>${list[0].FACILITY_MANAGER_PHONE}</b>
 			</div>
+
 			<div class="like" id="like">
 			<i class="glyphicon glyphicon-thumbs-up"></i>
-			관심시설
+			1230
 			</div>
 			<div class="preview">
 				<i class="fa fa-file-image-o"></i>
@@ -658,8 +654,8 @@ color:#feab2a;
 	/* function goReview(){
 		
 		location.href="reviewForm.kch";	
-		
 	} */
+    
 	$(function(){
 		var facilityNo = ${list[0].FACILITY_NO};
 		var userNo = ${ loginUser.userNo };

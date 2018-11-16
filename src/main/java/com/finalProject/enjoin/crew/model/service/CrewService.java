@@ -91,6 +91,9 @@ public interface CrewService {
 	//크루 활동 상세보기 클릭시 조회수 1증가
 	int updateBoardCount(int board_No);
 	
+	//ajax를 처리한 댓글 조회
+	List<CrewComent> crewAjaxComentSelect();
+	
 	
 
 	
