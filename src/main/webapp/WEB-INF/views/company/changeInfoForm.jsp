@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENJOIN</title>
 
 <style>
 .realUserReview .btnMore {
@@ -529,8 +529,6 @@ color:#feab2a;
 </style>
 
 
-</style>
-
 </head>
 <body>
 	<div id="wrapper">
@@ -542,7 +540,7 @@ color:#feab2a;
 		
 	<div class="rightContainer">
 		<b id="a_index" class="current" style="font-size:30px; color:black; text-indent:30px;"><i class="fa fa-clone"></i>  내 정보 수정</b>
-		<form class="memberForm" action="saveInfo.ljs" enctype="multipart/form-data" method="post" name="modify_form" id="modify_form">
+		<form class="memberForm" action="saveInfo.gs" enctype="multipart/form-data" method="post" name="modify_form" id="modify_form">
 
             <!-- <input type="hidden" name="img_temp" id="img_temp">
             <input type="hidden" name="r" value="">
@@ -589,25 +587,22 @@ color:#feab2a;
 
 
 					<div class="col-md-6">
-						<div class="form-group userPicUploadBox">
-								<label style="font-size:25px;"><b>프로필 사진</b></label>			
-							<div class="inputMemberInfo">	
-								<label>
-									<img class="SHInsertImg_plusImg" id="SHInsertImg_plusImg" src="resources/images/myPage/user.png" />
-									<img class="drawThumbnailImg" id="drawThumbnailImg" /> 
-									<input type="file" onchange="previewFile()" class="SGThumbnailImg" id="SGThumbnailImg" name="photo" />
-								</label>
-							</div>
-							<!-- <div class="profilImg">
-                 		<label class="">프로필 사진</label>
-                 		<div class="profilPhoto"><img src="resources/images/myPage/user.png" style="width:150px; height:150px;"></div>
-                 		<input type="file" name="photo">
-                  	</div> -->
-							<span class="text-danger">미리보기로 업로드된 사진을 확인하신 후, 하단의 저장하기
-								버튼을 꼭 눌러주세요.</span> <span>정면, 상반신 사진 / 가로 400px*세로400px 이상의 사진을
-								등록해주세요.</span> <span>프로필 사진은 제휴시설 이용시 본인 확인 용도로 사용됩니다.</span> <span>사진으로
-								본인 확인이 어려울 경우, 제휴시설 입장이 제한 될 수 있습니다.</span>
-						</div>
+						 <div class="form-group">
+                		  <label for="managerName" class="">담당자이름</label>
+              			    <input type="text" class="form-control" id="managerName" value="${loginUser.managerName}" name="managerName" >
+          			     </div>
+          			     <div class="form-group">
+                		  <label for="managerPhone" class="">담당자번호</label>
+              			    <input type="text" class="form-control" id="managerPhone" value="${loginUser.managerPhone}" name="managerPhone" >
+          			     </div>
+          			     <div class="form-group">
+                		  <label for="managerEmail" class="">담당자이메일</label>
+              			    <input type="text" class="form-control" id="managerEmail" value="${loginUser.managerEmail}" name="managerEmail" >
+          			     </div>
+          			     <div class="form-group">
+                		  <label for="copEmail" class="">세금계산서용 이메일</label>
+              			    <input type="text" class="form-control" id="copEmail" value="${loginUser.copEmail}" name="copEmail" >
+          			     </div>
 					</div><!-- /.col -->
             </div><!-- /.row -->
 			
@@ -622,6 +617,11 @@ color:#feab2a;
 	</div>
 	</div>
 	<br><br><br><br><br><br>
+	<script>
+	function saveBtn(){
+		$("#modify_form").submit();
+	}
+	</script>
 	
 	
 	

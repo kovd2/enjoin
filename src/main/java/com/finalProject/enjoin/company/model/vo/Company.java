@@ -16,6 +16,7 @@ public class Company implements Serializable{
 	private String facilityArea;			//제휴업체지역
 	private String facilitySection;			//제휴업체구역
 	private String facilityAddress;			//제휴업체상세주소
+	private String totalAddress;			//합친 주소
 	private String facilityEvent;			//제휴업체종목
 	private String facilityManagerName;		//제휴업체 담당자 이름
 	private String facilityManagerPhone;	//제휴업체 담당자 번호
@@ -24,25 +25,26 @@ public class Company implements Serializable{
 	private String sat_time;				//토요일 이용시간
 	private String sun_time;				//공휴일 및 일요일 이용시간
 	
-	
 	public Company() {}
 
-	public Company(int facilityCopNo, Date facilityRequestDate, Date facilityStartDate, Date facilityEndDate,
-			String facilityStatus, String passCount, int facilityNo, String facilityName, String facilityArea,
-			String facilitySection, String facilityAddress, String facilityEvent, String facilityManagerName,
-			String facilityManagerPhone, String timeForCall, String mon_fri_time, String sat_time, String sun_time) {
+	public Company(int facilityNo, int facilityCopNo, Date facilityRequestDate, Date facilityStartDate,
+			Date facilityEndDate, String facilityStatus, String passCount, String facilityName, String facilityArea,
+			String facilitySection, String facilityAddress, String totalAddress, String facilityEvent,
+			String facilityManagerName, String facilityManagerPhone, String timeForCall, String mon_fri_time,
+			String sat_time, String sun_time) {
 		super();
+		this.facilityNo = facilityNo;
 		this.facilityCopNo = facilityCopNo;
 		this.facilityRequestDate = facilityRequestDate;
 		this.facilityStartDate = facilityStartDate;
 		this.facilityEndDate = facilityEndDate;
 		this.facilityStatus = facilityStatus;
 		this.passCount = passCount;
-		this.facilityNo = facilityNo;
 		this.facilityName = facilityName;
 		this.facilityArea = facilityArea;
 		this.facilitySection = facilitySection;
 		this.facilityAddress = facilityAddress;
+		this.totalAddress = totalAddress;
 		this.facilityEvent = facilityEvent;
 		this.facilityManagerName = facilityManagerName;
 		this.facilityManagerPhone = facilityManagerPhone;
@@ -50,6 +52,14 @@ public class Company implements Serializable{
 		this.mon_fri_time = mon_fri_time;
 		this.sat_time = sat_time;
 		this.sun_time = sun_time;
+	}
+
+	public int getFacilityNo() {
+		return facilityNo;
+	}
+
+	public void setFacilityNo(int facilityNo) {
+		this.facilityNo = facilityNo;
 	}
 
 	public int getFacilityCopNo() {
@@ -100,14 +110,6 @@ public class Company implements Serializable{
 		this.passCount = passCount;
 	}
 
-	public int getFacilityNo() {
-		return facilityNo;
-	}
-
-	public void setFacilityNo(int facilityNo) {
-		this.facilityNo = facilityNo;
-	}
-
 	public String getFacilityName() {
 		return facilityName;
 	}
@@ -138,6 +140,14 @@ public class Company implements Serializable{
 
 	public void setFacilityAddress(String facilityAddress) {
 		this.facilityAddress = facilityAddress;
+	}
+
+	public String getTotalAddress() {
+		return totalAddress;
+	}
+
+	public void setTotalAddress(String totalAddress) {
+		this.totalAddress = totalAddress;
 	}
 
 	public String getFacilityEvent() {
@@ -198,14 +208,14 @@ public class Company implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Company [facilityCopNo=" + facilityCopNo + ", facilityRequestDate=" + facilityRequestDate
-				+ ", facilityStartDate=" + facilityStartDate + ", facilityEndDate=" + facilityEndDate
-				+ ", facilityStatus=" + facilityStatus + ", passCount=" + passCount + ", facilityNo=" + facilityNo
+		return "Company [facilityNo=" + facilityNo + ", facilityCopNo=" + facilityCopNo + ", facilityRequestDate="
+				+ facilityRequestDate + ", facilityStartDate=" + facilityStartDate + ", facilityEndDate="
+				+ facilityEndDate + ", facilityStatus=" + facilityStatus + ", passCount=" + passCount
 				+ ", facilityName=" + facilityName + ", facilityArea=" + facilityArea + ", facilitySection="
-				+ facilitySection + ", facilityAddress=" + facilityAddress + ", facilityEvent=" + facilityEvent
-				+ ", facilityManagerName=" + facilityManagerName + ", facilityManagerPhone=" + facilityManagerPhone
-				+ ", timeForCall=" + timeForCall + ", mon_fri_time=" + mon_fri_time + ", sat_time=" + sat_time
-				+ ", sun_time=" + sun_time + "]";
+				+ facilitySection + ", facilityAddress=" + facilityAddress + ", totalAddress=" + totalAddress
+				+ ", facilityEvent=" + facilityEvent + ", facilityManagerName=" + facilityManagerName
+				+ ", facilityManagerPhone=" + facilityManagerPhone + ", timeForCall=" + timeForCall + ", mon_fri_time="
+				+ mon_fri_time + ", sat_time=" + sat_time + ", sun_time=" + sun_time + "]";
 	}
 	
 	

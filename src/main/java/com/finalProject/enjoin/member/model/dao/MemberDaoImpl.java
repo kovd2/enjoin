@@ -2,6 +2,7 @@ package com.finalProject.enjoin.member.model.dao;
 
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -78,6 +79,27 @@ public class MemberDaoImpl implements MemberDao{
 	public int emailcheck(SqlSessionTemplate sqlSession, String user_email) {
 		
 		return sqlSession.selectOne("Member.emailCheck", user_email);
+	}
+	
+	//아이디 비밀번호 확인
+	@Override
+	public int loginCheck2(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		
+		return sqlSession.selectOne("Member.loginCheck2", hmap);
+	}
+	
+	//카카오 로그인
+	@Override
+	public Member kakaoLogin(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("Member.kakaoLogin", m);
+	}
+
+	//db에 카카오 계정 추가
+	@Override
+	public int kakaoInsert(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.insert("Member.kakaoInsert", m);
 	}
 
 

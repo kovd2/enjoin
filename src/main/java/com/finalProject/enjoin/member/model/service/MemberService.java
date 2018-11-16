@@ -1,5 +1,6 @@
 package com.finalProject.enjoin.member.model.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.finalProject.enjoin.member.model.exception.LoginException;
@@ -22,6 +23,15 @@ public interface MemberService {
 	int idcheck(String userid);
 
 	int emailcheck(String user_email);
+
+	//아이디 비밀번호 확인용
+	int loginCheck2(HashMap<String, Object> hmap);
+
+	//카카오 로그인 
+	Member kakaoLogin(Member m);
+
+	//db에 계정 추가
+	int kakaoInsert(Member m);
 
 
 

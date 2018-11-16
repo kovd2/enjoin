@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 
 public interface CompanyDao {
@@ -26,6 +27,9 @@ public interface CompanyDao {
 
 	//이용코드 수정 메소드
 	int updateCode(SqlSessionTemplate sqlSession, String useCode);
+	
+	//회원정보 수정 메소드
+	int updateMember(SqlSessionTemplate sqlSession, Member m);
 
 
 

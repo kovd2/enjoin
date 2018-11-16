@@ -222,6 +222,13 @@ public class MemberController {
 	}
 	
 	
+	
+	//로그인 실패 했을때 가는 메소드
+	@RequestMapping("loginFail.me")
+	public String loginFail() {
+		return "member/loginFail";
+	}
+	
 	//로그인용 컨트롤러
 	@RequestMapping("login.me")
 	public String loginCheck(Member m, Model model) {
@@ -250,10 +257,56 @@ public class MemberController {
 			
 			model.addAttribute("msg", e.getMessage());
 			
-			return "common/errorPage";
+			return "member/login";
 		}
 		
 		
+	}
+	
+	//카카오 로그인용 컨트롤러
+	@RequestMapping("kakaoLogin.me")
+	@ResponseBody
+	public String kakaoLogin(Member m, Model model, @RequestParam(value = "userName", required = false) String userName, 
+							@RequestParam(value = "email", required = false) String email) {
+		
+		String userName2 = userName.replace("\"",  "");
+		String email2 = email.replace("\"",  "");
+		System.out.println("model:" + model);
+		
+		m.setUserName(userName2);
+		m.setEmail(email2);
+		
+		System.out.println("m" + m);
+		Member loginUser;
+		
+		loginUser=ms.kakaoLogin(m);
+		
+		
+		System.out.println("userName : "+ userName2);
+		System.out.println("email : " + email2);
+		
+		System.out.println("loginUser : " + loginUser);
+		if(loginUser == null) {		//카카오로 가입한 유저의 정보가 없을시
+			System.out.println("in if");
+			int result = 0;
+			
+			result = ms.kakaoInsert(m);		//db에 정보 추가
+			
+			if(result > 0) {		//insert 성공시 해당 계정으로 로그인
+				
+				Member loginUser2 = ms.kakaoLogin(m);
+				model.addAttribute("loginUser", loginUser2);
+				return "redirect:goMain.me";
+			}
+			
+		}
+			
+		//카카오로 가입한 유저의 정보가 있을시 로그인
+		model.addAttribute("loginUser", loginUser);
+		System.out.println("model : " +  model);
+		
+		
+		return "redirect:goMain.me";
 	}
 	
 

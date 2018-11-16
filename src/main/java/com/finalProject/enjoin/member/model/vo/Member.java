@@ -24,13 +24,14 @@ public class Member implements java.io.Serializable{
 	private String copCon;			//업태
 	private String copEmail;		//세금계산서용 이메일
 	private String upload_name;		//프로필용 이미지
+	private String loginType;		//로그인 타입
 	
 	public Member() {}
 
 	public Member(int userNo, String userType, String userId, String userPwd, String userName, String phone,
 			String email, Date enrollDate, Date modifyDate, String status, String managerName, String managerPhone,
 			String managerEmail, String copNo, String ceoName, String copName, String copAddress, String copType,
-			String copCon, String copEmail, String upload_name) {
+			String copCon, String copEmail, String upload_name, String loginType) {
 		super();
 		this.userNo = userNo;
 		this.userType = userType;
@@ -53,6 +54,7 @@ public class Member implements java.io.Serializable{
 		this.copCon = copCon;
 		this.copEmail = copEmail;
 		this.upload_name = upload_name;
+		this.loginType = loginType;
 	}
 
 	public int getUserNo() {
@@ -223,6 +225,14 @@ public class Member implements java.io.Serializable{
 		this.upload_name = upload_name;
 	}
 
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userType=" + userType + ", userId=" + userId + ", userPwd=" + userPwd
@@ -230,8 +240,10 @@ public class Member implements java.io.Serializable{
 				+ ", modifyDate=" + modifyDate + ", status=" + status + ", managerName=" + managerName
 				+ ", managerPhone=" + managerPhone + ", managerEmail=" + managerEmail + ", copNo=" + copNo
 				+ ", ceoName=" + ceoName + ", copName=" + copName + ", copAddress=" + copAddress + ", copType="
-				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + ", upload_name=" + upload_name + "]";
+				+ copType + ", copCon=" + copCon + ", copEmail=" + copEmail + ", upload_name=" + upload_name
+				+ ", loginType=" + loginType + "]";
 	}
 
+	
 	
 }

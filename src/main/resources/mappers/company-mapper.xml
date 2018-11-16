@@ -16,7 +16,8 @@
 		<result property="facilityArea" column="FACILITY_AREA"/>
 		<result property="facilitySection" column="FACILITY_SECTION"/>
 		<result property="facilityAddress" column="FACILITY_ADDRESS"/>	
-		<result property="facilityEvent" column="FACILITY_EVENT"/>
+		<result property="totalAddress" column = "TOTAL_ADDRESS"/>
+ 		<result property="facilityEvent" column="FACILITY_EVENT"/>
 		<result property="facilityManagerName" column="FACILITY_MANAGER_NAME"/>
 		<result property="facilityManagerPhone" column="FACILITY_MANAGER_PHONE"/>
 		<result property="timeForCall" column="TIME_FOR_CALL"/>
@@ -73,10 +74,10 @@
 	<insert id="insertCompany" parameterType="Company">
 		INSERT INTO FACILITY(FACILITY_NO, FACILITY_REQUESTDATE, FACILITY_STARTDATE, FACILITY_ENDDATE, 
 					FACILITY_STATUS, PASS_COUNT, FACILITY_COPNO, FACILITY_NAME, FACILITY_AREA, FACILITY_SECTION,
-					FACILITY_ADDRESS, FACILITY_EVENT, FACILITY_MANAGER_NAME, FACILITY_MANAGER_PHONE, TIME_FOR_CALL,
+					FACILITY_ADDRESS, TOTAL_ADDRESS, FACILITY_EVENT, FACILITY_MANAGER_NAME, FACILITY_MANAGER_PHONE, TIME_FOR_CALL,
 					MON_FRI_TIME, SAT_TIME, SUN_TIME) 
-		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, SYSDATE, SYSDATE, DEFAULT, #{passCount}, #{facilityCopNo}, #{facilityName},
-					#{facilityArea}, #{facilitySection}, #{facilityAddress}, #{facilityEvent}, #{facilityManagerName},
+		VALUES(SEQ_FACILITY_NO.NEXTVAL, SYSDATE, NULL, NULL, DEFAULT, #{passCount}, #{facilityCopNo}, #{facilityName},
+					#{facilityArea}, #{facilitySection}, #{facilityAddress}, #{totalAddress}, #{facilityEvent}, #{facilityManagerName},
 					#{facilityManagerPhone}, #{timeForCall}, #{mon_fri_time}, #{sat_time}, #{sun_time})
 	</insert>
 	
@@ -155,6 +156,21 @@
 		UPDATE PASSRECORD
 		SET PP_STATUS = 2
 		WHERE USE_CODE = #{useCode}
+	</update>
+	
+	<!-- 회원정보 수정용 쿼리문 -->
+	<update id="memberUpdate" parameterType="Member">
+		UPDATE MEMBER
+		SET USER_NAME = #{userName},
+			USER_PWD = #{userPwd},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			MANAGER_NAME = #{managerName},
+			MANAGER_PHONE = #{managerPhone},
+			MANAGER_EMAIL = #{managerEmail},
+			COP_EMAIL = #{copEmail},
+			MODIFY_DATE = SYSDATE
+		WHERE USER_ID = #{userId}				
 	</update>
 </mapper>
 

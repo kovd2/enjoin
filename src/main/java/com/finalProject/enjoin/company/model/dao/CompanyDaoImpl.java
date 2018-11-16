@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 
 @Repository
@@ -81,6 +82,13 @@ public class CompanyDaoImpl implements CompanyDao{
 	public int updateCode(SqlSessionTemplate sqlSession, String useCode) {
 		
 		return sqlSession.update("Company.codeUpdate", useCode);
+	}
+
+	//회원정보 수정용 메소드
+	@Override
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.update("Company.memberUpdate", m);
 	}
 
 

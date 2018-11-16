@@ -2,6 +2,7 @@ package com.finalProject.enjoin.member.model.dao;
 
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -37,6 +38,15 @@ public interface MemberDao {
 
 	//이메일 중복체크
 	int emailcheck(SqlSessionTemplate sqlSession, String user_email);
+
+	//아이디 비밀번호 확인용
+	int loginCheck2(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+	
+	//카카오로그인
+	Member kakaoLogin(SqlSessionTemplate sqlSession, Member m);
+
+	//db에 카카오 계정 추가
+	int kakaoInsert(SqlSessionTemplate sqlSession, Member m);
 
 
 

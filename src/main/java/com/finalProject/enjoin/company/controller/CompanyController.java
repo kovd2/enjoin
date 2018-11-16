@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.company.model.service.CompanyService;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.member.model.vo.Member;
 
 
 @SessionAttributes("loginUser")
@@ -29,6 +31,8 @@ public class CompanyController {
 	
 	@Autowired
 	private CompanyService cs;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 
 	//회원정보 수정 폼 보여주는 메소드
@@ -36,6 +40,32 @@ public class CompanyController {
 	public String showChangeInfo() {
 		
 		return "company/changeInfoForm";
+	}
+	
+	//회원정보 수정 저장용 메소드
+	@RequestMapping("saveInfo.gs")
+	public String updateMember(ModelAndView mv, Member m, HttpServletRequest request) {
+		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+		m.setUserNo(userNo);
+		
+		System.out.println("m : " + m);
+		
+		String encPassword = passwordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPassword);
+		
+		int result = 0;
+		result = cs.updateMember(m);
+		
+		System.out.println(result);
+		
+		if(result >0) {
+			return "company/changeInfoComplete";
+		}else {
+			return "common/errorPage";
+			
+		}
+		
+		
 	}
 	//제휴시설 등록폼 보여주는 메소드
 	@RequestMapping("companyInsertForm.gs")
@@ -169,6 +199,11 @@ public class CompanyController {
 		String passCount = request.getParameter("passCount");
 		String timeForCall = request.getParameter("timeForCall");
 		
+		
+		String totalAddress = facilityArea + " " + facilitySection + " " +  facilityAddress;
+		
+		System.out.println(totalAddress);
+		
 		//date사용
 		/*java.sql.Date facilityRequestDate = java.sql.Date.valueOf(facilityRequestDate2);
 		java.sql.Date facilityStartDate = java.sql.Date.valueOf(facilityStartDate2);
@@ -197,6 +232,8 @@ public class CompanyController {
 		c.setSun_time(sun_time);
 		c.setPassCount(passCount);
 		c.setTimeForCall(timeForCall);
+		
+		c.setTotalAddress(totalAddress);
 		
 		System.out.println("Company : " + c);
 		

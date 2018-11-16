@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.company.model.service;
 
 import com.finalProject.enjoin.company.model.vo.Company;
+import com.finalProject.enjoin.member.model.vo.Member;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,9 @@ public interface CompanyService {
 
 	//이용코드 업데이트 메소드
 	int updateCode(String useCode);
+
+	//회원정보 수정 메소드
+	int updateMember(Member m);
 
 
 

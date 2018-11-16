@@ -25,6 +25,7 @@
 		<result property="copCon" column="COP_CON"/>
 		<result property="copEmail" column="COP_EMAIL"/>
 		<result property="upload_name" column="UPLOAD_NAME"/>
+		<result property="loginType" column="LOGIN_TYPE"/>
 	</resultMap>
 
 	<!-- 로그인 정보 조회용 쿼리문 -->
@@ -38,16 +39,16 @@
 	
 	<!-- 개인회원가입용 쿼리 -->
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS) 
-		VALUES(USER_NO.NEXTVAL, '1', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT)
+		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS, LOGIN_TYPE) 
+		VALUES(USER_NO.NEXTVAL, '1', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT, 'normal')
 	</insert>
 	
 	<!-- 제휴시설 회원가입용 쿼리 -->
 	<insert id="insertCompany" parameterType="Member">
 		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_ID, USER_PWD, USER_NAME, PHONE, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS,
-							MANAGER_NAME, MANAGER_PHONE, MANAGER_EMAIL, COP_NO, CEO_NAME, COP_NAME, COP_ADDRESS, COP_TYPE, COP_CON, COP_EMAIL)
+							MANAGER_NAME, MANAGER_PHONE, MANAGER_EMAIL, COP_NO, CEO_NAME, COP_NAME, COP_ADDRESS, COP_TYPE, COP_CON, COP_EMAIL, LOGIN_TYPE)
 		VALUES(USER_NO.NEXTVAL, '2', #{userId}, #{userPwd}, #{userName}, #{phone}, #{email}, SYSDATE, SYSDATE, DEFAULT,
-							#{managerName}, #{managerPhone}, #{managerEmail}, #{copNo}, #{ceoName}, #{copName}, #{copAddress}, #{copType}, #{copCon}, #{copEmail})
+							#{managerName}, #{managerPhone}, #{managerEmail}, #{copNo}, #{ceoName}, #{copName}, #{copAddress}, #{copType}, #{copCon}, #{copEmail}, 'normal')
 		
 	</insert>
 	
@@ -114,5 +115,27 @@
 		WHERE EMAIL = #{email}
 	</select>
 
+	<!-- 아이디로그인 확인 -->
+	<select id="loginCheck2" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT (*)
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+		AND USER_PWD = #{userPwd}
+	</select>
+	
+	<!-- 카카오로그인 -->
+	<select id="kakaoLogin" resultType="com.finalProject.enjoin.member.model.vo.Member" parameterType="Member">
+		SELECT *
+		FROM MEMBER
+		WHERE LOGIN_TYPE = 'kakao'
+		AND EMAIL = #{email}
+		AND USER_NAME = #{userName}
+	</select>
+	
+	<!-- 카카오 계정 추가 -->
+	<insert id="kakaoInsert" parameterType="Member" >
+		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_NAME, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS, LOGIN_TYPE) 
+		VALUES(USER_NO.NEXTVAL, '1', #{userName}, #{email}, SYSDATE, SYSDATE, DEFAULT, 'kakao')
+	</insert>
 </mapper>
 
