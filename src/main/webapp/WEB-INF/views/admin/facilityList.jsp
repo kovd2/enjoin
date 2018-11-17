@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 <title>Insert title here</title>
-
 <style>
 	.Area {
 	width: 100%;
@@ -32,8 +31,8 @@
 .fromArea::-webkit-scrollbar {display:none;}
 
 .fromArea1 {
-	width: 1152px;
-    height: 768px;
+	width: 1032px;
+    height: 678px;
     border-radius: 20px;
     border: 1px solid black;
     background: white;
@@ -180,7 +179,7 @@ span.m8 {
 }
 
 .mArea {
-	width: 154px;
+	width: 125px;
     
 }
 
@@ -191,7 +190,7 @@ span.m8 {
 }
 
 .mArea3 {
-	width: 276px;
+	width: 254px;
     
 }
 
@@ -354,13 +353,13 @@ hr {
     line-height: 35px;
     font-size: 17px;
     float: left;
-    margin-left: 26px;
+    margin-left: 17PX;
     font-weight: bold;
     color: #676565;
    
 }
 .mArea5A2{
-	width: 106px;
+	width: 97px;
     
 }
 .mArea8{
@@ -396,33 +395,23 @@ button.Contentbtn {
 }
 
 </style>
-</head>
 <script>
-	function crewRecruitmentDetails(board_No,user_No,crew_No){
-		var board_No = board_No;
-		var user_No = user_No;
-		var crew_No = crew_No;
+	function statusFacility(FACILITY_NO,FACILITY_NAME){
+		var FACILITY_NO = FACILITY_NO;
+		var FACILITY_NAME = FACILITY_NAME;
 		
-		
-		location.href = "crewRecruitmentDetails.shw2?board_No="+ board_No + "&user_No=" + user_No + "&crew_No=" + crew_No;
-	}
-	function StatusBoard(board_No,board_Title){
-		var board_No = board_No;
-		var board_Title = board_Title;
-		
-		if(confirm(board_Title + "를 삭제시키겠습니까?") == true){
-			location.href="adminCrewRecruitmentStatus.shw?board_No=" + board_No;
-			alert("삭제완료!");
+		if(confirm(FACILITY_NAME + "를 제휴등록 하시겠습니까?") == true){
+			location.href="statusFacility.shw?FACILITY_NO=" + FACILITY_NO;
+			alert("등록완료!");
 		}else{
 			return;
 		}
 		
 		
 	}
-	
-	
 
 </script>
+</head>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="Area">
@@ -432,18 +421,18 @@ button.Contentbtn {
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain"> 크루모집게시판</h2>
+									<h2 class="MemberSearchMain"> 제휴리스트</h2>
 									<hr>
 								</td>
 							</tr>
 							<tr>
 								<td class="MemberTitleArea">
 									
-									<span class="m1">게시물번호</span> <span
-									class="m2">카테고리</span> <span class="m4A2">제목</span> <span
-									class="m5A2">활동구역</span> <span class="m6A2">조회수</span> 
-									  <span class="m8">작성자 </span>
-									   <span class="m3A2">작성일시</span>
+									<span class="m1">제휴번호</span> <span
+									class="m2">신청일</span> <span class="m4A2">업체</span> <span
+									class="m5A2">업체주소</span> <span class="m6A2">종목</span> 
+									  <span class="m8">담당자 </span>
+									   <span class="m3A2">업체번호</span>
 									<hr class="22">
 									
 								</td>
@@ -454,30 +443,28 @@ button.Contentbtn {
 									<c:forEach var="m" items="${map.list}" varStatus="status">
 									<div class="MemberAreas1">
 										<div class="mArea">
-											<span class="memberNum">${m.board_No}</span>
+											<span class="memberNum">${m.FACILITY_COPNO}</span>
 										</div>
 										<div class="mArea2">
-											<span class="userId">${m.category_Name }</span>
+											<span class="userId">${m.FACILITY_REQUESTDATE}</span>
 										</div>
-										<div class="mArea3"onclick="StatusBoard(${m.board_No},'${m.board_Title}')">
-											<span class="userName">${m.board_Title}</span>
+										<div class="mArea3"onclick="statusFacility(${m.FACILITY_NO},'${m.FACILITY_NAME}')">
+											<span class="userName">${m.FACILITY_NAME}</span>
 										</div>
 										<div class="mArea4">
-											<span class="phone">${m.crew_Area}</span>
+											<span class="phone">${m.FACILITY_ADDRESS}</span>
 										</div>
 										<div class="mArea5A2">
-											<span class="email1">${m.board_Count }</span>
+											<span class="email1">${m.FACILITY_EVENT}</span>
 										</div>
 										<div class="mArea6A2">
-											<span class="memberAdd">${m.user_Id }</span>
+											<span class="memberAdd">${m.FACILITY_MANAGER_NAME }</span>
 										</div>
 										<div class="mArea7A2">
-											<span class="memberAdd1">${m.enroll_Date }</span>
+											<span class="memberAdd1">${m.FACILITY_MANAGER_PHONE }</span>
 										</div>
 										<div class="ContentBtnBox">
-										<button class="Contentbtn" onclick="crewRecruitmentDetails(${m.board_No },${m.user_No},${m.crew_No})">
-											본문
-										</button>
+					
 										</div>
 									</div>
 									<hr>
@@ -490,14 +477,13 @@ button.Contentbtn {
 							
 									<tr>
 										<td colspan="3">
-											<form action="adminCrcSearchList.shw" method="get">
+											<form action="facilitySearchList.shw" method="get">
 												<table align="center">
 													<tr>
 														<td>
 															<div class="searchArea1">
 																<select class="selectBox" name="option">
-																	<option>제목</option>
-																	<option>작성자</option>
+																	<option>업체</option>
 																</select> <input type="text" class="searchBar1" name="searchList">
 																<button type="submit" class="searchBtn">검색</button>
 															</div>
@@ -515,7 +501,7 @@ button.Contentbtn {
 											<li><a>이전</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage > 1 }">
-											<c:url var="listBack" value="adminCrewRecruitment.shw">
+											<c:url var="listBack" value="facilityList.shw">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 											
 											</c:url>
@@ -527,7 +513,7 @@ button.Contentbtn {
 												<li class="active"><a>${ p }</a></li>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="listCheck" value="adminCrewRecruitment.shw">
+												<c:url var="listCheck" value="facilityList.shw">
 													<c:param name="currentPage" value="${ p }" />
 												</c:url>
 												<li><a href="${ listCheck }">${ p }</a></li>
@@ -538,7 +524,7 @@ button.Contentbtn {
 											<li><a>다음</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage < pi.maxPage }">
-											<c:url var="listEnd" value="crewRecruitmentBoard.shw2">
+											<c:url var="listEnd" value="facilityList.shw">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							
 											</c:url>
@@ -552,6 +538,5 @@ button.Contentbtn {
 				</div>
 			</div>
 		</div>
-	
 </body>
 </html>

@@ -750,7 +750,7 @@ public class CrewController {
 		}
 		//크루활동 댓글
 		@RequestMapping("crewComent1.shw2")
-		public ModelAndView crewComent1(ModelAndView mv,HttpServletRequest request) {
+		public @ResponseBody List<CrewComent> crewComent1(ModelAndView mv,HttpServletRequest request,HttpServletResponse response) {
 			
 			//입력한 댓글내용, 대댓글체크,댓글번호 를 가져온다
 			String coment_Content = request.getParameter("coment_Content");
@@ -761,7 +761,7 @@ public class CrewController {
 			int crew_No = crew_Id;
 			
 			System.out.println("capy" + capy);
-			System.out.println("crew_Id" + crew_Id);
+			/*System.out.println("crew_Id" + crew_Id);*/
 					
 					
 			if(checked == null){
@@ -782,11 +782,11 @@ public class CrewController {
 			InCrew ic = new InCrew();
 			
 			System.out.println("user_No :" + userNo);
-			System.out.println("crew_No 나오냐????? :" + crew_Id);
+			/*System.out.println("crew_No 나오냐????? :" + crew_Id);*/
 			System.out.println("board_No :" + board_No);
 			
 			ic.setUser_No(userNo);
-			ic.setCrew_Id(crew_Id);
+			/*ic.setCrew_Id(crew_Id);*/
 			
 			int result =0;
 			
@@ -814,11 +814,11 @@ public class CrewController {
 			//글쓴이 사진이랑 정보 나오게 조회
 			Attachment ac = cs.userPhotos(board_No);
 			
-			//크루이름이랑 사진 조회
+			/*//크루이름이랑 사진 조회
 			Attachment ac1 = cs.crewPhotos(crew_No);
 			
 			//크루원 리스트 보여주기
-			List<InCrew> list2 = cs.crewInCrewY(crew_Id);
+			List<InCrew> list2 = cs.crewInCrewY(crew_Id);*/
 			
 			//댓글 리스트 불러오기
 			List<CrewComent> list3 = cs.crewComentSelect(board_No);
@@ -829,18 +829,18 @@ public class CrewController {
 		
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			
-			map.put("list", list);
+			/*map.put("list", list);
 			map.put("list1", list1);
-			map.put("list2", list2);
+			map.put("list2", list2);*/
 			map.put("list3", list3);
 			
 			
 			
-			mv.setViewName("crew/crewActivityDetails");
+			/*mv.setViewName("crew/crewActivityDetails");
 			mv.addObject("map", map);
 			mv.addObject("ac",ac);
-			mv.addObject("ac1",ac1);
+			mv.addObject("ac1",ac1);*/
 			
-			return mv;
+			return list3;
 		}
 }

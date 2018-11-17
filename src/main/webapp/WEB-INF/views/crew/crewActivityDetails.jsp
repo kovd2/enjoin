@@ -635,8 +635,130 @@ i.fa.fa-comments{
 }
 
 </style>
-
 </head>
+<script>
+	function goActivityComent(){
+		$.ajax({
+			url  : "crewComent1.shw2",
+			type : "post",
+			data : $("#coment3").serialize(),
+			success:function(data){
+				
+				$(".commentBox").empty();
+				
+				for(var key in data){
+						if(data[key].parent_Coment_No == 0){
+						
+						$div0=$("<div class='MemberCommont'id='MemberCommont'>");
+					
+						$div0.append("<img class='UserImg'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+						
+						$div1=$("<div class='Comment1'>");
+						$div0.append($div1);
+						
+						$p1=$("<p class='userId'>");
+						$div1.append($p1);
+						
+						$p1.append(data[key].user_Name);
+						
+						$div2=$("<div class='spansBtn'>");
+						$div1.append($div2);
+						
+												
+						$span1=$("<span class='crewOk'>");
+						$div2.append($span1);
+						$i1=$("<i class='fa fa-user-circle'>");
+						
+						$span1.append($i1);
+						$span1.append('답글');
+						
+						$input1 = $("<input class='check1' type='checkbox' name='check' value='check' onclick='check(" + data[key].coment_No + ")'>");
+						$span1.append($input1);
+						
+						$span2=$("<span class='deleteBtn'>");
+						$div2.append($span2);
+						
+						$i2 = $("<i clss='fa fa-trash'>");
+						$span2.append($i2);
+						$span2.append('삭제');
+						
+						$div3=$("<div class='area1'>");
+						$div1.append($div3);
+						
+						$p2=$("<p class='Comment'>");
+						$div3.append($p2);
+						
+						$p2.append(data[key].coment_Content);
+						
+						
+						$('.commentBox').append($div0);
+						$(".check1").attr("name","uncheck");
+						
+						
+						
+						
+						
+					}else if(data[key].parent_Coment_No != 0){
+						$('#test').remove();
+							
+							$('#test1').remove();
+						$div0=$("<div class='MemberCommont1'>");
+						$i1=$("<i class='fa fa-comments'>");
+						$div0.append($i1);
+						
+						$span0=$("<span class='ComentP'>");
+						$div0.append($span0);
+						$span0.append('답글');
+						$div0.append("<img class='UserImg1'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+						
+						$div1=$("<div class='Comment2'>");
+						$div0.append($div1);
+						
+						$p0=$("<p class='userId1'>");
+						$div1.append($p0);
+						$p0.append(data[key].user_Name);
+						
+						$div2=$("<div class='spansBtn'>");
+						$div1.append($div2);
+						
+						$span1=$("<span class='deleteBtn'>");
+						$div2.append($span1);
+						
+						$i2=$("<i class='fa fa-trash'>");
+						
+						$span1.append($i2);
+						$i2.append('삭제');
+						
+						$div3=$("<div class='area1'>");
+						$div1.append($div3);
+						
+						$p1=$("<p class='Comment'>");
+						$div3.append($p1);
+						$p1.append(data[key].coment_Content);
+						
+						$('.commentBox').append($div0);
+						$(".check1").attr("name","uncheck");
+					
+						
+						
+						
+					}
+					
+					
+					
+					
+				}
+				
+				
+			},
+			
+		});
+		
+		return false;
+	}  
+
+
+</script>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<c:set var="ac" value="${ac}"/>
@@ -757,31 +879,36 @@ i.fa.fa-comments{
 							
 						</div>
 							<div class="commentWriterBox" id="comentBox1">
-						 		<form class="comment" id="coment3" action="crewComent1.shw2#MemberComment" method="post">
+						 		<form class="comment" id="coment3">
 						 			<table>
 						 				<tr>
 						 					<td colspan="2">
 						 						<script>
 						 						 function check(coment_No){
-						 							var check = $("input:checkbox[class=check1]:checked").val();
-						 							$inputHidden = $('<input type="hidden" name="checked11">').attr('value',check);
-						 							$('.comment').append($inputHidden);
-						 							
-						 							
-						 							
-						 							$inputHidden1 = $('<input type="hidden" name="coment_No">').attr('value',coment_No);
-						 							$('.comment').append($inputHidden1);
-						 							
-						 							
-						 							
-						 						 }
+							 							var check = $("input:checkbox[class=check1]:checked").val();
+							 							
+							 							if(check=="check"){
+							 							$inputHidden = $('<input type="hidden" name="checked11" id="test">').attr('value',check);
+							 							$('.comment').append($inputHidden);
+							 							
+							 							
+							 							$inputHidden1 = $('<input type="hidden" name="coment_No" id="test1">').attr('value',coment_No);
+							 							$('.comment').append($inputHidden1);
+							 								
+							 							}else{
+								 							$('#test').remove();
+								 							
+								 							$('#test1').remove();
+							 							}
+							 							
+							 						 }
 						 						</script>
 						 						<c:forEach var="i" items="${map.list}" varStatus="status">
 						 						<input type="hidden" value="${i.board_No}" name="board_No">
 						 						<input type="hidden" value="abc" name="capy">
-						 						<input type="hidden" value="${i.crew_No }" name="crew_Id">
+						 						<input type="hidden" value="${i.crew_No }" name="crew_Id" id="crew_No">
 						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
-						 						<button type="submit" class="commentWriterBtn">작성하기</button>
+						 						<button type="button" class="commentWriterBtn" onclick="goActivityComent()">작성하기</button>
 						 						</c:forEach>
 						 					</td>
 						 				</tr>

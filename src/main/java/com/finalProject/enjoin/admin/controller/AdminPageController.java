@@ -807,8 +807,105 @@ public class AdminPageController {
 			
 			return mv;
 		}
-		
+		//제휴 대기 리스트 조회
+		@RequestMapping("facilityAccept.shw")
+		public ModelAndView facilityAccept(ModelAndView mv,HttpServletRequest request) {
 			
-}
+			//제휴 대기 리스트 카운트
+			int currentPage = 1;
+			
+			if(request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+			}
+			int listCount = as.getfacilityAccept();	
+			
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			List<Map<String,Object>> list = as.selectfacilityAccept(pi);
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			mv.setViewName("admin/facilityAccept");
+			mv.addObject("map", map);
+			
+			return mv;
+		}
+		//제휴 수락하기
+		@RequestMapping(value="statusFacility.shw")
+		public String statusFacility(Model model,HttpServletRequest request){
 		
-
+		int FACILITY_NO = Integer.parseInt(request.getParameter("FACILITY_NO"));
+		int result = as.updateStatusFacility(FACILITY_NO);
+		
+		
+		
+		return "redirect:facilityAccept.shw";
+}
+		@RequestMapping("facilityNoneSearchList.shw")
+		public ModelAndView facilityNoneSearchList(ModelAndView mv,HttpServletRequest request) {
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			String facility_name = searchList;
+			
+			List<Map<String,Object>> list = as.selectfacilityNoneSearchList(facility_name);
+			
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			mv.setViewName("admin/facilityAccept");
+			mv.addObject("map", map);
+			return mv;
+		}
+		@RequestMapping("facilityList.shw")
+		public ModelAndView facilityList(ModelAndView mv , HttpServletRequest request) {
+			
+			//제휴 대기 리스트 카운트
+			int currentPage = 1;
+			
+			if(request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+			}
+			int listCount = as.getfacilityList();
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			List<Map<String,Object>> list = as.facilityList(pi);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			
+			
+			mv.setViewName("admin/facilityList");
+			mv.addObject("map", map);
+			
+			return mv;
+		}
+		@RequestMapping("facilitySearchList.shw")
+		public ModelAndView facilitySearchList(ModelAndView mv, HttpServletRequest request) {
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			String facility_name = searchList;
+			
+			List<Map<String,Object>> list = as.facilitySearchList(facility_name);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			
+			
+			
+			
+			
+			mv.setViewName("admin/facilityList");
+			mv.addObject("map", map);
+			return mv;
+		}
+		
+}

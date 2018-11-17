@@ -194,6 +194,30 @@ public interface AdminService {
 	//카테고리별 게시글 생성수치
 	List<Map<String, Object>> selectCategoryBoardIncome();
 	
+	//제휴승인대기 리스트목록
+	int getfacilityAccept();
+	
+	//제휴 승인대기 리스트 조회
+	List<Map<String, Object>> selectfacilityAccept(PageInfo pi);
+	
+	//제휴 승인하기 
+	int updateStatusFacility(int fACILITY_NO);
+	
+	//제휴시설 검색
+	List<Map<String, Object>> selectfacilityNoneSearchList(String facility_name);
+	
+	//엔조인 등록 제휴업체 갯수 조회
+	int getfacilityList();
+
+	//제휴시설 리스트 조회
+	List<Map<String, Object>> facilityList(PageInfo pi);
+	
+	//등록된 제휴 리스트  업체명으로 검색
+	List<Map<String, Object>> facilitySearchList(String facility_name);
+	
+
+
+	
 	
 
 	
