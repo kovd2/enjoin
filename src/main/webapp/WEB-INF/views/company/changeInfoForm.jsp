@@ -621,6 +621,22 @@ color:#feab2a;
 	function saveBtn(){
 		$("#modify_form").submit();
 	}
+	
+	//회원탈퇴 스트립트
+		function deleteMember(userId){
+			var userId = userId;
+			var password = String(prompt('비밀번호를 입력해주세요')); 
+			
+			$.ajax({
+				url:"deleteMember.gs",
+				type:"post",
+				data:{password:password},
+				success:function(data){
+					
+				} 				
+			})
+			
+		}
 	</script>
 	
 	
