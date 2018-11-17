@@ -25,6 +25,7 @@
 		<result property="mon_fri_time" column="MON_FRI_TIME"/>
 		<result property="sat_time" column="SAT_TIME"/>
 		<result property="sun_time" column="SUN_TIME"/>
+		<result property="totalAddress" column="TOTAL_ADDRESS"/>
 		
 
 </resultMap>
@@ -58,18 +59,42 @@ AND FILE_NO=0
 <select id="searchFacility" resultType="map" parameterType="Facility">
 SELECT FACILITY_COPNO,FACILITY_REQUESTDATE,FACILITY_STARTDATE,FACILITY_ENDDATE,FACILITY_STATUS,
         PASS_COUNT,FACILITY_NO,FACILITY_NAME,FACILITY_AREA,FACILITY_SECTION,FACILITY_ADDRESS,FACILITY_EVENT,
-        FACILITY_MANAGER_NAME,FACILITY_MANAGER_PHONE,TIME_FOR_CALL,MON_FRI_TIME,SAT_TIME,SUN_TIME,ATT_NO,
+        FACILITY_MANAGER_NAME,FACILITY_MANAGER_PHONE,TIME_FOR_CALL,MON_FRI_TIME,SAT_TIME,SUN_TIME,ATT_NO,TOTAL_ADDRESS,
        FILE_NO,FILE_TYPE,UPLOAD_NAME,REF_NO
 FROM (SELECT F.FACILITY_COPNO,F.FACILITY_REQUESTDATE,F.FACILITY_STARTDATE,F.FACILITY_ENDDATE,F.FACILITY_STATUS,
         F.PASS_COUNT,F.FACILITY_NO,F.FACILITY_NAME,F.FACILITY_AREA,F.FACILITY_SECTION,F.FACILITY_ADDRESS,F.FACILITY_EVENT,
-        F.FACILITY_MANAGER_NAME,F.FACILITY_MANAGER_PHONE,F.TIME_FOR_CALL,F.MON_FRI_TIME,F.SAT_TIME,F.SUN_TIME,A.ATT_NO,
+        F.FACILITY_MANAGER_NAME,F.FACILITY_MANAGER_PHONE,F.TIME_FOR_CALL,F.MON_FRI_TIME,F.SAT_TIME,F.SUN_TIME,A.ATT_NO,F.TOTAL_ADDRESS,
        A.FILE_NO,FILE_TYPE,A.UPLOAD_NAME,A.REF_NO
 FROM FACILITY F 
 JOIN ATTACHMENT A ON(F.FACILITY_NO=A.REF_NO)
 WHERE 
-F.FACILITY_NAME LIKE '%'||#{facilityName}||'%'
-or F.FACILITY_ADDRESS LIKE '%' || #{facilityAddress} || '%'
-or  F.FACILITY_EVENT LIKE '%' || #{facilityEvent} || '%')
+F.FACILITY_NAME LIKE 
+<choose>
+<when test="#{facilityName} !=null">
+'%'||#{facilityName}||'%'
+</when>
+<otherwise>
+ '%')
+</otherwise>
+</choose>
+or F.TOTAL_ADDRESS LIKE 
+<choose>
+<when test="#{facilityAddress} !=null">
+'%'||#{facilityAddress}||'%'
+</when>
+<otherwise>
+ '%')
+</otherwise>
+</choose>
+or  F.FACILITY_EVENT LIKE
+<choose>
+<when test="#{facilityEvent} !=null">
+'%'||#{facilityEvent}||'%')
+</when>
+<otherwise>
+ '%')
+</otherwise>
+</choose>
 WHERE FILE_NO=0 AND FILE_TYPE=6
 </select>
 

@@ -10,19 +10,21 @@
 <meta name="description" content="">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- css -->
-<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/style/css/fancybox/jquery.fancybox.css"
 	rel="stylesheet">
 <link href="resources/style/css/jcarousel.css" rel="stylesheet">
 <link href="resources/style/css/flexslider.css" rel="stylesheet">
-<link href="resources/style/css/style.css" rel="stylesheet">
+<link href="resources/style/css/style.css" rel="stylesheet"> -->
 
 
 <!-- Theme skin -->
-<link href="resources/style/skins/default.css" rel="stylesheet">
+<!-- <link href="resources/style/skins/default.css" rel="stylesheet"> -->
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91&libraries=services"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07b51fccaa63308c2f880996e8bd91"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=7fa72f902dc86dec58aeccf81d80e41a&libraries=services,clusterer,drawing"></script>
+ 
+
+
 
 <style>
 
@@ -41,6 +43,7 @@ header{
 	margin:0 auto;
 	display: -webkit-box;
 }
+
 .searchArea{
 	width:400px;
 	 height:800px; 
@@ -157,9 +160,9 @@ p{
 }
 
 #previewArea{
-	width: 300px;
-    height: 500px;
-    position: relative;
+	/* width: 300px; */
+    /* height: 500px; */
+    position: fixed;
     z-index: 10;
 	margin-left:250px;
 	margin-top:150px;
@@ -201,6 +204,7 @@ p{
 	
 	border-radius:3px;
 	width:300px;
+	height:200px;
 	margin:5px 0px 5px 10px;
 
 }
@@ -318,9 +322,7 @@ height:20px;
 				</div>
 							<div class="contents">
 							<h4>${item.FACILITY_NAME}</h4>
-							<p class="facility_address">${item.FACILITY_ADDRESS}</p>
-							<input type="hidden" class="facility_area" value="${item.FACILITY_AREA}">
-							<input type="hidden" class="facility_section" value="${item.FACILITY_SECTION}">
+							<p class="facility_address">${item.TOTAL_ADDRESS}</p>
 							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
 							</div>
 				</div>
@@ -334,7 +336,7 @@ height:20px;
 		
 		<div class="mapArea">
 		<!-- 지도 -->
-			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
+			<div id="realMap" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 			
 			
 		</div>
@@ -352,68 +354,75 @@ height:20px;
 
 
 <script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+  $(document).ready(function(){  
+	
+
+	var mapContainer = document.getElementById('realMap'), // 지도를 표시할 div 
 	    mapOption = {
-	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표
+	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
 	        level: 3 // 지도의 확대 레벨
+	        
 	    };  
 
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
+	
 
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new daum.maps.services.Geocoder();
 
-	// 주소로 좌표를 검색합니다
+
 	
-	var address = [];
-
+	//주소값담을배열
+	var addr = [];
+	//이름담을배열
+	var name=[];
 	<c:forEach items="${result}" var="item">
-
-	address.push("${item}");
-
+	name.push("${item.FACILITY_NAME}");
+	addr.push("'${item.TOTAL_ADDRESS}'"+',');  
 	</c:forEach>
-	console.log(address);
-	console.log(address.FACILITY_AREA);
-	console.log(address[1].FACILITY_SECTION);
-	for(var i=0; i<address.length; i++){
+	
+	
+		
+	for(var i=0; i<addr.length; i++){
 		
 		
+		console.log(addr[i]);
+		geocoder.addressSearch(addr[i],function(result,status){
+			console.log(status);
+			console.log(result);
+			//정상적으로 검색이 완료되었다!
+			  if(status===daum.maps.services.Status.OK){
+
+				 var coords = new daum.maps.LatLng(result[0].x, result[0].y);
+				 
+				  
+				  
+				console.log('들어옵니꽈~~');
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new daum.maps.Marker({
+                    map:map,
+                    position:coords
+    			 });
+                
+                var infowindow = new daum.maps.InfoWindow({
+                    content:coords.content // 인포윈도우에 표시할 내용
+                });
+                marker.setMap(map);
+                map.setCenter(coords);
+                map.relayout();
+                
+
+			}
+		})
+		map.relayout();
 	}
 	
-	
-
-
+ }); 
 		
-	geocoder.addressSearch(
-			
-			'서울 강남구 테헤란로 142',
-			
-		function(result, status) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
-
-	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new daum.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new daum.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-	        });
-	        infowindow.open(map, marker);
-
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});
-
-		</script>
+</script>
 	
 	
 	

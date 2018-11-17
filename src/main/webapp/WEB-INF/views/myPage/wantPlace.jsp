@@ -227,11 +227,10 @@
 					<c:if test="${ jjim != '[]' }">
 					<c:forEach var="j" items="${ jjim }">					
 							<li class="col col-sm-6 col-md-4 col-lg-3">
-								<a href="/center/detail/fc06008" class="favoriteCenter">
+								<a href="detailResult.kch?facilityNo=${ j.facilityNo }" class="favoriteCenter">
 
 									<div class="responsibleImgBox">
-										<img class="centerThumb"
-											src="resources/uploadFiles/facility/${ j.uploadName }">
+										<img class="centerThumb" src="resources/uploadFiles/facility/${ j.uploadName }">
 									</div>
 									<h4>${ j.facilityName }</h4>
 

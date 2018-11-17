@@ -481,7 +481,7 @@
 	
 	<!-- 시설 이용전 패스 유무 확인 -->
 	<select id="selectCheckPass" resultType="_int">
-		SELECT PASS_COUNT
+		SELECT NVL(SUM(PASS_COUNT) , 0) PASS_COUNT
 		FROM PASS
 		WHERE USER_NO = #{userNo}
 	</select>

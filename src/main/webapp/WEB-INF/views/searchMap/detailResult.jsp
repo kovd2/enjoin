@@ -82,7 +82,7 @@
     margin: 250px 0px 0px 160px;
     border: 2px solid white;
     border-radius: 3px;
-    width: 60px;
+    width: 85px;
     padding: 3px;
 }
 .like:hover{
@@ -496,7 +496,7 @@ color:#feab2a;
 
 			<div class="like" id="like">
 			<i class="glyphicon glyphicon-thumbs-up"></i>
-			1230
+			<small>관심시설</small>
 			</div>
 			<div class="preview">
 				<i class="fa fa-file-image-o"></i>
@@ -727,7 +727,8 @@ color:#feab2a;
 	
 		
 	function useFacility(userNo, deductPass, facilityNo){
-		console.log(deductPass);
+		if(confirm("시설을 이용하시겠습니까?") == true){
+			
 		$.ajax({
 			url:"checkPass.ljs",
 			type:"get",
@@ -736,7 +737,7 @@ color:#feab2a;
 			},
 			success:function(data){
 				console.log(data);
-				if(data < 0){
+				if(data <= 0){
 					if(confirm("보유하고 있는 패스가 없습니다. 충전하러 가시겠습니까?") == true){
 						location.href="passPurchase.hh";
 					}else{
@@ -753,10 +754,7 @@ color:#feab2a;
 							facilityNo:facilityNo
 						},
 						success:function(data){
-							console.log(data);
 							popupOpen(data);
-							/* confirm("시설이용 등록 완료되었습니다. 이용코드는 마이페이지에서 확인할수 있습니다.");
-							$('#enBtn').removeAttr("onclick"); */
 						},
 						error:function(){
 							console.log("에러");
@@ -768,16 +766,30 @@ color:#feab2a;
 				console.log("에러");
 			}
 		});
+		}else{
+			return;
+		}
 	};
 	
 	function popupOpen(data){
-		alert(data);
-		var url = "popUp.ljs?data=" + data;    //팝업창 페이지 URL
+		var ppCount = "";
+		var useCode = "";
+		var facilityName = "";
+		var passCount = "";
+		for(var key in data){
+			ppCount = data[key].PP_COUNT;
+			useCode = data[key].USE_CODE;
+			facilityName = data[key].FACILITY_NAME;
+			passCount = data[key].PASS_COUNT;
+		}
+		
+		var url = "popUp.ljs?ppCount=" + ppCount + "&useCode=" + useCode + "&facilityName=" + facilityName + "&passCount=" + passCount;    //팝업창 페이지 URL
  	    var popupX = (window.screen.width / 2) - (600 / 2);
-		var popupY= (window.screen.height /2) - (500 / 2);
+		var popupY= (window.screen.height /2) - (800 / 2);
 
 	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
-		window.open(url, '', 'status=no, height=500, width=600, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+	    
+		window.open(url, '자식창', 'status=no, height=641, width=530, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	};
 	
 	</script>

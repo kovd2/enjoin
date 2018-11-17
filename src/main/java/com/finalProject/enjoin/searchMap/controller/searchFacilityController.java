@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.searchMap.model.exception.SearchListResultException;
 import com.finalProject.enjoin.searchMap.model.service.FacilityService;
+import com.finalProject.enjoin.searchMap.model.vo.Facility;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -48,8 +49,11 @@ public class searchFacilityController {
 			result = fs.searchFacility(search);
 			System.out.println("Conresult"+result);
 			
+			
+			
 			mv.addObject("result", result);
 			mv.setViewName("searchMap/searchListFacility");
+			
 		} catch (SearchListResultException e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("common/myPage/errorPage");
