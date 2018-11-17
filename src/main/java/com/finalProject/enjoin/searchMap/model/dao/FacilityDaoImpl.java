@@ -28,15 +28,29 @@ public class FacilityDaoImpl implements FacilityDao{
 	public List<Map<String, Object>> facility(SqlSessionTemplate sqlSession, String search) throws SearchListResultException {
 		
 		Facility f= new Facility();
-		List<Map<String,Object>> list = null;
 		
+		List<Map<String,Object>> list = null;
 		f.setFacilityAddress(search);
 		f.setFacilityEvent(search);
 		f.setFacilityName(search);
+		System.out.println("facilitaddress"+f.getFacilityAddress());
 		
-		list = sqlSession.selectList("Facility.searchFacility", f);
-		
+		list = sqlSession.selectList("Facility.searchFacility",f);
+		System.out.println("facilityDao"+list);
 		if(list!=null) {
+			String area= null;
+			String section=null;
+			String address=null;
+			for(int i=0; i<list.size(); i++) {
+				area=(String) list.get(i).get("FACILITY_AREA");
+				section=(String) list.get(i).get("FACILITY_SECTION");
+				address=(String) list.get(i).get("FACILITY_ADDRESS");
+				f.setTotalAddress(area+" "+section+" "+address);
+				list.get(i).remove("TOTAL_ADDRESS");
+				list.get(i).put("TOTAL_ADDRESS",f.getTotalAddress());
+				
+			}
+		
 			return list;
 			
 		}else {
@@ -51,8 +65,19 @@ public class FacilityDaoImpl implements FacilityDao{
 	public Map<String, Object> selectOneDetail(SqlSessionTemplate sqlSession, int facilityNo) {
 		
 		Map<String,Object> list = null;
+		String area;
+		String section;
+		String address;
+		String totalAddress;
 		list=sqlSession.selectOne("Facility.selectOneDetail",facilityNo);
-	
+		
+		area=(String) list.get("FACILITY_AREA");
+		section=(String) list.get("FACILITY_SECTION");
+		address=(String) list.get("FACILITY_ADDRESS");
+		totalAddress = area+" "+section+" "+address;
+		list.remove("TOTAL_ADDRESS");
+		list.put("TOTAL_ADDRESS", totalAddress);
+		
 		
 		return list;
 	}

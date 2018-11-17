@@ -72,7 +72,7 @@
 		</form>
 	</c:if>
 		
-	<c:if test="${ sessionScope.loginUser.userType eq null }">
+	<c:if test="${ sessionScope.loginUser.userType eq '1' }">
 	<div id="wrapper">
 				<!-- start header -->
 				<header>
