@@ -43,16 +43,17 @@ public class MyPageController {
 	public ModelAndView showProfil(ModelAndView mv, @RequestParam("userNo") int userNo) {	
 		
 		int pass = mps.selectPass(userNo);
-		System.out.println("pass : " + pass);
-		if(pass != 0) {
-			System.out.println("pass : " + pass);
+		
+		if(pass > 0) {
 			
+			List<HashMap<String, Object>> useCodeList = mps.selectUseCodeList(userNo);
+			System.out.println("useCodeList : " + useCodeList);
 			mv.setViewName("myPage/membership");
 			mv.addObject("pass", pass);
+			mv.addObject("useCodeList", useCodeList);
 			
 			return mv;			
 		}else {
-			System.out.println("pass : " + pass);
 			
 			mv.setViewName("myPage/membership");
 			mv.addObject("pass", 0);
@@ -229,36 +230,36 @@ public class MyPageController {
 		
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		
+		String useCode = "";
+		for(int i = 0; i < 8; i++){
+
+			char lowerStr = (char)(Math.random() * 26 + 97);
+			if(i % 2 == 0){
+				useCode += (int)(Math.random() * 10);
+			}else{
+				useCode += lowerStr;
+			}
+		}
+		String.valueOf(useCode);
+		
 		hmap.put("userNo", userNo);
 		hmap.put("deductPass", deductPass);
 		hmap.put("facilityNo", facilityNo);
+		hmap.put("useCode", useCode);
 		
-		int result = mps.updatePassCount(hmap);
-		
-		if(result > 0) {
-			String useCode = "";
-			for(int i = 0; i < 8; i++){
-
-				char lowerStr = (char)(Math.random() * 26 + 97);
-				if(i % 2 == 0){
-					useCode += (int)(Math.random() * 10);
-				}else{
-					useCode += lowerStr;
-				}
-			}
-			String.valueOf(useCode);
-			hmap.put("useCode", useCode);
-			System.out.println("useCode : " + useCode);
-		}
-		int result2 = mps.updateUseCode(hmap);
-		if(result2 > 0) {
-			System.out.println("result2 : " + result2);
+		int result0 = mps.selectRecord(hmap);
+		System.out.println("result0 : " + result0);
+		int result = 0;
+		if(result0 < 1) {
+			
+			result = mps.updatePassCount(hmap);	
+			
 			List<HashMap<String, Object>> showUseCode = mps.selectUseCode(hmap);
-			System.out.println("showUseCode : " + showUseCode);
 			
 			return showUseCode;
+		}else {
+			return null;
 		}
-		return null;
 	}
 	
 	//이용기록

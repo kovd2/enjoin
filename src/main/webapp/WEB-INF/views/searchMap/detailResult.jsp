@@ -753,9 +753,13 @@ color:#feab2a;
 							deductPass:deductPass,
 							facilityNo:facilityNo
 						},
-						success:function(data){
+						success:function(data){							
+							if(data == ""){
+								alert("이미 신청하신 코드가 있습니다. 다시 한번 확인해 주세요.");
+							}else{
 							popupOpen(data);
-						},
+							}
+						},		
 						error:function(){
 							console.log("에러");
 						}
@@ -777,7 +781,7 @@ color:#feab2a;
 		var facilityName = "";
 		var passCount = "";
 		for(var key in data){
-			ppCount = data[key].PP_COUNT;
+			ppCount = data[key].FACILITY_PASS;
 			useCode = data[key].USE_CODE;
 			facilityName = data[key].FACILITY_NAME;
 			passCount = data[key].PASS_COUNT;

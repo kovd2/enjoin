@@ -119,7 +119,7 @@
 						<table>
 							<tr>
 								<td>멤버십 보유패스</td>
-								<td style="text-align:center;">${ ppCount } PASS</td>
+								<td style="text-align:center;">${ passCount } PASS</td>
 							</tr>
 						</table>
 					</div>
@@ -127,7 +127,7 @@
 						<table>
 							<tr>
 								<td>총 사용 패스</td>
-								<td style="text-align:center; color:#00bff0;">${ passCount } PASS</td>
+								<td style="text-align:center; color:#00bff0;">${ ppCount } PASS</td>
 							</tr>
 						</table>
 					</div>
@@ -135,7 +135,7 @@
 						<table>
 							<tr>
 								<td>멤버십 잔여패스</td>
-								<td style="text-align:center; color:#00bff0;">${ ppCount - passCount } PASS</td>
+								<td style="text-align:center; color:#00bff0;">${ passCount - ppCount} PASS</td>
 							</tr>
 						</table>
 					</div>

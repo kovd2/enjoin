@@ -165,6 +165,9 @@
 	margin-top:60px;
 	margin-bottom:60px;
 }
+.useCodeListArea{
+	margin-top:50px;
+}
 </style>
 </head>
 <body>
@@ -210,10 +213,33 @@
 			
 			<div style="margin-left:30px;">
 				<h3><i class="fa fa-magic"></i>시설 이용 코드</h3>
-				
+				<div class="useCodeListArea">
+					<table style="text-align:center; width:800px;">
+						<tr>
+							<td style="width:30px;">번호</td>
+							<td style="width:100px;">구매일</td>
+							<td style="width:200px;">시설이름</td>
+							<td style="width:100px;">이용코드</td>
+							<td style="width:70px;">구분</td>
+						</tr>
+						<c:forEach var="c" items="${ useCodeList }">
+						<tr>
+							<td>${ c.ROWNUM }</td>
+							<td>${ c.PP_DATE }</td>
+							<td>${ c.FACILITY_NAME }</td>
+							<td>${ c.USE_CODE }</td>
+						<c:if test="${ c.PP_STATUS == 0 }">
+							<td>사용가능</td>
+						</c:if>
+						</tr>
+						</c:forEach>
+					</table>
+				</div>	
 			</div>
 		</div>
 		</div>
+		
+		
 		<br><br><br><br><br><br>
 		<jsp:include page="../common/footer.jsp"/>
 	

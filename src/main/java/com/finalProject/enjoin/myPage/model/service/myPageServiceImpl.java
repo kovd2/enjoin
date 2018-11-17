@@ -211,15 +211,21 @@ public class myPageServiceImpl implements myPageService{
 	@Override
 	public int updatePassCount(HashMap<String, Object> hmap) {
 		int result = mpd.updatePassCount(hmap, sqlSession);
-		
+		int result2 = -99;
 		if(result > 0) {
-			int result2 = mpd.updatePassCountRecord(hmap, sqlSession);
-				
-			return result;
+			result2 = mpd.insertPassRecord(hmap, sqlSession);
 		}
-		return result;
+		
+		return result2;
 	}
 
+	//패스 이용내역 insert
+	/*@Override
+	public int insertPassRecord(HashMap<String, Object> hmap) {
+		int result = mpd.insertPassRecord(hmap, sqlSession); 
+		
+		return result;
+	}*/
 	//이용코드 입력
 	@Override
 	public int updateUseCode(HashMap<String, Object> hmap) {
@@ -234,6 +240,18 @@ public class myPageServiceImpl implements myPageService{
 		return mpd.selectUseCode(hmap, sqlSession);
 	}
 
+	//시설 이용전 확인
+	@Override
+	public int selectRecord(HashMap<String, Object> hmap) {
+		
+		return mpd.selectRecord(hmap, sqlSession);
+	}
+
+	//이용코드 조회후 뿌리기
+	@Override
+	public List<HashMap<String, Object>> selectUseCodeList(int userNo) {
 	
+		return mpd.selectUseCodeList(userNo, sqlSession);
+	}
 
 }

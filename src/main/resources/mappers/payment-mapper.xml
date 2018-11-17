@@ -39,16 +39,8 @@
 
 	<!-- 패스 이력 등록 -->
 	<insert id="insertPassrecord" parameterType="Passrecord">
-		MERGE INTO
-			PASSRECORD  
-		USING DUAL 
-	    	ON (USER_NO = #{userNo})
-	    	WHEN MATCHED THEN     
-	        	UPDATE SET 
-	        			PP_COUNT = PP_COUNT + '7' 
-	    	WHEN NOT MATCHED THEN
-	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
-				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo})
+       	INSERT INTO PASSRECORD(PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+		VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '7', #{payNo}, #{userNo})
 	</insert>
       
    <!-- 패스 등록 -->
@@ -139,16 +131,8 @@
 
 	<!-- 30패스 이력 등록 -->
 	<insert id="insertPassrecord2" parameterType="Passrecord">
-		MERGE INTO
-			PASSRECORD  
-		USING DUAL 
-	    	ON (USER_NO = #{userNo})
-	    	WHEN MATCHED THEN     
-	        	UPDATE SET 
-	        			PP_COUNT = PP_COUNT + '30' 
-	    	WHEN NOT MATCHED THEN
-	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
-				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '30', #{payNo}, #{userNo})
+       	INSERT INTO PASSRECORD (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+		VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '30', #{payNo}, #{userNo})
 	</insert>
 
    <!-- 30패스 등록 -->
@@ -176,16 +160,8 @@
 
 	<!-- 78패스 이력 등록 -->
 	<insert id="insertPassrecord3" parameterType="Passrecord">
-		MERGE INTO
-			PASSRECORD  
-		USING DUAL 
-	    	ON (USER_NO = #{userNo})
-	    	WHEN MATCHED THEN     
-	        	UPDATE SET 
-	        			PP_COUNT = PP_COUNT + '78' 
-	    	WHEN NOT MATCHED THEN
-	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
-				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '78', #{payNo}, #{userNo})
+       	INSERT INTO PASSRECORD (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+		VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '78', #{payNo}, #{userNo})
 	</insert>
 
    <!-- 78패스 등록 -->
@@ -213,16 +189,8 @@
 
 	<!-- 240패스 이력 등록 -->
 	<insert id="insertPassrecord4" parameterType="Passrecord">
-		MERGE INTO
-			PASSRECORD  
-		USING DUAL 
-	    	ON (USER_NO = #{userNo})
-	    	WHEN MATCHED THEN     
-	        	UPDATE SET 
-	        			PP_COUNT = PP_COUNT + '240' 
-	    	WHEN NOT MATCHED THEN
-	        	INSERT (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
-				VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '240', #{payNo}, #{userNo})
+       	INSERT INTO PASSRECORD (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USER_NO)
+		VALUES (SEQ_PP_NO.NEXTVAL, '0', SYSDATE, '240', #{payNo}, #{userNo})
 	</insert>
 
    <!-- 240패스 등록 -->
