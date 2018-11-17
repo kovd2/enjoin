@@ -215,6 +215,21 @@ public interface AdminService {
 	//등록된 제휴 리스트  업체명으로 검색
 	List<Map<String, Object>> facilitySearchList(String facility_name);
 	
+	//제휴시설 삭제
+	int statusFacilityDelete(int fACILITY_NO);
+	
+	//제휴시설 삭제 리스트 갯수
+	int getfacilityDelectList();
+	
+	//제휴 삭제리스트 조회
+	List<Map<String, Object>> selectFacilityDelectList(PageInfo pi);
+	
+	//제휴 시설 삭제 복원 
+	int updateStatusFacilityY(int fACILITY_NO);
+	
+	//제휴 삭제 시설 이름으로 조회
+	List<Map<String, Object>> selectFacilityDelectSearchList(String facility_Name);
+	
 
 
 	

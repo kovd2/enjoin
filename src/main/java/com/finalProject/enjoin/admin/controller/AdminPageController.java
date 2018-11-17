@@ -864,7 +864,7 @@ public class AdminPageController {
 		@RequestMapping("facilityList.shw")
 		public ModelAndView facilityList(ModelAndView mv , HttpServletRequest request) {
 			
-			//제휴 대기 리스트 카운트
+			//제휴  리스트 카운트
 			int currentPage = 1;
 			
 			if(request.getParameter("currentPage") != null) {
@@ -905,6 +905,78 @@ public class AdminPageController {
 			
 			mv.setViewName("admin/facilityList");
 			mv.addObject("map", map);
+			return mv;
+		}
+		@RequestMapping(value="statusFacilityDelete")
+		public String statusFacilityDelete(Model model , HttpServletRequest request) {
+			int FACILITY_NO = Integer.parseInt(request.getParameter("FACILITY_NO"));
+			
+			int result = as.statusFacilityDelete(FACILITY_NO);
+			
+			return "redirect:facilityList.shw";
+		}
+		@RequestMapping("facilityDelectList.shw")
+		public ModelAndView facilityDelectList(ModelAndView mv,HttpServletRequest request){
+			
+			//제휴  삭제 리스트 카운트
+			int currentPage = 1;
+			
+			if(request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+			}
+			int listCount = as.getfacilityDelectList();
+			
+			System.out.println("listCount 조회" + listCount);
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			
+			//제휴 삭제리스트 조회
+			List<Map<String,Object>> list = as.selectFacilityDelectList(pi);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			
+			
+			mv.setViewName("admin/facilityDelete");
+			mv.addObject("map", map);
+			return mv;
+		}
+		//제휴 삭제 복원
+		@RequestMapping(value="statusFacilityY.shw")
+		public String statusFacilityY(Model model , HttpServletRequest request) {
+			int FACILITY_NO = Integer.parseInt(request.getParameter("FACILITY_NO"));
+			
+			int result = as.updateStatusFacilityY(FACILITY_NO);
+			
+			
+			return "redirect:facilityDelectList.shw";
+		}
+		@RequestMapping("facilityDelectSearchList.shw")
+		public ModelAndView facilityDelectSearchList(ModelAndView mv, HttpServletRequest request) {
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			String facility_Name = searchList;
+			
+			List<Map<String,Object>> list = as.selectFacilityDelectSearchList(facility_Name);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			mv.setViewName("admin/facilityDelete");
+			mv.addObject("map", map);
+			
+			return mv;
+		}
+		@RequestMapping("adminTest.shw")
+		public ModelAndView adminTest(ModelAndView mv,HttpServletRequest request) {
+			
+			
+			
+			mv.setViewName("admin/Test");
+			
 			return mv;
 		}
 		

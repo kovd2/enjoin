@@ -216,6 +216,20 @@ public interface AdminDao {
 	
 	//제휴 업체명으로 검색
 	List<Map<String, Object>> facilitySearchList(SqlSession sqlSession, String facility_name);
+	
+	//제휴시설삭제
+	int statusFacilityDelete(SqlSession sqlSession, int fACILITY_NO);
+	
+	//제휴시설삭제리스트 갯수 조회
+	int getfacilityDelectList(SqlSession sqlSession);
+	
+	//제휴 시설 삭제 리스트 조회
+	List<Map<String, Object>> selectFacilityDelectList(SqlSession sqlSession, PageInfo pi);
+	//제휴 시설 삭제 복원
+	int updateStatusFacilityY(SqlSession sqlSession, int fACILITY_NO);
+
+	//제휴시설 삭제리스트 업체명으로 조회
+	List<Map<String, Object>> selectFacilityDelectSearchList(SqlSession sqlSession, String facility_Name);
 
 	
 	

@@ -112,10 +112,11 @@
 	
 	<!-- 제휴시설 리스트 보기용 쿼리 -->
 	<select id="selectCompanyInfo" parameterType="Company" resultMap="companyResultSet">
-		SELECT F.FACILITY_NO, F.FACILITY_NAME, F.FACILITY_STARTDATE
-		FROM FACILITY F
-		JOIN MEMBER M ON(M.COP_NO = F.FACILITY_COPNO)
-		WHERE M.USER_ID=#{userId}
+		 SELECT F.FACILITY_NO, F.FACILITY_NAME, F.FACILITY_STARTDATE
+      	 FROM FACILITY F
+      	 JOIN MEMBER M ON(M.COP_NO = F.FACILITY_COPNO)
+      	 WHERE M.USER_ID=#{userId}
+      	 AND F.FACILITY_STATUS = 'Y'
 	</select>
 	
 	<!-- 이용내역 보기용 쿼리 -->

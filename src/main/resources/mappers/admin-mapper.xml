@@ -776,4 +776,43 @@
 			AND FACILITY_NAME LIKE '%'||#{facility_Name}||'%'
      </select>
      
+     <!--제휴 삭제  -->
+     <update id="statusFacilityDelete">
+     	UPDATE FACILITY
+		SET FACILITY_STATUS = 'D'
+		WHERE FACILITY_NO = #{FACILITY_NO} 
+     </update>
+     
+     <!-- 제휴 시설삭제 리스트 갯수 조회  -->
+     <select id="getfacilityDelectList" resultType="_int">	
+     	SELECT COUNT(*)
+		FROM FACILITY
+		WHERE FACILITY_STATUS = 'D'
+     </select>
+     
+     <!-- 제휴 시설 삭제리스트 조회  -->
+     <select id="selectFacilityDelectList" resultType="map" parameterType="map">
+     	SELECT FACILITY_COPNO,SUBSTR(FACILITY_REQUESTDATE,1,8) AS FACILITY_REQUESTDATE,
+	        FACILITY_NAME,FACILITY_ADDRESS,FACILITY_EVENT,FACILITY_NO,
+	        FACILITY_MANAGER_NAME,FACILITY_MANAGER_PHONE
+			FROM FACILITY
+			WHERE FACILITY_STATUS = 'D'
+     </select>
+     
+     <!-- 제휴 시설 삭제 복원  -->
+     <update id="updateStatusFacilityY">
+     	UPDATE FACILITY
+		SET FACILITY_STATUS = 'Y'
+		WHERE FACILITY_NO = #{FACILITY_NO} 
+     </update>
+     
+     <!-- 제휴시설 삭제리스트 업체명으로 조회  -->
+     <select id="selectFacilityDelectSearchList" resultType="map" parameterType="map">
+     	SELECT FACILITY_COPNO,SUBSTR(FACILITY_REQUESTDATE,1,8) AS FACILITY_REQUESTDATE,
+	        FACILITY_NAME,FACILITY_ADDRESS,FACILITY_EVENT,FACILITY_NO,
+	        FACILITY_MANAGER_NAME,FACILITY_MANAGER_PHONE
+			FROM FACILITY
+			WHERE FACILITY_STATUS = 'D'
+			AND FACILITY_NAME LIKE '%'||#{facility_Name}||'%'
+     </select>
 </mapper>
