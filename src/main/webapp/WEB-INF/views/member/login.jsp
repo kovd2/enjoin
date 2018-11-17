@@ -7652,8 +7652,7 @@ div {
 									<div class="register_type_select">
 
 										
-										<a id="kakao-login-btn"></a>
-										<a href="http://developers.kakao.com/logout"></a>
+										<a id="kakao-login-btn" style="background:white"></a>
 										<script type='text/javascript'>
 										//<![CDATA[
     										// 사용할 앱의 JavaScript 키를 설정해 주세요.
