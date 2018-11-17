@@ -1,25 +1,19 @@
 package com.finalProject.enjoin.chat;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.finalProject.enjoin.member.model.vo.Member;
-
 public class EchoHandler extends TextWebSocketHandler{
    
+	private static int userNum  = 0;
    //세션을 모두 저장한다.
    //방법 1 :  1:1 채팅
    //private Map<String, WebSocketSession> sessions = new HashMap<String, WebSocketSession>();
@@ -28,7 +22,7 @@ public class EchoHandler extends TextWebSocketHandler{
    private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
    
    
-   private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
+   //private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
    
    /**
     * 클라이언트 연결 이후에 실행되는 메소드
@@ -40,6 +34,7 @@ public class EchoHandler extends TextWebSocketHandler{
 	   //sessions.put(session.getId(), session);
        //List쓸때 방법
        sessionList.add(session);
+       
         //0번째 중괄호에 session.getId()을 넣으라는뜻
        /*logger.info("{} 연결됨", session.getId());*/ 
        
@@ -71,7 +66,7 @@ public class EchoHandler extends TextWebSocketHandler{
        }*/
        
        //연결되어 있는 모든 클라이언트들에게 메시지를 전송한다.
-//       session.sendMessage(new TextMessage("echo:" + message.getPayload()));
+       //session.sendMessage(new TextMessage("echo:" + message.getPayload()));
    }
    
    /**
@@ -88,5 +83,4 @@ public class EchoHandler extends TextWebSocketHandler{
        
        /*logger.info("{} 연결 끊김.", session.getId());*/
    }
-
 }
