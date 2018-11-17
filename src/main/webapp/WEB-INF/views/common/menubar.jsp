@@ -225,5 +225,4 @@
 	<script src="resources/style/js/animate.js"></script>
 	<script src="resources/style/js/custom.js"></script>
 </body>
-
 </html>

@@ -196,6 +196,29 @@ public interface AdminDao {
 	//게시글 카테고리별 생성수치
 	List<Map<String, Object>> selectCategoryBoardIncome(SqlSession sqlSession);
 	
+	//제휴 승인대기 리스트 목록
+	int getfacilityAccept(SqlSession sqlSession);
+	
+	//제휴 승인대기 리스트 조회
+	List<Map<String, Object>> selectfacilityAccept(SqlSession sqlSession, PageInfo pi);
+	
+	//제휴 승인 업데이트
+	int updateStatusFacility(SqlSession sqlSession, int fACILITY_NO);
+	
+	//제휴 승인 검색
+	List<Map<String, Object>> selectfacilityNoneSearchList(SqlSession sqlSession, String facility_name);
+	
+	//엔조인 제휴 등록 리스트 조회
+	int getfacilityList(SqlSession sqlSession);
+
+	//제휴 목록 조회
+	List<Map<String, Object>> facilityList(SqlSession sqlSession, PageInfo pi);
+	
+	//제휴 업체명으로 검색
+	List<Map<String, Object>> facilitySearchList(SqlSession sqlSession, String facility_name);
+
+	
+	
 	
 	
 

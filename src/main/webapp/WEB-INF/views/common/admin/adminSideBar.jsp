@@ -22,7 +22,12 @@
 
     <!-- Custom styles for this template-->
     <link href="resources/style/css/admin/sb-admin.css" rel="stylesheet">
-
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+	
+	
   </head>
 
   <body id="page-top">
@@ -42,13 +47,13 @@
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="goMain.me">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa fa-home" style="font-size:20px"></i>
             <span>홈으로</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
+           <i class="fas fa-fw fa-table"></i>
             <span>게시판</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
@@ -63,27 +68,47 @@
 
            </div>
         </li>
+        
+         <li class="nav-item">
+          <a class="nav-link" href="adminChart.shw">
+           <i class="fa fa-bar-chart" style="font-size:20px"></i>
+            <span>차트</span></a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="adminMember.shw">
+           <i class="fa fa-user-circle" style="font-size:20px"></i>
+            <span>회원 조회</span></a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="adminBlackMember.shw">
+           <i class="fa fa-user-circle-o" style="font-size:20px"></i>
+            <span>블랙회원 조회</span></a>
+        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="adminPayment.hh">
-           <i class="fas fa-fw fa-chart-area"></i>
+           <i class='fas fa-money-check' style='font-size:20px'></i>
             <span>결제 관리</span></a>
         </li>
+                
+        <li class="nav-item">
+          <a class="nav-link" href="adminCrew.shw">
+           <i class="fa fa-group" style="font-size:20px"></i>
+            <span>크루 조회</span></a>
+        </li>
+           
        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-table"></i>
-            <span>테이블</span></a>
+            <i class="fa fa-address-card" style="font-size:20px"></i>
+            <span>제휴관리</span></a>
              <div class="dropdown-menu" aria-labelledby="pagesDropdown">
              	<div class="dropdown-divider"></div>
-             	<h6 class="dropdown-header">회원 조회</h6>
-            	<a class="dropdown-item" href="adminMember.shw">회원 조회</a>
-	            <a class="dropdown-item" href="adminBlackMember.shw">블랙회원 조회</a>
-	            <div class="dropdown-divider"></div>
-	            <h6 class="dropdown-header">크루 조회</h6>
-	            <a class="dropdown-item" href="adminCrew.shw">크루 조회</a>
-	            <div class="dropdown-divider"></div>
-	            <h6 class="dropdown-header">결제 내역 조회</h6>
-	            <a class="dropdown-item" href="adminChart.shw">차트</a>
-	            <a class="dropdown-item" href="blank.html">pass이력 조회</a>
+             	<h6 class="dropdown-header">제휴 관리</h6>
+            	<a class="dropdown-item" href="facilityAccept.shw">제휴승인</a>
+	            <a class="dropdown-item" href="facilityList.shw">제휴목록</a>
+	            
             </div>
         </li>
       </ul>

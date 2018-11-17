@@ -385,6 +385,48 @@ public class AdminServiceImpl implements AdminService {
 		
 		return ad.selectCategoryBoardIncome(sqlSession);
 	}
+	//제휴승인대기 리스트 갯수
+	@Override
+	public int getfacilityAccept() {
+		
+		return ad.getfacilityAccept(sqlSession);
+	}
+	//제휴 승인대기 리스트 조회
+	@Override
+	public List<Map<String, Object>> selectfacilityAccept(PageInfo pi) {
+		
+		return ad.selectfacilityAccept(sqlSession,pi);
+	}
+	//제휴 승인 업데이트
+	@Override
+	public int updateStatusFacility(int fACILITY_NO) {
+		
+		return ad.updateStatusFacility(sqlSession,fACILITY_NO);
+	}
+	//승인대기중 제휴 검색 으로 찾기
+	@Override
+	public List<Map<String, Object>> selectfacilityNoneSearchList(String facility_name) {
+		
+		return ad.selectfacilityNoneSearchList(sqlSession,facility_name);
+	}
+	//제휴 승인 된 리스트 갯수 조회
+	@Override
+	public int getfacilityList() {
+		
+		return ad.getfacilityList(sqlSession);
+	}
+	//제휴 리스트 조회
+	@Override
+	public List<Map<String, Object>> facilityList(PageInfo pi) {
+		
+		return ad.facilityList(sqlSession,pi);
+	}
+	//제휴 업체명으로 조회
+	@Override
+	public List<Map<String, Object>> facilitySearchList(String facility_name) {
+		
+		return ad.facilitySearchList(sqlSession,facility_name);
+	}
 	
 
 

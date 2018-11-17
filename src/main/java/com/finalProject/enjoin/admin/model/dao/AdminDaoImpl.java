@@ -416,6 +416,54 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.selectList("Admin.selectCategoryBoardIncome");
 	}
+	//제휴 승인대기 리스트 갯수
+	@Override
+	public int getfacilityAccept(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getfacilityAccept");
+	}
+	//제휴시설등록대기 페이지
+	@Override
+	public List<Map<String, Object>> selectfacilityAccept(SqlSession sqlSession, PageInfo pi) {
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		
+		return sqlSession.selectList("Admin.selectfacilityAccept", null, rowBounds);
+	}
+	//제휴시설 등록 업데이트
+	@Override
+	public int updateStatusFacility(SqlSession sqlSession, int fACILITY_NO) {
+		
+		return sqlSession.update("Admin.updateStatusFacility", fACILITY_NO);
+	}
+	//검색으로 제휴등록대기중 검색하기
+	@Override
+	public List<Map<String, Object>> selectfacilityNoneSearchList(SqlSession sqlSession, String facility_name) {
+		
+		return sqlSession.selectList("Admin.selectfacilityNoneSearchList", facility_name);
+	}
+	//등록된 제휴 리스트 조회
+	@Override
+	public int getfacilityList(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getfacilityList");
+	}
+	//제휴 목록 리스트 조회
+	@Override
+	public List<Map<String, Object>> facilityList(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.facilityList",null, rowBounds);
+	}
+	@Override
+	public List<Map<String, Object>> facilitySearchList(SqlSession sqlSession, String facility_name) {
+		
+		return sqlSession.selectList("Admin.facilitySearchList",facility_name);
+	}
 	
 
 }
