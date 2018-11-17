@@ -21,6 +21,7 @@
 
 #modalWrap{
 	width:100%;
+	
 }
 .modalMiddle{
 	width:340px;
@@ -47,6 +48,7 @@
 	
 	border-radius:3px;
 	width:300px;
+	height:200px;
 	margin:5px 0px 5px 10px;
 
 }
@@ -185,7 +187,7 @@ height:20px;
 				
 				$div7=$("<div id='address'>");
 				$p1=$("<p>");
-				$p1.append(data.FACILITY_ADDRESS);
+				$p1.append(data.TOTAL_ADDRESS);
 				$div7.append($p1);
 				$div5.append($div7);
 				
