@@ -94,6 +94,9 @@ public interface myPageDao {
 	//시설 이용을 위한 패스 차감
 	int updatePassCount(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
+	//패스 이용내역 insert
+	int insertPassRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+	
 	//시설 이용을 위한 패스내역 패스 차감
 	int updatePassCountRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
@@ -102,10 +105,12 @@ public interface myPageDao {
 
 	//시설 이용등록 완료후 정보 띄우기
 	List<HashMap<String, Object>> selectUseCode(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
-	
 
+	//시설 이용전 확인
+	int selectRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
+	//이용코드 조회후 뿌리기
+	List<HashMap<String, Object>> selectUseCodeList(int userNo, SqlSessionTemplate sqlSession);
 
-	
 
 }

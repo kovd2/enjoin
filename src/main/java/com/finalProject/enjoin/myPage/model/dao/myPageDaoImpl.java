@@ -108,15 +108,10 @@ public class myPageDaoImpl implements myPageDao{
 	@Override
 	public int insertCrewBoard(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
 		int result = 0;
-		System.out.println("DAOImpl");
 		int result1 = sqlSession.insert("myPage.insertCrewBoard", hmap);
-		System.out.println("게시물 등록 완료");
 		
 		if(result1 > 0) {
-			
 			sqlSession.insert("myPage.insertBoardImg", hmap);
-			
-			System.out.println("게시물 등록 & 게시물 이미지 등록 완료");
 		}
 		
 		return result;
@@ -248,6 +243,13 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.update("myPage.updatePassCountRecord", hmap);
 	}
+
+	//패스 이용내역 insert
+	@Override
+	public int insertPassRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.insert("myPage.insertPassRecord", hmap);
+	}
 	
 	//이용코드 입력
 	@Override
@@ -263,4 +265,19 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.selectList("myPage.selectUseCode", hmap);
 	}
 
+	//시설 이용전 확인
+	@Override
+	public int selectRecord(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("myPage.selectRecord", hmap);
+	}
+
+	//이용코드 조회후 뿌리기
+	@Override
+	public List<HashMap<String, Object>> selectUseCodeList(int userNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectUseCodeList", userNo);
+	}
+
+	
 }

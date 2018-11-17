@@ -493,6 +493,11 @@
 		WHERE USER_NO = #{userNo}
 	</update>
 	
+	<!-- 패스 이용 내역 insert -->
+	<insert id="insertPassRecord">
+		INSERT INTO PASSRECORD VALUES(SEQ_PP_NO.NEXTVAL, 0, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{facilityNo}, #{useCode}, #{userNo}) 
+	</insert>
+	
 	<!-- 시설 이용을 위한 패스내역 패스 차감 -->
 	<update id="updatePassCountRecord">
 		UPDATE PASSRECORD
@@ -500,7 +505,7 @@
 		WHERE USER_NO = #{userNo}
 	</update>
 	
-	<!-- 이용코드 입력 -->
+	<!-- 이용코드 부여 -->
 	<update id="updateUseCode">
 		UPDATE PASSRECORD
 		SET PP_STATUS = 1,
@@ -511,12 +516,38 @@
 	
 	<!-- 시설 이용등록 완료후 정보 띄우기 -->
 	<select id="selectUseCode" parameterType="hashmap" resultType="hashmap">
-		SELECT P.PP_COUNT, P.USE_CODE, F.FACILITY_NAME, F.PASS_COUNT
+		<!-- SELECT P.PP_COUNT, P.USE_CODE, F.FACILITY_NAME, F.PASS_COUNT
 		FROM PASSRECORD P 
 		JOIN (SELECT FACILITY_NAME, PASS_COUNT, FACILITY_NO
       		  FROM FACILITY
       		  WHERE FACILITY_NO = #{facilityNo}) F USING(FACILITY_NO)
+		WHERE USER_NO = #{userNo} -->
+		SELECT P.PASS_COUNT, PR.USE_CODE, F.FACILITY_NAME, F.PASS_COUNT AS FACILITY_PASS
+		FROM PASSRECORD PR 
+        JOIN PASS P ON (PR.USER_NO = P.USER_NO)
+        JOIN (SELECT FACILITY_NAME, PASS_COUNT, FACILITY_NO
+      		  FROM FACILITY
+      		  WHERE FACILITY_NO = #{facilityNo}) F USING(FACILITY_NO)
+		WHERE PR.USER_NO = #{userNo}
+		AND USE_CODE IS NOT NULL
+	</select>
+	
+	<!-- 시설 이용전 확인 -->
+	<select id="selectRecord" resultType="_int">
+		SELECT COUNT(*)
+		FROM PASSRECORD
 		WHERE USER_NO = #{userNo}
+		AND FACILITY_NO = #{facilityNo}
+		AND PP_STATUS = 0
+	</select>
+	
+	<!-- 이용코드 조회후 뿌리기 -->
+	<select id="selectUseCodeList" parameterType="hashmap" resultType="hashmap">
+		SELECT ROWNUM, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.USE_CODE, F.FACILITY_NAME, PP_STATUS
+		FROM PASSRECORD PR
+		JOIN FACILITY F USING(FACILITY_NO)
+		WHERE USER_NO = #{userNo}
+		AND PP_STATUS = 0
 	</select>
 </mapper>
 	
