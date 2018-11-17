@@ -209,41 +209,13 @@
 			<hr>
 			
 			<div style="margin-left:30px;">
-				<h3><i class="fa fa-magic"></i>BMI측정</h3>
-			</div>
-
-			<div class="bmiArea">
-				<!-- 키 : <input type="text" placeholder="키(cm)를 입력해 주세요." id="height">
-				몸무게 : <input type="text" placeholder="몸무게(kg)를 입력해 주세요." id="weight"> -->
-				<input type="button" value="BMI측정" onclick="bmiCalculator()">
+				<h3><i class="fa fa-magic"></i>시설 이용 코드</h3>
+				
 			</div>
 		</div>
 		</div>
 		<br><br><br><br><br><br>
 		<jsp:include page="../common/footer.jsp"/>
-		<script>
-		function bmiCalculator() {     //bmi와 적정체중 계산 함수
-	        var height = Number(prompt('키(cm)를 입력해주세요'));   //키(cm)를 입력받음
-	        var height_m_conversion = height / 100;     //cm to m
-	        var weight = Number(prompt('무게(kg)를 입력해주세요'));  //무게를 입력받음
-	        var user_BMI = weight / (height_m_conversion * height_m_conversion);    //BMI 계산
-	        var user_BMI_decimal = Math.round(user_BMI * 10) / 10; //소수점 변환
-	        var healthy_weight = (height - 100) * 0.9;  //적정 체중 계산
-	        var bmi_output;     //리턴할 변수 선언
-	        if (user_BMI < 18.6) {      //케이스에 따라 선언한 변수에 안내문 대입
-	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 저체중이며 적정 체중은 " + healthy_weight + "kg 입니다.";
-	        } else if (user_BMI < 22.9) {
-	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 정상이며 적정 체중은 " + healthy_weight + "kg 입니다.";
-	        } else if (user_BMI < 24.9) {
-	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 과체중이며 적정 체중은 " + healthy_weight + "kg 입니다.";
-	        } else if (user_BMI < 30) {
-	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
-	        } else if (user_BMI >= 30) {
-	            bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 고도비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
-	        }
-	        return alert(bmi_output);       //리턴
-	    }
-		</script>
 	
 </body>
 </html>

@@ -230,7 +230,10 @@
  			$.ajax({
  				url:"deleteMember.ljs",
  				type:"post",
- 				data:{password:password},
+ 				data:{
+ 					userId:userId,
+ 					password:password
+ 				},
  				success:function(data){
  					
  				} 				

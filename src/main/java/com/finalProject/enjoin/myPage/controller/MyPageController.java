@@ -255,6 +255,7 @@ public class MyPageController {
 			System.out.println("result2 : " + result2);
 			List<HashMap<String, Object>> showUseCode = mps.selectUseCode(hmap);
 			System.out.println("showUseCode : " + showUseCode);
+			
 			return showUseCode;
 		}
 		return null;
@@ -418,13 +419,16 @@ public class MyPageController {
 	
 	//회원 탈퇴
 	@RequestMapping("deleteMember.ljs")
-	public @ResponseBody int deleteMember(@RequestParam("userId") String userId, @RequestParam("password") String password) {
+	public @ResponseBody int deleteMember(@RequestParam("userId") String userId, @RequestParam("password") String password, HttpServletRequest request) {
+		String userPwd = ((Member)(request.getSession().getAttribute("loginUser"))).getUserPwd();
 		System.out.println("userId : " + userId);
 		System.out.println("password : " + password);
+		System.out.println("userPwd : " + userPwd);
 		
 		String encPassword = passwordEncoder.encode(password);
+		System.out.println("encPassword : " + encPassword);
 		
-		if(encPassword == password) {
+		if(encPassword == userPwd) {
 			
 			int result = mps.deleteMember(userId);
 			
@@ -568,8 +572,19 @@ public class MyPageController {
 	
 	//시설 이용 정보 팝업창
 	@RequestMapping(value="popUp.ljs")
-	public ModelAndView showUseCode(ModelAndView mv, @RequestParam("data") List<HashMap<String, Object>> data) {
-		System.out.println("data : " + data);
+	public ModelAndView showUseCode(ModelAndView mv, @RequestParam("ppCount") int ppCount, @RequestParam("useCode") String useCode, 
+														@RequestParam("facilityName") String facilityName, @RequestParam("passCount") int passCount) {
+		System.out.println("ppCount : " + ppCount);
+		System.out.println("useCode : " + useCode);
+		System.out.println("facilityName : " + facilityName);
+		System.out.println("passCount : " + passCount);
+		
+		mv.setViewName("myPage/useCodePopUp");
+		mv.addObject("ppCount", ppCount);
+		mv.addObject("useCode", useCode);
+		mv.addObject("facilityName", facilityName);
+		mv.addObject("passCount", passCount);
+		
 		return mv;
 	}
 }
