@@ -63,30 +63,37 @@
             <a class="dropdown-item" href="adminCrewRecruitment.shw">크루모집</a>
             <a class="dropdown-item" href="adminInformBoard.shw">크루공고</a>
             <a class="dropdown-item" href="adminAdminCrewActivity.shw">크루활동</a>
-            <a class="dropdown-item" href="adminFAQ.hh">크루제휴</a>
              <a class="dropdown-item" href="adminBlackBoard.shw">블랙게시글</a>
 
            </div>
         </li>
         
-         <li class="nav-item">
-          <a class="nav-link" href="adminChart.shw">
-           <i class="fa fa-bar-chart" style="font-size:20px"></i>
-            <span>차트</span></a>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle" style="font-size:20px"></i>
+            <span>회원관리</span></a>
+             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+             	<div class="dropdown-divider"></div>
+             	<h6 class="dropdown-header">회원 관리</h6>
+            	<a class="dropdown-item" href="adminMember.shw">회원 조회</a>
+	            <a class="dropdown-item" href="adminBlackMember.shw">블랙회원 조회</a>
+            </div>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="adminMember.shw">
-           <i class="fa fa-user-circle" style="font-size:20px"></i>
-            <span>회원 조회</span></a>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-address-card" style="font-size:20px"></i>
+            <span>제휴관리</span></a>
+             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+             	<div class="dropdown-divider"></div>
+             	<h6 class="dropdown-header">제휴 관리</h6>
+            	<a class="dropdown-item" href="facilityAccept.shw">제휴승인</a>
+	            <a class="dropdown-item" href="facilityList.shw">제휴목록</a>
+	             <a class="dropdown-item" href="facilityDelectList.shw">제휴삭제</a>
+            </div>
         </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="adminBlackMember.shw">
-           <i class="fa fa-user-circle-o" style="font-size:20px"></i>
-            <span>블랙회원 조회</span></a>
-        </li>
-        
+         
         <li class="nav-item">
           <a class="nav-link" href="adminPayment.hh">
            <i class='fas fa-money-check' style='font-size:20px'></i>
@@ -96,21 +103,22 @@
         <li class="nav-item">
           <a class="nav-link" href="adminCrew.shw">
            <i class="fa fa-group" style="font-size:20px"></i>
-            <span>크루 조회</span></a>
+            <span>크루 관리</span></a>
         </li>
            
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-address-card" style="font-size:20px"></i>
-            <span>제휴관리</span></a>
-             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-             	<div class="dropdown-divider"></div>
-             	<h6 class="dropdown-header">제휴 관리</h6>
-            	<a class="dropdown-item" href="facilityAccept.shw">제휴승인</a>
-	            <a class="dropdown-item" href="facilityList.shw">제휴목록</a>
-	            
-            </div>
+      	<li class="nav-item">
+          <a class="nav-link" href="adminChart.shw">
+           <i class="fa fa-bar-chart" style="font-size:20px"></i>
+            <span>차트</span></a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="adminTest.shw">
+           <i class="fa fa-bar-chart" style="font-size:20px"></i>
+            <span>테스트</span></a>
+        </li>
+      
+      
       </ul>
 
     <!-- /#wrapper -->

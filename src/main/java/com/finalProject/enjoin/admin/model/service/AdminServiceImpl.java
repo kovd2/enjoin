@@ -427,6 +427,36 @@ public class AdminServiceImpl implements AdminService {
 		
 		return ad.facilitySearchList(sqlSession,facility_name);
 	}
+	//제휴시설삭제
+	@Override
+	public int statusFacilityDelete(int fACILITY_NO) {
+		
+		return ad.statusFacilityDelete(sqlSession,fACILITY_NO);
+	}
+	//제휴시설삭제리스트
+	@Override
+	public int getfacilityDelectList() {
+
+		return ad.getfacilityDelectList(sqlSession);
+	}
+	//제휴시설삭제리스트 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityDelectList(PageInfo pi) {
+		
+		return ad.selectFacilityDelectList(sqlSession,pi);
+	}
+	//제휴 시설 삭제 복원
+	@Override
+	public int updateStatusFacilityY(int fACILITY_NO) {
+		
+		return ad.updateStatusFacilityY(sqlSession,fACILITY_NO);
+	}
+	//제휴 시설 삭제 목록 업체명 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityDelectSearchList(String facility_Name) {
+		
+		return ad.selectFacilityDelectSearchList(sqlSession,facility_Name);
+	}
 	
 
 

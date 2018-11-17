@@ -459,10 +459,44 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.selectList("Admin.facilityList",null, rowBounds);
 	}
+	//제휴 목록 업체명으로 검색
 	@Override
 	public List<Map<String, Object>> facilitySearchList(SqlSession sqlSession, String facility_name) {
 		
 		return sqlSession.selectList("Admin.facilitySearchList",facility_name);
+	}
+	//제휴업체 삭제
+	@Override
+	public int statusFacilityDelete(SqlSession sqlSession, int fACILITY_NO) {
+		
+		return sqlSession.update("Admin.statusFacilityDelete",fACILITY_NO);
+	}
+	//제휴시설삭제 리스트 갯수 조회
+	@Override
+	public int getfacilityDelectList(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getfacilityDelectList");
+	}
+	//제휴 시설 삭제 리스트 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityDelectList(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectFacilityDelectList", null, rowBounds);
+	}
+	//제휴 시설 삭제 복원 
+	@Override
+	public int updateStatusFacilityY(SqlSession sqlSession, int fACILITY_NO) {
+		
+		return sqlSession.update("Admin.updateStatusFacilityY", fACILITY_NO);
+	}
+	//제휴 시설 삭제 목록 업체명으로 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityDelectSearchList(SqlSession sqlSession, String facility_Name) {
+		
+		return sqlSession.selectList("Admin.selectFacilityDelectSearchList", facility_Name);
 	}
 	
 

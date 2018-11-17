@@ -400,8 +400,8 @@ button.Contentbtn {
 		var FACILITY_NO = FACILITY_NO;
 		var FACILITY_NAME = FACILITY_NAME;
 		
-		if(confirm(FACILITY_NAME + "를 제휴삭제 하시겠습니까?") == true){
-			location.href="statusFacilityDelete.shw?FACILITY_NO=" + FACILITY_NO;
+		if(confirm(FACILITY_NAME + "를 제휴복원 하시겠습니까?") == true){
+			location.href="statusFacilityY.shw?FACILITY_NO=" + FACILITY_NO;
 			alert("등록완료!");
 		}else{
 			return;
@@ -421,7 +421,7 @@ button.Contentbtn {
 							<tabel align="center">
 							<tr class="searchbar">
 								<td>
-									<h2 class="MemberSearchMain"> 제휴리스트</h2>
+									<h2 class="MemberSearchMain"> 제휴삭제리스트</h2>
 									<hr>
 								</td>
 							</tr>
@@ -477,7 +477,7 @@ button.Contentbtn {
 							
 									<tr>
 										<td colspan="3">
-											<form action="facilitySearchList.shw" method="get">
+											<form action="facilityDelectSearchList.shw" method="get">
 												<table align="center">
 													<tr>
 														<td>
@@ -501,7 +501,7 @@ button.Contentbtn {
 											<li><a>이전</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage > 1 }">
-											<c:url var="listBack" value="facilityList.shw">
+											<c:url var="listBack" value="facilityDelectList.shw">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 											
 											</c:url>
@@ -513,7 +513,7 @@ button.Contentbtn {
 												<li class="active"><a>${ p }</a></li>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="listCheck" value="facilityList.shw">
+												<c:url var="listCheck" value="facilityDelectList.shw">
 													<c:param name="currentPage" value="${ p }" />
 												</c:url>
 												<li><a href="${ listCheck }">${ p }</a></li>
@@ -524,7 +524,7 @@ button.Contentbtn {
 											<li><a>다음</a></li>
 										</c:if>
 										<c:if test="${ pi.currentPage < pi.maxPage }">
-											<c:url var="listEnd" value="facilityList.shw">
+											<c:url var="listEnd" value="facilityDelectList.shw">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							
 											</c:url>

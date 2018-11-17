@@ -11,16 +11,22 @@
 <style>
 .wrappp {
 	width: 100%;
+	background: #f5f4f3;
 	align: center;
+}
+table {
+    border-collapse: collapse;
+    width: 1000px;
 }
 
 .boardAdmin table tr {
 	text-align: center;
-	border: 1px solid black;
+    height: 37px;
+    border: 1px solid black;
 }
 
 .boardAdmin table tr:hover{
-	background:yellow;
+	background:gainsboro;
 }
 
 th {
@@ -31,21 +37,22 @@ td {
 	border-left:1px solid;
 }
 
+
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">
 		<div class="boardAdmin" align="center">
-			<p style="font-size: 100px; text-align: center">FAQ</p>
+			<p style="font-size: 50px; text-align: center; font-weight:bold; color:#525456">Admin FAQ</p>
 
 			<hr>
-			<p style="text-align:right; margin-right:190px"><input type="button" value="FAQ 등록" onclick="adminFAQInsert()" style="width:150px; height:50px;"></p>
+			<p style="text-align:right; margin-right:190px"><input type="button" value="FAQ 등록" onclick="adminFAQInsert()" style="width:90px; height:30px; color: #636060;"></p>
 			<table>
 				<tr style="border: 1px solid black;">
-					<th style="width: 70px; height: 60px; font-size: 30px; background: gray;">번호</th>
-					<th style="width: 180px; height: 60px; font-size: 30px; background: gray;">카테고리</th>
-					<th style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
-					<th style="width: 100px; height: 60px; font-size: 30px; background: gray;">날짜</th>
+					<th style="width: 70px; height: 60px; font-size: 30px; background: skyblue; color:#525456; font-weight:bold;" >번호</th>
+					<th style="width: 180px; height: 60px; font-size: 30px; background: skyblue; color:#525456" >카테고리</th>
+					<th style="width: 500px; height: 60px; font-size: 30px; background: skyblue; color:#525456">제목</th>
+					<th style="width: 100px; height: 60px; font-size: 30px; background: skyblue; color:#525456">날짜</th>
 				</tr>
 				<c:forEach var="f" items="${ list }">
 					<tr onclick="selectOneBoard(${ f.boardNo })">
