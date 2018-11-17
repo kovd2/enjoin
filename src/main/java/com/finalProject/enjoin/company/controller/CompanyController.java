@@ -22,7 +22,11 @@ import com.finalProject.enjoin.common.util.CommonUtils;
 import com.finalProject.enjoin.company.model.service.CompanyService;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 import com.finalProject.enjoin.company.model.vo.Company;
+
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
+import com.finalProject.enjoin.myPage.model.vo.Pagination;
+import com.finalProject.enjoin.payment.model.vo.Passrecord;
 
 
 @SessionAttributes("loginUser")
@@ -92,15 +96,35 @@ public class CompanyController {
 	//나의 시설 이용내역을 보여주는 메소드
 	@RequestMapping("useHistory.gs")
 	public ModelAndView showUseHistory(HttpServletRequest request, ModelAndView mv) {
-		String userId = request.getParameter("userId");
+		String copNo = request.getParameter("copNo");
+		int currentPage = 1;
+	
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
 		
-		List<Company> UseHistoryList = cs.selectUseHistory(userId);
+		int listCount = cs.getListCount(copNo);
+		System.out.println("LISTCOUNT : " + listCount);
 		
-		mv.setViewName("company/useHistory");
-		mv.addObject("UseHistoryList", UseHistoryList);
+		if(listCount == 0) {
+			mv.setViewName("company/useHistory");
+			mv.addObject("copNo", copNo);
+			
+			
+			return mv;
+		}
 		
-		System.out.println("useHistory : " +  UseHistoryList);
-		
+		if(listCount > 0) {
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			List<HashMap<String, Object>> UseHistoryList = cs.selectUseHistory(pi, copNo);
+			
+			mv.setViewName("company/useHistory");
+			mv.addObject("UseHistoryList", UseHistoryList);
+			mv.addObject("pi", pi);
+			mv.addObject("copNo", copNo);
+		}		
 		return mv;
 	}
 
@@ -168,6 +192,23 @@ public class CompanyController {
 		System.out.println("result2 : " + result);
 		return String.valueOf(result);
 	}
+	
+	 //메인에서 크루 자랑 정보 뿌려주기
+	@RequestMapping("showOurCrew.me")
+	public ModelAndView showCrew(ModelAndView mv){
+		
+		List<HashMap<String, Object>> crewList = cs.crewList();
+		
+		System.out.println(crewList);
+		
+		mv.setViewName("main/main");
+		mv.addObject(crewList);
+		
+		
+		
+		return mv;
+	}
+	
 	
 	//제휴시설 신청용 컨트롤러
 	@RequestMapping(value="facilityInsert.gs")

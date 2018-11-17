@@ -222,24 +222,7 @@
          reader.readAsDataURL(file);
       }
    };
- 		//회원탈퇴 스트립트
- 		function deleteMember(userId){
- 			var userId = userId;
- 			var password = String(prompt('비밀번호를 입력해주세요')); 
- 			
- 			$.ajax({
- 				url:"deleteMember.ljs",
- 				type:"post",
- 				data:{
- 					userId:userId,
- 					password:password
- 				},
- 				success:function(data){
- 					
- 				} 				
- 			})
- 			
- 		}
+ 	
 </script>
 
 </body>

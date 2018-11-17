@@ -68,6 +68,14 @@
 		<result property="copEmail" column="COP_EMAIL"/>
 		<result property="upload_name" column="UPLOAD_NAME"/>
 	</resultMap>
+	
+	<!-- 패스이력 -->
+ 	  <resultMap type="Passrecord" id="passRecordResultSet">
+   	  		 <id property="ppStatus" column="PP_STATUS"/>
+    	 	 <result property="ppDate" column="PP_DATE"/>
+      	 	 <result property="ppCount" column="PP_COUNT"/>
+      		 <result property="payNo" column="PAY_NO"/>
+   	  </resultMap>
 
 	
 	<!-- 제휴기업 신청쿼리 -->
@@ -119,11 +127,29 @@
 	</select>
 	
 	<!-- 이용내역 보기용 쿼리 -->
-	<select id="selectUseHistory" parameterType="Company" resultMap="companyResultSet">
-		SELECT F.FACILITY_NO, F.FACILITY_NAME
-		FROM FACILITY F
-		JOIN MEMBER M ON(M.COP_NO = F.FACILITY_COPNO)
-		WHERE M.USER_ID=#{userId}
+	<select id="selectUseHistory" parameterType="hashmap" resultType="hashmap">
+		SELECT M.USER_NAME, M.USER_ID, P.PP_DATE, P.PP_COUNT, F.FACILITY_NAME
+		FROM PASSRECORD P
+		JOIN MEMBER M ON(M.USER_NO = P.USER_NO)
+		JOIN FACILITY F ON(P.FACILITY_NO = F.FACILITY_NO)
+		WHERE M.USER_NO IN (SELECT P.USER_NO
+		                FROM MEMBER M
+		                JOIN FACILITY F ON(M.COP_NO = F.FACILITY_COPNO)
+		                JOIN PASSRECORD P ON(F.FACILITY_NO = P.FACILITY_NO)
+		                WHERE M.COP_NO = #{ copNo })
+	</select>
+	
+	<!-- 이용내역 페이징 -->
+	<select id="listCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM PASSRECORD P
+		JOIN MEMBER M ON(M.USER_NO = P.USER_NO)
+		JOIN FACILITY F ON(P.FACILITY_NO = F.FACILITY_NO)
+		WHERE M.USER_NO IN (SELECT P.USER_NO
+		                FROM MEMBER M
+		                JOIN FACILITY F ON(M.COP_NO = F.FACILITY_COPNO)
+		                JOIN PASSRECORD P ON(F.FACILITY_NO = P.FACILITY_NO)
+		                WHERE M.COP_NO = #{ copNo })
 	</select>
 	
 	<!-- 데이터 뿌려주는용 쿼리 -->
@@ -172,6 +198,21 @@
 			MODIFY_DATE = SYSDATE
 		WHERE USER_ID = #{userId}				
 	</update>
+	
+	<!-- 메인에 크루활동사진 뿌리는 퀄쿼리문 -->
+	<select id="selectCrew" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		
+		SELECT B.BOARD_TITLE,B.BOARD_CONTENT,A.UPLOAD_NAME,B.BOARD_COUNT
+		FROM BOARD B
+		JOIN ATTACHMENT A  ON (B.BOARD_NO = A.REF_NO)
+		WHERE FILE_NO = 0
+		AND ROWNUM <=4
+		AND B.BOARD_TYPE = '크루활동' 
+		ORDER BY B.BOARD_COUNT DESC
+		
+		]]> 
+	</select>
 </mapper>
 
 

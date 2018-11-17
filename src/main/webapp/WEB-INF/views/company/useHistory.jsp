@@ -7657,84 +7657,55 @@ button.close {
 				<div class="noticeWrap">
 					<div class="list-group">
 						<c:forEach var="ul" items="${ UseHistoryList }">
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">${ ul.facilityName }</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
+						<a class="list-group-item"> 
+						
+							<h4 class="list-group-ietm-heading">${ ul.FACILITY_NAME }</h4>
+							<span class="span_gs label-no">${ ul.USER_ID }(${ ul.USER_NAME }) </span><br><br>
+							<span class="span_gs label-no">사용 pass개수 : ${ ul.PP_COUNT}개</span><br>
+							<br> <span class="date">${ ul.PP_DATE }</span>
 						</a> 
 						</c:forEach>
-						<!-- <a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a>  
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a>
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a> 
-						<a class="list-group-item" href="/notice/view/130110/"> <span
-							class="label label-default label-no">125</span>
-							<h4 class="list-group-ietm-heading">강남역 ENJOIN fitness 1호점</h4>
-							<span class="span_gs label-no">ID : test01 </span><br><br>
-							<span class="span_gs label-no">사용 pass개수 : 7개</span><br>
-							<br> <span class="date">2018-06-08 15:30</span>
-						</a>  -->
-					</div>
-					<!-- /.list-group -->
+						
 
-					<nav style="margin-left:50px;">
-						<ul class="pagination">
-							<li class="active"><a href="/notice/thread/1">1</a></li>
-							<li><a href="/notice/thread/2">2</a></li>
-							<li><a href="/notice/thread/3">3</a></li>
-							<li><a href="/notice/thread/4">4</a></li>
-							<li><a href="/notice/thread/5">5</a></li>
-							<li><a href="/notice/thread/6" aria-label="Next"><span
-									aria-hidden="true">다음</span></a></li>
-						</ul>
-					</nav>
+						<!-- 페이징 처리 -->
+						<nav>
+							<ul class="pagination">
+								<c:if test="${ pi.currentPage <= 1 }">
+									<li><a>이전</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage > 1 }">
+									<c:url var="listBack" value="useHistory.gs?copNo=${ sessionScope.loginUser.getCopNo() }">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+
+									</c:url>
+									<li><a href="${ listBack }">이전</a></li>
+								</c:if>
+
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<li class="active"><a>${ p }</a></li>
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="listCheck" value="useHistory.gs?copNo=${ sessionScope.loginUser.getCopNo() }">
+											<c:param name="currentPage" value="${ p }" />
+
+										</c:url>
+										<li><a href="${ listCheck }">${ p }</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${ pi.currentPage >= pi.maxPage }">
+									<li><a>다음</a></li>
+								</c:if>
+								<c:if test="${ pi.currentPage < pi.maxPage }">
+									<c:url var="listEnd" value="useHistory.gs?copNo=${ sessionScope.loginUser.getCopNo() }">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+	
+									</c:url>
+									<li><a href="${ listEnd }">다음</a></li>
+								</c:if>
+							</ul>
+						</nav>
 				</div>
 				<!-- /.noticeWrap -->
 
@@ -7746,7 +7717,7 @@ button.close {
 		<!-- /.row -->
 	</div>
 	<!-- /container -->
-
+</div>
 
 
 

@@ -3,11 +3,14 @@ package com.finalProject.enjoin.company.model.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.finalProject.enjoin.company.model.vo.Company;
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
+import com.finalProject.enjoin.payment.model.vo.Passrecord;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 
 @Repository
@@ -47,10 +50,13 @@ public class CompanyDaoImpl implements CompanyDao{
 
 	//이용내역 리스트 보기용 메소드
 	@Override
-	public List<Company> selectUseHistory(SqlSessionTemplate sqlSession, String userId) {
+	public List<HashMap<String, Object>> selectUseHistory(SqlSessionTemplate sqlSession, PageInfo pi, String copNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		return sqlSession.selectList("Company.selectUseHistory", userId);
+		return sqlSession.selectList("Company.selectUseHistory", copNo,rowBounds);
 	}
+
 
 
 	//데이터 뿌려주기용 상세보기
@@ -90,6 +96,23 @@ public class CompanyDaoImpl implements CompanyDao{
 		
 		return sqlSession.update("Company.memberUpdate", m);
 	}
+
+
+	//이용내역 페이징
+	@Override
+	public int getListCount(SqlSessionTemplate sqlSession, String copNo) {
+
+		return sqlSession.selectOne("Company.listCount", copNo);
+	}
+
+
+	//메인화면에 크루활동사진 뿌려주는 것
+	@Override
+	public List<HashMap<String, Object>> CrewList(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("Company.selectCrew");
+	}
+
 
 
 	

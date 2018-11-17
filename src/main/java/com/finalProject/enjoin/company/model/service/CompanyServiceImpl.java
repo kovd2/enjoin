@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.finalProject.enjoin.company.model.dao.CompanyDao;
 import com.finalProject.enjoin.company.model.vo.Company;
 import com.finalProject.enjoin.member.model.vo.Member;
+import com.finalProject.enjoin.myPage.model.vo.PageInfo;
+import com.finalProject.enjoin.payment.model.vo.Passrecord;
 import com.finalProject.enjoin.company.model.vo.Attachment;
 
 
@@ -50,13 +52,12 @@ public class CompanyServiceImpl implements CompanyService{
 
 
 	//이용내역 보여주는 메소드
+
 	@Override
-	public List<Company> selectUseHistory(String userId) {
-		// 
-		return cd.selectUseHistory(sqlSession, userId);
+	public List<HashMap<String, Object>> selectUseHistory(PageInfo pi, String copNo) {
+		
+		return cd.selectUseHistory(sqlSession, pi, copNo);
 	}
-
-
 
 	//데이터 뿌려주기용
 	@Override
@@ -96,6 +97,27 @@ public class CompanyServiceImpl implements CompanyService{
 		
 		return cd.updateMember(sqlSession, m);
 	}
+
+
+
+	//이용내역 페이징
+
+	@Override
+	public int getListCount(String copNo) {
+
+		return cd.getListCount(sqlSession, copNo);
+	}
+
+
+
+	@Override
+	public List<HashMap<String, Object>> crewList() {
+		
+		return cd.CrewList(sqlSession);
+	}
+
+
+
 
 
 

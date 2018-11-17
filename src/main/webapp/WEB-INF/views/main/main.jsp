@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <html>
 <head>
 <meta charset="utf-8">
@@ -423,17 +424,41 @@ h2.mainSlogan .compName {
 								<ul id="thumbs" class="portfolio">
 									<!-- Item Project and Filter Name -->
 									<li class="col-lg-3 design" data-id="id-0" data-type="web">
+									
+									<script>
+									$(function(){
+										addCrewList();
+										
+										function addCrewList(){
+											$.ajax({
+												url:"showOurCrew.me",
+												type:"GET",
+												success:function(data){
+													console.log("성공");
+												},
+												error:function(){
+													console.log("실패");
+												}
+											})	
+										}
+										};
+									
+									
+									</script>
+									
 										<div class="item-thumbs">
 											<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 											<a class="hover-wrap fancybox" data-fancybox-group="gallery"
-												title="Work 1" href="resources/images/main/crew1.jpg"> <span
-												class="overlay-img"></span> <span
-												class="overlay-img-thumb font-icon-plus"></span>
+												title="Work 1" href="resources/uploadFiles/crew/crewActivity/"> 
+												<span class="overlay-img"></span> 
+												<span class="overlay-img-thumb font-icon-plus"></span>
 											</a>
 											<!-- Thumb Image and Description -->
 											<img src="resources/images/main/crew1.jpg"
 												alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 										</div>
+									
+									
 									</li>
 									<!-- End Item Project -->
 									<!-- Item Project and Filter Name -->

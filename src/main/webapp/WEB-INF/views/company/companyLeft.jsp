@@ -59,6 +59,7 @@
 </style>
 </head>
 <body>
+
 	<div class="leftContainer">
 	
 			<div class="profil">
@@ -79,7 +80,7 @@
 						<ul>
 							<li><b><a href="companyInsertForm.gs" id="a_index" class="fontColBlack current"><i class="fa fa-clone"></i>  제휴시설등록</a></b></li>
 							<li><b><a href="companylist.gs?userId=${ sessionScope.loginUser.userId}" id="myBoard" class="fontColBlack current"><i class="fa fa-thumb-tack"></i>  내가 등록한 시설</a></b></li>
-							<li><b><a href="useHistory.gs?userId=${ sessionScope.loginUser.userId }" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  시설이용내역</a></b></li>
+							<li><b><a href="useHistory.gs?copNo=${ sessionScope.loginUser.getCopNo() }" id="a_favorite_center" class="fontColBlack current"><i class="fa fa-heart-o"></i>  시설이용내역</a></b></li>
 							<li><b><a href="enterConfirm.gs" id="history" class="fontColBlack current"><i class="fa fa-bar-chart"></i>  입장확인</a></b></li>
 							
 						</ul>
