@@ -428,7 +428,19 @@ i.fa.fa-comments{
 </style>
 </head>
 <script>
-	function goInCrew(userNo){
+	function goInCrew(user_No,crew_No,board_No,crew_Name){
+		
+		var user_No = user_No;
+		var crew_No = crew_No;
+		var board_No = board_No;
+		var crew_Name = crew_Name;
+		
+		if(confirm(crew_Name + " 크루에 가입신청 하시겠습니까?") == true){
+			location.href="crewInCrew.shw2?user_No=" + user_No + "&crew_No=" + crew_No + "&board_No=" + board_No;
+			alert("신청 완료!");
+		}else{
+			return;
+		}
 		
 		
 			
@@ -581,8 +593,17 @@ i.fa.fa-comments{
 					<p class="crewCatagory">${i.category_Name }</p>
 					<p class="address">${i.crew_Area}</p>
 					<span class="crewDate">모집날짜 ${i.recruit_Start } ~ ${i.recruit_Start }</span>
-					<p class="crewMember">현재 인원 0명  총 인원 ${i.recruit_Max}명</p>
-					<button class="crewJoin"><a href="crewInCrew.shw2?user_No=${loginUser.userNo}&crew_No=${i.crew_No}&board_No=${i.board_No}">크루신청</a></button>
+					<p class="crewMember">
+					<c:choose>
+					<c:when test="${i.crew_Min < i.recruit_Max }">
+					현재 인원 ${i.crew_Min}명  
+					</c:when>
+					<c:otherwise>마감</c:otherwise>
+					</c:choose>
+					총인원 ${i.recruit_Max}명</p>
+					<c:if test="${i.crew_Min < i.recruit_Max }">
+					<button class="crewJoin" onclick="goInCrew(${loginUser.userNo},${i.crew_No},${i.board_No},'${i.crew_Name}')">크루신청</button>
+					</c:if>
 					</h3>
 				</div>
 			</div>
@@ -598,7 +619,17 @@ i.fa.fa-comments{
 						<p class="crewWiter">- 크루에 대한 설명글 입니다.</p>
 						<p class="crewWiter1">- 크루에 참여해보세요!</p>
 						<div class="crews">
+						<c:choose>
+						<c:when test="${null eq user.upload_Name}">
+						<img class="writerImg" src="${ contextPath }/resources/images/crew/thumbnail2.png">
+						</c:when>
+						<c:otherwise>
 						<img class="writerImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${user.upload_Name}">
+						</c:otherwise>
+						</c:choose>
+						
+						
+						
 						<c:forEach var="i" items="${list}" varStatus="status">
 						<p class="crewBoss">
 						${i.user_Name}님</p>
@@ -729,8 +760,12 @@ i.fa.fa-comments{
 					</c:if>
 					</c:forEach>	
 						<div class="CrewPicksBox">
-							<p class="crewPickMember">-김창희의 런닝크루 크루원</p>
-							<p class="crewPickMember1">-김창희의 런닝크루 크루에 선정된 회원님을 확인할수있습니다.</p>
+							<c:forEach var="i" items="${list}" varStatus="status">
+							<c:if test="${status.index eq 0}">
+							<p class="crewPickMember">-${i.crew_Name } 크루의 크루원</p>
+							<p class="crewPickMember1">-${i.crew_Name } 크루에 선정된 회원님을 확인할수있습니다.</p>
+							</c:if>
+							</c:forEach>
 							<div class="crewPickBox1">
 								<c:forEach var="i" items="${list4}" varStatus="status">							
 								<div class="crewPickBox2">

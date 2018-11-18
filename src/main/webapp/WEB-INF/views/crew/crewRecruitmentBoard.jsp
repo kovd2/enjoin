@@ -146,8 +146,9 @@
 
 .boardCatagory1 {
 	line-height: 90px;
-	font-weight: bold;
-	color: #6b6b6b;
+    font-weight: bold;
+    color: #6b6b6b;
+    text-align: center;
 }
 
 .boardTitle1 {
@@ -408,6 +409,14 @@ select.searchSelect {
     width: 70px;
     height: 30px;
 }
+th.WriterDate{
+	position: relative;
+    left: 11px;
+}
+th.boardCatagory {
+    position: relative;
+    left: 7px;
+}
 	
 
 /*  여기까지 */
@@ -565,7 +574,7 @@ select.searchSelect {
 										<p class="address1">${ c.crew_Area }</p>
 									</div>
 									<div class="memberBox2">
-										<p class="Member1">0명</p>
+										<p class="Member1">${c.crew_Min}명</p>
 									</div>
 									<div class="maxBox2">
 										<p class="MaxMember1">${c.recruit_Max}명</p>

@@ -107,6 +107,12 @@ public interface myPageService {
 	//이용코드 조회후 뿌리기
 	List<HashMap<String, Object>> selectUseCodeList(int userNo);
 
+	//크루게시판번호 조회
+	int selectBoard_No(int crewId);
+	
+	//크루 현재인원 추가
+	int updateCrewBoard(int board_No);
+
 
 
 }
