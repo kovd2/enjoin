@@ -110,11 +110,6 @@ public class CompanyServiceImpl implements CompanyService{
 
 
 
-	@Override
-	public List<HashMap<String, Object>> crewList() {
-		
-		return cd.CrewList(sqlSession);
-	}
 
 
 

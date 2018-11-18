@@ -50,10 +50,23 @@
 
 .crewBtn {
 	float: right;
-	background: #2196F3;
-	color: white;
-	border-radius: 8px;
+	width: 100px;
+    height: 35px;
 	margin-top: -33px;
+    background: #00bff0;
+    border: 0 none;
+    color: white;
+    font-weight: 800;
+}
+.crewBtn:hover{
+	float: right;
+	width: 100px;
+    height: 35px;
+	margin-top: -33px;
+    background: #337ab7;
+    border: 0 none;
+    color: white;
+    font-weight: 800;
 }
 
 .crewEventBox {

@@ -200,20 +200,7 @@
 		WHERE USER_ID = #{userId}				
 	</update>
 	
-	<!-- 메인에 크루활동사진 뿌리는 퀄쿼리문 -->
-	<select id="selectCrew" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-		
-		SELECT B.BOARD_TITLE,B.BOARD_CONTENT,A.UPLOAD_NAME,B.BOARD_COUNT
-		FROM BOARD B
-		JOIN ATTACHMENT A  ON (B.BOARD_NO = A.REF_NO)
-		WHERE FILE_NO = 0
-		AND ROWNUM <=4
-		AND B.BOARD_TYPE = '크루활동' 
-		ORDER BY B.BOARD_COUNT DESC
-		
-		]]> 
-	</select>
+
 </mapper>
 
 

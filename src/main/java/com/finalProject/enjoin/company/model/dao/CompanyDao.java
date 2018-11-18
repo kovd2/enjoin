@@ -37,9 +37,6 @@ public interface CompanyDao {
 	//이용내역 페이징
 	int getListCount(SqlSessionTemplate sqlSession, String copNo);
 
-	//메인에 크루활동사진 뿌려주는거
-	List<HashMap<String, Object>> CrewList(SqlSessionTemplate sqlSession);
-
 
 
 

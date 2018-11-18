@@ -106,12 +106,7 @@ public class CompanyDaoImpl implements CompanyDao{
 	}
 
 
-	//메인화면에 크루활동사진 뿌려주는 것
-	@Override
-	public List<HashMap<String, Object>> CrewList(SqlSessionTemplate sqlSession) {
-		
-		return sqlSession.selectOne("Company.selectCrew");
-	}
+
 
 
 
