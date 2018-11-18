@@ -253,5 +253,17 @@ public class myPageServiceImpl implements myPageService{
 	
 		return mpd.selectUseCodeList(userNo, sqlSession);
 	}
+	//게시판 번호 조회
+	@Override
+	public int selectBoard_No(int crewId) {
+		
+		return mpd.selectBoard_No(crewId,sqlSession);
+	}
+	//크루 현재인원 추가
+	@Override
+	public int updateCrewBoard(int board_No) {
+		
+		return mpd.updateCrewBoard(board_No,sqlSession);
+	}
 
 }

@@ -549,6 +549,21 @@
 		WHERE USER_NO = #{userNo}
 		AND PP_STATUS = 0
 	</select>
+	
+	<!-- 게시판 번호 조회  -->
+	<select id="selectBoard_No" resultType="_int">
+		SELECT BOARD_NO
+		FROM BOARD
+		WHERE CREW_NO = #{crewId}
+		AND BOARD_TYPE = '크루모집'
+	</select>	
+	<!-- 게시판 업데이트  -->
+	<update id="updateCrewBoard">
+		UPDATE BOARD
+		SET NOTICE_MIN = NOTICE_MIN + 1
+		WHERE BOARD_NO = #{board_No}
+	</update> 
+	
 </mapper>
 	
 	

@@ -920,7 +920,7 @@ i.fa.fa-comments{
 					<div class="crewImgBox2">
 						<h2 class="crewAtt">크루활동이미지</h2>
 						<hr>
-						<p class="AttWriter1">- 김창희 런닝크루의 이미지</p>
+						<p class="AttWriter1">- ${ac1.crew_Name } 크루의 이미지</p>
 						<p class="AttWriter2">- 크루님들의 생생한 경험을 전달해주세요!</p>
 						<div class="imgArea">
 							<img class="writerImg"
@@ -1031,7 +1031,7 @@ i.fa.fa-comments{
 						</div>
 							<div class="crewMembersWriterBox">
 								<p class="AttWriter3">- 크루의 해당되는 회원을 확인 할수 있습니다.</p>
-								<p class="AttWriter4">- 김창희 런닝크루의 크루원</p>
+								<p class="AttWriter4">- ${ac1.crew_Name } 크루의 크루원</p>
 							
 							</div>
 							<div class="crewMembers">
@@ -1047,6 +1047,7 @@ i.fa.fa-comments{
 								<!-- 여기까지  -->
 								<!--크루원  -->
 								<c:forEach var="i2" items="${map.list2}" varStatus="status1">
+								<c:if test ="${ac.upload_Name != i2.upload_Name }">
 								<div class="MemberCommont">
 									<img class="writerImg"
 										src="${ contextPath }/resources/uploadFiles/myPage/profil/${i2.upload_Name}">
@@ -1055,6 +1056,7 @@ i.fa.fa-comments{
 										<p class="crewMemberNames"><i class="fa fa-user-circle"></i>${i2.user_Name }</p>
 										</div>
 								</div>
+								</c:if>
 								</c:forEach>
 								<!-- 여기까지  -->
 							</div>
