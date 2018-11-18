@@ -2,6 +2,7 @@ package com.finalProject.enjoin.member.model.service;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -114,6 +115,12 @@ public class MemberServiceImpl implements MemberService{
 	public int kakaoInsert(Member m) {
 		
 		return md.kakaoInsert(sqlSession, m);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> crewList() {
+		
+		return md.crewList(sqlSession);
 	}
 
 

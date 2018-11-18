@@ -1,6 +1,7 @@
 package com.finalProject.enjoin.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.finalProject.enjoin.member.model.exception.LoginException;
@@ -32,6 +33,8 @@ public interface MemberService {
 
 	//db에 계정 추가
 	int kakaoInsert(Member m);
+
+	List<HashMap<String, Object>> crewList();
 
 
 

@@ -193,22 +193,7 @@ public class CompanyController {
 		return String.valueOf(result);
 	}
 	
-	 //메인에서 크루 자랑 정보 뿌려주기
-	@RequestMapping("showOurCrew.me")
-	public ModelAndView showCrew(ModelAndView mv){
-		
-		List<HashMap<String, Object>> crewList = cs.crewList();
-		
-		System.out.println(crewList);
-		
-		mv.setViewName("main/main");
-		mv.addObject(crewList);
-		
-		
-		
-		return mv;
-	}
-	
+
 	
 	//제휴시설 신청용 컨트롤러
 	@RequestMapping(value="facilityInsert.gs")

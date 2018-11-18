@@ -3,6 +3,7 @@ package com.finalProject.enjoin.member.model.dao;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -47,6 +48,8 @@ public interface MemberDao {
 
 	//db에 카카오 계정 추가
 	int kakaoInsert(SqlSessionTemplate sqlSession, Member m);
+
+	List<HashMap<String, Object>> crewList(SqlSessionTemplate sqlSession);
 
 
 

@@ -124,7 +124,7 @@
 	</select>
 	
 	<!-- 카카오로그인 -->
-	<select id="kakaoLogin" resultType="com.finalProject.enjoin.member.model.vo.Member" parameterType="Member">
+	<select id="kakaoLogin" resultMap="memberResultSet" parameterType="Member">
 		SELECT *
 		FROM MEMBER
 		WHERE LOGIN_TYPE = 'kakao'
@@ -137,5 +137,20 @@
 		INSERT INTO MEMBER(USER_NO, USER_TYPE, USER_NAME, EMAIL, ENROLL_DATE, MODIFY_DATE, STATUS, LOGIN_TYPE) 
 		VALUES(USER_NO.NEXTVAL, '1', #{userName}, #{email}, SYSDATE, SYSDATE, DEFAULT, 'kakao')
 	</insert>
+	
+	<!-- 메인에 크루활동사진 뿌리는 퀄쿼리문 -->
+    <select id="selectCrew" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+      
+      SELECT B.BOARD_TITLE,B.BOARD_CONTENT,A.UPLOAD_NAME,B.BOARD_COUNT
+      FROM BOARD B
+      JOIN ATTACHMENT A  ON (B.BOARD_NO = A.REF_NO)
+      WHERE FILE_NO = 0
+      AND ROWNUM <=4
+      AND B.BOARD_TYPE = '크루활동' 
+      ORDER BY B.BOARD_COUNT DESC
+      
+      ]]> 
+   	</select>
 </mapper>
 

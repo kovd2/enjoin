@@ -37,7 +37,7 @@
 									<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 										class="icon-bar"></span>
 								</button>
-								<a class="navbar-brand" href="index.jsp"><span>E</span>njoin</a>
+								<a class="navbar-brand"  href="goMain.me"><span>E</span>njoin</a>
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
