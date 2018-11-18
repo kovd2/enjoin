@@ -45,15 +45,25 @@
 		<result property="ref_No" column="REF_NO"/>
 	</resultMap>
 	
-<select id="facilityList" resultType="map" parameterType="hashMap">
+<select id="facilityList" resultType="map" parameterType="Facility">
 SELECT F.FACILITY_COPNO,F.FACILITY_REQUESTDATE,F.FACILITY_STARTDATE,F.FACILITY_ENDDATE,F.FACILITY_STATUS,
         F.PASS_COUNT,F.FACILITY_NO,F.FACILITY_NAME,F.FACILITY_AREA,F.FACILITY_SECTION,F.FACILITY_ADDRESS,F.FACILITY_EVENT,
         F.FACILITY_MANAGER_NAME,F.FACILITY_MANAGER_PHONE,F.TIME_FOR_CALL,F.MON_FRI_TIME,F.SAT_TIME,F.SUN_TIME,A.ATT_NO,
-        A.FILE_NO,A.UPLOAD_NAME,A.FILE_TYPE,A.REF_NO
+        A.FILE_NO,A.UPLOAD_NAME,A.FILE_TYPE,A.REF_NO,F.TOTAL_ADDRESS
 FROM FACILITY F
 JOIN ATTACHMENT A ON(F.FACILITY_NO=A.REF_NO)
 WHERE A.FILE_TYPE=6
 AND FILE_NO=0
+AND TOTAL_ADDRESS LIKE
+<choose>
+<when test="#{totalAddress} !=null">
+'%'||#{totalAddress}||'%'
+</when>
+<otherwise>
+ '%'
+</otherwise>
+</choose>
+
 </select>
 
 <select id="searchFacility" resultType="map" parameterType="Facility">

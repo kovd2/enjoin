@@ -25,18 +25,15 @@ import com.finalProject.enjoin.searchMap.model.vo.Facility;
 public class searchFacilityController {
 	@Autowired
 	private FacilityService fs;
-
 	
 	//전체리스트조회
-	@RequestMapping("searchFacility.kch")
-	public ModelAndView searchFacility(ModelAndView mv,HttpServletRequest request) {
+	@RequestMapping(value="searchFacility.kch",method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody List<Map<String,Object>>searchFacility(HttpServletRequest request,String address) {
 		
 		List<Map<String,Object>> list = null;
-		list = fs.facilityList();
-		mv.addObject("list", list);
-		mv.setViewName("searchMap/searchFacility");
+		list = fs.facilityList(address);
 		System.out.println("con"+list);
-		return mv;
+		return list;
 	}
 
 	//서치된리스트 조회

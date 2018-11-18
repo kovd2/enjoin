@@ -7,7 +7,7 @@ import com.finalProject.enjoin.searchMap.model.exception.SearchListResultExcepti
 
 public interface FacilityService {
 
-	List<Map<String, Object>> facilityList();
+	List<Map<String, Object>> facilityList(String address);
 
 	List<Map<String, Object>> searchFacility(String search)throws SearchListResultException ;
 
