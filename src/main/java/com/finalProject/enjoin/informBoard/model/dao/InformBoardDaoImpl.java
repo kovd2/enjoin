@@ -70,7 +70,7 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		System.out.println(ib.getBoardNo());
 		selectIbf.setRefNo(ib.getBoardNo());
 		selectIbf.setFileNo(2);
-		selectIbf.setFileType("0");
+		selectIbf.setFileType("1");
 		System.out.println("dao:"+selectIbf);
 		Map<String,Object> list2 = sqlSession.selectOne("InformBoard.selectFileDetail",selectIbf);
 		System.out.println("dao:"+list2);

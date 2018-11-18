@@ -98,17 +98,17 @@
 
 	<insert id="insertInformFiles0" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,1,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,1,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles1" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,2,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,2,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles2" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<select id="getListCount" resultType="_int" parameterType="_int">

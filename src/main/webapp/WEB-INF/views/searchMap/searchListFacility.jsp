@@ -50,7 +50,9 @@ header{
 	background:#f5f5f5;
 	margin-top:80px;
 	overflow:scroll;
+	
 }
+.searchArea::-webkit-scrollbar {display:none;}
 .mapArea{
 	
 	width:620px;
@@ -304,6 +306,9 @@ height:20px;
 <div class="wrap">
 
 	<div class="middle">
+	
+	
+	
 		<div class="searchArea">
 			<div class="searchWrap">
 			<form action="searchListFacility.kch" method="post" autocomplete="off">
@@ -360,7 +365,7 @@ height:20px;
 	var mapContainer = document.getElementById('realMap'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
-	        level: 3 // 지도의 확대 레벨
+	        level:10 // 지도의 확대 레벨
 	        
 	    };  
 
@@ -374,31 +379,34 @@ height:20px;
 
 	
 	//주소값담을배열
-	var addr = [];
-	//이름담을배열
-	var name=[];
+	var addr=new Array();
+	
+	
 	<c:forEach items="${result}" var="item">
-	name.push("${item.FACILITY_NAME}");
-	addr.push("'${item.TOTAL_ADDRESS}'"+',');  
+	addr.push({name:"${item.FACILITY_NAME}",
+				address:"${item.TOTAL_ADDRESS}",
+				no:"${item.FACILITY_NO}"});
+			
 	</c:forEach>
 	
+	console.log(addr);
+	console.log(addr[3].name);
 	
-		
 	for(var i=0; i<addr.length; i++){
-		
-		
-		console.log(addr[i]);
-		geocoder.addressSearch(addr[i],function(result,status){
+			(function (i) {
+		geocoder.addressSearch(addr[i].address,function(result,status){
 			console.log(status);
 			console.log(result);
+			console.log('지오안쪽네임'+addr[i].name);
 			//정상적으로 검색이 완료되었다!
 			  if(status===daum.maps.services.Status.OK){
-
-				 var coords = new daum.maps.LatLng(result[0].x, result[0].y);
+			
+				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
 				  
 				  
 				console.log('들어옵니꽈~~');
+				console.log('들어옵니꽈 네임!!!!'+addr[i].name);
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 
                 // 결과값으로 받은 위치를 마커로 표시합니다
@@ -407,22 +415,98 @@ height:20px;
                     position:coords
     			 });
                 
-                var infowindow = new daum.maps.InfoWindow({
-                    content:coords.content // 인포윈도우에 표시할 내용
-                });
-                marker.setMap(map);
-                map.setCenter(coords);
-                map.relayout();
+                 var iwContent='<div style="padding:5px;text-align:center;text-weight:bold;">'+addr[i].name+'</div>'
+                 	 
+                 	console.log("뭡니까네임:"+iwContent);
+               
                 
+                var infowindow = new daum.maps.InfoWindow({
+                	
+                    content:iwContent
+                });
+                
+                
+                daum.maps.event.addListener(map, 'bounds_changed', function() {             
+                    
+                    // 지도 영역정보를 얻어옵니다 
+                    var bounds = map.getBounds();
+                    
+                    // 영역정보의 남서쪽 정보를 얻어옵니다 
+                    var swLatlng = bounds.getSouthWest();
+                    
+                    // 영역정보의 북동쪽 정보를 얻어옵니다 
+                    var neLatlng = bounds.getNorthEast();
+                   
+                    var lb = new daum.maps.LatLngBounds(swLatlng, neLatlng)
+                   
+					if(lb.marker.getVisible()==true){
+						searchFacility(addr[i].address);
+					}else{
+						
+						noSearch();
+					}
+						
+						
+				             
+                    
+                });
+                
+
+                               
+               //마커의 중간값으로 위치가 변함
+               map.setCenter(coords);    
+               
+            	
+               
+              daum.maps.event.addListener(marker, 'click', function () {
+            	  
+                    // 마커에 클릭 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+                    goDetail(addr[i].no);
+                    infowindow.open(map, marker);
+                  });
+                 
 
 			}
 		})
-		map.relayout();
+		
+	})(i);
 	}
-	
  }); 
 		
 </script>
+<script>
+
+	function searchFacility(address){
+		
+		$.ajax({
+			
+			url:"searchFacility.kch",
+			type:"post",
+			data:{address:address},
+			success:function(data){
+				console.log(data);
+				
+				
+				
+			}
+			
+			
+		});
+		
+		
+
+		
+	}
+
+
+
+</script>
+<script>
+	function noSearch(){
+		$('#loofWrap').remove();
+	}
+</script>
+	
 	
 	
 	

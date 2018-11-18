@@ -21,10 +21,10 @@ public class FacilityServiceImpl implements FacilityService{
 	private FacilityDao fd;
 
 	@Override
-	public List<Map<String, Object>> facilityList() {
+	public List<Map<String, Object>> facilityList(String address) {
 		
 		List<Map<String,Object>> list = null;
-		list=fd.facilityList(sqlSession);
+		list=fd.facilityList(sqlSession,address);
 		
 		
 		return list;
@@ -59,6 +59,5 @@ public class FacilityServiceImpl implements FacilityService{
 		return list;
 	}
 
-	
 
 }
