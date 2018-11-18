@@ -98,17 +98,17 @@
 
 	<insert id="insertInformFiles0" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,1,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,1,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles1" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,2,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,2,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<insert id="insertInformFiles2" parameterType="InformBoardFiles">
 	 INSERT INTO ATTACHMENT(ATT_NO,FILE_NO,UPLOAD_NAME,ORIGIN_NAME,FILE_SIZE, FILE_EXT,FILE_DATE,FILE_TYPE,REF_NO)
-	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'0',#{refNo})
+	VALUES(SEQ_ATT_NO.NEXTVAL,3,#{uploadName},#{originName},#{filesize},#{fileExt},SYSDATE,'1',#{refNo})
 	</insert>
 	
 	<select id="getListCount" resultType="_int" parameterType="_int">
@@ -130,7 +130,7 @@
 	</select>
 	
 	<select id="selectFileDetail" resultType="map" parameterType="InformBoardFiles">
-	SELECT *FROM ATTACHMENT WHERE REF_NO=#{refNo} AND FILE_TYPE=#{fileType} AND FILE_NO=#{fileNo}
+	SELECT * FROM ATTACHMENT WHERE REF_NO=#{refNo} AND FILE_TYPE=#{fileType} AND FILE_NO=#{fileNo}
 	</select>
 	
 	<select id="selectMemberDetail" resultType="map" parameterType="Member">
@@ -154,8 +154,39 @@
     ORDER BY COMENT_DATE DESC
 	</select>
 	
+	<!-- 패스차감 -->
+	<update id="updatePassCount">
+		UPDATE PASS
+		SET PASS_COUNT = PASS_COUNT - #{deductPass}
+		WHERE USER_NO = #{userNo}
+	</update>
 	
+	<!-- 패스 이용 내역 insert -->
+	<insert id="insertPassRecord">
+		INSERT INTO PASSRECORD (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USE_CODE, USER_NO)
+		VALUES(SEQ_PP_NO.NEXTVAL, 3, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{useCode}, #{userNo}) 
+	</insert>
 	
+	<!-- 이용시설 조회 -->
+	<select id="applyInformBoard" parameterType="hashmap" resultType="hashmap">
+		SELECT P.PASS_COUNT, PR.USE_CODE, F.FACILITY_NAME, F.PASS_COUNT AS FACILITY_PASS
+		FROM PASSRECORD PR 
+        JOIN PASS P ON (PR.USER_NO = P.USER_NO)
+        JOIN (SELECT FACILITY_NAME, PASS_COUNT, FACILITY_NO
+      		  FROM FACILITY
+      		  WHERE TOTAL_ADDRESS = #{crewArea}) F USING(FACILITY_NO)
+		WHERE PR.USER_NO = #{userNo}
+		AND USE_CODE IS NOT NULL
+	</select>
+	
+	<!-- 시설 이용전 확인 -->
+	<select id="selectRecord" resultType="_int">
+		SELECT COUNT(*)
+		FROM PASSRECORD
+		WHERE USER_NO = #{userNo}
+		AND USE_CODE IS NULL
+		AND PP_STATUS = 3
+	</select>
 </mapper>
 
 

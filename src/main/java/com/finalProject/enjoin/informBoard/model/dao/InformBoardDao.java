@@ -32,6 +32,18 @@ public interface InformBoardDao {
 
 	List<Map<String, Object>> insertComent(SqlSessionTemplate sqlSession, InformComent ic);
 
+	//공고 이용 신청
+	List<Map<String, Object>> applyInformBoard(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
+	//패스 차감
+	int updatePassCount(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
+	//이용코드 등록
+	int insertPassRecord(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
+	//공고 신청 확인
+	int selectRecord(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
 	
 
 	

@@ -32,6 +32,15 @@ public interface InformBoardService  {
 
 	List<Map<String, Object>> insertComent(InformComent ic);
 
+	//공고 이용 신청
+	List<Map<String, Object>> applyInformBoard(Map<String, Object> map);
+
+	//패스 수랑 감소
+	int updatePassCount(Map<String, Object> map);
+
+	//공고 참여 확인
+	int selectRecord(Map<String, Object> map);
+
 	
 	
 	

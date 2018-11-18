@@ -357,16 +357,23 @@
 	
 	<!-- 가입된 크루 목록 조회 -->
 	<select id="selectInCrewList" resultMap="acceptCrewResultSet">
-        <!-- SELECT CREW_NAME, CREW_ID, USER_ID
+        SELECT C.CREW_NAME, C.CREW_ID, M.USER_ID, BA.BOARD_NO, BA.BOARD_TYPE, BA.CREW_NO, BA.UPLOAD_NAME, BA.REF_NO
 		FROM CREW C
-		JOIN INCREW IC USING(CREW_ID)
+		JOIN INCREW IC ON(C.CREW_ID = IC.CREW_ID)
         JOIN MEMBER M ON (C.USER_NO = M.USER_NO)
+        JOIN (SELECT BOARD_NO, BOARD_TYPE, CREW_NO, UPLOAD_NAME, REF_NO
+              FROM BOARD B
+              LEFT JOIN (SELECT UPLOAD_NAME, REF_NO 
+                         FROM ATTACHMENT
+                         WHERE FILE_TYPE = '4'
+                         AND FILE_NO = 0) A ON (B.BOARD_NO = A.REF_NO)
+              WHERE BOARD_TYPE = '크루모집') BA ON (BA.CREW_NO = C.CREW_ID)
 		WHERE IC.USER_NO = (SELECT USER_NO
                    		 	FROM MEMBER
                    	 		WHERE USER_NO = #{userNo})
-        AND INCREW_STATUS = 'Y'
-        ORDER BY CREW_ID ASC -->
-        SELECT *
+        AND IC.INCREW_STATUS = 'Y'
+        ORDER BY C.CREW_ID ASC
+       <!--  SELECT *
 		FROM BOARD B
 		LEFT JOIN (SELECT * 
 				   FROM ATTACHMENT
@@ -375,7 +382,7 @@
 		JOIN CREW C ON (B.CREW_NO = C.CREW_ID)
 		WHERE B.USER_NO = #{userNo}
 		AND BOARD_TYPE = '크루모집'
-		ORDER BY CREW_ID ASC
+		ORDER BY CREW_ID ASC -->
 	</select>
 	
 	<!-- 가입 승인 대기 목록 조회 쿼리 -->
@@ -469,6 +476,7 @@
 		JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
 		WHERE USER_NO = ${userNo}
 		AND PR.PP_DATE BETWEEN '${date1}' AND '${date2}'
+		AND PR.PP_STATUS = 2
 	</select>
 	
 	<!-- 회원 탈퇴처리 -->
