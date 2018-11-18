@@ -389,6 +389,8 @@ public class CrewController {
 			int result = 0;
 			result = cs.insertInCrew(ic);
 			
+			
+			
 			//크루게시판 조회
 			List<CrewRecruitmentBoard> list = cs.crewRecruitmentBoardDetailsList(board_No);
 			

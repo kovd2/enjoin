@@ -388,10 +388,10 @@ img {
 
 				<div id="btn">
 					<button type="button" class="btn btn-success" id="enroll">
-						<i class="fa fa-handshake-o"></i>공고신청하기
+						<i class="fa fa-handshake-o"></i>공고신청하기 <!-- 클릭할때 패스차감후 이용코드 띄우기 -->
 					</button>
 					<button type="button" class="btn btn-warning" id="list">
-						<i class="fa fa-laptop"></i>신청현황
+						<i class="fa fa-laptop"></i>신청현황 
 					</button>
 				</div>
 			</div>
@@ -622,7 +622,82 @@ img {
 				con.style.display='none';
 			}
 
+		};
+		
+		//공고 신청시 패스 차감
+		$('#enroll').click(function(){
+			
+			console.log("들어옴");
+			var userNo = ${ loginUser.userNo };
+			var deductPass = ${ list.PASS_COUNT };
+			var crewArea = '${ list.CREW_AREA }';
+			if(confirm("공고를 신청하시겠습니까?") == true){
+				
+			$.ajax({
+				url:"checkPass.ljs",
+				type:"get",
+				data:{
+					userNo:userNo
+				},
+				success:function(data){
+					console.log(data);
+					if(data <= 0){
+						if(confirm("보유하고 있는 패스가 없습니다. 충전하러 가시겠습니까?") == true){
+							location.href="passPurchase.hh";
+						}else{
+							return;
+						}
+					}else if(data > deductPass){
+						console.log(data);
+						$.ajax({
+							url:"applyInformBoard.kch2", //패스감소
+							type:"POST",
+							data:{
+								userNo:userNo,
+								deductPass:deductPass,
+								crewArea:crewArea
+							},
+							success:function(data){							
+								if(data == ""){
+									alert("이미 신청하셨습니다. 다시 한번 확인해 주세요.");
+								}else{
+								popupOpen(data);
+								}
+							},		
+							error:function(){
+								console.log("에러");
+							}
+						});
+					}
+				},
+				error:function(){
+					console.log("에러");
+				}
+			});
 		}
+		})		
+		
+		function popupOpen(data){
+		var ppCount = "";
+		var useCode = "";
+		var facilityName = "";
+		var passCount = "";
+		for(var key in data){
+			ppCount = data[key].FACILITY_PASS;
+			useCode = data[key].USE_CODE;
+			facilityName = data[key].FACILITY_NAME;
+			passCount = data[key].PASS_COUNT;
+		}
+		
+		var url = "popUp.kch2?ppCount=" + ppCount + "&useCode=" + useCode + "&facilityName=" + facilityName + "&passCount=" + passCount;    //팝업창 페이지 URL
+ 	    var popupX = (window.screen.width / 2) - (600 / 2);
+		var popupY= (window.screen.height /2) - (800 / 2);
+
+	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
+	    
+		window.open(url, '자식창', 'status=no, height=641, width=530, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+	};
+		
 	</script>
 
 	

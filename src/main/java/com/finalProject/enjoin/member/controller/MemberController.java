@@ -1,7 +1,8 @@
 package com.finalProject.enjoin.member.controller;
 
-import java.io.IOException;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -47,11 +48,21 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-
-	//리다이렉트용 메소드
+	
+	//메인페이지
 	@RequestMapping("goMain.me")
-	public String goMain() {
-		return "main/main";
+	public ModelAndView Main(ModelAndView mv) {
+		
+		List<HashMap<String, Object>> crewList = ms.crewList();
+		
+
+		
+		mv.setViewName("main/main");
+		mv.addObject("crewList", crewList);
+		
+		System.out.println(crewList);
+		
+		return mv;
 	}
 	
 	//제휴시설회원 개인회원 선택 폼 보여주는 메소드
@@ -303,7 +314,6 @@ public class MemberController {
 			
 		//카카오로 가입한 유저의 정보가 있을시 로그인
 		model.addAttribute("loginUser", loginUser);
-		System.out.println("model : " +  model);
 		
 		
 		return "redirect:goMain.me";

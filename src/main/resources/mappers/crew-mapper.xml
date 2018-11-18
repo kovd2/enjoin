@@ -43,6 +43,8 @@
 		<result property="category_Name" column="CATEGORY_NAME"/>
 		<result property="user_Name" column="USER_NAME"/>
 		<result property="user_Id" column="USER_ID"/>
+		<result property="crew_Name" column="CREW_NAME"/>
+		<result property="crew_Min" column="NOTICE_MIN"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="CrewRmbAttachment">
@@ -143,10 +145,10 @@
 		INSERT INTO BOARD(BOARD_NO,BOARD_TYPE,BOARD_TITLE,
 		BOARD_CONTENT,ENROLL_DATE,CREW_AREA,CREW_NO,BOARD_COUNT,
 		RECRUIT_MAX,RECRUIT_START,RECRUIT_END,RECRUIT_STATUS,
-		STATUS,USER_NO,CATEGORY_NO)
+		STATUS,USER_NO,CATEGORY_NO,NOTICE_MIN)
 		VALUES(BOARD_NO.NEXTVAL,'크루모집',#{board_Title},#{board_Content},
 		SYSDATE,#{crew_Area},#{crew_No},0,#{recruit_Max},#{recruit_Start},
-		#{recruit_End},'N','Y',#{user_No},#{category_No})
+		#{recruit_End},'N','Y',#{user_No},#{category_No},0)
 	</insert>
 	
 	<!-- 크루 모집 게시판 번호 커발하여 조회  -->
@@ -181,7 +183,7 @@
 	<!-- 크루모집 게시판 조회  -->
 	<select id="crewRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,B.CREW_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.USER_NO,B.NOTICE_MIN,B.CREW_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -203,7 +205,7 @@
 	<!--크루모집 게시판 카테고리별 조회  -->
 	<select id="crewCategoryRecruitmentBoardList" resultMap="CrewRecruitmentSet">
 		SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.NOTICE_MIN,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -235,7 +237,7 @@
      <!-- 크루모집 제목별 검색 게시물 조회  -->
      <select id="crewTitleRecruitmentBoardList" resultMap="CrewRecruitmentSet">
      	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.NOTICE_MIN,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -247,7 +249,7 @@
      <!-- 크루모집 지역별 검색 게시물 조회  -->
      <select id="crewAreaRecruitmentBoardList" resultMap="CrewRecruitmentSet">
      	SELECT B.BOARD_NO,B.BOARD_TITLE,C.CATEGORY_NAME,B.CREW_AREA,
-		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.USER_NO,A.UPLOAD_NAME
+		B.ENROLL_DATE,B.RECRUIT_MAX,B.BOARD_COUNT,B.CREW_NO,B.NOTICE_MIN,B.USER_NO,A.UPLOAD_NAME
 		FROM BOARD B
 		LEFT JOIN CATEGORY C ON(B.CATEGORY_NO = C.CATEGORY_NO)
 		LEFT JOIN ATTACHMENT A ON(B.BOARD_NO = A.REF_NO)
@@ -257,10 +259,11 @@
      
      <!-- 크루활동 상세보기 데이터 조회  -->
      <select id="crewRecruitmentBoardDetailsList" resultMap="CrewRecruitmentSet">
-     	SELECT B.BOARD_NO,C.CATEGORY_NAME,B.CREW_AREA,B.BOARD_CONTENT,B.BOARD_TITLE,
-		B.RECRUIT_START,B.RECRUIT_END,B.CREW_NO,B.RECRUIT_MAX,B.RECRUIT_MIN,M.USER_NAME
+     	SELECT B.BOARD_NO,C.CATEGORY_NAME,C.CREW_NAME,B.CREW_AREA,B.BOARD_CONTENT,B.BOARD_TITLE,
+		B.RECRUIT_START,B.RECRUIT_END,B.CREW_NO,B.RECRUIT_MAX,B.NOTICE_MIN,B.RECRUIT_MIN,M.USER_NAME
 		FROM BOARD B
 		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+        JOIN CREW C ON(B.CREW_NO = C.CREW_ID)
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
 		WHERE B.BOARD_NO = #{board_No}
      </select>
@@ -332,6 +335,7 @@
 			JOIN MEMBER M ON (I.USER_NO = M.USER_NO)
 			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
 			WHERE I.CREW_ID = #{crew_Id}
+			AND B.BOARD_TYPE = '크루모집'
 			AND I.INCREW_STATUS = 'Y'
      </select>
      

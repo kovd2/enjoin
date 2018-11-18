@@ -39,7 +39,7 @@ public interface CompanyService {
 	//페이징
 	int getListCount(String copNo);
 
-	List<HashMap<String, Object>> crewList();
+
 
 
 

@@ -305,6 +305,10 @@ public class MyPageController {
 		
 		int result = mps.updateCrewApply(hmap);
 		
+		int board_No = mps.selectBoard_No(crewId);
+		
+		int result1 = mps.updateCrewBoard(board_No);
+		
 
 		mv.setViewName("redirect:crewManager.ljs");
 		mv.addObject("userNo", userNo2);

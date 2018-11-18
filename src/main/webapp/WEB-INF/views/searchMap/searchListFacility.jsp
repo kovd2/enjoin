@@ -400,7 +400,7 @@ height:20px;
 			console.log('지오안쪽네임'+addr[i].name);
 			//정상적으로 검색이 완료되었다!
 			  if(status===daum.maps.services.Status.OK){
-			
+
 				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
 				  

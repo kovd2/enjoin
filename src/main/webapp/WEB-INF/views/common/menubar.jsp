@@ -37,7 +37,7 @@
 									<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 										class="icon-bar"></span>
 								</button>
-								<a class="navbar-brand" href="index.jsp"><span>E</span>njoin</a>
+								<a class="navbar-brand"  href="goMain.me"><span>E</span>njoin</a>
 							</div>
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
@@ -61,7 +61,7 @@
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="memberLogin.me">로그인</a></li>
 									<li><a href="preInsertView.me">회원가입</a></li>
-									<li><a href="passPurchase.hh">멤버십 신청</a></li>
+									<li><a href="passPurchase.hh">멤버십 신청</a></li>									
 								</ul>
 							</div>
 						</div>
@@ -107,6 +107,11 @@
 									<li><a href="logout.me">로그아웃</a></li>
 									<li><a href="passPurchase.hh">멤버십 신청</a></li>
 									<li><a onclick="goProfil(${loginUser.userNo});" style="cursor:pointer;">프로필</a></li>
+									<c:if test="${ !empty sessionScope.loginUser }">
+										<li>
+											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 모두의 채팅</a>
+										</li>
+									</c:if>
 								</ul>
 							</div>
 						</div>
@@ -205,6 +210,16 @@
 		function goProfil(userNo){
 			location.href="profil.ljs?userNo=" + userNo;
 		}
+		
+		function chatPopUp(){
+			var url = "chatPopUp.hh";    //팝업창 페이지 URL
+	 	    var popupX = (window.screen.width / 2) - (600 / 2);
+			var popupY= (window.screen.height /2) - (500 / 2);
+
+		    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
+			window.open(url, '', 'toolbar=no, status=no, height=500, width=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+		};
+
 	</script>
 	
 	

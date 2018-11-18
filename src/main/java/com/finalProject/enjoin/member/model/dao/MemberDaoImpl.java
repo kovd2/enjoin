@@ -3,6 +3,7 @@ package com.finalProject.enjoin.member.model.dao;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -100,6 +101,12 @@ public class MemberDaoImpl implements MemberDao{
 	public int kakaoInsert(SqlSessionTemplate sqlSession, Member m) {
 		
 		return sqlSession.insert("Member.kakaoInsert", m);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> crewList(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("Member.selectCrew");
 	}
 
 

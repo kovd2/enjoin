@@ -298,9 +298,9 @@ h5 {
 											<c:if test="${ empty sessionScope.loginUser }">
 											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" href="memberLogin.me"><i class="fa fa-comments-o"></i> 로그인</a>
 											</c:if>
-											<c:if test="${ !empty sessionScope.loginUser }">
+											<%-- <c:if test="${ !empty sessionScope.loginUser }">
 											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 모두의 채팅</a>
-											</c:if>
+											</c:if> --%>
 										</div>
 										<div class="innerBox col-xs-6 col-sm-12">
 											<h3>1:1 문의</h3>

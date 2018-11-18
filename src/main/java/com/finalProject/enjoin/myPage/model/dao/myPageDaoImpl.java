@@ -278,6 +278,18 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.selectList("myPage.selectUseCodeList", userNo);
 	}
+	//게시판 번호 조회
+	@Override
+	public int selectBoard_No(int crewId, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("myPage.selectBoard_No", crewId);
+	}
+	//크루 현재인원 추가
+	@Override
+	public int updateCrewBoard(int board_No, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("myPage.updateCrewBoard",board_No);
+	}
 
 	
 }

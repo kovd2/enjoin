@@ -111,6 +111,12 @@ public interface myPageDao {
 
 	//이용코드 조회후 뿌리기
 	List<HashMap<String, Object>> selectUseCodeList(int userNo, SqlSessionTemplate sqlSession);
+	
+	//게시판 번호 조회
+	int selectBoard_No(int crewId, SqlSessionTemplate sqlSession);
+
+	//크루 현재인원 추가
+	int updateCrewBoard(int board_No, SqlSessionTemplate sqlSession);
 
 
 }

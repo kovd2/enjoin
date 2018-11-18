@@ -102,6 +102,33 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		
 	}
 	
+	//공고 이용 신청
+	@Override
+	public List<Map<String, Object>> applyInformBoard(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("InformBoard.applyInformBoard", map);
+	}
+	
+	//패스 차감
+	@Override
+	public int updatePassCount(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.update("InformBoard.updatePassCount", map);
+	}
+	
+	//시설이용등록
+	@Override
+	public int insertPassRecord(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.insert("InformBoard.insertPassRecord", map);
+	}
+	//공고신청확인
+	@Override
+	public int selectRecord(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("InformBoard.selectRecord", map);
+	}
+	
 	
 
 
