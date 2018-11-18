@@ -165,8 +165,16 @@
 	margin-top:60px;
 	margin-bottom:60px;
 }
+.useCodeListTable{
+	text-align:center; 
+	width:800px; 
+	border-top: solid 1px black; 
+}
 .useCodeListArea{
 	margin-top:50px;
+}
+.useCodeListArea tr{
+	border-bottom: solid 1px black;
 }
 </style>
 </head>
@@ -214,8 +222,8 @@
 			<div style="margin-left:30px;">
 				<h3><i class="fa fa-magic"></i>시설 이용 코드</h3>
 				<div class="useCodeListArea">
-					<table style="text-align:center; width:800px;">
-						<tr>
+					<table class="useCodeListTable">
+						<tr style="background: #f5f5f5;">
 							<td style="width:30px;">번호</td>
 							<td style="width:100px;">구매일</td>
 							<td style="width:200px;">시설이름</td>

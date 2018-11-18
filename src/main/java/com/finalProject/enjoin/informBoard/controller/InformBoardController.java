@@ -2,6 +2,7 @@ package com.finalProject.enjoin.informBoard.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +76,7 @@ public class InformBoardController {
 			//System.out.println("controller:"+list);
 			list2=ibs.selectFileDetail(ibf,ib);
 			mv.addObject("list2", list2);
-			//System.out.println("list2:"+list2);
+			System.out.println("list2:"+list2);
 			list3=ibs.selectMemberDetail(loginUser);
 			mv.addObject("list3", list3);
 			System.out.println("list3:"+list3);
@@ -292,8 +293,57 @@ public class InformBoardController {
 	}
 	
 	
-	
-	
+	//공고신청 패스 차감
+	@RequestMapping("applyInformBoard.kch2")
+	public @ResponseBody List<Map<String, Object>> applyInformBoard(@RequestParam("userNo") int userNo, @RequestParam("deductPass") int deductPass, @RequestParam("crewArea") String crewArea){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String useCode = "";
+		for(int i = 0; i < 8; i++){
+
+			char lowerStr = (char)(Math.random() * 26 + 97);
+			if(i % 2 == 0){
+				useCode += (int)(Math.random() * 10);
+			}else{
+				useCode += lowerStr;
+			}
+		}
+		String.valueOf(useCode);
+		
+		map.put("userNo", userNo);
+		map.put("deductPass", deductPass);
+		map.put("crewArea", crewArea);
+		map.put("useCode", useCode);
+		int result = ibs.selectRecord(map);
+		
+		if(result < 1) {
+			int result1 = ibs.updatePassCount(map);
+			
+			List<Map<String, Object>> aib = ibs.applyInformBoard(map);
+			System.out.println("aib : " + aib);
+			return aib;
+		}
+		
+		return null;
+	}
+	//시설 이용 정보 팝업창
+		@RequestMapping(value="popUp.kch2")
+		public ModelAndView showUseCode(ModelAndView mv, @RequestParam("ppCount") int ppCount, @RequestParam("useCode") String useCode, 
+															@RequestParam("facilityName") String facilityName, @RequestParam("passCount") int passCount) {
+			System.out.println("ppCount : " + ppCount);
+			System.out.println("useCode : " + useCode);
+			System.out.println("facilityName : " + facilityName);
+			System.out.println("passCount : " + passCount);
+			
+			mv.setViewName("myPage/useCodePopUp");
+			mv.addObject("ppCount", ppCount);
+			mv.addObject("useCode", useCode);
+			mv.addObject("facilityName", facilityName);
+			mv.addObject("passCount", passCount);
+			
+			return mv;
+		}
 }
 
 

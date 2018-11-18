@@ -238,10 +238,11 @@ nav{
 					<button type="button" class="btn btn-warning" id="list">
 						<i class="fa fa-laptop"></i>제휴시설보기
 					</button>
-					
+				<c:if test="${ loginUser.userType eq 3 }">
 					<button type="button" class="btn btn-primary" id="notice" onclick="noticeGo()">
 					<i class="fa fa-address-card-o"></i>
 					공고글작성하기</button>
+				</c:if>
 				</div>
 			
 			</div>

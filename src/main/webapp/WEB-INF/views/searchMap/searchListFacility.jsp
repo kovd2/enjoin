@@ -394,7 +394,7 @@ height:20px;
 			//정상적으로 검색이 완료되었다!
 			  if(status===daum.maps.services.Status.OK){
 
-				 var coords = new daum.maps.LatLng(result[0].x, result[0].y);
+				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
 				  
 				  

@@ -68,6 +68,31 @@ public class InformBoardServiceImpl implements InformBoardService{
 		return map;
 	}
 	
+	//공고 이용 정보 조회
+	@Override
+	public List<Map<String, Object>> applyInformBoard(Map<String, Object> map) {
+		
+		return ibd.applyInformBoard(map, sqlSession);
+	}
+	
+	//패스 차감
+	@Override
+	public int updatePassCount(Map<String, Object> map) {
+		int result = ibd.updatePassCount(map, sqlSession);
+		int result2 = -99;
+		if(result > 0) {
+			result2 = ibd.insertPassRecord(map, sqlSession);
+		}
+		
+		return result2;
+	}
+	//공고신청 확인
+	@Override
+	public int selectRecord(Map<String, Object> map) {
+		
+		return ibd.selectRecord(map, sqlSession);
+	}
+	
 	
 
 
