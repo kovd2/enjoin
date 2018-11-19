@@ -296,7 +296,9 @@ public class InformBoardController {
 	//공고신청 패스 차감
 	@RequestMapping("applyInformBoard.kch2")
 	public @ResponseBody List<Map<String, Object>> applyInformBoard(@RequestParam("userNo") int userNo, @RequestParam("deductPass") int deductPass, @RequestParam("crewArea") String crewArea){
-		
+		System.out.println("userNo : " + userNo);
+		System.out.println("deductPass : " + deductPass);
+		System.out.println("crewArea : " + crewArea);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String useCode = "";
@@ -315,17 +317,25 @@ public class InformBoardController {
 		map.put("deductPass", deductPass);
 		map.put("crewArea", crewArea);
 		map.put("useCode", useCode);
+		
+		int fNo = ibs.selectFacilityNo(map);
+		map.put("facilityNo", fNo);
+		
 		int result = ibs.selectRecord(map);
 		
-		if(result < 1) {
+		System.out.println("result : " + result);
+		if(result == 0) {
+			System.out.println("facilityNo : " + fNo);
 			int result1 = ibs.updatePassCount(map);
-			
-			List<Map<String, Object>> aib = ibs.applyInformBoard(map);
-			System.out.println("aib : " + aib);
-			return aib;
-		}
-		
-		return null;
+			System.out.println("result1 : " + result1);
+				if(result1 > 0) {
+					
+					List<Map<String, Object>> aib = ibs.applyInformBoard(map);
+					System.out.println("aib : " + aib);
+					return aib;
+				}
+			}
+			return null;
 	}
 	//시설 이용 정보 팝업창
 		@RequestMapping(value="popUp.kch2")
@@ -343,6 +353,24 @@ public class InformBoardController {
 			mv.addObject("passCount", passCount);
 			
 			return mv;
+		}
+		
+		//공고 이용하는 회원 조회
+		@RequestMapping("selectInformAttendList.kch2")
+		public @ResponseBody List<Map<String, Object>> selectInformAttendList(@RequestParam("userNo") int userNo, @RequestParam("crewArea") String crewArea){
+			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println("userNo : " + userNo);
+			System.out.println("crewArea : " + crewArea);
+			map.put("userNo", userNo);
+			map.put("crewArea", crewArea);
+			
+			int fNo = ibs.selectFacilityNo(map);
+			map.put("facilityNo", fNo);
+			
+			List<Map<String, Object>> selectInformAttendList = ibs.selectInformAttendList(map);
+			System.out.println("selectInformAttendList : " + selectInformAttendList);
+			
+			return selectInformAttendList;
 		}
 }
 

@@ -41,6 +41,12 @@ public interface InformBoardService  {
 	//공고 참여 확인
 	int selectRecord(Map<String, Object> map);
 
+	//facilityNo 가져오기
+	int selectFacilityNo(Map<String, Object> map);
+
+	//공고 이용하는 회원 조회
+	List<Map<String, Object>> selectInformAttendList(Map<String, Object> map);
+
 	
 	
 	

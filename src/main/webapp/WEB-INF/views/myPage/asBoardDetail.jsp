@@ -64,17 +64,19 @@
 						</div>
 						<div class="noticeWrap">
 							<div class="boardContentArea">
+								<c:if test="${asDetail.attachment[0].upload_Name ne null }">
 									<img src="resources/uploadFiles/contact/${asDetail.attachment[0].upload_Name }" style="width:200px;">
 									<span style="font-size: 10pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre; white-space: pre-wrap;">
 										${asDetail.boardContent }
 									</span>
+								</c:if>
 							</div>						
 							<div class="commentWrap" style="width: 740px;">
 							<c:forEach var="r" items="${ asDetail.comentList }">
 								<div class="commentContent" style="display:inline-block; width: 740px;">
 									<c:if test="${ r.comentContent ne null }">
 									<div style="border-bottom:1px solid gray;">
-										<div>관리자</div><br>
+										<div><b style="font-size:20px;">관리자</b>님의 답변입니다.</div><br>
 										<div><p class="Reply">${ r.comentContent }</p></div>
 										<p class="comentDate"><fmt:formatDate value="${ r.comentDate }" pattern="yyyy-MM-dd a HH:mm" /></p>																			
 									</div>		

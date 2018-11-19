@@ -44,6 +44,12 @@ public interface InformBoardDao {
 	//공고 신청 확인
 	int selectRecord(Map<String, Object> map, SqlSessionTemplate sqlSession);
 
+	//facilityNo가져오기
+	int selectFacilityNo(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
+	//공고 이용하는 회원 조회	
+	List<Map<String, Object>> selectInformAttendList(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
 	
 
 	

@@ -82,6 +82,7 @@ public class InformBoardServiceImpl implements InformBoardService{
 		int result2 = -99;
 		if(result > 0) {
 			result2 = ibd.insertPassRecord(map, sqlSession);
+			System.out.println("result2 : " + result2);
 		}
 		
 		return result2;
@@ -91,6 +92,20 @@ public class InformBoardServiceImpl implements InformBoardService{
 	public int selectRecord(Map<String, Object> map) {
 		
 		return ibd.selectRecord(map, sqlSession);
+	}
+	
+	//facilityNo가져오기
+	@Override
+	public int selectFacilityNo(Map<String, Object> map) {
+		
+		return ibd.selectFacilityNo(map, sqlSession);
+	}
+	
+	//공고 이용하는 회원 조회
+	@Override
+	public List<Map<String, Object>> selectInformAttendList(Map<String, Object> map) {
+		
+		return ibd.selectInformAttendList(map, sqlSession);
 	}
 	
 	
