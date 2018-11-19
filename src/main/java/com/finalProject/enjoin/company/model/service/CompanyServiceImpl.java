@@ -109,6 +109,14 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 
+	//제휴시설 삭제 신청
+	@Override
+	public int delFacility(int facilityNo) {
+		
+		return cd.delFailicty(sqlSession, facilityNo);
+	}
+
+
 
 
 

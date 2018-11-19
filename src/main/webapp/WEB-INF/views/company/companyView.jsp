@@ -193,7 +193,19 @@
 .tlxBiz .go:hover {
   background: #fff;
 }
-
+.deleteFaility{
+    background: #00bff0;
+    padding: 13px 25px;
+    margin: 10px auto 0 25px;
+    text-align: center;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: -1px;
+    transition: all 0.3s ease 0s;
+    margin-left:950px;
+    font-weight:600;
+}
 
 
 </style>
@@ -225,13 +237,18 @@
               <br>
               <span class="date">${ cl.facilityStartDate }</span>
             </a>
+              <button type="button" class="deleteFaility" onclick="facilityDel('${ cl.facilityNo}');">제휴신청 취소</button>
           </c:forEach>
           </div><!-- /.list-group -->
           
           <script>
-          function detailView(userId, facilityNo){
+          /* function detailView(userId, facilityNo){
         	  location.href="detailView.gs?userId="+userId+"&facilityNo="+facilityNo;
-          }
+          }; */
+          
+          function facilityDel(facilityNo){
+        	location.href="delFaciity.gs?facilityNo="+facilityNo;  
+          };
           
           </script>
           

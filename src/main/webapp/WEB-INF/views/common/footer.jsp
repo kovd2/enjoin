@@ -216,8 +216,8 @@ padding-left:50px;
               <span>고객센터</span> <span><i class="fa fa-phone-square"></i> 1644-3578</span>
             </p>
             <p class="contactList">
-                <span>사업/서비스 제휴 문의 <a href="mailto:contact@tlx.co.kr"><i class="fa fa-envelope"></i> contact@tlx.co.kr</a></span>
-                <span>기타 문의 <a href="mailto:help@tlx.co.kr"><i class="fa fa-envelope"></i> help@tlx.co.kr</a></span>
+                <span>사업/서비스 제휴 문의 <a href="mailto:contact@tlx.co.kr"><i class="fa fa-envelope"></i> contact@enjoin.co.kr</a></span>
+                <span>기타 문의 <a href="mailto:help@tlx.co.kr"><i class="fa fa-envelope"></i> help@enjoin.co.kr</a></span>
                 <span><a class="btn_applyPartner" href="/help/partner"><i class="fa fa-handshake-o"></i> 시설 제휴 문의</a></span>
             </p>
             <!--
@@ -237,10 +237,10 @@ padding-left:50px;
           -->
           </div>
           <ul class="util">
-            <li><a href="/contents/terms/">이용약관</a></li>
-            <li><a href="/contents/privacy/">개인정보취급방침</a></li>
-            <li><a href="/notice/thread/">공지사항</a></li>
-            <li><a href="/help/">고객센터</a></li>
+            <li><a href="WEB-INF/views/member/conditions.jsp">이용약관</a></li>
+            <li><a href="WEB-INF/views/member/personalInfo.jsp">개인정보취급방침</a></li>
+            <li><a href="notice.hh">공지사항</a></li>
+            <li><a href="serviceCenter.hh">고객센터</a></li>
             <!-- <li><a href="/contents/b2b" target="_blank">TLX BIZ 임직원 건강관리 솔루션</a></li> -->
           </ul>
         </div>
@@ -248,9 +248,9 @@ padding-left:50px;
         <div class="col-md-3">
           <div class="customerCenter">
             <h5>고객센터</h5>
-            <a href="javascript:void($zopim.livechat.window.openPopout());" class="goChat"><i class="fa fa-comments-o"></i> 실시간 채팅상담</a>
+            
             <span>운영시간 평일 09:30 ~ 17:30 (점심시간 11:30 ~ 13:00)</span>
-            <span>이외의 시간은 로그인 후 <a href="/mypage/query/">1:1문의</a>를 이용해주세요.</span>
+            <span>이외의 시간은 로그인 후 <a href="contactDetail.hh">1:1문의</a>를 이용해주세요.</span>
           </div>
         </div>
       </div>

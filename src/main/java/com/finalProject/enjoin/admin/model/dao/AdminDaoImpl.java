@@ -465,12 +465,7 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.selectList("Admin.facilitySearchList",facility_name);
 	}
-	//제휴업체 삭제
-	@Override
-	public int statusFacilityDelete(SqlSession sqlSession, int fACILITY_NO) {
-		
-		return sqlSession.update("Admin.statusFacilityDelete",fACILITY_NO);
-	}
+	
 	//제휴시설삭제 리스트 갯수 조회
 	@Override
 	public int getfacilityDelectList(SqlSession sqlSession) {
@@ -486,6 +481,14 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.selectList("Admin.selectFacilityDelectList", null, rowBounds);
 	}
+	
+	//제휴업체 삭제
+		@Override
+		public int statusFacilityDelete(SqlSession sqlSession, int fACILITY_NO) {
+			
+			return sqlSession.update("Admin.statusFacilityDelete",fACILITY_NO);
+		}
+		
 	//제휴 시설 삭제 복원 
 	@Override
 	public int updateStatusFacilityY(SqlSession sqlSession, int fACILITY_NO) {

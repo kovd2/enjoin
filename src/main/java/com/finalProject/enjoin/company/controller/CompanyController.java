@@ -164,6 +164,17 @@ public class CompanyController {
 		return mv;
 	}
 	
+	//제휴시설 이용 취소 컨트롤러
+	@RequestMapping("delFaciity.gs")
+	public String delFacility(Model model , HttpServletRequest request, @RequestParam("facilityNo") int facilityNo) {
+		
+		System.out.println(facilityNo);
+	
+		int result = cs.delFacility(facilityNo);
+		
+		return "redirect:companyInsertForm.gs";
+	}
+	
 	//이용코드 읽어오는 컨트롤러
 	@RequestMapping("useCode.gs")
 	@ResponseBody
