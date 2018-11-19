@@ -20,7 +20,7 @@
 }
 
 .boardAdmin table tr:hover{
-	background:yellow;
+	background:#99FFFF;
 }
 
 th {
@@ -36,18 +36,18 @@ td {
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">
 		<div class="boardAdmin" align="center">
-			<p style="font-size: 100px; text-align: center">공지사항</p>
+			<p style="font-size: 30px; color: #03a9f4; font-weight: bold; margin-top: 10px; margin-right: 50px;">공지사항</p>
 
 			<hr>
-			<p style="text-align:right; margin-right:190px"><input type="button" value="공지사항 등록" onclick="adminNoticeInsert()" style="width:150px; height:50px;"></p>
-			<table>
+			<p style="text-align:right; margin-right:40px"><input type="button" value="공지사항 등록" onclick="adminNoticeInsert()" class="btn btn-success"></p>
+			<table class="table table-bordered">
 				<tr style="border: 1px solid black;">
 					<th
-						style="width: 70px; height: 60px; font-size: 30px; background: gray;">번호</th>
+						style="width: 70px; height: 60px; font-size: 20px; background: #0099CC;">번호</th>
 					<th
-						style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
+						style="width: 300px; height: 60px; font-size: 20px; background: #0099CC;">제목</th>
 					<th
-						style="width: 100px; height: 60px; font-size: 30px; background: gray;">날짜</th>
+						style="width: 100px; height: 60px; font-size: 20px; background: #0099CC;">날짜</th>
 				</tr>
 				<c:forEach var="b" items="${ list }">
 					<tr onclick="selectOneBoard(${ b.boardNo })">
@@ -58,6 +58,7 @@ td {
 				</c:forEach>
 			</table>
 			<br>
+		
 			<nav>
 				<ul class="pagination" style="display: inline-flex;">
 					<c:if test="${ pi.currentPage <= 1 }">
@@ -93,8 +94,9 @@ td {
 					</c:if>
 				</ul>
 			</nav>
-		</div>
+		
 	</div>
+</div>
 		
 	<script>
 		function adminNoticeInsert(){

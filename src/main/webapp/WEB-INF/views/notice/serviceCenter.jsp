@@ -285,24 +285,6 @@ h5 {
 								<aside class="col-md-3">
 									<div class="row">
 										<div class="innerBox col-xs-6 col-sm-12">
-											<h3>실시간 채팅 상담</h3>
-											<p class="help-block">
-												<span><strong style="font-size:17px">운영시간</strong><strong><br> 평일 09:30~17:30 <br> 점심시간 11:30~13:00<br></strong></span>
-												<span>이외의 시간은</span>
-												<span>1:1 문의를 이용해주세요.</span>
-											</p>
-											<p class="help-block">
-												<span>로그인 후 이용하시면 자세한 상담을 받을 수 있습니다.<br>
-												<strong><a href="memberLogin.me" style="color:black; font-size:15px;" >[로그인하기]</a></strong></span>
-											</p>
-											<c:if test="${ empty sessionScope.loginUser }">
-											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" href="memberLogin.me"><i class="fa fa-comments-o"></i> 로그인</a>
-											</c:if>
-											<%-- <c:if test="${ !empty sessionScope.loginUser }">
-											<a class="btn btn-default" name="chatPopUp" id="chatPopUp" onclick="chatPopUp()"><i class="fa fa-comments-o"></i> 모두의 채팅</a>
-											</c:if> --%>
-										</div>
-										<div class="innerBox col-xs-6 col-sm-12">
 											<h3>1:1 문의</h3>
 											<p class="help-block">
 												<span>게시판에 문의사항을 남겨주시면 정확하게 답변해 드립니다.</span>
@@ -315,6 +297,13 @@ h5 {
 											<h3>공지사항</h3>
 											<p class="help-block">공지사항을 확인하세요!</p>
 											<a href="notice.hh" class="btn btn-default"> 공지사항 보기 </a>
+										</div>
+									</div>
+									<div class="row">
+										<div class="innerBox col-xs-6 col-sm-12">
+											<h3>멤버십 결제</h3>
+											<p class="help-block">지금 바로 Enjoin을 이용해 보세요!</p>
+											<a href="passPurchase.hh" class="btn btn-default"> 멤버십 구매 </a>
 										</div>
 									</div>
 									<!-- /.row -->

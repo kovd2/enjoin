@@ -211,10 +211,12 @@ public class paymentController {
 		map.put("list", list);
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
+		map.put("pi", pi);
 		
 		mav.addObject("map", map);
 		mav.setViewName("notice/adminPayment");
-				
+	
+		System.out.println("map : " + map);
 		
 		return mav;
 	}
