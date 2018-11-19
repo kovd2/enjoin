@@ -20,7 +20,7 @@
 }
 
 .boardAdmin table tr:hover{
-	background:yellow;
+	background:#99FFFF;
 }
 
 th {
@@ -31,34 +31,35 @@ td {
 	border-left:1px solid;
 }
 
+table {
+	width: 70%;
+}
+
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">
 		<div class="boardAdmin" align="center">
-			<p style="font-size: 100px; text-align: center">1:1 문의</p>
+			<p style="font-size: 30px; color: #03a9f4; font-weight: bold; margin-top: 10px; margin-right: 50px;">1:1 문의</p>
 
 			<hr>
 			
-			<table>
+			<table class="table table-bordered">
 				<tr style="border: 1px solid black;">
 					<th
-						style="width: 70px; height: 60px; font-size: 30px; background: gray;">번호</th>
+						style="width: 70px; height: 60px; font-size: 20px; background: #0099CC;">번호</th>
 					<th
-						style="width: 180px; height: 60px; font-size: 30px; background: gray;">카테고리</th>
+						style="width: 500px; height: 60px; font-size: 20px; background: #0099CC;">제목</th>
 					<th
-						style="width: 500px; height: 60px; font-size: 30px; background: gray;">제목</th>
+						style="width: 100px; height: 60px; font-size: 20px; background: #0099CC;">날짜</th>
 					<th
-						style="width: 100px; height: 60px; font-size: 30px; background: gray;">날짜</th>
-					<th
-						style="width: 100px; height: 60px; font-size: 30px; background: gray;">구분</th>
+						style="width: 100px; height: 60px; font-size: 20px; background: #0099CC;">구분</th>
 					
 					
 				</tr>
 				<c:forEach var="b" items="${ list }">
 					<tr onclick="selectOneBoard(${ b.boardNo })">
 						<td>${ b.boardNo }</td>
-						<td>${ b.boardType }</td>
 						<td>${ b.boardTitle }</td>
 						<td>${ b.enrollDate }</td>
 						<td>

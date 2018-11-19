@@ -9,12 +9,26 @@
 </head>
 <style>
 .wrappp {
-	width:100%;
-	align:center;
+	width: 100%;
+	align: center;
 }
+
 .boardAdmin table tr {
-	text-align:center;
-	border:1px solid black;
+	text-align: center;
+	border: 1px solid black;
+}
+
+
+th {
+	border-left:1px solid;
+}
+
+td {
+	border-left:1px solid;
+}
+
+table td, table th {
+	padding:0px !important;
 }
 
 </style>
@@ -22,25 +36,25 @@
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">	
 		<div class="boardAdmin" align="center">
-		<p style="font-size:100px; text-align:center">공지사항</p>
+		<p style="font-size: 30px; color: #03a9f4; font-weight: bold; margin-top: 10px; margin-right: 50px;">공지사항</p>
 		
 		<hr>
 	<form id="insertBoardForm" action="adminNoticeInsertBtn.hh" method="post" encType="multipart/form-data">		
-		<table>
+		<table class="table table-bordered">
 			<tr>
-				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">제목</th>
-				<td style="width:800px; height:60px;"><input type="text" id="boardTitle" name="boardTitle" style="width:800px; height:60px;"></td>
+				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:#0099CC;">제목</th>
+				<td style="width:100%; height:60px;"><input type="text" id="boardTitle" name="boardTitle" style="width:100%; height:60px;"></td>
 			</tr>
 			<tr>
-				<th style="display:inline-block; width:300px; height:400px; font-size:30px; background:gray;">내용</th>
+				<th style="width:300px; height:400px; font-size:30px; background:#0099CC; vertical-align:middle;">내용</th>
 				<td style="width:800px; height:400px">
 					<textarea id="boardContent" name="boardContent" style="width:100%; height:100%;"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<th style="display:inline-block; width:300px; height:260px; font-size:30px; background:gray;">첨부파일</th>
+				<th style="width:300px; height:260px; font-size:30px; background:#0099CC; vertical-align:middle;">첨부파일</th>
 				<td  style="width:310px; height:260px;"><div id="contentImgArea1" style="width:310px; height:260px;">
-				<img id="contentImg1" width="800px" height="260px">
+				<img id="contentImg1" width="100%" height="100%">
 				</div></td>
 		
 			</tr>
@@ -50,7 +64,7 @@
 				</div>
 	</form>
 		<br>
-		<input type="button" value="등록하기" onclick="adminNoticeInsertBtn()">
+		<input type="button" class="btn btn-info" value="등록하기" onclick="adminNoticeInsertBtn()">
 		</div>
 		<br><br><br><br><br>
 	</div>

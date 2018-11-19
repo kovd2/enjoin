@@ -91,13 +91,6 @@
 
 					</div>
 					<!-- /.noticeWrap -->
-					<script>
-		function selectOneBoard(boardNo){
-			location.href="noticeDetail.hh?boardNo=" + boardNo;
-		}
-		
-		
-	</script>
 
 
 				</div>
@@ -110,5 +103,13 @@
 
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	
+<script>
+		function selectOneBoard(boardNo){
+			location.href="noticeDetail.hh?boardNo=" + boardNo;
+		}
+		
+		
+</script>
 </body>
 </html>

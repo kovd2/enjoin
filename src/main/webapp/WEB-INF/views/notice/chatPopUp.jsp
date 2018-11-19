@@ -8,9 +8,9 @@
 	<script src="resources/js/sockjs.min.js"></script>
 	<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="width:100%">
 	<span class="badge" style="height:4%; margin-top:5px; margin-left:21px;">매너 있는 모습을 보여주세요!</span>
-	<input type="button" class="btn btn-danger" value="나가기" onclick="onClose()" style="margin-left: 21px; margin-top:5px;">
+	<input type="button" class="btn btn-danger" value="나가기" onclick="onClose()" style="margin-left: 15px; margin-top:5px;">
 	<input type="hidden" name="userId" id="userId" value="${ loginUser.getUserId() }">
 	
     <div id="data" style="width:95%; height:78%; margin-left:10px; margin-top:10px; overflow: auto;"></div>
