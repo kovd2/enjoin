@@ -49,6 +49,13 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return result;
 	}
+	//프로필 사진 없을때 회원 정보 수정
+	@Override
+	public void updateMember2(Member m, SqlSessionTemplate sqlSession) {
+		
+		sqlSession.update("myPage.updateMember", m);
+	}
+
 
 	//회원 패스 조회
 	@Override
@@ -115,6 +122,12 @@ public class myPageDaoImpl implements myPageDao{
 		}
 		
 		return result;
+	}
+	//크루 게시판 작성(이미지X)
+	@Override
+	public void insertCrewBoard2(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession) {
+		
+		sqlSession.insert("myPage.insertCrewBoard", hmap);
 	}
 
 	//가입 승인 대기 목록 조회
@@ -291,5 +304,6 @@ public class myPageDaoImpl implements myPageDao{
 		return sqlSession.update("myPage.updateCrewBoard",board_No);
 	}
 
+	
 	
 }

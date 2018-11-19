@@ -236,7 +236,7 @@
 							<td>${ c.PP_DATE }</td>
 							<td>${ c.FACILITY_NAME }</td>
 							<td>${ c.USE_CODE }</td>
-						<c:if test="${ c.PP_STATUS == 0 }">
+						<c:if test="${ c.PP_STATUS == 0  || c.PP_STATUS == 3}">
 							<td>사용가능</td>
 						</c:if>
 						</tr>

@@ -128,6 +128,18 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		
 		return sqlSession.selectOne("InformBoard.selectRecord", map);
 	}
+	//facilityNo가져오기
+	@Override
+	public int selectFacilityNo(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("InformBoard.selectFacilityNo", map);
+	}
+	//공고 이용하는 회원 조회	
+	@Override
+	public List<Map<String, Object>> selectInformAttendList(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("InformBoard.selectInformAttendList", map);
+	}
 	
 	
 

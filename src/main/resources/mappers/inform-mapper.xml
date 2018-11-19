@@ -163,8 +163,8 @@
 	
 	<!-- 패스 이용 내역 insert -->
 	<insert id="insertPassRecord">
-		INSERT INTO PASSRECORD (PP_NO, PP_STATUS, PP_DATE, PP_COUNT, PAY_NO, USE_CODE, USER_NO)
-		VALUES(SEQ_PP_NO.NEXTVAL, 3, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{useCode}, #{userNo}) 
+		INSERT INTO PASSRECORD 
+		VALUES(SEQ_PP_NO.NEXTVAL, 3, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{facilityNo}, #{useCode}, #{userNo}) 
 	</insert>
 	
 	<!-- 이용시설 조회 -->
@@ -174,19 +174,43 @@
         JOIN PASS P ON (PR.USER_NO = P.USER_NO)
         JOIN (SELECT FACILITY_NAME, PASS_COUNT, FACILITY_NO
       		  FROM FACILITY
-      		  WHERE TOTAL_ADDRESS = #{crewArea}) F USING(FACILITY_NO)
+      		  WHERE FACILITY_NO = #{facilityNo}) F USING(FACILITY_NO)
 		WHERE PR.USER_NO = #{userNo}
 		AND USE_CODE IS NOT NULL
 	</select>
 	
+	<!-- facilityNo가져오기 -->
+	<select id="selectFacilityNo" resultType="_int">
+		SELECT F.FACILITY_NO
+		FROM FACILITY F
+		JOIN ATTACHMENT A ON (F.FACILITY_NO = A.REF_NO)
+		WHERE FILE_NO = 0
+		AND TOTAL_ADDRESS = #{crewArea}
+	</select>
+	
 	<!-- 시설 이용전 확인 -->
 	<select id="selectRecord" resultType="_int">
+		<!-- SELECT COUNT(*)
+		FROM PASSRECORD
+		WHERE USER_NO = #{userNo}
+		AND PP_STATUS = 3 -->
 		SELECT COUNT(*)
 		FROM PASSRECORD
 		WHERE USER_NO = #{userNo}
-		AND USE_CODE IS NULL
+        AND FACILITY_NO = #{facilityNo}
+        AND USE_CODE IS NOT NULL
 		AND PP_STATUS = 3
 	</select>
+	
+	<!-- 공고 이용하는 회원 조회 -->
+	<select id="selectInformAttendList" parameterType="hashmap" resultType="hashmap">
+		SELECT P.USER_NO, M.USER_ID
+		FROM PASSRECORD P
+		JOIN MEMBER M ON(P.USER_NO = M.USER_NO)
+		WHERE PP_STATUS = 3
+		AND FACILITY_NO = #{facilityNo}
+	</select>
+	
 </mapper>
 
 
