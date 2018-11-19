@@ -315,7 +315,7 @@ public class CrewController {
 	}
 	@RequestMapping("crewRecruitmentDetails.shw2")
 	public ModelAndView crewRecruitmentDetails(ModelAndView mv,HttpServletRequest request) {
-		
+		  
 		int board_No = Integer.parseInt(request.getParameter("board_No"));
 		int user_No = Integer.parseInt(request.getParameter("user_No"));
 		int crew_Id = Integer.parseInt(request.getParameter("crew_No"));
@@ -738,7 +738,7 @@ public class CrewController {
 			map.put("list2", list2);
 			map.put("list3", list3);
 			
-			
+			System.out.println("list2123123 : " + list2);
 			
 			
 			

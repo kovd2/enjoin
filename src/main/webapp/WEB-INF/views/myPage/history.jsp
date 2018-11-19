@@ -75,6 +75,11 @@ li {
 				</div>
 				<br>
 				<div class="memberList">
+				<select style="float: left;" id="boardType">
+					<option value="useFacility" selected="selected">시설이용내역</option>
+					<option value="paymentHistory">결제내역</option>
+				</select>
+					<!-- 시설이용내역 -->
 					<table class="useHistoryTable" style="width: 800px; border-top: solid 1px black;">
 						<tr class="titleArea">
 							<td style="width: 30px;">번호</td>
@@ -84,45 +89,109 @@ li {
 							<td style="width: 80px">구분</td>
 						</tr>
 					</table>
+					
+					<!-- 결제내역 -->
+					<table class="paymentHistory" style="width: 800px; border-top: solid 1px black;">
+						<tr class="titleArea">
+							<td style="width: 30px;">번호</td>
+							<td style="width: 150px">결제일</td>
+							<td style="width: 150px">가격</td>
+							<td style="width: 100px">카드승인번호</td>
+							<td style="width: 150px">환불대상구매번호</td>
+							<td style="width: 150px">패스수량</td> 
+						</tr>
+					</table>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
 	<script>
-		$('#datepicker2').change(function(){
-			var date1 = $('#datepicker1').val();
-			var date2 = $('#datepicker2').val();
-			var userNo = ${loginUser.userNo};
+	$('#boardType').change(function() {
+		var state = $('#boardType option:selected').val();
+		if(state == 'useFacility') {
+			$('.useHistoryTable').show();
+			$('.paymentHistory').hide();
 			
-			$.ajax({
-				url:"useHistory.ljs",
-				type:"post",
-				data:{date1:date1,
-					  date2:date2,
-					  userNo:userNo},
-				success:function(data){
-					for(var key in data){
-						$useHistoryTr = $('<tr>');
-						$useHistoryTd1 = $('<td>').append(data[key].ROWNUM);
-						$useHistoryTd2 = $('<td>').append(data[key].FACILITY_NAME);
-						$useHistoryTd3 = $('<td>').append(data[key].PP_DATE);
-						$useHistoryTd4 = $('<td>').append(data[key].PP_COUNT);
-						$useHistoryTd5 = $('<td>').append("사용완료");
-						$useHistoryTr.append($useHistoryTd1);
-						$useHistoryTr.append($useHistoryTd2);
-						$useHistoryTr.append($useHistoryTd3);
-						$useHistoryTr.append($useHistoryTd4);
-						$useHistoryTr.append($useHistoryTd5);
-						
-						$('.useHistoryTable').append($useHistoryTr);
+			$('#datepicker2').change(function(){
+				var date1 = $('#datepicker1').val();
+				var date2 = $('#datepicker2').val();
+				var userNo = ${loginUser.userNo};
+				
+				$.ajax({
+					url:"useHistory.ljs",
+					type:"post",
+					data:{date1:date1,
+						  date2:date2,
+						  userNo:userNo},
+					success:function(data){
+						for(var key in data){
+							$useHistoryTr = $('<tr>');
+							$useHistoryTd1 = $('<td>').append(data[key].ROWNUM);
+							$useHistoryTd2 = $('<td>').append(data[key].FACILITY_NAME);
+							$useHistoryTd3 = $('<td>').append(data[key].PP_DATE);
+							$useHistoryTd4 = $('<td>').append(data[key].PP_COUNT);
+							$useHistoryTd5 = $('<td>').append("사용완료");
+							$useHistoryTr.append($useHistoryTd1);
+							$useHistoryTr.append($useHistoryTd2);
+							$useHistoryTr.append($useHistoryTd3);
+							$useHistoryTr.append($useHistoryTd4);
+							$useHistoryTr.append($useHistoryTd5);
+							
+							$('.useHistoryTable').append($useHistoryTr);
+						}
+					},
+					error:function(){
+						console.log("에러");
 					}
-				},
-				error:function(){
-					console.log("에러");
-				}
-			})
-		});
+				})
+			});
+		} 
+		
+		if(state == 'paymentHistory'){
+			$('.useFacility').hide();
+			$('.paymentHistory').show();
+			
+			$('#datepicker2').change(function(){
+				var date1 = $('#datepicker1').val();
+				var date2 = $('#datepicker2').val();
+				var userNo = ${loginUser.userNo};
+				
+				$.ajax({
+					url:"paymentHistory.ljs",
+					type:"post",
+					data:{date1:date1,
+						  date2:date2,
+						  userNo:userNo},
+					success:function(data){
+						for(var key in data){
+							$paymentHistoryTr = $('<tr>');
+							$paymentHistoryTd1 = $('<td>').append(data[key].ROWNUM);
+							$paymentHistoryTd2 = $('<td>').append(data[key].PAY_DATE);
+							$paymentHistoryTd3 = $('<td>').append(data[key].PRICE);
+							$paymentHistoryTd4 = $('<td>').append(data[key].PROOF_NO);
+							$paymentHistoryTd5 = $('<td>').append(data[key].REFUND_NO);
+							$paymentHistoryTd6 = $('<td>').append(data[key].PASS_PLUS);
+							$paymentHistoryTr.append($paymentHistoryTd1);
+							$paymentHistoryTr.append($paymentHistoryTd2);
+							$paymentHistoryTr.append($paymentHistoryTd3);
+							$paymentHistoryTr.append($paymentHistoryTd4);
+							$paymentHistoryTr.append($paymentHistoryTd5);
+							$paymentHistoryTr.append($paymentHistoryTd6);
+							
+							$('.paymentHistory').append($paymentHistoryTr);
+						}
+					},
+					error:function(){
+						console.log("에러");
+					}
+				})
+			});
+		}
+	});
+		
+		
 		
 		
 	</script>

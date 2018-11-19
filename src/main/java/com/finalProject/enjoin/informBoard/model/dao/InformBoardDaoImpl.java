@@ -58,7 +58,7 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		InformBoard selectIb =new InformBoard();
 		selectIb.setBoardNo(ib.getBoardNo());
 		Map<String,Object> list = sqlSession.selectOne("InformBoard.selectBoardDetail", selectIb);
-		//System.out.println("DAO:"+list);
+		System.out.println("DAO123:"+list);
 		if(list == null) {
 			throw new BoardSelectOneException("게시물 상세보기 실패!");
 		}

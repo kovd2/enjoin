@@ -185,7 +185,7 @@ public class CompanyController {
 	@RequestMapping("updateCode.gs")
 	@ResponseBody
 	public String updateCode(@RequestParam(value="useCode") String useCode) {
-	
+		System.out.println("useCode : " + useCode);
 		int result = 0;
 		result = cs.updateCode(useCode);
 		

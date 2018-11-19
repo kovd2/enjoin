@@ -489,7 +489,7 @@ height:20px;
 					if($div1)
 					$div0.append($div1);
 					 $div2=$("<div class='imgArea'>");
-					$div2.append("<img src=${contextPath}/resources/uploadFiles/facility/" +data[key].UPLOAD_NAME+ "}>");
+					$div2.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
 					$div1.append($div2); 
 					$div3=$("<div class='contents'>");
 					$div1.append($div3);

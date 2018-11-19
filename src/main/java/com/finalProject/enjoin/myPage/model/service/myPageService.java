@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.finalProject.enjoin.crew.model.vo.Attachment;
 import com.finalProject.enjoin.myPage.model.vo.Crew;
@@ -116,6 +117,9 @@ public interface myPageService {
 	
 	//크루 현재인원 추가
 	int updateCrewBoard(int board_No);
+	
+	//결제내역 조회
+	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map);
 	
 
 
