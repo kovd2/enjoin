@@ -303,6 +303,9 @@ height:20px;
 <jsp:include page="../common/menubar.jsp"/>
 <hr>
 
+
+
+
 <div class="wrap">
 
 	<div class="middle">
@@ -341,7 +344,7 @@ height:20px;
 		
 		<div class="mapArea">
 		<!-- 지도 -->
-			<div id="realMap" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
+			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
 			
 			
 		</div>
@@ -362,7 +365,7 @@ height:20px;
   $(document).ready(function(){  
 	
 
-	var mapContainer = document.getElementById('realMap'), // 지도를 표시할 div 
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
 	        level:10 // 지도의 확대 레벨
@@ -390,7 +393,7 @@ height:20px;
 	</c:forEach>
 	
 	console.log(addr);
-	console.log(addr[3].name);
+	console.log(addr[0].name);
 	
 	for(var i=0; i<addr.length; i++){
 			(function (i) {
@@ -403,8 +406,6 @@ height:20px;
 
 				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
-				  
-				  
 				console.log('들어옵니꽈~~');
 				console.log('들어옵니꽈 네임!!!!'+addr[i].name);
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
@@ -430,29 +431,23 @@ height:20px;
                     
                     // 지도 영역정보를 얻어옵니다 
                     var bounds = map.getBounds();
-                    
-                    // 영역정보의 남서쪽 정보를 얻어옵니다 
-                    var swLatlng = bounds.getSouthWest();
-                    
-                    // 영역정보의 북동쪽 정보를 얻어옵니다 
-                    var neLatlng = bounds.getNorthEast();
-                   
-                    var lb = new daum.maps.LatLngBounds(swLatlng, neLatlng)
-                   
-					if(lb.marker.getVisible()==true){
-						searchFacility(addr[i].address);
-					}else{
-						
-						noSearch();
-					}
-						
-						
-				             
-                    
-                });
-                
 
-                               
+                    var pos = marker.getPosition();
+                    
+                   	if(bounds.contain(pos)){
+                   		
+						console.log('if안에 뭐니꽈~~:'+addr[i].address);
+						searchFacility(addr[i].address,addr[i].no);
+                   		
+                   	}else{
+                   		
+						noSearch();
+						console.log('들어와?');
+                   		
+                   	}
+                     
+                });
+         
                //마커의 중간값으로 위치가 변함
                map.setCenter(coords);    
                
@@ -476,35 +471,59 @@ height:20px;
 </script>
 <script>
 
-	function searchFacility(address){
+	function searchFacility(address,no){
 		
 		$.ajax({
 			
 			url:"searchFacility.kch",
 			type:"post",
-			data:{address:address},
+			data:{address:address,
+						no:no},
 			success:function(data){
-				console.log(data);
+				console.log(data);				
+					  /* $('#loofWrap').empty(); */  
+				for(var key in data){
+					
+					$div0=$("<div class='listArea'>");
+					$div1=$("<div class='list' onclick='goDetail("+data[key].FACILITY_NO+")'>");
+					if($div1)
+					$div0.append($div1);
+					 $div2=$("<div class='imgArea'>");
+					$div2.append("<img src=${contextPath}/resources/uploadFiles/facility/" +data[key].UPLOAD_NAME+ "}>");
+					$div1.append($div2); 
+					$div3=$("<div class='contents'>");
+					$div1.append($div3);
+					$h4=$("<h4>");
+					$h4.append(data[key].FACILITY_NAME);
+					$div3.append($h4);
+					$p=$("<p class='facility_address'>");
+					$p.append(data[key].TOTAL_ADDRESS);
+					$div3.append($p);
+					$div4=$("<div class='category'>");
+					$b1=$("<b>");
+					$b1.append(data[key].FACILITY_EVENT);
+					$div4.append($b1);
+					$div3.append($div4);
+					$('#loofWrap').append($div0);
+					
 				
-				
-				
+					
+				} 
+		
 			}
 			
 			
 		});
-		
-		
 
-		
-	}
+	};
 
 
 
 </script>
 <script>
 	function noSearch(){
-		$('#loofWrap').remove();
-	}
+		$('#loofWrap').empty();
+	};
 </script>
 	
 	

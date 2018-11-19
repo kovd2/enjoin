@@ -13,11 +13,12 @@ import com.finalProject.enjoin.searchMap.model.vo.Facility;
 public class FacilityDaoImpl implements FacilityDao{
 
 	@Override
-	public List<Map<String, Object>> facilityList(SqlSessionTemplate sqlSession,String address) {
+	public List<Map<String, Object>> facilityList(SqlSessionTemplate sqlSession,String address,int no) {
 		
 		Facility f = new Facility();
 		List<Map<String,Object>>list = null;
 		f.setTotalAddress(address);
+		f.setFacilityNo(no);
 		list = sqlSession.selectList("Facility.facilityList",f);
 		System.out.println("dao:"+list);
 		
@@ -32,11 +33,11 @@ public class FacilityDaoImpl implements FacilityDao{
 		Facility f= new Facility();
 		
 		List<Map<String,Object>> list = null;
-		f.setFacilityAddress(search);
+		f.setTotalAddress(search);
 		f.setFacilityEvent(search);
 		f.setFacilityName(search);
-		System.out.println("facilitaddress"+f.getFacilityAddress());
-		
+		System.out.println("facilitaddress"+f.getTotalAddress());
+	
 		list = sqlSession.selectList("Facility.searchFacility",f);
 		System.out.println("facilityDao"+list);
 		if(list!=null) {

@@ -27,11 +27,11 @@ public class searchFacilityController {
 	private FacilityService fs;
 	
 	//전체리스트조회
-	@RequestMapping(value="searchFacility.kch",method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody List<Map<String,Object>>searchFacility(HttpServletRequest request,String address) {
+	@RequestMapping(value="searchFacility.kch",method = RequestMethod.POST)
+	public @ResponseBody List<Map<String,Object>>searchFacility(HttpServletRequest request,String address,int no) {
 		
 		List<Map<String,Object>> list = null;
-		list = fs.facilityList(address);
+		list = fs.facilityList(address,no);
 		System.out.println("con"+list);
 		return list;
 	}
