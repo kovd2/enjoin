@@ -776,12 +776,6 @@
 			AND FACILITY_NAME LIKE '%'||#{facility_Name}||'%'
      </select>
      
-     <!--제휴 삭제  -->
-     <update id="statusFacilityDelete">
-     	UPDATE FACILITY
-		SET FACILITY_STATUS = 'D'
-		WHERE FACILITY_NO = #{FACILITY_NO} 
-     </update>
      
      <!-- 제휴 시설삭제 리스트 갯수 조회  -->
      <select id="getfacilityDelectList" resultType="_int">	
@@ -799,10 +793,17 @@
 			WHERE FACILITY_STATUS = 'D'
      </select>
      
+     <!--제휴 삭제  -->
+     <update id="statusFacilityDelete">
+     	UPDATE FACILITY
+		SET FACILITY_STATUS = 'D', FACILITY_ENDDATE = SYSDATE
+		WHERE FACILITY_NO = #{FACILITY_NO} 
+     </update>
+     
      <!-- 제휴 시설 삭제 복원  -->
      <update id="updateStatusFacilityY">
      	UPDATE FACILITY
-		SET FACILITY_STATUS = 'Y'
+		SET FACILITY_STATUS = 'Y' , FACILITY_STARTDATE = SYSDATE
 		WHERE FACILITY_NO = #{FACILITY_NO} 
      </update>
      

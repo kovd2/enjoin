@@ -39,6 +39,9 @@ public interface CompanyService {
 	//페이징
 	int getListCount(String copNo);
 
+	//제휴시설 삭제신청
+	int delFacility(int facilityNo);
+
 
 
 

@@ -37,6 +37,9 @@ public interface CompanyDao {
 	//이용내역 페이징
 	int getListCount(SqlSessionTemplate sqlSession, String copNo);
 
+	//제휴시설 신청 취소
+	int delFailicty(SqlSessionTemplate sqlSession, int facilityNo);
+
 
 
 

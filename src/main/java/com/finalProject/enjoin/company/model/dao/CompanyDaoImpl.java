@@ -106,6 +106,15 @@ public class CompanyDaoImpl implements CompanyDao{
 	}
 
 
+	
+	//제휴시설 신청 취소 
+	@Override
+	public int delFailicty(SqlSessionTemplate sqlSession, int facilityNo) {
+	
+		return sqlSession.update("Company.delFacility", facilityNo);
+	}
+
+
 
 
 

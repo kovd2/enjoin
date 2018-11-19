@@ -611,7 +611,7 @@ color:#feab2a;
               <button id="saveBtn" class="btn btn-lg btn-primary btn_mobileAppFloat" style="background:#00bff0;" onclick="saveBtn()"><i class="fa fa-check"></i> 저장하기</button>
               <a href="javascript:history.go(-1)" class="btn btn-link"><i class="fa fa-close"></i> 취소</a>
               <span class="withdraw">
-                <button type="button" class="btn btn-sm btn-link" id="deleteMember" onclick="deleteMember('${loginUser.userId}')">탈퇴</button>
+                <%-- <button type="button" class="btn btn-sm btn-link" id="deleteMember" onclick="deleteMember('${loginUser.userId}')">탈퇴</button> --%>
               </span>
             </div>
 	</div>

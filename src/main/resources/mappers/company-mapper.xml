@@ -88,6 +88,12 @@
 					#{facilityArea}, #{facilitySection}, #{facilityAddress}, #{totalAddress}, #{facilityEvent}, #{facilityManagerName},
 					#{facilityManagerPhone}, #{timeForCall}, #{mon_fri_time}, #{sat_time}, #{sun_time})
 	</insert>
+	<!-- 제휴시설 신청 취소 -->
+	<update id="delFacility">
+		UPDATE FACILITY
+		SET FACILITY_STATUS='W'
+		WHERE FACILITY_NO = #{facilityNo}
+	</update>
 	
 	<!-- 크루 인서트한 번호 커발하여 조회  -->
 	<select id="selectFacilityId" parameterType="_int" resultType="_int">
