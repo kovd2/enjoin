@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -123,6 +124,9 @@ public interface myPageDao {
 
 	//프로필 사진 없을때 회원 정보 수정
 	void updateMember2(Member m, SqlSessionTemplate sqlSession);
+
+	//결제내역 조회
+	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map, SqlSessionTemplate sqlSession);
 	
 
 }

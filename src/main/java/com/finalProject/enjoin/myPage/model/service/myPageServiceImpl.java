@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -277,6 +278,13 @@ public class myPageServiceImpl implements myPageService{
 	public int updateCrewBoard(int board_No) {
 
 		return mpd.updateCrewBoard(board_No,sqlSession);
+	}
+	
+	//결제내역 조회
+	@Override
+	public List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map) {
+		
+		return mpd.selectPaymentHistory(map, sqlSession);
 	}
 	
 

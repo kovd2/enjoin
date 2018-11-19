@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -302,6 +303,13 @@ public class myPageDaoImpl implements myPageDao{
 	public int updateCrewBoard(int board_No, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.update("myPage.updateCrewBoard",board_No);
+	}
+	
+	//결제내역 조회
+	@Override
+	public List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("myPage.selectPaymentHistory", map);
 	}
 
 	

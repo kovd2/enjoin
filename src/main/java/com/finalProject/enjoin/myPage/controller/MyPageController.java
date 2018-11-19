@@ -4,6 +4,7 @@ package com.finalProject.enjoin.myPage.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -601,6 +602,27 @@ public class MyPageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("paymentHistory.ljs")
+	public @ResponseBody List<Map<String, Object>> paymentHistory(@RequestParam("date1") String date1, @RequestParam("date2") String date2, @RequestParam("userNo") int userNo){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("date1 : " + date1);
+		System.out.println("date2 : " + date2);
+		System.out.println("userNo : " + userNo);
+		
+		map.put("date1", date1);
+		map.put("date2", date2);
+		map.put("userNo", userNo);
+		
+		List<Map<String, Object>> paymentHistory = mps.selectPaymentHistory(map);
+		
+		System.out.println("paymentHistory : " + paymentHistory);
+		
+		return paymentHistory;
+	}
+	
 }
 
 

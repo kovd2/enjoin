@@ -329,14 +329,16 @@
      <!-- 선정된 크루원 리스트 조회  -->
      <select id="crewInCrewY"  resultMap="CrewInCrew">
      	SELECT M.USER_NAME,A.UPLOAD_NAME
-			FROM INCREW I
-			JOIN CREW C ON (I.CREW_ID = C.CREW_ID)
-			JOIN BOARD B ON (C.CREW_ID = B.CREW_NO)
-			JOIN MEMBER M ON (I.USER_NO = M.USER_NO)
-			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
-			WHERE I.CREW_ID = #{crew_Id}
-			AND B.BOARD_TYPE = '크루모집'
-			AND I.INCREW_STATUS = 'Y'
+         FROM INCREW I
+         JOIN CREW C ON (I.CREW_ID = C.CREW_ID)
+         JOIN BOARD B ON (C.CREW_ID = B.CREW_NO)
+         JOIN MEMBER M ON (I.USER_NO = M.USER_NO)
+         JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
+         WHERE I.CREW_ID = #{crew_Id}
+         AND B.BOARD_TYPE = '크루모집'
+            AND A.FILE_TYPE = 3
+         AND I.INCREW_STATUS = 'Y'
+ 		ORDER BY I.INCREW_NO ASC  
      </select>
      
      <!-- 해당된 크루리스트를 조회 해온다.  -->
@@ -426,6 +428,7 @@
 			JOIN BOARD B ON (M.USER_NO = B.USER_NO)
 			JOIN ATTACHMENT A ON (M.USER_NO = A.REF_NO)
 			WHERE B.BOARD_NO = #{board_No}
+			AND A.FILE_TYPE = 3
      	</select>
      <!-- 크루활동 크루 이름 크루 이미지 조회  -->
      	<select id="crewPhotos" resultMap="CrewRmbAttachment">
@@ -436,6 +439,7 @@
 			WHERE C.CREW_ID = #{crew_No}
 			AND A.FILE_NO = 0
 			AND B.BOARD_TYPE = '크루모집'
+			AND A.FILE_TYPE = 4
      	</select>	
      	
      	<!-- 크루활동게시판 사진 조회  -->	
