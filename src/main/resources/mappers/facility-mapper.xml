@@ -54,6 +54,7 @@ FROM FACILITY F
 JOIN ATTACHMENT A ON(F.FACILITY_NO=A.REF_NO)
 WHERE A.FILE_TYPE=6
 AND FILE_NO=0
+AND FACILITY_NO=#{facilityNo}
 AND TOTAL_ADDRESS LIKE
 <choose>
 <when test="#{totalAddress} !=null">
@@ -89,8 +90,8 @@ F.FACILITY_NAME LIKE
 </choose>
 or F.TOTAL_ADDRESS LIKE 
 <choose>
-<when test="#{facilityAddress} !=null">
-'%'||#{facilityAddress}||'%'
+<when test="#{totalAddress} !=null">
+'%'||#{totalAddress}||'%'
 </when>
 <otherwise>
  '%')

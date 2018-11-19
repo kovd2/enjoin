@@ -9,7 +9,7 @@ import com.finalProject.enjoin.searchMap.model.exception.SearchListResultExcepti
 
 public interface FacilityDao {
 
-	List<Map<String, Object>> facilityList(SqlSessionTemplate sqlSession, String address);
+	List<Map<String, Object>> facilityList(SqlSessionTemplate sqlSession, String address, int no);
 
 	List<Map<String, Object>> facility(SqlSessionTemplate sqlSession, String search)throws SearchListResultException ;
 
