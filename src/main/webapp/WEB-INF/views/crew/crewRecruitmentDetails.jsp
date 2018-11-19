@@ -118,7 +118,7 @@
     font-size: 13px;
     font-weight: bold;
     color: #7b7b7b;
-    margin-left: 51px;
+    margin-left: 10px;
     
 }
 .crews {
@@ -138,7 +138,6 @@ i.fa.fa-twitch{
    margin-top: 3px;
     position: relative;
     top: 20px;
-    left: 30px;
     display: -webkit-box;
 }
 .writerImg{

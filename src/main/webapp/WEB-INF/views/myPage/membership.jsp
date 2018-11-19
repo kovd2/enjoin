@@ -223,7 +223,7 @@
 				<h3><i class="fa fa-magic"></i>시설 이용 코드</h3>
 				<div class="useCodeListArea">
 					<table class="useCodeListTable">
-						<tr style="background: #f5f5f5;">
+						<tr style="background: #d9eaf3;">
 							<td style="width:30px;">번호</td>
 							<td style="width:100px;">구매일</td>
 							<td style="width:200px;">시설이름</td>
@@ -236,7 +236,7 @@
 							<td>${ c.PP_DATE }</td>
 							<td>${ c.FACILITY_NAME }</td>
 							<td>${ c.USE_CODE }</td>
-						<c:if test="${ c.PP_STATUS == 0  || c.PP_STATUS == 3}">
+						<c:if test="${ c.PP_STATUS == 1  || c.PP_STATUS == 3}">
 							<td>사용가능</td>
 						</c:if>
 						</tr>
