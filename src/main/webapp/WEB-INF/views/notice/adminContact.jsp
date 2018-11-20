@@ -63,23 +63,23 @@
 }
 
 .titleName {
-	font-family: 'Jua', sans-serif;
+    font-family: 'Jua', sans-serif;
     color: #295b8c;
     font-size: 33px;
-    margin-left: 60px;
+    margin-left: 34px;
 }
 .pagination1 {
-    margin-left: 60px;
+    margin-left: 30px;
 }
 .container {
 	margin-top: 30px;
 }
 
 .sideTitle {
-	color: gray;
+    color: gray;
     font-weight: bold;
     font-size: 20px;
-    margin-left: 60px;
+    margin-left: 20px;
 }
 
 select.selectBox {
@@ -130,6 +130,21 @@ a.navbar-brand.mr-1 {
 i.fas.fa-bars {
 	margin-left: -6px;
 }
+.titles{
+	width:850px;
+}
+input.btn.btn-success{
+	float: right;
+    width: 90px;
+}
+.pagination1{
+	margin-left: 120px;
+	margin-top:30px;
+}
+button, html input[type=button], input[type=reset], input[type=submit]{
+	float: right;
+    width: 90px;
+}
 </style>
 </head>
 <script>
@@ -160,14 +175,14 @@ i.fas.fa-bars {
 	<div class="container">
 		<h2 class="titleName">
 			<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
-			FAQ 게시판
+			문의 게시판
 		</h2>
-		<p class="sideTitle">FAQ 게시판 관리자 페이지 입니다</p>
+		<p class="sideTitle">1:1 문의 게시판 관리자 페이지 입니다</p>
 		<table class="table table-hover">
 			<thead>
-				<p style="text-align: right; margin-right: 40px;"><input class="btn btn-success" type="button" value="FAQ 등록" onclick="adminFAQInsert()"></p>
 				<tr class="tableTr">
 					<th>번호</th>
+					<th>카테고리</th>
 					<th class="content">제목</th>
 					<th>날짜</th>
 					<th>구분</th>
@@ -177,8 +192,9 @@ i.fas.fa-bars {
 				<c:forEach var="b" items="${list}" varStatus="status">
 					<tr class="ContentBody" onclick="selectOneBoard(${ b.boardNo })">
 						<td>${ b.boardNo }</td>
-						<td>${ b.boardTitle }</td>
-						<td>${ b.enrollDate }</td>
+						<td>${ b.boardType }</td>
+						<td class="titles">${ b.boardTitle }</td>
+						<td>${ f.enrollDate }</td>
 						<td>
 						<c:if test="${ b.contactStatus == 0 }">
 							대기
@@ -227,7 +243,6 @@ i.fas.fa-bars {
 						</c:if>
 					</ul>
 				</nav>
-				
 			</div>
 		</div>
 	</div>

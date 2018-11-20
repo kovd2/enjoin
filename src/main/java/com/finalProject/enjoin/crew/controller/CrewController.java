@@ -433,10 +433,10 @@ public class CrewController {
 			int board_No = Integer.parseInt(request.getParameter("board_No"));
 			int crew_Id  = Integer.parseInt(request.getParameter("crew_Id"));
 			String capy = request.getParameter("capy");
+				
 			
-			System.out.println("capy" + capy);
-			System.out.println("crew_Id" + crew_Id);
-					
+			
+			
 					
 			if(checked == null){
 				checked = capy;
@@ -467,14 +467,10 @@ public class CrewController {
 			if(checked.equals("check")){
 				
 				int coment_No = Integer.parseInt(request.getParameter("coment_No"));
-				System.out.println("나옴??/");
-				//자식 댓글 작성
 				cc.setComent_No(coment_No);	
 				int result2 = cs.crewAddchildComent(cc);
 				
 			}else{
-				System.out.println("들어오긴하냐?");
-				//일반 댓글 작성
 				int result1 = cs.crewAddComent(cc);
 				
 			}
