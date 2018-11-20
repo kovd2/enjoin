@@ -11,7 +11,6 @@
 		<result property="userPwd" column="USER_PWD"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="phone" column="PHONE"/>
-		<result property="email" column="EMAIL"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="modifyDate" column="MODIFY_DATE"/>
 		<result property="status" column="STATUS"/>	
@@ -471,13 +470,13 @@
 	
 	<!-- 이용내역 조회 -->
 	<select id="selectUseHistory" parameterType="hashmap" resultType="hashmap">
-		SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
-		FROM PASSRECORD PR
-		JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
-		WHERE USER_NO = ${userNo}
-		AND PR.PP_DATE BETWEEN '${date1}' AND '${date2}'
-		AND PR.PP_STATUS = 2
-	</select>
+      SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
+      FROM PASSRECORD PR
+      JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
+      WHERE USER_NO = #{userNo}
+      AND PR.PP_DATE BETWEEN #{date1} AND #{date2}
+      AND PR.PP_STATUS = 2
+   </select>
 	
 	<!-- 회원 탈퇴처리 -->
 	<update id="deleteMember">
@@ -571,6 +570,14 @@
 		SET NOTICE_MIN = NOTICE_MIN + 1
 		WHERE BOARD_NO = #{board_No}
 	</update> 
+	
+	<!-- 결제내역 조회 -->
+   <select id="selectPaymentHistory" parameterType="map" resultType="map">
+      SELECT ROWNUM, PRICE, TO_CHAR(PAY_DATE, 'yyyy-mm-dd') AS PAY_DATE, PROOF_NO, REFUND_NO, PASS_PLUS, PAY_TYPE 
+      FROM PAYMENT
+      WHERE USER_NO = #{userNo}
+      AND PAY_DATE BETWEEN #{date1} AND #{date2}
+   </select>
 	
 </mapper>
 	

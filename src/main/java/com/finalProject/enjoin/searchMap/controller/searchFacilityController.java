@@ -93,4 +93,11 @@ public class searchFacilityController {
 		return "searchMap/searchReviewForm";
 	}
 	
+	@RequestMapping("enrollReview.kch")
+	public String enrollReview() {
+		
+		return "searchMap/enrollReview";
+	}
+	
+	
 }

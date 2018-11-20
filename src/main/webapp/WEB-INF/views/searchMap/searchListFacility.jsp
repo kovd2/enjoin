@@ -10,16 +10,16 @@
 <meta name="description" content="">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- css -->
-<!-- <link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+ <link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/style/css/fancybox/jquery.fancybox.css"
 	rel="stylesheet">
 <link href="resources/style/css/jcarousel.css" rel="stylesheet">
 <link href="resources/style/css/flexslider.css" rel="stylesheet">
-<link href="resources/style/css/style.css" rel="stylesheet"> -->
+<link href="resources/style/css/style.css" rel="stylesheet"> 
 
 
 <!-- Theme skin -->
-<!-- <link href="resources/style/skins/default.css" rel="stylesheet"> -->
+ <link href="resources/style/skins/default.css" rel="stylesheet"> 
 
 <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=7fa72f902dc86dec58aeccf81d80e41a&libraries=services,clusterer,drawing"></script>
  
@@ -320,8 +320,8 @@ height:20px;
 			</form>
 			</div>
 			<br>
-			<div id="loofWrap">
-			<c:forEach var="item" items="${result}" varStatus="status">
+			 <div id="loofWrap">
+			 <c:forEach var="item" items="${result}" varStatus="status">
 			<div class="listArea">
 				
 				<div class="list" onclick="goDetail(${item.FACILITY_NO})">
@@ -337,8 +337,8 @@ height:20px;
 				
 				
 			</div>
-			</c:forEach>	
-			</div>
+			</c:forEach>	 
+			</div> 
 		</div>
 		
 		
@@ -368,7 +368,7 @@ height:20px;
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
-	        level:10 // 지도의 확대 레벨
+	        level:8 // 지도의 확대 레벨
 	        
 	    };  
 
@@ -391,23 +391,21 @@ height:20px;
 				no:"${item.FACILITY_NO}"});
 			
 	</c:forEach>
-	
-	console.log(addr);
-	console.log(addr[0].name);
-	
+
+	       
 	for(var i=0; i<addr.length; i++){
-			(function (i) {
+            /* marker.setMap(null);  */
+			 (function (i) { 
+				console.log('들어오냐?');
 		geocoder.addressSearch(addr[i].address,function(result,status){
-			console.log(status);
-			console.log(result);
+
+			
 			console.log('지오안쪽네임'+addr[i].name);
 			//정상적으로 검색이 완료되었다!
 			  if(status===daum.maps.services.Status.OK){
 
 				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
-				console.log('들어옵니꽈~~');
-				console.log('들어옵니꽈 네임!!!!'+addr[i].name);
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 
                 // 결과값으로 받은 위치를 마커로 표시합니다
@@ -418,7 +416,7 @@ height:20px;
                 
                  var iwContent='<div style="padding:5px;text-align:center;text-weight:bold;">'+addr[i].name+'</div>'
                  	 
-                 	console.log("뭡니까네임:"+iwContent);
+                 	
                
                 
                 var infowindow = new daum.maps.InfoWindow({
@@ -438,7 +436,7 @@ height:20px;
                    		
 						console.log('if안에 뭐니꽈~~:'+addr[i].address);
 						searchFacility(addr[i].address,addr[i].no);
-                   		
+						
                    	}else{
                    		
 						noSearch();
@@ -464,7 +462,7 @@ height:20px;
 			}
 		})
 		
-	})(i);
+	})(i); 
 	}
  }); 
 		
@@ -473,6 +471,7 @@ height:20px;
 
 	function searchFacility(address,no){
 		
+		$('#loofWrap').empty();   
 		$.ajax({
 			
 			url:"searchFacility.kch",
@@ -481,15 +480,14 @@ height:20px;
 						no:no},
 			success:function(data){
 				console.log(data);				
-					  /* $('#loofWrap').empty(); */  
-				for(var key in data){
+				for(var key in data){				
+					
 					
 					$div0=$("<div class='listArea'>");
 					$div1=$("<div class='list' onclick='goDetail("+data[key].FACILITY_NO+")'>");
-					if($div1)
 					$div0.append($div1);
-					 $div2=$("<div class='imgArea'>");
-					$div2.append("<img src=${contextPath}/resources/uploadFiles/facility/" +data[key].UPLOAD_NAME+ "}>");
+					$div2=$("<div class='imgArea'>");
+					$div2.append("<img src=${contextPath}/resources/uploadFiles/facility/"+data[key].UPLOAD_NAME+">");
 					$div1.append($div2); 
 					$div3=$("<div class='contents'>");
 					$div1.append($div3);

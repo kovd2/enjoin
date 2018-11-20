@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
 <style>
 
 .resultTop{
@@ -96,7 +99,7 @@
     margin: 300px 0px 0px 800px;
     border: 2px solid white;
     border-radius:3px;
-    width: 130px;
+    width: 135px;
     padding: 10px 0px 10px 20px;
     
 }
@@ -412,7 +415,7 @@ color:#feab2a;
 }
 .enBtn{
 	
-	width:130px;
+	width:135px;
 	height:50px;
 	position:absolute;
 	color:#00bff0;
@@ -468,7 +471,31 @@ color:#feab2a;
 	cursor:pointer;
 }
 
+.enReview{
+	position: absolute;
+    color: #ffdd33;
+    margin: 185px 0px 0px 800px;
+    border: 2px solid #ffdd33;
+    border-radius:3px;
+    width: 135px;
+    padding: 10px 0px 10px 20px;
+}
+.enReview:hover{
+	background:white;
+	cursor:pointer;
+	border-color:white;
+}
+.settingArea {
+	z-index: 300;
+	position: absolute;
+	left: 30%;
+	top: 200px;
+ 	  
+}
+.settingBoardArea{
 
+
+}
 </style>
 </head>
 <body>
@@ -501,6 +528,10 @@ color:#feab2a;
 			<div class="preview">
 				<i class="fa fa-file-image-o"></i>
 					<b>시설미리보기</b>
+			</div>
+			<div class="enReview" onclick="enrollRw(${loginUser.userNo},${list[0].FACILITY_NO},'${list[0].FACILITY_NAME}','${loginuser.userId}','${list[0].FACILITY_EVENT}')">
+			<i class="fa fa-comments-o"></i>
+				<b>리뷰등록하기</b>
 			</div>
 			<div class="enBtn" id="enBtn" onclick="useFacility(${loginUser.userNo},${list[0].PASS_COUNT},${list[0].FACILITY_NO})">
 				<i class="fa fa-address-card"></i>
@@ -633,9 +664,7 @@ color:#feab2a;
 						
 						</div> 
 						</div>
-						
-						
-						
+
 						
 					</div>
 					
@@ -648,13 +677,59 @@ color:#feab2a;
 			
 		</div>
 		
+		<div id="settingArea" class="settingArea"></div>
+	<div id="settingBoardArea" class="w3-modal"onclick="displayNoneCancle();"></div>
+		
 		
 <jsp:include page="../common/footer.jsp"/>
-	<script>
-	/* function goReview(){
+
+<script>
+	function enrollRw(userNo,facilityNo,facilityName,userId,facilityEvent){
+		$.ajax({
+			url:"enrollReview.kch",
+			data:{
+				userNo:userNo,
+				facilityNo:facilityNo,
+				facilityName:facilityName,
+				userId:userId,
+				facilityEvent:facilityEvent
+				
+			},
+			type:"post",
+			success:function(data){	
+				$(".settingArea").html(data);
+				
+				document.getElementById('settingBoardArea').style.display='block';
+				document.getElementById('settingArea').style.display='block';
+			
+				
+			}
+			
+			
+			}); 
+		
+			
+		
+	}
+
+</script>
+<script>
+	
+		
+	function displayNoneCancle(){
+		
+		document.getElementById('settingArea').style.display='none';
+		document.getElementById('settingBoardArea').style.display='none';
+	}
+	</script>
+
+<script>
+	 function goReview(){
 		
 		location.href="reviewForm.kch";	
-	} */
+	} 
+</script>
+	<script>
     
 	$(function(){
 		var facilityNo = ${list[0].FACILITY_NO};
@@ -788,8 +863,8 @@ color:#feab2a;
 		}
 		
 		var url = "popUp.ljs?ppCount=" + ppCount + "&useCode=" + useCode + "&facilityName=" + facilityName + "&passCount=" + passCount;    //팝업창 페이지 URL
- 	    var popupX = (window.screen.width / 2) - (600 / 2);
-		var popupY= (window.screen.height /2) - (800 / 2);
+ 	    var popupX = (window.screen.width / 2)-(600 / 2);
+		var popupY= (window.screen.height /2)-(800 / 2);
 
 	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
 	    
@@ -797,8 +872,7 @@ color:#feab2a;
 	};
 	
 	</script>
-
-
+		
 
 </body>
 </html>

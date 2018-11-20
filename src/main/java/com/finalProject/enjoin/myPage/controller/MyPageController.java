@@ -321,10 +321,11 @@ public class MyPageController {
 	@RequestMapping("useHistory.ljs")
 	public @ResponseBody List<HashMap<String, Object>> useHistory(@RequestParam("date1") String date1, @RequestParam("date2") String date2, @RequestParam("userNo") int userNo) {
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
-		
+		System.out.println("들어오나?");
 		hmap.put("date1", date1);
 		hmap.put("date2", date2);
 		hmap.put("userNo", userNo);
+		
 
 		List<HashMap<String, Object>> useHistory = mps.selectUseHistory(hmap);
 		System.out.println("useHistory : " + useHistory);
