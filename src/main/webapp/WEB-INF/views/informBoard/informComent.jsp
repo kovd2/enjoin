@@ -245,7 +245,7 @@
 							<c:when test="${list3.UPLOAD_NAME eq null || list3.UPLOAD_NAME ==''}">
 							<img src="${contextPath}/resources/images/myPage/user.png">
 							</c:when>
-							<c:when test="${list3.UPLOAD_NAME != null || list3.UPLOAD_NAME !=''}">
+							<c:when test="${list3.UPLOAD_NAME ne null || list3.UPLOAD_NAME !=''}">
 							 <img src="${contextPath}/resources/uploadFiles/myPage/profil/${list3.UPLOAD_NAME}"> 
 							</c:when>
 							 </c:choose>
@@ -308,15 +308,19 @@
 			var comentContent=$('#myco').val();
 			var userNo=$('#userNo').val();
 			var boardNo=$('#boardNo').val();
+			console.log(comentContent);
+			console.log(userNo);
+			console.log(boardNo);
 			$.ajax({
 				
 				url:"goComent.kch2",
 				type:"POST",
-				dataType:"json",
-				data:{comentContent:comentContent,
-						userNo:userNo,
-						boardNo:boardNo
-						},
+				
+				data:{					
+					comentContent:comentContent,
+					userNo:userNo,
+					boardNo:boardNo
+				},
 				success:function(data){
 					console.log(data);
 					$(".list1").empty();

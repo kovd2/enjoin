@@ -624,6 +624,17 @@ public class MyPageController {
 		return paymentHistory;
 	}
 	
+	@RequestMapping("UseCheck.ljs")
+	public @ResponseBody int UseCheck(@RequestParam("userNo") int userNo, @RequestParam("facilityNo") int facilityNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userNo", userNo);
+		map.put("facilityNo", facilityNo);
+		
+		int result = mps.selectUseCheck(map);
+		System.out.println("useCheckResult : " + result);
+		return result;
+	}
 }
 
 

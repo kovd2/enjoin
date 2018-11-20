@@ -122,7 +122,7 @@
     A.FILE_DATE,A.FILE_TYPE,A.REF_NO
     FROM BOARD B
     JOIN ATTACHMENT A ON  B.BOARD_NO = A.REF_NO
-    WHERE B.BOARD_TYPE='공고' AND A.FILE_NO=1 ORDER BY B.BOARD_NO DESC
+    WHERE B.BOARD_TYPE='공고' AND A.FILE_NO=1 AND FILE_TYPE= '1' ORDER BY B.BOARD_NO DESC
 	</select>
 	
 	<select id="selectBoardDetail" resultType="map" parameterType="InformBoard">
@@ -138,11 +138,12 @@
     JOIN ATTACHMENT A ON(USER_NO=A.REF_NO)
     WHERE USER_NO=#{userNo}
     AND FILE_NO=0
+    AND FILE_TYPE = '3'
 	</select>
 	
 	<insert id="insertComent" parameterType="InformComent">
 	 INSERT INTO COMENT (COMENT_NO,COMENT_CONTENT,COMENT_DATE,COMENT_STATUS,BOARD_NO,USER_NO)
-    VALUES(SEQ_COMENT_NO.NEXTVAL,#{comentContent},SYSDATE,'Y',#{boardNo},#{userNo})
+     VALUES(SEQ_COMENT_NO.NEXTVAL,#{comentContent},SYSDATE,'Y',#{boardNo},#{userNo})
 	</insert>
 	<select id="selectComent" resultType="map" parameterType="InformComent">
 	SELECT C.COMENT_NO,C.COMENT_CONTENT,C.COMENT_DATE,C.BOARD_NO,M.USER_ID,A.UPLOAD_NAME

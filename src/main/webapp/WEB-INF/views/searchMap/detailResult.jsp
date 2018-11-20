@@ -479,6 +479,7 @@ color:#feab2a;
     border-radius:3px;
     width: 135px;
     padding: 10px 0px 10px 20px;
+    display:none;
 }
 .enReview:hover{
 	background:white;
@@ -529,7 +530,7 @@ color:#feab2a;
 				<i class="fa fa-file-image-o"></i>
 					<b>시설미리보기</b>
 			</div>
-			<div class="enReview" onclick="enrollRw(${loginUser.userNo},${list[0].FACILITY_NO},'${list[0].FACILITY_NAME}','${loginuser.userId}','${list[0].FACILITY_EVENT}')">
+			<div class="enReview" id="enReview" onclick="enrollRw(${loginUser.userNo},${list[0].FACILITY_NO},'${list[0].FACILITY_NAME}','${loginuser.userId}','${list[0].FACILITY_EVENT}')">
 			<i class="fa fa-comments-o"></i>
 				<b>리뷰등록하기</b>
 			</div>
@@ -871,6 +872,38 @@ color:#feab2a;
 		window.open(url, '자식창', 'status=no, height=641, width=530, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	};
 	
+	
+	
+	</script>
+	<script>
+	$(function(){
+		var facilityNo = ${list[0].FACILITY_NO};
+		var userNo = ${ loginUser.userNo };
+		
+		//들어오자마자 시실핼
+		UseCheck(facilityNo, userNo);
+		
+		function UseCheck(facilityNo, userNo){
+			$.ajax({
+				url:"UseCheck.ljs",
+				type:"get",
+				data:{
+					userNo:userNo,
+					facilityNo:facilityNo
+				},
+				success:function(data){
+					if(data > 0){
+						document.getElementById('enReview').style.display="block";
+					}else{
+						document.getElementById('enReview').style.display="none";
+					}
+				},
+				error:function(){
+					console.log("에러");
+				}
+			});
+		}
+	});
 	</script>
 		
 

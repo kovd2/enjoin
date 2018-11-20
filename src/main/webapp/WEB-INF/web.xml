@@ -200,6 +200,11 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.jpg</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpeg</url-pattern>
+	</servlet-mapping>
 
 
 	<!-- 2^10 으로 용량limit걸려있는 것 해제 시켜주는것 -->

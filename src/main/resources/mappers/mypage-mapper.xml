@@ -584,6 +584,16 @@
 		WHERE USER_NO = #{userNo}
 		AND PAY_DATE BETWEEN #{date1} AND #{date2}
 	</select>
+	
+	<!-- 시설이용 확인 -->
+	<select id="selectUseCheck" resultType="_int">
+		SELECT COUNT(*)
+		FROM PASSRECORD
+		WHERE PP_STATUS = 2
+		AND FACILITY_NO = #{facilityNo}
+		AND USER_NO = #{userNo}
+		AND USE_CODE IS NOT NULL
+	</select>
 </mapper>
 	
 	
