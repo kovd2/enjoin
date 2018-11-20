@@ -368,7 +368,7 @@ h2.mainSlogan .compName {
 
 									</div>
 									<div class="box-bottom">
-										<a href="crewApplication.test">시작하기</a>
+										<a href="notice.hh">시작하기</a>
 									</div>
 								</div>
 							</div>

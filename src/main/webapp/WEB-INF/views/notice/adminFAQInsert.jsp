@@ -9,28 +9,43 @@
 </head>
 <style>
 .wrappp {
-	width:100%;
-	align:center;
+	width: 100%;
+	align: center;
 }
+
 .boardAdmin table tr {
-	text-align:center;
-	border:1px solid black;
+	text-align: center;
+	border: 1px solid black;
 }
+
+
+th {
+	border-left:1px solid;
+}
+
+td {
+	border-left:1px solid;
+}
+
+table td, table th {
+	padding:0px !important;
+}
+
 
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="wrappp">	
 		<div class="boardAdmin" align="center">
-		<p style="font-size:100px; text-align:center">FAQ</p>
+		<p style="font-size: 30px; color: #03a9f4; font-weight: bold; margin-top: 10px; margin-right: 50px;">FAQ</p>
 		
 		<hr>
 	<form id="insertFAQForm" action="adminFAQInsertBtn.hh" method="post" encType="multipart/form-data">		
-		<table>
+		<table class="table table-bordered" style="vertical-align: middle;">
 			<tr>
-				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">카테고리</th>
+				<th style="width:100%; height:60px; font-size:30px; background:#0099CC;">카테고리</th>
 				<td style="width:800px; height:60px;">
-				<select class="form-control" name="category" id="category">
+				<select class="form-control" name="category" id="category" style="height: 100%;">
 					<option value="센터이용/오류">센터이용/오류</option>
 					<option value="결제/환불">결제/환불</option>
 					<option value="패스">패스</option>
@@ -41,11 +56,11 @@
 			</tr>
 			
 			<tr>
-				<th style="display:inline-block; width:300px; height:60px; font-size:30px; background:gray;">제목</th>
+				<th style="width:100%; height:60px; font-size:30px; background:#0099CC;">제목</th>
 				<td style="width:800px; height:60px;"><input type="text" id="boardTitle" name="boardTitle" style="width:800px; height:60px;"></td>
 			</tr>
 			<tr>
-				<th style="display:inline-block; width:300px; height:400px; font-size:30px; background:gray;">내용</th>
+				<th style="width:100%; height:400px; font-size:30px; background:#0099CC; vertical-align:middle;">내용</th>
 				<td style="width:800px; height:400px">
 					<textarea id="boardContent" name="boardContent" style="width:100%; height:100%;"></textarea>
 				</td>
@@ -54,7 +69,7 @@
 		</table>
 	</form>
 		<br>
-		<input type="button" value="등록하기" onclick="adminFAQInsertBtn()">
+		<input type="button" class="btn btn-info" value="등록하기" onclick="adminFAQInsertBtn()">
 		</div>
 		<br><br><br><br><br>
 	</div>

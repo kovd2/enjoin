@@ -348,7 +348,9 @@ img {
     margin-right: 50px;
     padding: 0px 20px 20px 20px;
 }
-
+.attendList{
+	text-align:left;
+}
 </style>
 </head>
 <body>
@@ -376,7 +378,7 @@ img {
 						<div class="date"><fmt:formatDate value="${list.NOTICE_START}" pattern="yyyy.MM.dd" />
 						<br>
 						
-						
+					
 						</div>
 					</div>
 
@@ -390,9 +392,12 @@ img {
 					<button type="button" class="btn btn-success" id="enroll">
 						<i class="fa fa-handshake-o"></i>공고신청하기 <!-- 클릭할때 패스차감후 이용코드 띄우기 -->
 					</button>
-					<button type="button" class="btn btn-warning" id="list">
+					<button type="button" class="btn btn-warning" id="list" onmouseover="OnOfferListShow()" onmouseout="OnOfferListHide()">
 						<i class="fa fa-laptop"></i>신청현황 
 					</button>
+					<div class="attendList" id="attendList" style="position: absolute; display: none; background:#e8e8e8; width:550px; height:100px; margin-left: 550px;">
+						<h4>신청 접수자 : </h4>
+					</div>
 				</div>
 			</div>
 
@@ -697,7 +702,49 @@ img {
 	    
 		window.open(url, '자식창', 'status=no, height=641, width=530, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	};
+	
+	$(function(){
+		var userNo = ${ loginUser.userNo };			
+		var crewArea = '${ list.CREW_AREA }';
 		
+		//들어오자마자 실행
+		attendList(userNo, crewArea);
+		function attendList(userNo, crewArea){
+			
+			$.ajax({
+				url:"selectInformAttendList.kch2",
+				type:"post",
+				data:{
+					userNo:userNo,
+					crewArea:crewArea
+				},
+				success:function(data){
+					for(var key in data){
+						$attendList = $('<b>').append("신청 접수자 : ")
+						$attendList = $('<b>').append(data[key].USER_ID + ", ");
+						
+						$attendList.css({
+							'font-size': '25px'
+						});
+						
+						$('.attendList').append($attendList);
+						
+					}
+					console.log("성공");
+				},
+				error:function(){
+					console.log("에러");
+				}
+			});
+		};
+	})	
+		function OnOfferListShow()
+		{
+			document.getElementById("attendList").style.display="";	
+		}
+		function OnOfferListHide() {
+			document.getElementById("attendList").style.display="none";	
+		}
 	</script>
 
 	

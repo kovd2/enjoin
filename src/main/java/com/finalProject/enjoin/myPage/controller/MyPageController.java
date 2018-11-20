@@ -4,6 +4,7 @@ package com.finalProject.enjoin.myPage.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,15 +69,16 @@ public class MyPageController {
 		
 		return "myPage/changeInfo";
 	}
+	
 	//정보수정 저장
 	@RequestMapping("saveInfo.ljs")
 	public String updateMember(ModelAndView mv, Member m, HttpServletRequest request, 
 			@RequestParam(name="photo", required=false) MultipartFile photo) {
+		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		m.setUserNo(userNo);
 		
-		System.out.println("m : " + m);
-		System.out.println("photo : " + photo);
+		if(photo.getOriginalFilename() != "") {
 		
 		String encPassword = passwordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPassword);
@@ -84,14 +86,11 @@ public class MyPageController {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
 		String filePath = root + "/uploadFiles/myPage/profil";
-		System.out.println("filePath : " + filePath);
 		String originFileName = photo.getOriginalFilename();
 		String ext = originFileName.substring(originFileName.lastIndexOf("."));
 		String changeName = CommonUtils.getRandomString();
 		long fileSize1 = photo.getSize();
 		String fileSize = String.valueOf(fileSize1);
-		
-		System.out.println("changeName : " + changeName);
 		
 		Attachment at = new Attachment();
 		
@@ -102,8 +101,6 @@ public class MyPageController {
 		at.setFile_Ext(ext);
 		at.setUpload_Name(changeNameExt);
 		at.setFile_size(fileSize);
-		
-		System.out.println("Attatch : " + at);
 		
 		try {
 			photo.transferTo(new File(filePath + "/" + changeName + ext));
@@ -120,10 +117,16 @@ public class MyPageController {
 			return "redirect:changeInfo.ljs";
 		} catch (Exception e) {
 			new File(filePath + "/" + changeName + ext).delete();
+			
 			System.out.println(e.getMessage());
-			return "redirect:changeInfo.ljs";
+			
 		}
-		
+		}else {
+			String encPassword = passwordEncoder.encode(m.getUserPwd());
+			m.setUserPwd(encPassword);
+			mps.updateMember2(m);
+		}
+		return "redirect:changeInfo.ljs";
 	}
 	
 	//가고싶은 시설 등록 확인
@@ -321,7 +324,7 @@ public class MyPageController {
 	@RequestMapping("useHistory.ljs")
 	public @ResponseBody List<HashMap<String, Object>> useHistory(@RequestParam("date1") String date1, @RequestParam("date2") String date2, @RequestParam("userNo") int userNo) {
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
-		System.out.println("들어오나?");
+    
 		hmap.put("date1", date1);
 		hmap.put("date2", date2);
 		hmap.put("userNo", userNo);
@@ -453,7 +456,7 @@ public class MyPageController {
 			@RequestParam(name="attachment", required=false) MultipartFile attachment, HttpServletRequest request) {
 		
 		int userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
-		
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
@@ -462,9 +465,12 @@ public class MyPageController {
 		b.setBoardTitle(title);
 		b.setBoardContent(content);
 		
-		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("b", b);
+		hmap.put("userNo", userNo);
+		hmap.put("crewId", crewId);
 		
-		
+		if(attachment.getOriginalFilename() != "") {
+			
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		
 		String filePath = root + "/uploadFiles/myPage/board";
@@ -489,9 +495,7 @@ public class MyPageController {
 		
 		System.out.println("Attatch : " + at);
 		
-		hmap.put("b", b);
-		hmap.put("userNo", userNo);
-		hmap.put("crewId", crewId);
+		
 		hmap.put("at", at);
 		
 		try {
@@ -508,10 +512,16 @@ public class MyPageController {
 			
 		} catch (Exception e) {
 			new File(filePath + "/" + changeName + ext).delete();
-			System.out.println(e.getMessage());
-			mv.setViewName("redirect:goCrewBoardForm.ljs");
+			
+		}
+		}else {
+			System.out.println("hmap : " + hmap);
+			mps.insertCrewBoard2(hmap);
+			mv.setViewName("redirect:goCrewBoardList.ljs");
+			mv.addObject("crewId", crewId);
 			return mv;
 		}
+		return mv;
 	}
 	
 	//크루게시판 댓글 작성
@@ -593,6 +603,27 @@ public class MyPageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("paymentHistory.ljs")
+	public @ResponseBody List<Map<String, Object>> paymentHistory(@RequestParam("date1") String date1, @RequestParam("date2") String date2, @RequestParam("userNo") int userNo){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("date1 : " + date1);
+		System.out.println("date2 : " + date2);
+		System.out.println("userNo : " + userNo);
+		
+		map.put("date1", date1);
+		map.put("date2", date2);
+		map.put("userNo", userNo);
+		
+		List<Map<String, Object>> paymentHistory = mps.selectPaymentHistory(map);
+		
+		System.out.println("paymentHistory : " + paymentHistory);
+		
+		return paymentHistory;
+	}
+	
 }
 
 

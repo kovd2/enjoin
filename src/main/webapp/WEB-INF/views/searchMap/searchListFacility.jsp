@@ -368,7 +368,7 @@ height:20px;
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
-	        level:8 // 지도의 확대 레벨
+	        level:5 // 지도의 확대 레벨
 	        
 	    };  
 
@@ -403,7 +403,7 @@ height:20px;
 			console.log('지오안쪽네임'+addr[i].name);
 			//정상적으로 검색이 완료되었다!
 			  if(status===daum.maps.services.Status.OK){
-
+				
 				 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				 
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
@@ -456,6 +456,7 @@ height:20px;
                     // 마커에 클릭 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
                     goDetail(addr[i].no);
                     infowindow.open(map, marker);
+                    
                   });
                  
 
@@ -479,9 +480,8 @@ height:20px;
 			data:{address:address,
 						no:no},
 			success:function(data){
-				console.log(data);				
-				for(var key in data){				
-					
+				console.log(data);				  
+				for(var key in data){
 					
 					$div0=$("<div class='listArea'>");
 					$div1=$("<div class='list' onclick='goDetail("+data[key].FACILITY_NO+")'>");
@@ -504,7 +504,6 @@ height:20px;
 					$div3.append($div4);
 					$('#loofWrap').append($div0);
 					
-				
 					
 				} 
 		

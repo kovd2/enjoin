@@ -139,7 +139,6 @@ i.fa.fa-twitch {
 	margin-top: 3px;
 	position: relative;
 	top: 20px;
-	left: 30px;
 	display: -webkit-box;
 }
 
@@ -206,7 +205,7 @@ h2.crewContent {
 	font-size: 13px;
 	font-weight: bold;
 	color: #7b7b7b;
-	margin-left: 51px;
+	margin-left: 10px;
 }
 
 .crewAtt {
@@ -798,9 +797,16 @@ i.fa.fa-comments{
 					<p class="crewWiter">- 크루 활동에대한 설명글 입니다.</p>
 					<p class="crewWiter1">- 크루님들의 생생한 경험을 전달해주세요!</p>
 					<div class="crews">
-						<img class="writerImg"
-							src="${ contextPath }/resources/uploadFiles/myPage/profil/${ac.upload_Name}">
+						<c:choose>
+                  <c:when test="${user.upload_Name eq null}">
+                  <img class="writerImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${ac.upload_Name}">
+                  		<p class="crewBoss">${ac.user_Name }</p>
+                  </c:when>
+                  <c:otherwise>
+                  <img class="writerImg" src="${ contextPath }/resources/images/crew/thumbnail2.png">
 						<p class="crewBoss">${ac.user_Name }</p>
+                  </c:otherwise>
+                  </c:choose>
 						<hr>
 						<i class="fa fa-twitch" style="font-size: 36px" class="btn1"></i>
 						<c:forEach var="i" items="${map.list}" varStatus="status1">

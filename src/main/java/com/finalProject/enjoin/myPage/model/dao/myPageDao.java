@@ -2,6 +2,7 @@ package com.finalProject.enjoin.myPage.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -42,7 +43,10 @@ public interface myPageDao {
 
 	//크루 게시물 작성
 	int insertCrewBoard(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
+	//크루 게시판 작성(이미지X)
+	void insertCrewBoard2(HashMap<String, Object> hmap, SqlSessionTemplate sqlSession);
 
+	
 	//가입 승인 대기 목록 조회
 	List<Crew> selectCrewAcceptList(int userNo, SqlSessionTemplate sqlSession);
 
@@ -118,5 +122,11 @@ public interface myPageDao {
 	//크루 현재인원 추가
 	int updateCrewBoard(int board_No, SqlSessionTemplate sqlSession);
 
+	//프로필 사진 없을때 회원 정보 수정
+	void updateMember2(Member m, SqlSessionTemplate sqlSession);
+
+	//결제내역 조회
+	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map, SqlSessionTemplate sqlSession);
+	
 
 }

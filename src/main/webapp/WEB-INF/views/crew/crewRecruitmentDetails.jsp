@@ -11,28 +11,28 @@
 <title>Insert title here</title>
 <style>
 .body{
-	width:100%;
-	margin-top: 40px;		
+   width:100%;
+   margin-top: 40px;      
 }
 .header{
-	width: 1000px;
+   width: 1000px;
     height: 400px;
     margin: 0 auto;
     background: black;
 }
 .crewImgArea{
-	position: static;
+   position: static;
     background: none;
 }
 .crewImgBox{
- 	opacity: 0.3;
-	position: absolute;
+    opacity: 0.3;
+   position: absolute;
     width: 1000px;
     height: 400px;
     text-align: center;
 }
 .info{
-	position: relative;
+   position: relative;
     left: 0;
     top: 0;
     padding-top: 50px;
@@ -40,7 +40,7 @@
     padding-left: 50px;
 }
 .crewNameLabel{
-	font-size: 16px;
+   font-size: 16px;
     line-height: 19px;
     height: 21px;
     vertical-align: middle;
@@ -53,37 +53,37 @@
     border-radius: 2px;
 }
 .crewTitle{
-	display: block;
+   display: block;
     color: white;
     margin-top: 10px;
     font-size: 30px;
 }
 .crewCatagory{
-	color: #fff;
+   color: #fff;
     font-size: 14px;
     margin-top: 12px;
     margin-left: 5px;
 }
 .address{
-	color: #fff;
+   color: #fff;
     font-size: 14px;
     margin-top: 12px;
     margin-left: 5px;
 }
 .crewDate{
-	color:#fff;
-	font-size: 20px;
+   color:#fff;
+   font-size: 20px;
 }
 .crewMember{
-	color: #00cbff;
+   color: #00cbff;
     margin-top: 10px;
 }
 .middleArea{
-	width:100%;
-	
+   width:100%;
+   
 }
 .middle{
-	width: 1000px;
+   width: 1000px;
     height: 1226px;
     position: relative;
     top: 40px;
@@ -91,38 +91,38 @@
     display: -webkit-box;
 }
 .crewContentBox{
-	width:500px;
-	border:1px solid #d0cfcf;
+   width:500px;
+   border:1px solid #d0cfcf;
 }
 .crewImgBox2{
-	width:500px;
-	border:1px solid #d0cfcf; 
+   width:500px;
+   border:1px solid #d0cfcf; 
 }
 .crewImg1{
-	width: 99%;
+   width: 99%;
     height: 380px;
     margin-top: 27px;
     margin-left: 3px;
     border: 1px solid gray;
 }
 .crewAtt{
-	color:#1f1f1f;
-	font-size: 20px;
+   color:#1f1f1f;
+   font-size: 20px;
 }
 .crewContent{
-	color:#1f1f1f;
-	font-size: 20px;
+   color:#1f1f1f;
+   font-size: 20px;
 }
 .Content{
-	line-height: 55px;
+   line-height: 55px;
     font-size: 13px;
     font-weight: bold;
     color: #7b7b7b;
-    margin-left: 51px;
+    margin-left: 10px;
     
 }
 .crews {
-   	width: 480px;
+      width: 480px;
     height: 380px;
     background: #f5f4f4;
     margin-left: 10px;
@@ -132,17 +132,16 @@
 }
 .crews::-webkit-scrollbar {display:none;}
 .hr1{
-	color:#737373;
+   color:#737373;
 }
 i.fa.fa-twitch{
-	margin-top: 3px;
+   margin-top: 3px;
     position: relative;
     top: 20px;
-    left: 30px;
     display: -webkit-box;
 }
 .writerImg{
-	width: 70px;
+   width: 70px;
     height: 70px;
     border-radius: 35px;
     margin-left: 10px;
@@ -158,33 +157,33 @@ i.fa.fa-twitch{
     color: #1159b5;
 }
 .AttWriter1{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     margin-left: 10px;
 }
 .AttWriter2{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     margin-left: 10px;
     color:#f98e2c;
 }
 .crewWiter{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     margin-left: 10px;
 }
 .crewWiter1{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     color:#0084c2;
     font-weight: bold;
     margin-left: 10px;
 }
 .crewCommentBox{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     margin-top: 40px;
@@ -192,21 +191,21 @@ i.fa.fa-twitch{
     margin-left: 10px;
 }
 p.crewComentBox1{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     color: #f98e2c;
     margin-left: 10px;
 }
 p.crewComentBox2{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     color: #f98e2c;
     margin-left: 10px;
 }
 .commentBox{
-	width: 480px;
+   width: 480px;
     height: 530px;
     background: #f5f4f4;
     margin-left: 10px;
@@ -216,32 +215,32 @@ p.crewComentBox2{
 }
 .commentBox::-webkit-scrollbar {display:none;}
 .UserImg{
-	width: 70px;
+   width: 70px;
     height: 70px;
     border-radius: 35px;
     margin-left: 10px;
     margin-top: 10px;
 }
 .MemberCommont{
-	display: inline-flex;
+   display: inline-flex;
     width: 480px;
     height: 88px;
     border-bottom: 1px solid #d8d2d2;
 }
 .userId{
-	position: relative;
+   position: relative;
     top: 9px;
     color: #12181f;
     font-weight: bold;
     display: -webkit-inline-box;
 }
 .Comment1{
-	height: 110px;
+   height: 110px;
     margin-left: 15px;
 }
 .Comment::-webkit-scrollbar {display:none;}
 .area1{
-	width: 360px;
+   width: 360px;
     height: 50px;
     border: 1px solid gray;
     background: white;
@@ -250,7 +249,7 @@ p.crewComentBox2{
 }
 .area1::-webkit-scrollbar {display:none;}
 .crewOk {
-	color: gray;
+   color: gray;
     font-weight: bold;
 }
 .editBtn{
@@ -258,8 +257,8 @@ p.crewComentBox2{
     font-weight: bold;
 }
 .deleteBtn{
-	margin-left:5px;
-	font-weight: bold;
+   margin-left:5px;
+   font-weight: bold;
 }
 .commentWriter {
     margin-left: 10px;
@@ -271,20 +270,20 @@ p.crewComentBox2{
     font-weight: bold;
 }
 .spansBtn{
-	display: inline-block;
+   display: inline-block;
     float: right;
     margin-right: 10px;
     margin-top: 9px;
 }
 .commentWriterBtn{
-	color: white;
+   color: white;
     background: #0084c2;
     border-radius: 8px;
     border: 1px solid gray;
     margin-left: -1px;
 }
 .crewPickMember{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     margin-top: 59px;
@@ -292,14 +291,14 @@ p.crewComentBox2{
     margin-left: 10px;
 }
 .crewPickMember1{
-	margin: 0;
+   margin: 0;
     font-size: 13px;
     font-weight: bold;
     color: #f98e2c;
     margin-left: 10px;
 }
 .crewPickBox1{
-	width: 480px;
+   width: 480px;
     height: 560px;
     background: #f5f4f4;
     margin-left: 10px;
@@ -309,13 +308,13 @@ p.crewComentBox2{
 }
 .crewPickBox1::-webkit-scrollbar {display:none;}
 .crewPickBox2{
-	display: inline-flex;
+   display: inline-flex;
     width: 480px;
     height: 88px;
     border-bottom: 1px solid #d8d2d2;
 }
 .crewMemberTitle{
-	position: relative;
+   position: relative;
     top: 9px;
     color: #f98e2c;
     font-weight: bold;
@@ -323,17 +322,17 @@ p.crewComentBox2{
     margin-left: 15px;
 }
 .crewPickArea{
-	width: 400px;
+   width: 400px;
 }
 .crewPick{
-	font-size: 25px;
+   font-size: 25px;
     margin-top: 2px;
     margin-left: 14px;
     font-weight: bold;
     color: #1159b5;
 }
 .logo{
-	width: 66px;
+   width: 66px;
     margin-left: 197px;
     margin-top: 10px;
 }
@@ -344,7 +343,7 @@ p.crewComentBox2{
     left: -200px;
 }
 .crewJoin{
-	font-size: 16px;
+   font-size: 16px;
     line-height: 19px;
     height: 33px;
     vertical-align: middle;
@@ -366,14 +365,14 @@ input.check1 {
 }
 /* 대댓글 css  */
 .MemberCommont1{
-	display: inline-flex;
+   display: inline-flex;
     width: 480px;
     height: 88px;
     border-bottom: 1px solid #d8d2d2;
     background: #efecec;
 }
 .UserImg1{
-	width: 60px;
+   width: 60px;
     height: 60px;
     border-radius: 30px;
     margin-top: 22px;
@@ -387,26 +386,26 @@ i.fa.fa-tag {
     left: 5px;
 }
 i.fa.fa-level-down {
-	font-size: 20px;
+   font-size: 20px;
     position: relative;
     left: 16px;
 }
 i.fa.fa-comments{
-	color: #7faeea;
+   color: #7faeea;
     margin-top: 6px;
     position: relative;
     left: 4px;
     top: 9px;
 }
 .userId1{
-	position: relative;
+   position: relative;
     top: 9px;
     color: #12181f;
     font-weight: bold;
     display: -webkit-inline-box;
 }
 .ComentP{
-	font-size: 2px;
+   font-size: 2px;
     position: relative;
     top: 0px;
     left: -1px;
@@ -414,381 +413,381 @@ i.fa.fa-comments{
     color: #4e4d4d;
 }
 .Comment2{
-	height: 110px;
+   height: 110px;
     margin-left: -8px;
 }
 .deleteBtn{
-	color:gray;
+   color:gray;
 
 }
 .fa fa-comments{
-	font-size:22px;
+   font-size:22px;
 }
 
 </style>
 </head>
 <script>
-	function goInCrew(user_No,crew_No,board_No,crew_Name){
-		
-		var user_No = user_No;
-		var crew_No = crew_No;
-		var board_No = board_No;
-		var crew_Name = crew_Name;
-		
-		if(confirm(crew_Name + " 크루에 가입신청 하시겠습니까?") == true){
-			location.href="crewInCrew.shw2?user_No=" + user_No + "&crew_No=" + crew_No + "&board_No=" + board_No;
-			alert("신청 완료!");
-		}else{
-			return;
-		}
-		
-		
-			
-	}
-	    function goCrewComent(){
-		$.ajax({
-			url  : "crewComent.shw2",
-			type : "post",
-			data : $("#coment3").serialize(),
-			success:function(data){
-				for(var key in data){
-					
-					data[key].coment_No;
-					
-					
-				}
-				$(".commentBox").empty();
-				
-				
-				for(var key in data){
-						
-					if(data[key].parent_Coment_No == 0){
-						
-						$div0=$("<div class='MemberCommont'id='MemberCommont'>");
-					
-						$div0.append("<img class='UserImg'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
-						
-						$div1=$("<div class='Comment1'>");
-						$div0.append($div1);
-						
-						$p1=$("<p class='userId'>");
-						$div1.append($p1);
-						
-						$p1.append(data[key].user_Name);
-						
-						$div2=$("<div class='spansBtn'>");
-						$div1.append($div2);
-						
-												
-						$span1=$("<span class='crewOk'>");
-						$div2.append($span1);
-						$i1=$("<i class='fa fa-user-circle'>");
-						
-						$span1.append($i1);
-						$span1.append('답글');
-						
-						$input1 = $("<input class='check1' type='checkbox' name='check' value='check' onclick='check(" + data[key].coment_No + ")'>");
-						$span1.append($input1);
-						
-						$span2=$("<span class='deleteBtn'>");
-						$div2.append($span2);
-						
-						$i2 = $("<i clss='fa fa-trash'>");
-						$span2.append($i2);
-						$span2.append('삭제');
-						
-						$div3=$("<div class='area1'>");
-						$div1.append($div3);
-						
-						$p2=$("<p class='Comment'>");
-						$div3.append($p2);
-						
-						$p2.append(data[key].coment_Content);
-						
-						
-						$('.commentBox').append($div0);
-						$(".check1").attr("name","uncheck");
-						
-						
-						
-						
-						
-					}else if(data[key].parent_Coment_No != 0){
-						$('#test').remove();
-							
-							$('#test1').remove();
-						$div0=$("<div class='MemberCommont1'>");
-						$i1=$("<i class='fa fa-comments'>");
-						$div0.append($i1);
-						
-						$span0=$("<span class='ComentP'>");
-						$div0.append($span0);
-						$span0.append('답글');
-						$div0.append("<img class='UserImg1'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
-						
-						$div1=$("<div class='Comment2'>");
-						$div0.append($div1);
-						
-						$p0=$("<p class='userId1'>");
-						$div1.append($p0);
-						$p0.append(data[key].user_Name);
-						
-						$div2=$("<div class='spansBtn'>");
-						$div1.append($div2);
-						
-						$span1=$("<span class='deleteBtn'>");
-						$div2.append($span1);
-						
-						$i2=$("<i class='fa fa-trash'>");
-						
-						$span1.append($i2);
-						$i2.append('삭제');
-						
-						$div3=$("<div class='area1'>");
-						$div1.append($div3);
-						
-						$p1=$("<p class='Comment'>");
-						$div3.append($p1);
-						$p1.append(data[key].coment_Content);
-						
-						$('.commentBox').append($div0);
-						$(".check1").attr("name","uncheck");
-					
-						
-						
-						
-					}
-					
-					
-				}
-				
-				
-				
-			},
-			
-		});
-		
-		return false;
-	}   
+   function goInCrew(user_No,crew_No,board_No,crew_Name){
+      
+      var user_No = user_No;
+      var crew_No = crew_No;
+      var board_No = board_No;
+      var crew_Name = crew_Name;
+      
+      if(confirm(crew_Name + " 크루에 가입신청 하시겠습니까?") == true){
+         location.href="crewInCrew.shw2?user_No=" + user_No + "&crew_No=" + crew_No + "&board_No=" + board_No;
+         alert("신청 완료!");
+      }else{
+         return;
+      }
+      
+      
+         
+   }
+       function goCrewComent(){
+      $.ajax({
+         url  : "crewComent.shw2",
+         type : "post",
+         data : $("#coment3").serialize(),
+         success:function(data){
+            for(var key in data){
+               
+               data[key].coment_No;
+               
+               
+            }
+            $(".commentBox").empty();
+            
+            
+            for(var key in data){
+                  
+               if(data[key].parent_Coment_No == 0){
+                  
+                  $div0=$("<div class='MemberCommont'id='MemberCommont'>");
+               
+                  $div0.append("<img class='UserImg'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+                  
+                  $div1=$("<div class='Comment1'>");
+                  $div0.append($div1);
+                  
+                  $p1=$("<p class='userId'>");
+                  $div1.append($p1);
+                  
+                  $p1.append(data[key].user_Name);
+                  
+                  $div2=$("<div class='spansBtn'>");
+                  $div1.append($div2);
+                  
+                                    
+                  $span1=$("<span class='crewOk'>");
+                  $div2.append($span1);
+                  $i1=$("<i class='fa fa-user-circle'>");
+                  
+                  $span1.append($i1);
+                  $span1.append('답글');
+                  
+                  $input1 = $("<input class='check1' type='checkbox' name='check' value='check' onclick='check(" + data[key].coment_No + ")'>");
+                  $span1.append($input1);
+                  
+                  $span2=$("<span class='deleteBtn'>");
+                  $div2.append($span2);
+                  
+                  $i2 = $("<i clss='fa fa-trash'>");
+                  $span2.append($i2);
+                  $span2.append('삭제');
+                  
+                  $div3=$("<div class='area1'>");
+                  $div1.append($div3);
+                  
+                  $p2=$("<p class='Comment'>");
+                  $div3.append($p2);
+                  
+                  $p2.append(data[key].coment_Content);
+                  
+                  
+                  $('.commentBox').append($div0);
+                  $(".check1").attr("name","uncheck");
+                  
+                  
+                  
+                  
+                  
+               }else if(data[key].parent_Coment_No != 0){
+                  $('#test').remove();
+                     
+                     $('#test1').remove();
+                  $div0=$("<div class='MemberCommont1'>");
+                  $i1=$("<i class='fa fa-comments'>");
+                  $div0.append($i1);
+                  
+                  $span0=$("<span class='ComentP'>");
+                  $div0.append($span0);
+                  $span0.append('답글');
+                  $div0.append("<img class='UserImg1'src=${contextPath}/resources/uploadFiles/myPage/profil/"+data[key].upload_Name+">");
+                  
+                  $div1=$("<div class='Comment2'>");
+                  $div0.append($div1);
+                  
+                  $p0=$("<p class='userId1'>");
+                  $div1.append($p0);
+                  $p0.append(data[key].user_Name);
+                  
+                  $div2=$("<div class='spansBtn'>");
+                  $div1.append($div2);
+                  
+                  $span1=$("<span class='deleteBtn'>");
+                  $div2.append($span1);
+                  
+                  $i2=$("<i class='fa fa-trash'>");
+                  
+                  $span1.append($i2);
+                  $i2.append('삭제');
+                  
+                  $div3=$("<div class='area1'>");
+                  $div1.append($div3);
+                  
+                  $p1=$("<p class='Comment'>");
+                  $div3.append($p1);
+                  $p1.append(data[key].coment_Content);
+                  
+                  $('.commentBox').append($div0);
+                  $(".check1").attr("name","uncheck");
+               
+                  
+                  
+                  
+               }
+               
+               
+            }
+            
+            
+            
+         },
+         
+      });
+      
+      return false;
+   }   
 </script>
 <body>
 
-	<jsp:include page="../common/menubar.jsp"/>
-	<c:forEach var="i" items="${list}" varStatus="status">
-	<c:set var="user" value="${userPhoto}"/>
+   <jsp:include page="../common/menubar.jsp"/>
+   <c:forEach var="i" items="${list}" varStatus="status">
+   <c:set var="user" value="${userPhoto}"/>
 
-	<div class="body">
-		<div class="header">
-			<div class="crewImgArea">
-			<c:forEach var="i1" items="${list1}" varStatus="status1">
-				<c:if test="${status1.index eq 0}">
-				<%-- <img class="crewImgBox" src="${ contextPath }/resources/images/crew/shutterstock_269242565.jpg"> --%>
-				<img class="crewImgBox" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
-				</c:if>
-				</c:forEach>
-				<div class="info">
-					<h3>
-					<smail class="crewNameLabel">ENJOIN크루모집</smail>
-					<span class="crewTitle">${i.board_Title}</span>
-					<p class="crewCatagory">${i.category_Name }</p>
-					<p class="address">${i.crew_Area}</p>
-					<span class="crewDate">모집날짜 ${i.recruit_Start } ~ ${i.recruit_Start }</span>
-					<p class="crewMember">
-					<c:choose>
-					<c:when test="${i.crew_Min < i.recruit_Max }">
-					현재 인원 ${i.crew_Min}명  
-					</c:when>
-					<c:otherwise>마감</c:otherwise>
-					</c:choose>
-					총인원 ${i.recruit_Max}명</p>
-					<c:if test="${i.crew_Min < i.recruit_Max }">
-					<button class="crewJoin" onclick="goInCrew(${loginUser.userNo},${i.crew_No},${i.board_No},'${i.crew_Name}')">크루신청</button>
-					</c:if>
-					</h3>
-				</div>
-			</div>
-		
+   <div class="body">
+      <div class="header">
+         <div class="crewImgArea">
+         <c:forEach var="i1" items="${list1}" varStatus="status1">
+            <c:if test="${status1.index eq 0}">
+            <%-- <img class="crewImgBox" src="${ contextPath }/resources/images/crew/shutterstock_269242565.jpg"> --%>
+            <img class="crewImgBox" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
+            </c:if>
+            </c:forEach>
+            <div class="info">
+               <h3>
+               <smail class="crewNameLabel">ENJOIN크루모집</smail>
+               <span class="crewTitle">${i.board_Title}</span>
+               <p class="crewCatagory">${i.category_Name }</p>
+               <p class="address">${i.crew_Area}</p>
+               <span class="crewDate">모집날짜 ${i.recruit_Start } ~ ${i.recruit_Start }</span>
+               <p class="crewMember">
+               <c:choose>
+               <c:when test="${i.crew_Min < i.recruit_Max }">
+               현재 인원 ${i.crew_Min}명  
+               </c:when>
+               <c:otherwise>마감</c:otherwise>
+               </c:choose>
+               총인원 ${i.recruit_Max}명</p>
+               <c:if test="${i.crew_Min < i.recruit_Max }">
+               <button class="crewJoin" onclick="goInCrew(${loginUser.userNo},${i.crew_No},${i.board_No},'${i.crew_Name}')">크루신청</button>
+               </c:if>
+               </h3>
+            </div>
+         </div>
+      
 
-		</c:forEach>	
-		</div>
-			<div class="middleArea">
-				<div class="middle">
-					<div class="crewContentBox">
-						<h2 class="crewContent">크루 모집 내용</h2>
-						<hr class="hr1">
-						<p class="crewWiter">- 크루에 대한 설명글 입니다.</p>
-						<p class="crewWiter1">- 크루에 참여해보세요!</p>
-						<div class="crews">
-						<c:choose>
-						<c:when test="${null eq user.upload_Name}">
-						<img class="writerImg" src="${ contextPath }/resources/images/crew/thumbnail2.png">
-						</c:when>
-						<c:otherwise>
-						<img class="writerImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${user.upload_Name}">
-						</c:otherwise>
-						</c:choose>
-						
-						
-						
-						<c:forEach var="i" items="${list}" varStatus="status">
-						<p class="crewBoss">
-						${i.user_Name}님</p>
-						<hr>
-						<i class="fa fa-twitch" style="font-size:36px" class="btn1"></i>
-						<div class="crews2">
-						<p class="Content">안녕하세요 ${i.user_Name }입니다.<br>
-						${i.board_Content} 
-						</p>
-						 </c:forEach>
-						 </div>
-						 </div>
-						 <div class="crewcomment">
-						 	<p class="crewCommentBox">-회원님들의 댓글을 작성할수 있는곳입니다.</p>
-						 	<p class="crewComentBox1">-회원님이 댓글을 작성하면 크루신청이 이루어지며</p>
-						 	<p class="crewComentBox2">-크루장님이 확인후 크루에 들어갈수 있습니다!</p>
-						 	
-						 	<div class="commentBox">
-								<!-- 여기부터 반복문  -->
-								<c:forEach var="c" items="${list3}" varStatus="status">
-								<c:choose>
-									<c:when test="${c.parent_Coment_No == 0 }">			
-						 		<div class="MemberCommont" id="MemberCommont">
-						 			<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
-						 			<div class="Comment1">
-						 			<p class="userId">${ c.user_Name }</p>
-						 				<div class="spansBtn">
-						 				
-						 				<span  class="crewOk">
-						 					<i class="fa fa-user-circle">
-						 					</i>
-						 					답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
-						 				</span>
-						 		
-						 				<span  class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">${c.coment_Content }
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		<!-- 여기까지  -->
-						 		</c:when>
-						 		<c:when test="${c.parent_Coment_No != 0 }">
-						 		<div class="MemberCommont1">
-						 			<i class="fa fa-comments"></i>
-						 			<span class="ComentP">답글</span>
-						 			<img class="UserImg1" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
-						 			<div class="Comment2">
-						 			<p class="userId1">${ c.user_Name }</p>
-						 				<div class="spansBtn">
-						 			
-						 				
-						 				<span class="deleteBtn">
-						 					<i class="fa fa-trash">
-						 					</i>
-						 					삭제
-						 				</span>
-						 				</div>
-									<div class="area1">					 			
-						 			<p class="Comment">${c.coment_Content }
-						 			</p>
-						 			</div>
-						 			</div>
-						 		</div>
-						 		
-						 		
-						 	
-						 		</c:when>
-						 		</c:choose>
-						 		
-						 		</c:forEach>
-						 		
-						 		
-						 	</div>
-						 	<div class="commentWriterBox">
-						 		<form class="comment" id="coment3">
-						 			<table>
-						 				<tr>
-						 					<td colspan="2">
-						 						<script>
-						 						 function check(coment_No){
-						 							var check = $("input:checkbox[class=check1]:checked").val();
-						 							
-						 							if(check=="check"){
-						 							$inputHidden = $('<input type="hidden" name="checked11" id="test">').attr('value',check);
-						 							$('.comment').append($inputHidden);
-						 							
-						 							
-						 							$inputHidden1 = $('<input type="hidden" name="coment_No" id="test1">').attr('value',coment_No);
-						 							$('.comment').append($inputHidden1);
-						 								
-						 							}else{
-							 							$('#test').remove();
-							 							
-							 							$('#test1').remove();
-						 							}
-						 							
-						 						 }
-						 						</script>
-						 						<c:forEach var="i" items="${list}" varStatus="status">
-						 						<input type="hidden" value="${i.board_No}" name="board_No">
-						 						<input type="hidden" value="abc" name="capy">
-						 						<input type="hidden" value="${i.crew_No }" name="crew_Id">
-						 						<input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
-						 						<button type="button" class="commentWriterBtn" onclick="goCrewComent()">작성하기</button>
-						 						</c:forEach>
-						 					</td>
-						 				</tr>
-						 			</table>
-						 		</form>	
-						 	</div>
-						 </div>
-					</div>
-					<div class="crewImgBox2">
-						<h2 class="crewAtt">크루활동장소</h2>
-						<hr>
-						<p class="AttWriter1">-  같이 운동할려고 계획하는 곳에대해서 올려주세요!</p>
-						<p class="AttWriter2">-  상황에따라서 변경될수 있습니다.</p>
-					<c:forEach var="i1" items="${list1}" varStatus="status1">
-					<c:if test="${status1.index eq 1}">
-						<img class="crewImg1" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
-					</c:if>
-					</c:forEach>	
-						<div class="CrewPicksBox">
-							<c:forEach var="i" items="${list}" varStatus="status">
-							<c:if test="${status.index eq 0}">
-							<p class="crewPickMember">-${i.crew_Name } 크루의 크루원</p>
-							<p class="crewPickMember1">-${i.crew_Name } 크루에 선정된 회원님을 확인할수있습니다.</p>
-							</c:if>
-							</c:forEach>
-							<div class="crewPickBox1">
-								<c:forEach var="i" items="${list4}" varStatus="status">							
-								<div class="crewPickBox2">
-								<img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${i.upload_Name}">
-								<div class="crewPickArea">
-								<p class="crewMemberTitle"><i class="fa fa-user-circle" style="font-size:24px"></i>선정된 크루원</p>
-									<p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>${i.user_Name}</p>
-								</div>
-								</div>
-								
-								</c:forEach>
-								
-								
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			
-			<div class="footer1">
-				<jsp:include page="../common/footer.jsp"/>
-			</div>
-	
-	
+      </c:forEach>   
+      </div>
+         <div class="middleArea">
+            <div class="middle">
+               <div class="crewContentBox">
+                  <h2 class="crewContent">크루 모집 내용</h2>
+                  <hr class="hr1">
+                  <p class="crewWiter">- 크루에 대한 설명글 입니다.</p>
+                  <p class="crewWiter1">- 크루에 참여해보세요!</p>
+                  <div class="crews">
+                  <c:choose>
+                  <c:when test="${null eq user.upload_Name}">
+                  <img class="writerImg" src="${ contextPath }/resources/images/crew/thumbnail2.png">
+                  </c:when>
+                  <c:otherwise>
+                  <img class="writerImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${user.upload_Name}">
+                  </c:otherwise>
+                  </c:choose>
+                  
+                  
+                  
+                  <c:forEach var="i" items="${list}" varStatus="status">
+                  <p class="crewBoss">
+                  ${i.user_Name}님</p>
+                  <hr>
+                  <i class="fa fa-twitch" style="font-size:36px" class="btn1"></i>
+                  <div class="crews2">
+                  <p class="Content">안녕하세요 ${i.user_Name }입니다.<br>
+                  ${i.board_Content} 
+                  </p>
+                   </c:forEach>
+                   </div>
+                   </div>
+                   <div class="crewcomment">
+                      <p class="crewCommentBox">-회원님들의 댓글을 작성할수 있는곳입니다.</p>
+                      <p class="crewComentBox1">-회원님이 댓글을 작성하면 크루신청이 이루어지며</p>
+                      <p class="crewComentBox2">-크루장님이 확인후 크루에 들어갈수 있습니다!</p>
+                      
+                      <div class="commentBox">
+                        <!-- 여기부터 반복문  -->
+                        <c:forEach var="c" items="${list3}" varStatus="status">
+                        <c:choose>
+                           <c:when test="${c.parent_Coment_No == 0 }">         
+                         <div class="MemberCommont" id="MemberCommont">
+                            <img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
+                            <div class="Comment1">
+                            <p class="userId">${ c.user_Name }</p>
+                               <div class="spansBtn">
+                               
+                               <span  class="crewOk">
+                                  <i class="fa fa-user-circle">
+                                  </i>
+                                  답글<input class="check1" type="checkbox" name="check" value="check" onclick="check(${c.coment_No})">
+                               </span>
+                         
+                               <span  class="deleteBtn">
+                                  <i class="fa fa-trash">
+                                  </i>
+                                  삭제
+                               </span>
+                               </div>
+                           <div class="area1">                         
+                            <p class="Comment">${c.coment_Content }
+                            </p>
+                            </div>
+                            </div>
+                         </div>
+                         <!-- 여기까지  -->
+                         </c:when>
+                         <c:when test="${c.parent_Coment_No != 0 }">
+                         <div class="MemberCommont1">
+                            <i class="fa fa-comments"></i>
+                            <span class="ComentP">답글</span>
+                            <img class="UserImg1" src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
+                            <div class="Comment2">
+                            <p class="userId1">${ c.user_Name }</p>
+                               <div class="spansBtn">
+                            
+                               
+                               <span class="deleteBtn">
+                                  <i class="fa fa-trash">
+                                  </i>
+                                  삭제
+                               </span>
+                               </div>
+                           <div class="area1">                         
+                            <p class="Comment">${c.coment_Content }
+                            </p>
+                            </div>
+                            </div>
+                         </div>
+                         
+                         
+                      
+                         </c:when>
+                         </c:choose>
+                         
+                         </c:forEach>
+                         
+                         
+                      </div>
+                      <div class="commentWriterBox">
+                         <form class="comment" id="coment3">
+                            <table>
+                               <tr>
+                                  <td colspan="2">
+                                     <script>
+                                      function check(coment_No){
+                                        var check = $("input:checkbox[class=check1]:checked").val();
+                                        
+                                        if(check=="check"){
+                                        $inputHidden = $('<input type="hidden" name="checked11" id="test">').attr('value',check);
+                                        $('.comment').append($inputHidden);
+                                        
+                                        
+                                        $inputHidden1 = $('<input type="hidden" name="coment_No" id="test1">').attr('value',coment_No);
+                                        $('.comment').append($inputHidden1);
+                                           
+                                        }else{
+                                           $('#test').remove();
+                                           
+                                           $('#test1').remove();
+                                        }
+                                        
+                                      }
+                                     </script>
+                                     <c:forEach var="i" items="${list}" varStatus="status">
+                                     <input type="hidden" value="${i.board_No}" name="board_No">
+                                     <input type="hidden" value="abc" name="capy">
+                                     <input type="hidden" value="${i.crew_No }" name="crew_Id">
+                                     <input type="text" class="commentWriter" name="coment_Content" placeholder="크루신청 댓글을 작성해주세요!" ">
+                                     <button type="button" class="commentWriterBtn" onclick="goCrewComent()">작성하기</button>
+                                     </c:forEach>
+                                  </td>
+                               </tr>
+                            </table>
+                         </form>   
+                      </div>
+                   </div>
+               </div>
+               <div class="crewImgBox2">
+                  <h2 class="crewAtt">크루활동장소</h2>
+                  <hr>
+                  <p class="AttWriter1">-  같이 운동할려고 계획하는 곳에대해서 올려주세요!</p>
+                  <p class="AttWriter2">-  상황에따라서 변경될수 있습니다.</p>
+               <c:forEach var="i1" items="${list1}" varStatus="status1">
+               <c:if test="${status1.index eq 1}">
+                  <img class="crewImg1" src="${ contextPath }/resources/uploadFiles/crew/crewRecruitment/${i1.upload_Name}">
+               </c:if>
+               </c:forEach>   
+                  <div class="CrewPicksBox">
+                     <c:forEach var="i" items="${list}" varStatus="status">
+                     <c:if test="${status.index eq 0}">
+                     <p class="crewPickMember">-${i.crew_Name } 크루의 크루원</p>
+                     <p class="crewPickMember1">-${i.crew_Name } 크루에 선정된 회원님을 확인할수있습니다.</p>
+                     </c:if>
+                     </c:forEach>
+                     <div class="crewPickBox1">
+                        <c:forEach var="i" items="${list4}" varStatus="status">                     
+                        <div class="crewPickBox2">
+                        <img class="UserImg" src="${ contextPath }/resources/uploadFiles/myPage/profil/${i.upload_Name}">
+                        <div class="crewPickArea">
+                        <p class="crewMemberTitle"><i class="fa fa-user-circle" style="font-size:24px"></i>선정된 크루원</p>
+                           <p class="crewPick"><i class="fa fa-child" style="font-size:36px"></i>${i.user_Name}</p>
+                        </div>
+                        </div>
+                        
+                        </c:forEach>
+                        
+                        
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         
+         <div class="footer1">
+            <jsp:include page="../common/footer.jsp"/>
+         </div>
+   
+   
 </body>
 </html>

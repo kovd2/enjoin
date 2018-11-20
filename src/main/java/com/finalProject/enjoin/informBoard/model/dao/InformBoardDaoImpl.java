@@ -58,7 +58,7 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		InformBoard selectIb =new InformBoard();
 		selectIb.setBoardNo(ib.getBoardNo());
 		Map<String,Object> list = sqlSession.selectOne("InformBoard.selectBoardDetail", selectIb);
-		//System.out.println("DAO:"+list);
+		System.out.println("DAO123:"+list);
 		if(list == null) {
 			throw new BoardSelectOneException("게시물 상세보기 실패!");
 		}
@@ -127,6 +127,18 @@ public class InformBoardDaoImpl implements InformBoardDao {
 	public int selectRecord(Map<String, Object> map, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectOne("InformBoard.selectRecord", map);
+	}
+	//facilityNo가져오기
+	@Override
+	public int selectFacilityNo(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("InformBoard.selectFacilityNo", map);
+	}
+	//공고 이용하는 회원 조회	
+	@Override
+	public List<Map<String, Object>> selectInformAttendList(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectList("InformBoard.selectInformAttendList", map);
 	}
 	
 	

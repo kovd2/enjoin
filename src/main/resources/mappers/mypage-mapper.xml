@@ -260,7 +260,7 @@
 		JOIN MEMBER M USING(USER_NO)
 		LEFT JOIN COMENT C ON (B.BOARD_NO = C.BOARD_NO)
 		LEFT JOIN ATTACHMENT A ON (A.REF_NO = B.BOARD_NO)
-		WHERE B.BOARD_NO = 24
+		WHERE B.BOARD_NO = #{boardNo}
 		AND B.STATUS = 'Y'
 		AND B.BOARD_TYPE= '크루게시판'
 		ORDER BY C.COMENT_DATE DESC
@@ -470,13 +470,14 @@
 	
 	<!-- 이용내역 조회 -->
 	<select id="selectUseHistory" parameterType="hashmap" resultType="hashmap">
-      SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
-      FROM PASSRECORD PR
-      JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
-      WHERE USER_NO = #{userNo}
-      AND PR.PP_DATE BETWEEN #{date1} AND #{date2}
-      AND PR.PP_STATUS = 2
-   </select>
+		SELECT ROWNUM, PR.PP_COUNT, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.PP_STATUS, F.FACILITY_NO, F.FACILITY_NAME
+		FROM PASSRECORD PR
+		JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
+		WHERE USER_NO = #{userNo}
+		AND PR.PP_DATE BETWEEN #{date1} AND #{date2}
+		AND PR.PP_STATUS = 2
+	</select>
+
 	
 	<!-- 회원 탈퇴처리 -->
 	<update id="deleteMember">
@@ -502,7 +503,7 @@
 	
 	<!-- 패스 이용 내역 insert -->
 	<insert id="insertPassRecord">
-		INSERT INTO PASSRECORD VALUES(SEQ_PP_NO.NEXTVAL, 0, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{facilityNo}, #{useCode}, #{userNo}) 
+		INSERT INTO PASSRECORD VALUES(SEQ_PP_NO.NEXTVAL, 1, SYSDATE, #{deductPass}, SEQ_PAY_NO.NEXTVAL, #{facilityNo}, #{useCode}, #{userNo}) 
 	</insert>
 	
 	<!-- 시설 이용을 위한 패스내역 패스 차감 -->
@@ -550,11 +551,16 @@
 	
 	<!-- 이용코드 조회후 뿌리기 -->
 	<select id="selectUseCodeList" parameterType="hashmap" resultType="hashmap">
-		SELECT ROWNUM, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.USE_CODE, F.FACILITY_NAME, PP_STATUS
+		<!-- SELECT ROWNUM, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.USE_CODE, F.FACILITY_NAME, PP_STATUS
 		FROM PASSRECORD PR
 		JOIN FACILITY F USING(FACILITY_NO)
 		WHERE USER_NO = #{userNo}
-		AND PP_STATUS = 0
+		AND PP_STATUS = 0 -->
+		SELECT ROWNUM, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.USE_CODE, F.FACILITY_NAME, PP_STATUS
+		FROM PASSRECORD PR
+		JOIN FACILITY F USING(FACILITY_NO)
+		WHERE PP_STATUS = 1 OR PP_STATUS = 3
+		AND PR.USER_NO = #{userNo}
 	</select>
 	
 	<!-- 게시판 번호 조회  -->
@@ -572,13 +578,12 @@
 	</update> 
 	
 	<!-- 결제내역 조회 -->
-   <select id="selectPaymentHistory" parameterType="map" resultType="map">
-      SELECT ROWNUM, PRICE, TO_CHAR(PAY_DATE, 'yyyy-mm-dd') AS PAY_DATE, PROOF_NO, REFUND_NO, PASS_PLUS, PAY_TYPE 
-      FROM PAYMENT
-      WHERE USER_NO = #{userNo}
-      AND PAY_DATE BETWEEN #{date1} AND #{date2}
-   </select>
-	
+	<select id="selectPaymentHistory" parameterType="map" resultType="map">
+		SELECT ROWNUM, PRICE, TO_CHAR(PAY_DATE, 'yyyy-mm-dd') AS PAY_DATE, PROOF_NO, REFUND_NO, PASS_PLUS, PAY_TYPE 
+		FROM PAYMENT
+		WHERE USER_NO = #{userNo}
+		AND PAY_DATE BETWEEN #{date1} AND #{date2}
+	</select>
 </mapper>
 	
 	

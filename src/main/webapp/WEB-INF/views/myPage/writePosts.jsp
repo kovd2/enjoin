@@ -31,16 +31,15 @@
 }
 
 .titleArea {
-	background: #f5f5f5;
+	background: #d9eaf3;
 }
 
 .boardList tr {
 	border-bottom: solid 1px black;
 }
 
-.boardList tr:hover {
+.boardList td:hover {
 	cursor: pointer;
-	background: #f5f5f5;
 }
 
 .boardList td {
