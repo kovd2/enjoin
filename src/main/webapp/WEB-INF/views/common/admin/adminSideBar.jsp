@@ -25,9 +25,116 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+	<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua" rel="stylesheet">
+	
+	<link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
 	
 	
-	
+<style>
+.sidebar {
+    background-color: #484747;
+}
+.bg-dark {
+    background-color: #295b8c!important;
+    height: 70px;
+    margin: 0;
+    border-radius: 1px;
+}
+.sidebar .nav-item .nav-link span {
+    font-size: 1.2rem;
+    display: inline;
+    font-family: 'Jua', sans-serif;
+}
+.dropdown-item {
+   display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 14px;
+}
+a.navbar-brand.mr-1{
+	font-family: 'Paytone One', sans-serif;
+}
+.sidebar .nav-item .nav-link span{
+	font-size: 1.2rem;
+    display: inline;
+    font-family: 'Jua', sans-serif;
+    color: white;
+}
+.fa-home:before{
+	color: white;
+}
+i.fas.fa-fw.fa-table {
+    color: white;
+    opacity: 0.8;
+}
+i.fa.fa-user-circle {
+	color:white;
+	opacity: 0.8;
+}
+i.fa.fa-address-card {
+	color:white;
+	opacity: 0.8;
+}
+i.fas.fa-money-check {
+	color:white;
+	opacity: 0.8;
+}
+i.fa.fa-group {
+	color:white;
+	opacity: 0.8;
+}
+i.fa.fa-bar-chart{
+	color:white;
+	opacity: 0.8;
+}
+.sidebar .nav-item .nav-link:hover{
+	-webkit-transform: scale(1.1);
+	opacity: 1.0;
+}
+
+.bg-dark {
+    background-color: #295b8c!important;
+    height: 70px;
+}
+a.navbar-brand.mr-1 {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+.text-white {
+    color: #fff !important;
+    font-size: 23px;
+    margin-left: -9px;
+    margin-top: 2px;
+}
+.sidebar .nav-item .nav-link span {
+    font-size: 1.8rem;
+    display: inline;
+    font-family: 'Jua', sans-serif;
+    color: white;
+    margin-left: 7px;
+}
+i.fas.fa-fw.fa-table {
+    font-size: 18px;
+    margin-right: -5px;
+    position: relative;
+    left: -2px;
+}
+.titleName {
+    font-family: 'Jua', sans-serif;
+    color: #295b8c;
+    font-size: 33px;
+}
+
+</style>		
   </head>
 
   <body id="page-top">

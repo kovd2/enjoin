@@ -457,7 +457,7 @@
 	<select id="getCrtListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD
-		WHERE STATUS = 'N'
+		WHERE STATUS = 'Y'
 		AND BOARD_TYPE = '크루모집'
 	</select>
 	
@@ -490,7 +490,7 @@
 		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
 		WHERE B.BOARD_TYPE = '크루모집'
-		AND B.STATUS = 'N'
+		AND B.STATUS = 'Y'
 		AND B.BOARD_TITLE LIKE '%'||#{board_Title}||'%'
 		ORDER BY B.BOARD_NO ASC
 	</select>
@@ -503,7 +503,7 @@
 		JOIN CATEGORY C ON (B.CATEGORY_NO = C.CATEGORY_NO)
 		JOIN MEMBER M ON (B.USER_NO = M.USER_NO)
 		WHERE B.BOARD_TYPE = '크루모집'
-		AND B.STATUS = 'N'
+		AND B.STATUS = 'Y'
 		AND M.USER_ID = #{user_Id}
 		ORDER BY B.BOARD_NO ASC
 	</select>
