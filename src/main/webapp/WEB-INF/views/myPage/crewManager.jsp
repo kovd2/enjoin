@@ -130,7 +130,7 @@
 }
 
 .titleArea {
-	background: #f5f5f5;
+	background: #d9eaf3;
 }
 
 .acceptList tr {

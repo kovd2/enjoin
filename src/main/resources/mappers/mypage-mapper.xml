@@ -475,7 +475,7 @@
 		FROM PASSRECORD PR
 		JOIN FACILITY F ON (PR.FACILITY_NO = F.FACILITY_NO)
 		WHERE USER_NO = #{userNo}
-		AND PR.PP_DATE BETWEEN '#{date1}' AND '#{date2}'
+		AND PR.PP_DATE BETWEEN #{date1} AND #{date2}
 		AND PR.PP_STATUS = 2
 	</select>
 	
@@ -559,7 +559,7 @@
 		SELECT ROWNUM, TO_CHAR(PR.PP_DATE, 'yyyy-mm-dd') AS PP_DATE, PR.USE_CODE, F.FACILITY_NAME, PP_STATUS
 		FROM PASSRECORD PR
 		JOIN FACILITY F USING(FACILITY_NO)
-		WHERE PP_STATUS = 0 OR PP_STATUS = 3
+		WHERE PP_STATUS = 1 OR PP_STATUS = 3
 		AND PR.USER_NO = #{userNo}
 	</select>
 	
@@ -579,10 +579,10 @@
 	
 	<!-- 결제내역 조회 -->
 	<select id="selectPaymentHistory" parameterType="map" resultType="map">
-		SELECT ROWNUM, PRICE, TO_CHAR(PAY_DATE, 'yyyy-mm-dd') AS PAY_DATE, PROOF_NO, REFUND_NO, PASS_PLUS
+		SELECT ROWNUM, PRICE, TO_CHAR(PAY_DATE, 'yyyy-mm-dd') AS PAY_DATE, PROOF_NO, REFUND_NO, PASS_PLUS, PAY_TYPE 
 		FROM PAYMENT
 		WHERE USER_NO = #{userNo}
-		AND PAY_DATE BETWEEN '#{date1}' AND '#{date2}'
+		AND PAY_DATE BETWEEN #{date1} AND #{date2}
 	</select>
 </mapper>
 	
