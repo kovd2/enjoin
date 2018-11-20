@@ -395,8 +395,8 @@ img {
 					<button type="button" class="btn btn-warning" id="list" onmouseover="OnOfferListShow()" onmouseout="OnOfferListHide()">
 						<i class="fa fa-laptop"></i>신청현황 
 					</button>
-					<div class="attendList" id="attendList" style="position: absolute; display: none; background:#e8e8e8; width:550px; height:100px; margin-left: 550px;">
-						<h4>신청 접수자 : </h4>
+					<div class="attendList" id="attendList" style="position: absolute; background:rgba(162, 162, 162, 0.73); display: none; width:550px; height:100px; margin-left: 550px;">
+						<h4 style="color:white; font-size:20px;">신청 접수자 : </h4>
 					</div>
 				</div>
 			</div>
@@ -724,7 +724,8 @@ img {
 						$attendList = $('<b>').append(data[key].USER_ID + ", ");
 						
 						$attendList.css({
-							'font-size': '25px'
+							'font-size': '25px',
+							'color':'white'
 						});
 						
 						$('.attendList').append($attendList);

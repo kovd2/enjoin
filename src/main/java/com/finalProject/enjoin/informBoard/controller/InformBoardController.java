@@ -73,7 +73,7 @@ public class InformBoardController {
 		try {
 			list=ibs.selectBoardDetail(ib);
 			mv.addObject("list",list);
-			//System.out.println("controller:"+list);
+			System.out.println("controller:"+list);
 			list2=ibs.selectFileDetail(ibf,ib);
 			mv.addObject("list2", list2);
 			System.out.println("list2:"+list2);
@@ -284,7 +284,7 @@ public class InformBoardController {
 		ic.setBoardNo(boardNo);
 		ic.setUserNo(userNo);
 		ic.setComentContent(comentContent);
-		
+		System.out.println("comentContent : " + comentContent);
 		List<Map<String,Object>> map = null;
 		
 		map=ibs.insertComent(ic);

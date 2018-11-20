@@ -294,5 +294,12 @@ public class myPageServiceImpl implements myPageService{
 	   }
 
 	
+	//시설이용 확인
+	@Override
+	public int selectUseCheck(Map<String, Object> map) {
+		
+		return mpd.selectUseCheck(map, sqlSession);
+	}
+	
 
 }

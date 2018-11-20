@@ -128,6 +128,7 @@ public interface myPageDao {
 	//결제내역 조회
 	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map, SqlSessionTemplate sqlSession);
 
+	//시설이용 확인
 	int selectUseCheck(Map<String, Object> map, SqlSessionTemplate sqlSession);
 	
 

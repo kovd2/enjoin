@@ -344,7 +344,7 @@ height:20px;
 		
 		<div class="mapArea">
 		<!-- 지도 -->
-			<div id="map" style="width:600px;height:660px;margin-left:10px;margin-top:10px;"></div>
+			<div id="map" style="width:600px;height:780px;margin-left:10px;margin-top:10px;"></div>
 			
 			
 		</div>
@@ -412,7 +412,9 @@ height:20px;
                 	
                     content:iwContent
                 });
-                daum.maps.event.addListener(map, 'dragend', function() {              
+                        
+                daum.maps.event.addListener(map, 'dragend', function() {             
+                    
                     // 지도 영역정보를 얻어옵니다 
                     var bounds = map.getBounds();
                     var pos = marker.getPosition();
@@ -457,6 +459,8 @@ height:20px;
 
 	function searchFacility(address,no){
 		
+		//$('#loofWrap').empty();   
+
 		$.ajax({
 			
 			url:"searchFacility.kch",
