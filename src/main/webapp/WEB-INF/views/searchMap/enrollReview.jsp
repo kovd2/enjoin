@@ -82,7 +82,7 @@
 	font-size:15px;
 	font-weight:bold;
 	text-align:left;
-	padding-left:40px;
+	padding-left:50px;
     width: 70px;
     height: 30px;
     color:gray;
@@ -108,7 +108,6 @@
     font-size:15px;
 	font-weight:bold;
 	text-align:left;
-	padding-left:40px;
 	color:#00bff0;
     
     
@@ -226,6 +225,12 @@ color:#eee;
 }
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
+#starPoint{
+	    
+	    margin-left:100px;
+	    border:0px;
+}
+
 </style>
 </head>
 <body>
@@ -256,33 +261,36 @@ color:#eee;
 						</div>
 						<div class="product"><%=facilityEvent%></div>
 						
-					<form id="enRw" action="">
-						<input type="hidden" value="<%=facilityNo%>">
+						<form action="insertEnroll.kch" id="insertRw">
+						<input type="hidden" name="facilityNo" value="<%=facilityNo%>">
 						<div class="scoreWrap">
 						<div class="starRev">
-  						<span class="starR1 on">별1_왼쪽</span>
-  						<span class="starR2">별1_오른쪽</span>
-  						<span class="starR1">별2_왼쪽</span>
-  						<span class="starR2">별2_오른쪽</span>
-  						<span class="starR1">별3_왼쪽</span>
-  						<span class="starR2">별3_오른쪽</span>
-  						<span class="starR1">별4_왼쪽</span>
-  						<span class="starR2">별4_오른쪽</span>
-  						<span class="starR1">별5_왼쪽</span>
-  						<span class="starR2">별5_오른쪽</span>
+  						<span class="starR1 on" onclick="enRw(0.5)">별1_왼쪽</span>
+  						<span class="starR2" onclick="enRw(1)">별1_오른쪽</span>
+  						<span class="starR1" onclick="enRw(1.5)">별2_왼쪽</span>
+  						<span class="starR2" onclick="enRw(2.0)">별2_오른쪽</span>
+  						<span class="starR1" onclick="enRw(2.5)">별3_왼쪽</span>
+  						<span class="starR2" onclick="enRw(3.0)">별3_오른쪽</span>
+  						<span class="starR1" onclick="enRw(3.5)">별4_왼쪽</span>
+  						<span class="starR2" onclick="enRw(4.0)">별4_오른쪽</span>
+  						<span class="starR1" onclick="enRw(4.5)">별5_왼쪽</span>
+  						<span class="starR2" onclick="enRw(5.0)">별5_오른쪽</span>
 						</div>
-						<div class="numScore">평점주기</div>
+						<div class="numScore">평점주기
+						<input type="text" form="insertRw" name="scorePoint" value="0.5" id="starPoint">
+						</div>
 						</div>
 						<!-- <div class="content"></div> -->
 						
-						<textArea class="content" form="enRw" name="rw_content" autofocus placeholder="내용을 입력해주세요"> 
+						<textArea class="content" name="rw_content" autofocus placeholder="내용을 입력해주세요"> 
 						
 													
 						
 						</textArea>
 						
 						<button type="submit" id="enRwBtn">리뷰등록</button>
-					</form>
+						</form>
+					
 					</div>
 					
 					
@@ -298,12 +306,16 @@ color:#eee;
 	</div>
 
 <script>
-
+function enRw(e){
+	alert(e);
+	$("#starPoint").val(e);
+}
 $('.starRev span').click(function(){
 	  $(this).parent().children('span').removeClass('on');
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	  return false;
 	});
+
 
 </script>
 

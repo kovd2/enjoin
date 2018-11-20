@@ -127,6 +127,8 @@ public interface myPageDao {
 
 	//결제내역 조회
 	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map, SqlSessionTemplate sqlSession);
+
+	int selectUseCheck(Map<String, Object> map, SqlSessionTemplate sqlSession);
 	
 
 }
