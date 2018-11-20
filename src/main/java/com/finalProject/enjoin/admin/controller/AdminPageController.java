@@ -830,6 +830,7 @@ public class AdminPageController {
 			
 			mv.setViewName("admin/facilityAccept");
 			mv.addObject("map", map);
+			mv.addObject("pi", pi);
 			
 			return mv;
 		}
@@ -883,6 +884,7 @@ public class AdminPageController {
 			
 			mv.setViewName("admin/facilityList");
 			mv.addObject("map", map);
+			mv.addObject("pi", pi);
 			
 			return mv;
 		}
@@ -941,6 +943,7 @@ public class AdminPageController {
 			
 			mv.setViewName("admin/facilityDelete");
 			mv.addObject("map", map);
+			mv.addObject("pi", pi);
 			return mv;
 		}
 		//제휴 삭제 복원

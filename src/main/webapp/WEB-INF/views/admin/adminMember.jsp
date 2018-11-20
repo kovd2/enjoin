@@ -1,631 +1,257 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Paytone+One"
+	rel="stylesheet">
+
+<!-- css -->
+<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+
+
 <title>Insert title here</title>
 <style>
+.table td, .table th {
+	padding: .75rem;
+	vertical-align: top;
+	font-size: 11px;
+	font-weight: bold;
+}
+
 .content {
-	-webkit-flex: 1;
-	flex: 1;
-	padding: 30px;
-	background: #eee;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 1);
-	transform: translate3d(0, 0, 0);
-	transition: all .3s;
-}
-
-.content.content-is-open {
-	margin-left: 220px;
-}
-
-.side-panel-toggle {
-	cursor: pointer;
-	font-size: 42px;
-}
-
-/* Demo Navigation */
-.title {
-	font-size: 16px;
-	line-height: 50px;
-	text-align: center;
-	text-transform: uppercase;
-	letter-spacing: 7px;
-	color: #eee;
-	border-bottom: 1px solid #222;
-	background: #2a2a2a;
-}
-
-.nav li a {
-	position: relative;
-	display: block;
-	padding: 15px 15px 15px 50px;
-	font-size: 12px;
-	color: #eee;
-	border-bottom: 1px solid #222;
-}
-
-.nav li a:before {
-	font: 14px fontawesome;
-	position: absolute;
-	top: 14px;
-	left: 20px;
-}
-
-.nav li:nth-child(1) a:before {
-	content: '\f00a';
-}
-
-.nav li:nth-child(2) a:before {
-	content: '\f012';
-}
-
-.nav li:nth-child(3) a:before {
-	content: '\f0e8';
-}
-
-.nav li:nth-child(4) a:before {
-	content: '\f0c3';
-}
-
-.nav li:nth-child(5) a:before {
-	content: '\f022';
-}
-
-.nav li:nth-child(6) a:before {
-	content: '\f115';
-}
-
-.nav li:nth-child(7) a:before {
-	content: '\f085';
-}
-
-.nav li:nth-child(8) a:before {
-	content: '\f023';
-	left: 23px;
-}
-
-.nav li a:hover {
-	background: #444;
-}
-
-.nav li a.active {
-    box-shadow: inset 5px 0 0 #03a9f4, inset 6px 0 0 #222;
-    background: #444;
-}
-/* Demo Description */
-h1 {
-	margin: 25px 0 15px;
-    font-size: 28px;
-    font-weight: 400;
-    color: #03a9f4;
-    font-weight:bold;
-}
-
-h2 {
-	font-size: 18px;
-	font-weight: 400;
-	color: #999;
-}
-
-.Area {
-	width: 100%;
-	display: -webkit-inline-box;
-}
-
-.mainWriter {
-	font-size: 18px;
-	font-weight: 400;
-	color: #03a9f4;
-}
-
-.fromArea {
-	width: 540px;
-    height: 638px;
-    border-radius: 20px;
-    border: 1px solid black;
-    background: white;
-   	overflow-y: overlay;
-}
-.fromArea::-webkit-scrollbar {display:none;}
-
-.fromArea1 {
-	width: 736px;
-    height: 638px;
-    border-radius: 20px;
-    border: 1px solid black;
-    background: white;
-    overflow-y: overlay;
-}
-.fromArea1::-webkit-scrollbar {display:none;}
-
-.formArea2 {
-	width: 540px;
-    height: 638px;
-    border-radius: 20px;
-    background: white;
-    margin-left: 10px;
-}
-
-.memberArea {
-	width: 540px;
-	height: 20px;
-	margin-left: 0px;
-	display: -webkit-box;
-}
-
-.MemberSearchMain {
-	font-size: 30px;
-	color: #03a9f4;
-	font-weight: bold;
-}
-
-.userMember1 {
-	font-size: 14px;
-}
-
-.m1 {
-	font-size: 16px;
-	margin-right: 20px;
-	font-weight: bold;
-	margin-left: 12px;
-}
-
-.m2 {
-	font-size: 16px;
-	margin-right: 24px;
-	font-weight: bold;
-	margin-left: -11px;
-}
-
-.m3 {
-	font-size: 16px;
-	font-weight: bold;
-	margin-left: 53px;
-}
-
-.m4 {
-	font-size: 16px;
-	margin-right: 30px;
-	font-weight: bold;
-}
-
-.m5 {
-	font-size: 16px;
-	margin-right: 40px;
-	font-weight: bold;
-}
-
-.m6 {
-	font-size: 16px;
-	margin-left: 40px;
-	font-weight: bold;
-}
-
-.m7 {
-	font-size: 16px;
-    font-weight: bold;
-    margin-left: 56px;
-}
-span.m8 {
-    margin-left: 50px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-
-
-.MemberAreas {
-	width: 540px;
-	height: 20px;
-	margin-left: 0px;
-	display: -webkit-box;
-}
-
-.memberNum {
-	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
 	text-align: center;
 }
 
-.userId {
-	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
-	margin-right: 19px;
+.Sanctuary {
+	text-align: center;
 }
 
-.userName {
-	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
-	margin-left: -9px;
+.tableTr th {
+	font-size: 16px;
+	font-weight: bold;
 }
 
-.phone {
-	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
-	margin-left: -5px;
+.btn-outline-primary {
+	color: #007bff;
+	background-color: transparent;
+	background-image: none;
+	border-color: #295b8c;
+	height: 37px;
+	border-radius: 4px;
+	margin-bottom: -10px;
+	margin-top: -13px;
 }
 
-.email {
-	margin: 0;
-	line-height: 20px;
-	font-size: 8px;
+.btn-outline-primary {
+	color: #007bff;
+	background-color: transparent;
+	background-image: none;
+	border-color: #007bff;
+	line-height: 0px;
 }
 
-.memberName {
-	margin: 0;
-	line-height: 20px;
-	font-size: 12px;
-	margin-left: -17px;
+.container {
+	text-align: center;
 }
 
-.mArea {
-	width: 57px;
+.titleName {
+	font-family: 'Jua', sans-serif;
+	color: #295b8c;
 }
 
-.mArea2 {
-	width: 95px;
+.container {
+	margin-top: 30px;
 }
 
-.mArea3 {
-	width: 68px;
+.sideTitle {
+	color: gray;
+	font-weight: bold;
+	font-size: 20px;
 }
 
-.mArea4 {
-	width: 72px;
-}
-
-.mArea5 {
-	width: 173px;
-}
-
-.mArea6 {
-	width: 79px;
-}
-
-.selectBox {
-	width: 90px;
+select.selectBox {
 	height: 30px;
-	margin-top: 10px;
+	font-size: 11px;
 }
 
-.searchBar1 {
-	width: 220px;
-	height: 24px;
+.btn-primary {
+	height: 32px;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
 	position: relative;
-	top: -1px;
+	bottom: 2px;
 }
 
-.searchBtn {
-	width: 60px;
-	height: 30px;
+i.fa.fa-search {
+	font-size: 22px;
 }
 
-/* 페이징 버튼  */
-.pagination1 {
-	display: inline-block !important;
+.ContentBody td {
+	font-size: 13px;
+	font-weight: bold;
 }
 
-.pagination1 a {
-	color: black !important;
-	float: left !important;
-	padding: 8px 16px !important;
-	text-decoration: none !important;
-	transition: background-color .3s !important;
+.btn-outline-primary {
+	color: #007bff;
+	background-color: transparent;
+	background-image: none;
+	border-color: #007bff;
+	width: 50px;
+	height: 26px;
+}
+
+input.searchBar1 {
+	height: 32px;
+	width: 209px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+	width: 50px;
 }
 
 .paginBtn1 {
-	text-align: center !important;
-	margin-top: 10px !important;
+	display: -webkit-inline-box;
 }
 
-.writerBtn {
-	float: right !important;
-	border-radius: 6px !important;
-	color: white !important;
-	background: #54d4f5 !important;
-}
-.pagBtn6:hover{
-	background:red;
+a.navbar-brand.mr-1 {
+	font-family: 'Paytone One', sans-serif;
+	font-size: 23px;
+	margin-bottom: 20px;
+	margin-left: -20px;
 }
 
-hr {
-	margin-top: 15px !important;
-	border-top: 1px solid #a29e9e !important;
-	
-}
-
-.pagBtn1:hover:not (.active ) {
-	background-color: #54d4f5 ;
-}
-.pagBtn1:hover{
-	background:#54d4f5;
-}
-.pagBtn2:hover{
-	background:#54d4f5;
-}
-.pagBtn3:hover{
-	background:#54d4f5;
-}
-.pagBtn4:hover{
-	background:#54d4f5;
-}
-.pagBtn5:hover{
-	background:#54d4f5;
-}
-.pagBtn6:hover{
-	background:#54d4f5;
-}
-.pagBtn7:hover{
-	background:#54d4f5;
-}
-/* 여기까지  */
-
-
-/* 기업검색  */
-
-.m4A2{
-	font-size: 16px;
-    margin-right: 7px;
-    font-weight: bold;
-}
-.m5A2{
-	font-size: 16px;
-    margin-right: 25px;
-    font-weight: bold;
-    margin-left: 0px;
-}
-.m6A2{
-	font-size: 16px;
-    margin-left: 19px;
-    font-weight: bold;
-}
-.m3A2{
-	font-size: 16px;
-    font-weight: bold;
-    margin-left: 65px;
-}
-.memberAdd{
-	margin: 0;
-    line-height: 20px;
-    font-size: 2px;
-    margin-left: 16px;
-    float: left;
-}
-.mArea6A2{
-	width: 99px;
-    height: 38px;
-    margin-left: -15px;
-}
-.mArea7A2{
-	width: 126px;
-
-}
-.email1{
-	margin: 0;
-    line-height: 20px;
-    font-size: 8px;
-    float: left;
-}
-.mArea5A2{
-	width: 140px;
-}
-.mArea8{
-	width: 75px;
-    margin-left: 18px;
-    
-}
-.memberDate{
-	margin: 0;
-    line-height: 20px;
-    font-size: 2px;
-    margin-left: 12px;
-}
-.MemberAreas1{
-	width: 540px;
-    height: 47px;
-    margin-left: 0px;
-    display: -webkit-box;
+i.fas.fa-bars {
+	margin-left: -6px;
 }
 </style>
 </head>
-<body>
+<script>
+	function statusFacility(FACILITY_NO,FACILITY_NAME){
+		var FACILITY_NO = FACILITY_NO;
+		var FACILITY_NAME = FACILITY_NAME;
+		
+		if(confirm(FACILITY_NAME + "를 제휴복원 하시겠습니까?") == true){
+			location.href="statusFacilityY.shw?FACILITY_NO=" + FACILITY_NO;
+			alert("등록완료!");
+		}else{
+			return;
+		}
+		
+		
+	}
 
-	<!-- 여기부터  -->
+</script>
+<body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
-	<div class="wrapper">
-		<div class="sidebar">
-			<div class="title">ENJOIN ADMIN</div>
-			<ul class="nav">
-				<li><a class='active'>회원정보관리</a></li>
-				<li><a href="adminPay.test">결제관리</a></li>
-				<li><a>크루관리</a></li>
-				<li><a>게시판관리</a></li>
-				<li><a>문의관리</a></li>
-				<li><a>제휴시설관리</a></li>
-				<li><a>공고작성</a></li>
-				<li><a>로그아웃</a></li>
-			</ul>
-		</div>
-		<div class="content content-is-open">
-			<span class='side-panel-toggle'> <i class="fa fa-bars"></i>
-			</span>
-			<h1>ENJOIN 회원 조회 페이지 입니다.</h1>
-			<!-- <h2 class="mainWriter">ENJOIN 관리자 회원 관리 입니다.</h2> -->
-			<div class="well well-sm">
-				<div class="Area">
-					<div class="memberArea">
-						<div class="fromArea">
-							<tabel align="center">
-							<tr class="searchbar">
+	<div class="container">
+		<h2 class="titleName">
+			<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
+			제휴 재제 관리 게시판
+		</h2>
+		<p class="sideTitle">제휴 재제 관리 페이지 입니다</p>
+		<table class="table table-hover">
+			<thead>
+				<tr class="tableTr">
+					<th>제휴번호</th>
+					<th>신청일</th>
+					<th class="content">업체</th>
+					<th>업체주소</th>
+					<th>종목</th>
+					<th>담당자</th>
+					<th>업체번호</th>
+					<th class="Sanctuary">복원</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="m" items="${map.list}" varStatus="status">
+					<tr class="ContentBody">
+						<td>${m.FACILITY_COPNO}</td>
+						<td>${m.FACILITY_REQUESTDATE}</td>
+						<td>${m.FACILITY_NAME}</td>
+						<td>${m.FACILITY_ADDRESS}</td>
+						<td>${m.FACILITY_EVENT}</td>
+						<td>${m.FACILITY_MANAGER_NAME }</td>
+						<td>${m.FACILITY_MANAGER_PHONE }</td>
+						<td><button class="btn btn-outline-primary"
+								onclick="statusFacility(${m.FACILITY_NO},'${m.FACILITY_NAME}')">복원</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<table align="center">
+			<tr>
+				<td colspan="3">
+					<form action="facilityDelectSearchList.shw" method="get">
+						<table align="center">
+							<tr>
 								<td>
-									<h2 class="MemberSearchMain">일반 회원 검색</h2>
-									<hr>
-								</td>
-							</tr>
-							<tr>
-								<td class="MemberTitleArea"><span class="m1">번호</span> <span
-									class="m2">회원아이디</span> <span class="m4">이름</span> <span
-									class="m5">연락처</span> <span class="m6">이메일 </span> <span
-									class="m3">가입날짜</span>
-									
-									
-									<hr></td>
-							</tr>
-							<!--여기부터  -->
-							<tr>
-								<td colspan="6">
-									<div class="MemberAreas">
-										<div class="mArea">
-											<span class="memberNum">1000</span>
-										</div>
-										<div class="mArea2">
-											<span class="userId">shinhunwoo</span>
-										</div>
-										<div class="mArea3">
-											<span class="userName">아무거나염</span>
-										</div>
-										<div class="mArea4">
-											<span class="phone">010-1111-1111</span>
-										</div>
-										<div class="mArea5">
-											<span class="email">shinhunwoo@naver.com</span>
-										</div>
-										<div class="mArea6">
-											<span class="memberName">2018-10-18</span>
-										</div>
-									</div>
-									<hr>
-								</td>
-							</tr>
-							<!-- 여기까지  -->
-							<tr>
-								<td colspan="3">
 									<div class="searchArea1">
-										<select class="selectBox">
-											<option>번호</option>
-											<option>회원아이디</option>
-											<option>이름</option>
-											<option>연락처</option>
-											<option>이메일</option>
-											<option>가입날짜</option>
-										</select> <input type="text" class="searchBar1">
-										<button class="searchBtn">검색</button>
+										<select class="selectBox" name="option">
+											<option>업체</option>
+										</select> <input type="text" class="searchBar1" name="searchList">
+										<button type="submit" class="btn btn-primary">
+											<i class="fa fa-search"></i>
+										</button>
 									</div>
 								</td>
 							</tr>
-									<div class="paginBtn1">
-										<div class="pagination1">
-											<a class="pagBtn1" href="#">&laquo;</a> <a class="pagBtn2"
-												href="#">1</a> <a class="pagBtn3" href="#">2</a> <a
-												class="pagBtn4" href="#">3</a> <a class="pagBtn5" href="#">4</a>
-											<a class="pagBtn6" href="#">5</a> <a class="pagBtn7" href="#">&raquo;</a>
-										</div>
-									</div>
-							</tabel>
-						</div>
-					</div>
-					<!-- 기업회원검색  -->
-					<div class="formArea2">
-						<div class="fromArea1">
-							<tabel align="center">
-							<tr class="searchbar">
-								<td>
-									<h2 class="MemberSearchMain">기업 회원 검색</h2>
-									<hr>
-								</td>
-							</tr>
-							<tr>
-								<td class="MemberTitleArea"><span class="m1">상호명</span> <span
-									class="m2">아이디</span> <span class="m4A2">전화번호</span> <span
-									class="m5A2">등록번호</span> <span class="m6A2">이메일 </span> <span
-									class="m3A2">주소</span>
-									 <span class="m7">결제이메일 </span>
-									  <span class="m8">가입날짜 </span>
-									
-									<hr></td>
-							</tr>
-							<!--여기부터  -->
-							<tr>
-								<td colspan="6">
-									<div class="MemberAreas1">
-										<div class="mArea">
-											<span class="memberNum">kh</span>
-										</div>
-										<div class="mArea2">
-											<span class="userId">shinhunwoo</span>
-										</div>
-										<div class="mArea3">
-											<span class="userName">010-1111-111</span>
-										</div>
-										<div class="mArea4">
-											<span class="phone">11111-1111111</span>
-										</div>
-										<div class="mArea5A2">
-											<span class="email1">shinhunwoo@naver.com</span>
-										</div>
-										<div class="mArea6A2">
-											<span class="memberAdd">경기도 고양시 일산서구 주엽동 3번출구</span>
-										</div>
-										<div class="mArea7A2">
-											<span class="memberAdd">shinhunwoo@naver.com</span>
-										</div>
-										<div class="mArea8">
-											<span class="memberDate">2018-10-18</span>
-										</div>
-									</div>
-									<hr>
-								</td>
-							</tr>
-							<!-- 여기까지  --> 
-							
-							
-							<tr>
-								<td colspan="3">
-									<div class="searchArea1">
-										<select class="selectBox">
-											<option>상호명</option>
-											<option>아이디</option>
-											<option>전화번호</option>
-											<option>등록번호</option>
-											<option>이메일</option>
-											<option>주소</option>
-											<option>결제이메일</option>
-											<option>가입날짜</option>
-										</select> <input type="text" class="searchBar1">
-										<button class="searchBtn">검색</button>
-									</div>
-								</td>
-							</tr>
-									<div class="paginBtn1">
-										<div class="pagination1">
-											<a class="pagBtn1" href="#">&laquo;</a> <a class="pagBtn2"
-												href="#">1</a> <a class="pagBtn3" href="#">2</a> <a
-												class="pagBtn4" href="#">3</a> <a class="pagBtn5" href="#">4</a>
-											<a class="pagBtn6" href="#">5</a> <a class="pagBtn7" href="#">&raquo;</a>
-										</div>
-									</div>
-							</tabel>
-						</div>
-					
-					
-					
-					
-					</div>
-				</div>
+						</table>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div class="paginBtn1">
+			<div class="pagination1">
+				<nav>
+					<ul class="pagination" style="display: inline-flex;">
+						<c:if test="${ pi.currentPage <= 1 }">
+							<li><a>이전</a></li>
+						</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="listBack" value="facilityDelectList.shw">
+								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+							</c:url>
+							<li><a href="${ listBack }">이전&nbsp; </a></li>
+						</c:if>
+
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<c:if test="${ p eq pi.currentPage }">
+								<li class="active"><a>&nbsp;${ p }&nbsp;</a></li>
+							</c:if>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="listCheck" value="facilityDelectList.shw">
+									<c:param name="currentPage" value="${ p }" />
+								</c:url>
+								<li><a href="${ listCheck }"> ${ p } </a></li>
+							</c:if>
+						</c:forEach>
+
+						<c:if test="${ pi.currentPage >= pi.maxPage }">
+							<li><a> 다음</a></li>
+						</c:if>
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="listEnd" value="facilityDelectList.shw">
+								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+							</c:url>
+							<li><a href="${ listEnd }">&nbsp; 다음</a></li>
+						</c:if>
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<hr>
 	</div>
-	</div>
-
-	<!-- 여기까지  -->
 
 
 </body>
