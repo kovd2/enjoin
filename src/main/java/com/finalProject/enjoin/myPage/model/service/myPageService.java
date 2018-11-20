@@ -120,6 +120,7 @@ public interface myPageService {
 	
 	//결제내역 조회
 	List<Map<String, Object>> selectPaymentHistory(Map<String, Object> map);
+	int selectUseCheck(Map<String, Object> map);
 	
 	//시설이용확인
 	int selectUseCheck(Map<String, Object> map);

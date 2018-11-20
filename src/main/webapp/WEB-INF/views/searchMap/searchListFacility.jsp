@@ -363,24 +363,16 @@ height:20px;
 
 <script>
   $(document).ready(function(){  
-	
-
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.4996847, 127.0349215), // 지도의 중심좌표 
 	        level:5 // 지도의 확대 레벨
 	        
 	    };  
-
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
-	
-
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new daum.maps.services.Geocoder();
-
-
-	
 	//주소값담을배열
 	var addr=new Array();
 	
@@ -415,25 +407,20 @@ height:20px;
     			 });
                 
                  var iwContent='<div style="padding:5px;text-align:center;text-weight:bold;">'+addr[i].name+'</div>'
-                 	 
-                 	
-               
-                
+
                 var infowindow = new daum.maps.InfoWindow({
                 	
                     content:iwContent
                 });
-                
-                
+                        
                 daum.maps.event.addListener(map, 'dragend', function() {             
                     
                     // 지도 영역정보를 얻어옵니다 
                     var bounds = map.getBounds();
-
                     var pos = marker.getPosition();
-                    
                    	if(bounds.contain(pos)){
                    		
+                   		$('#loofWrap').empty();
 						console.log('if안에 뭐니꽈~~:'+addr[i].address);
 						searchFacility(addr[i].address,addr[i].no);
 						
@@ -473,6 +460,7 @@ height:20px;
 	function searchFacility(address,no){
 		
 		//$('#loofWrap').empty();   
+
 		$.ajax({
 			
 			url:"searchFacility.kch",
@@ -481,6 +469,7 @@ height:20px;
 						no:no},
 			success:function(data){
 				console.log(data);				  
+		 /* $('#loofWrap').empty(); */    
 				for(var key in data){
 					
 					$div0=$("<div class='listArea'>");

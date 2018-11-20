@@ -905,6 +905,38 @@ color:#feab2a;
 		}
 	});
 	</script>
+	
+	<script>
+   $(function(){
+      var facilityNo = ${list[0].FACILITY_NO};
+      var userNo = ${ loginUser.userNo };
+      
+      //들어오자마자 시실핼
+      UseCheck(facilityNo, userNo);
+      
+      function UseCheck(facilityNo, userNo){
+         $.ajax({
+            url:"UseCheck.ljs",
+            type:"get",
+            data:{
+               userNo:userNo,
+               facilityNo:facilityNo
+            },
+            success:function(data){
+               if(data > 0){
+                  document.getElementById('enReview').style.display="block";
+               }else{
+                  document.getElementById('enReview').style.display="none";
+               }
+            },
+            error:function(){
+               console.log("에러");
+            }
+         });
+      }
+   });
+   </script>
+	
 		
 
 </body>

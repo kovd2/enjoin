@@ -311,13 +311,14 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.selectList("myPage.selectPaymentHistory", map);
 	}
-	
+
 	//시설이용 확인
 	@Override
 	public int selectUseCheck(Map<String, Object> map, SqlSessionTemplate sqlSession) {
 		
 		return sqlSession.selectOne("myPage.selectUseCheck", map);
 	}
+
 
 	
 	

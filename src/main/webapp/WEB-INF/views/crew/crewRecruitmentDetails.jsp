@@ -451,16 +451,12 @@ i.fa.fa-comments{
          data : $("#coment3").serialize(),
          success:function(data){
             for(var key in data){
-               
                data[key].coment_No;
-               
-               
             }
             $(".commentBox").empty();
             
             
             for(var key in data){
-                  
                if(data[key].parent_Coment_No == 0){
                   
                   $div0=$("<div class='MemberCommont'id='MemberCommont'>");
