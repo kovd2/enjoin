@@ -108,6 +108,13 @@ public class InformBoardServiceImpl implements InformBoardService{
 		return ibd.selectInformAttendList(map, sqlSession);
 	}
 	
+	//공고 상세보기 댓글수 체크
+	@Override
+	public int selectCheckComentCount(int boardNo) {
+		
+		return ibd.selectCheckComentCount(boardNo, sqlSession);
+	}
+	
 	
 
 

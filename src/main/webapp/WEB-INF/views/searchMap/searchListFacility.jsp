@@ -38,15 +38,15 @@ header{
 	width:100%;
 }
 .middle{
-	width:1100px;
+	width:1300px;
 	height:800px;
 	margin:0 auto;
 	display: -webkit-box;
 }
 
 .searchArea{
-	width:400px;
-	 height:800px; 
+	width:600px;
+	height:800px; 
 	background:#f5f5f5;
 	margin-top:80px;
 	overflow:scroll;
@@ -55,7 +55,7 @@ header{
 .searchArea::-webkit-scrollbar {display:none;}
 .mapArea{
 	
-	width:620px;
+	width:750px;
 	 height:800px;
 	background:#bcdeb0;
 	margin-top:80px;
@@ -63,7 +63,7 @@ header{
 }
 .searchWrap{
 	margin-top:20px;
-	margin-left:20px;
+	margin-left:110px;
 	height:40px;
 	width:360px;
 	border:1px solid #00bff0;
@@ -89,7 +89,7 @@ header{
 }
 
 .listArea{
-	width:350x;
+	width:295px;
 	height:240px;
 	/* background:black; */
 	 margin-top:5px; 
@@ -104,7 +104,7 @@ header{
 .list{
 
 	margin:2 auto;
-	width:185px;
+	width:285px;
 	background: #ffffff;
 	height:240px;
 	margin-left:10px;
@@ -112,16 +112,16 @@ header{
 }
 .imgArea{
 	
-	width:174px;
+	width:275px;
 	background:black;
-	height:110px;
+	height:130px;
 	margin:5px 0px 0px 5px;
 
 }
 
 .imgArea>img{
-	width:174px;
-	height:110px;
+	width:275px;
+	height:130px;
 	border-radius:3px;
 	
 
@@ -129,7 +129,7 @@ header{
 
 .contents{
 
-	width:180px;
+	width:280px;
 	text-align:center;
 
 }
@@ -149,13 +149,12 @@ p{
 }
 
 .list:hover{
-	
 	background:#00bff0;	
 	cursor:pointer;
 }
 
 #loofWrap{
-	width:400px;
+	width:100%;
 	/* margin-top:70px; */
 
 
@@ -293,7 +292,9 @@ height:20px;
     float: right;
     text-align: center;
 }
-
+.facility_address{
+	height:30px;
+}
 </style>
 
 
@@ -320,31 +321,33 @@ height:20px;
 			</form>
 			</div>
 			<br>
-			 <div id="loofWrap">
-			 <c:forEach var="item" items="${result}" varStatus="status">
-			<div class="listArea">
-				
-				<div class="list" onclick="goDetail(${item.FACILITY_NO})">
-				<div class="imgArea">
-							<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
-				</div>
-							<div class="contents">
-							<h4>${item.FACILITY_NAME}</h4>
-							<p class="facility_address">${item.TOTAL_ADDRESS}</p>
-							 <div class="category"><b>${item.FACILITY_EVENT}</b></div>
+				<div id="loofWrap">
+					<c:forEach var="item" items="${result}" varStatus="status">
+						<div class="listArea">
+
+							<div class="list" onclick="goDetail(${item.FACILITY_NO})">
+								<div class="imgArea">
+									<img src="${contextPath}/resources/uploadFiles/facility/${item.UPLOAD_NAME}">
+								</div>
+								<div class="contents">
+									<h4>${item.FACILITY_NAME}</h4>
+										<p class="facility_address">${item.TOTAL_ADDRESS}</p>
+								<div class="category">
+									<b>${item.FACILITY_EVENT}</b>
+								</div>
+								</div>
 							</div>
+
+
+						</div>
+					</c:forEach>
 				</div>
-				
-				
 			</div>
-			</c:forEach>	 
-			</div> 
-		</div>
 		
 		
 		<div class="mapArea">
 		<!-- 지도 -->
-			<div id="map" style="width:600px;height:780px;margin-left:10px;margin-top:10px;"></div>
+			<div id="map" style="width:730px;height:780px;margin-left:10px;margin-top:10px;"></div>
 			
 			
 		</div>

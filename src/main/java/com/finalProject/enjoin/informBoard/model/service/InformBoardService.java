@@ -47,6 +47,9 @@ public interface InformBoardService  {
 	//공고 이용하는 회원 조회
 	List<Map<String, Object>> selectInformAttendList(Map<String, Object> map);
 
+	//공고 상세보기 댓글수 체크
+	int selectCheckComentCount(int boardNo);
+
 	
 	
 	

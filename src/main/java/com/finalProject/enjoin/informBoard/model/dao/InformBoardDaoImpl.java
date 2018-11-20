@@ -141,6 +141,13 @@ public class InformBoardDaoImpl implements InformBoardDao {
 		return sqlSession.selectList("InformBoard.selectInformAttendList", map);
 	}
 	
+	//공고 상세보기 댓글수 체크
+	@Override
+	public int selectCheckComentCount(int boardNo, SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("InformBoard.selectCheckComentCount", boardNo);
+	}
+	
 	
 
 
