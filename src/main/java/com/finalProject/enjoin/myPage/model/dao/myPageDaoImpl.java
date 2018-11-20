@@ -311,6 +311,11 @@ public class myPageDaoImpl implements myPageDao{
 		
 		return sqlSession.selectList("myPage.selectPaymentHistory", map);
 	}
+	@Override
+	   public int selectUseCheck(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+	      
+	      return sqlSession.selectOne("myPage.selectUseCheck", map);
+	   }
 
 	
 	
