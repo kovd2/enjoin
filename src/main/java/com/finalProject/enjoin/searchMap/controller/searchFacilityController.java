@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalProject.enjoin.member.model.vo.Member;
 import com.finalProject.enjoin.searchMap.model.exception.SearchListResultException;
 import com.finalProject.enjoin.searchMap.model.service.FacilityService;
-import com.finalProject.enjoin.searchMap.model.vo.Facility;
+import com.finalProject.enjoin.searchMap.model.vo.Review;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -89,16 +89,34 @@ public class searchFacilityController {
 		return map;
 	}
 	
-	@RequestMapping("reviewForm.kch")
-	public String reviewForm() {
-		
-		return "searchMap/searchReviewForm";
-	}
+//	@RequestMapping("reviewForm.kch")
+//	public String reviewForm() {
+//		
+//		return "searchMap/searchReviewForm";
+//	}
 	
 	@RequestMapping("enrollReview.kch")
 	public String enrollReview() {
 		
 		return "searchMap/enrollReview";
+	}
+	
+	@RequestMapping(value="reviewForm.kch",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> insertEnroll(HttpServletRequest request,
+									int facilityNo,int userNo,double starPoint,String contentRw){
+		Map<String,Object> list = null;
+		Review rw = new Review();
+		rw.setFacilityNo(facilityNo);
+		rw.setRwContent(contentRw);
+		rw.setUserNo(userNo);
+		rw.setScore(starPoint);
+		
+		list=fs.insertEnroll(rw);
+		
+		
+		System.out.println("리뷰등록:"+list);
+		return list;
+		
 	}
 	
 	

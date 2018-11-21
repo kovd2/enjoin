@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalProject.enjoin.searchMap.model.dao.FacilityDao;
 import com.finalProject.enjoin.searchMap.model.exception.SearchListResultException;
+import com.finalProject.enjoin.searchMap.model.vo.Review;
 
 
 
@@ -53,6 +54,17 @@ public class FacilityServiceImpl implements FacilityService{
 		
 		List<Map<String,Object>> list = null;
 		list = fd.detailResult(sqlSession,facilityNo);
+		
+		
+		
+		return list;
+	}
+
+	@Override
+	public Map<String,Object> insertEnroll(Review rw) {
+		
+		Map<String,Object> list = null;
+		list= fd.insertEnroll(sqlSession,rw);
 		
 		
 		
