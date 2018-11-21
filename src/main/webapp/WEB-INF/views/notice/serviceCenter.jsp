@@ -289,7 +289,12 @@ h5 {
 											<p class="help-block">
 												<span>게시판에 문의사항을 남겨주시면 정확하게 답변해 드립니다.</span>
 											</p>
+											<c:if test="${ !empty sessionScope.loginUser }">
 											<a href="contactDetail.hh" class="btn btn-default btnQuestion">1:1 문의 남기기 </a>
+											</c:if>
+											<c:if test="${ empty sessionScope.loginUser }">
+											<a href="memberLogin.me" class="btn btn-default btnQuestion">로그인 하기 </a>
+											</c:if>
 										</div>
 									</div>
 									<div class="row">
@@ -320,16 +325,6 @@ h5 {
 			<!-- /container -->
 		</div>
 	<jsp:include page="../common/footer.jsp" />
-<script>
-	function chatPopUp(){
-		var url = "chatPopUp.hh";    //팝업창 페이지 URL
- 	    var popupX = (window.screen.width / 2) - (600 / 2);
-		var popupY= (window.screen.height /2) - (500 / 2);
 
-	    var popupOption= "width="+popupX+", height="+popupY;    //팝업창 옵션(optoin)
-		window.open(url, '', 'toolbar=no, status=no, height=500, width=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
-	};
-
-</script>
 </body>
 </html>

@@ -566,7 +566,7 @@ color:#feab2a;
 				<div class="time">
 				
 				<p class="monToFri"><b>평일</b>  ${list[0].MON_FRI_TIME}</p><hr>
-				<p class="sat"><b>토요일</b>  ${list[0].SUN_TIME}</p><br><hr>
+				<p class="sat"><b>토요일</b>  ${list[0].SUN_TIME}</p><hr>
 				<p class="sun"><b>일요일</b>  ${list[0].SUN_TIME}</p><hr>
 				
 				</div>
