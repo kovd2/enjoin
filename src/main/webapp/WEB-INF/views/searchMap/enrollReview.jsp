@@ -38,6 +38,8 @@
 	
 	
 }
+.reviewArea::-webkit-scrollbar {display:none;}
+
 
 .review{
 	width:600px;
@@ -81,7 +83,7 @@
 	font-size:15px;
 	font-weight:bold;
 	text-align:left;
-	padding-left:50px;
+	padding-left:60px;
     width: 70px;
     height: 30px;
     color:gray;
@@ -106,8 +108,9 @@
     height: 20px;
     font-size:15px;
 	font-weight:bold;
-	text-align:left;
 	color:#00bff0;
+	margin-left:60px;
+	
     
     
 }
@@ -266,7 +269,7 @@ color:#eee;
 						<div class="scoreWrap">
 						<div class="starRev">
   						<span class="starR1 on" onclick="enRw(0.5)">별1_왼쪽</span>
-  						<span class="starR2" onclick="enRw(1)">별1_오른쪽</span>
+  						<span class="starR2" onclick="enRw(1.0)">별1_오른쪽</span>
   						<span class="starR1" onclick="enRw(1.5)">별2_왼쪽</span>
   						<span class="starR2" onclick="enRw(2.0)">별2_오른쪽</span>
   						<span class="starR1" onclick="enRw(2.5)">별3_왼쪽</span>
@@ -318,9 +321,9 @@ color:#eee;
 		
 		// hide our popup
 		hidePopup();
-		/* $('.en_count').empty();
-		 $('en_count').empty();
-		 */
+		$('en_listTop').empty();
+		 
+		 
 		var  facilityNo = $('#facilityNo').val();
 		var userNo 		= $('#userNo').val();
 		var starPoint	= $('#starPoint').val();
@@ -338,113 +341,73 @@ color:#eee;
 				contentRw:contentRw
 			},
 			success:function(data) {
-				
+				alert('emㄹ어');
 				console.log(data);
 				
-				$('.en_count').text(data.FACILITY_NAME);
-				 $('en_count').text('회원리뷰'+data.TOTAL+'개')
+				
+				
+				for(var key in data){
+					
+				$('.en_count').text(data[key].FACILITY_NAME);
+				 $('en_count').text('회원리뷰'+data[key].TOTAL+'개');
+					
+				
 				$div9=$('<div class="en_list">');
 				$div10=$('<div class="en_titleWrap">');
 				$div9.append($div10);
 				
 				$div11=$('<div class="en_userId">');
-				$div11.append(data.USER_ID);
+				$div11.append(data[key].USER_ID);
 				$div10.append($div11);
 				$div12=$('<div class="en_date">');
-				$div12.append(  moment( data.RW_DATE ).format("YYYY.MM") + '이용' );
+				$div12.append(  moment( data[key].RW_DATE ).format("YYYY.MM") + '이용' );
 				$div10.append($div12);
 				$div13=$('<div class="en_event">')
-				$div13.append(data.FACILITY_EVENT);
+				$div13.append(data[key].FACILITY_EVENT);
 				$div9.append($div13)
 				$div14=$('<div class="en_scoreWrap">');
 				$div9.append($div14);
 				$div15=$('<div class="en_starScore">');
 				$div14.append($div15);
-				if(data.SCORE <= 5){
-				
-				$div15.append('<img src="resources/images/searchMap/mini.png">')
+				if(data.SCORE==5){
+				$div15.append('<img src="resources/images/searchMap/5star.PNG">');
+				}else if(data[key].SCORE==4.5){
+				$div15.append('<img src="resources/images/searchMap/4.5star.PNG">');	
+				}else if(data[key].SCORE==4){
+					$div15.append('<img src="resources/images/searchMap/4star.PNG">');	
+				}else if(data[key].SCORE==3.5){
+					$div15.append('<img src="resources/images/searchMap/3.5star.PNG">');
+				}else if(data[key].SCORE==3){
+					$div15.append('<img src="resources/images/searchMap/3star.PNG">');
+				}else if(data[key].SCORE==2.5){
+					$div15.append('<img src="resources/images/searchMap/2.5star.PNG">');
+				}else if(data[key].SCORE==2){
+					$div15.append('<img src="resources/images/searchMap/2star.PNG">');
+				}else if(data[key].SCORE==1.5){
+					$div15.append('<img src="resources/images/searchMap/1.5star.PNG">');
+				}else if(data[key].SCORE==1){
+					$div15.append('<img src="resources/images/searchMap/1star.PNG">');
+				}else if(data[key].SCORE==0.5){
+					$div15.append('<img src="resources/images/searchMap/0.5star.PNG">');
 				}
-				
 				$div16=$('<div class="en_numScore">');
-				$div16.append(data.SCORE);
+				$div16.append(data[key].SCORE);
 				$div14.append($div16);
 				$div17=$('<div class="en_content">');
-				$div17.append(data.RW_CONTENT);
+				$div17.append(data[key].RW_CONTENT);
 				$div9.append($div17);
 				
 				$('.en_review').prepend($div9);
-				$('.en_review').prepend($('.en_count'))
-				$('.en_review').prepend($('.en_listTop')) 
-				/* $.ajax({
-					
-					url:"reviewForm.kch",
-					type:"post",
-					data:{
-						facilityNo:facilityNo,
-						userNo:userNo,
-						starPoint:starPoint,
-						contentRw:contentRw
-					},en_numScore
-					success:function(data){
-						console.log(data);
-						
-						hidePopup();
-					
-						
-						$('en_review').empty(); 
-						
-						console.log(data);
-						
-						
-						
-						$div1=$('<div class="en_listTop">');
-						$div2=$('<div class="en_title">');
-						$div2.append(data.FACILITY_NAME+' '+moment( data.RW_DATE ).format("YYYY.MM") + '등록');
-						$div1.append($div2);
-						$div3=$('<div class="en_close">'); 
-						$i=$('<i class="fa fa-times" id="col" style="font-size:24px">');
-						$div3.append($i);
-						$div1.append($div3);
-						$('en_review').append($div1);
-						
-						$div4=$('<div class="en_count">');
-						$div4.append('회원리뷰'+data.TOTAL+'개');
-						$('en_review').append($div1);
-						
-						$div5=$('<div class="en_list">');
-						
-						$div6=$('<div class="en_titleWrap">');
-						$div5.append($div6);
-						
-						$div7=$('<div class="en_userId">');
-						$div7.append(data.USER_ID);
-						$div5.append($div7);
-						$div8=$('<div class="en_date">');
-						$div8.append(data.RW_DATE);
-						
-						$div6.append($div7);
-						$div6.append($div8);
-						
-						
-						$div9=$('<div class="en_event">')
-						$div9.append(data.FACILITY_EVENT);
-						$div5.append($div9)
-						
-						$div10=$('<div class="en_scoreWrap">');
-						$div5.append($div10);
-						$div11=$('<div class="en_starScore">');
-						$div11.append('<img src="resources/images/searchMap/mini.png">')
-						$div5.append($div11);
-						$div12=('<div class="en_numScore">');
-						$div12.append(data.SCORE);
-						$div5.append($div12);
-						$div13=$('<div class="en_content">');
-						$div13.append(data.RW_CONTENT);
-						$div5.append($div13);
-						$('.en_review').append($div1d); */
+				$('.en_review').prepend($('.en_count'));
+				$('.en_review').prepend($('.en_listTop')); 
+				
+				}
+			},
+			error : function(){
+				
 			}
-		});
-	}
+		})
+	};
 	
 	function reviewInfo(){
 		var contentRw 	= $('#contentRw').val();

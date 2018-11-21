@@ -61,9 +61,9 @@ public class FacilityServiceImpl implements FacilityService{
 	}
 
 	@Override
-	public Map<String,Object> insertEnroll(Review rw) {
+	public List<Map<String,Object>> insertEnroll(Review rw) {
 		
-		Map<String,Object> list = null;
+		List<Map<String,Object>> list = null;
 		list= fd.insertEnroll(sqlSession,rw);
 		
 		

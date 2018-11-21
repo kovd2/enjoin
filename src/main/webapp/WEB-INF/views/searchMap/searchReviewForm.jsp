@@ -15,7 +15,7 @@
 }
 .en_top{
 	width:620px;
-	height:600px;
+	height:700px;
 	margin:0 auto;
 	
 	display: -webkit-box;
@@ -30,6 +30,8 @@
 	
 	
 }
+.en_reviewArea::-webkit-scrollbar {display:none;}
+
 
 .en_review{
 	width:600px;
@@ -176,6 +178,8 @@ margin-right:40px;
 #col{
 color:#eee;
 }
+
+
 </style>
 
 
@@ -190,13 +194,8 @@ color:#eee;
 					
 					<div class="en_listTop">
 					<div class="en_title"></div>
-					<div class="en_close">
-					<i class="fa fa-times" id="col" style="font-size:24px"></i>
-					</div>
 					
 					</div>
-					
-					
 					<div class="en_count">
 					
 					</div>
@@ -210,6 +209,9 @@ color:#eee;
 						
 						<div class="en_scoreWrap">
 						<div class="en_starScore">
+						
+						
+						
 						<img src="resources/images/searchMap/mini.png">
 						</div>
 						<div class="en_numScore">9.3</div>

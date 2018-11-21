@@ -102,18 +102,18 @@ public class searchFacilityController {
 	}
 	
 	@RequestMapping(value="reviewForm.kch",method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> insertEnroll(HttpServletRequest request,
+	public @ResponseBody List<Map<String,Object>> insertEnroll(HttpServletRequest request,
 									int facilityNo,int userNo,double starPoint,String contentRw){
-		Map<String,Object> list = null;
-		Review rw = new Review();
+		List<Map<String,Object>> list = null;
+	Review rw = new Review();
 		rw.setFacilityNo(facilityNo);
 		rw.setRwContent(contentRw);
 		rw.setUserNo(userNo);
 		rw.setScore(starPoint);
 		
 		list=fs.insertEnroll(rw);
-		
-		
+//		
+//		
 		System.out.println("리뷰등록:"+list);
 		return list;
 		

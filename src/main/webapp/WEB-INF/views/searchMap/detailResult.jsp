@@ -127,13 +127,14 @@
 	margin-left:50px;
 	
 }
-.product{
+.Dproduct{
 	width:300px;
 	color:#00bff0;
 	margin-left:60px;
 	text-align:center;
+	
 }
-.product>img{
+.Dproduct>img{
 	width:30px;
 
 }
@@ -197,6 +198,7 @@ color:#feab2a;
 .detailPic{
 	width:500px;
 	height:320px;
+	margin-left:30px;
 }
 #listwrap1{
 	width:200px;
@@ -493,8 +495,8 @@ color:#feab2a;
 	top: 200px;
  	  
 }
-.settingBoardArea{
-
+.footer{
+margin-top:80px;
 
 }
 </style>
@@ -548,7 +550,7 @@ color:#feab2a;
 			<div class="left">
 			<div class="resultContent">
 			<b>이용상품</b>
-				<div class="product">
+				<div class="Dproduct">
 				 <b>${list[0].FACILITY_EVENT}</b>
 				 <img src="resources/images/searchMap/health.png">
 				 <br><hr>
