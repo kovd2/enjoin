@@ -409,6 +409,7 @@
 		JOIN ATTACHMENT A ON (B.BOARD_NO = A.REF_NO)
 		WHERE A.FILE_NO = 0
 		AND B.BOARD_TYPE = '크루활동'
+        AND A.FILE_TYPE = 7
 		ORDER BY B.BOARD_NO DESC
      </select>
      

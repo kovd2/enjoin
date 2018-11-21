@@ -181,7 +181,7 @@ i.fas.fa-fw.fa-table {
             <i class="fa fa-user-circle" style="font-size:20px"></i>
             <span>회원관리</span></a>
              <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-             	<div class="dropdown-divider"></div>
+             	
              	<h6 class="dropdown-header">회원 관리</h6>
             	<a class="dropdown-item" href="adminMember.shw">회원 조회</a>
 	            <a class="dropdown-item" href="adminBlackMember.shw">블랙회원 조회</a>
@@ -193,7 +193,7 @@ i.fas.fa-fw.fa-table {
             <i class="fa fa-address-card" style="font-size:20px"></i>
             <span>제휴관리</span></a>
              <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-             	<div class="dropdown-divider"></div>
+             
              	<h6 class="dropdown-header">제휴 관리</h6>
             	<a class="dropdown-item" href="facilityAccept.shw">제휴승인</a>
 	            <a class="dropdown-item" href="facilityList.shw">제휴목록</a>
