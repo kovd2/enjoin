@@ -434,6 +434,7 @@ h2.mainSlogan .compName {
 											<!-- Thumb Image and Description -->
 											<img style="width:300px; height:300px;" src="resources/uploadFiles/crew/crewActivity/${ cl.UPLOAD_NAME }" alt=${ cl.BOARD_CONTENT }>
 										</div>
+										
 									
 									
 									</li>
