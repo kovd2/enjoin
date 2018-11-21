@@ -215,12 +215,6 @@ public class CompanyController {
 									@RequestParam(name="gs_file4", required=false) MultipartFile origin_Name4) {
 		
 		
-		//객체 꺼내기
-		/*int facilityNo = Integer.parseInt(request.getParameter("facilityNo"));
-		String facilityRequestDate2 = request.getParameter("facilityRequestDate");
-		String facilityStartDate2 = request.getParameter("facilityStartDate");
-		String facilityEndDate2 = request.getParameter("facilityEndDate");
-		String facilityStatus = request.getParameter("facilityStatus");*/
 				
 		int facilityCopNo = Integer.parseInt(request.getParameter("facilityCopNo"));
 		String facilityName = request.getParameter("facilityName");
@@ -241,21 +235,10 @@ public class CompanyController {
 		
 		System.out.println(totalAddress);
 		
-		//date사용
-		/*java.sql.Date facilityRequestDate = java.sql.Date.valueOf(facilityRequestDate2);
-		java.sql.Date facilityStartDate = java.sql.Date.valueOf(facilityStartDate2);
-		java.sql.Date facilityEndDate = java.sql.Date.valueOf(facilityEndDate2);*/
 		
 		//Company 객체 생성
 		Company c = new Company();
-		
-		//객체에 값 담기
-		/*c.setFacilityNo(facilityNo);
-		c.setFacilityRequestDate(facilityRequestDate);
-		c.setFacilityStartDate(facilityStartDate);
-		c.setFacilityEndDate(facilityEndDate);
-		c.setFacilityStatus(facilityStatus);*/
-		
+
 		c.setFacilityCopNo(facilityCopNo);
 		c.setFacilityName(facilityName);
 		c.setFacilityArea(facilityArea);

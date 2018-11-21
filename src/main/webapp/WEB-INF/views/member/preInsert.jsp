@@ -237,7 +237,7 @@ h1 {
 						</div>
 						<div class="alreadyMember">
 							<p>
-								이미 계정이 있으신가요? <a href="login.me" class="btn btn-link">로그인하기</a>
+								이미 계정이 있으신가요? <a href="memberLogin.me" class="btn btn-link">로그인하기</a>
 							</p>
 						</div>
 					</div>
