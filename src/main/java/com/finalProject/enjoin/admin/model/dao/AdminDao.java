@@ -230,6 +230,15 @@ public interface AdminDao {
 
 	//제휴시설 삭제리스트 업체명으로 조회
 	List<Map<String, Object>> selectFacilityDelectSearchList(SqlSession sqlSession, String facility_Name);
+	
+	//제휴시설 삭제 목록
+	int getfacilityWDelectList(SqlSession sqlSession);
+	
+	//제휴 삭제리스트 조회
+	List<Map<String, Object>> selectFacilityWDelectList(SqlSession sqlSession, PageInfo pi);
+	
+	//크루 삭제 목록 업체명 검색
+	List<Map<String, Object>> selectFacilityWDelectSearchList(SqlSession sqlSession, String facility_Name);
 
 	
 	
