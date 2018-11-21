@@ -18,7 +18,7 @@ public interface FacilityDao {
 
 	List<Map<String, Object>> detailResult(SqlSessionTemplate sqlSession, int facilityNo);
 
-	Map<String, Object> insertEnroll(SqlSessionTemplate sqlSession, Review rw);
+	List<Map<String, Object>> insertEnroll(SqlSessionTemplate sqlSession, Review rw);
 	
 	
 	

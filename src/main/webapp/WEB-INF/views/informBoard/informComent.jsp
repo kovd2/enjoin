@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>]
 <title>Insert title here</title>
 <style>
 .right {
@@ -21,6 +22,7 @@
 	overflow:scroll;
 	border-bottom:1px solid #eee;
 }
+.explanArea ::-webkit-scrollbar {display:none;}
 
 .explan {
 	font-size: 20px;
@@ -341,7 +343,7 @@
 					$div4.append($div5); 
 					$div6=$("<div class='userdate'>"); 
 					/* $('.userdate').append(data[key].COMENT_DATE); */
-					$div4.append(data[key].COMENT_DATE);
+					$div4.append(moment( data[key].COMENT_DATE ).format("YYYY.MM") + '등록' );
 					$div4.append($div6); 
 					/* $('.comentContent').append(data[key].COMENT_CONTENT); */
 					 $div7=$("<div id='comentContent'>"); 

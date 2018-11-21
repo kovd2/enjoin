@@ -161,7 +161,7 @@ height:20px;
 				$div1=$("<div id='modalWrap'>");
 				$div2=$("<div class='modalMiddle'>");
 				$div3=$("<div class='modalContent'>");	
-				$button1=$("<button  id='closeBtn' onclick='closeBtn()'>");
+				$button1=$("<button id='closeBtn' onclick='closeBtn()'>");
 				$i1=$("<i class='material-icons'>");
 				$i1.append('close');
 				$button1.append($i1);
