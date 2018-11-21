@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%		
-		
-		
-		
 		String facilityName= request.getParameter("facilityName");
 		String fNo=request.getParameter("facilityNo");
 		int facilityNo=Integer.parseInt(fNo);
@@ -14,7 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>]
+
 <title>Insert title here</title>
 <style>
 .wrap{
@@ -217,7 +216,7 @@ color:#eee;
 	border: 2px solid #ffdd33;
 	margin-left:440px;
 }
-#enBtn:hover{
+#enRwBtn:hover{
 	background:#00bff0;
 	cursor:pointer;
 	border-color:#00bff0;
@@ -261,8 +260,9 @@ color:#eee;
 						</div>
 						<div class="product"><%=facilityEvent%></div>
 						
-						<form action="insertEnroll.kch" id="insertRw">
-						<input type="hidden" name="facilityNo" value="<%=facilityNo%>">
+						
+						<input type="hidden" name="facilityNo" id="facilityNo" value="<%=facilityNo%>">
+						<input type="hidden" name="userNo" id="userNo" value="${loginUser.userNo}">
 						<div class="scoreWrap">
 						<div class="starRev">
   						<span class="starR1 on" onclick="enRw(0.5)">별1_왼쪽</span>
@@ -277,45 +277,183 @@ color:#eee;
   						<span class="starR2" onclick="enRw(5.0)">별5_오른쪽</span>
 						</div>
 						<div class="numScore">평점주기
-						<input type="text" form="insertRw" name="scorePoint" value="0.5" id="starPoint">
+						<input type="text"  name="starPoint"  value="0.5" id="starPoint">
 						</div>
 						</div>
 						<!-- <div class="content"></div> -->
 						
-						<textArea class="content" name="rw_content" autofocus placeholder="내용을 입력해주세요"> 
+						<textArea class="content" id="contentRw"  name="rw_content" autofocus="autofocus" placeholder="내용을 입력해주세요"></textArea>
 						
-													
+						<button type="button" onclick="reviewInfo()"  id="enRwBtn">리뷰등록</button>
 						
-						</textArea>
-						
-						<button type="submit" id="enRwBtn">리뷰등록</button>
-						</form>
 					
 					</div>
-					
-					
-								
-				
-				</div>	
-				
+				</div>		
 			</div>
-		
 		</div>
-
-	
 	</div>
 
 <script>
-function enRw(e){
-	alert(e);
-	$("#starPoint").val(e);
-}
-$('.starRev span').click(function(){
+
+	function enRw(e){
+		$("#starPoint").val(e);
+	}
+	
+	$('.starRev span').click(function(){
 	  $(this).parent().children('span').removeClass('on');
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	  return false;
 	});
 
+</script>
+
+<script>
+
+	function hidePopup() {
+		document.getElementById('settingBoardArea').style.display='none';
+		document.getElementById('settingArea').style.display='none';
+	}
+
+	function sendInfo( contentRw ) {
+		
+		// hide our popup
+		hidePopup();
+		/* $('.en_count').empty();
+		 $('en_count').empty();
+		 */
+		var  facilityNo = $('#facilityNo').val();
+		var userNo 		= $('#userNo').val();
+		var starPoint	= $('#starPoint').val();
+		
+		//searchReview(facilityNo,userNo,starPoint,contentRw);
+		
+		$.ajax({
+			
+			url:"reviewForm.kch",
+			type:"post",
+			data:{
+				facilityNo:facilityNo,
+				userNo:userNo,
+				starPoint:starPoint,
+				contentRw:contentRw
+			},
+			success:function(data) {
+				
+				console.log(data);
+				
+				$('.en_count').text(data.FACILITY_NAME);
+				 $('en_count').text('회원리뷰'+data.TOTAL+'개')
+				$div9=$('<div class="en_list">');
+				$div10=$('<div class="en_titleWrap">');
+				$div9.append($div10);
+				
+				$div11=$('<div class="en_userId">');
+				$div11.append(data.USER_ID);
+				$div10.append($div11);
+				$div12=$('<div class="en_date">');
+				$div12.append(  moment( data.RW_DATE ).format("YYYY.MM") + '이용' );
+				$div10.append($div12);
+				$div13=$('<div class="en_event">')
+				$div13.append(data.FACILITY_EVENT);
+				$div9.append($div13)
+				$div14=$('<div class="en_scoreWrap">');
+				$div9.append($div14);
+				$div15=$('<div class="en_starScore">');
+				$div14.append($div15);
+				if(data.SCORE <= 5){
+				
+				$div15.append('<img src="resources/images/searchMap/mini.png">')
+				}
+				
+				$div16=$('<div class="en_numScore">');
+				$div16.append(data.SCORE);
+				$div14.append($div16);
+				$div17=$('<div class="en_content">');
+				$div17.append(data.RW_CONTENT);
+				$div9.append($div17);
+				
+				$('.en_review').prepend($div9);
+				$('.en_review').prepend($('.en_count'))
+				$('.en_review').prepend($('.en_listTop')) 
+				/* $.ajax({
+					
+					url:"reviewForm.kch",
+					type:"post",
+					data:{
+						facilityNo:facilityNo,
+						userNo:userNo,
+						starPoint:starPoint,
+						contentRw:contentRw
+					},en_numScore
+					success:function(data){
+						console.log(data);
+						
+						hidePopup();
+					
+						
+						$('en_review').empty(); 
+						
+						console.log(data);
+						
+						
+						
+						$div1=$('<div class="en_listTop">');
+						$div2=$('<div class="en_title">');
+						$div2.append(data.FACILITY_NAME+' '+moment( data.RW_DATE ).format("YYYY.MM") + '등록');
+						$div1.append($div2);
+						$div3=$('<div class="en_close">'); 
+						$i=$('<i class="fa fa-times" id="col" style="font-size:24px">');
+						$div3.append($i);
+						$div1.append($div3);
+						$('en_review').append($div1);
+						
+						$div4=$('<div class="en_count">');
+						$div4.append('회원리뷰'+data.TOTAL+'개');
+						$('en_review').append($div1);
+						
+						$div5=$('<div class="en_list">');
+						
+						$div6=$('<div class="en_titleWrap">');
+						$div5.append($div6);
+						
+						$div7=$('<div class="en_userId">');
+						$div7.append(data.USER_ID);
+						$div5.append($div7);
+						$div8=$('<div class="en_date">');
+						$div8.append(data.RW_DATE);
+						
+						$div6.append($div7);
+						$div6.append($div8);
+						
+						
+						$div9=$('<div class="en_event">')
+						$div9.append(data.FACILITY_EVENT);
+						$div5.append($div9)
+						
+						$div10=$('<div class="en_scoreWrap">');
+						$div5.append($div10);
+						$div11=$('<div class="en_starScore">');
+						$div11.append('<img src="resources/images/searchMap/mini.png">')
+						$div5.append($div11);
+						$div12=('<div class="en_numScore">');
+						$div12.append(data.SCORE);
+						$div5.append($div12);
+						$div13=$('<div class="en_content">');
+						$div13.append(data.RW_CONTENT);
+						$div5.append($div13);
+						$('.en_review').append($div1d); */
+			}
+		});
+	}
+	
+	function reviewInfo(){
+		var contentRw 	= $('#contentRw').val();
+		
+		console.log(  moment( 1542737529000 ).format("YYYY.MM") + '이용' );
+		
+		if( contentRw.trim() !== '' )
+			sendInfo( contentRw );
+	}
 
 </script>
 

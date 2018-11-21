@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -605,39 +605,34 @@ color:#feab2a;
 					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[2].UPLOAD_NAME}"></div>
 					<div class="list"> <img src="${contextPath}/resources/uploadFiles/facility/${list[3].UPLOAD_NAME}"></div>
 				</div>
-				
-				<!-- <div id="listwrap3">	
-					<div class="list"><img src="resources/images/searchMap/mb4.jpg"></div>
-					<div class="list"><img src="resources/images/searchMap/mb4.jpg"></div>
-					<div class="list"></div>
-				</div>
-					 -->
+
 				
 				</div>
-				
-				
-				<div class="reviewWrap">
+																												
+				 <jsp:include page="../searchMap/searchReviewForm.jsp"/> 
+				 
+<!--  				<div class="reviewWrap">
 					<b>회원리뷰</b>
 					<div class="rwArea">
 						<div class="totalScore">
 						<img src="resources/images/searchMap/5score.png">
 						</div>
 						<div class="rwCountNum">
-							이용회원 28명의 평가
+						 이용회원 명의 평가 
 						</div>
 						<div class="score">
-							<b>8.0</b>
+							<b></b>
 						</div>
 						
 						<div class="rwList1">
 							<div class="userInfo">
-							<p><b>kch4*** 2018.10월 이용</b></p>
+							<p><b></b></p>
 							</div>
 							<div class="listScore">
 							<img src=resources/images/searchMap/mini.png> 9.3
 							
 							</div>
-							<div class="listContent"><b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b></div>
+							<div class="listContent"><b></b></div>
 							
 						</div>
 						<div class="rwList2">
@@ -669,8 +664,8 @@ color:#feab2a;
 						
 					</div>
 					
-				</div>
-			
+				</div> 
+			 -->
 			
 			</div>
 			</div>
@@ -708,28 +703,18 @@ color:#feab2a;
 			
 			
 			}); 
-		
-			
-		
 	}
 
 </script>
-<script>
-	
-		
+<script>		
 	function displayNoneCancle(){
 		
 		document.getElementById('settingArea').style.display='none';
 		document.getElementById('settingBoardArea').style.display='none';
 	}
-	</script>
-
-<script>
-	 function goReview(){
-		
-		location.href="reviewForm.kch";	
-	} 
 </script>
+
+
 	<script>
     
 	$(function(){

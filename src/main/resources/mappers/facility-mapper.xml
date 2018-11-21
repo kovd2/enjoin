@@ -44,6 +44,20 @@
 		<result property="file_Type" column="FILE_TYPE"/>
 		<result property="ref_No" column="REF_NO"/>
 	</resultMap>
+
+<resultMap type="Review" id="reviewResultSet">
+	<id property="rwNo" column="RW_NO"/>
+	<result property="rwDate" column="RW_DATE"/>
+		<result property="rwContent" column="RW_CONTENT"/>
+		<result property="score" column="SCORE"/>
+		<result property="rwModifyDate" column="RW_MODIFYDATE"/>
+		<result property="rwStatus" column="RW_STATUS"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="facilityNo" column="FACILITY_NO"/>
+</resultMap>
+	
+	
+	
 	
 <select id="facilityList" resultType="map" parameterType="Facility">
 SELECT F.FACILITY_COPNO,F.FACILITY_REQUESTDATE,F.FACILITY_STARTDATE,F.FACILITY_ENDDATE,F.FACILITY_STATUS,
@@ -129,8 +143,24 @@ FROM FACILITY F
 JOIN ATTACHMENT A ON(#{facilityNo}=A.REF_NO)
 WHERE F.FACILITY_NO=#{facilityNo}
 </select>
+<insert id="insertEnroll" parameterType="Review">
+
+INSERT INTO REVIEW(RW_NO,RW_DATE,RW_CONTENT,SCORE,RW_MODIFYDATE,
+RW_STATUS,USER_NO,FACILITY_NO)VALUES(SEQ_RW_NO.NEXTVAL,SYSDATE,#{rwContent},#{score},null,'Y',#{userNo},#{facilityNo})
 
 
+</insert>
+<select id="enrollAfter" resultType="map">
+
+SELECT R.RW_NO,R.RW_DATE,R.RW_CONTENT,M.USER_ID,F.FACILITY_EVENT,F.FACILITY_NAME,
+P.PP_DATE,R.SCORE,R.RW_STATUS,R.USER_NO,R.FACILITY_NO,(SELECT COUNT(RW_NO) FROM REVIEW) AS TOTAL
+FROM REVIEW R
+JOIN MEMBER M ON(R.USER_NO=M.USER_NO)
+JOIN PASSRECORD P ON(P.FACILITY_NO=R.FACILITY_NO)
+JOIN FACILITY F ON (P.FACILITY_NO=F.FACILITY_NO)
+WHERE R.RW_NO=(SELECT MAX(RW_NO) FROM REVIEW)
+ORDER BY R.RW_NO DESC
+</select>
 
 
 
