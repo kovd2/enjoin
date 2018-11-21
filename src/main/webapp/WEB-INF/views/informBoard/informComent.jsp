@@ -236,7 +236,6 @@
 
 						<div class="comentArea">
 							<i class="fa fa-music" style="font-size: 24px">댓글</i>
-							<div class="coCount">20개</div>
 						</div>
 					
 						<div class="comentTop">
@@ -265,21 +264,21 @@
 						
 
 						
-						<div class="listcoTop">
+						<div class="listcoTop">..
 
 						
 							<div class="list1">
 								<div class="userWrap">
 									<div class="imgList">
-										<img src="${contextPath}/resources/images/myPage/user.png"> 
+										<%-- <img src="${contextPath}/resources/images/myPage/user.png">  --%>
 									</div>
 
 									<div class="userInfo">
-										<div class="userid">kch4361</div>
-										<div class="userdate">2018.10.21</div>
+										<div class="userid"><!-- kch4361 --></div>
+										<div class="userdate"><!-- 2018.10.21 --></div>
 									</div>
 								</div>
-								<div id="comentContent">댓글입니다.</div>
+								<div id="comentContent"><!-- 댓글입니다 -->.</div>
 							</div>
 						
 						</div>
@@ -292,7 +291,7 @@
 			
 			var con = document.getElementById('en');
 			
-			if(con.style.display=='none'){
+			if(con.style.display=='block'){
 				
 				con.style.display='block';
 			}else{
@@ -367,6 +366,39 @@
 	}
 	
 	</script>
-	
+	<script>
+		$(function(){
+			var boardNo = ${list.BOARD_NO};
+			console.log("boardNo : " + boardNo);
+			checkComentCount(boardNo);
+			
+			function checkComentCount(){
+				$.ajax({
+					url:"checkComentCount.kch2",
+					type:"get",
+					data:{
+						boardNo:boardNo
+					},
+					success:function(data){
+						console.log(data);
+						if(data > 0){
+							$div1 = $("<div class='coCount'>");
+							$div1.append(data + "개");
+							
+							$('.comentArea').append($div1);
+						}else{
+							$div1 = $("<div class='coCount'>");
+							$div1.append(data + "개");
+							
+							$('.comentArea').append($div1);
+						}
+					},
+					error:function(){
+						console.log("에러");
+					}
+				});
+			}
+		});
+	</script>
 </body>
 </html>

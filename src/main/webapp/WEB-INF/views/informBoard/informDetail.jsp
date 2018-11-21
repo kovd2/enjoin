@@ -734,7 +734,7 @@ img {
 					console.log("성공");
 				},
 				error:function(){
-					console.log("에러");
+					console.log("신청자X");
 				}
 			});
 		};

@@ -212,6 +212,13 @@
 		AND FACILITY_NO = #{facilityNo}
 	</select>
 	
+	
+	<!-- 공고 상세보기 댓글수 체크 -->
+	<select id="selectCheckComentCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM COMENT
+		WHERE BOARD_NO = #{boardNo}
+	</select>
 </mapper>
 
 

@@ -42,9 +42,9 @@
 							<div class="navbar-collapse collapse ">
 								<ul class="nav navbar-nav">
 									<li><a href="searchListFacility.kch">주변제휴시설 찾기</a></li>
-									<li class="dropdown "><a href="#" class="dropdown-toggle "
-										data-toggle="dropdown" data-hover="dropdown" data-delay="0"
-										data-close-others="false">게시판 <b class=" icon-angle-down"></b></a>
+									<li class="dropdown ">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+										게시판 <b class=" icon-angle-down"></b></a>
 										<ul class="dropdown-menu">
 											<li><a href="notice.hh">공지사항</a></li>
 											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>

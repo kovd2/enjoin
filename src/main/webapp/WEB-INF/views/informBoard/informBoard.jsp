@@ -232,10 +232,10 @@ nav{
 			</div>
 			<div class="btnArea">
 			<div id="btn">
-					<button type="button" class="btn btn-success" id="enroll">
+					<button type="button" class="btn btn-success" id="enroll" onclick="memberShipGo()">
 						<i class="fa fa-handshake-o"></i>멤버쉽신청
 					</button>
-					<button type="button" class="btn btn-warning" id="list">
+					<button type="button" class="btn btn-warning" id="list" onclick="goMap()">
 						<i class="fa fa-laptop"></i>제휴시설보기
 					</button>
 				<c:if test="${ loginUser.userType eq 3 }">
@@ -391,6 +391,13 @@ nav{
 		location.href="drawForm.kch2";
 		
 		
+	}
+	function memberShipGo(){
+		location.href="passPurchase.hh";
+	}
+	
+	function goMap(){
+		location.href="searchListFacility.kch";	
 	}
 
 </script>

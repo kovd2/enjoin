@@ -372,6 +372,15 @@ public class InformBoardController {
 			
 			return selectInformAttendList;
 		}
+		
+		//공고 상세보기 댓글수 체크
+		@RequestMapping("checkComentCount.kch2")
+		public @ResponseBody int checkComentCount(@RequestParam("boardNo") int boardNo) {
+			
+			int result = ibs.selectCheckComentCount(boardNo);
+			System.out.println("result : " + result);
+			return result;
+		}
 }
 
 

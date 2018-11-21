@@ -286,20 +286,12 @@ public class myPageServiceImpl implements myPageService{
 		
 		return mpd.selectPaymentHistory(map, sqlSession);
 	}
+	
 	 //시설이용 확인
 	   @Override
 	   public int selectUseCheck(Map<String, Object> map) {
 	      
 	      return mpd.selectUseCheck(map, sqlSession);
 	   }
-
-	
-	//시설이용 확인
-	@Override
-	public int selectUseCheck(Map<String, Object> map) {
-		
-		return mpd.selectUseCheck(map, sqlSession);
-	}
-	
 
 }

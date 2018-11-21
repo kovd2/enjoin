@@ -43,7 +43,6 @@
 .notYetMembership a.membershipApply {
   margin: 0 auto;}
 
-.membershipApply
 .timeline li h4 {
   margin-top: -75px;
   font-size: 13px;
@@ -176,6 +175,38 @@
 .useCodeListArea tr{
 	border-bottom: solid 1px black;
 }
+.membershipApply {
+  display: inline-block;
+  float:none;
+  background: #00bff0;
+  padding: 13px 25px;
+  margin: 10px auto 0 25px;
+  text-align: center;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: -1px;
+  transition: all 0.3s ease 0s;
+}
+.membershipApply i {
+  font-size: 18px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.membershipApply:hover {
+  background: #0E2036;
+  color: #fff;
+  text-decoration: none;
+}
+.membershipApply em {
+  position: absolute;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 13px;
+  letter-spacing: -1px;
+  font-style: normal;
+}
 </style>
 </head>
 <body>
@@ -211,10 +242,13 @@
 			<div class="MembershipOk" align="center">
 				<c:if test="${pass > 0}">
 					<h2>현재 보유 PASS권</h2>				
-						<h3><c:out value="${ pass }"/> PASS</h3>
-						<p>
-							<a href="passPurchase.hh" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 추가하기</a>
-						</p>					
+					<h3><c:out value="${ pass }"/> PASS</h3>								
+				</c:if>
+				<c:if test="${pass < 0 }">
+					<h4>필요한 만큼 결제하세요!!</h4>
+					<p>
+						<a href="passPurchase.hh" class="membershipApply"><i class="fa fa-clone"></i> 멤버십 추가하기</a>
+					</p>
 				</c:if>
 			</div>
 			<hr>
