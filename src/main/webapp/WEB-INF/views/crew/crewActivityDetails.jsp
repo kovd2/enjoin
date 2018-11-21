@@ -828,7 +828,7 @@ i.fa.fa-comments{
 							<c:forEach var="c" items="${map.list3}" varStatus="status">
 							<c:choose>
 									<c:when test="${c.parent_Coment_No == 0 }">			
-							<div class="MemberCommont" id="MemberComment">
+							<div class="MemberCommont" id="MemberComment" value="${c.coment_No}" onclick="goComent(${c.coment_No})">
 								<img class="UserImg"
 									src="${ contextPath }/resources/uploadFiles/myPage/profil/${c.upload_Name}">
 								<div class="Comment1">

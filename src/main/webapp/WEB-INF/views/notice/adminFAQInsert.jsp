@@ -123,6 +123,7 @@ p.sideTitle {
     color: gray;
 }
 
+
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />

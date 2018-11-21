@@ -5,80 +5,179 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/style/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <style>
-.wrappp {
-	width: 100%;
-	align: center;
+<style>
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.boardAdmin table tr {
-	text-align: center;
-	border: 1px solid black;
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
-
-
-th {
-	border-left:1px solid;
+ul.sidebar.navbar-nav{
+	position: relative;
+    top: -20px;
+    right: 20px;
 }
-
-td {
-	border-left:1px solid;
+form {
+    display: table-caption;
+    height: 605px;
 }
-
-table td, table th {
-	padding:0px !important;
+.formArea{
+	width:1000px;
+}
+#country{
+	font-size:15px;
+}
+.category{
+	font-size:16px;
+	font-weight:bold;
+	font-family: 'Poor Story', cursive;
+	font-weight:bold;
+	color:#484747;
+}
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Poor Story', cursive;
+    font-weight: bold;
+    color:#484747;
+}
+#fname{
+	height: 35px;
+    width: 630px;
+}
+.content{
+    height: 250px;
+    width: 350px;
+    margin-top: 20px;
+}
+select#country {
+    height: 36px;
+	font-family: 'Poor Story', cursive;
+}
+.contnetTitle{
+	font-size:16px;
+	font-weight:bold;
+	font-family: 'Poor Story', cursive;
+	font-weight:bold;
+	color:#484747;
+}
+div#wrapper{
+	height: 645px;
+}
+.titleInput::placeholder{
+	font-size:15px;
+	font-family: 'Poor Story', cursive;
+}
+.content::placeholder{
+	font-size:15px;
+	font-family: 'Poor Story', cursive;
+}
+div#wrapper {
+    height: 735px;
+}
+#country option{
+	font-family: 'Poor Story', cursive;
+}
+#country option::placeholder{{
+	font-family: 'Poor Story', cursive;
+}
+.btn.btn-primary {
+    height: 35px;
+    margin-top: 14px;
+    border-radius: 5px;
+}
+.sideTitle {
+    font-size: 13px !important;
+    font-family: 'Poor Story', cursive !important;;
+}
+p.sideTitle {
+    height: 30px;
+    font-size: 13px !important;
+    color: gray;
+}
+.area4 {
+    display: -webkit-inline-box !important;
+}
+input.btn.btn-primary{
+	width: 640px;
+    height: 33px;
+}
+.Area6{
+	display: -webkit-inline-box;
+}
+p.photo {
+    margin-left: 335px;
+    font-size: 17px;
+    font-family: 'Poor Story', cursive !important;
+}
+p.contentNum {
+    margin: 0;
+    font-size: 17px;
+    font-family: 'Poor Story', cursive !important;
+}
+textarea {
+    overflow: auto;
+    resize: vertical;
+    margin-top: 21px;
+}
+div#contentImgArea1 {
+    margin-left: 30px;
 }
 
 
 </style>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
-	<div class="wrappp">	
-		<div class="boardAdmin" align="center">
-		<p style="font-size: 30px; color: #03a9f4; font-weight: bold; margin-top: 10px; margin-right: 50px;">공지사항</p>
-		
-		<hr>
-		
-	<form id="updateBoardForm" action="adminNoticeUpdate.hh" method="post">
-		<input type="hidden" value="${detail.boardNo }" id="boardNo" name="boardNo">
-		<table class="table table-bordered" style="vertical-align: middle;">	
-			<tr>
-				<th style="width:300px; height:60px; font-size:30px; background:#0099CC; padding">제목</th>
-				<td style="width:800px; height:60px;"><input type="text" id="boardTitle" name="boardTitle" style="width:100%; height:60px;" value="${detail.boardTitle }"></td>
+	<div class="formBody" style="margin:0 auto!important;">
+		<h2 class="titleName" align="center">
+				<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
+				공지사항 상세보기
+			</h2>
+			<p class="sideTitle" style="color:gray; font-size:15px;" align="center">관리자 공지사항 페이지</p>
+	   <form id="updateBoardForm" action="adminNoticeUpdate.hh" method="post">
+	   <input type="hidden" value="${detail.boardNo }" id="boardNo" name="boardNo">
+	    <label for="fname" class="title">제목</label>
+	    <input type="text" id="fname" name="boardTitle" class="titleInput" placeholder="제목을 입력해주세요!" value="${detail.boardTitle }">
+	    <table>
+	   		<tr>
+	   			<div class="Area6" style="display:-webkit-inline-box; margin-left: -20px;">
+					<p class="contentNum" style=" margin-right: 20px; font-size: 16px; font-family:'Poor Story', cursive !important; font-weight:bold;">내용</p>
+					<p class="photo" style="margin-left: 323px;
+	    			font-size: 16px; font-family:'Poor Story', cursive !important; font-weight:bold;">사진</p>	
+				</div>		
+				<td class="area4" style="display:-webkit-inline-box; margin-top: -30px;">
+			    <textarea rows="16" cols="60" id="boardContent" name="boardContent"  placeholder="내용을 작성해 주세요" style="margin-top: 21px;">${detail.boardContent }</textarea>
+				<div id="contentImgArea1" style="width:300px; height:290px; margin-left: 30px;">
+				<img id="contentImg1" width="100%" height="100%" id=contentImg1 src="resources/uploadFiles/admin/${ detail.upload_name }">
+				</div></td>
 			</tr>
-			<tr>
-				<th style="vertical-align:middle; width:300px; height:400px; font-size:30px; background:#0099CC;">내용</th>
-				<td style="width:800px; height:400px">
-					<textarea id="boardContent" name="boardContent" style="width:100%; height:100%;">${detail.boardContent }</textarea>
-				</td>
-			</tr>
-			<tr>
-			<th style="vertical-align:middle; width:300px; height:260px; font-size:30px; background:#0099CC;">첨부파일</th>
-			<td  style="width:310px; height:260px;"><div id="contentImgArea1" style="width:310px; height:260px;">
-			<img style="width:100%; height:100%" id=contentImg1 src="resources/uploadFiles/admin/${ detail.upload_name }">
-			</div></td>
-	
-			</tr>
-		</table>
-		<div id="fileArea">
-		<input type="file" id="photo" name="photo" value="파일선택" onchange="loadImg(this,1)">
-				</div>
-	</form>
-		<br>
 		
-		<form action="adminNoticeDelete.hh" method="post">
-			<input type="button" class="btn btn-info" value="수정" style="width: 80px; height: 40px; font-size: x-large;" onclick="adminNoticeUpdate()">
+	    </table>
+		    <div id="fileArea">
+				<input type="file" id="photo" name="photo" value="파일선택" onchange="loadImg(this,1)">
+			</div>
+	   </form>
+	   <form class="anum" action="adminNoticeDelete.hh" method="post" style="display: inline;">
+			<input type="button" class="btn btn-primary" value="수정" onclick="adminNoticeUpdate()" style="width:290px; margin-left: 10px; margin-top:-340px;">
 			<input type="hidden" value="${detail.boardNo }" id="boardNo" name="boardNo">
-			&nbsp;&nbsp;&nbsp;
-			<button type="submit" class="btn btn-danger" style="width: 80px; height: 40px; font-size: x-large;">삭제</button>
-		</form>
-		
-		</div>
-		<br><br><br><br><br>
+			<input type="submit" class="btn btn-danger" value="삭제" style="width:290px; margin-left: 43px; margin-top:-340px;">
+	   </form>	
 	</div>
-	
 	<script>
 		function adminNoticeUpdate(){
 			$("#updateBoardForm").submit();
@@ -108,6 +207,5 @@ table td, table th {
 	
 		
 	</script>
-	
 </body>
 </html>

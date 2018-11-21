@@ -68,9 +68,7 @@
     font-size: 33px;
     margin-left: 34px;
 }
-.pagination1 {
-    margin-left: 30px;
-}
+
 .container {
 	margin-top: 30px;
 }
@@ -207,7 +205,8 @@ button, html input[type=button], input[type=reset], input[type=submit]{
 			</tbody>
 		</table>
 		<div class="paginBtn1">
-			<div class="pagination1">
+			<div class="pagination1" style=" margin-left: 20px;
+    margin-top: 30px;">
 				<nav>
 					<ul class="pagination" style="display: inline-flex;">
 						<c:if test="${ pi.currentPage <= 1 }">
