@@ -50,10 +50,6 @@
 											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
 											<li><a href="informBoard.kch2">크루공고</a></li>
 											<li><a href="crewActivityBoard.shw2">크루활동</a></li>
-											<li><a href="crewApplication.test">크루신청</a></li>
-											<li><a href="crewAffiliate.test">크루제휴</a></li>
-											<li><a href="crewActivity.test">크루활동</a></li>
-											<li><a href="crewRecruitment.test">크루모집폼</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="memberLogin.me">로그인</a></li>
@@ -94,10 +90,6 @@
 											<li><a href="crewRecruitmentBoard.shw2">크루모집</a></li>
 											<li><a href="informBoard.kch2">크루공고</a></li>
 											<li><a href="crewActivityBoard.shw2">크루활동</a></li>
-											<li><a href="crewApplication.test">크루신청</a></li>
-											<li><a href="crewAffiliate.test">크루제휴</a></li>
-											<li><a href="crewActivity.test">크루활동</a></li>
-											<li><a href="crewRecruitment.test">크루모집</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
@@ -143,9 +135,6 @@
 											<li><a href="informBoard.kch2">크루공고</a></li>
 											<li><a href="crewActivityBoard.shw2">크루활동</a></li>
 											<li><a href="crewApplication.test">크루신청</a></li>
-											<li><a href="crewAffiliate.test">크루제휴</a></li>
-											<li><a href="crewActivity.test">크루활동</a></li>
-											<li><a href="crewRecruitment.test">크루모집</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
@@ -185,9 +174,6 @@
 											<li><a href="informBoard.kch2">크루공고</a></li>
 											<li><a href="crewActivityBoard.shw2">크루활동</a></li>
 											<li><a href="crewApplication.test">크루신청</a></li>
-											<li><a href="crewAffiliate.test">크루제휴</a></li>
-											<li><a href="crewActivity.test">크루활동</a></li>
-											<li><a href="crewRecruitment.test">크루모집</a></li>
 										</ul></li>
 									<li><a href="serviceCenter.hh">고객센터</a></li>
 									<li><a href="logout.me">로그아웃</a></li>
