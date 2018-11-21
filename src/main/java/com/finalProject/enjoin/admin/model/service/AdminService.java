@@ -221,7 +221,7 @@ public interface AdminService {
 	//제휴시설 삭제 리스트 갯수
 	int getfacilityDelectList();
 	
-	//제휴 삭제리스트 조회
+	//제휴 재제삭제리스트 조회
 	List<Map<String, Object>> selectFacilityDelectList(PageInfo pi);
 	
 	//제휴 시설 삭제 복원 
@@ -229,6 +229,15 @@ public interface AdminService {
 	
 	//제휴 삭제 시설 이름으로 조회
 	List<Map<String, Object>> selectFacilityDelectSearchList(String facility_Name);
+	
+	//제휴 삭제리스트 조회
+	int getfacilityWDelectList();
+	
+	//제휴 삭제리스트 조회
+	List<Map<String, Object>> selectFacilityWDelectList(PageInfo pi);
+	
+	//제휴 삭제리스트 검색
+	List<Map<String, Object>> selectFacilityWDelectSearchList(String facility_Name);
 	
 
 

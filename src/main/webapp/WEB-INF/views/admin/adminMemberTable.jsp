@@ -164,6 +164,7 @@ i.fas.fa-bars {
 </script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
+	<div class="num1">
 	<div class="container">
 		<h2 class="titleName">
 			<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
@@ -276,7 +277,7 @@ i.fas.fa-bars {
 					<th>아이디</th>
 					<th class="content">연락처</th>
 					<th>등록번호</th>
-					<th>이메일</th>
+					<th>이메일</th>	
 					<th>주소</th>
 					<th>결제이메일</th>
 					<th>가입날짜</th>
@@ -365,7 +366,7 @@ i.fas.fa-bars {
 			</div>
 		</div>
 	</div>
-	
+</div>	
 
 
 </body>

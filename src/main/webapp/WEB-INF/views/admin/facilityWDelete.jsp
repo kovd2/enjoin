@@ -138,52 +138,54 @@ i.fas.fa-bars {
 </style>
 </head>
 <script>
-	function StatusBoard(board_No,board_Title){
-		var board_No = board_No;
-		var board_Title = board_Title;
+	function statusFacility(FACILITY_NO,FACILITY_NAME){
+		var FACILITY_NO = FACILITY_NO;
+		var FACILITY_NAME = FACILITY_NAME;
 		
-		if(confirm(board_Title + "를 복원 시키겠습니까 ?") == true){
-			location.href="adminBoardStatus.shw?board_No=" + board_No;
-			alert("복원 완료!");
+		if(confirm(FACILITY_NAME + "를 제휴복원 하시겠습니까?") == true){
+			location.href="statusFacilityY.shw?FACILITY_NO=" + FACILITY_NO;
+			alert("등록완료!");
 		}else{
 			return;
 		}
 		
+		
 	}
+
 </script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
 	<div class="container">
 		<h2 class="titleName">
 			<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
-			제재글 관리 게시판
+			제휴 삭제 관리 게시판
 		</h2>
-		<p class="sideTitle">제재글 게시판 관리자 페이지 입니다</p>
+		<p class="sideTitle">제휴 삭제 관리 페이지 입니다</p>
 		<table class="table table-hover">
 			<thead>
 				<tr class="tableTr">
-					<th>번호</th>
-					<th>카테고리</th>
-					<th class="content">제목</th>
-					<th>지역</th>
-					<th>구분</th>
-					<th>수정일</th>
-					<th>작성일</th>
-					<th class="Sanctuary">재제</th>
+					<th>제휴번호</th>
+					<th>신청일</th>
+					<th class="content">업체</th>
+					<th>업체주소</th>
+					<th>종목</th>
+					<th>담당자</th>
+					<th>업체번호</th>
+					<th class="Sanctuary">복원</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="m" items="${map.list}" varStatus="status">
 					<tr class="ContentBody">
-						<td>${m.board_No}</td>
-						<td>${m.category_Name }</td>
-						<td >${m.board_Title}</td>
-						<td>${m.crew_Area}</td>
-						<td>${m.board_Type}</td>
-						<td>${m.modify_Date}</td>
-						<td>${m.enroll_Date }</td>
+						<td>${m.FACILITY_COPNO}</td>
+						<td>${m.FACILITY_REQUESTDATE}</td>
+						<td>${m.FACILITY_NAME}</td>
+						<td>${m.FACILITY_ADDRESS}</td>
+						<td>${m.FACILITY_EVENT}</td>
+						<td>${m.FACILITY_MANAGER_NAME }</td>
+						<td>${m.FACILITY_MANAGER_PHONE }</td>
 						<td><button class="btn btn-outline-primary"
-								onclick="StatusBoard(${m.board_No},'${m.board_Title}')">재제</button></td>
+								onclick="statusFacility(${m.FACILITY_NO},'${m.FACILITY_NAME}')">복원</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -191,13 +193,13 @@ i.fas.fa-bars {
 		<table align="center">
 			<tr>
 				<td colspan="3">
-					<form action="blackBoardSearchList.shw" method="get">
+					<form action="facilityDelectWSearchList.shw" method="get">
 						<table align="center">
 							<tr>
 								<td>
 									<div class="searchArea1">
 										<select class="selectBox" name="option">
-											<option>제목</option>
+											<option>업체</option>
 										</select> <input type="text" class="searchBar1" name="searchList">
 										<button type="submit" class="btn btn-primary">
 											<i class="fa fa-search"></i>
@@ -218,7 +220,7 @@ i.fas.fa-bars {
 							<li><a>이전</a></li>
 						</c:if>
 						<c:if test="${ pi.currentPage > 1 }">
-							<c:url var="listBack" value="adminBlackBoard.shw">
+							<c:url var="listBack" value="facilityWDelectList.shw">
 								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 							</c:url>
 							<li><a href="${ listBack }">이전&nbsp; </a></li>
@@ -229,7 +231,7 @@ i.fas.fa-bars {
 								<li class="active"><a>&nbsp;${ p }&nbsp;</a></li>
 							</c:if>
 							<c:if test="${ p ne pi.currentPage }">
-								<c:url var="listCheck" value="adminBlackBoard.shw">
+								<c:url var="listCheck" value="facilityWDelectList.shw">
 									<c:param name="currentPage" value="${ p }" />
 								</c:url>
 								<li><a href="${ listCheck }"> ${ p } </a></li>
@@ -240,7 +242,7 @@ i.fas.fa-bars {
 							<li><a> 다음</a></li>
 						</c:if>
 						<c:if test="${ pi.currentPage < pi.maxPage }">
-							<c:url var="listEnd" value="adminBlackBoard.shw">
+							<c:url var="listEnd" value="facilityWDelectList.shw">
 								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							</c:url>
 							<li><a href="${ listEnd }">&nbsp; 다음</a></li>
@@ -250,7 +252,5 @@ i.fas.fa-bars {
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>

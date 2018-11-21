@@ -982,5 +982,51 @@ public class AdminPageController {
 			
 			return mv;
 		}
+		@RequestMapping("facilityWDelectList.shw")
+		public ModelAndView facilityWDelectList(ModelAndView mv,HttpServletRequest request) {
+			
+			//제휴  삭제 리스트 카운트
+			int currentPage = 1;
+			
+			if(request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+			}
+			int listCount = as.getfacilityWDelectList();
+			
+			
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			//제휴 삭제리스트 조회
+			List<Map<String,Object>> list = as.selectFacilityWDelectList(pi);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			
+			
+			
+			mv.setViewName("admin/facilityWDelete");
+			mv.addObject("map", map);
+			mv.addObject("pi", pi);
+			return mv;
+		}
+		@RequestMapping("facilityDelectWSearchList.shw")
+		public ModelAndView facilityDelectWSearchList(ModelAndView mv,HttpServletRequest request) {
+			
+			String option = request.getParameter("option");
+			String searchList = request.getParameter("searchList");
+			
+			String facility_Name = searchList;
+			
+			List<Map<String,Object>> list = as.selectFacilityWDelectSearchList(facility_Name);
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("list", list);
+			
+			mv.setViewName("admin/facilityWDelete");
+			mv.addObject("map", map);
+			
+			
+			return mv;
+		}
 		
 }

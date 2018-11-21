@@ -457,6 +457,24 @@ public class AdminServiceImpl implements AdminService {
 		
 		return ad.selectFacilityDelectSearchList(sqlSession,facility_Name);
 	}
+	//제휴 삭제 리스트 조회
+	@Override
+	public int getfacilityWDelectList() {
+		
+		return ad.getfacilityWDelectList(sqlSession);
+	}
+	//제휴 삭제 목록 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityWDelectList(PageInfo pi) {
+		
+		return ad.selectFacilityWDelectList(sqlSession,pi);
+	}
+	//제휴 삭제 업체명 검색
+	@Override
+	public List<Map<String, Object>> selectFacilityWDelectSearchList(String facility_Name) {
+		
+		return ad.selectFacilityWDelectSearchList(sqlSession,facility_Name);
+	}
 	
 
 

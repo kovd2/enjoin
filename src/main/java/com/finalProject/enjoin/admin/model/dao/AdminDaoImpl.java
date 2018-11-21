@@ -501,6 +501,27 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.selectList("Admin.selectFacilityDelectSearchList", facility_Name);
 	}
+	//제휴 시설 삭제 리스트 조회
+	@Override
+	public int getfacilityWDelectList(SqlSession sqlSession) {
+		
+		return sqlSession.selectOne("Admin.getfacilityWDelectList");
+	}
+	//제휴 삭제 목록 조회
+	@Override
+	public List<Map<String, Object>> selectFacilityWDelectList(SqlSession sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		return sqlSession.selectList("Admin.selectFacilityWDelectList", null, rowBounds);
+	}
+	//크루 삭제 업체명 검색
+	@Override
+	public List<Map<String, Object>> selectFacilityWDelectSearchList(SqlSession sqlSession, String facility_Name) {
+		
+		return sqlSession.selectList("Admin.selectFacilityWDelectSearchList",facility_Name);
+	}
 	
 
 }

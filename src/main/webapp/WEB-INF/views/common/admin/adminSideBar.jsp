@@ -170,7 +170,7 @@ i.fas.fa-fw.fa-table {
             <a class="dropdown-item" href="adminCrewRecruitment.shw">크루모집</a>
             <a class="dropdown-item" href="adminInformBoard.shw">크루공고</a>
             <a class="dropdown-item" href="adminAdminCrewActivity.shw">크루활동</a>
-             <a class="dropdown-item" href="adminBlackBoard.shw">블랙게시글</a>
+             <a class="dropdown-item" href="adminBlackBoard.shw">제재게시글</a>
 
            </div>
         </li>
@@ -184,7 +184,7 @@ i.fas.fa-fw.fa-table {
              	
              	<h6 class="dropdown-header">회원 관리</h6>
             	<a class="dropdown-item" href="adminMember.shw">회원 조회</a>
-	            <a class="dropdown-item" href="adminBlackMember.shw">블랙회원 조회</a>
+	            <a class="dropdown-item" href="adminBlackMember.shw">제재회원 조회</a>
             </div>
         </li>
         
@@ -197,7 +197,8 @@ i.fas.fa-fw.fa-table {
              	<h6 class="dropdown-header">제휴 관리</h6>
             	<a class="dropdown-item" href="facilityAccept.shw">제휴승인</a>
 	            <a class="dropdown-item" href="facilityList.shw">제휴목록</a>
-	             <a class="dropdown-item" href="facilityDelectList.shw">제휴삭제</a>
+	             <a class="dropdown-item" href="facilityDelectList.shw">제휴재제</a>
+	             <a class="dropdown-item" href="facilityWDelectList.shw">제휴삭제</a>
             </div>
         </li>
          
