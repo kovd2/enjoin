@@ -174,7 +174,7 @@ nav{
 }
 
 #list {
-	width: 150px;
+	width: 165px;
 	height: 50px;
 	font-weight: bold;
 	font-size: 20px;

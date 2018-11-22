@@ -401,7 +401,7 @@ color:#eee;
 				$('.en_review').prepend($('.en_count'));
 				$('.en_review').prepend($('.en_listTop')); 
 				
-				
+				location.reload();
 			},
 			error : function(){
 				
