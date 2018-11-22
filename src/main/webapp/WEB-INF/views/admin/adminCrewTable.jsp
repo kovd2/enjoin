@@ -164,6 +164,7 @@ i.fas.fa-bars {
 </script>
 <body>
 	<jsp:include page="../common/admin/adminSideBar.jsp" />
+	
 	<div class="container">
 		<h2 class="titleName">
 			<!-- <i class="fa fa-window-maximize" style="font-size:30px;"></i> -->
@@ -357,7 +358,6 @@ i.fas.fa-bars {
 			</div>
 		</div>
 	</div>
-	
 
 
 </body>
