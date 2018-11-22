@@ -60,7 +60,7 @@
 					<div class="content col-md-12">					
 						<div class="page-header noticeViewHeader">
 							<h2>${Detail.boardTitle }</h2>
-							<div align="right">작성자</div>
+							<div align="right">${ Detail.userName }</div>
 						</div>
 						<div class="noticeWrap">
 							<div class="boardContentArea">

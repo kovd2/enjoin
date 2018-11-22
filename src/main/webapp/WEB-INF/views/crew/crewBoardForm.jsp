@@ -57,7 +57,7 @@
 						<input type="file" class="btn btn-block btn-signup" name="attachment" style="display: inline-block; width:500px;">
 					</div>
 					<div class="box-footer">
-						<button type="button" class="btn btn-primary"><i class="fa fa-list"></i> 목록</button>
+						<button type="button" class="btn btn-primary"><i class="fa fa-list"></i><a href="javascript:history.go(-1)"> 목록</a></button>
 						<div class="pull-right">
 							<button type="reset" class="btn btn-warning"><i class="fa fa-reply"></i> 초기화</button>
 							<button class="btn btn-success" onclick="insertCrewBoard();"><i class="fa fa-save"></i> 저장</button>

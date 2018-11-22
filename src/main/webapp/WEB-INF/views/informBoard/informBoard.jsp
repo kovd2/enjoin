@@ -321,43 +321,41 @@ nav{
 			
 			</div> <!-- informArea 끝나는영역 -->
 			
-			<div id="pagingArea" align="center">
-			<c:if test="${ pi.currentPage <= 1 }">
-				[이전] &nbsp;
-			</c:if>
-			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="blistBack" value="/informBoard.kch2">
-					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-				</c:url>
-				<a href="${ blistBack }">[이전]</a>
-			</c:if>
+			<nav align="center">
+				<ul class="pagination">
+					<c:if test="${ pi.currentPage <= 1 }">
+						<li><a>이전</a></li>
+					</c:if>
+					<c:if test="${ pi.currentPage > 1 }">
+						<c:url var="blistBack" value="/informBoard.kch2">
+							<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+						</c:url>
+						<li><a href="${ blistBack }">이전</a></li>
+					</c:if>
 
-			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				<c:if test="${ p eq pi.currentPage }">
-					<font color="ee3e61" size="5"><b>[${ p }]</b></font>
-				</c:if>
-				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="blistCheck" value="/informBoard.kch2">
-						<c:param name="currentPage" value="${ p }"/>
-					</c:url>
-					<a href="${ blistCheck }">${ p }</a>
-				</c:if>
-			</c:forEach>
+					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+						<c:if test="${ p eq pi.currentPage }">
+							<li class="active"><a>${ p }</a></li>
+						</c:if>
+						<c:if test="${ p ne pi.currentPage }">
+							<c:url var="blistCheck" value="/informBoard.kch2">
+								<c:param name="currentPage" value="${ p }"/>
+							</c:url>
+							<li><a href="${ blistCheck }">${ p }</a></li>
+						</c:if>
+					</c:forEach>
 
-
-
-			<c:if test="${ pi.currentPage >= pi.maxPage }">
-				&nbsp; [다음]
-			</c:if>
-			<c:if test="${ pi.currentPage < pi.maxPage}">
-				<c:url var="blistEnd" value="/informBoard.kch2">
-					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-				</c:url>
-				&nbsp;
-				<a href="${ blistEnd }">[다음]</a>
-			</c:if>
-
-		</div>
+					<c:if test="${ pi.currentPage >= pi.maxPage }">
+						<li><a>다음</a></li>
+					</c:if>
+					<c:if test="${ pi.currentPage < pi.maxPage }">
+						<c:url var="blistEnd" value="/informBoard.kch2">
+							<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+						</c:url>
+						<li><a href="${ blistCheck }">다음</a></li>
+					</c:if>
+				</ul>
+			</nav>
 			
 		</div>
 		</div>

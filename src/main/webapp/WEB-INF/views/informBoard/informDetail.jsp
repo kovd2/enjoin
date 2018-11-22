@@ -53,7 +53,7 @@ img {
 	width: 1100px;
 	height: 90px;
 	text-align: center;
-	font-size: 80px;
+	font-size: 60px;
 	font-weight: bold;
 	color: #ccc;
 	margin-top: 50px;
@@ -667,6 +667,7 @@ img {
 									alert("이미 신청하셨습니다. 다시 한번 확인해 주세요.");
 								}else{
 								popupOpen(data);
+								location.reload();
 								}
 							},		
 							error:function(){
