@@ -16,6 +16,6 @@ public interface FacilityService {
 
 	List<Map<String, Object>> detailResult(int facilityNo);
 
-	List<Map<String,Object>> insertEnroll(Review rw);
+	Map<String,Object> insertEnroll(Review rw);
 
 }

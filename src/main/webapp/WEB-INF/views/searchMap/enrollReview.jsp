@@ -341,15 +341,15 @@ color:#eee;
 				contentRw:contentRw
 			},
 			success:function(data) {
-				alert('emㄹ어');
+				
 				console.log(data);
 				
 				
 				
-				for(var key in data){
+				
 					
-				$('.en_count').text(data[key].FACILITY_NAME);
-				 $('en_count').text('회원리뷰'+data[key].TOTAL+'개');
+				$('.en_count').text(data.FACILITY_NAME);
+				 $('en_count').text('회원리뷰'+data.TOTAL+'개');
 					
 				
 				$div9=$('<div class="en_list">');
@@ -357,51 +357,51 @@ color:#eee;
 				$div9.append($div10);
 				
 				$div11=$('<div class="en_userId">');
-				$div11.append(data[key].USER_ID);
+				$div11.append(data.USER_ID);
 				$div10.append($div11);
 				$div12=$('<div class="en_date">');
-				$div12.append(  moment( data[key].RW_DATE ).format("YYYY.MM") + '이용' );
+				$div12.append(  moment( data.RW_DATE ).format("YYYY.MM") + '이용' );
 				$div10.append($div12);
 				$div13=$('<div class="en_event">')
-				$div13.append(data[key].FACILITY_EVENT);
+				$div13.append(data.FACILITY_EVENT);
 				$div9.append($div13)
 				$div14=$('<div class="en_scoreWrap">');
 				$div9.append($div14);
 				$div15=$('<div class="en_starScore">');
 				$div14.append($div15);
 				if(data.SCORE==5){
-				$div15.append('<img src="resources/images/searchMap/5star.PNG">');
-				}else if(data[key].SCORE==4.5){
-				$div15.append('<img src="resources/images/searchMap/4.5star.PNG">');	
-				}else if(data[key].SCORE==4){
-					$div15.append('<img src="resources/images/searchMap/4star.PNG">');	
-				}else if(data[key].SCORE==3.5){
-					$div15.append('<img src="resources/images/searchMap/3.5star.PNG">');
-				}else if(data[key].SCORE==3){
-					$div15.append('<img src="resources/images/searchMap/3star.PNG">');
-				}else if(data[key].SCORE==2.5){
-					$div15.append('<img src="resources/images/searchMap/2.5star.PNG">');
-				}else if(data[key].SCORE==2){
-					$div15.append('<img src="resources/images/searchMap/2star.PNG">');
-				}else if(data[key].SCORE==1.5){
-					$div15.append('<img src="resources/images/searchMap/1.5star.PNG">');
-				}else if(data[key].SCORE==1){
-					$div15.append('<img src="resources/images/searchMap/1star.PNG">');
-				}else if(data[key].SCORE==0.5){
-					$div15.append('<img src="resources/images/searchMap/0.5star.PNG">');
+				$div15.append('<img src="resources/images/searchMap/5star.png">');
+				}else if(data.SCORE==4.5){
+				$div15.append('<img src="resources/images/searchMap/4.5star.png">');	
+				}else if(data.SCORE==4){
+					$div15.append('<img src="resources/images/searchMap/4star.png">');	
+				}else if(data.SCORE==3.5){
+					$div15.append('<img src="resources/images/searchMap/3.5star.png">');
+				}else if(data.SCORE==3){
+					$div15.append('<img src="resources/images/searchMap/3star.png">');
+				}else if(data.SCORE==2.5){
+					$div15.append('<img src="resources/images/searchMap/2.5star.png">');
+				}else if(data.SCORE==2){
+					$div15.append('<img src="resources/images/searchMap/2star.png">');
+				}else if(data.SCORE==1.5){
+					$div15.append('<img src="resources/images/searchMap/1.5star.png">');
+				}else if(data.SCORE==1){
+					$div15.append('<img src="resources/images/searchMap/1star.png">');
+				}else if(data.SCORE==0.5){
+					$div15.append('<img src="resources/images/searchMap/0.5star.png">');
 				}
 				$div16=$('<div class="en_numScore">');
-				$div16.append(data[key].SCORE);
+				$div16.append(data.SCORE);
 				$div14.append($div16);
 				$div17=$('<div class="en_content">');
-				$div17.append(data[key].RW_CONTENT);
+				$div17.append(data.RW_CONTENT);
 				$div9.append($div17);
 				
 				$('.en_review').prepend($div9);
 				$('.en_review').prepend($('.en_count'));
 				$('.en_review').prepend($('.en_listTop')); 
 				
-				}
+				
 			},
 			error : function(){
 				

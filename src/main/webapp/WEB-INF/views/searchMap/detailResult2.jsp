@@ -620,6 +620,16 @@ color:#feab2a;
 	}
 
 </script>
+<script>
+	$.(document).ready(function(){
+		
+		url:
+		
+		
+	})
+
+
+</script>
 
 
 

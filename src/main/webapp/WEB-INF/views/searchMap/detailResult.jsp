@@ -1,5 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +10,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
-
 <style>
 
 .resultTop{
@@ -499,6 +499,176 @@ color:#feab2a;
 margin-top:80px;
 
 }
+.en_wrap{
+
+	width:100%;
+	margin-top:40px;
+}
+.en_top{
+	width:620px;
+	height:400px;
+	margin:0 auto;
+	display: -webkit-box;
+	
+}
+.en_reviewArea{
+	width:600px;
+	height:100%;
+	border-radius:3px;
+	border:2px solid #eee;
+	overflow-y:scroll;
+	
+	
+}
+.en_reviewArea::-webkit-scrollbar {display:none;}
+
+
+.en_review{
+	width:600px;
+	height:300px;
+	margin-top:40px;
+	background:white;
+	
+	
+}
+
+.en_title{
+
+    width: 300px;
+    height: 30px;
+    text-align:left;
+    font-size:20px;
+    font-weight:bold;
+	color:black;
+	padding-left:40px;
+    
+    
+}
+.en_count{
+	 width: 300px;
+    height: 30px;
+    text-align:left;
+    font-size:20px;
+    font-weight:bold;
+    color:gray;
+    padding-left:40px;
+   
+}
+.en_list{
+
+    width: 600px;
+    height: 300px;
+   
+
+}
+.en_userId{
+	font-size:15px;
+	font-weight:bold;
+	text-align:left;
+	padding-left:40px;
+    width: 70px;
+    height: 30px;
+    color:gray;
+    
+}
+.en_date{
+	font-size:15px;
+	font-weight:bold;
+	text-align:left;
+	padding-left:40px;
+	width: 150px;
+    height: 30px;
+    color:gray;
+}
+.en_titleWrap{
+    display: -webkit-box;
+
+
+}
+.en_event{
+    width: 300px;
+    height: 20px;
+    font-size:15px;
+	font-weight:bold;
+	text-align:left;
+	padding-left:40px;
+	color:#00bff0;
+    
+    
+}
+.en_scoreWrap{
+display: -webkit-box;
+border-top:1px solid #eee;
+margin-left:40px;
+margin-right:40px;
+
+
+}
+.en_starScore{
+    width: 200px;
+    height: 40px;
+	margin-top:10px;
+	border-right:1px solid #eee;	
+
+}
+.en_starScore>img{
+	width:197px;
+	height:40px;
+	
+	
+}
+.en_numScore{
+  	width: 200px;
+    height: 60px;
+	margin-top:10px;
+	font-size:40px;
+	font-weight:bold;
+	color:gray;
+	text-align:center;
+	
+}
+
+
+.en_content{
+    height: 100px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+	overflow:hidden;
+	border-bottom:5px solid #eee;
+}
+.en_end{
+	text-align: center;
+    font-size: 15px;
+    color: #999;
+    padding-top: 10px;
+	padding-bottom:15px;
+
+}
+
+.en_listTop{
+	display: -webkit-box;
+	
+
+}
+.en_close{
+	margin-left:220px;
+	
+}
+
+#col:hover{
+	cursor:pointer;
+	color:black;
+}
+
+#col{
+color:#eee;
+}
+
 </style>
 </head>
 <body>
@@ -611,63 +781,108 @@ margin-top:80px;
 				
 				</div>
 																												
-				 <jsp:include page="../searchMap/searchReviewForm.jsp"/> 
-				 
-<!--  				<div class="reviewWrap">
-					<b>회원리뷰</b>
-					<div class="rwArea">
-						<div class="totalScore">
-						<img src="resources/images/searchMap/5score.png">
+				  <%-- <jsp:include page="../searchMap/searchReviewForm.jsp"/> --%> 
+		<div class="en_wrap">
+	
+		  <div class="en_top">
+			<div class="en_reviewArea">
+				 <div class="en_review">
+					
+					<div class="en_listTop">
+					<div class="en_title"></div>
+								
+					</div>
+					<div class="en_count">
+					
+					</div>
+					<c:forEach var="item" items="${list}" step="3" varStatus="status">
+					<div class="en_list">
+						<div class="en_titleWrap">
+						<div class="en_userId">${item.USER_ID}</div>
+						<div class="en_date"><fmt:formatDate value="${item.RW_DATE}" pattern="yyyy.MM"/></div>
 						</div>
-						<div class="rwCountNum">
-						 이용회원 명의 평가 
-						</div>
-						<div class="score">
-							<b></b>
-						</div>
+						<div class="en_event">${item.FACILITY_EVENT}</div>
 						
-						<div class="rwList1">
-							<div class="userInfo">
-							<p><b></b></p>
-							</div>
-							<div class="listScore">
-							<img src=resources/images/searchMap/mini.png> 9.3
-							
-							</div>
-							<div class="listContent"><b></b></div>
-							
-						</div>
-						<div class="rwList2">
-							<div class="userInfo">
-							<p><b>kch4*** 2018.10월 이용</b></p>
-							</div>
-							<div class="listScore">
-							<img src=resources/images/searchMap/mini.png> 9.3
-							
-							</div>
-							<div class="listContent"><b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b></div>
-							
-						</div>
-						<div class="rwList3">
-							<div class="userInfo">
-							<p><b>kch4*** 2018.10월 이용</b></p>
-							</div>
-							<div class="listScore">
-							<img src=resources/images/searchMap/mini.png> 9.3
-							
-							</div>
-							<div class="listContent"><b>유익하고 너무 즐거웠습니다.시설도 너무 맘에 들고 다시 오고싶네요</b></div>
-							 <div id="allReview" onclick="goReview()">
-							<b>리뷰모두보기</b>
+						<div class="en_scoreWrap">
+						<div class="en_starScore">
+						<c:choose>
+						<c:when test="${item.SCORE eq 0.5}">	
+						<img src="resources/images/searchMap/0.5star.png">
+						</c:when>
 						
-						</div> 
-						</div>
-
 						
+						<c:when test="${item.SCORE eq 1}">	
+						<img src="resources/images/searchMap/1star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 1.5}">	
+						<img src="resources/images/searchMap/1.5star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 2}">	
+						<img src="resources/images/searchMap/2star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 2.5}">	
+						<img src="resources/images/searchMap/2.5star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 3}">	
+						<img src="resources/images/searchMap/3star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 3.5}">	
+						<img src="resources/images/searchMap/3.5star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 4}">	
+						<img src="resources/images/searchMap/4star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 4.5}">	
+						<img src="resources/images/searchMap/4.5star.png">
+						</c:when>
+						
+						
+						<c:when test="${item.SCORE eq 5}">	
+						<img src="resources/images/searchMap/5star.png">
+						</c:when>
+						</c:choose>
+						
+						</div>
+						<div class="en_numScore">${item.SCORE}</div>
+						</div>
+						<div class="en_content">${item.RW_CONTENT}</div>
 					</div>
 					
-				</div> 
-			 -->
+					</c:forEach>
+					
+					
+					<div class="en_end">
+					<i class="fa fa-comments-o"></i>
+					모든리뷰를 불러왔습니다.
+					</div>
+					
+					
+				
+				
+				
+				</div>	
+				
+			</div>
+		
+		</div>
+
+	
+	</div>
+
 			
 			</div>
 			</div>

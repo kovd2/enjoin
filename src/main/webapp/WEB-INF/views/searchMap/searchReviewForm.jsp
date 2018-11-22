@@ -190,7 +190,7 @@ color:#eee;
 	
 		  <div class="en_top">
 			<div class="en_reviewArea">
-				<div class="en_review">
+				 <div class="en_review">
 					
 					<div class="en_listTop">
 					<div class="en_title"></div>
@@ -214,45 +214,14 @@ color:#eee;
 						
 						<img src="resources/images/searchMap/mini.png">
 						</div>
-						<div class="en_numScore">9.3</div>
+						<div class="en_numScore"></div>
 						</div>
 						<div class="en_content">친절하고 실력도 좋으신데 시설이나 위생상태는 안좋아요 이점 참고하세요!</div>
 					
 					</div>
 					
-						<div class="en_list">
-						<div class="en_titleWrap">
-						<div class="en_userId">kch43**</div>
-						<div class="en_date">2018.09이용</div>
-						</div>
-						<div class="en_event">헬스</div>
-						
-						<div class="en_scoreWrap">
-						<div class="en_starScore">
-						<img src="resources/images/searchMap/mini.png">
-						</div>
-						<div class="en_numScore">9.3</div>
-						</div>
-						<div class="en_content">친절하고 실력도 좋으신데 시설이나 위생상태는 안좋아요 이점 참고하세요!</div>
 					
-					</div>
 					
-						<div class="en_list">
-						<div class="en_titleWrap">
-						<div class="en_userId">kch43**</div>
-						<div class="en_date">2018.09이용</div>
-						</div>
-						<div class="en_event">헬스</div>
-						
-						<div class="en_scoreWrap">
-						<div class="en_starScore">
-						<img src="resources/images/searchMap/mini.png">
-						</div>
-						<div class="en_numScore">9.3</div>
-						</div>
-						<div class="en_content">친절하고 실력도 좋으신데 시설이나 위생상태는 안좋아요 이점 참고하세요!</div>
-					
-					</div>
 					
 					<div class="en_end">
 					<i class="fa fa-comments-o"></i>

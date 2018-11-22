@@ -96,13 +96,13 @@ public class FacilityDaoImpl implements FacilityDao{
 	}
 
 	@Override
-	public List<Map<String,Object>> insertEnroll(SqlSessionTemplate sqlSession, Review rw) {
+	public Map<String,Object> insertEnroll(SqlSessionTemplate sqlSession, Review rw) {
 		
 		int result=0;
-		List<Map<String,Object>> list =null;
+		Map<String,Object> list =null;
 		result=sqlSession.insert("Facility.insertEnroll", rw);
 		if(result>0) {
-		 list = sqlSession.selectList("Facility.enrollAfter");
+		 list = sqlSession.selectOne("Facility.enrollAfter");
 		}
 		
 		
