@@ -102,9 +102,9 @@ public class searchFacilityController {
 	}
 	
 	@RequestMapping(value="reviewForm.kch",method=RequestMethod.POST)
-	public @ResponseBody List<Map<String,Object>> insertEnroll(HttpServletRequest request,
+	public @ResponseBody Map<String,Object> insertEnroll(HttpServletRequest request,
 									int facilityNo,int userNo,double starPoint,String contentRw){
-		List<Map<String,Object>> list = null;
+		Map<String,Object> list = null;
 	Review rw = new Review();
 		rw.setFacilityNo(facilityNo);
 		rw.setRwContent(contentRw);
@@ -118,6 +118,15 @@ public class searchFacilityController {
 		return list;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
