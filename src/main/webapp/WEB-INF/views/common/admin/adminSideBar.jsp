@@ -220,13 +220,6 @@ i.fas.fa-fw.fa-table {
             <span>차트</span></a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="adminTest.shw">
-           <i class="fa fa-bar-chart" style="font-size:20px"></i>
-            <span>테스트</span></a>
-        </li>
-      
-      
       </ul>
 
     <!-- /#wrapper -->
